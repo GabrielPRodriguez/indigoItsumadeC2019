@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class SearchResults {
     private ArrayList<String> searchParams;
-    //private ArrayList<Form> listOfForms; //TODO get form class
+    private ArrayList<Form> listOfForms;
 
     //setters
     protected void setSearchParams(ArrayList<String> newParams) //TODO controller compiles list from search boundry

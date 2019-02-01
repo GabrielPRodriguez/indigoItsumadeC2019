@@ -2,26 +2,26 @@ package edu.wpi.cs3733c19.teamI.Entities;
 
 public class Form {
 
-        private String repID;
-        private String plantRegistry;
-        private String domesticOrImported;
-        private int serialNumber;
-        private String brandName;
-        private String beverageType;
-        private String fancifulName;
-        private String nameAndAddress;
-        private String mailingAddress;
+        private String repID; //optional
+        private String plantRegistry; //optional
+        private String domesticOrImported; //required
+        private int serialNumber; //required
+        private String brandName; //required
+        private String beverageType; //required
+        private String fancifulName; //optional
+        private String nameAndAddress; //required
+        private String mailingAddress; //optional
         private String extraInfo; //optional
-        private String dateOfApplication;
-        private String nameOfApplicant;
-        private String formula;
-        private String grapeVarietals; //for wine only
+        private String dateOfApplication; //required (assumed)
+        private String nameOfApplicant; //required (assumed)
+        private String formula; //optional
+        private String grapeVarietals; //for wine only/optional
         private String vintage; //for wine only
         private String wineAppellation; //wine only/optional
-        private String email;
-        private String phoneNumber;
+        private String email; //optional
+        private String phoneNumber; //required
         private double pHValue; //wine only
-        private double alcoholContent;
+        private double alcoholContent; //required
 
         public Form() {
             this.repID = "";
@@ -156,6 +156,52 @@ public class Form {
         public String getBeverageType() {
             return beverageType;
         }
+
+        //inputs an int attribute to see if a value has been set
+        //returns true if intVal is equal to zero
+        private boolean isEmpty(int intVal){
+            return (intVal == 0);
+
+        }
+
+        //inputs a string attribute to see if a value has been set
+        //returns true if string is empty
+        private boolean isEmpty(String stringVal){
+            return stringVal.equals("");
+
+        }
+
+        //inputs a double attribute to see if a value has been set
+        //returns true if doubleVal is zero
+        private boolean isEmpty(double doubleVal){
+            return (doubleVal == 0.0);
+
+        }
+
+        //returns true if any required field is empty
+        public boolean missingRequired(){
+            return (isEmpty(domesticOrImported)||isEmpty(serialNumber)||isEmpty(brandName)
+            ||isEmpty(beverageType)||isEmpty(nameAndAddress)||isEmpty(dateOfApplication) ||isEmpty(nameOfApplicant)
+            ||isEmpty(phoneNumber)||isEmpty(alcoholContent));
+
+        }
+
+        //unfinished
+        public String getMissingRequired(){
+            String missingStatement = "The following fields are required: ";
+            if(isEmpty(domesticOrImported)){
+                missingStatement = missingStatement + "Domestic or Imported";
+            }
+            if(isEmpty(serialNumber)){
+                missingStatement = missingStatement + "Serial Number";
+            }
+
+
+            return missingStatement;
+
+        }
+
+
 
 
 }

@@ -187,7 +187,7 @@ public class Form {
         }
 
         //unfinished
-        public String getMissingRequired(){
+        public String getMissingFieldsStatement(){
             String missingStatement = "The following fields are required: ";
             if(isEmpty(domesticOrImported)){
                 missingStatement = missingStatement + "Domestic or Imported";

@@ -186,15 +186,39 @@ public class Form {
 
         }
 
-        //unfinished
+        //creates a string listing the field names that are both empty and required
         public String getMissingFieldsStatement(){
-            String missingStatement = "The following fields are required: ";
+            String missingStatement = "The following empty fields are required: ";
             if(isEmpty(domesticOrImported)){
-                missingStatement = missingStatement + "Domestic or Imported";
+                missingStatement = missingStatement + " Domestic or Imported,";
             }
             if(isEmpty(serialNumber)){
-                missingStatement = missingStatement + "Serial Number";
+                missingStatement = missingStatement + " Serial Number,";
             }
+            if(isEmpty(brandName)){
+                missingStatement = missingStatement + " Brand Name,";
+            }
+            if(isEmpty(beverageType)){
+                missingStatement = missingStatement + " Type of Product,";
+            }
+            if(isEmpty(nameAndAddress)){
+                missingStatement = missingStatement + " Name and Address of Applicant,";
+            }
+            if(isEmpty(dateOfApplication)){
+                missingStatement = missingStatement + " Date of Application,";
+            }
+            if(isEmpty(nameOfApplicant)){
+                missingStatement = missingStatement + " Print Name of Applicant,";
+            }
+            if(isEmpty(phoneNumber)){
+                missingStatement = missingStatement + " Phone Number,";
+            }
+            if(isEmpty(alcoholContent)){
+                missingStatement = missingStatement + " Alcohol Percentage,";
+            }
+
+            //removes extra comma
+            missingStatement = missingStatement.substring(0, missingStatement.length() - 1);
 
 
             return missingStatement;

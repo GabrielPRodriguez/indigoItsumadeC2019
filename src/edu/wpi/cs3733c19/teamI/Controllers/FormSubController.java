@@ -67,7 +67,7 @@ public class FormSubController {
         TextField date_Field;
 
         @FXML
-        Label brandedInfo_Field;
+        TextArea brandedInfo_Field;
 
         @FXML
         TextField applicantName_Field;
@@ -121,6 +121,7 @@ public class FormSubController {
         private void handleSubmitButton(ActionEvent event) throws IOException{
             if(event.getSource()== submit_Button){
                 Form sentForm = new Form();
+                boolean readyToSend = true;
 
                 //sets Domestic Or Imported field
 
@@ -149,6 +150,7 @@ public class FormSubController {
                     sentForm.setSerialNumber(Integer.parseInt(serialNum_Field.getText()));
                 }
                 catch (NumberFormatException e){
+                    readyToSend = false;
                     //TODO: print error message in fxml next to field "Please Enter a Number for this field
                 }
 
@@ -200,6 +202,7 @@ public class FormSubController {
                         sentForm.setpHValue(Double.parseDouble(ph_Field.getText()));
                     }
                     catch (NumberFormatException e){
+                        readyToSend = false;
                         //TODO: print error message in fxml next to field "Please Enter a Number for this field
 
                     }
@@ -211,7 +214,38 @@ public class FormSubController {
                     sentForm.setAlcoholContent(Double.parseDouble(alcoholPercent_Field.getText()));
                 }
                 catch (NumberFormatException e){
+                    readyToSend = false;
                     //TODO: print error message in fxml next to field "Please Enter a Number for this field
+                }
+
+                if(sentForm.missingRequired()){
+                    readyToSend = false;
+                    String errorMessage = sentForm.getMissingFieldsStatement(); //apply to a Label
+                }
+
+                if(readyToSend){
+                    //add code to sent to database
+                    String success = "Form successfully submitted."; //apply to a Label
+
+                    //clears all fields
+                    Domestic.selectToggle(null);
+                    Drinks.selectToggle(null);
+                    repIdNum_Field.clear();
+                    serialNum_Field.clear();
+                    brandName_Field.clear();
+                    permitNum_Field.clear();
+                    formula_Field.clear();
+                    alcoholPercent_Field.clear();
+                    fancyName_Field.clear();
+                    phoneNum_Field.clear();
+                    mailAddr_Field.clear();
+                    email_Field.clear();
+                    appelllation_Field.clear();
+                    grape_Field.clear();
+                    ph_Field.clear();
+                    vintage_Field.clear();
+                    applicantName_Field.clear();
+                    applicantNameAddr_Field.clear();
                 }
 
 

@@ -6,16 +6,16 @@ import javafx.stage.Stage;
 
 import java.awt.event.ActionEvent;
 
-public class SearchController {
+public class HomeController {
 
-    private Scene firstScene;
+    private Scene secondScene;
 
-    public void setFirstScene(Scene scene) {
-        firstScene = scene;
+    public void setSecondScene(Scene scene) {
+        secondScene = scene;
     }
 
-    public void openFirstScene(ActionEvent actionEvent) {
+    public void openSecondScene(ActionEvent actionEvent) {
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        primaryStage.setScene(firstScene);
+        primaryStage.setScene(secondScene);
     }
 }

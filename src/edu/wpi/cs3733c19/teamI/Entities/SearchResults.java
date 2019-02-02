@@ -5,13 +5,14 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.HashMap;
 
+//TODO re-evaluate the different varaiable properties (protected, private, whatever im goin to bed)
 public class SearchResults {
 
     private LinkedList<String> Parameters;
     private HashMap<String, DataField> searchMap;
     private ArrayList<Form> listOfForms;
 
-    void gatherSearchParam(LinkedList<DataField> userInput)
+    public void gatherSearchParam(LinkedList<DataField> userInput)
     {
         for (DataField dataField : userInput) {
             Parameters.add(dataField.getField());
@@ -24,17 +25,17 @@ public class SearchResults {
 
 
   //setters
-    protected void setParameters(LinkedList<String> param)
+    public void setParameters(LinkedList<String> param)
     {
         this.Parameters = param;
     }
 
-    protected void setSearchMap(HashMap<String, DataField> map)
+    public void setSearchMap(HashMap<String, DataField> map)
     {
         this.searchMap = map;
     }
 
-    protected void setlistOfForm(ArrayList<Form> forms)
+    public void setlistOfForm(ArrayList<Form> forms)
     {
         this.listOfForms = forms;
     }
@@ -42,17 +43,17 @@ public class SearchResults {
 
 
     //getters
-    protected LinkedList<String> getParameters()
+    public LinkedList<String> getParameters()
     {
         return(this.Parameters);
     }
 
-    protected HashMap<String, DataField> getSearchMap()
+    public HashMap<String, DataField> getSearchMap()
     {
         return(this.searchMap);
     }
 
-    protected ArrayList<Form> getListOfForms()
+    public ArrayList<Form> getListOfForms()
     {
         return(this.listOfForms);
     }

@@ -17,17 +17,19 @@ public class DataField<type> {
     }
 
     //getter
-    protected type getValue()
+    public type getValue()
     {
         return(this.Value);
     }
 
-    protected String getField()
+    String getField()
     {
         return(this.field);
     }
 
-    DataField(type val){
+    public DataField (type val, String fieldName)
+    {
         this.Value = val;
+        this.field = fieldName;
     }
 }

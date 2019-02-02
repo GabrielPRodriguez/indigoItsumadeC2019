@@ -44,7 +44,7 @@
                         <Font name="Berlin Sans FB" size="18.0" />
                     </font>
                 </Label>
-                <TextField layoutX="46.0" layoutY="334.0" prefHeight="31.0" prefWidth="119.0" />
+                <TextField fx:id="repIDNO" layoutX="46.0" layoutY="334.0" prefHeight="31.0" prefWidth="119.0" />
                 <ImageView fitHeight="261.0" fitWidth="281.0" layoutX="796.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@trasury.png" />
@@ -55,7 +55,7 @@
                         <Font name="Berlin Sans FB" size="18.0" />
                     </font>
                 </Label>
-                <TextField layoutX="45.0" layoutY="410.0" />
+                <TextField fx:id="serialNumber" layoutX="45.0" layoutY="410.0" />
                 <Label layoutX="272.0" layoutY="374.0" text="5. Type of Product">
                     <font>
                         <Font name="Berlin Sans FB" size="18.0" />
@@ -86,12 +86,12 @@
                         <Font name="Berlin Sans FB" size="19.0" />
                     </font>
                 </Label>
-                <TextField layoutX="514.0" layoutY="671.0">
+                <TextField fx:id="phoneNumber" layoutX="514.0" layoutY="671.0">
                     <font>
                         <Font size="17.0" />
                     </font>
                 </TextField>
-                <TextField layoutX="514.0" layoutY="755.0">
+                <TextField fx:id="emailAddress" layoutX="514.0" layoutY="755.0">
                     <font>
                         <Font size="17.0" />
                     </font>
@@ -101,12 +101,12 @@
                         <Font size="17.0" />
                     </font>
                 </TextField>
-                <TextField layoutX="45.0" layoutY="507.0">
+                <TextField fx:id="fancifulName" layoutX="45.0" layoutY="507.0">
                     <font>
                         <Font size="17.0" />
                     </font>
                 </TextField>
-                <TextField layoutX="206.0" layoutY="330.0">
+                <TextField fx:id="plantRegistry" layoutX="206.0" layoutY="330.0">
                     <font>
                         <Font size="17.0" />
                     </font>
@@ -129,7 +129,7 @@
                         <Font name="Berlin Sans FB" size="18.0" />
                     </font>
                 </Text>
-                <RadioButton layoutX="569.0" layoutY="335.0" mnemonicParsing="false" text="Domestic">
+                <RadioButton fx:id="domestic" layoutX="569.0" layoutY="335.0" mnemonicParsing="false" text="Domestic">
                     <font>
                         <Font name="Berlin Sans FB" size="18.0" />
                     </font>
@@ -137,12 +137,12 @@
                         <ToggleGroup fx:id="Domestic" />
                     </toggleGroup>
                 </RadioButton>
-                <RadioButton layoutX="568.0" layoutY="365.0" mnemonicParsing="false" text="Imported" toggleGroup="$Domestic">
+                <RadioButton fx:id="imported" layoutX="568.0" layoutY="365.0" mnemonicParsing="false" text="Imported" toggleGroup="$Domestic">
                     <font>
                         <Font name="Berlin Sans FB" size="18.0" />
                     </font>
                 </RadioButton>
-                <RadioButton layoutX="270.0" layoutY="401.0" mnemonicParsing="false" text="Wine">
+                <RadioButton fx:id="wine" layoutX="270.0" layoutY="401.0" mnemonicParsing="false" text="Wine">
                     <toggleGroup>
                         <ToggleGroup fx:id="Drinks" />
                     </toggleGroup>
@@ -150,12 +150,12 @@
                         <Font name="Berlin Sans FB" size="18.0" />
                     </font>
                 </RadioButton>
-                <RadioButton layoutX="270.0" layoutY="431.0" mnemonicParsing="false" text="Beer" toggleGroup="$Drinks">
+                <RadioButton fx:id="beer" layoutX="270.0" layoutY="431.0" mnemonicParsing="false" text="Beer" toggleGroup="$Drinks">
                     <font>
                         <Font name="Berlin Sans FB" size="18.0" />
                     </font>
                 </RadioButton>
-                <RadioButton layoutX="270.0" layoutY="462.0" mnemonicParsing="false" text="Liqour" toggleGroup="$Drinks">
+                <RadioButton fx:id="liqour" layoutX="270.0" layoutY="462.0" mnemonicParsing="false" text="Liqour" toggleGroup="$Drinks">
                     <font>
                         <Font name="Berlin Sans FB" size="18.0" />
                     </font>
@@ -180,17 +180,17 @@
                         <Font name="Berlin Sans FB" size="18.0" />
                     </font>
                 </Label>
-                <TextField layoutX="514.0" layoutY="513.0">
+                <TextField fx:id="formula" layoutX="514.0" layoutY="513.0">
                     <font>
                         <Font size="17.0" />
                     </font>
                 </TextField>
-                <TextField layoutX="517.0" layoutY="592.0">
+                <TextField fx:id="grapeVarietal" layoutX="517.0" layoutY="592.0">
                     <font>
                         <Font size="17.0" />
                     </font>
                 </TextField>
-                <TextField layoutX="46.0" layoutY="737.0">
+                <TextField fx:id="wineAppellation" layoutX="46.0" layoutY="737.0">
                     <font>
                         <Font size="17.0" />
                     </font>
@@ -200,7 +200,7 @@
                         <Font name="Berlin Sans FB" size="18.0" />
                     </font>
                 </Label>
-                <TextField layoutX="45.0" layoutY="588.0">
+                <TextField fx:id="phLevel" layoutX="45.0" layoutY="588.0">
                     <font>
                         <Font size="17.0" />
                     </font>
@@ -210,7 +210,7 @@
                         <Font name="Berlin Sans FB" size="18.0" />
                     </font>
                 </Label>
-                <TextField layoutX="45.0" layoutY="658.0">
+                <TextField fx:id="alcoholPercentage" layoutX="45.0" layoutY="658.0">
                     <font>
                         <Font size="17.0" />
                     </font>
@@ -220,7 +220,7 @@
                         <Font name="Berlin Sans FB" size="18.0" />
                     </font>
                 </Label>
-                <TextField layoutX="277.0" layoutY="549.0">
+                <TextField fx:id="vintage" layoutX="277.0" layoutY="549.0">
                     <font>
                         <Font size="17.0" />
                     </font>

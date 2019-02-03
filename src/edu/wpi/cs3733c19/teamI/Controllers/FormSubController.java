@@ -1,15 +1,18 @@
 package edu.wpi.cs3733c19.teamI.Controllers;
 
+import edu.wpi.cs3733c19.teamI.Controllers.dbUtilities.*;
+
 import edu.wpi.cs3733c19.teamI.Entities.Form;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-
+import org.json.*;
 import java.io.IOException;
 
 
 
-public class FormSubController {
+
+public class FormSubController{
 
 
 
@@ -118,7 +121,7 @@ public class FormSubController {
 
         //sets the values for each field into a Form object when the submit button is pressed.
         @FXML
-        private void handleSubmitButton(ActionEvent event) throws IOException{
+        private void handleSubmitButton(ActionEvent event) throws IOException, Exception{
             if(event.getSource()== submit_Button){
                 Form sentForm = new Form();
                 boolean readyToSend = true;
@@ -225,6 +228,41 @@ public class FormSubController {
 
                 if(readyToSend){
                     //add code to sent to database
+                    String jsonString = new JSONObject()
+                            .put("repID", sentForm.getrepID())
+                            .put("plantRegistry", sentForm.getplantRegistry())
+                            .put("domesticOrImported", sentForm.getdomesticOrImported())
+                            .put("serialNumber", sentForm.getserialNumber())
+                            .put("brandName", sentForm.getbrandName())
+                            .put("beverageType", sentForm.getbeverageType())
+                            .put("fancifulName", sentForm.getfancifulName())
+                            .put("nameAndAddress", sentForm.getnameAndAddress())
+                            .put("mailingAddress", sentForm.getmailingAddress())
+                            .put("extraInfo", sentForm.getextraInfo())
+                            .put("dateOfApplication", sentForm.getdateOfApplication())
+                            .put("nameOfApplicant", sentForm.getnameOfApplicant())
+                            .put("formula", sentForm.getformula())
+                            .put("grapeVarietals", sentForm.getgrapeVarietals())
+                            .put("vintage", sentForm.getvintage())
+                            .put("wineAppellation", sentForm.getwineAppellation())
+                            .put("email", sentForm.getemail())
+                            .put("phoneNumber", sentForm.getphoneNumber())
+                            .put("pHValue", sentForm.getpHValue())
+                            .put("alcoholContent", sentForm.getalcoholContent()).toString();
+
+
+                    SQLDriver driver = new SQLDriver();
+                    String [] columns = {"id", "data"};
+                    DBTypes [] full_types = {new DBTypes("real"), new DBTypes("text")};
+                    try{
+                        driver.create_table("form_data", "form_data.db", columns, full_types);
+                    }
+                    catch(Exception e){
+                        //pass
+                    }
+                    DBValue [] all_vals = {new DBValue<Integer>(sentForm.getserialNumber()), new DBValue<String>(jsonString)};
+                    driver.insert_vals("form_data", "form_data.db", all_vals);
+
                     String success = "Form successfully submitted."; //apply to a Label
 
                     //clears all fields

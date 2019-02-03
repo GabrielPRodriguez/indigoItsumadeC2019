@@ -156,6 +156,26 @@ public class Form {
         public String getBeverageType() {
             return beverageType;
         }
+        public String getrepID() {return this.repID; }
+        public String getplantRegistry() {return this.plantRegistry; }
+        public String getdomesticOrImported() {return this.domesticOrImported; }
+        public int getserialNumber() {return this.serialNumber; }
+        public String getbrandName() {return this.brandName; }
+        public String getbeverageType() {return this.beverageType; }
+        public String getfancifulName() {return this.fancifulName; }
+        public String getnameAndAddress() {return this.nameAndAddress; }
+        public String getmailingAddress() {return this.mailingAddress; }
+        public String getextraInfo() {return this.extraInfo; }
+        public String getdateOfApplication() {return this.dateOfApplication; }
+        public String getnameOfApplicant() {return this.nameOfApplicant; }
+        public String getformula() {return this.formula; }
+        public String getgrapeVarietals() {return this.grapeVarietals; }
+        public String getvintage() {return this.vintage; }
+        public String getwineAppellation() {return this.wineAppellation; }
+        public String getemail() {return this.email; }
+        public String getphoneNumber() {return this.phoneNumber; }
+        public double getpHValue() {return this.pHValue; }
+        public double getalcoholContent() {return this.alcoholContent; }
 
         //inputs an int attribute to see if a value has been set
         //returns true if intVal is equal to zero

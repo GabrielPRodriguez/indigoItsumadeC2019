@@ -11,6 +11,12 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
+
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+
     @Override
     public void start(Stage primaryStage) throws Exception{
 
@@ -26,7 +32,7 @@ public class Main extends Application {
         // loader will then give a possibility to get related controller
         FXMLLoader firstPaneLoader = new FXMLLoader(getClass().getResource("Boundaries/SearchV2.fxml"));
         Parent firstPane = firstPaneLoader.load();
-        Scene firstScene = new Scene(firstPane, 850, 800);
+        Scene firstScene = new Scene(firstPane, 1000, 900);
 
         // getting loader and a pane for the second scene
         FXMLLoader secondPageLoader = new FXMLLoader(getClass().getResource("Boundaries/SearchDisplay.fxml"));
@@ -49,7 +55,5 @@ public class Main extends Application {
     }
 
 
-    public static void main(String[] args) {
-        launch(args);
-    }
+
 }

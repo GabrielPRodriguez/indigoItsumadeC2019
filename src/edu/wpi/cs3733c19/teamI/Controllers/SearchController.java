@@ -2,6 +2,7 @@ package edu.wpi.cs3733c19.teamI.Controllers;
 
 import edu.wpi.cs3733c19.teamI.Entities.DataField;
 import edu.wpi.cs3733c19.teamI.Entities.SearchResults;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -10,7 +11,6 @@ import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
-import java.awt.event.ActionEvent;
 import java.util.LinkedList;
 
 public class SearchController {
@@ -87,6 +87,7 @@ public class SearchController {
     @FXML
     TextField emailAddress ;
 
+    /*
     @FXML
     protected void fillSearchParam()
     {
@@ -99,7 +100,7 @@ public class SearchController {
         System.out.println(Results.getParameters().getFirst());
 
     }
-
+*/
 
 
     public void setDisplayScene(Scene scene) {

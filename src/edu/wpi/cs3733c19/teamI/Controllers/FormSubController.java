@@ -223,27 +223,28 @@ public class FormSubController{
 
                 if(sentForm.missingRequired()){
                     readyToSend = false;
+
                     String errorMessage = sentForm.getMissingFieldsStatement(); //apply to a Label
                 }
 
                 if(readyToSend){
                     //add code to sent to database
                     String jsonString = new JSONObject()
-                            .put("repID", sentForm.getrepID())
-                            .put("plantRegistry", sentForm.getplantRegistry())
-                            .put("domesticOrImported", sentForm.getdomesticOrImported())
-                            .put("serialNumber", sentForm.getserialNumber())
-                            .put("brandName", sentForm.getbrandName())
-                            .put("beverageType", sentForm.getbeverageType())
-                            .put("fancifulName", sentForm.getfancifulName())
-                            .put("nameAndAddress", sentForm.getnameAndAddress())
-                            .put("mailingAddress", sentForm.getmailingAddress())
+                            .put("repID", sentForm.getRepID())
+                            .put("plantRegistry", sentForm.getPlantRegistry())
+                            .put("domesticOrImported", sentForm.getDomesticOrImported())
+                            .put("serialNumber", sentForm.getSerialNumber())
+                            .put("brandName", sentForm.getBrandName())
+                            .put("beverageType", sentForm.getBeverageType())
+                            .put("fancifulName", sentForm.getFancifulName())
+                            .put("nameAndAddress", sentForm.getNameAndAddress())
+                            .put("mailingAddress", sentForm.getMailingAddress())
                             .put("extraInfo", sentForm.getextraInfo())
-                            .put("dateOfApplication", sentForm.getdateOfApplication())
-                            .put("nameOfApplicant", sentForm.getnameOfApplicant())
+                            .put("dateOfApplication", sentForm.getDateOfApplication())
+                            .put("nameOfApplicant", sentForm.getNameOfApplicant())
                             .put("formula", sentForm.getformula())
-                            .put("grapeVarietals", sentForm.getgrapeVarietals())
-                            .put("vintage", sentForm.getvintage())
+                            .put("grapeVarietals", sentForm.getGrapeVarietals())
+                            .put("vintage", sentForm.getVintage())
                             .put("wineAppellation", sentForm.getwineAppellation())
                             .put("email", sentForm.getemail())
                             .put("phoneNumber", sentForm.getphoneNumber())

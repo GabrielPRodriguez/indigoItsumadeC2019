@@ -160,6 +160,7 @@ public class FormCheckerController {
         Form pulledForm = new Form(); //either replace or use setters
 
 
+        //display information on formChecker fxml
 
         repID_text.setText(pulledForm.getRepID());
         plantRegistry_text.setText(pulledForm.getPlantRegistry());
@@ -183,6 +184,17 @@ public class FormCheckerController {
         applicantName_text.setText(pulledForm.getNameOfApplicant());
 
 
+
+    }
+
+    @FXML
+    private void approveHandler(ActionEvent approve) throws IOException{
+
+
+    }
+
+    @FXML
+    private void rejectHandler(ActionEvent reject) throws IOException{
 
     }
 }

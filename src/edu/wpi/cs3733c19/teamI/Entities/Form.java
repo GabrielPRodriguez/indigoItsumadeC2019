@@ -313,9 +313,9 @@ public class Form {
         return phoneNumber;
     }
 
-    public double getpHValue() {
-        return pHValue;
-    }
+//    public double getpHValue() {
+//        return pHValue;
+//    }
 
     public double getAlcoholContent() {
         return alcoholContent;

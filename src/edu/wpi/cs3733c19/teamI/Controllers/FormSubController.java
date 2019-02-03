@@ -96,9 +96,9 @@ public class FormSubController {
         @FXML
         TextField vintage_Field;
 
-        //TODO: Action listener for beverage type toggle group: enable wine-only fields when wine is selected
-        //TODO: Check for missing required fields and send error message when empty
-        //TODO: Feedback when form is sucessfully submitted
+
+
+
 
         @FXML
         private void activateWineFields(ActionEvent wineSelect) throws IOException {

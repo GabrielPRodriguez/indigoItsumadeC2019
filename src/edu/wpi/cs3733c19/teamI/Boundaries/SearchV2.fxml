@@ -26,7 +26,7 @@
         <RowConstraints />
     </rowConstraints>
     <children>
-        <AnchorPane prefHeight="916.0" prefWidth="1081.0">
+        <AnchorPane fx:id="anchor" prefHeight="916.0" prefWidth="1081.0">
             <children>
                 <Rectangle arcHeight="5.0" arcWidth="5.0" height="916.0" layoutX="-3.0" stroke="BLACK" strokeType="INSIDE" width="1092.0">
                     <fill>

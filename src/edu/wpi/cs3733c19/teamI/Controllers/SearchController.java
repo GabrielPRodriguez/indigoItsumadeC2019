@@ -6,15 +6,21 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.RadioButton;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+
 
 import java.awt.event.ActionEvent;
 import java.util.LinkedList;
 
 public class SearchController {
     private SearchResults Results = new SearchResults();
+
+    //Anchor pane
+    @FXML
+    AnchorPane anchor;
 
     // Search Button
     @FXML
@@ -86,17 +92,27 @@ public class SearchController {
     @FXML
     TextField emailAddress ;
 
+
     @FXML
     protected void fillSearchParam()
     {
         LinkedList<DataField> userParam = new LinkedList<>();
-        DataField brand = new DataField(brandNameField.getText(),"brandName");
-        userParam.add(brand);
-//
-        Results.gatherSearchParam(userParam);
-
-        System.out.println(Results.getParameters().getFirst());
-
+       // System.out.println(anchor.getChildren().size());
+        for(int i = 0; i <anchor.getChildren().size(); i++) {
+            Node element = anchor.getChildren().get(i);
+            if(element instanceof TextField) {
+                String information = ((TextField)element).getText();
+                System.out.println(information);
+                if(information.isEmpty() == false) {
+                    DataField Entry = new DataField(information, element.getId());
+                    userParam.add(Entry);
+                }
+            }
+        }
+        if(userParam.isEmpty() == false) {
+            Results.gatherSearchParam(userParam);
+            System.out.println(Results.getParameters().getFirst());
+        }
 
 
     }

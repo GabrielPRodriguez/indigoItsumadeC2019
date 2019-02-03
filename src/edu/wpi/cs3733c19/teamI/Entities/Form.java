@@ -245,7 +245,79 @@ public class Form {
 
         }
 
+    public String getRepID() {
+        return repID;
+    }
 
+    public String getPlantRegistry() {
+        return plantRegistry;
+    }
 
+    public String getDomesticOrImported() {
+        return domesticOrImported;
+    }
 
+    public int getSerialNumber() {
+        return serialNumber;
+    }
+
+    public String getBrandName() {
+        return brandName;
+    }
+
+    public String getFancifulName() {
+        return fancifulName;
+    }
+
+    public String getNameAndAddress() {
+        return nameAndAddress;
+    }
+
+    public String getMailingAddress() {
+        return mailingAddress;
+    }
+
+    public String getExtraInfo() {
+        return extraInfo;
+    }
+
+    public String getDateOfApplication() {
+        return dateOfApplication;
+    }
+
+    public String getNameOfApplicant() {
+        return nameOfApplicant;
+    }
+
+    public String getFormula() {
+        return formula;
+    }
+
+    public String getGrapeVarietals() {
+        return grapeVarietals;
+    }
+
+    public String getVintage() {
+        return vintage;
+    }
+
+    public String getWineAppellation() {
+        return wineAppellation;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public double getpHValue() {
+        return pHValue;
+    }
+
+    public double getAlcoholContent() {
+        return alcoholContent;
+    }
 }

@@ -15,6 +15,7 @@ import java.util.LinkedList;
 
 public class SearchController {
     private SearchResults Results = new SearchResults();
+    private Scene displayScene;
 
     // Search Button
     @FXML
@@ -97,20 +98,17 @@ public class SearchController {
 
         System.out.println(Results.getParameters().getFirst());
 
-
-
     }
 
 
-    private Scene firstScene;
 
-    public void setFirstScene(Scene scene) {
-        firstScene = scene;
+    public void setDisplayScene(Scene scene) {
+        displayScene = scene;
     }
 
-    public void openFirstScene(ActionEvent actionEvent) {
+    public void openDisplayScene(ActionEvent actionEvent) {
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        primaryStage.setScene(firstScene);
+        primaryStage.setScene(displayScene);
     }
 
 

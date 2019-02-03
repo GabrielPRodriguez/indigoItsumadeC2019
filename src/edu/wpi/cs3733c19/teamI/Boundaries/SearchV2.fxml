@@ -160,7 +160,7 @@
                         <Font name="Berlin Sans FB" size="18.0" />
                     </font>
                 </RadioButton>
-                <Button fx:id="performSearch" layoutX="871.0" layoutY="786.0" mnemonicParsing="false" onAction="#fillSearchParam" prefHeight="28.0" prefWidth="187.0" text="Search">
+                <Button fx:id="performSearch" layoutX="871.0" layoutY="786.0" mnemonicParsing="false" onAction="#openDisplaySearch" onMouseClicked="#openDisplayScene" prefHeight="28.0" prefWidth="187.0" text="Search">
                     <font>
                         <Font name="Berlin Sans FB" size="43.0" />
                     </font>

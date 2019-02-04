@@ -2,6 +2,7 @@ package edu.wpi.cs3733c19.teamI.Controllers;
 
 import edu.wpi.cs3733c19.teamI.Entities.DataField;
 import edu.wpi.cs3733c19.teamI.Entities.SearchResults;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -11,12 +12,11 @@ import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
-
-import java.awt.event.ActionEvent;
 import java.util.LinkedList;
 
 public class SearchController {
     private SearchResults Results = new SearchResults();
+    private Scene displayScene;
 
     //Anchor pane
     @FXML
@@ -92,7 +92,6 @@ public class SearchController {
     @FXML
     TextField emailAddress ;
 
-
     @FXML
     protected void fillSearchParam()
     {
@@ -118,15 +117,13 @@ public class SearchController {
     }
 
 
-    private Scene firstScene;
-
-    public void setFirstScene(Scene scene) {
-        firstScene = scene;
+    public void setDisplayScene(Scene scene) {
+        displayScene = scene;
     }
 
-    public void openFirstScene(ActionEvent actionEvent) {
+    public void openDisplayScene(ActionEvent actionEvent) {
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        primaryStage.setScene(firstScene);
+        primaryStage.setScene(displayScene);
     }
 
 

@@ -11,6 +11,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.control.RadioButton;
 
 import java.util.LinkedList;
 
@@ -96,15 +97,27 @@ public class SearchController {
     protected void fillSearchParam()
     {
         LinkedList<DataField> userParam = new LinkedList<>();
-       // System.out.println(anchor.getChildren().size());
         for(int i = 0; i <anchor.getChildren().size(); i++) {
             Node element = anchor.getChildren().get(i);
             if(element instanceof TextField) {
                 String information = ((TextField)element).getText();
-                System.out.println(information);
                 if(information.isEmpty() == false) {
                     DataField Entry = new DataField(information, element.getId());
                     userParam.add(Entry);
+                }
+            }
+            else if(element instanceof RadioButton)
+            {
+               RadioButton radio = ((RadioButton)element);
+                if(radio.isSelected()){
+                    if((radio.getId() == "liquor") ||(radio.getId() == "beer") || (radio.getId() == "wine")) {
+                        DataField Entry = new DataField(radio.getId(), "beverageType");
+                        userParam.add(Entry);
+                    }
+                    else{
+                        DataField Entry = new DataField(radio.getId(), "domesticOrImpored");
+                        userParam.add(Entry);
+                    }
                 }
             }
         }

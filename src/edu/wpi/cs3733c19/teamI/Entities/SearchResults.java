@@ -10,7 +10,7 @@ public class SearchResults {
 
     private LinkedList<String> Parameters;
     private HashMap<String, DataField> searchMap;
-    private ArrayList<Form> listOfForms;
+    private ArrayList<HashMap<String, DataField>> listOfForms;
 
     public void gatherSearchParam(LinkedList<DataField> userInput)
     {
@@ -38,10 +38,10 @@ public class SearchResults {
         this.searchMap = map;
     }
 
-    public void setlistOfForm(ArrayList<Form> forms)
-    {
-        this.listOfForms = forms;
-    }
+//    public void setlistOfForm(ArrayList<Form> forms)
+//    {
+//        this.listOfForms = forms;
+//    }
 
 
 
@@ -56,10 +56,10 @@ public class SearchResults {
         return(this.searchMap);
     }
 
-    public ArrayList<Form> getListOfForms()
-    {
-        return(this.listOfForms);
-    }
+//    public ArrayList<Form> getListOfForms()
+//    {
+//        return(this.listOfForms);
+//    }
 
 
 

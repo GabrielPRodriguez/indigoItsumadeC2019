@@ -16,7 +16,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers.Controller">
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers.Controller">
    <columnConstraints>
       <ColumnConstraints />
    </columnConstraints>
@@ -28,10 +28,10 @@
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" height="907.0" stroke="BLACK" strokeType="INSIDE" width="1279.0">
                <fill>
-                  <LinearGradient endX="0.5970873786407767" endY="1.0" startX="0.5242718446601942">
+                  <LinearGradient endX="0.5970873786407767" endY="1.0" startX="0.46657953696788645">
                      <stops>
-                        <Stop color="#055b8a" />
-                        <Stop color="WHITE" offset="1.0" />
+                        <Stop color="#0000003a" />
+                        <Stop color="#09679a" offset="1.0" />
                      </stops>
                   </LinearGradient>
                </fill>

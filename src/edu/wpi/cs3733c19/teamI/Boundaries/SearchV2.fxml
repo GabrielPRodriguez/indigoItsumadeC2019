@@ -44,7 +44,7 @@
                         <Font name="Berlin Sans FB" size="18.0" />
                     </font>
                 </Label>
-                <TextField fx:id="repIDNO" layoutX="46.0" layoutY="334.0" prefHeight="31.0" prefWidth="119.0" />
+                <TextField fx:id="repID" layoutX="46.0" layoutY="334.0" prefHeight="31.0" prefWidth="119.0" />
                 <ImageView fitHeight="261.0" fitWidth="281.0" layoutX="796.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@trasury.png" />
@@ -91,12 +91,12 @@
                         <Font size="17.0" />
                     </font>
                 </TextField>
-                <TextField fx:id="emailAddress" layoutX="514.0" layoutY="755.0">
+                <TextField fx:id="email" layoutX="514.0" layoutY="755.0">
                     <font>
                         <Font size="17.0" />
                     </font>
                 </TextField>
-                <TextField fx:id="brandNameField" layoutX="514.0" layoutY="436.0">
+                <TextField fx:id="brandName" layoutX="514.0" layoutY="436.0">
                     <font>
                         <Font size="17.0" />
                     </font>
@@ -185,7 +185,7 @@
                         <Font size="17.0" />
                     </font>
                 </TextField>
-                <TextField fx:id="grapeVarietal" layoutX="517.0" layoutY="592.0">
+                <TextField fx:id="grapeVarietals" layoutX="517.0" layoutY="592.0">
                     <font>
                         <Font size="17.0" />
                     </font>
@@ -200,7 +200,7 @@
                         <Font name="Berlin Sans FB" size="18.0" />
                     </font>
                 </Label>
-                <TextField fx:id="phLevel" layoutX="45.0" layoutY="588.0">
+                <TextField fx:id="pHValue" layoutX="45.0" layoutY="588.0">
                     <font>
                         <Font size="17.0" />
                     </font>
@@ -210,7 +210,7 @@
                         <Font name="Berlin Sans FB" size="18.0" />
                     </font>
                 </Label>
-                <TextField fx:id="alcoholPercentage" layoutX="45.0" layoutY="658.0">
+                <TextField fx:id="alcoholContent" layoutX="45.0" layoutY="658.0">
                     <font>
                         <Font size="17.0" />
                     </font>

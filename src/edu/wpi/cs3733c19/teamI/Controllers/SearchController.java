@@ -28,13 +28,13 @@ public class SearchController {
 
     // REP ID NO
     @FXML
-    TextField repIDNO;
+    TextField repID;
 
     // Plant Registry/Basic Permit/ Brewer's NO
     @FXML
     TextField plantRegistry;
 
-    // #3 Domestic or Imported (they work as two separe entities)
+    // #3 domesticOrImported (they work as two separe entities)
     @FXML
     RadioButton domestic;
     @FXML
@@ -54,7 +54,7 @@ public class SearchController {
 
     // Brand Name
     @FXML
-    TextField brandNameField;
+    TextField brandName;
 
     // fancifulName
     @FXML
@@ -66,11 +66,11 @@ public class SearchController {
 
     // PH Level (Wine only)
     @FXML
-    TextField phLevel;
+    TextField pHValue;
 
     // Alcohol Percentage
     @FXML
-    TextField alcoholPercentage;
+    TextField alcoholContent;
 
     // Formula
     @FXML
@@ -78,7 +78,7 @@ public class SearchController {
 
     // Grape Variental(s) (wine only)
     @FXML
-    TextField grapeVarietal;
+    TextField grapeVarietals;
 
     // Wine Appellation (if on label)
     @FXML
@@ -90,7 +90,7 @@ public class SearchController {
 
     // Email Address
     @FXML
-    TextField emailAddress ;
+    TextField email;
 
     @FXML
     protected void fillSearchParam()
@@ -122,6 +122,7 @@ public class SearchController {
     }
 
     public void openDisplayScene(ActionEvent actionEvent) {
+        fillSearchParam();
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         primaryStage.setScene(displayScene);
     }

@@ -18,7 +18,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers.Controller">
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers.FormSubController">
     <columnConstraints>
         <ColumnConstraints />
     </columnConstraints>
@@ -119,7 +119,7 @@
                     <font>
                         <Font name="Berlin Sans FB" size="19.0" />
                     </font></Label>
-                <TextField fx:id="date_Field" disable="true" layoutX="38.0" layoutY="814.0" />
+                <TextField fx:id="date_Field" layoutX="38.0" layoutY="814.0" />
                 <TextField fx:id="applicantName_Field" layoutX="247.0" layoutY="814.0" />
                 <Label layoutX="247.0" layoutY="787.0" text="18. Print Name of Applicant">
                     <font>
@@ -160,7 +160,7 @@
                         <Font name="Berlin Sans FB" size="18.0" />
                     </font>
                 </RadioButton>
-                <RadioButton fx:id="wine_RadButton" layoutX="278.0" layoutY="270.0" mnemonicParsing="false" text="Wine">
+                <RadioButton fx:id="wine_RadButton" layoutX="278.0" layoutY="270.0" mnemonicParsing="false" onAction="#activateWineFields" text="Wine">
                     <toggleGroup>
                         <ToggleGroup fx:id="Drinks" />
                     </toggleGroup>
@@ -168,17 +168,17 @@
                         <Font name="Berlin Sans FB" size="18.0" />
                     </font>
                 </RadioButton>
-                <RadioButton fx:id="beer_RadButton" layoutX="278.0" layoutY="300.0" mnemonicParsing="false" text="Beer" toggleGroup="$Drinks">
+                <RadioButton fx:id="beer_RadButton" layoutX="278.0" layoutY="300.0" mnemonicParsing="false" onAction="#disableWineFields" text="Beer" toggleGroup="$Drinks">
                     <font>
                         <Font name="Berlin Sans FB" size="18.0" />
                     </font>
                 </RadioButton>
-                <RadioButton fx:id="liquor_RadButton" layoutX="278.0" layoutY="331.0" mnemonicParsing="false" text="Liqour" toggleGroup="$Drinks">
+                <RadioButton fx:id="liquor_RadButton" layoutX="278.0" layoutY="331.0" mnemonicParsing="false" onAction="#disableWineFields" text="Liqour" toggleGroup="$Drinks">
                     <font>
                         <Font name="Berlin Sans FB" size="18.0" />
                     </font>
                 </RadioButton>
-                <Button fx:id="submit_Button" layoutX="638.0" layoutY="799.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="187.0" text="Submit">
+                <Button fx:id="submit_Button" layoutX="638.0" layoutY="799.0" mnemonicParsing="false" onAction="#handleSubmitButton" prefHeight="28.0" prefWidth="187.0" text="Submit">
                     <font>
                         <Font name="Berlin Sans FB" size="43.0" />
                     </font>

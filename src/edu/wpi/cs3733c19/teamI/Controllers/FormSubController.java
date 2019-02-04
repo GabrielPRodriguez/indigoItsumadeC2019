@@ -294,6 +294,8 @@ public class FormSubController{
                     vintage_Field.clear();
                     applicantName_Field.clear();
                     applicantNameAddr_Field.clear();
+                    brandedInfo_Field.clear();
+
                 }
 
 

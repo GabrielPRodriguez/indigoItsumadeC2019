@@ -18,7 +18,8 @@ public class SearchDisplayController {
     @FXML
     TextField randomText;
 
-    public void setSearchScene(Scene scene){
+    public void setSearchScene(Scene scene)
+    {
         searchScene = scene;
     }
 

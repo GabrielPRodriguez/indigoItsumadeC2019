@@ -35,7 +35,7 @@ public class Main extends Application {
         Scene firstScene = new Scene(firstPane, 1000, 900);
 
         // getting loader and a pane for the second scene
-        FXMLLoader secondPageLoader = new FXMLLoader(getClass().getResource("Boundaries/SearchDisplay.fxml"));
+        FXMLLoader secondPageLoader = new FXMLLoader(getClass().getResource("Boundaries/ResultsPage.fxml"));
         Parent secondPane = secondPageLoader.load();
         Scene secondScene = new Scene(secondPane, 850, 800);
 

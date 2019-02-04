@@ -153,5 +153,22 @@ public class SQLDriver{
         return full_payload;
 
     }
+    public HashMap<String, ReturnedValue>get_data_by_value(String tablename, String filename, String column, DBValue value) throws Exception{
+        for (HashMap<String, ReturnedValue>result: select_all(filename, tablename)){
+            //if (result.get(column).)
+            boolean flag = false;
+            if (value.statement() == "setString"){
+                flag = (result.get(column).to_string() == value.to_string());
+            }
+            else{
+                flag = (result.get(column).to_double() == value.to_double());
+            }
+
+            if (flag){
+                return result;
+            }
+        }
+        throw new Exception("Cannot find row");
+    }
 
 }

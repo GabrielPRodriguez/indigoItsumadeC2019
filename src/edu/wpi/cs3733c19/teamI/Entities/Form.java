@@ -22,6 +22,7 @@ public class Form {
     private String phoneNumber; //required
     private double pHValue; //wine only
     private double alcoholContent; //required
+    private String formStatus; //generated in background
 
     public Form() {
         this.repID = "";
@@ -44,6 +45,7 @@ public class Form {
         this.phoneNumber = "";
         this.pHValue = 0;
         this.alcoholContent = 0;
+        this.formStatus = "unread"; //new forms have had no action taken on them
     }
 
 
@@ -152,6 +154,10 @@ public class Form {
         this.alcoholContent = alcoholContent;
     }
 
+    public void setFormStatus(String approvalStatus){ //this should probably be an enum for safety
+        this.formStatus = approvalStatus;
+    }
+
     public String getBeverageType() {
         return beverageType;
     }
@@ -236,6 +242,10 @@ public class Form {
         return this.alcoholContent;
     }
 
+    public String getFormStatus(){
+        return this.formStatus;
+    }
+
     //inputs an int attribute to see if a value has been set
     //returns true if intVal is equal to zero
     private boolean isEmpty(int intVal) {
@@ -303,5 +313,6 @@ public class Form {
         return missingStatement;
 
     }
+
 }
 

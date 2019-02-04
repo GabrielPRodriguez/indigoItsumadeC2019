@@ -196,9 +196,7 @@ public class SQLDriver{
                     }
 
                 }
-                if (!_flag){
-                    break;
-                }
+
 
             }
             if (_flag){

@@ -14,6 +14,9 @@ public class SearchResults {
 
     public void gatherSearchParam(LinkedList<DataField> userInput)
     {
+        //clear old search param
+        this.Parameters = new LinkedList<>();
+        this.searchMap = new HashMap<>();
         for (DataField dataField : userInput) {
             Parameters.add(dataField.getField());
             searchMap.put(dataField.getField(), dataField);

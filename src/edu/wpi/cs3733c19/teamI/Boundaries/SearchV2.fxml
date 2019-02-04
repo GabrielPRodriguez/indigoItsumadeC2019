@@ -133,29 +133,29 @@
                     <font>
                         <Font name="Berlin Sans FB" size="18.0" />
                     </font>
-                    <toggleGroup>
-                        <ToggleGroup fx:id="Domestic" />
-                    </toggleGroup>
+               <toggleGroup>
+                  <ToggleGroup fx:id="domesticOrImported" />
+               </toggleGroup>
                 </RadioButton>
-                <RadioButton fx:id="imported" layoutX="568.0" layoutY="365.0" mnemonicParsing="false" text="Imported" toggleGroup="$Domestic">
+                <RadioButton fx:id="imported" layoutX="568.0" layoutY="365.0" mnemonicParsing="false" text="Imported" toggleGroup="$domesticOrImported">
                     <font>
                         <Font name="Berlin Sans FB" size="18.0" />
                     </font>
                 </RadioButton>
                 <RadioButton fx:id="wine" layoutX="270.0" layoutY="401.0" mnemonicParsing="false" text="Wine">
-                    <toggleGroup>
-                        <ToggleGroup fx:id="Drinks" />
-                    </toggleGroup>
+                    <font>
+                        <Font name="Berlin Sans FB" size="18.0" />
+                    </font>
+               <toggleGroup>
+                  <ToggleGroup fx:id="beverageType" />
+               </toggleGroup>
+                </RadioButton>
+                <RadioButton fx:id="beer" layoutX="270.0" layoutY="431.0" mnemonicParsing="false" text="Beer" toggleGroup="$beverageType">
                     <font>
                         <Font name="Berlin Sans FB" size="18.0" />
                     </font>
                 </RadioButton>
-                <RadioButton fx:id="beer" layoutX="270.0" layoutY="431.0" mnemonicParsing="false" text="Beer" toggleGroup="$Drinks">
-                    <font>
-                        <Font name="Berlin Sans FB" size="18.0" />
-                    </font>
-                </RadioButton>
-                <RadioButton fx:id="liqour" layoutX="270.0" layoutY="462.0" mnemonicParsing="false" text="Liqour" toggleGroup="$Drinks">
+                <RadioButton fx:id="liqour" layoutX="270.0" layoutY="462.0" mnemonicParsing="false" text="Liqour" toggleGroup="$beverageType">
                     <font>
                         <Font name="Berlin Sans FB" size="18.0" />
                     </font>

@@ -115,7 +115,7 @@ public class SearchController {
                         userParam.add(Entry);
                     }
                     else{
-                        DataField Entry = new DataField(radio.getId(), "domesticOrImpored");
+                        DataField Entry = new DataField(radio.getId(), "domesticOrImported");
                         userParam.add(Entry);
                     }
                 }

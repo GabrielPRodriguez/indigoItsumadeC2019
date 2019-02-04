@@ -170,5 +170,42 @@ public class SQLDriver{
         }
         throw new Exception("Cannot find row");
     }
+    public ArrayList<HashMap<String, ReturnedValue>>get_data_by_value(String tablename, String filename, LinkedList<String>search_fields, HashMap<String, ReturnedValue>targets) throws Exception{
+        ArrayList<HashMap<String, ReturnedValue>> final_results = new ArrayList<HashMap<String, ReturnedValue>>();
+        for (HashMap<String, ReturnedValue>result: select_all(filename, tablename)){
+            boolean _flag = false;
+            for (String field:search_fields){
+                ReturnedValue type1 = result.get(field);
+                ReturnedValue type2 = targets.get(field);
+                if (type1.type == "text"){
+                    if (type1.to_string() == type2.to_string()){
+                        _flag = true;
+                    }
+                    else{
+                        _flag = false;
+                        break;
+                    }
+                }
+                else{
+                    if (type1.to_double() == type2.to_double()){
+                        _flag = true;
+                    }
+                    else{
+                        _flag = false;
+                        break;
+                    }
 
+                }
+                if (!_flag){
+                    break;
+                }
+
+            }
+            if (_flag){
+                final_results.add(result);
+            }
+
+        }
+        return final_results;
+    }
 }

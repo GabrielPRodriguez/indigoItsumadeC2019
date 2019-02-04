@@ -34,14 +34,6 @@ public class FormCheckerController {
     @FXML
     Button choose_button3;
 
-    @FXML
-    Button choose_button4;
-
-    @FXML
-    Button choose_button5;
-
-    @FXML
-    Button choose_button6;
 
     @FXML
     Button refresh_button;
@@ -55,14 +47,6 @@ public class FormCheckerController {
     @FXML
     Text formID_3;
 
-    @FXML
-    Text formID_4;
-
-    @FXML
-    Text formID_5;
-
-    @FXML
-    Text formID_6;
 
     @FXML
     Text repID_text;
@@ -143,20 +127,7 @@ public class FormCheckerController {
 
         }
 
-        else if(choose.getSource() == choose_button4){
-            formID = Integer.parseInt(formID_4.getText());
 
-        }
-
-        else if(choose.getSource() == choose_button5){
-            formID = Integer.parseInt(formID_5.getText());
-
-        }
-
-        else if(choose.getSource() == choose_button6){
-            formID = Integer.parseInt(formID_6.getText());
-
-        }
 
 
         SQLDriver driver = new SQLDriver();

@@ -39,6 +39,22 @@ public class Main extends Application {
         Parent secondPane = secondPageLoader.load();
         Scene secondScene = new Scene(secondPane, 1293, 922);
 
+        //Loading the home pane
+        FXMLLoader thirdPaneLoader = new FXMLLoader(getClass().getResource("Boundaries/homepage.fxml"));
+        Parent thirdPane = thirdPaneLoader.load();
+        Scene thirdScene = new Scene(thirdPane, 850, 800);
+
+        //Loading the submission page
+        FXMLLoader fourthPaneLoader = new FXMLLoader(getClass().getResource("Boundaries/SubmissionProject.fxml"));
+        Parent fourthPane = fourthPaneLoader.load();
+        Scene fourthScene = new Scene(fourthPane, 900, 920);
+
+        //injecting the first and second scenes into the controller of the home page
+        HomeController thirdPaneController = (HomeController) thirdPaneLoader.getController();
+        thirdPaneController.setSubmission(fourthScene);
+        thirdPaneController.setSearch(firstScene);
+
+
         // injecting second scene into the controller of the first scene
         SearchController firstPaneController = (SearchController) firstPaneLoader.getController();
         firstPaneController.setDisplayScene(secondScene);
@@ -47,8 +63,8 @@ public class Main extends Application {
         SearchDisplayController secondPaneController = (SearchDisplayController) secondPageLoader.getController();
         secondPaneController.setSearchScene(firstScene);
 
-        primaryStage.setTitle("Hello World!");
-        primaryStage.setScene(firstScene);
+        primaryStage.setTitle("Welcome to TTB");
+        primaryStage.setScene(thirdScene);
         primaryStage.show();
 
 

@@ -49,7 +49,7 @@
                         <Font size="1.0" />
                      </font>
                   </Button>
-                  <Button fx:id="submit" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" maxHeight="50.0" maxWidth="100.0" mnemonicParsing="false" onAction="#openSubmission" style="-fx-background-color: transparent;">
+                  <Button fx:id="submit" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" maxHeight="50.0" maxWidth="100.0" mnemonicParsing="false" onAction="#openForm" style="-fx-background-color: transparent;">
                      <font>
                         <Font size="1.0" />
                      </font>

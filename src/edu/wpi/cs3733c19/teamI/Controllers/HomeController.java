@@ -37,17 +37,13 @@ public class HomeController {
         loginScene = scene;
     }
 
-    public void openSubmission(ActionEvent actionEvent) {
-        Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        primaryStage.setScene(submissionScene);
-    }
 
     public void openWork(ActionEvent actionEvent) {
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         primaryStage.setScene(work);
     }
 
-    public void openSearc(javafx.event.ActionEvent actionEvent) {
+    public void openSearch(javafx.event.ActionEvent actionEvent) {
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         primaryStage.setScene(searchScene); //test changes
     }
@@ -57,7 +53,7 @@ public class HomeController {
         primaryStage.setScene(submissionScene);
     }
 
-    public void openSearch(javafx.event.ActionEvent actionEvent){
+    public void openLogin(javafx.event.ActionEvent actionEvent){
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         primaryStage.setScene(loginScene);
     }

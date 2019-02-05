@@ -24,7 +24,7 @@ public class Main extends Application {
         */
 
 //        // Original From main
-         Parent root = FXMLLoader.load(getClass().getResource("Boundaries/SearchV2.fxml"));
+         Parent root = FXMLLoader.load(getClass().getResource("Boundaries/homepage.fxml"));
          primaryStage.setTitle("Hello World");
          primaryStage.setScene(new Scene(root, 850, 800));
          primaryStage.show();

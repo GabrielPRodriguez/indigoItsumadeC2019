@@ -14,8 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-  <AnchorPane prefHeight="916.0" prefWidth="865.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers.HomepageController">
+<AnchorPane prefHeight="916.0" prefWidth="865.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers.FormSubController">
       <children>
           <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e3e3e3" height="916.0" layoutX="-3.0" stroke="BLACK" strokeType="INSIDE" width="871.0" />
       <VBox layoutX="23.0" layoutY="77.0">
@@ -72,7 +71,7 @@
                         <Font name="Berlin Sans FB" size="18.0" />
                     </font>
                 </Label>
-                <RadioButton fx:id="wine_RadButton" mnemonicParsing="false" text="Wine">
+                <RadioButton fx:id="wine_RadButton" mnemonicParsing="false" onAction="#activateWineFields" text="Wine">
                     <toggleGroup>
                         <ToggleGroup fx:id="Drinks" />
                     </toggleGroup>
@@ -80,12 +79,12 @@
                         <Font name="Berlin Sans FB" size="18.0" />
                     </font>
                 </RadioButton>
-                <RadioButton fx:id="beer_RadButton" mnemonicParsing="false" text="Beer" toggleGroup="$Drinks">
+                <RadioButton fx:id="beer_RadButton" mnemonicParsing="false" onAction="#disableWineFields" text="Beer" toggleGroup="$Drinks">
                     <font>
                         <Font name="Berlin Sans FB" size="18.0" />
                     </font>
                 </RadioButton>
-                <RadioButton fx:id="liquor_RadButton" mnemonicParsing="false" text="Liqour" toggleGroup="$Drinks">
+                <RadioButton fx:id="liquor_RadButton" mnemonicParsing="false" onAction="#disableWineFields" text="Liqour" toggleGroup="$Drinks">
                     <font>
                         <Font name="Berlin Sans FB" size="18.0" />
                     </font>
@@ -219,7 +218,7 @@
                   <Font name="Berlin Sans FB" size="32.0" />
               </font>
           </Text>
-          <Button fx:id="submit_Button" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" layoutX="676.0" layoutY="818.0" maxHeight="100.0" maxWidth="150.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Submit">
+          <Button fx:id="submit_Button" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" layoutX="676.0" layoutY="818.0" maxHeight="100.0" maxWidth="150.0" mnemonicParsing="false" onAction="#handleSubmitButton" style="-fx-background-color: transparent;" text="Submit">
               <font>
                   <Font size="1.0" />
               </font>

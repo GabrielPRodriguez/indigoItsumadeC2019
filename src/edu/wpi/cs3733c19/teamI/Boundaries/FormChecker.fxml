@@ -358,10 +358,10 @@
                   </TextField>
                </children>
             </VBox>
-            <Button fx:id="submit_button" layoutX="50.0" layoutY="800.0" mnemonicParsing="false" text="Submit" />
+            <Button fx:id="submit_button" layoutX="50.0" layoutY="800.0" mnemonicParsing="false" onAction="#approveHandler" text="Submit" />
             <Button fx:id="save_button" layoutX="450.0" layoutY="800.0" mnemonicParsing="false" text="Save" />
             <Button fx:id="specialist_button" layoutX="650.0" layoutY="800.0" mnemonicParsing="false" text="Send to Specialist" />
-            <Button fx:id="reject_button" layoutX="250.0" layoutY="800.0" mnemonicParsing="false" text="Reject" />
+            <Button fx:id="reject_button" layoutX="250.0" layoutY="800.0" mnemonicParsing="false" onAction="#rejectHandler" text="Reject" />
          </children>
       </AnchorPane>
    </children>

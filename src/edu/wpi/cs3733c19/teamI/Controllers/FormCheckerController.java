@@ -39,13 +39,13 @@ public class FormCheckerController {
     Button refresh_button;
 
     @FXML
-    Text formID_1;
+    Label formID_1;
 
     @FXML
-    Text formID_2;
+    Label formID_2;
 
     @FXML
-    Text formID_3;
+    Label formID_3;
 
 
     @FXML

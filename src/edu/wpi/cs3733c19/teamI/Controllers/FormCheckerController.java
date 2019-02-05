@@ -3,7 +3,8 @@ package edu.wpi.cs3733c19.teamI.Controllers;
 import edu.wpi.cs3733c19.teamI.Entities.Form;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.text.Text;
 import edu.wpi.cs3733c19.teamI.Controllers.dbUtilities.*;
 import java.util.*;
@@ -20,9 +21,6 @@ public class FormCheckerController {
 
     @FXML
     Button save_button;
-
-    @FXML
-    MenuItem refresh;
 
     @FXML
     Button specialist_button;
@@ -51,67 +49,67 @@ public class FormCheckerController {
 
 
     @FXML
-    TextField repID_text;
+    Text repID_text;
 
     @FXML
-    TextField plantRegistry_text;
+    Text plantRegistry_text;
 
     @FXML
-    TextField domesticImported_text;
+    Text domesticImported_text;
 
     @FXML
-    TextField serialNum_text;
+    Text serialNum_text;
 
     @FXML
-    TextField productType_text;
+    Text productType_text;
 
     @FXML
-    TextField brandName_text;
+    Text brandName_text;
 
     @FXML
-    TextField fancifulName_text;
+    Text fancifulName_text;
 
     @FXML
-    TextArea nameAddress_text;
+    Text nameAddress_text;
 
     @FXML
-    TextArea mailingAddress_text;
+    Text mailingAddress_text;
 
     @FXML
-    TextField formula_text;
+    Text formula_text;
 
     @FXML
-    TextField grapeVarietal_text;
+    Text grapeVarietal_text;
 
     @FXML
-    TextField wineAppellation_text;
+    Text wineAppellation_text;
 
     @FXML
-    TextField winepH_text;
+    Text winepH_text;
 
     @FXML
-    TextField vintage_text;
+    Text vintage_text;
 
     @FXML
-    TextField alcoholContent_text;
+    Text alcoholContent_text;
 
     @FXML
-    TextField phoneNum_text;
+    Text phoneNum_text;
 
     @FXML
-    TextField emailAddress_text;
+    Text emailAddress_text;
 
     @FXML
-    TextArea brandedInfo_text;
+    Text brandedInfo_text;
 
     @FXML
-    TextField applicationDate_text;
+    Text applicationDate_text;
 
     @FXML
-    TextField applicantName_text;
+    Text applicantName_text;
 
     @FXML
-    TextField formStatus_text;
+    Text formStatus_text;
     String formStatus_string;
 
     @FXML

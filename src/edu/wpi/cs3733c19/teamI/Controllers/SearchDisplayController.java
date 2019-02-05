@@ -11,6 +11,7 @@ import javafx.scene.control.TextField;
 public class SearchDisplayController {
 
     private Scene searchScene;
+    private Scene homePage;
 
     @FXML
     Button returnToSearch;
@@ -22,6 +23,9 @@ public class SearchDisplayController {
     {
         searchScene = scene;
     }
+    public void setHomePage(Scene scene){
+        homePage = scene;
+    }
 
     public void openSearchScene(ActionEvent actionEvent){
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
@@ -29,4 +33,8 @@ public class SearchDisplayController {
     }
 
 
+    public void openHome(ActionEvent actionEvent) {
+        Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        primaryStage.setScene(homePage);
+    }
 }

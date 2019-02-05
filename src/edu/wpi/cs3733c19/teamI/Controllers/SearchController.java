@@ -18,6 +18,7 @@ import java.util.LinkedList;
 public class SearchController {
     private SearchResults Results = new SearchResults();
     private Scene displayScene;
+    private Scene homePage;
 
     //Anchor pane
     @FXML
@@ -133,6 +134,8 @@ public class SearchController {
     public void setDisplayScene(Scene scene) {
         displayScene = scene;
     }
+    public void setHomePage(Scene scene){homePage = scene;}
+
 
     public void openDisplayScene(ActionEvent actionEvent) {
         fillSearchParam();
@@ -141,5 +144,8 @@ public class SearchController {
     }
 
 
-
+    public void openHome(ActionEvent actionEvent) {
+        Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        primaryStage.setScene(homePage);
+    }
 }

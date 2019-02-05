@@ -1,5 +1,6 @@
 package edu.wpi.cs3733c19.teamI;
 
+import edu.wpi.cs3733c19.teamI.Controllers.Controller;
 import edu.wpi.cs3733c19.teamI.Controllers.HomeController;
 import edu.wpi.cs3733c19.teamI.Controllers.SearchController;
 import edu.wpi.cs3733c19.teamI.Controllers.SearchDisplayController;
@@ -58,10 +59,16 @@ public class Main extends Application {
         // injecting second scene into the controller of the first scene
         SearchController firstPaneController = (SearchController) firstPaneLoader.getController();
         firstPaneController.setDisplayScene(secondScene);
+        firstPaneController.setHomePage(thirdScene);
 
         // injecting first scene into the controller of the second scene
         SearchDisplayController secondPaneController = (SearchDisplayController) secondPageLoader.getController();
+        secondPaneController.setHomePage(thirdScene);
         secondPaneController.setSearchScene(firstScene);
+
+        //Injecting the home page into the submission page
+        Controller fourthPaneController = (Controller) fourthPaneLoader.getController();
+        fourthPaneController.setHomePage(thirdScene);
 
         primaryStage.setTitle("Welcome to TTB");
         primaryStage.setScene(thirdScene);

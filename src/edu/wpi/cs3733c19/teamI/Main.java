@@ -50,11 +50,18 @@ public class Main extends Application {
         Parent fourthPane = fourthPaneLoader.load();
         Scene fourthScene = new Scene(fourthPane, 900, 920);
 
-        //injecting the first and second scenes into the controller of the home page
+        //Loading the login page
+        FXMLLoader loginPaneLoader = new FXMLLoader(getClass().getResource("Boundaries/Login.fxml"));
+        Parent loginPane = loginPaneLoader.load();
+        Scene loginScene = new Scene(loginPane, 900, 920);
+
+
+
+        //injecting the first and second and login scenes into the controller of the home page
         HomeController thirdPaneController = (HomeController) thirdPaneLoader.getController();
         thirdPaneController.setSubmission(fourthScene);
         thirdPaneController.setSearch(firstScene);
-
+        thirdPaneController.setLogin(loginScene);
 
         // injecting second scene into the controller of the first scene
         SearchController firstPaneController = (SearchController) firstPaneLoader.getController();

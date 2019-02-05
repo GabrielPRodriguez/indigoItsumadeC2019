@@ -119,23 +119,24 @@ public class FormCheckerController {
     @FXML
     TextField formStatus_text;
     String formStatus_string;
+    int currentFormID = 0;
 
     @FXML
     private void chooseButtonHandler(ActionEvent choose) throws IOException, Exception{
 
-        int formID = 0;
+        //int formID = 0;
         if(choose.getSource() == choose_button1){
-            formID = Integer.parseInt(formID_1.getText());
+            currentFormID = Integer.parseInt(formID_1.getText());
 
         }
 
         else if(choose.getSource() == choose_button2){
-            formID = Integer.parseInt(formID_2.getText());
+            currentFormID = Integer.parseInt(formID_2.getText());
 
         }
 
         else if(choose.getSource() == choose_button3){
-            formID = Integer.parseInt(formID_3.getText());
+            currentFormID = Integer.parseInt(formID_3.getText());
 
         }
 
@@ -143,7 +144,7 @@ public class FormCheckerController {
 
 
         SQLDriver driver = new SQLDriver();
-        HashMap<String, ReturnedValue>result = driver.get_data_by_value("form_data", "form_data.db", "formID", new DBValue<Integer>(formID));
+        HashMap<String, ReturnedValue>result = driver.get_data_by_value("form_data", "form_data.db", "formID", new DBValue<Integer>(currentFormID));
 
 
         repID_text.setText(result.get("repId").to_string());
@@ -167,7 +168,7 @@ public class FormCheckerController {
         applicationDate_text.setText(result.get("dateOfApplication").to_string());
         applicantName_text.setText(result.get("nameOfApplicant").to_string());
         formStatus_string = (result.get("formStatus").to_string()); //I use two variables because I need the formStatus text as a string
-        formStatus_text.setText(formStatus_string);
+
 
 
 
@@ -178,7 +179,9 @@ public class FormCheckerController {
 
         formStatus_string = "approved";
 
-        SQLDriver.setApprovalStatus(Integer.parseInt(formID_1.getText()), formStatus_string); //need to specify formID
+        SQLDriver.setApprovalStatus(currentFormID, formStatus_string);
+        clearFields();
+
 
     }
 
@@ -187,9 +190,34 @@ public class FormCheckerController {
 
         formStatus_string = "rejected";
 
-        SQLDriver.setApprovalStatus(Integer.parseInt(formID_1.getText()), formStatus_string);
+        SQLDriver.setApprovalStatus(currentFormID, formStatus_string);
+        clearFields();
 
 
+    }
+
+    private void clearFields(){
+        repID_text.clear();
+        plantRegistry_text.clear();
+        applicantName_text.clear();
+        applicationDate_text.clear();
+        brandedInfo_text.clear();
+        emailAddress_text.clear();
+        phoneNum_text.clear();
+        alcoholContent_text.clear();
+        vintage_text.clear();
+        winepH_text.clear();
+        grapeVarietal_text.clear();
+        wineAppellation_text.clear();
+        formula_text.clear();
+        mailingAddress_text.clear();
+        fancifulName_text.clear();
+        brandName_text.clear();
+        productType_text.clear();
+        serialNum_text.clear();
+        domesticImported_text.clear();
+        formStatus_text.clear();
+        nameAddress_text.clear();
     }
 
 

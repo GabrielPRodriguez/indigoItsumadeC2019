@@ -178,7 +178,7 @@
                         <Font name="Berlin Sans FB" size="19.0" />
                     </font>
             </Label>
-                <TextField fx:id="date_Field" disable="true" />
+                <TextField fx:id="date_Field" />
          </children>
       </VBox>
       <VBox layoutX="224.0" layoutY="796.0">

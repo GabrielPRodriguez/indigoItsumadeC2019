@@ -92,7 +92,7 @@
                         <Font name="Berlin Sans FB" size="18.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="repID_text" prefHeight="31.0" prefWidth="119.0" />
+                  <TextField fx:id="repID_text" editable="false" prefHeight="31.0" prefWidth="119.0" />
                </children>
             </VBox>
             <VBox layoutX="574.0" layoutY="11.0">
@@ -124,7 +124,7 @@
                         <Font name="Berlin Sans FB" size="18.0" />
                      </font>
                   </Text>
-                  <TextField fx:id="serialNum_text" />
+                  <TextField fx:id="serialNum_text" editable="false" />
                </children>
             </VBox>
             <VBox layoutX="193.0" layoutY="106.0">
@@ -161,7 +161,7 @@
                         <Font name="Berlin Sans FB" size="18.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="phoneNum_text">
+                  <TextField fx:id="phoneNum_text" editable="false">
                      <font>
                         <Font size="17.0" />
                      </font>
@@ -175,7 +175,7 @@
                         <Font name="Berlin Sans FB" size="18.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="emailAddress_text">
+                  <TextField fx:id="emailAddress_text" editable="false">
                      <font>
                         <Font size="17.0" />
                      </font>
@@ -189,7 +189,7 @@
                         <Font name="Berlin Sans FB" size="18.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="brandName_text">
+                  <TextField fx:id="brandName_text" editable="false">
                      <font>
                         <Font size="17.0" />
                      </font>
@@ -203,7 +203,7 @@
                         <Font name="Berlin Sans FB" size="18.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="fancifulName_text">
+                  <TextField fx:id="fancifulName_text" editable="false">
                      <font>
                         <Font size="17.0" />
                      </font>
@@ -217,7 +217,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="plantRegistry_text">
+                  <TextField fx:id="plantRegistry_text" editable="false">
                      <font>
                         <Font size="17.0" />
                      </font>
@@ -231,7 +231,7 @@
                         <Font size="17.0" />
                      </font>
                   </Label>
-                  <TextArea fx:id="brandedInfo_text" prefHeight="103.0" prefWidth="786.0" />
+                  <TextArea fx:id="brandedInfo_text" editable="false" prefHeight="103.0" prefWidth="786.0" />
                </children>
             </VBox>
             <VBox layoutX="323.0" layoutY="630.0">
@@ -241,7 +241,7 @@
                         <Font name="Berlin Sans FB" size="19.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="applicationDate_text" disable="true" />
+                  <TextField fx:id="applicationDate_text" disable="true" editable="false" />
                </children>
             </VBox>
             <VBox layoutX="549.0" layoutY="631.0">
@@ -251,7 +251,7 @@
                         <Font name="Berlin Sans FB" size="17.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="applicantName_text" />
+                  <TextField fx:id="applicantName_text" editable="false" />
                </children>
             </VBox>
             <VBox layoutX="23.0" layoutY="237.0">
@@ -261,7 +261,7 @@
                         <Font size="18.0" />
                      </font>
                   </Text>
-                  <TextArea fx:id="nameAddress_text" prefHeight="55.0" prefWidth="281.0" />
+                  <TextArea fx:id="nameAddress_text" editable="false" prefHeight="55.0" prefWidth="281.0" />
                </children>
             </VBox>
             <VBox layoutX="323.0" layoutY="238.0">
@@ -271,7 +271,7 @@
                         <Font size="18.0" />
                      </font>
                   </Text>
-                  <TextArea fx:id="mailingAddress_text" prefHeight="103.0" prefWidth="281.0" />
+                  <TextArea fx:id="mailingAddress_text" editable="false" prefHeight="103.0" prefWidth="281.0" />
                </children>
             </VBox>
             <VBox layoutX="619.0" layoutY="236.0" prefHeight="65.0" prefWidth="185.0">
@@ -281,7 +281,7 @@
                         <Font name="Berlin Sans FB" size="18.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="formula_text" prefHeight="38.0" prefWidth="175.0">
+                  <TextField fx:id="formula_text" editable="false" prefHeight="38.0" prefWidth="175.0">
                      <font>
                         <Font size="17.0" />
                      </font>
@@ -323,7 +323,7 @@
                         <Font name="Berlin Sans FB" size="18.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="winepH_text" disable="true">
+                  <TextField fx:id="winepH_text" disable="true" editable="false">
                      <font>
                         <Font size="17.0" />
                      </font>
@@ -337,7 +337,7 @@
                         <Font name="Berlin Sans FB" size="18.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="alcoholContent_text">
+                  <TextField fx:id="alcoholContent_text" editable="false">
                      <font>
                         <Font size="17.0" />
                      </font>
@@ -351,7 +351,7 @@
                         <Font name="Berlin Sans FB" size="18.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="vintage_text" disable="true">
+                  <TextField fx:id="vintage_text" disable="true" editable="false">
                      <font>
                         <Font size="17.0" />
                      </font>

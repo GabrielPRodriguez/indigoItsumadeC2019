@@ -1,60 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.paint.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.Stop?>
-<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers.Controller">
-   <columnConstraints>
-      <ColumnConstraints />
-   </columnConstraints>
-   <rowConstraints>
-      <RowConstraints />
-   </rowConstraints>
+<AnchorPane prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #e3e3e3;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers.FormCheckerController">
    <children>
-      <AnchorPane prefHeight="907.0" prefWidth="1279.0">
+      <ImageView fitHeight="241.0" fitWidth="260.0" layoutX="52.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Assets/treasury_high_density.png" />
+         </image>
+      </ImageView>
+      <Text fill="WHITE" layoutX="315.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User :" wrappingWidth="99.00001156330109">
+         <font>
+            <Font name="Berlin Sans FB" size="32.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="315.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date :">
+         <font>
+            <Font name="Berlin Sans FB" size="28.0" />
+         </font>
+      </Text>
+      <VBox layoutX="52.0" layoutY="293.0">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="907.0" stroke="BLACK" strokeType="INSIDE" width="1279.0">
-               <fill>
-                  <LinearGradient endX="0.5970873786407767" endY="1.0" startX="0.46657953696788645">
-                     <stops>
-                        <Stop color="#0000003a" />
-                        <Stop color="#09679a" offset="1.0" />
-                     </stops>
-                  </LinearGradient>
-               </fill>
-            </Rectangle>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#acb2b9" height="468.0" layoutX="52.0" layoutY="325.0" stroke="BLACK" strokeType="INSIDE" width="400.0" />
-            <ImageView fitHeight="241.0" fitWidth="260.0" layoutX="52.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@trasury.png" />
-               </image>
-            </ImageView>
-            <Text fill="WHITE" layoutX="315.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User :" wrappingWidth="99.00001156330109">
-               <font>
-                  <Font name="Berlin Sans FB" size="32.0" />
-               </font>
-            </Text>
-            <MenuBar layoutX="52.0" layoutY="293.0" prefHeight="32.0" prefWidth="400.0">
+            <MenuBar prefHeight="37.0" prefWidth="400.0">
               <menus>
                 <Menu mnemonicParsing="false" text="File">
                   <items>
@@ -71,97 +52,317 @@
                     <MenuItem mnemonicParsing="false" text="About" />
                   </items>
                 </Menu>
+                  <Menu mnemonicParsing="false" text="Refresh">
+                    <items>
+                      <MenuItem fx:id="refresh" mnemonicParsing="false" text="Action 1" />
+                    </items>
+                  </Menu>
               </menus>
             </MenuBar>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ccd0d3" height="764.0" layoutX="555.0" layoutY="55.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="4.0" width="649.0" />
-            <Button layoutX="607.0" layoutY="841.0" mnemonicParsing="false" text="Approve" />
-            <Button layoutX="739.0" layoutY="841.0" mnemonicParsing="false" text="Reject" />
-            <Button layoutX="1046.0" layoutY="841.0" mnemonicParsing="false" text="Send to Specialist" />
-            <Text fill="WHITE" layoutX="315.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date :">
-               <font>
-                  <Font name="Berlin Sans FB" size="28.0" />
-               </font>
-            </Text>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="78.0" layoutX="52.0" layoutY="325.0" stroke="BLACK" strokeType="INSIDE" width="400.0">
-               <fill>
-                  <LinearGradient endX="0.9514563106796117" endY="1.0" startX="0.9368932038834952">
-                     <stops>
-                        <Stop color="#d6e83c" />
-                        <Stop color="WHITE" offset="1.0" />
-                     </stops>
-                  </LinearGradient>
-               </fill>
-            </Rectangle>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="78.0" layoutX="52.0" layoutY="403.0" stroke="BLACK" strokeType="INSIDE" width="400.0">
-               <fill>
-                  <LinearGradient endX="0.9514563106796117" endY="1.0" startX="0.9368932038834952">
-                     <stops>
-                        <Stop color="#d6e83c" />
-                        <Stop color="WHITE" offset="1.0" />
-                     </stops>
-                  </LinearGradient>
-               </fill>
-            </Rectangle>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="78.0" layoutX="52.0" layoutY="481.0" stroke="BLACK" strokeType="INSIDE" width="400.0">
-               <fill>
-                  <LinearGradient endX="0.9514563106796117" endY="1.0" startX="0.9368932038834952">
-                     <stops>
-                        <Stop color="#d6e83c" />
-                        <Stop color="WHITE" offset="1.0" />
-                     </stops>
-                  </LinearGradient>
-               </fill>
-            </Rectangle>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="78.0" layoutX="52.0" layoutY="559.0" stroke="BLACK" strokeType="INSIDE" width="400.0">
-               <fill>
-                  <LinearGradient endX="0.9514563106796117" endY="1.0" startX="0.9368932038834952">
-                     <stops>
-                        <Stop color="#d6e83c" />
-                        <Stop color="WHITE" offset="1.0" />
-                     </stops>
-                  </LinearGradient>
-               </fill>
-            </Rectangle>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="78.0" layoutX="52.0" layoutY="637.0" stroke="BLACK" strokeType="INSIDE" width="400.0">
-               <fill>
-                  <LinearGradient endX="0.9514563106796117" endY="1.0" startX="0.9368932038834952">
-                     <stops>
-                        <Stop color="#d6e83c" />
-                        <Stop color="WHITE" offset="1.0" />
-                     </stops>
-                  </LinearGradient>
-               </fill>
-            </Rectangle>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="78.0" layoutX="52.0" layoutY="715.0" stroke="BLACK" strokeType="INSIDE" width="400.0">
-               <fill>
-                  <LinearGradient endX="0.9514563106796117" endY="1.0" startX="0.9368932038834952">
-                     <stops>
-                        <Stop color="#d6e83c" />
-                        <Stop color="WHITE" offset="1.0" />
-                     </stops>
-                  </LinearGradient>
-               </fill>
-            </Rectangle>
-            <ImageView fitHeight="764.0" fitWidth="649.0" layoutX="555.0" layoutY="55.0" pickOnBounds="true">
-               <image>
-                  <Image url="@formsub.PNG" />
-               </image>
-            </ImageView>
-            <Button layoutX="382.0" layoutY="257.0" mnemonicParsing="false" text="Refresh" />
-            <Button layoutX="894.0" layoutY="841.0" mnemonicParsing="false" text="Skip" />
-            <Button layoutX="467.0" layoutY="349.0" mnemonicParsing="false" text="Choose" />
-            <Button layoutX="467.0" layoutY="422.0" mnemonicParsing="false" text="Choose" />
-            <Button layoutX="467.0" layoutY="505.0" mnemonicParsing="false" text="Choose" />
-            <Button layoutX="467.0" layoutY="574.0" mnemonicParsing="false" text="Choose" />
-            <Button layoutX="467.0" layoutY="661.0" mnemonicParsing="false" text="Choose" />
-            <Button layoutX="467.0" layoutY="739.0" mnemonicParsing="false" text="Choose" />
-            <Text layoutX="95.0" layoutY="370.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Brewery Beer" />
-            <Text layoutX="238.0" layoutY="369.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Submitted : 1/2/1234" />
-            <Text layoutX="95.0" layoutY="447.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Brewery Beer" />
-            <Text layoutX="238.0" layoutY="447.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Submitted : 1/2/1234" />
-            <Text layoutX="95.0" layoutY="523.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Brewery Beer" />
-            <Text layoutX="229.0" layoutY="525.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Submitted : 1/2/1234" />
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="50.0">
+               <children>
+                  <AnchorPane>
+                     <children>
+                        <Label fx:id="formID_1" layoutY="36.0" text="Form 1 (Description)" />
+                        <Button fx:id="choose_button1" layoutX="352.0" layoutY="32.0" mnemonicParsing="false" onAction="#chooseButtonHandler" text="Select" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane>
+                     <children>
+                        <Label fx:id="formID_2" layoutY="20.0" text="Form 2 (Description)" />
+                        <Button fx:id="choose_button2" alignment="CENTER" layoutX="352.0" layoutY="16.0" mnemonicParsing="false" onAction="#chooseButtonHandler" text="Select" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane>
+                     <children>
+                        <Label fx:id="formID_3" alignment="CENTER" layoutY="12.0" text="Form 3 (Description)" />
+                        <Button fx:id="choose_button3" alignment="CENTER" layoutX="352.0" layoutY="8.0" mnemonicParsing="false" onAction="#chooseButtonHandler" text="Select" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+      <AnchorPane layoutX="529.0" layoutY="49.0" prefHeight="916.0" prefWidth="865.0">
+         <children>
+            <VBox layoutX="23.0" layoutY="14.0">
+               <children>
+                  <Label text="1. Rep. ID No.">
+                     <font>
+                        <Font name="Berlin Sans FB" size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="repID_text" prefHeight="31.0" prefWidth="119.0" />
+               </children>
+            </VBox>
+            <VBox layoutX="574.0" layoutY="11.0">
+               <children>
+                  <Label text="3. Domestic or Imported">
+                     <font>
+                        <Font name="Berlin Sans FB" size="18.0" />
+                     </font>
+                  </Label>
+                  <RadioButton fx:id="domestic_RadButton" mnemonicParsing="false" text="Domestic">
+                     <font>
+                        <Font name="Berlin Sans FB" size="18.0" />
+                     </font>
+                     <toggleGroup>
+                        <ToggleGroup fx:id="Domestic" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton fx:id="imported_RadButton" mnemonicParsing="false" text="Imported" toggleGroup="$Domestic">
+                     <font>
+                        <Font name="Berlin Sans FB" size="18.0" />
+                     </font>
+                  </RadioButton>
+               </children>
+            </VBox>
+            <VBox layoutX="23.0" layoutY="106.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="4. Serial Number">
+                     <font>
+                        <Font name="Berlin Sans FB" size="18.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="serialNum_text" />
+               </children>
+            </VBox>
+            <VBox layoutX="193.0" layoutY="106.0">
+               <children>
+                  <Label text="5. Type of Product">
+                     <font>
+                        <Font name="Berlin Sans FB" size="18.0" />
+                     </font>
+                  </Label>
+                  <RadioButton fx:id="wine_RadButton" mnemonicParsing="false" text="Wine">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="Drinks" />
+                     </toggleGroup>
+                     <font>
+                        <Font name="Berlin Sans FB" size="18.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="beer_RadButton" mnemonicParsing="false" text="Beer" toggleGroup="$Drinks">
+                     <font>
+                        <Font name="Berlin Sans FB" size="18.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="liquor_RadButton" mnemonicParsing="false" text="Liqour" toggleGroup="$Drinks">
+                     <font>
+                        <Font name="Berlin Sans FB" size="18.0" />
+                     </font>
+                  </RadioButton>
+               </children>
+            </VBox>
+            <VBox layoutX="323.0" layoutY="406.0">
+               <children>
+                  <Label text="12. Phone Number">
+                     <font>
+                        <Font name="Berlin Sans FB" size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="phoneNum_text">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </VBox>
+            <VBox layoutX="593.0" layoutY="406.0">
+               <children>
+                  <Label text="13. Email Address">
+                     <font>
+                        <Font name="Berlin Sans FB" size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="emailAddress_text">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </VBox>
+            <VBox layoutX="364.0" layoutY="106.0">
+               <children>
+                  <Label text="6. Brand Name">
+                     <font>
+                        <Font name="Berlin Sans FB" size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="brandName_text">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </VBox>
+            <VBox layoutX="597.0" layoutY="106.0">
+               <children>
+                  <Label text="7. Fanciful Name">
+                     <font>
+                        <Font name="Berlin Sans FB" size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="fancifulName_text">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </VBox>
+            <VBox layoutX="193.0" layoutY="11.0">
+               <children>
+                  <Label text="2. Plant Registry/Basic Permit/ Brewer's NO">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="plantRegistry_text">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </VBox>
+            <VBox layoutX="323.0" layoutY="482.0" prefHeight="129.0" prefWidth="452.0">
+               <children>
+                  <Label prefHeight="26.0" prefWidth="823.0" text="Show any information that is branded, or embossed on the container only if it does not appear on the label">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+                  <TextArea fx:id="brandedInfo_text" prefHeight="103.0" prefWidth="786.0" />
+               </children>
+            </VBox>
+            <VBox layoutX="323.0" layoutY="630.0">
+               <children>
+                  <Label text="16. Date of Application">
+                     <font>
+                        <Font name="Berlin Sans FB" size="19.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="applicationDate_text" disable="true" />
+               </children>
+            </VBox>
+            <VBox layoutX="549.0" layoutY="631.0">
+               <children>
+                  <Label text="18. Print Name of Applicant">
+                     <font>
+                        <Font name="Berlin Sans FB" size="17.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="applicantName_text" />
+               </children>
+            </VBox>
+            <VBox layoutX="23.0" layoutY="237.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="8. Name and Address of Applicant">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <TextArea fx:id="nameAddress_text" prefHeight="55.0" prefWidth="281.0" />
+               </children>
+            </VBox>
+            <VBox layoutX="323.0" layoutY="238.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="8a. Mailing Address, if different">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <TextArea fx:id="mailingAddress_text" prefHeight="103.0" prefWidth="281.0" />
+               </children>
+            </VBox>
+            <VBox layoutX="619.0" layoutY="236.0" prefHeight="65.0" prefWidth="185.0">
+               <children>
+                  <Label text="9. Formula">
+                     <font>
+                        <Font name="Berlin Sans FB" size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="formula_text" prefHeight="38.0" prefWidth="175.0">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </VBox>
+            <VBox layoutX="23.0" layoutY="333.0">
+               <children>
+                  <Label text="10. Grape Varietal(s) (wine only)">
+                     <font>
+                        <Font name="Berlin Sans FB" size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="grapeVarietal_text" disable="true">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </VBox>
+            <VBox layoutX="23.0" layoutY="417.0">
+               <children>
+                  <Label text="11. Wine Appellation (if on label)">
+                     <font>
+                        <Font name="Berlin Sans FB" size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="wineAppellation_text" disable="true">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </VBox>
+            <VBox layoutX="23.0" layoutY="500.0">
+               <children>
+                  <Label text="PH Level (Wine only)">
+                     <font>
+                        <Font name="Berlin Sans FB" size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="winepH_text" disable="true">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </VBox>
+            <VBox layoutX="619.0" layoutY="316.0" prefHeight="65.0" prefWidth="185.0">
+               <children>
+                  <Label text="Alcohol Percentage">
+                     <font>
+                        <Font name="Berlin Sans FB" size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="alcoholContent_text">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </VBox>
+            <VBox layoutX="23.0" layoutY="582.0">
+               <children>
+                  <Label text="Vintage (wine only)">
+                     <font>
+                        <Font name="Berlin Sans FB" size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="vintage_text" disable="true">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </VBox>
+            <Button fx:id="submit_button" layoutX="50.0" layoutY="800.0" mnemonicParsing="false" onAction="#approveHandler" text="Submit" />
+            <Button fx:id="save_button" layoutX="450.0" layoutY="800.0" mnemonicParsing="false" text="Save" />
+            <Button fx:id="specialist_button" layoutX="650.0" layoutY="800.0" mnemonicParsing="false" text="Send to Specialist" />
+            <Button fx:id="reject_button" layoutX="250.0" layoutY="800.0" mnemonicParsing="false" onAction="#rejectHandler" text="Reject" />
          </children>
       </AnchorPane>
    </children>
-</GridPane>
+</AnchorPane>

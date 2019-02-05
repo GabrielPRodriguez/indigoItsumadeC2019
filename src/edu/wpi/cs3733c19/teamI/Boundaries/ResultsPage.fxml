@@ -48,7 +48,7 @@
             <Text layoutX="36.0" layoutY="584.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email Address:" />
             <ImageView fitHeight="253.0" fitWidth="330.0" layoutX="36.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@trasury.png" />
+                  <Image url="@../Assets/treasury_high_density.png" />
                </image>
             </ImageView>
             <Text fx:id="PBBNo" layoutX="318.0" layoutY="394.0" strokeType="OUTSIDE" strokeWidth="0.0" text="x" />

@@ -47,7 +47,7 @@
                 <TextField fx:id="repID" layoutX="46.0" layoutY="334.0" prefHeight="31.0" prefWidth="119.0" />
                 <ImageView fitHeight="261.0" fitWidth="281.0" layoutX="796.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@trasury.png" />
+                        <Image url="@../Assets/treasury_high_density.png" />
                     </image>
                 </ImageView>
                 <Label layoutX="569.0" layoutY="310.0" text="3. Domestic or Imported">

@@ -7,12 +7,9 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.Stop?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="804.0" prefWidth="864.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers.HomeController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="804.0" prefWidth="864.0" style="-fx-background-color: #e3e3e3;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers.HomeController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
@@ -22,19 +19,9 @@
    <children>
       <AnchorPane prefHeight="529.0" prefWidth="600.0">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="804.0" stroke="BLACK" strokeType="INSIDE" width="864.0">
-               <fill>
-                  <LinearGradient endX="1.0" endY="1.0" startX="0.8058252427184466">
-                     <stops>
-                        <Stop color="#2377af" />
-                        <Stop color="WHITE" offset="1.0" />
-                     </stops>
-                  </LinearGradient>
-               </fill>
-            </Rectangle>
             <ImageView fitHeight="368.0" fitWidth="378.0" layoutX="248.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@trasury.png" />
+                  <Image url="@../Assets/treasury_high_density.png" />
                </image>
             </ImageView>
             <Button fx:id="search" layoutX="282.0" layoutY="451.0" mnemonicParsing="false" onAction="#openSearch" prefHeight="179.0" prefWidth="300.0" text="Search">

@@ -8,7 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import org.json.*;
 import java.io.IOException;
-
+import java.util.*;
 
 
 
@@ -229,39 +229,54 @@ public class FormSubController{
 
                 if(readyToSend){
                     //add code to sent to database
+                    //add code to sent to database
+                    /*
                     String jsonString = new JSONObject()
-                            .put("repID", sentForm.getRepID())
-                            .put("plantRegistry", sentForm.getPlantRegistry())
-                            .put("domesticOrImported", sentForm.getDomesticOrImported())
-                            .put("serialNumber", sentForm.getSerialNumber())
-                            .put("brandName", sentForm.getBrandName())
-                            .put("beverageType", sentForm.getBeverageType())
-                            .put("fancifulName", sentForm.getFancifulName())
-                            .put("nameAndAddress", sentForm.getNameAndAddress())
-                            .put("mailingAddress", sentForm.getMailingAddress())
+                            .put("repID", sentForm.getrepID())
+                            .put("plantRegistry", sentForm.getplantRegistry())
+                            .put("domesticOrImported", sentForm.getdomesticOrImported())
+                            .put("serialNumber", sentForm.getserialNumber())
+                            .put("brandName", sentForm.getbrandName())
+                            .put("beverageType", sentForm.getbeverageType())
+                            .put("fancifulName", sentForm.getfancifulName())
+                            .put("nameAndAddress", sentForm.getnameAndAddress())
+                            .put("mailingAddress", sentForm.getmailingAddress())
                             .put("extraInfo", sentForm.getextraInfo())
-                            .put("dateOfApplication", sentForm.getDateOfApplication())
-                            .put("nameOfApplicant", sentForm.getNameOfApplicant())
+                            .put("dateOfApplication", sentForm.getdateOfApplication())
+                            .put("nameOfApplicant", sentForm.getnameOfApplicant())
                             .put("formula", sentForm.getformula())
-                            .put("grapeVarietals", sentForm.getGrapeVarietals())
-                            .put("vintage", sentForm.getVintage())
+                            .put("grapeVarietals", sentForm.getgrapeVarietals())
+                            .put("vintage", sentForm.getvintage())
                             .put("wineAppellation", sentForm.getwineAppellation())
                             .put("email", sentForm.getemail())
                             .put("phoneNumber", sentForm.getphoneNumber())
                             .put("pHValue", sentForm.getpHValue())
                             .put("alcoholContent", sentForm.getalcoholContent()).toString();
 
-
+                    */
                     SQLDriver driver = new SQLDriver();
-                    String [] columns = {"id", "data"};
-                    DBTypes [] full_types = {new DBTypes("real"), new DBTypes("text")};
+                    String [] columns = {"formID", "repID", "plantRegistry", "domesticOrImported", "serialNumber", "brandName", "beverageType", "fancifulName", "nameAndAddress", "mailingAddress", "extraInfo", "dateOfApplication", "nameOfApplicant", "formula", "grapeVarietals", "vintage", "wineAppellation", "email", "phoneNumber", "pHValue", "alcoholContent", "status"};
+                    DBTypes [] full_types = {new DBTypes("real"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("real"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("real"), new DBTypes("real"), new DBTypes("real")};
                     try{
                         driver.create_table("form_data", "form_data.db", columns, full_types);
                     }
                     catch(Exception e){
                         //pass
                     }
-                    DBValue [] all_vals = {new DBValue<Integer>(sentForm.getserialNumber()), new DBValue<String>(jsonString)};
+                    //int _id_count = driver.select_all("form_data.db", "form_data").size();
+                    double _id_count = 0;
+                    for (HashMap<String, ReturnedValue>result:driver.select_all("form_data.db", "form_data")){
+                        double _test = result.get("formID").to_double();
+                        if (_test > _id_count){
+                            _id_count = _test;
+                        }
+                    }
+                    DBValue [] all_vals = {new DBValue<Integer>((int)(_id_count)+1), new DBValue<String>(sentForm.getrepID()), new DBValue<String>(sentForm.getplantRegistry()), new DBValue<String>(sentForm.getdomesticOrImported()), new DBValue<Integer>(sentForm.getserialNumber()), new DBValue<String>(sentForm.getbrandName()), new DBValue<String>(sentForm.getbeverageType()), new DBValue<String>(sentForm.getfancifulName()), new DBValue<String>(sentForm.getnameAndAddress()), new DBValue<String>(sentForm.getmailingAddress()), new DBValue<String>(sentForm.getextraInfo()), new DBValue<String>(sentForm.getdateOfApplication()), new DBValue<String>(sentForm.getnameOfApplicant()), new DBValue<String>(sentForm.getformula()), new DBValue<String>(sentForm.getgrapeVarietals()), new DBValue<String>(sentForm.getvintage()), new DBValue<String>(sentForm.getwineAppellation()), new DBValue<String>(sentForm.getemail()), new DBValue<String>(sentForm.getphoneNumber()), new DBValue<Double>(sentForm.getpHValue()), new DBValue<Double>(sentForm.getalcoholContent()), new DBValue<Integer>(0)};
+                    /*
+                    0: needs reviewing
+                    1: approved
+                    2: rejected
+                     */
                     driver.insert_vals("form_data", "form_data.db", all_vals);
 
                     String success = "Form successfully submitted."; //apply to a Label
@@ -285,6 +300,9 @@ public class FormSubController{
                     vintage_Field.clear();
                     applicantName_Field.clear();
                     applicantNameAddr_Field.clear();
+                    brandedInfo_Field.clear();
+
+
                 }
 
 

@@ -22,6 +22,7 @@ public class Form {
     private String phoneNumber; //required
     private double pHValue; //wine only
     private double alcoholContent; //required
+    private String formStatus; //generated in background
 
     public Form() {
         this.repID = "";
@@ -39,13 +40,13 @@ public class Form {
         this.formula = "";
         this.grapeVarietals = "";
         this.vintage = "";
-        this.wineAppellation="";
+        this.wineAppellation = "";
         this.email = "";
         this.phoneNumber = "";
         this.pHValue = 0;
         this.alcoholContent = 0;
+        this.formStatus = "unread"; //new forms have had no action taken on them
     }
-
 
 
     public Form(String repID, String plantRegistry, String domesticOrImported, int serialNumber, String brandName, String beverageType, String fancifulName, String nameAndAddress, String mailingAddress, String extraInfo, String date, String nameOfApplicant, String formula, String grapeVarietals, String vintage, String wineAppellation, String email, String phoneNumber, double pHValue, double alcoholContent) {
@@ -153,67 +154,155 @@ public class Form {
         this.alcoholContent = alcoholContent;
     }
 
+    public void setFormStatus(String approvalStatus){ //this should probably be an enum for safety
+        this.formStatus = approvalStatus;
+    }
+
     public String getBeverageType() {
         return beverageType;
     }
 
+    public String getrepID() {
+        return this.repID;
+    }
+
+    public String getplantRegistry() {
+        return this.plantRegistry;
+    }
+
+    public String getdomesticOrImported() {
+        return this.domesticOrImported;
+    }
+
+    public int getserialNumber() {
+        return this.serialNumber;
+    }
+
+    public String getbrandName() {
+        return this.brandName;
+    }
+
+    public String getbeverageType() {
+        return this.beverageType;
+    }
+
+    public String getfancifulName() {
+        return this.fancifulName;
+    }
+
+    public String getnameAndAddress() {
+        return this.nameAndAddress;
+    }
+
+    public String getmailingAddress() {
+        return this.mailingAddress;
+    }
+
+    public String getextraInfo() {
+        return this.extraInfo;
+    }
+
+    public String getdateOfApplication() {
+        return this.dateOfApplication;
+    }
+
+    public String getnameOfApplicant() {
+        return this.nameOfApplicant;
+    }
+
+    public String getformula() {
+        return this.formula;
+    }
+
+    public String getgrapeVarietals() {
+        return this.grapeVarietals;
+    }
+
+    public String getvintage() {
+        return this.vintage;
+    }
+
+    public String getwineAppellation() {
+        return this.wineAppellation;
+    }
+
+    public String getemail() {
+        return this.email;
+    }
+
+    public String getphoneNumber() {
+        return this.phoneNumber;
+    }
+
+    public double getpHValue() {
+        return this.pHValue;
+    }
+
+    public double getalcoholContent() {
+        return this.alcoholContent;
+    }
+
+    public String getFormStatus(){
+        return this.formStatus;
+    }
+
     //inputs an int attribute to see if a value has been set
     //returns true if intVal is equal to zero
-    private boolean isEmpty(int intVal){
+    private boolean isEmpty(int intVal) {
         return (intVal == 0);
 
     }
 
     //inputs a string attribute to see if a value has been set
     //returns true if string is empty
-    private boolean isEmpty(String stringVal){
+    private boolean isEmpty(String stringVal) {
         return stringVal.equals("");
 
     }
 
     //inputs a double attribute to see if a value has been set
     //returns true if doubleVal is zero
-    private boolean isEmpty(double doubleVal){
+    private boolean isEmpty(double doubleVal) {
         return (doubleVal == 0.0);
 
     }
 
     //returns true if any required field is empty
-    public boolean missingRequired(){
-        return (isEmpty(domesticOrImported)||isEmpty(serialNumber)||isEmpty(brandName)
-                ||isEmpty(beverageType)||isEmpty(nameAndAddress)||isEmpty(dateOfApplication) ||isEmpty(nameOfApplicant)
-                ||isEmpty(phoneNumber)||isEmpty(alcoholContent));
+    public boolean missingRequired() {
+        return (isEmpty(domesticOrImported) || isEmpty(serialNumber) || isEmpty(brandName)
+                || isEmpty(beverageType) || isEmpty(nameAndAddress) || isEmpty(dateOfApplication) || isEmpty(nameOfApplicant)
+                || isEmpty(phoneNumber) || isEmpty(alcoholContent));
 
     }
 
     //creates a string listing the field names that are both empty and required
-    public String getMissingFieldsStatement(){
+    public String getMissingFieldsStatement() {
         String missingStatement = "The following empty fields are required: ";
-        if(isEmpty(domesticOrImported)){
+        if (isEmpty(domesticOrImported)) {
             missingStatement = missingStatement + " Domestic or Imported,";
         }
-        if(isEmpty(serialNumber)){
+        if (isEmpty(serialNumber)) {
             missingStatement = missingStatement + " Serial Number,";
         }
-        if(isEmpty(brandName)){
+        if (isEmpty(brandName)) {
             missingStatement = missingStatement + " Brand Name,";
         }
-        if(isEmpty(beverageType)){
+        if (isEmpty(beverageType)) {
             missingStatement = missingStatement + " Type of Product,";
         }
-        if(isEmpty(nameAndAddress)){
+        if (isEmpty(nameAndAddress)) {
             missingStatement = missingStatement + " Name and Address of Applicant,";
         }
-        if(isEmpty(dateOfApplication)){
+        if (isEmpty(dateOfApplication)) {
             missingStatement = missingStatement + " Date of Application,";
         }
-        if(isEmpty(nameOfApplicant)){
+        if (isEmpty(nameOfApplicant)) {
             missingStatement = missingStatement + " Print Name of Applicant,";
         }
-        if(isEmpty(phoneNumber)){
+        if (isEmpty(phoneNumber)) {
             missingStatement = missingStatement + " Phone Number,";
         }
-        if(isEmpty(alcoholContent)){
+        if (isEmpty(alcoholContent)) {
             missingStatement = missingStatement + " Alcohol Percentage,";
         }
 
@@ -225,7 +314,5 @@ public class Form {
 
     }
 
-
-
-
 }
+

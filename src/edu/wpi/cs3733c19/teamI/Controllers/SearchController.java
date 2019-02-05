@@ -95,7 +95,7 @@ public class SearchController {
     TextField email;
 
     @FXML
-    protected void fillSearchParam()
+    protected void fillSearchParam() throws Exception
     {
         LinkedList<DataField> userParam = new LinkedList<>();
         for(int i = 0; i <anchor.getChildren().size(); i++) {
@@ -123,6 +123,8 @@ public class SearchController {
             }
         }
         if(userParam.isEmpty() == false) {
+            System.out.println("userParam below");
+            System.out.println(userParam);
             Results.gatherSearchParam(userParam);
             System.out.println(Results.getParameters().getFirst());
         }
@@ -137,10 +139,10 @@ public class SearchController {
     public void setHomePage(Scene scene){homePage = scene;}
 
 
-    public void openDisplayScene(ActionEvent actionEvent) {
+    public void openDisplayScene(ActionEvent actionEvent) throws Exception{
         fillSearchParam();
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        primaryStage.setScene(displayScene);
+        primaryStage.setScene(displayScene); // See the search results class for information about query returns
     }
 
 

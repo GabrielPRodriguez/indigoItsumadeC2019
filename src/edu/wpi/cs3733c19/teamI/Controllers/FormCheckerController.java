@@ -109,6 +109,10 @@ public class FormCheckerController {
     Text applicantName_text;
 
     @FXML
+    Text formStatus_text;
+    String formStatus_string;
+
+    @FXML
     private void chooseButtonHandler(ActionEvent choose) throws IOException, Exception{
 
         int formID = 0;
@@ -154,20 +158,31 @@ public class FormCheckerController {
         brandedInfo_text.setText(result.get("extraInfo").to_string());
         applicationDate_text.setText(result.get("dateOfApplication").to_string());
         applicantName_text.setText(result.get("nameOfApplicant").to_string());
-
+        formStatus_string = (result.get("formStatus").to_string()); //I use two variables because I need the formStatus text as a string
+        formStatus_text.setText(formStatus_string);
 
 
 
     }
 
     @FXML
-    private void approveHandler(ActionEvent approve) throws IOException{
+    private void approveHandler(ActionEvent approve) throws IOException, Exception{
 
+        formStatus_string = "approved";
+
+        SQLDriver.setApprovalStatus(Integer.parseInt(formID_1.getText()), formStatus_string); //need to specify formID
 
     }
 
     @FXML
-    private void rejectHandler(ActionEvent reject) throws IOException{
+    private void rejectHandler(ActionEvent reject) throws IOException, Exception{
+
+        formStatus_string = "rejected";
+
+        SQLDriver.setApprovalStatus(Integer.parseInt(formID_1.getText()), formStatus_string);
+
 
     }
+
+
 }

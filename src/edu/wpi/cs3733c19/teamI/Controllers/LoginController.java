@@ -23,21 +23,24 @@ public class LoginController {
     public void attemptLogin() throws Exception { //attempts a login and will either create an account or login
         String users = "";
         users = readFile(users);
-        if (users.contains(username.toString() + " ")){ //this file checks for the user in the file
+        System.out.println(users);
+        if (users.contains(username.getText() + "\n")){ //this file checks for the user in the file
+            System.out.println("logging in");
             login();  //if they exist, login
         }
         else {
-            createAccount(users); //otherwise make them an account
+            createAccount(); //otherwise make them an account
         }
     }
 
     public String readFile(String users) throws Exception { //this file will populate users with a string of all users
         // pass the path to the file as a parameter
-        userLogin = new FileReader("../../UserSheet.txt");
+        userLogin = new FileReader("UserSheet.txt");
         int i;
         while ((i=userLogin.read()) != -1) {
             users = users + ((char) i);
         }
+        //System.out.println(users);
         return users;
     }
 
@@ -47,10 +50,17 @@ public class LoginController {
 
     }
 
-    public void createAccount(String users) throws Exception{  //creates an account, then logs the user in and moves them to the checks form scene
-        FileWriter userWriter = new FileWriter("../../UserSheet.txt");
-        userWriter.write(username.toString());
+    public void createAccount() throws Exception {  //creates an account, then logs the user in and moves them to the checks form scene
+        FileWriter userWriter = new FileWriter("UserSheet.txt", true);
+        BufferedWriter outputStream = new BufferedWriter(userWriter);
+        String addUser = "\n" + username.getText() + "\n";
+            outputStream.write(addUser);
+            //System.out.println(addUser);
+            System.out.println("creating account");
+            outputStream.flush();
+            outputStream.close();
 
-        //and then scene switcher code, wait for merge
+            //and then scene switcher code, wait for merge
+
     }
 }

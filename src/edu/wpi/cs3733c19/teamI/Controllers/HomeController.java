@@ -40,7 +40,7 @@ public class HomeController {
         primaryStage.setScene(work);
     }
 
-    public void openSearch(javafx.event.ActionEvent actionEvent) {
+    public void openSearc(javafx.event.ActionEvent actionEvent) {
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         primaryStage.setScene(searchScene); //test changes
     }
@@ -50,7 +50,7 @@ public class HomeController {
         primaryStage.setScene(submissionScene);
     }
 
-    public void openLogin(javafx.event.ActionEvent actionEvent){
+    public void openSearch(javafx.event.ActionEvent actionEvent){
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         primaryStage.setScene(loginScene);
     }

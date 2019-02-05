@@ -27,6 +27,10 @@ public class DataField<type> {
         return(this.field);
     }
 
+    String getStringVal(){
+     return(Value.toString());
+    }
+
     public DataField (type val, String fieldName)
     {
         this.Value = val;

@@ -3,6 +3,7 @@ package edu.wpi.cs3733c19.teamI;
 import edu.wpi.cs3733c19.teamI.Controllers.HomeController;
 import edu.wpi.cs3733c19.teamI.Controllers.SearchController;
 import edu.wpi.cs3733c19.teamI.Controllers.SearchDisplayController;
+import edu.wpi.cs3733c19.teamI.Entities.SearchResults;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,7 +12,7 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
-
+    public static SearchResults Results = new SearchResults();
 
     public static void main(String[] args) {
         launch(args);
@@ -49,9 +50,13 @@ public class Main extends Application {
         SearchController firstPaneController = (SearchController) firstPaneLoader.getController();
         firstPaneController.setDisplayScene(secondScene);
 
+
         // injecting first scene into the controller of the second scene
         SearchDisplayController secondPaneController = (SearchDisplayController) secondPageLoader.getController();
+        secondPaneController.StringTest = firstPaneController.StringTest;
         secondPaneController.setSearchScene(firstScene);
+        System.out.println(secondPaneController.StringTest);
+        firstPaneController.dispController = secondPaneController;
 
         primaryStage.setTitle("Hello World!");
         primaryStage.setScene(firstScene);

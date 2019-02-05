@@ -15,9 +15,14 @@ import javafx.scene.control.RadioButton;
 
 import java.util.LinkedList;
 
+import static edu.wpi.cs3733c19.teamI.Main.Results;
+
 public class SearchController {
-    public SearchResults Results = new SearchResults();
+
     private Scene displayScene;
+    public String StringTest;
+    public SearchDisplayController dispController;
+
 
     //Anchor pane
     @FXML
@@ -141,7 +146,9 @@ public class SearchController {
       //  System.out.println("Does it even matter?");
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         primaryStage.setScene(displayScene); // See the search results class for information about query returns
-        //((SearchDisplayController), primaryStage.getScene().c).currentResults = this.Results;
+        dispController.updateSearchDisplay();
+
+
     }
 
 

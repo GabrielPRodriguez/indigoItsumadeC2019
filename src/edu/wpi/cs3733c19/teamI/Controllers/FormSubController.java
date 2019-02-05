@@ -254,6 +254,7 @@ public class FormSubController{
                             .put("alcoholContent", sentForm.getalcoholContent()).toString();
 
                     */
+                    System.out.println("making db");
                     SQLDriver driver = new SQLDriver();
                     String [] columns = {"formID", "repID", "plantRegistry", "domesticOrImported", "serialNumber", "brandName", "beverageType", "fancifulName", "nameAndAddress", "mailingAddress", "extraInfo", "dateOfApplication", "nameOfApplicant", "formula", "grapeVarietals", "vintage", "wineAppellation", "email", "phoneNumber", "pHValue", "alcoholContent", "status"};
                     DBTypes [] full_types = {new DBTypes("real"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("real"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("real"), new DBTypes("real"), new DBTypes("real")};
@@ -261,7 +262,7 @@ public class FormSubController{
                         driver.create_table("form_data", "form_data.db", columns, full_types);
                     }
                     catch(Exception e){
-                        //pass
+                        System.out.println("exception, create_table");
                     }
                     //int _id_count = driver.select_all("form_data.db", "form_data").size();
                     double _id_count = 0;

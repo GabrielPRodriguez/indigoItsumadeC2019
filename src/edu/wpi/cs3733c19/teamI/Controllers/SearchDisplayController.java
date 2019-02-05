@@ -16,7 +16,7 @@ import java.util.HashMap;
 public class SearchDisplayController extends SearchController{
 
     private Scene searchScene;
-    public SearchResults currentResults = Results;
+    public SearchResults currentResults = get_results();
     private HashMap<String, String> ParamToTextFields;
     //currentResults =
     private Scene homePage;

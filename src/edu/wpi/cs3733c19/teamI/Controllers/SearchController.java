@@ -18,7 +18,9 @@ import java.util.LinkedList;
 public class SearchController {
     private SearchResults Results = new SearchResults();
     private Scene displayScene;
-
+    public SearchResults get_results(){
+        return Results;
+    }
     //Anchor pane
     @FXML
     AnchorPane anchor;

@@ -1,8 +1,5 @@
 package edu.wpi.cs3733c19.teamI;
 
-import edu.wpi.cs3733c19.teamI.Controllers.HomeController;
-import edu.wpi.cs3733c19.teamI.Controllers.SearchController;
-import edu.wpi.cs3733c19.teamI.Controllers.SearchDisplayController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

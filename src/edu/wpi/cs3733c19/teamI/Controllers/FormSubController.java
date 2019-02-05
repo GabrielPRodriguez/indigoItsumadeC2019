@@ -1,14 +1,15 @@
 package edu.wpi.cs3733c19.teamI.Controllers;
 
-import edu.wpi.cs3733c19.teamI.Controllers.dbUtilities.*;
-
+import edu.wpi.cs3733c19.teamI.Controllers.dbUtilities.DBTypes;
+import edu.wpi.cs3733c19.teamI.Controllers.dbUtilities.DBValue;
+import edu.wpi.cs3733c19.teamI.Controllers.dbUtilities.ReturnedValue;
 import edu.wpi.cs3733c19.teamI.Entities.Form;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import org.json.*;
+
 import java.io.IOException;
-import java.util.*;
+import java.util.HashMap;
 
 
 
@@ -254,6 +255,7 @@ public class FormSubController{
                             .put("alcoholContent", sentForm.getalcoholContent()).toString();
 
                     */
+                    System.out.println("making db");
                     SQLDriver driver = new SQLDriver();
                     String [] columns = {"formID", "repID", "plantRegistry", "domesticOrImported", "serialNumber", "brandName", "beverageType", "fancifulName", "nameAndAddress", "mailingAddress", "extraInfo", "dateOfApplication", "nameOfApplicant", "formula", "grapeVarietals", "vintage", "wineAppellation", "email", "phoneNumber", "pHValue", "alcoholContent", "status"};
                     DBTypes [] full_types = {new DBTypes("real"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("real"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("real"), new DBTypes("real"), new DBTypes("real")};
@@ -261,7 +263,7 @@ public class FormSubController{
                         driver.create_table("form_data", "form_data.db", columns, full_types);
                     }
                     catch(Exception e){
-                        //pass
+                        System.out.println("exception, create_table");
                     }
                     //int _id_count = driver.select_all("form_data.db", "form_data").size();
                     double _id_count = 0;

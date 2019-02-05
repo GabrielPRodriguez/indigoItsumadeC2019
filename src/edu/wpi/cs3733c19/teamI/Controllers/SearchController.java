@@ -6,19 +6,21 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.scene.control.RadioButton;
 
 import java.util.LinkedList;
 
 public class SearchController {
     private SearchResults Results = new SearchResults();
     private Scene displayScene;
-    private Scene homePage;
-
+    public SearchResults get_results(){
+        return Results;
+    }
     //Anchor pane
     @FXML
     AnchorPane anchor;
@@ -38,7 +40,6 @@ public class SearchController {
     // #3 domesticOrImported (they work as two separe entities)
     @FXML
     RadioButton domestic;
-
     @FXML
     RadioButton imported;
 
@@ -136,8 +137,6 @@ public class SearchController {
     public void setDisplayScene(Scene scene) {
         displayScene = scene;
     }
-    public void setHomePage(Scene scene){homePage = scene;}
-
 
     public void openDisplayScene(ActionEvent actionEvent) throws Exception{
         fillSearchParam();
@@ -146,8 +145,5 @@ public class SearchController {
     }
 
 
-    public void openHome(ActionEvent actionEvent) {
-        Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        primaryStage.setScene(homePage);
-    }
+
 }

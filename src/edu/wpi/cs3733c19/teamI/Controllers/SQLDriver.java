@@ -10,7 +10,10 @@ import java.io.*;
 import java.util.*;
 import java.lang.reflect.Method;
 
+ import edu.wpi.cs3733c19.teamI.Entities.DataField;
+
 import edu.wpi.cs3733c19.teamI.Controllers.dbUtilities.*;
+import edu.wpi.cs3733c19.teamI.Entities.DataField;
 
 public class SQLDriver{
 
@@ -170,38 +173,55 @@ public class SQLDriver{
         }
         throw new Exception("Cannot find row");
     }
-    public ArrayList<HashMap<String, ReturnedValue>>get_data_by_value(String tablename, String filename, LinkedList<String>search_fields, HashMap<String, ReturnedValue>targets) throws Exception{
+    public ArrayList<HashMap<String, ReturnedValue>>get_data_by_value(String tablename, String filename, LinkedList<String>search_fields, HashMap<String, DataField>targets) throws Exception{
+        System.out.println("in search method");
+
         ArrayList<HashMap<String, ReturnedValue>> final_results = new ArrayList<HashMap<String, ReturnedValue>>();
         for (HashMap<String, ReturnedValue>result: select_all(filename, tablename)){
-            boolean _flag = false;
-            for (String field:search_fields){
-                ReturnedValue type1 = result.get(field);
-                ReturnedValue type2 = targets.get(field);
-                if (type1.type == "text"){
-                    if (type1.to_string() == type2.to_string()){
-                        _flag = true;
+            double _new_flag = result.get("status").to_double();
+            if (_new_flag == 0){
+                boolean _flag = false;
+                for (String field:search_fields){
+                    System.out.println("search field: "+field);
+                    ReturnedValue type1 = result.get(field);
+                    DataField type2 = targets.get(field);
+
+                    System.out.println("type in final search");
+
+
+                    if (type1.type.equals("text")){
+                        if (type1.to_string().equals(type2.getValue().toString())){
+                            System.out.println("successfull comparison!!!");
+
+                            _flag = true;
+                        }
+                        else{
+                            //System.out.println("comparision failed");
+                            _flag = false;
+                            break;
+                        }
                     }
                     else{
-                        _flag = false;
-                        break;
+                        //System.out.println("should not see this");
+                        System.out.println(type1.type);
+                        if (type1.to_double() == Double.parseDouble(type2.getValue().toString())){
+                            _flag = true;
+                        }
+                        else{
+                            _flag = false;
+                            break;
+                        }
+
                     }
+
+
                 }
-                else{
-                    if (type1.to_double() == type2.to_double()){
-                        _flag = true;
-                    }
-                    else{
-                        _flag = false;
-                        break;
-                    }
-
+                if (_flag){
+                    final_results.add(result);
                 }
+            }
 
 
-            }
-            if (_flag){
-                final_results.add(result);
-            }
 
         }
         return final_results;

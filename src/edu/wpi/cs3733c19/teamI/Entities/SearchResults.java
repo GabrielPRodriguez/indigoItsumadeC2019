@@ -1,5 +1,8 @@
 package edu.wpi.cs3733c19.teamI.Entities;
 
+import edu.wpi.cs3733c19.teamI.Controllers.SQLDriver;
+import edu.wpi.cs3733c19.teamI.Controllers.dbUtilities.ReturnedValue;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -10,9 +13,9 @@ public class SearchResults {
 
     private LinkedList<String> Parameters;
     private HashMap<String, DataField> searchMap;
-    private ArrayList<HashMap<String, DataField>> listOfForms;
+    private ArrayList<HashMap<String, ReturnedValue>> listOfForms;
 
-    public void gatherSearchParam(LinkedList<DataField> userInput)
+    public void gatherSearchParam(LinkedList<DataField> userInput) throws Exception
     {
         //clear old search param
         this.Parameters = new LinkedList<>();
@@ -21,6 +24,9 @@ public class SearchResults {
             Parameters.add(dataField.getField());
             searchMap.put(dataField.getField(), dataField);
         }
+        System.out.println("before UpdateList call");
+        System.out.println(searchMap);
+        UpdateList();
     }
 
 
@@ -69,9 +75,14 @@ public class SearchResults {
 
     }
 
-    protected void UpdateList()// call DB function to query new forms
+    protected void UpdateList() throws Exception// call DB function to query new forms
     {
-
+        //get_data_by_value()
+        System.out.println("in UpdateList");
+        SQLDriver driver = new SQLDriver();
+        ArrayList<HashMap<String, ReturnedValue>>results = driver.get_data_by_value("form_data", "form_data.db", this.Parameters, this.searchMap);
+        this.listOfForms = results;
+        System.out.println(results);
     }
 
     protected void MakeCSV()    //TODO how make csv? what is return

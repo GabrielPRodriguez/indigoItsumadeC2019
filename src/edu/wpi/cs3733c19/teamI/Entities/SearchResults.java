@@ -13,7 +13,10 @@ public class SearchResults {
 
     private LinkedList<String> Parameters;
     private HashMap<String, DataField> searchMap;
-    private ArrayList<HashMap<String, ReturnedValue>> listOfForms;
+    //Results are stored in a list of hashmaps. One hashmap represemts a form. In order to get field data,
+    //use HASHMAP.get("name of field"); where name of field is the name of attribute in form class
+    private ArrayList<HashMap<String, ReturnedValue>> listOfForms; //holds the results of a query.
+
 
     public void gatherSearchParam(LinkedList<DataField> userInput) throws Exception
     {

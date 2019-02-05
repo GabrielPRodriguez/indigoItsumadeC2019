@@ -86,6 +86,7 @@ public class SearchResults {
         ArrayList<HashMap<String, ReturnedValue>>results = driver.get_data_by_value("form_data", "form_data.db", this.Parameters, this.searchMap);
         this.listOfForms = results;
         System.out.println(results);
+        System.out.println("Error, is that you?");
     }
 
     protected void MakeCSV()    //TODO how make csv? what is return

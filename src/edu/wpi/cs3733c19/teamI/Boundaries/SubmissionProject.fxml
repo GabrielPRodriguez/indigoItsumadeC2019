@@ -249,6 +249,11 @@
                         <Font size="17.0" />
                     </font>
                 </TextField>
+            <Button fx:id="home" layoutX="41.0" layoutY="856.0" mnemonicParsing="false" onAction="#openHome" text="Home">
+               <font>
+                  <Font name="Berlin Sans FB" size="24.0" />
+               </font>
+            </Button>
             </children>
         </AnchorPane>
     </children>

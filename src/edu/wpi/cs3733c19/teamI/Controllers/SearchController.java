@@ -6,12 +6,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-import javafx.scene.control.RadioButton;
 
 import java.util.LinkedList;
 
@@ -39,6 +38,7 @@ public class SearchController {
     // #3 domesticOrImported (they work as two separe entities)
     @FXML
     RadioButton domestic;
+
     @FXML
     RadioButton imported;
 

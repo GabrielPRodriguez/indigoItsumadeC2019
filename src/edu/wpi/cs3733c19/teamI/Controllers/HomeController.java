@@ -14,8 +14,15 @@ public class HomeController {
     private Scene searchScene;
     private Scene work;
     private Scene loginScene;
+
     @FXML
     Button search;
+
+    @FXML
+    Button submit;
+
+    @FXML
+    Button login;
 
     public void setSubmission(Scene scene) {
         submissionScene = scene;

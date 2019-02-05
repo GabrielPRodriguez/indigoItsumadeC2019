@@ -1,58 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.Stop?>
-<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="804.0" prefWidth="864.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers.HomeController">
-  <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-  </columnConstraints>
-  <rowConstraints>
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-  </rowConstraints>
+<AnchorPane minHeight="600.0" minWidth="600.0" style="-fx-background-color: #e3e3e3;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers.HomeController">
    <children>
-      <AnchorPane prefHeight="529.0" prefWidth="600.0">
+      <VBox alignment="CENTER" spacing="50.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="30.0">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="804.0" stroke="BLACK" strokeType="INSIDE" width="864.0">
-               <fill>
-                  <LinearGradient endX="1.0" endY="1.0" startX="0.8058252427184466">
-                     <stops>
-                        <Stop color="#2377af" />
-                        <Stop color="WHITE" offset="1.0" />
-                     </stops>
-                  </LinearGradient>
-               </fill>
-            </Rectangle>
-            <ImageView fitHeight="368.0" fitWidth="378.0" layoutX="248.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="205.0" fitWidth="215.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@trasury.png" />
+                  <Image url="@../Assets/treasury_high_density.png" />
                </image>
             </ImageView>
-            <Button fx:id="search" layoutX="282.0" layoutY="451.0" mnemonicParsing="false" onAction="#openSearch" prefHeight="179.0" prefWidth="300.0" text="Search">
+            <Label text="Welcome To The COLA Database">
                <font>
-                  <Font size="48.0" />
+                  <Font name="System Bold" size="25.0" />
+               </font>
+            </Label>
+            <Button fx:id="search" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" maxHeight="100.0" maxWidth="150.0" mnemonicParsing="false" onAction="#openSearch" style="-fx-background-color: transparent;">
+               <graphic>
+                  <ImageView fitHeight="100.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Assets/search_button.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="System Bold" size="1.0" />
                </font>
             </Button>
-            <Button layoutX="635.0" layoutY="699.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="197.0" text="Employee Login">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Button>
-            <Button fx:id="form" layoutX="635.0" layoutY="640.0" mnemonicParsing="false" onAction="#openForm" prefHeight="59.0" prefWidth="197.0" text="Submit a Form">
-               <font>
-                  <Font size="22.0" />
-               </font>
-            </Button>
+            <VBox alignment="BOTTOM_RIGHT" spacing="30.0">
+               <children>
+                  <Button fx:id="login" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" maxHeight="50.0" maxWidth="100.0" mnemonicParsing="false" onAction="#openLogin" style="-fx-background-color: transparent;">
+                     <graphic>
+                        <ImageView fitHeight="75.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Assets/employee_login_button.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font size="1.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="submit" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" maxHeight="50.0" maxWidth="100.0" mnemonicParsing="false" onAction="#openSubmission" style="-fx-background-color: transparent;">
+                     <font>
+                        <Font size="1.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="75.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Assets/submit_form_button.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="50.0" top="10.0" />
+               </padding>
+            </VBox>
          </children>
-      </AnchorPane>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </VBox>
    </children>
-</GridPane>
+</AnchorPane>

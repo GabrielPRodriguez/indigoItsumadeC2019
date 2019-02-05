@@ -8,7 +8,7 @@ import javafx.scene.control.TextField;
 import java.io.*;
 
 public class LoginController {
-
+    
     @FXML
     TextField username;
 

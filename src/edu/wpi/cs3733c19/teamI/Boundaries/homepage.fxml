@@ -42,7 +42,7 @@
                   <Font size="48.0" />
                </font>
             </Button>
-            <Button layoutX="635.0" layoutY="699.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="197.0" text="Employee Login">
+            <Button fx:id="login" layoutX="635.0" layoutY="699.0" mnemonicParsing="false" onAction="#openLogin" prefHeight="59.0" prefWidth="197.0" text="Employee Login">
                <font>
                   <Font size="18.0" />
                </font>

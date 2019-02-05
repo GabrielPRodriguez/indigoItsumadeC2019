@@ -32,6 +32,11 @@ public class SearchResults {
         UpdateList();
     }
 
+    public String getSearchParamEntry(String key)
+    {
+        return(this.searchMap.get(key).getStringVal());
+    }
+
 
 
 

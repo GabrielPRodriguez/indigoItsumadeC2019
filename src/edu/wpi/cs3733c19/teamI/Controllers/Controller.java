@@ -11,7 +11,7 @@ public class Controller {
     private Scene homePage;
 
     public void setHomePage(Scene homePage) {
-        homePage = homePage;
+        this.homePage = homePage;
     }
 
     public void openHome(ActionEvent actionEvent) {

@@ -48,7 +48,7 @@
             <Text layoutX="36.0" layoutY="584.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email Address:" />
             <ImageView fitHeight="253.0" fitWidth="330.0" layoutX="36.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@trasury.png" />
+                  <Image url="@../Assets/treasury_high_density.png" />
                </image>
             </ImageView>
             <Text fx:id="plantRegistry" layoutX="318.0" layoutY="394.0" strokeType="OUTSIDE" strokeWidth="0.0" text="x" />
@@ -90,6 +90,11 @@
                   <TableColumn prefWidth="147.0" text="Alcohol Content" />
               </columns>
             </TableView>
+            <Button fx:id="home" layoutX="289.0" layoutY="784.0" mnemonicParsing="false" onAction="#openHome" prefHeight="50.0" prefWidth="137.0" text="Home">
+               <font>
+                  <Font name="Berlin Sans FB" size="32.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
    </children>

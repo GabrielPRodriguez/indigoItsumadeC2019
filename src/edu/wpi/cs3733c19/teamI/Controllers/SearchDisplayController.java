@@ -22,6 +22,7 @@ public class SearchDisplayController {
     private HashMap<String, Text> ParamToTextFields;
     public String StringTest;
     //currentResults =
+    private Scene homePage;
 
     @FXML
     Button returnToSearch;
@@ -32,6 +33,9 @@ public class SearchDisplayController {
     @FXML
     ListView ResultsDisplay;
 
+    /*
+
+     */
 
     @FXML
     Text repID;
@@ -83,6 +87,9 @@ public class SearchDisplayController {
     public void setSearchScene(Scene scene)
     {
         searchScene = scene;
+    }
+    public void setHomePage(Scene scene){
+        homePage = scene;
     }
 
     public void openSearchScene(ActionEvent actionEvent){
@@ -156,4 +163,8 @@ public class SearchDisplayController {
     }
 
 
+    public void openHome(ActionEvent actionEvent) {
+        Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        primaryStage.setScene(homePage);
+    }
 }

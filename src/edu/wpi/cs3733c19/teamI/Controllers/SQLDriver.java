@@ -173,6 +173,33 @@ public class SQLDriver{
         }
         throw new Exception("Cannot find row");
     }
+    public void update(String tablename, String filename, ArrayList<String>targetcols, ArrayList<DBValue>values, int formid) throws Exception{
+        Connection _connector = connect_file(filename);
+        ArrayList<String>temp = new ArrayList<String>();
+        for (String col:targetcols){
+            temp.add(col+" = ?");
+        }
+        String statement = "UPDATE "+tablename+" SET "+String.join(", ", temp)+" WHERE formID = ?";
+        PreparedStatement pstmt = _connector.prepareStatement(statement);
+        int _count = 1;
+        for (DBValue val:values){
+            if (val.statement().equals("setInt")){
+                pstmt.setInt(_count, val.to_int());
+            }
+            else if (val.statement().equals("setDouble")){
+                pstmt.setDouble(_count, val.to_double());
+
+            }
+            else{
+                pstmt.setString(_count, val.to_string());
+            }
+            _count ++;
+
+
+        }
+        pstmt.setInt(_count, formid);
+
+    }
     public ArrayList<HashMap<String, ReturnedValue>>get_data_by_value(String tablename, String filename, LinkedList<String>search_fields, HashMap<String, DataField>targets) throws Exception{
         System.out.println("in search method");
 

@@ -346,6 +346,7 @@
                   </VBox>
                </children>
             </AnchorPane>
+            <Button fx:id="goHome" layoutX="52.0" layoutY="670.0" mnemonicParsing="false" onAction="#goHomePage" prefHeight="41.0" prefWidth="70.0" text="Home" />
          </children>
       </AnchorPane>
    </content>

@@ -14,9 +14,19 @@ import java.io.*;
 public class LoginController {
     private Scene formCheckerScene;
     //public LoginController formCheckerController;
+
+    private Scene Home;
+
+    public void setHomeScene(Scene home)
+    {
+        this.Home = home;
+    }
     
     @FXML
     TextField username;
+
+    @FXML
+    Button goToHome;
 
     @FXML
     TextField password;
@@ -83,4 +93,11 @@ public class LoginController {
         primaryStage.setScene(formCheckerScene); // See the form checker page
         System.out.println("Did eveything in display scene");
     }
+
+    public void goHome(ActionEvent actionEvent){
+        Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        primaryStage.setScene(Home);
+
+    }
+
 }

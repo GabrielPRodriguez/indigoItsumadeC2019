@@ -28,15 +28,15 @@ public class Main extends Application {
 
 
 ////        // Original From main
-//         Parent root = FXMLLoader.load(getClass().getResource("Boundaries/SearchV2.fxml"));
-//         primaryStage.setTitle("Hello World");
-//         primaryStage.setScene(new Scene(root, 850, 800));
-//         primaryStage.show();
-//        // End of Original from main
+////         Parent root = FXMLLoader.load(getClass().getResource("Boundaries/SearchV2.fxml"));
+////         primaryStage.setTitle("Hello World");
+////         primaryStage.setScene(new Scene(root, 850, 800));
+////         primaryStage.show();
+        // End of Original from main
 
 
-        // getting loader and a pane for the first scene.
-        // loader will then give a possibility to get related controller
+//         getting loader and a pane for the first scene.
+//         loader will then give a possibility to get related controller
         FXMLLoader firstPaneLoader = new FXMLLoader(getClass().getResource("Boundaries/SearchV2.fxml"));
         Parent firstPane = firstPaneLoader.load();
         Scene firstScene = new Scene(firstPane, 1090, 916);

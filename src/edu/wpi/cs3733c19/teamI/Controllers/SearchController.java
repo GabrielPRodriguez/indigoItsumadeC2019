@@ -18,7 +18,7 @@ import java.util.LinkedList;
 import static edu.wpi.cs3733c19.teamI.Main.Results;
 
 public class SearchController {
-    private SearchResults Results = new SearchResults();
+    //private SearchResults Results = new SearchResults();
     private Scene displayScene;
     public String StringTest;
     public SearchDisplayController dispController;
@@ -133,7 +133,7 @@ public class SearchController {
             System.out.println("userParam below");
             System.out.println(userParam);
             Results.gatherSearchParam(userParam);
-            System.out.println(Results.getParameters().getFirst());
+           // System.out.println(Results.getParameters().getFirst());
         }
 
 

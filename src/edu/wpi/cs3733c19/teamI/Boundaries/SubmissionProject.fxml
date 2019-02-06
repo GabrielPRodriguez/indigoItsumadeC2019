@@ -16,8 +16,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<ScrollPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers.FormSubController">
+<ScrollPane xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers.FormSubController">
    <content>
       <AnchorPane prefHeight="916.0" prefWidth="865.0">
             <children>
@@ -89,7 +88,7 @@
                               <Font name="Berlin Sans FB" size="18.0" />
                           </font>
                       </RadioButton>
-                      <RadioButton fx:id="liquor_RadButton" mnemonicParsing="false" onAction="#disableWineFields" text="Liqour" toggleGroup="$Drinks">
+                      <RadioButton fx:id="liquor_RadButton" mnemonicParsing="false" onAction="#disableWineFields" text="Liquor" toggleGroup="$Drinks">
                           <font>
                               <Font name="Berlin Sans FB" size="18.0" />
                           </font>

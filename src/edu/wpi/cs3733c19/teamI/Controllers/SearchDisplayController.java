@@ -13,6 +13,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -181,4 +182,5 @@ public class SearchDisplayController {
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         primaryStage.setScene(homePage);
     }
+
 }

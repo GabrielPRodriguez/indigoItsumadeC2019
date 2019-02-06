@@ -59,11 +59,11 @@ public class SearchController {
 
     // Type of Product
     @FXML
-    RadioButton wine;
+    RadioButton Wine;
     @FXML
-    RadioButton beer;
+    RadioButton Beer;
     @FXML
-    RadioButton liqour;
+    RadioButton Liqour;
 
     // Brand Name
     @FXML
@@ -122,12 +122,14 @@ public class SearchController {
             {
                RadioButton radio = ((RadioButton)element);
                 if(radio.isSelected()){
-                    if((radio.getId() == "liquor") ||(radio.getId() == "beer") || (radio.getId() == "wine")) {
-                        DataField Entry = new DataField(radio.getId(), "beverageType");
+                    if((radio.getText().equals("Liquor")) ||(radio.getText().equals("Beer")) || (radio.getText().equals("Wine"))) {
+                        DataField Entry = new DataField(radio.getText(), "beverageType");
                         userParam.add(Entry);
                     }
                     else{
-                        DataField Entry = new DataField(radio.getId(), "domesticOrImported");
+                        DataField Entry = new DataField(radio.getText(), "domesticOrImported");
+                        System.out.println("HERE!!!!!!!1");
+                        System.out.println(radio.getText());
                         userParam.add(Entry);
                     }
                 }
@@ -150,9 +152,9 @@ public class SearchController {
         domestic.setSelected(false);
         imported.setSelected(false);
         serialNumber.clear();
-        wine.setSelected(false);
-        beer.setSelected(false);
-        liqour.setSelected(false);
+        Wine.setSelected(false);
+        Beer.setSelected(false);
+        Liqour.setSelected(false);
         brandName.clear();
         fancifulName.clear();
         vintage.clear();

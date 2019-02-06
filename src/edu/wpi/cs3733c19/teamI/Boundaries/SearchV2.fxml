@@ -228,7 +228,12 @@
                               <Font size="17.0" />
                           </font>
                       </TextField>
-                  <Button fx:id="clearSearch" layoutX="47.0" layoutY="835.0" mnemonicParsing="false" onAction="#clearSearchResult" prefHeight="38.0" prefWidth="71.0" text="Clear">
+                  <Button fx:id="clearSearch" layoutX="42.0" layoutY="848.0" mnemonicParsing="false" onAction="#clearSearchResult" prefHeight="26.0" prefWidth="87.0" text="Clear">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="goHome" layoutX="127.0" layoutY="848.0" mnemonicParsing="false" onAction="#openHome" prefHeight="26.0" prefWidth="87.0" text="Home">
                      <font>
                         <Font size="18.0" />
                      </font>

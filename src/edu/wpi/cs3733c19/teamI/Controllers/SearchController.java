@@ -21,9 +21,12 @@ import static edu.wpi.cs3733c19.teamI.Main.Results;
 public class SearchController {
     //private SearchResults Results = new SearchResults();
     private Scene displayScene;
-    public String StringTest;
     public SearchDisplayController dispController;
+    private Scene homePage;
 
+    public void setHomePage(Scene homePage) {
+        this.homePage = homePage;
+    }
 
     public SearchResults get_results(){
         return Results;
@@ -35,6 +38,9 @@ public class SearchController {
     // Search Button
     @FXML
     Button performSearch;
+
+    @FXML
+    Button goHome;
 
     @FXML
     Button clearSearch;
@@ -179,8 +185,11 @@ public class SearchController {
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         primaryStage.setScene(displayScene); // See the search results class for information about query returns
         dispController.updateSearchDisplay();
+    }
 
-
+    public void openHome(ActionEvent actionEvent) {
+        Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        primaryStage.setScene(homePage);
     }
 
 

@@ -134,6 +134,16 @@ public class sub_Form {
         this.email = email;
     }
 
+
+    public String returnAll()
+    {
+        String CSV = this.repID + "," +this.plantRegistry + "," +this.domesticOrImported + "," +this.serialNumber + "," +this.beverageType + ","
+                +this.brandName + "," +this.fancifulName + "," + this.vintage + "," +this.grapeVarietals
+                + this.pHValue + "," + this.wineAppellation + "," + this.alcoholContent+ "," + this.phoneNumber+ "," +
+                this.email + "\n";
+        return CSV;
+    }
+
     public sub_Form(HashMap<String, ReturnedValue> entry){
         this.repID = entry.get("repID").to_string();
         this.plantRegistry = entry.get("plantRegistry").to_string();

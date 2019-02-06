@@ -77,16 +77,18 @@ public class Main extends Application {
         thirdPaneController.setSearch(firstScene);
         thirdPaneController.setLogin(loginScene);
 
+
+
         // injecting second scene into the controller of the first scene
         SearchController firstPaneController = (SearchController) firstPaneLoader.getController();
         firstPaneController.setDisplayScene(secondScene);
+        firstPaneController.setHomePage(thirdScene);
 
         // injecting first scene into the controller of the second scene
         SearchDisplayController secondPaneController = (SearchDisplayController) secondPageLoader.getController();
-        secondPaneController.StringTest = firstPaneController.StringTest;
         secondPaneController.setSearchScene(firstScene);
-        System.out.println(secondPaneController.StringTest);
         firstPaneController.dispController = secondPaneController;
+        secondPaneController.setHomePage(thirdScene);
 
         primaryStage.setTitle("Hello World!");
         primaryStage.setScene(thirdScene);

@@ -3,6 +3,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
@@ -18,219 +19,224 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers.SearchController">
-    <columnConstraints>
-        <ColumnConstraints />
-    </columnConstraints>
-    <rowConstraints>
-        <RowConstraints />
-    </rowConstraints>
-    <children>
-        <AnchorPane fx:id="anchor" prefHeight="916.0" prefWidth="1081.0">
-            <children>
-                <Rectangle arcHeight="5.0" arcWidth="5.0" height="916.0" layoutX="-3.0" stroke="BLACK" strokeType="INSIDE" width="1092.0">
-                    <fill>
-                        <LinearGradient endX="1.0" endY="1.0" startX="0.8980582524271845">
-                            <stops>
-                                <Stop color="#2378b1" />
-                                <Stop color="#2377af" offset="0.007246376811594203" />
-                        <Stop color="WHITE" offset="1.0" />
-                            </stops>
-                        </LinearGradient>
-                    </fill>
-                </Rectangle>
-                <Label layoutX="47.0" layoutY="301.0" text="1. REP ID NO">
-                    <font>
-                        <Font name="Berlin Sans FB" size="18.0" />
-                    </font>
-                </Label>
-                <TextField fx:id="repID" layoutX="46.0" layoutY="334.0" prefHeight="31.0" prefWidth="119.0" />
-                <ImageView fitHeight="261.0" fitWidth="281.0" layoutX="796.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@../Assets/treasury_high_density.png" />
-                    </image>
-                </ImageView>
-                <Label layoutX="569.0" layoutY="310.0" text="3. Domestic or Imported">
-                    <font>
-                        <Font name="Berlin Sans FB" size="18.0" />
-                    </font>
-                </Label>
-                <TextField fx:id="serialNumber" layoutX="45.0" layoutY="410.0" />
-                <Label layoutX="272.0" layoutY="374.0" text="5. Type of Product">
-                    <font>
-                        <Font name="Berlin Sans FB" size="18.0" />
-                    </font>
-                </Label>
-                <Label layoutX="514.0" layoutY="646.0" text="12. Phone Number">
-                    <font>
-                        <Font name="Berlin Sans FB" size="18.0" />
-                    </font>
-                </Label>
-                <Label layoutX="514.0" layoutY="726.0" text="13. Email Address">
-                    <font>
-                        <Font name="Berlin Sans FB" size="18.0" />
-                    </font>
-                </Label>
-                <Label layoutX="515.0" layoutY="409.0" text="6. Brand Name">
-                    <font>
-                        <Font name="Berlin Sans FB" size="18.0" />
-                    </font>
-                </Label>
-                <Label layoutX="47.0" layoutY="477.0" text="7. Fanciful Name">
-                    <font>
-                        <Font name="Berlin Sans FB" size="18.0" />
-                    </font>
-                </Label>
-                <Label layoutX="203.0" layoutY="301.0" text="2. Plant Registry/Basic Permit/ Brewer's NO">
-                    <font>
-                        <Font name="Berlin Sans FB" size="19.0" />
-                    </font>
-                </Label>
-                <TextField fx:id="phoneNumber" layoutX="514.0" layoutY="671.0">
-                    <font>
-                        <Font size="17.0" />
-                    </font>
-                </TextField>
-                <TextField fx:id="email" layoutX="514.0" layoutY="755.0">
-                    <font>
-                        <Font size="17.0" />
-                    </font>
-                </TextField>
-                <TextField fx:id="brandName" layoutX="514.0" layoutY="436.0">
-                    <font>
-                        <Font size="17.0" />
-                    </font>
-                </TextField>
-                <TextField fx:id="fancifulName" layoutX="45.0" layoutY="507.0">
-                    <font>
-                        <Font size="17.0" />
-                    </font>
-                </TextField>
-                <TextField fx:id="plantRegistry" layoutX="206.0" layoutY="330.0">
-                    <font>
-                        <Font size="17.0" />
-                    </font>
-                </TextField>
-                <Text layoutX="8.0" layoutY="171.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Registered Product Search" underline="true">
-                    <font>
-                        <Font name="Berlin Sans FB" size="59.0" />
-                    </font>
-               <fill>
-                  <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
-                     <stops>
-                        <Stop color="WHITE" />
-                        <Stop color="WHITE" offset="1.0" />
-                     </stops>
-                  </RadialGradient>
-               </fill>
-                </Text>
-                <Text layoutX="45.0" layoutY="393.0" strokeType="OUTSIDE" strokeWidth="0.0" text="4. Serial Number">
-                    <font>
-                        <Font name="Berlin Sans FB" size="18.0" />
-                    </font>
-                </Text>
-                <RadioButton fx:id="domestic" layoutX="569.0" layoutY="335.0" mnemonicParsing="false" text="Domestic">
-                    <font>
-                        <Font name="Berlin Sans FB" size="18.0" />
-                    </font>
-               <toggleGroup>
-                  <ToggleGroup fx:id="domesticOrImported" />
-               </toggleGroup>
-                </RadioButton>
-                <RadioButton fx:id="imported" layoutX="568.0" layoutY="365.0" mnemonicParsing="false" text="Imported" toggleGroup="$domesticOrImported">
-                    <font>
-                        <Font name="Berlin Sans FB" size="18.0" />
-                    </font>
-                </RadioButton>
-                <RadioButton fx:id="wine" layoutX="270.0" layoutY="401.0" mnemonicParsing="false" text="Wine">
-                    <font>
-                        <Font name="Berlin Sans FB" size="18.0" />
-                    </font>
-               <toggleGroup>
-                  <ToggleGroup fx:id="beverageType" />
-               </toggleGroup>
-                </RadioButton>
-                <RadioButton fx:id="beer" layoutX="270.0" layoutY="431.0" mnemonicParsing="false" text="Beer" toggleGroup="$beverageType">
-                    <font>
-                        <Font name="Berlin Sans FB" size="18.0" />
-                    </font>
-                </RadioButton>
-                <RadioButton fx:id="liqour" layoutX="270.0" layoutY="462.0" mnemonicParsing="false" text="Liqour" toggleGroup="$beverageType">
-                    <font>
-                        <Font name="Berlin Sans FB" size="18.0" />
-                    </font>
-                </RadioButton>
-                <Button fx:id="performSearch" layoutX="871.0" layoutY="786.0" mnemonicParsing="false" onAction="#openDisplayScene" onMouseClicked="#openDisplayScene" prefHeight="28.0" prefWidth="187.0" text="Search">
-                    <font>
-                        <Font size="36.0" />
-                    </font>
-                </Button>
-                <Label layoutX="514.0" layoutY="488.0" text="9. Formula">
-                    <font>
-                        <Font name="Berlin Sans FB" size="18.0" />
-                    </font>
-                </Label>
-                <Label layoutX="517.0" layoutY="563.0" text="10. Grape Varietal(s) wine only">
-                    <font>
-                        <Font name="Berlin Sans FB" size="18.0" />
-                    </font>
-                </Label>
-                <Label layoutX="45.0" layoutY="705.0" text="11. Wine Appellation (if on label)">
-                    <font>
-                        <Font name="Berlin Sans FB" size="18.0" />
-                    </font>
-                </Label>
-                <TextField fx:id="formula" layoutX="514.0" layoutY="513.0">
-                    <font>
-                        <Font size="17.0" />
-                    </font>
-                </TextField>
-                <TextField fx:id="grapeVarietals" layoutX="517.0" layoutY="592.0">
-                    <font>
-                        <Font size="17.0" />
-                    </font>
-                </TextField>
-                <TextField fx:id="wineAppellation" layoutX="46.0" layoutY="737.0">
-                    <font>
-                        <Font size="17.0" />
-                    </font>
-                </TextField>
-                <Label layoutX="45.0" layoutY="563.0" text="PH Level (Wine only)">
-                    <font>
-                        <Font name="Berlin Sans FB" size="18.0" />
-                    </font>
-                </Label>
-                <TextField fx:id="pHValue" layoutX="45.0" layoutY="588.0">
-                    <font>
-                        <Font size="17.0" />
-                    </font>
-                </TextField>
-                <Label layoutX="45.0" layoutY="633.0" text="Alcohol Percentage">
-                    <font>
-                        <Font name="Berlin Sans FB" size="18.0" />
-                    </font>
-                </Label>
-                <TextField fx:id="alcoholContent" layoutX="45.0" layoutY="658.0">
-                    <font>
-                        <Font size="17.0" />
-                    </font>
-                </TextField>
-                <Label layoutX="277.0" layoutY="515.0" text="Vintage (wine only)">
-                    <font>
-                        <Font name="Berlin Sans FB" size="18.0" />
-                    </font>
-                </Label>
-                <TextField fx:id="vintage" layoutX="277.0" layoutY="549.0">
-                    <font>
-                        <Font size="17.0" />
-                    </font>
-                </TextField>
-            <Button fx:id="clearSearch" layoutX="47.0" layoutY="835.0" mnemonicParsing="false" onAction="#clearSearchResult" prefHeight="38.0" prefWidth="71.0" text="Clear">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Button>
-            </children>
-        </AnchorPane>
-    </children>
-</GridPane>
+
+<ScrollPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers.SearchController">
+   <content>
+      <GridPane alignment="center" hgap="10" vgap="10">
+          <columnConstraints>
+              <ColumnConstraints />
+          </columnConstraints>
+          <rowConstraints>
+              <RowConstraints />
+          </rowConstraints>
+          <children>
+              <AnchorPane fx:id="anchor" prefHeight="916.0" prefWidth="1081.0">
+                  <children>
+                      <Rectangle arcHeight="5.0" arcWidth="5.0" height="916.0" layoutX="-3.0" stroke="BLACK" strokeType="INSIDE" width="1092.0">
+                          <fill>
+                              <LinearGradient endX="1.0" endY="1.0" startX="0.8980582524271845">
+                                  <stops>
+                                      <Stop color="#2378b1" />
+                                      <Stop color="#2377af" offset="0.007246376811594203" />
+                              <Stop color="WHITE" offset="1.0" />
+                                  </stops>
+                              </LinearGradient>
+                          </fill>
+                      </Rectangle>
+                      <Label layoutX="47.0" layoutY="301.0" text="1. REP ID NO">
+                          <font>
+                              <Font name="Berlin Sans FB" size="18.0" />
+                          </font>
+                      </Label>
+                      <TextField fx:id="repID" layoutX="46.0" layoutY="334.0" prefHeight="31.0" prefWidth="119.0" />
+                      <ImageView fitHeight="261.0" fitWidth="281.0" layoutX="796.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                              <Image url="@../Assets/treasury_high_density.png" />
+                          </image>
+                      </ImageView>
+                      <Label layoutX="569.0" layoutY="310.0" text="3. Domestic or Imported">
+                          <font>
+                              <Font name="Berlin Sans FB" size="18.0" />
+                          </font>
+                      </Label>
+                      <TextField fx:id="serialNumber" layoutX="45.0" layoutY="410.0" />
+                      <Label layoutX="272.0" layoutY="374.0" text="5. Type of Product">
+                          <font>
+                              <Font name="Berlin Sans FB" size="18.0" />
+                          </font>
+                      </Label>
+                      <Label layoutX="514.0" layoutY="646.0" text="12. Phone Number">
+                          <font>
+                              <Font name="Berlin Sans FB" size="18.0" />
+                          </font>
+                      </Label>
+                      <Label layoutX="514.0" layoutY="726.0" text="13. Email Address">
+                          <font>
+                              <Font name="Berlin Sans FB" size="18.0" />
+                          </font>
+                      </Label>
+                      <Label layoutX="515.0" layoutY="409.0" text="6. Brand Name">
+                          <font>
+                              <Font name="Berlin Sans FB" size="18.0" />
+                          </font>
+                      </Label>
+                      <Label layoutX="47.0" layoutY="477.0" text="7. Fanciful Name">
+                          <font>
+                              <Font name="Berlin Sans FB" size="18.0" />
+                          </font>
+                      </Label>
+                      <Label layoutX="203.0" layoutY="301.0" text="2. Plant Registry/Basic Permit/ Brewer's NO">
+                          <font>
+                              <Font name="Berlin Sans FB" size="19.0" />
+                          </font>
+                      </Label>
+                      <TextField fx:id="phoneNumber" layoutX="514.0" layoutY="671.0">
+                          <font>
+                              <Font size="17.0" />
+                          </font>
+                      </TextField>
+                      <TextField fx:id="email" layoutX="514.0" layoutY="755.0">
+                          <font>
+                              <Font size="17.0" />
+                          </font>
+                      </TextField>
+                      <TextField fx:id="brandName" layoutX="514.0" layoutY="436.0">
+                          <font>
+                              <Font size="17.0" />
+                          </font>
+                      </TextField>
+                      <TextField fx:id="fancifulName" layoutX="45.0" layoutY="507.0">
+                          <font>
+                              <Font size="17.0" />
+                          </font>
+                      </TextField>
+                      <TextField fx:id="plantRegistry" layoutX="206.0" layoutY="330.0">
+                          <font>
+                              <Font size="17.0" />
+                          </font>
+                      </TextField>
+                      <Text layoutX="8.0" layoutY="171.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Registered Product Search" underline="true">
+                          <font>
+                              <Font name="Berlin Sans FB" size="59.0" />
+                          </font>
+                     <fill>
+                        <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                           <stops>
+                              <Stop color="WHITE" />
+                              <Stop color="WHITE" offset="1.0" />
+                           </stops>
+                        </RadialGradient>
+                     </fill>
+                      </Text>
+                      <Text layoutX="45.0" layoutY="393.0" strokeType="OUTSIDE" strokeWidth="0.0" text="4. Serial Number">
+                          <font>
+                              <Font name="Berlin Sans FB" size="18.0" />
+                          </font>
+                      </Text>
+                      <RadioButton fx:id="domestic" layoutX="569.0" layoutY="335.0" mnemonicParsing="false" text="Domestic">
+                          <font>
+                              <Font name="Berlin Sans FB" size="18.0" />
+                          </font>
+                     <toggleGroup>
+                        <ToggleGroup fx:id="domesticOrImported" />
+                     </toggleGroup>
+                      </RadioButton>
+                      <RadioButton fx:id="imported" layoutX="568.0" layoutY="365.0" mnemonicParsing="false" text="Imported" toggleGroup="$domesticOrImported">
+                          <font>
+                              <Font name="Berlin Sans FB" size="18.0" />
+                          </font>
+                      </RadioButton>
+                      <RadioButton fx:id="wine" layoutX="270.0" layoutY="401.0" mnemonicParsing="false" text="Wine">
+                          <font>
+                              <Font name="Berlin Sans FB" size="18.0" />
+                          </font>
+                     <toggleGroup>
+                        <ToggleGroup fx:id="beverageType" />
+                     </toggleGroup>
+                      </RadioButton>
+                      <RadioButton fx:id="beer" layoutX="270.0" layoutY="431.0" mnemonicParsing="false" text="Beer" toggleGroup="$beverageType">
+                          <font>
+                              <Font name="Berlin Sans FB" size="18.0" />
+                          </font>
+                      </RadioButton>
+                      <RadioButton fx:id="liqour" layoutX="270.0" layoutY="462.0" mnemonicParsing="false" text="Liqour" toggleGroup="$beverageType">
+                          <font>
+                              <Font name="Berlin Sans FB" size="18.0" />
+                          </font>
+                      </RadioButton>
+                      <Button fx:id="performSearch" layoutX="871.0" layoutY="786.0" mnemonicParsing="false" onAction="#openDisplayScene" onMouseClicked="#openDisplayScene" prefHeight="28.0" prefWidth="187.0" text="Search">
+                          <font>
+                              <Font size="36.0" />
+                          </font>
+                      </Button>
+                      <Label layoutX="514.0" layoutY="488.0" text="9. Formula">
+                          <font>
+                              <Font name="Berlin Sans FB" size="18.0" />
+                          </font>
+                      </Label>
+                      <Label layoutX="517.0" layoutY="563.0" text="10. Grape Varietal(s) wine only">
+                          <font>
+                              <Font name="Berlin Sans FB" size="18.0" />
+                          </font>
+                      </Label>
+                      <Label layoutX="45.0" layoutY="705.0" text="11. Wine Appellation (if on label)">
+                          <font>
+                              <Font name="Berlin Sans FB" size="18.0" />
+                          </font>
+                      </Label>
+                      <TextField fx:id="formula" layoutX="514.0" layoutY="513.0">
+                          <font>
+                              <Font size="17.0" />
+                          </font>
+                      </TextField>
+                      <TextField fx:id="grapeVarietals" layoutX="517.0" layoutY="592.0">
+                          <font>
+                              <Font size="17.0" />
+                          </font>
+                      </TextField>
+                      <TextField fx:id="wineAppellation" layoutX="46.0" layoutY="737.0">
+                          <font>
+                              <Font size="17.0" />
+                          </font>
+                      </TextField>
+                      <Label layoutX="45.0" layoutY="563.0" text="PH Level (Wine only)">
+                          <font>
+                              <Font name="Berlin Sans FB" size="18.0" />
+                          </font>
+                      </Label>
+                      <TextField fx:id="pHValue" layoutX="45.0" layoutY="588.0">
+                          <font>
+                              <Font size="17.0" />
+                          </font>
+                      </TextField>
+                      <Label layoutX="45.0" layoutY="633.0" text="Alcohol Percentage">
+                          <font>
+                              <Font name="Berlin Sans FB" size="18.0" />
+                          </font>
+                      </Label>
+                      <TextField fx:id="alcoholContent" layoutX="45.0" layoutY="658.0">
+                          <font>
+                              <Font size="17.0" />
+                          </font>
+                      </TextField>
+                      <Label layoutX="277.0" layoutY="515.0" text="Vintage (wine only)">
+                          <font>
+                              <Font name="Berlin Sans FB" size="18.0" />
+                          </font>
+                      </Label>
+                      <TextField fx:id="vintage" layoutX="277.0" layoutY="549.0">
+                          <font>
+                              <Font size="17.0" />
+                          </font>
+                      </TextField>
+                  <Button fx:id="clearSearch" layoutX="47.0" layoutY="835.0" mnemonicParsing="false" onAction="#clearSearchResult" prefHeight="38.0" prefWidth="71.0" text="Clear">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+                  </children>
+              </AnchorPane>
+          </children>
+      </GridPane>
+   </content>
+</ScrollPane>

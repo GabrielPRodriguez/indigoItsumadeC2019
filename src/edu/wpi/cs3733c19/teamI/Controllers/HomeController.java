@@ -6,7 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
-import java.awt.event.ActionEvent;
+import javafx.event.ActionEvent;
 
 public class HomeController {
 
@@ -37,6 +37,7 @@ public class HomeController {
         loginScene = scene;
     }
 
+    @FXML
     public void openSubmission(ActionEvent actionEvent) {
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         primaryStage.setScene(submissionScene);
@@ -47,17 +48,17 @@ public class HomeController {
         primaryStage.setScene(work);
     }
 
-    public void openSearch(javafx.event.ActionEvent actionEvent) {
+    public void openSearch(ActionEvent actionEvent) {
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         primaryStage.setScene(searchScene); //test changes
     }
 
-    public void openForm(javafx.event.ActionEvent actionEvent) {
+    public void openForm(ActionEvent actionEvent) {
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         primaryStage.setScene(submissionScene);
     }
 
-    public void openLogin(javafx.event.ActionEvent actionEvent){
+    public void openLogin(ActionEvent actionEvent){
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         primaryStage.setScene(loginScene);
     }

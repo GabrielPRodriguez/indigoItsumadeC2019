@@ -50,7 +50,10 @@ public class LoginController {
         String users = "";
         users = readFile(users);
         //System.out.println(users);
-        if (users.contains(username.getText() + ":" + password.getText()+":")){ //this file checks for the user and pass in the file
+        if(username.getText().isEmpty()){
+            errorMessage.setText(("Must use a username"));
+        }
+        else if (users.contains(username.getText() + ":" + password.getText()+":")){ //this file checks for the user and pass in the file
             System.out.println("logging in");
             login(actionEvent);  //if they exist, login
         }

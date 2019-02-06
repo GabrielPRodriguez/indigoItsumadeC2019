@@ -23,6 +23,9 @@ public class Form {
     private double pHValue; //wine only
     private double alcoholContent; //required
     private String formStatus; //generated in background
+    private String approvalDate; //generated in background
+    private String approvingUser; //generated in background
+    private String expirationDate; //generated in background
 
     public Form() {
         this.repID = "";
@@ -46,10 +49,13 @@ public class Form {
         this.pHValue = 0;
         this.alcoholContent = 0;
         this.formStatus = "unread"; //new forms have had no action taken on them
+        this.approvalDate = "1/1/1";
+        this.approvingUser = "UserNotFound";
+        this.expirationDate = "ExpirNotFound";
     }
 
 
-    public Form(String repID, String plantRegistry, String domesticOrImported, int serialNumber, String brandName, String beverageType, String fancifulName, String nameAndAddress, String mailingAddress, String extraInfo, String date, String nameOfApplicant, String formula, String grapeVarietals, String vintage, String wineAppellation, String email, String phoneNumber, double pHValue, double alcoholContent) {
+    public Form(String repID, String plantRegistry, String domesticOrImported, int serialNumber, String brandName, String beverageType, String fancifulName, String nameAndAddress, String mailingAddress, String extraInfo, String date, String nameOfApplicant, String formula, String grapeVarietals, String vintage, String wineAppellation, String email, String phoneNumber, double pHValue, double alcoholContent, String formStatus, String approvingUser, String approvalDate, String expirationDate) {
         this.repID = repID;
         this.plantRegistry = plantRegistry;
         this.domesticOrImported = domesticOrImported;
@@ -70,6 +76,10 @@ public class Form {
         this.phoneNumber = phoneNumber;
         this.pHValue = pHValue;
         this.alcoholContent = alcoholContent;
+        this.formStatus = formStatus;
+        this.approvalDate = approvalDate;
+        this.approvingUser = approvingUser;
+        this.expirationDate = expirationDate;
     }
 
     public void setRepID(String repID) {
@@ -156,6 +166,18 @@ public class Form {
 
     public void setFormStatus(String approvalStatus){ //this should probably be an enum for safety
         this.formStatus = approvalStatus;
+    }
+
+    public void setApprovingUser(String approvingUser){ //this should probably be an enum for safety
+        this.approvingUser = approvingUser;
+    }
+
+    public void setApprovalDate(String approvalDate){ //this should probably be an enum for safety
+        this.approvalDate = approvalDate;
+    }
+
+    public void setExpirationDate(String expirationDate){ //this should probably be an enum for safety
+        this.expirationDate = expirationDate;
     }
 
     public String getBeverageType() {

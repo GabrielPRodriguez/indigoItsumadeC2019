@@ -278,10 +278,13 @@ public class SQLDriver{
 
     public static void setApprovalStatus(int formID, String approvalStatus) throws IOException, Exception {
         SQLDriver driver = new SQLDriver();
-        HashMap<String, ReturnedValue>result = driver.get_data_by_value("form_data", "form_data.db", "formID", new DBValue<Integer>(formID));
+        HashMap<String, ReturnedValue> result = driver.get_data_by_value("form_data", "form_data.db", "formID", new DBValue<Integer>(formID));
 
-        //result.get("formStatus");
-        //result.entrySet(driver, approvalStatus);
+        result.get("formStatus");
+        ReturnedValue value = new ReturnedValue("status", approvalStatus);
 
+        result.put("status", value);
     }
+
+
 }

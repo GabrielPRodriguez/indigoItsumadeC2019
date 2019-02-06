@@ -347,6 +347,7 @@
                </children>
             </AnchorPane>
             <Label fx:id="theUserName" layoutX="398.0" layoutY="78.0" prefHeight="25.0" prefWidth="62.0" text="Username" />
+            <Button fx:id="goHome" layoutX="52.0" layoutY="602.0" mnemonicParsing="false" onAction="#goHomePage" text="Home" />
          </children>
       </AnchorPane>
    </content>

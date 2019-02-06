@@ -7,7 +7,10 @@ import edu.wpi.cs3733c19.teamI.Entities.Form;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -17,12 +20,18 @@ import java.util.ResourceBundle;
 
 public class FormSubController implements Initializable {
 
+    private Scene HomeScene;
 
-
-
+    public void setHomeScene(Scene home)
+    {
+        HomeScene = home;
+    }
 
         @FXML
         Button save_Button;
+
+        @FXML
+        Button Home;
 
         @FXML
         Button submit_Button;
@@ -404,5 +413,10 @@ public class FormSubController implements Initializable {
 
 
 
+    }
+
+    public void goHome(ActionEvent actionEvent){
+        Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        primaryStage.setScene(HomeScene);
     }
 }

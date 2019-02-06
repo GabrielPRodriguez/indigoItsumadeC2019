@@ -18,6 +18,7 @@
             <Button fx:id="login" layoutX="167.0" layoutY="253.0" mnemonicParsing="false" onAction="#attemptLogin" prefHeight="25.0" prefWidth="283.0" text="Login or Create Account" />
             <PasswordField fx:id="password" layoutX="300.0" layoutY="197.0" />
             <Label fx:id="errorMessage" layoutX="167.0" layoutY="305.0" prefHeight="17.0" prefWidth="247.0" text="Enter a Username and Pass to Login" />
+            <Button fx:id="goToHome" layoutX="98.0" layoutY="253.0" mnemonicParsing="false" onAction="#goHome" text="Home" />
          </children>
       </AnchorPane>
    </content>

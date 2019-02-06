@@ -55,11 +55,15 @@ public class Main extends Application {
         FXMLLoader thirdPaneLoader = new FXMLLoader(getClass().getResource("Boundaries/homepage.fxml"));
         Parent thirdPane = thirdPaneLoader.load();
         Scene thirdScene = new Scene(thirdPane, 850, 800);
+        ((FormCheckerController) formCheckerPaneLoader.getController()).setHome(thirdScene);
+
 
         //Loading the submission page
         FXMLLoader fourthPaneLoader = new FXMLLoader(getClass().getResource("Boundaries/SubmissionProject.fxml"));
         Parent fourthPane = fourthPaneLoader.load();
         Scene fourthScene = new Scene(fourthPane, 900, 920);
+
+        ( (FormSubController) fourthPaneLoader.getController()).setHomeScene(thirdScene);
 
         //Loading the login page
         FXMLLoader loginPaneLoader = new FXMLLoader(getClass().getResource("Boundaries/Login.fxml"));
@@ -67,6 +71,7 @@ public class Main extends Application {
         Scene loginScene = new Scene(loginPane, 900, 920);
         LoginController loginController = (LoginController) loginPaneLoader.getController();
         loginController.setFormCheckerScene(formCheckerScene); //this is the problem
+        loginController.setHomeScene(thirdScene);
 
         FormCheckerController formCheckControl = (FormCheckerController) formCheckerPaneLoader.getController();
        // formCheckControl.setLoginCtrl(loginController);

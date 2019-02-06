@@ -1,17 +1,14 @@
 package edu.wpi.cs3733c19.teamI.Controllers;
 
-import edu.wpi.cs3733c19.teamI.Entities.Form;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.text.Text;
 import edu.wpi.cs3733c19.teamI.Controllers.dbUtilities.*;
 import javafx.stage.Stage;
 
-import javax.swing.*;
 import java.net.URL;
 import java.util.*;
 

@@ -6,7 +6,6 @@ import edu.wpi.cs3733c19.teamI.Controllers.dbUtilities.ReturnedValue;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.HashMap;
 
 //TODO re-evaluate the different varaiable properties (protected, private, whatever im goin to bed)
 public class SearchResults {

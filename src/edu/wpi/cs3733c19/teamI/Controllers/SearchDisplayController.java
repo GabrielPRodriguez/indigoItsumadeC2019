@@ -1,6 +1,5 @@
 package edu.wpi.cs3733c19.teamI.Controllers;
 
-import edu.wpi.cs3733c19.teamI.Entities.SearchResults;
 import edu.wpi.cs3733c19.teamI.Entities.sub_Form;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,7 +16,6 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.Writer;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import static edu.wpi.cs3733c19.teamI.Main.Results;

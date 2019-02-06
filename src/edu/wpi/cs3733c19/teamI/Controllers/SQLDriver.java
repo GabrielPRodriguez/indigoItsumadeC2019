@@ -3,17 +3,14 @@ package edu.wpi.cs3733c19.teamI.Controllers;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.PreparedStatement;
 import java.io.*;
 import java.util.*;
-import java.lang.reflect.Method;
 
- import edu.wpi.cs3733c19.teamI.Entities.DataField;
+import edu.wpi.cs3733c19.teamI.Entities.DataField;
 
 import edu.wpi.cs3733c19.teamI.Controllers.dbUtilities.*;
-import edu.wpi.cs3733c19.teamI.Entities.DataField;
 
 public class SQLDriver{
 

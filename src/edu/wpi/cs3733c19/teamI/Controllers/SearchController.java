@@ -11,9 +11,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.control.RadioButton;
 
-import java.io.IOException;
 import java.util.LinkedList;
 
 import static edu.wpi.cs3733c19.teamI.Main.Results;

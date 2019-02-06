@@ -44,6 +44,7 @@ public class LoginController {
     Label errorMessage;
 
     FileReader userLogin;
+    BufferedReader userReader;
 
     public void attemptLogin(ActionEvent actionEvent) throws Exception { //attempts a login and will either create an account or login
         String users = "";
@@ -76,12 +77,10 @@ public class LoginController {
 
     public String readFile(String users) throws Exception { //this file will populate users with a string of all users
         // pass the path to the file as a parameter
-        userLogin = new FileReader("UserSheet.txt");
-        int i;
-        while ((i=userLogin.read()) != -1) {
-            users = users + ((char) i);
-        }
-        //System.out.println(users);
+        //userLogin = new FileReader("UserSheet.txt");
+        userReader = new BufferedReader(new InputStreamReader(getClass().getClassLoader().getResourceAsStream("UserSheet.txt")));
+        System.out.println(userReader.toString());
+        users = userReader.toString();
         return users;
     }
 

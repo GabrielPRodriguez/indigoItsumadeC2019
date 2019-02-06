@@ -195,7 +195,9 @@ public class SQLDriver{
         }
         throw new Exception("Cannot find row");
     }
-    public void update(String tablename, String filename, ArrayList<String>targetcols, ArrayList<DBValue>values, int formid) throws Exception{
+    public void update(String tablename, String filename, ArrayList<String>targetcols, ArrayList<DBValue>values, int formid) throws Exception {
+
+        System.out.println("actually makes into update method");
         Connection _connector = connect_file(filename);
         ArrayList<String>temp = new ArrayList<String>();
         for (String col:targetcols){
@@ -210,18 +212,20 @@ public class SQLDriver{
             }
             else if (val.statement().equals("setDouble")){
                 pstmt.setDouble(_count, val.to_double());
-
             }
             else{
+                System.out.println("sets a string");
                 pstmt.setString(_count, val.to_string());
             }
             _count ++;
-
-
         }
         pstmt.setInt(_count, formid);
 
+        pstmt.executeUpdate();
+
     }
+
+
     public ArrayList<HashMap<String, ReturnedValue>>get_data_by_value(String tablename, String filename, LinkedList<String>search_fields, HashMap<String, DataField>targets) throws Exception{
         System.out.println("in search method");
 

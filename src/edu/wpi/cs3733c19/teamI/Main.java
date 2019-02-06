@@ -92,7 +92,7 @@ public class Main extends Application {
         firstPaneController.dispController = secondPaneController;
         secondPaneController.setHomePage(thirdScene);
 
-        primaryStage.setTitle("Hello World!");
+        primaryStage.setTitle("");
         primaryStage.setScene(thirdScene);
         primaryStage.show();
     }

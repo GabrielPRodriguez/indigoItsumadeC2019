@@ -88,9 +88,7 @@ public class Main extends Application {
 
         // injecting first scene into the controller of the second scene
         SearchDisplayController secondPaneController = (SearchDisplayController) secondPageLoader.getController();
-        secondPaneController.StringTest = firstPaneController.StringTest;
         secondPaneController.setSearchScene(firstScene);
-        System.out.println(secondPaneController.StringTest);
         firstPaneController.dispController = secondPaneController;
         secondPaneController.setHomePage(thirdScene);
 

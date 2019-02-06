@@ -334,8 +334,19 @@ public class FormSubController implements Initializable {
         repIdNum_Field.setTooltip(tooltipRepID);
 
         // Plant Registry/Basic Permit/ Brewer's NO.
-        // final Tooltip tooltipPlantRegistry = new Tooltip;
-        //tooltipPlantRegistry.setText("Plant Registry/Basic Permit/ Brewer's NO. (Required)");
-        // plantRegistry.setTooltip(tooltipRepID);
+        final Tooltip tooltipPlantRegistry = new Tooltip("Plant Registry/Basic Permit/ Brewer's NO. (Required)");
+        permitNum_Field.setTooltip(tooltipPlantRegistry);
+
+        // Domestic
+        final Tooltip tooltipDomestic = new Tooltip("SOURCE OF PRODUCT (Required)");
+        domestic_RadButton.setTooltip(tooltipDomestic);
+
+        // Serial Number
+        final Tooltip tooltipSerialNumber = new Tooltip("SERIAL NUMBER (Required)");
+        serialNum_Field.setTooltip(tooltipSerialNumber);
+
+        // Type of Product
+        final Tooltip tooltipTypeOfProduct = new Tooltip("TYPE OF PRODUCT (Required)");
+        serialNum_Field.setTooltip(tooltipTypeOfProduct);
     }
 }

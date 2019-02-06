@@ -21,7 +21,6 @@ import static edu.wpi.cs3733c19.teamI.Main.Results;
 public class SearchController {
     //private SearchResults Results = new SearchResults();
     private Scene displayScene;
-    public String StringTest;
     public SearchDisplayController dispController;
     private Scene homePage;
 

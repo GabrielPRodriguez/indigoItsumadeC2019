@@ -13,6 +13,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -122,6 +126,24 @@ public class SearchDisplayController {
 
     public void updateSearchDisplay(){
 
+        this.repID.setText("NA");
+        this.plantRegistry.setText("NA");
+        this.domesticOrImported.setText("NA");
+        this.serialNumber.setText("NA");
+        this.beverageType.setText("NA");
+        this.brandName.setText("NA");
+        this.fancifulName.setText("NA");
+        this.vintage.setText("NA");
+        this.grapeVarietals.setText("NA");
+        this.pHValue.setText("NA");
+        this.wineAppellation.setText("NA");
+        this.alcoholContent.setText("NA");
+        this.phoneNumber.setText("NA");
+        this.email.setText("NA");
+
+
+
+
         this.ParamToTextFields = new HashMap<String, Text>();
         //TODO replace with for loop, search for text pre-req
         this.ParamToTextFields.put("repID", this.repID);
@@ -180,5 +202,28 @@ public class SearchDisplayController {
     public void openHome(ActionEvent actionEvent) {
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         primaryStage.setScene(homePage);
+    }
+
+    public void writeExcel() throws Exception {
+        Writer writer = null;
+        try {
+            File file = new File("C:\\Users\\Carkin\\indigoItsumadeC19\\out\\DATA.csv.");
+            writer = new BufferedWriter(new FileWriter(file));
+            for (int i = 0; i < DisplayedResults.size(); i++) {
+
+               String text = DisplayedResults.get(i).returnAll();
+
+
+
+                writer.write(text);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        finally {
+
+            writer.flush();
+            writer.close();
+        }
     }
 }

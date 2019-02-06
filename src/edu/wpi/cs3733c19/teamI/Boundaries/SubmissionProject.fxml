@@ -15,29 +15,32 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<ScrollPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers.FormSubController">
+<ScrollPane xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers.FormSubController">
    <content>
       <AnchorPane prefHeight="916.0" prefWidth="865.0">
-            <children>
-                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e3e3e3" height="916.0" layoutX="-3.0" stroke="BLACK" strokeType="INSIDE" width="871.0" />
-            <VBox layoutX="23.0" layoutY="77.0">
+          <children>
+            <AnchorPane layoutX="-3.0">
                <children>
+                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e3e3e3" height="916.0" stroke="BLACK" strokeType="INSIDE" width="871.0" />
+               </children>
+            </AnchorPane>
+              <VBox layoutX="23.0" layoutY="77.0">
+                  <children>
                       <Label text="1. Rep. ID No.">
                           <font>
                               <Font name="Berlin Sans FB" size="18.0" />
                           </font>
                       </Label>
                       <TextField fx:id="repIdNum_Field" prefHeight="31.0" prefWidth="119.0" />
-               </children>
-            </VBox>
-                <ImageView fitHeight="250.0" fitWidth="250.0" layoutX="551.0" layoutY="86.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../Assets/treasury_high_density.png" />
-               </image>
-            </ImageView>
-            <VBox layoutX="22.0" layoutY="150.0">
-               <children>
+                  </children>
+              </VBox>
+              <ImageView fitHeight="250.0" fitWidth="250.0" layoutX="551.0" layoutY="86.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                      <Image url="@../Assets/treasury_high_density.png" />
+                  </image>
+              </ImageView>
+              <VBox layoutX="22.0" layoutY="150.0">
+                  <children>
                       <Label text="3. Domestic or Imported">
                           <font>
                               <Font name="Berlin Sans FB" size="18.0" />
@@ -56,20 +59,20 @@
                               <Font name="Berlin Sans FB" size="18.0" />
                           </font>
                       </RadioButton>
-               </children>
-            </VBox>
-            <VBox layoutX="253.0" layoutY="150.0">
-               <children>
+                  </children>
+              </VBox>
+              <VBox layoutX="253.0" layoutY="150.0">
+                  <children>
                       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="4. Serial Number">
                           <font>
                               <Font name="Berlin Sans FB" size="18.0" />
                           </font>
                       </Text>
                       <TextField fx:id="serialNum_Field" />
-               </children>
-            </VBox>
-            <VBox layoutX="255.0" layoutY="211.0">
-               <children>
+                  </children>
+              </VBox>
+              <VBox layoutX="255.0" layoutY="211.0">
+                  <children>
                       <Label text="5. Type of Product">
                           <font>
                               <Font name="Berlin Sans FB" size="18.0" />
@@ -93,10 +96,10 @@
                               <Font name="Berlin Sans FB" size="18.0" />
                           </font>
                       </RadioButton>
-               </children>
-            </VBox>
-            <VBox layoutX="597.0" layoutY="434.0">
-               <children>
+                  </children>
+              </VBox>
+              <VBox layoutX="597.0" layoutY="434.0">
+                  <children>
                       <Label text="12. Phone Number">
                           <font>
                               <Font name="Berlin Sans FB" size="18.0" />
@@ -107,10 +110,10 @@
                               <Font size="17.0" />
                           </font>
                       </TextField>
-               </children>
-            </VBox>
-            <VBox layoutX="598.0" layoutY="515.0">
-               <children>
+                  </children>
+              </VBox>
+              <VBox layoutX="598.0" layoutY="515.0">
+                  <children>
                       <Label text="13. Email Address">
                           <font>
                               <Font name="Berlin Sans FB" size="18.0" />
@@ -121,10 +124,10 @@
                               <Font size="17.0" />
                           </font>
                       </TextField>
-               </children>
-            </VBox>
-            <VBox layoutX="20.0" layoutY="254.0">
-               <children>
+                  </children>
+              </VBox>
+              <VBox layoutX="20.0" layoutY="254.0">
+                  <children>
                       <Label text="6. Brand Name">
                           <font>
                               <Font name="Berlin Sans FB" size="18.0" />
@@ -135,10 +138,10 @@
                               <Font size="17.0" />
                           </font>
                       </TextField>
-               </children>
-            </VBox>
-            <VBox layoutX="20.0" layoutY="340.0">
-               <children>
+                  </children>
+              </VBox>
+              <VBox layoutX="20.0" layoutY="340.0">
+                  <children>
                       <Label text="7. Fanciful Name">
                           <font>
                               <Font name="Berlin Sans FB" size="18.0" />
@@ -149,10 +152,10 @@
                               <Font size="17.0" />
                           </font>
                       </TextField>
-               </children>
-            </VBox>
-            <VBox layoutX="191.0" layoutY="73.0">
-               <children>
+                  </children>
+              </VBox>
+              <VBox layoutX="191.0" layoutY="73.0">
+                  <children>
                       <Label text="2. Plant Registry/Basic Permit/ Brewer's NO">
                           <font>
                               <Font size="18.0" />
@@ -163,103 +166,103 @@
                               <Font size="17.0" />
                           </font>
                       </TextField>
-               </children>
-            </VBox>
-            <VBox layoutX="23.0" layoutY="657.0" prefHeight="129.0" prefWidth="809.0">
-               <children>
+                  </children>
+              </VBox>
+              <VBox layoutX="23.0" layoutY="657.0" prefHeight="129.0" prefWidth="809.0">
+                  <children>
                       <Label prefHeight="26.0" prefWidth="823.0" text="Show any information that is branded, or embossed on the container only if it does not appear on the label">
                           <font>
                               <Font size="17.0" />
                           </font>
                       </Label>
                       <TextArea fx:id="brandedInfo_Field" prefHeight="103.0" prefWidth="786.0" />
-               </children>
-            </VBox>
-            <VBox layoutX="23.0" layoutY="795.0">
-               <children>
+                  </children>
+              </VBox>
+              <VBox layoutX="23.0" layoutY="795.0">
+                  <children>
                       <Label text="16. Date of Application">
                           <font>
                               <Font name="Berlin Sans FB" size="19.0" />
                           </font>
-                  </Label>
+                      </Label>
                       <TextField fx:id="date_Field" />
-               </children>
-            </VBox>
-            <VBox layoutX="224.0" layoutY="796.0">
-               <children>
+                  </children>
+              </VBox>
+              <VBox layoutX="224.0" layoutY="796.0">
+                  <children>
                       <Label text="18. Print Name of Applicant">
                           <font>
                               <Font name="Berlin Sans FB" size="17.0" />
                           </font>
                       </Label>
                       <TextField fx:id="applicantName_Field" />
-               </children>
-            </VBox>
-            <VBox layoutX="21.0" layoutY="418.0">
-               <children>
+                  </children>
+              </VBox>
+              <VBox layoutX="21.0" layoutY="418.0">
+                  <children>
                       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="8. Name and Address of Applicant">
                           <font>
                               <Font size="18.0" />
                           </font>
                       </Text>
                       <TextArea fx:id="applicantNameAddr_Field" prefHeight="55.0" prefWidth="281.0" />
-               </children>
-            </VBox>
-                <Button fx:id="save_Button" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" layoutX="498.0" layoutY="818.0" maxHeight="50.0" maxWidth="100.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Save" textAlignment="JUSTIFY">
-                    <font>
-                        <Font size="1.0" />
-                    </font>
-               <graphic>
-                  <ImageView fitHeight="100.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Assets/save_button.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-                </Button>
-                <Text layoutX="23.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New Alcohol Product Registration" underline="true">
-                    <font>
-                        <Font name="Berlin Sans FB" size="32.0" />
-                    </font>
-                </Text>
-                <Button fx:id="submit_Button" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" layoutX="676.0" layoutY="818.0" maxHeight="100.0" maxWidth="150.0" mnemonicParsing="false" onAction="#handleSubmitButton" style="-fx-background-color: transparent;" text="Submit">
-                    <font>
-                        <Font size="1.0" />
-                    </font>
-               <graphic>
-                  <ImageView fitHeight="100.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Assets/submit_button.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-                </Button>
-            <VBox layoutX="23.0" layoutY="515.0">
-               <children>
+                  </children>
+              </VBox>
+              <Button fx:id="save_Button" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" layoutX="498.0" layoutY="818.0" maxHeight="50.0" maxWidth="100.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Save" textAlignment="JUSTIFY">
+                  <font>
+                      <Font size="1.0" />
+                  </font>
+                  <graphic>
+                      <ImageView fitHeight="100.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                              <Image url="@../Assets/save_button.png" />
+                          </image>
+                      </ImageView>
+                  </graphic>
+              </Button>
+              <Text layoutX="23.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New Alcohol Product Registration" underline="true">
+                  <font>
+                      <Font name="Berlin Sans FB" size="32.0" />
+                  </font>
+              </Text>
+              <Button fx:id="submit_Button" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" layoutX="676.0" layoutY="818.0" maxHeight="100.0" maxWidth="150.0" mnemonicParsing="false" onAction="#handleSubmitButton" style="-fx-background-color: transparent;" text="Submit">
+                  <font>
+                      <Font size="1.0" />
+                  </font>
+                  <graphic>
+                      <ImageView id="handleSubmitButton" fitHeight="100.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                              <Image url="@../Assets/submit_button.png" />
+                          </image>
+                      </ImageView>
+                  </graphic>
+              </Button>
+              <VBox layoutX="23.0" layoutY="515.0">
+                  <children>
                       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="8a. Mailing Address, if different">
                           <font>
                               <Font size="18.0" />
                           </font>
                       </Text>
                       <TextArea fx:id="mailAddr_Field" prefHeight="103.0" prefWidth="281.0" />
-               </children>
-            </VBox>
-            <VBox layoutX="323.0" layoutY="434.0">
-               <children>
+                  </children>
+              </VBox>
+              <VBox layoutX="323.0" layoutY="434.0">
+                  <children>
                       <Label text="9. Formula">
                           <font>
                               <Font name="Berlin Sans FB" size="18.0" />
-                             </font>
+                          </font>
                       </Label>
                       <TextField fx:id="formula_Field">
                           <font>
                               <Font size="17.0" />
                           </font>
                       </TextField>
-               </children>
-            </VBox>
-            <VBox layoutX="323.0" layoutY="515.0">
-               <children>
+                  </children>
+              </VBox>
+              <VBox layoutX="323.0" layoutY="515.0">
+                  <children>
                       <Label text="10. Grape Varietal(s) (wine only)">
                           <font>
                               <Font name="Berlin Sans FB" size="18.0" />
@@ -270,10 +273,10 @@
                               <Font size="17.0" />
                           </font>
                       </TextField>
-               </children>
-            </VBox>
-            <VBox layoutX="323.0" layoutY="580.0">
-               <children>
+                  </children>
+              </VBox>
+              <VBox layoutX="323.0" layoutY="580.0">
+                  <children>
                       <Label text="11. Wine Appellation (if on label)">
                           <font>
                               <Font name="Berlin Sans FB" size="18.0" />
@@ -284,10 +287,10 @@
                               <Font size="17.0" />
                           </font>
                       </TextField>
-               </children>
-            </VBox>
-            <VBox layoutX="323.0" layoutY="353.0">
-               <children>
+                  </children>
+              </VBox>
+              <VBox layoutX="323.0" layoutY="353.0">
+                  <children>
                       <Label text="PH Level (Wine only)">
                           <font>
                               <Font name="Berlin Sans FB" size="18.0" />
@@ -298,10 +301,10 @@
                               <Font size="17.0" />
                           </font>
                       </TextField>
-               </children>
-            </VBox>
-            <VBox layoutX="597.0" layoutY="353.0">
-               <children>
+                  </children>
+              </VBox>
+              <VBox layoutX="597.0" layoutY="353.0">
+                  <children>
                       <Label text="Alcohol Percentage">
                           <font>
                               <Font name="Berlin Sans FB" size="18.0" />
@@ -312,10 +315,10 @@
                               <Font size="17.0" />
                           </font>
                       </TextField>
-               </children>
-            </VBox>
-            <VBox layoutX="598.0" layoutY="580.0">
-               <children>
+                  </children>
+              </VBox>
+              <VBox layoutX="598.0" layoutY="580.0">
+                  <children>
                       <Label text="Vintage (wine only)">
                           <font>
                               <Font name="Berlin Sans FB" size="18.0" />
@@ -326,9 +329,9 @@
                               <Font size="17.0" />
                           </font>
                       </TextField>
-               </children>
-            </VBox>
-            </children>
-        </AnchorPane>
+                  </children>
+              </VBox>
+          </children>
+      </AnchorPane>
    </content>
 </ScrollPane>

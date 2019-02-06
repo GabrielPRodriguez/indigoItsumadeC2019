@@ -87,10 +87,7 @@ public class SearchResults {
         System.out.println("Error, is that you?");
     }
 
-    protected void MakeCSV()    //TODO how make csv? what is return
-    {
 
-    }
 
 
     //Constructor/////////////////////////////////////////////////

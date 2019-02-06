@@ -16,5 +16,4 @@ public class ReturnedValue {
     public Double to_double(){
         return Double.parseDouble(from_db);
     }
-
 }

@@ -120,6 +120,18 @@ public class FormCheckerController {
 
     @FXML
     TextField formStatus_text;
+/*
+    @FXML
+    TextField approvalStatus_text;
+
+    @FXML
+    TextField approvingUser_text;
+
+    @FXML
+    TextField expirationDate_text;
+
+*/
+
     String formStatus_string;
     int currentFormID = 0;
 
@@ -201,17 +213,19 @@ public class FormCheckerController {
         brandedInfo_text.setText(result.get("extraInfo").to_string());
         applicationDate_text.setText(result.get("dateOfApplication").to_string());
         applicantName_text.setText(result.get("nameOfApplicant").to_string());
-        //formStatus_string = (result.get("formStatus").to_string()); //I use two variables because I need the formStatus text as a string
-        //formStatus_text.setText(formStatus_string);
+        formStatus_string = (result.get("status").to_string()); //I use two variables because I need the formStatus text as a string
+        formStatus_text.setText(formStatus_string);
+
 
 
 
     }
 
     @FXML
-    private void approveHandler(ActionEvent approve) throws IOException, Exception{
+    private void approveHandler() throws IOException, Exception{
 
         formStatus_string = "approved";
+
 
 
         SQLDriver.setApprovalStatus(currentFormID, formStatus_string);
@@ -221,7 +235,7 @@ public class FormCheckerController {
     }
 
     @FXML
-    private void rejectHandler(ActionEvent reject) throws IOException, Exception{
+    private void rejectHandler() throws IOException, Exception{
 
         formStatus_string = "rejected";
 
@@ -252,7 +266,7 @@ public class FormCheckerController {
         serialNum_text.clear();
         domesticImported_text.clear();
         nameAddress_text.clear();
-       // formStatus_text.clear();
+        formStatus_text.clear();
 
     }
 

@@ -1,16 +1,19 @@
 package edu.wpi.cs3733c19.teamI.Controllers;
 
 import edu.wpi.cs3733c19.teamI.Entities.SearchResults;
+import edu.wpi.cs3733c19.teamI.Entities.sub_Form;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import static edu.wpi.cs3733c19.teamI.Main.Results;
@@ -23,6 +26,7 @@ public class SearchDisplayController {
     private Scene searchScene;
     //public SearchResults currentResults = new SearchResults();
     private HashMap<String, Text> ParamToTextFields;
+    private final ObservableList<sub_Form> DisplayedResults = FXCollections.observableArrayList();
     public String StringTest;
     //currentResults =
     private Scene homePage;
@@ -33,11 +37,28 @@ public class SearchDisplayController {
     @FXML
     TextField randomText;
 
-    @FXML
-    ListView ResultsDisplay;
+    //Table Stuff
 
     @FXML
     TableView ResultsList;
+
+    @FXML
+    TableColumn SerialNumber;
+
+    @FXML
+    TableColumn SourceOfProduct;
+
+    @FXML
+    TableColumn BrandName;
+
+    @FXML
+    TableColumn BeverageType;
+
+    @FXML
+    TableColumn AlcoholContent;
+
+
+    //Search param inputs
 
     @FXML
     Text repID;
@@ -123,8 +144,25 @@ public class SearchDisplayController {
             String currentField = Results.getParameters().get(i);
             ParamToTextFields.get(currentField).setText(Results.getSearchParamEntry(currentField));
         }
+        for(int i = 0; i<Results.getListOfForms().size(); i++)
+        {
+            DisplayedResults.add(new sub_Form(Results.getListOfForms().get(i)));
+        }
+        //this.DisplayedResults = FXCollections.observableArrayList();
 
-    //    this.ResultsList.
+        this.ResultsList.setEditable(true);
+       // ResultsList.getItems().clear();
+
+        this.SerialNumber.setCellValueFactory(new PropertyValueFactory<sub_Form, String>("serialNumber"));
+        this.SourceOfProduct.setCellValueFactory(new PropertyValueFactory<sub_Form, String>("domesticOrImported"));
+        this.BrandName.setCellValueFactory(new PropertyValueFactory<sub_Form, String>("brandName"));
+        this.BeverageType.setCellValueFactory(new PropertyValueFactory<sub_Form, String>("beverageType"));
+        this.AlcoholContent.setCellValueFactory(new PropertyValueFactory<sub_Form, String>("alcoholContent"));
+        this.ResultsList.setItems(DisplayedResults);
+
+
+
+        //    this.ResultsList.
 
     }
 

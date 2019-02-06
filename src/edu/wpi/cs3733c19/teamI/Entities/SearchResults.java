@@ -52,12 +52,9 @@ public class SearchResults {
         this.searchMap = map;
     }
 
-//    public void setlistOfForm(ArrayList<Form> forms)
-//    {
-//        this.listOfForms = forms;
-//    }
-
-
+    public void setListOfForms(ArrayList<HashMap<String, ReturnedValue>> listOfForms) {
+        this.listOfForms = listOfForms;
+    }
 
     //getters
     public LinkedList<String> getParameters()
@@ -70,13 +67,9 @@ public class SearchResults {
         return(this.searchMap);
     }
 
-//    public ArrayList<Form> getListOfForms()
-//    {
-//        return(this.listOfForms);
-//    }
-
-
-
+    public ArrayList<HashMap<String, ReturnedValue>> getListOfForms() {
+        return listOfForms;
+    }
 
     protected void FilterEntries(String field) //TODO filter by Double/ int, or string
     {

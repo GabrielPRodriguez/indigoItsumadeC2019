@@ -129,6 +129,7 @@ public class FormSubController{
             if(event.getSource()== submit_Button){
                 Form sentForm = new Form();
                 boolean readyToSend = true;
+                submit_message.setText("");
 
                 //sets Domestic Or Imported field
 
@@ -229,7 +230,7 @@ public class FormSubController{
                 catch (NumberFormatException e){
                     readyToSend = false;
                     String oldMessage = submit_message.getText();
-                    submit_message.setText(oldMessage + "  Please enter a number for Alcohol Content.");
+                    submit_message.setText(oldMessage + "  Please enter a number for Alcohol Percentage.");
 
                 }
 

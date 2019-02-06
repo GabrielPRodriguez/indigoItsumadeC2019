@@ -227,6 +227,7 @@ public class SQLDriver{
 
         ArrayList<HashMap<String, ReturnedValue>> final_results = new ArrayList<HashMap<String, ReturnedValue>>();
         for (HashMap<String, ReturnedValue>result: select_all(filename, tablename)){
+            System.out.println(result.get("status"));
             double _new_flag = result.get("status").to_double();
             if (_new_flag == 0){
                 boolean _flag = false;
@@ -282,8 +283,18 @@ public class SQLDriver{
 
         result.get("formStatus");
         ReturnedValue value = new ReturnedValue("status", approvalStatus);
+        result.replace("status", value);
 
-        result.put("status", value);
+        ArrayList<String> appStatType = new ArrayList<>();
+        appStatType.add("status");
+
+        ArrayList<DBValue> appStatus = new ArrayList<>();
+
+        DBValue value1 = new DBValue<String>(approvalStatus);
+        appStatus.add(value1);
+
+        driver.update("form_data", "form_data.db", appStatType, appStatus, formID);
+        //result.put("status", value);
     }
 
 

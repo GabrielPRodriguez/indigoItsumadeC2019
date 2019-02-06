@@ -140,7 +140,8 @@ public class FormCheckerController {
         SQLDriver driver = new SQLDriver();
         ArrayList<HashMap<String, ReturnedValue>>filtered_results = new ArrayList<HashMap<String, ReturnedValue>>();
         for (HashMap<String, ReturnedValue>result:driver.select_all("form_data.db", "form_data")){
-            if (result.get("status").to_double() == 0){
+            if (result.get("status").to_string().equals("unread")){
+
                 filtered_results.add(result);
             }
         }
@@ -225,8 +226,6 @@ public class FormCheckerController {
     private void approveHandler() throws IOException, Exception{
 
         formStatus_string = "approved";
-
-
 
         SQLDriver.setApprovalStatus(currentFormID, formStatus_string);
         clearFields();

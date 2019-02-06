@@ -5,7 +5,7 @@ public class Form {
     private String repID; //optional
     private String plantRegistry; //optional
     private String domesticOrImported; //required
-    private int serialNumber; //required
+    private String serialNumber; //required
     private String brandName; //required
     private String beverageType; //required
     private String fancifulName; //optional
@@ -31,7 +31,7 @@ public class Form {
         this.repID = "";
         this.plantRegistry = "";
         this.domesticOrImported = "";
-        this.serialNumber = 0;
+        this.serialNumber = "";
         this.brandName = "";
         this.beverageType = "";
         this.fancifulName = "";
@@ -55,7 +55,7 @@ public class Form {
     }
 
 
-    public Form(String repID, String plantRegistry, String domesticOrImported, int serialNumber, String brandName, String beverageType, String fancifulName, String nameAndAddress, String mailingAddress, String extraInfo, String date, String nameOfApplicant, String formula, String grapeVarietals, String vintage, String wineAppellation, String email, String phoneNumber, double pHValue, double alcoholContent, String formStatus, String approvingUser, String approvalDate, String expirationDate) {
+    public Form(String repID, String plantRegistry, String domesticOrImported, String serialNumber, String brandName, String beverageType, String fancifulName, String nameAndAddress, String mailingAddress, String extraInfo, String date, String nameOfApplicant, String formula, String grapeVarietals, String vintage, String wineAppellation, String email, String phoneNumber, double pHValue, double alcoholContent, String formStatus, String approvingUser, String approvalDate, String expirationDate) {
         this.repID = repID;
         this.plantRegistry = plantRegistry;
         this.domesticOrImported = domesticOrImported;
@@ -96,7 +96,7 @@ public class Form {
 
     }
 
-    public void setSerialNumber(int serialNumber) {
+    public void setSerialNumber(String serialNumber) {
         this.serialNumber = serialNumber;
     }
 
@@ -196,7 +196,7 @@ public class Form {
         return this.domesticOrImported;
     }
 
-    public int getserialNumber() {
+    public String getserialNumber() {
         return this.serialNumber;
     }
 

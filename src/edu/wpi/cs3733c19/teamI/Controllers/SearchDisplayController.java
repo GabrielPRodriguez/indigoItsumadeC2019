@@ -13,6 +13,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -180,5 +184,28 @@ public class SearchDisplayController {
     public void openHome(ActionEvent actionEvent) {
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         primaryStage.setScene(homePage);
+    }
+
+    public void writeExcel() throws Exception {
+        Writer writer = null;
+        try {
+            File file = new File("C:\\Users\\Carkin\\indigoItsumadeC19\\out\\Person.csv.");
+            writer = new BufferedWriter(new FileWriter(file));
+            for (int i = 0; i < DisplayedResults.size(); i++) {
+
+               String text = DisplayedResults.get(i).returnAll();
+
+
+
+                writer.write(text);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        finally {
+
+            writer.flush();
+            writer.close();
+        }
     }
 }

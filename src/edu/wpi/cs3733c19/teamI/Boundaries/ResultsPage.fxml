@@ -16,7 +16,7 @@
 
 <ScrollPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers.SearchDisplayController">
    <content>
-      <AnchorPane prefHeight="529.0" prefWidth="600.0">
+      <AnchorPane prefHeight="1000.0" prefWidth="1000.0">
          <children>
             <AnchorPane layoutY="-1.0" prefHeight="918.0" prefWidth="1289.0">
                <children>
@@ -96,6 +96,11 @@
                   <Button fx:id="home" layoutX="289.0" layoutY="784.0" mnemonicParsing="false" onAction="#openHome" prefHeight="50.0" prefWidth="137.0" text="Home">
                      <font>
                         <Font name="Berlin Sans FB" size="32.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="makeCSV" layoutX="33.0" layoutY="712.0" mnemonicParsing="false" onAction="#writeExcel" prefHeight="58.0" prefWidth="181.0" text="MAKE CSV">
+                     <font>
+                        <Font size="18.0" />
                      </font>
                   </Button>
                </children>

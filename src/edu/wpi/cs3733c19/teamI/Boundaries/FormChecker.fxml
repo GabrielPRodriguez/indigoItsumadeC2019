@@ -5,10 +5,8 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -102,19 +100,7 @@
                         <Font name="Berlin Sans FB" size="18.0" />
                      </font>
                   </Label>
-                  <RadioButton fx:id="domestic_RadButton" mnemonicParsing="false" text="Domestic">
-                     <font>
-                        <Font name="Berlin Sans FB" size="18.0" />
-                     </font>
-                     <toggleGroup>
-                        <ToggleGroup fx:id="Domestic" />
-                     </toggleGroup>
-                  </RadioButton>
-                  <RadioButton fx:id="imported_RadButton" mnemonicParsing="false" text="Imported" toggleGroup="$Domestic">
-                     <font>
-                        <Font name="Berlin Sans FB" size="18.0" />
-                     </font>
-                  </RadioButton>
+                  <TextField fx:id="domesticImported_text" editable="false" prefHeight="31.0" prefWidth="179.0" />
                </children>
             </VBox>
             <VBox layoutX="23.0" layoutY="106.0">
@@ -134,24 +120,7 @@
                         <Font name="Berlin Sans FB" size="18.0" />
                      </font>
                   </Label>
-                  <RadioButton fx:id="wine_RadButton" mnemonicParsing="false" text="Wine">
-                     <toggleGroup>
-                        <ToggleGroup fx:id="Drinks" />
-                     </toggleGroup>
-                     <font>
-                        <Font name="Berlin Sans FB" size="18.0" />
-                     </font>
-                  </RadioButton>
-                  <RadioButton fx:id="beer_RadButton" mnemonicParsing="false" text="Beer" toggleGroup="$Drinks">
-                     <font>
-                        <Font name="Berlin Sans FB" size="18.0" />
-                     </font>
-                  </RadioButton>
-                  <RadioButton fx:id="liquor_RadButton" mnemonicParsing="false" text="Liqour" toggleGroup="$Drinks">
-                     <font>
-                        <Font name="Berlin Sans FB" size="18.0" />
-                     </font>
-                  </RadioButton>
+                  <TextField fx:id="productType_text" editable="false" prefHeight="36.0" prefWidth="149.0" />
                </children>
             </VBox>
             <VBox layoutX="323.0" layoutY="406.0">
@@ -295,7 +264,7 @@
                         <Font name="Berlin Sans FB" size="18.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="grapeVarietal_text" disable="true">
+                  <TextField fx:id="grapeVarietal_text" disable="true" editable="false">
                      <font>
                         <Font size="17.0" />
                      </font>
@@ -309,7 +278,7 @@
                         <Font name="Berlin Sans FB" size="18.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="wineAppellation_text" disable="true">
+                  <TextField fx:id="wineAppellation_text" disable="true" editable="false">
                      <font>
                         <Font size="17.0" />
                      </font>

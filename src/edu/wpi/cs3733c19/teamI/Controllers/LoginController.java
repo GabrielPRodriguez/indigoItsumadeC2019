@@ -66,7 +66,7 @@ public class LoginController {
         else {
             createAccount(actionEvent); //otherwise make them an account
         }
-        System.out.println("About to open display scene");
+        //System.out.println("About to open display scene");
 
     }
 
@@ -104,7 +104,7 @@ public class LoginController {
         }
         outputStream.write("\n"+ addUser);
         //System.out.println(addUser);
-        System.out.println("creating account");
+        //System.out.println("creating account");
         outputStream.flush();
         outputStream.close();
             //and then scene switcher code, wait for merge
@@ -117,11 +117,11 @@ public class LoginController {
     }
 
     public void openDisplayScene(ActionEvent actionEvent) {
-        System.out.println("made it into display scene");
+        //System.out.println("made it into display scene");
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         primaryStage.setScene(formCheckerScene); // See the form checker page
         formCheck.setUserName(username.getText());
-        System.out.println("Did eveything in display scene");
+        //System.out.println("Did eveything in display scene");
     }
 
     public void goHome(ActionEvent actionEvent){

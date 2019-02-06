@@ -82,8 +82,8 @@ public class SearchResults {
         SQLDriver driver = new SQLDriver();
         ArrayList<HashMap<String, ReturnedValue>>results = driver.get_data_by_value("form_data", "form_data.db", this.Parameters, this.searchMap);
         this.listOfForms = results;
-        System.out.println(results);
-        System.out.println("Error, is that you?");
+        //System.out.println(results);
+        //System.out.println("Error, is that you?");
     }
 
 

@@ -194,7 +194,7 @@ public class SQLDriver{
     }
     public void update(String tablename, String filename, ArrayList<String>targetcols, ArrayList<DBValue>values, int formid) throws Exception {
 
-        System.out.println("actually makes into update method");
+        //System.out.println("actually makes into update method");
         Connection _connector = connect_file(filename);
         ArrayList<String>temp = new ArrayList<String>();
         for (String col:targetcols){
@@ -224,7 +224,7 @@ public class SQLDriver{
 
 
     public ArrayList<HashMap<String, ReturnedValue>>get_data_by_value(String tablename, String filename, LinkedList<String>search_fields, HashMap<String, DataField>targets) throws Exception{
-        System.out.println("in search method");
+        //System.out.println("in search method");
 
         ArrayList<HashMap<String, ReturnedValue>> final_results = new ArrayList<HashMap<String, ReturnedValue>>();
         for (HashMap<String, ReturnedValue>result: select_all(filename, tablename)){

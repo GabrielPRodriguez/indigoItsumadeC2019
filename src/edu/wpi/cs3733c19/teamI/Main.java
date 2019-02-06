@@ -1,6 +1,7 @@
 package edu.wpi.cs3733c19.teamI;
 
 import edu.wpi.cs3733c19.teamI.Controllers.HomeController;
+import edu.wpi.cs3733c19.teamI.Controllers.LoginController;
 import edu.wpi.cs3733c19.teamI.Controllers.SearchController;
 import edu.wpi.cs3733c19.teamI.Controllers.SearchDisplayController;
 import edu.wpi.cs3733c19.teamI.Entities.SearchResults;
@@ -41,6 +42,11 @@ public class Main extends Application {
         Parent firstPane = firstPaneLoader.load();
         Scene firstScene = new Scene(firstPane, 1090, 916);
 
+        FXMLLoader formCheckerPaneLoader = new FXMLLoader(getClass().getResource("Boundaries/FormChecker.fxml"));
+        Parent formCheckerPane = formCheckerPaneLoader.load();
+        Scene formCheckerScene = new Scene(formCheckerPane, 1090, 916);
+
+
         // getting loader and a pane for the second scene
         FXMLLoader secondPageLoader = new FXMLLoader(getClass().getResource("Boundaries/ResultsPage.fxml"));
         Parent secondPane = secondPageLoader.load();
@@ -60,6 +66,8 @@ public class Main extends Application {
         FXMLLoader loginPaneLoader = new FXMLLoader(getClass().getResource("Boundaries/Login.fxml"));
         Parent loginPane = loginPaneLoader.load();
         Scene loginScene = new Scene(loginPane, 900, 920);
+        LoginController loginController = (LoginController) loginPaneLoader.getController();
+        loginController.setFormCheckerScene(formCheckerScene); //this is the problem
 
 
 
@@ -81,7 +89,7 @@ public class Main extends Application {
         firstPaneController.dispController = secondPaneController;
 
         primaryStage.setTitle("Hello World!");
-        primaryStage.setScene(firstScene);
+        primaryStage.setScene(thirdScene);
         primaryStage.show();
     }
 

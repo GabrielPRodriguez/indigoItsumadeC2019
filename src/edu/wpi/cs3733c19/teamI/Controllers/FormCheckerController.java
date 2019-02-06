@@ -179,7 +179,7 @@ public class FormCheckerController {
         HashMap<String, ReturnedValue>result = driver.get_data_by_value("form_data", "form_data.db", "formID", new DBValue<Integer>(currentFormID));
 
 
-        repID_text.setText(result.get("repId").to_string());
+        repID_text.setText(result.get("repID").to_string());
         plantRegistry_text.setText(result.get("plantRegistry").to_string());
         domesticImported_text.setText(result.get("domesticOrImported").to_string());
         serialNum_text.setText(result.get("serialNumber").to_string());

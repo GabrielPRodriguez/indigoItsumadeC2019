@@ -207,6 +207,8 @@ public class FormCheckerController implements Initializable {
 
     @FXML
     private void chooseButtonHandler(ActionEvent choose) throws IOException, Exception{
+        submit_button.setDisable(false);
+        reject_button.setDisable(false);
 
         //int formID = 0;
         if(choose.getSource() == choose_button1){
@@ -279,6 +281,9 @@ public class FormCheckerController implements Initializable {
         clearFields();
         pull_Forms(new ActionEvent());
 
+        submit_button.setDisable(true);
+        reject_button.setDisable(true);
+
     }
 
     @FXML
@@ -290,6 +295,9 @@ public class FormCheckerController implements Initializable {
         clearFields();
 
         pull_Forms(new ActionEvent());
+
+        submit_button.setDisable(true);
+        reject_button.setDisable(true);
 
     }
 

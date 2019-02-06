@@ -330,10 +330,10 @@
                         </TextField>
                      </children>
                   </VBox>
-                  <Button fx:id="submit_button" layoutX="50.0" layoutY="800.0" mnemonicParsing="false" onAction="#approveHandler" text="Submit" />
+                  <Button fx:id="submit_button" disable="true" layoutX="50.0" layoutY="800.0" mnemonicParsing="false" onAction="#approveHandler" text="Submit" />
                   <Button fx:id="save_button" layoutX="450.0" layoutY="800.0" mnemonicParsing="false" text="Save" />
                   <Button fx:id="specialist_button" layoutX="650.0" layoutY="800.0" mnemonicParsing="false" text="Send to Specialist" />
-                  <Button fx:id="reject_button" layoutX="250.0" layoutY="800.0" mnemonicParsing="false" onAction="#rejectHandler" text="Reject" />
+                  <Button fx:id="reject_button" disable="true" layoutX="250.0" layoutY="800.0" mnemonicParsing="false" onAction="#rejectHandler" text="Reject" />
                   <VBox layoutX="23.0" layoutY="654.0" prefHeight="68.0" prefWidth="211.0">
                      <children>
                         <Label prefHeight="26.0" prefWidth="177.0" text="Approval Status">

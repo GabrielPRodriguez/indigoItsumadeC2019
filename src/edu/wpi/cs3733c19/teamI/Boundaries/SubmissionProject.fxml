@@ -16,7 +16,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <ScrollPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers.FormSubController">
    <content>
       <ScrollPane>
@@ -208,21 +207,11 @@
                             <TextArea fx:id="applicantNameAddr_Field" prefHeight="55.0" prefWidth="281.0" />
                      </children>
                   </VBox>
-                      <Button fx:id="save_Button" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" layoutX="498.0" layoutY="818.0" maxHeight="50.0" maxWidth="100.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Save" textAlignment="JUSTIFY">
-                          <font>
-                              <Font size="1.0" />
-                          </font>
-                      </Button>
                       <Text layoutX="23.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New Alcohol Product Registration" underline="true">
                           <font>
                               <Font name="Berlin Sans FB" size="32.0" />
                           </font>
                       </Text>
-                      <Button fx:id="submit_Button" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" layoutX="676.0" layoutY="818.0" maxHeight="100.0" maxWidth="150.0" mnemonicParsing="false" onAction="#handleSubmitButton" style="-fx-background-color: transparent;" text="Submit">
-                          <font>
-                              <Font size="1.0" />
-                          </font>
-                      </Button>
                   <VBox layoutX="23.0" layoutY="515.0">
                      <children>
                             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="8a. Mailing Address, if different">
@@ -322,17 +311,9 @@
                         <Label fx:id="submit_message" prefHeight="35.0" prefWidth="360.0" />
                      </children>
                   </HBox>
-                  <ImageView fitHeight="30.0" fitWidth="109.0" layoutX="749.0" layoutY="816.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Assets/submit_button.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="30.0" fitWidth="110.0" layoutX="633.0" layoutY="816.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Assets/save_button.png" />
-                     </image>
-                  </ImageView>
                   <Button fx:id="Home" layoutX="506.0" layoutY="819.0" mnemonicParsing="false" onAction="#goHome" text="Home" />
+                  <Button fx:id="save_Button" layoutX="622.0" layoutY="819.0" mnemonicParsing="false" text="Save" />
+                  <Button fx:id="submit_Button" layoutX="723.0" layoutY="819.0" mnemonicParsing="false" onAction="#handleSubmitButton" text="Submit" />
                   </children>
               </AnchorPane>
          </content>

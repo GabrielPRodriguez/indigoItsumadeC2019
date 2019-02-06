@@ -53,14 +53,14 @@ public class LoginController {
         if(username.getText().isEmpty()){
             errorMessage.setText(("Must use a username"));
         }
-        else if (users.contains(username.getText() + ":" + password.getText()+":")){ //this file checks for the user and pass in the file
+        else if (users.contains(":"+username.getText()+":"+password.getText()+":")){ //this file checks for the user and pass in the file
             System.out.println("logging in");
             login(actionEvent);  //if they exist, login
         }
-        else if (users.contains(username.getText()+":none:") && (password.getText().isEmpty())){
+        else if (users.contains(":"+username.getText()+":none:") && (password.getText().isEmpty())){
             login(actionEvent);
         }
-        else if (users.contains(username.getText())){
+        else if (users.contains(":"+username.getText()+":")){
             errorMessage.setText("Username already taken!");
         }
         else {
@@ -78,9 +78,12 @@ public class LoginController {
     public String readFile(String users) throws Exception { //this file will populate users with a string of all users
         // pass the path to the file as a parameter
         //userLogin = new FileReader("UserSheet.txt");
-        userReader = new BufferedReader(new InputStreamReader(getClass().getClassLoader().getResourceAsStream("UserSheet.txt")));
-        System.out.println(userReader.toString());
-        users = userReader.toString();
+        userLogin = new FileReader("UserSheet.txt");
+        int i;
+        while ((i=userLogin.read()) != -1) {
+            users = users + ((char) i);
+        }
+        //System.out.println(users);
         return users;
     }
 
@@ -91,15 +94,15 @@ public class LoginController {
     public void createAccount(ActionEvent actionEvent) throws Exception {  //creates an account, then logs the user in and moves them to the checks form scene
         FileWriter userWriter = new FileWriter("UserSheet.txt", true);
         BufferedWriter outputStream = new BufferedWriter(userWriter);
-        String addUser = "\n" + username.getText();
+        String addUser =  username.getText();
         //System.out.println(password.getText());
         if(!password.getText().isEmpty()){
-            addUser = addUser+":"+password.getText()+":";
+            addUser = ":"+addUser+":"+password.getText()+":";
         }
         else{
-            addUser = addUser + ":none:";
+            addUser = ":"+addUser + ":none:";
         }
-        outputStream.write(addUser);
+        outputStream.write("\n"+ addUser);
         //System.out.println(addUser);
         System.out.println("creating account");
         outputStream.flush();

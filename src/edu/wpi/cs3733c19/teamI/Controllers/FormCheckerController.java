@@ -179,6 +179,7 @@ public class FormCheckerController {
 
         formStatus_string = "approved";
 
+
         SQLDriver.setApprovalStatus(currentFormID, formStatus_string);
         clearFields();
 

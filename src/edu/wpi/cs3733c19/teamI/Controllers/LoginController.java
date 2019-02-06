@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -30,21 +31,29 @@ public class LoginController {
     @FXML
     Button login;
 
+    @FXML
+    Label errorMessage;
+
     FileReader userLogin;
 
     public void attemptLogin(ActionEvent actionEvent) throws Exception { //attempts a login and will either create an account or login
         String users = "";
         users = readFile(users);
         //System.out.println(users);
-        if (users.contains(username.getText() + "\n")){ //this file checks for the user in the file
+        if (users.contains(username.getText() + ":" + password.getText()+":")){ //this file checks for the user and pass in the file
             System.out.println("logging in");
-            login();  //if they exist, login
+            login(actionEvent);  //if they exist, login
+        }
+        else if (users.contains(username.getText()+":none:") && (password.getText().isEmpty())){
+            login(actionEvent);
+        }
+        else if (users.contains(username.getText())){
+            errorMessage.setText("Username already taken!");
         }
         else {
-            createAccount(); //otherwise make them an account
+            createAccount(actionEvent); //otherwise make them an account
         }
         System.out.println("About to open display scene");
-        openDisplayScene(actionEvent);
 
     }
 
@@ -64,23 +73,28 @@ public class LoginController {
         return users;
     }
 
-    public void login(){ //logs the user in and moves them to the check forms scene
-
-        //scene switcher code, wait for merge
-
+    public void login(ActionEvent actionEvent){ //logs the user in and moves them to the check forms scene
+        openDisplayScene(actionEvent);
     }
 
-    public void createAccount() throws Exception {  //creates an account, then logs the user in and moves them to the checks form scene
+    public void createAccount(ActionEvent actionEvent) throws Exception {  //creates an account, then logs the user in and moves them to the checks form scene
         FileWriter userWriter = new FileWriter("UserSheet.txt", true);
         BufferedWriter outputStream = new BufferedWriter(userWriter);
-        String addUser = "\n" + username.getText() + "\n";
+        String addUser = "\n" + username.getText();
+        //System.out.println(password.getText());
+        if(!password.getText().isEmpty()){
+            addUser = addUser+":"+password.getText()+":";
+        }
+        else{
+            addUser = addUser + ":none:";
+        }
         outputStream.write(addUser);
         //System.out.println(addUser);
         System.out.println("creating account");
         outputStream.flush();
         outputStream.close();
             //and then scene switcher code, wait for merge
-        //openDisplayScene();
+        openDisplayScene(actionEvent);
 
     }
 

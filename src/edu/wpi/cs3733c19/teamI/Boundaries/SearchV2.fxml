@@ -225,6 +225,11 @@
                         <Font size="17.0" />
                     </font>
                 </TextField>
+            <Button fx:id="clearSearch" layoutX="47.0" layoutY="835.0" mnemonicParsing="false" onAction="#clearSearchResult" prefHeight="38.0" prefWidth="71.0" text="Clear">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
             </children>
         </AnchorPane>
     </children>

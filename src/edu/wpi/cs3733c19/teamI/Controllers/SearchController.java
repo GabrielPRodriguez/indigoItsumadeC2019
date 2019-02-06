@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.RadioButton;
 
+import java.io.IOException;
 import java.util.LinkedList;
 
 import static edu.wpi.cs3733c19.teamI.Main.Results;
@@ -34,6 +35,9 @@ public class SearchController {
     // Search Button
     @FXML
     Button performSearch;
+
+    @FXML
+    Button clearSearch;
 
     // REP ID NO
     @FXML
@@ -136,6 +140,29 @@ public class SearchController {
            // System.out.println(Results.getParameters().getFirst());
         }
 
+
+    }
+
+    @FXML
+    protected void clearSearchResult() throws Exception {
+        repID.clear();
+        plantRegistry.clear();
+        domestic.setSelected(false);
+        imported.setSelected(false);
+        serialNumber.clear();
+        wine.setSelected(false);
+        beer.setSelected(false);
+        liqour.setSelected(false);
+        brandName.clear();
+        fancifulName.clear();
+        vintage.clear();
+        pHValue.clear();
+        alcoholContent.clear();
+        formula.clear();
+        grapeVarietals.clear();
+        wineAppellation.clear();
+        phoneNumber.clear();
+        email.clear();
 
     }
 

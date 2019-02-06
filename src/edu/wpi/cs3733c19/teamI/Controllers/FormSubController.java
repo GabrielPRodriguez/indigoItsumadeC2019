@@ -100,6 +100,9 @@ public class FormSubController{
         @FXML
         TextField vintage_Field;
 
+        @FXML
+        Label submit_message;
+
 
 
 
@@ -155,7 +158,8 @@ public class FormSubController{
                 }
                 catch (NumberFormatException e){
                     readyToSend = false;
-                    //TODO: print error message in fxml next to field "Please Enter a Number for this field
+                    String oldMessage = submit_message.getText();
+                    submit_message.setText(oldMessage + "  Please enter a number for Serial Number" );
                 }
 
                 //Sets Phone Number
@@ -207,7 +211,9 @@ public class FormSubController{
                     }
                     catch (NumberFormatException e){
                         readyToSend = false;
-                        //TODO: print error message in fxml next to field "Please Enter a Number for this field
+                        String oldMessage = submit_message.getText();
+                        submit_message.setText(oldMessage + "  Please enter a number for pH Value" );
+
 
                     }
                 }
@@ -219,13 +225,17 @@ public class FormSubController{
                 }
                 catch (NumberFormatException e){
                     readyToSend = false;
-                    //TODO: print error message in fxml next to field "Please Enter a Number for this field
+                    String oldMessage = submit_message.getText();
+                    submit_message.setText(oldMessage + "  Please enter a number for Alcohol Content.");
+
                 }
 
                 if(sentForm.missingRequired()){
                     readyToSend = false;
+                    String oldMessage = submit_message.getText();
 
                     String errorMessage = sentForm.getMissingFieldsStatement(); //apply to a Label
+                    submit_message.setText(oldMessage + "  " +  errorMessage);
                 }
 
                 if(readyToSend){
@@ -282,6 +292,7 @@ public class FormSubController{
                     driver.insert_vals("form_data", "form_data.db", all_vals);
 
                     String success = "Form successfully submitted."; //apply to a Label
+                    submit_message.setText(success);
 
                     //clears all fields
                     Domestic.selectToggle(null);

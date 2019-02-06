@@ -81,7 +81,7 @@
                   <Font size="24.0" />
                </font>
             </Text>
-            <TableView layoutX="502.0" layoutY="142.0" prefHeight="738.0" prefWidth="725.0">
+            <TableView fx:id="ResultsList" layoutX="502.0" layoutY="142.0" prefHeight="738.0" prefWidth="725.0">
               <columns>
                   <TableColumn prefWidth="133.0" text="Serial Number" />
                   <TableColumn prefWidth="167.0" text="Date of Submission" />

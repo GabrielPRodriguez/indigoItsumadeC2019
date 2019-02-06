@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TableView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
@@ -33,9 +34,8 @@ public class SearchDisplayController {
     @FXML
     ListView ResultsDisplay;
 
-    /*
-
-     */
+    @FXML
+    TableView ResultsList;
 
     @FXML
     Text repID;
@@ -115,50 +115,18 @@ public class SearchDisplayController {
         this.ParamToTextFields.put("alcoholContent", this.alcoholContent);
         this.ParamToTextFields.put("phoneNumber", this.phoneNumber);
         this.ParamToTextFields.put("email", this.email);
-
-
-        System.out.println("i am here");
+//iterate through text fields
         for(int i = 0; i<Results.getParameters().size(); i++)
         {
             String currentField = Results.getParameters().get(i);
             ParamToTextFields.get(currentField).setText(Results.getSearchParamEntry(currentField));
         }
 
+    //    this.ResultsList.
+
     }
 
     public SearchDisplayController(){
-
-//
-//
-//
-//        this.ParamToTextFields = new HashMap<String, Text>();
-//        //TODO replace with for loop, search for text pre-req
-//        this.ParamToTextFields.put("repID", repID);
-//        this.ParamToTextFields.put("plantRegistry", plantRegistry);
-//        this.ParamToTextFields.put("domesticOrImported", domesticOrImported);
-//        this.ParamToTextFields.put("serialNumber", serialNumber);
-//        this.ParamToTextFields.put("beverageType", beverageType);
-//        this.ParamToTextFields.put("brandName", brandName);
-//        this.ParamToTextFields.put("fancifulName", fancifulName);
-//        this.ParamToTextFields.put("vintage", vintage);
-//        this.ParamToTextFields.put("grapeVarietals", grapeVarietals);
-//        this.ParamToTextFields.put("pHValue", pHValue);
-//        this.ParamToTextFields.put("wineAppellation", wineAppellation);
-//        this.ParamToTextFields.put("alcoholContent", alcoholContent);
-//        this.ParamToTextFields.put("phoneNumber", phoneNumber);
-//        this.ParamToTextFields.put("email", email);
-//
-//
-//        System.out.println("i am here");
-//        for(int i = 0; i<currentResults.getParameters().size(); i++)
-//        {
-//            String currentField = currentResults.getParameters().get(i);
-//            ParamToTextFields.get(currentField).setText(currentResults.getSearchParamEntry(currentField));
-//        }
-
-        //this.repID.setText("Hi!");
-
-
 
     }
 

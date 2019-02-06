@@ -350,6 +350,9 @@ public class FormSubController implements Initializable {
         final Tooltip tooltipDomestic = new Tooltip("SOURCE OF PRODUCT (Required)");
         domestic_RadButton.setTooltip(tooltipDomestic);
 
+        final Tooltip tooltipWine = new Tooltip("TYPE OF PRODUCT (Required)");
+        wine_RadButton.setTooltip(tooltipWine);
+
         // Serial Number
         final Tooltip tooltipSerialNumber = new Tooltip("SERIAL NUMBER (Required)");
         serialNum_Field.setTooltip(tooltipSerialNumber);
@@ -357,6 +360,59 @@ public class FormSubController implements Initializable {
         // Type of Product
         final Tooltip tooltipTypeOfProduct = new Tooltip("TYPE OF PRODUCT (Required)");
         serialNum_Field.setTooltip(tooltipTypeOfProduct);
+
+        // Brand Name
+        final Tooltip tooltipBrandName = new Tooltip("BRAND NAME (Required)");
+        brandName_Field.setTooltip(tooltipBrandName);
+
+        // Fanciful Name
+        final Tooltip tooltipFancifulName = new Tooltip("FANCIFUL NAME (If any)");
+        fancyName_Field.setTooltip(tooltipFancifulName);
+
+        // Name and Adress of application
+        final Tooltip tooltipNameAndAdress = new Tooltip("NAME AND ADDRESS OF APPLICANT AS SHOWN ON PLANT REGISTRY, BASIC PERMIT, OR BREWER'S NOTICE. INCLUDE APPROVED DBA OR TRADENAME IF USED ON THE LABEL (Required)");
+        applicantNameAddr_Field.setTooltip(tooltipNameAndAdress);
+
+        // Mailing Address if different
+        final Tooltip tooltipMailingAdress = new Tooltip("MAILING ADDRESS, IF DIFFERENT");
+        mailAddr_Field.setTooltip(tooltipMailingAdress);
+
+        // Fanciful Name
+        final Tooltip tooltipFormula = new Tooltip("FORMULA");
+        formula_Field.setTooltip(tooltipFormula);
+
+        // Grape Varietals
+        final Tooltip tooltipGrapeVariental = new Tooltip("GRAPE VARIETAL(S) Wine only");
+        grape_Field.setTooltip(tooltipGrapeVariental);
+
+        // Appellation
+        final Tooltip tooltipWineAppellation = new Tooltip("WINE APPELLATION (If on label)");
+        appelllation_Field.setTooltip(tooltipWineAppellation);
+
+        // Phone Number
+        final Tooltip tooltipPhoneNumber = new Tooltip("PHONE NUMBER");
+        phoneNum_Field.setTooltip(tooltipPhoneNumber);
+
+        // Phone Number
+        final Tooltip tooltipEmailAddress = new Tooltip("EMAIL ADDRESS");
+        email_Field.setTooltip(tooltipEmailAddress);
+
+        // Phone Number
+        final Tooltip tooltipAlcoholPercentage = new Tooltip("Alcohol Percentage");
+        alcoholPercent_Field.setTooltip(tooltipAlcoholPercentage);
+
+        // Phone Number
+        final Tooltip tooltipPH = new Tooltip("PH Level (Wine only)");
+        ph_Field.setTooltip(tooltipPH);
+
+        // Vintage
+        final Tooltip tooltipVintage = new Tooltip("Vintage (Wine only)");
+        vintage_Field.setTooltip(tooltipVintage);
+
+
+
+
+
     }
 
     public void goHome(ActionEvent actionEvent){

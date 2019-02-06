@@ -151,7 +151,9 @@ public class SearchDisplayController {
         //this.DisplayedResults = FXCollections.observableArrayList();
 
         this.ResultsList.setEditable(true);
-       // ResultsList.getItems().clear();
+        if(ResultsList.getItems().size() != 0) {
+          //  ResultsList.getItems().remove(0, ResultsList.getItems().size()-1);
+        }
 
         this.SerialNumber.setCellValueFactory(new PropertyValueFactory<sub_Form, String>("serialNumber"));
         this.SourceOfProduct.setCellValueFactory(new PropertyValueFactory<sub_Form, String>("domesticOrImported"));
@@ -164,6 +166,10 @@ public class SearchDisplayController {
 
         //    this.ResultsList.
 
+    }
+    public void clearPage()
+    {
+        this.ResultsList.getItems().clear();
     }
 
     public SearchDisplayController(){

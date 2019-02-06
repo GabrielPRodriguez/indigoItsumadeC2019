@@ -6,14 +6,16 @@ import edu.wpi.cs3733c19.teamI.Controllers.dbUtilities.ReturnedValue;
 import edu.wpi.cs3733c19.teamI.Entities.Form;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.HashMap;
+import java.util.ResourceBundle;
 
 
-
-public class FormSubController{
+public class FormSubController implements Initializable {
 
 
 
@@ -324,8 +326,16 @@ public class FormSubController{
         }
 
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        //REP ID Tooltip
+        final Tooltip tooltipRepID = new Tooltip();
+        tooltipRepID.setText("REPRESENTATIVE ID. NUMBER (If any)");
+        repIdNum_Field.setTooltip(tooltipRepID);
 
-
-
-
+        // Plant Registry/Basic Permit/ Brewer's NO.
+        // final Tooltip tooltipPlantRegistry = new Tooltip;
+        //tooltipPlantRegistry.setText("Plant Registry/Basic Permit/ Brewer's NO. (Required)");
+        // plantRegistry.setTooltip(tooltipRepID);
+    }
 }

@@ -156,11 +156,33 @@ public class SQLDriver{
         return full_payload;
 
     }
+    public HashMap<String, ReturnedValue>get_data_by_form_id(String tablename, String filename, String column, DBValue value) throws Exception{
+        for (HashMap<String, ReturnedValue>result: select_all(filename, tablename)){
+            //if (result.get(column).)
+
+            boolean flag = false;
+            if (value.statement().equals("setString")){
+                flag = (result.get(column).to_string().equals(value.to_string()));
+                //System.out.println(result.get(column).to_string());
+            }
+            else{
+                flag = (result.get(column).to_double() == value.to_double());
+                //System.out.println(result.get(column).to_string());
+            }
+
+            if (flag){
+                System.out.println("in the main result find");
+                System.out.println(result.get("formID").to_double());
+                return result;
+            }
+        }
+        throw new Exception("Cannot find row");
+    }
     public HashMap<String, ReturnedValue>get_data_by_value(String tablename, String filename, String column, DBValue value) throws Exception{
         for (HashMap<String, ReturnedValue>result: select_all(filename, tablename)){
             //if (result.get(column).)
             boolean flag = false;
-            if (value.statement() == "setString"){
+            if (value.statement().equals("setString")){
                 flag = (result.get(column).to_string() == value.to_string());
             }
             else{

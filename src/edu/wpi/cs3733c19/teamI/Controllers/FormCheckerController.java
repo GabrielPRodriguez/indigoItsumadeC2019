@@ -6,6 +6,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import edu.wpi.cs3733c19.teamI.Controllers.dbUtilities.*;
+
+import javax.swing.*;
 import java.util.*;
 
 import java.io.IOException;
@@ -121,21 +123,51 @@ public class FormCheckerController {
     String formStatus_string;
 
     @FXML
+    private void pull_Forms(ActionEvent choose) throws IOException, Exception{
+        SQLDriver driver = new SQLDriver();
+        ArrayList<HashMap<String, ReturnedValue>>filtered_results = new ArrayList<HashMap<String, ReturnedValue>>();
+        for (HashMap<String, ReturnedValue>result:driver.select_all("form_data.db", "form_data")){
+            if (result.get("status").to_double() == 0){
+                filtered_results.add(result);
+            }
+        }
+        HashMap<Integer, Label>test = new HashMap<Integer, Label>();
+        test.put(1, formID_1);
+        test.put(2, formID_2);
+        test.put(3, formID_3);
+        if (filtered_results.size() > 0){
+            for (int i = 1; i < 4; i++){
+                try{
+                    HashMap<String, ReturnedValue>_temp = filtered_results.get(i-1);
+                    test.get(i).setText("Form "+_temp.get("formID").to_string().replace(".0", ""));
+                }
+                catch(Exception e){
+                    //pass
+                }
+            }
+
+        }
+        else{
+            formID_1.setText("No forms to be approved");
+        }
+    }
+
+    @FXML
     private void chooseButtonHandler(ActionEvent choose) throws IOException, Exception{
 
         int formID = 0;
         if(choose.getSource() == choose_button1){
-            formID = Integer.parseInt(formID_1.getText());
+            formID = 1;
 
         }
 
         else if(choose.getSource() == choose_button2){
-            formID = Integer.parseInt(formID_2.getText());
+            formID = 2;
 
         }
 
         else if(choose.getSource() == choose_button3){
-            formID = Integer.parseInt(formID_3.getText());
+            formID = 3;
 
         }
 
@@ -143,14 +175,15 @@ public class FormCheckerController {
 
 
         SQLDriver driver = new SQLDriver();
-        HashMap<String, ReturnedValue>result = driver.get_data_by_value("form_data", "form_data.db", "formID", new DBValue<Integer>(formID));
-
-
-        repID_text.setText(result.get("repId").to_string());
+        HashMap<String, ReturnedValue>result = driver.get_data_by_form_id("form_data", "form_data.db", "formID", new DBValue<Integer>(formID));
+        //System.out.println(result.get("repId").to_string());
+        System.out.println(result);
+        //{"formID", "repID", "plantRegistry", "domesticOrImported", "serialNumber", "brandName", "beverageType", "fancifulName", "nameAndAddress", "mailingAddress", "extraInfo", "dateOfApplication", "nameOfApplicant", "formula", "grapeVarietals", "vintage", "wineAppellation", "email", "phoneNumber", "pHValue", "alcoholContent", "status"}
+        repID_text.setText(result.get("repID").to_string());
         plantRegistry_text.setText(result.get("plantRegistry").to_string());
-        domesticImported_text.setText(result.get("domesticOrImported").to_string());
+        //domesticImported_text.setText(result.get("domesticOrImported").to_string());
         serialNum_text.setText(result.get("serialNumber").to_string());
-        productType_text.setText(result.get("beverageType").to_string());
+        //productType_text.setText(result.get("beverageType").to_string());
         brandName_text.setText(result.get("brandName").to_string());
         fancifulName_text.setText(result.get("fancifulName").to_string());
         nameAddress_text.setText(result.get("nameAndAddress").to_string());
@@ -166,9 +199,8 @@ public class FormCheckerController {
         brandedInfo_text.setText(result.get("extraInfo").to_string());
         applicationDate_text.setText(result.get("dateOfApplication").to_string());
         applicantName_text.setText(result.get("nameOfApplicant").to_string());
-        formStatus_string = (result.get("formStatus").to_string()); //I use two variables because I need the formStatus text as a string
-        formStatus_text.setText(formStatus_string);
-
+        //formStatus_string = (result.get("formStatus").to_string()); //I use two variables because I need the formStatus text as a string
+        //formStatus_text.setText(formStatus_string);
 
 
     }

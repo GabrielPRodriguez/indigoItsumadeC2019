@@ -19,18 +19,18 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        /*
-        Parent root = FXMLLoader.load(getClass().getResource("Boundaries/SubmissionProject.fxml"));
+
+        Parent root = FXMLLoader.load(getClass().getResource("Boundaries/FormChecker.fxml"));
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(root, 850, 800));
         primaryStage.show();
-        */
+
 
 //        // Original From main
-         Parent root = FXMLLoader.load(getClass().getResource("Boundaries/SearchV2.fxml"));
-         primaryStage.setTitle("Hello World");
-         primaryStage.setScene(new Scene(root, 850, 800));
-         primaryStage.show();
+//         Parent root = FXMLLoader.load(getClass().getResource("Boundaries/SearchV2.fxml"));
+//         primaryStage.setTitle("Hello World");
+//         primaryStage.setScene(new Scene(root, 850, 800));
+//         primaryStage.show();
         // End of Original from main
 
 

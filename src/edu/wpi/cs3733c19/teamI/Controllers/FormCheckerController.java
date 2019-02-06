@@ -140,7 +140,8 @@ public class FormCheckerController {
             for (int i = 1; i < 4; i++){
                 try{
                     HashMap<String, ReturnedValue>_temp = filtered_results.get(i-1);
-                    test.get(i).setText("Form "+_temp.get("formID").to_string().replace(".0", ""));
+                    //test.get(i).setText("Form "+_temp.get("formID").to_string().replace(".0", ""));
+                    test.get(i).setText(_temp.get("formID").to_string().replace(".0", ""));
                 }
                 catch(Exception e){
                     //pass
@@ -158,6 +159,7 @@ public class FormCheckerController {
 
         //int formID = 0;
         if(choose.getSource() == choose_button1){
+            //System.out.println(formID_1.getText());
             currentFormID = Integer.parseInt(formID_1.getText());
 
         }
@@ -199,7 +201,7 @@ public class FormCheckerController {
         brandedInfo_text.setText(result.get("extraInfo").to_string());
         applicationDate_text.setText(result.get("dateOfApplication").to_string());
         applicantName_text.setText(result.get("nameOfApplicant").to_string());
-        formStatus_string = (result.get("formStatus").to_string()); //I use two variables because I need the formStatus text as a string
+        //formStatus_string = (result.get("formStatus").to_string()); //I use two variables because I need the formStatus text as a string
         //formStatus_text.setText(formStatus_string);
 
 
@@ -249,8 +251,9 @@ public class FormCheckerController {
         productType_text.clear();
         serialNum_text.clear();
         domesticImported_text.clear();
-        formStatus_text.clear();
         nameAddress_text.clear();
+       // formStatus_text.clear();
+
     }
 
 

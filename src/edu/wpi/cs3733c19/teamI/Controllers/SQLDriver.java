@@ -282,15 +282,31 @@ public class SQLDriver{
     }
 
     public static void setApprovalStatus(int formID, String approvalStatus) throws IOException, Exception {
+        setField(formID, approvalStatus, "status");
+    }
+
+    public static void setApprovingUser(int formID, String approvalStatus) throws IOException, Exception {
+        setField(formID, approvalStatus, "approvingUser");
+    }
+
+    public static void setApprovalDate(int formID, String approvalStatus) throws IOException, Exception {
+        setField(formID, approvalStatus, "approvalDate");
+    }
+
+    public static void setExpirationDate(int formID, String approvalStatus) throws IOException, Exception {
+        setField(formID, approvalStatus, "expirationDate");
+    }
+
+    public static void setField(int formID, String approvalStatus, String field) throws IOException, Exception{
         SQLDriver driver = new SQLDriver();
         HashMap<String, ReturnedValue> result = driver.get_data_by_value("form_data", "form_data.db", "formID", new DBValue<Integer>(formID));
 
-        result.get("formStatus");
-        ReturnedValue value = new ReturnedValue("status", approvalStatus);
-        result.replace("status", value);
+        //result.get("formStatus");
+        ReturnedValue value = new ReturnedValue(field, approvalStatus);
+        result.replace(field, value);
 
         ArrayList<String> appStatType = new ArrayList<>();
-        appStatType.add("status");
+        appStatType.add(field);
 
         ArrayList<DBValue> appStatus = new ArrayList<>();
 

@@ -3,20 +3,28 @@ package edu.wpi.cs3733c19.teamI.Controllers;
 import edu.wpi.cs3733c19.teamI.Entities.Form;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import edu.wpi.cs3733c19.teamI.Controllers.dbUtilities.*;
 
 import javax.swing.*;
+import java.net.URL;
 import java.util.*;
 
 import java.io.IOException;
 
-public class FormCheckerController {
+public class FormCheckerController implements Initializable {
+    private LoginController loginCtrl;
+
+    public void setLoginCtrl(LoginController loginCtrl) {
+        this.loginCtrl = loginCtrl;
+    }
 
 
-
-
+    public void setUserName(String name){
+        theUserName.setText(name);
+    }
 
 
 
@@ -47,6 +55,9 @@ public class FormCheckerController {
 
     @FXML
     Button refresh_button;
+
+    @FXML
+    Label theUserName;
 
     @FXML
     Label formID_1;
@@ -137,6 +148,12 @@ public class FormCheckerController {
 
     @FXML
     private void pull_Forms(ActionEvent choose) throws IOException, Exception{
+        formID_1.setText("");
+        formID_2.setText("");
+        formID_3.setText("");
+        choose_button1.setDisable(false);
+        choose_button2.setDisable(false);
+        choose_button3.setDisable(false);
         SQLDriver driver = new SQLDriver();
         ArrayList<HashMap<String, ReturnedValue>>filtered_results = new ArrayList<HashMap<String, ReturnedValue>>();
         for (HashMap<String, ReturnedValue>result:driver.select_all("form_data.db", "form_data")){
@@ -161,9 +178,22 @@ public class FormCheckerController {
                 }
             }
 
+            if(formID_1.getText().equals("")){
+                choose_button1.setDisable(true);
+            }
+            if(formID_2.getText().equals("")){
+                choose_button2.setDisable(true);
+            }
+            if(formID_3.getText().equals("")){
+                choose_button3.setDisable(true);
+            }
+
         }
         else{
             formID_1.setText("No forms to be approved");
+            choose_button1.setDisable(true);
+            choose_button2.setDisable(true);
+            choose_button3.setDisable(true);
         }
     }
 
@@ -228,19 +258,30 @@ public class FormCheckerController {
         formStatus_string = "approved";
 
         SQLDriver.setApprovalStatus(currentFormID, formStatus_string);
-        clearFields();
+        Date date = new Date();
+        String theDate = date.toString();
+        date.equals(date.getTime()+10000);
+        String exDate = date.toString();
+        SQLDriver.setApprovalDate(currentFormID, theDate);
+        SQLDriver.setApprovingUser(currentFormID, this.theUserName.getText());
+        SQLDriver.setExpirationDate(currentFormID, exDate);
 
+
+
+        clearFields();
+        pull_Forms(new ActionEvent());
 
     }
 
     @FXML
     private void rejectHandler() throws IOException, Exception{
 
-        formStatus_string = "rejected";
+        formStatus_string = "reject";
 
         SQLDriver.setApprovalStatus(currentFormID, formStatus_string);
         clearFields();
 
+        pull_Forms(new ActionEvent());
 
     }
 
@@ -270,4 +311,8 @@ public class FormCheckerController {
     }
 
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        setLoginCtrl(loginCtrl);
+    }
 }

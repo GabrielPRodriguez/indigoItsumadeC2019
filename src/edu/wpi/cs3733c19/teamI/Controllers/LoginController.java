@@ -13,6 +13,12 @@ import java.io.*;
 
 public class LoginController {
     private Scene formCheckerScene;
+    private FormCheckerController formCheck;
+
+    public void setFormCheck(FormCheckerController formCheck) {
+        this.formCheck = formCheck;
+    }
+
     //public LoginController formCheckerController;
     
     @FXML
@@ -40,6 +46,11 @@ public class LoginController {
         System.out.println("About to open display scene");
         openDisplayScene(actionEvent);
 
+    }
+
+    public String getName()
+    {
+        return(this.username.getText());
     }
 
     public String readFile(String users) throws Exception { //this file will populate users with a string of all users
@@ -81,6 +92,7 @@ public class LoginController {
         System.out.println("made it into display scene");
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         primaryStage.setScene(formCheckerScene); // See the form checker page
+        formCheck.setUserName(username.getText());
         System.out.println("Did eveything in display scene");
     }
 }

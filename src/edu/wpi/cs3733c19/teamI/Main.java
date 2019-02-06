@@ -1,9 +1,6 @@
 package edu.wpi.cs3733c19.teamI;
 
-import edu.wpi.cs3733c19.teamI.Controllers.HomeController;
-import edu.wpi.cs3733c19.teamI.Controllers.LoginController;
-import edu.wpi.cs3733c19.teamI.Controllers.SearchController;
-import edu.wpi.cs3733c19.teamI.Controllers.SearchDisplayController;
+import edu.wpi.cs3733c19.teamI.Controllers.*;
 import edu.wpi.cs3733c19.teamI.Entities.SearchResults;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -47,6 +44,8 @@ public class Main extends Application {
         Scene formCheckerScene = new Scene(formCheckerPane, 1090, 916);
 
 
+
+
         // getting loader and a pane for the second scene
         FXMLLoader secondPageLoader = new FXMLLoader(getClass().getResource("Boundaries/ResultsPage.fxml"));
         Parent secondPane = secondPageLoader.load();
@@ -69,6 +68,9 @@ public class Main extends Application {
         LoginController loginController = (LoginController) loginPaneLoader.getController();
         loginController.setFormCheckerScene(formCheckerScene); //this is the problem
 
+        FormCheckerController formCheckControl = (FormCheckerController) formCheckerPaneLoader.getController();
+       // formCheckControl.setLoginCtrl(loginController);
+        loginController.setFormCheck(formCheckControl);
 
 
         //injecting the first and second and login scenes into the controller of the home page

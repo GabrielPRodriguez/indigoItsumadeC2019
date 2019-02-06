@@ -24,12 +24,12 @@
                   <Image url="@../Assets/treasury_high_density.png" />
                </image>
             </ImageView>
-            <Text fill="WHITE" layoutX="315.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User :" wrappingWidth="99.00001156330109">
+            <Text fill="WHITE" layoutX="300.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User :" wrappingWidth="99.00001156330109">
                <font>
                   <Font name="Berlin Sans FB" size="32.0" />
                </font>
             </Text>
-            <Text fill="WHITE" layoutX="315.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date :">
+            <Text fill="WHITE" layoutX="300.0" layoutY="159.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date :">
                <font>
                   <Font name="Berlin Sans FB" size="28.0" />
                </font>
@@ -65,19 +65,19 @@
                         <AnchorPane>
                            <children>
                               <Label fx:id="formID_1" layoutY="36.0" text="Form 1 (Description)" />
-                              <Button fx:id="choose_button1" layoutX="352.0" layoutY="32.0" mnemonicParsing="false" onAction="#chooseButtonHandler" text="Select" />
+                              <Button fx:id="choose_button1" disable="true" layoutX="352.0" layoutY="32.0" mnemonicParsing="false" onAction="#chooseButtonHandler" text="Select" />
                            </children>
                         </AnchorPane>
                         <AnchorPane>
                            <children>
                               <Label fx:id="formID_2" layoutY="20.0" text="Form 2 (Description)" />
-                              <Button fx:id="choose_button2" alignment="CENTER" layoutX="352.0" layoutY="16.0" mnemonicParsing="false" onAction="#chooseButtonHandler" text="Select" />
+                              <Button fx:id="choose_button2" alignment="CENTER" disable="true" layoutX="352.0" layoutY="16.0" mnemonicParsing="false" onAction="#chooseButtonHandler" text="Select" />
                            </children>
                         </AnchorPane>
                         <AnchorPane>
                            <children>
                               <Label fx:id="formID_3" alignment="CENTER" layoutY="12.0" text="Form 3 (Description)" />
-                              <Button fx:id="choose_button3" alignment="CENTER" layoutX="352.0" layoutY="8.0" mnemonicParsing="false" onAction="#chooseButtonHandler" text="Select" />
+                              <Button fx:id="choose_button3" alignment="CENTER" disable="true" layoutX="352.0" layoutY="8.0" mnemonicParsing="false" onAction="#chooseButtonHandler" text="Select" />
                            </children>
                         </AnchorPane>
                      </children>
@@ -346,6 +346,7 @@
                   </VBox>
                </children>
             </AnchorPane>
+            <Label fx:id="theUserName" layoutX="398.0" layoutY="78.0" prefHeight="25.0" prefWidth="62.0" text="Username" />
          </children>
       </AnchorPane>
    </content>

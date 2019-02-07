@@ -16,19 +16,13 @@ import java.util.LinkedList;
 
 import static edu.wpi.cs3733c19.teamI.Main.Results;
 
+// controller for the search screen UI
 public class SearchController {
-    //private SearchResults Results = new SearchResults();
-    private Scene displayScene;
-    public SearchDisplayController dispController;
-    private Scene homePage;
+    private Scene displayScene; // scene that we use to display results
+    public SearchDisplayController dispController; //controller of the display screen, needed to access update functions
+    private Scene homePage; //home page that we may want to switch back to
 
-    public void setHomePage(Scene homePage) {
-        this.homePage = homePage;
-    }
 
-    public SearchResults get_results(){
-        return Results;
-    }
     //Anchor pane
     @FXML
     AnchorPane anchor;
@@ -109,46 +103,48 @@ public class SearchController {
     @FXML
     TextField email;
 
+    //following function iterates through all elements on search page and determines if they are a control
+    //if they are, it uses the fxID as the parameter name and the data as the paramter data
+    //TODO was a terrible idea this needs to be handled differently ASAP, at very least move all search controls to seprate anchor
+
     @FXML
     protected void fillSearchParam() throws Exception
     {
         LinkedList<DataField> userParam = new LinkedList<>();
         for(int i = 0; i <anchor.getChildren().size(); i++) {
-            Node element = anchor.getChildren().get(i);
-            if(element instanceof TextField) {
+            Node element = anchor.getChildren().get(i); //get next UI element
+            if(element instanceof TextField) { //if its a text input, grab text
                 String information = ((TextField)element).getText();
-                if(information.isEmpty() == false) {
+                if(information.isEmpty() == false) { //if it has info, create data field representing search parameter
                     DataField Entry = new DataField(information, element.getId());
-                    userParam.add(Entry);
+                    userParam.add(Entry); //add parameter to our list of parameters
                 }
             }
-            else if(element instanceof RadioButton)
+            else if(element instanceof RadioButton) //special case for radio buttons
             {
                RadioButton radio = ((RadioButton)element);
-                if(radio.isSelected()){
+                if(radio.isSelected()){ //if input has been selected
                     if((radio.getText().equals("Liquor")) ||(radio.getText().equals("Beer")) || (radio.getText().equals("Wine"))) {
+                        //if it is for beverage type, add to search param accoridngly
                         DataField Entry = new DataField(radio.getText(), "beverageType");
                         userParam.add(Entry);
                     }
-                    else{
+                    else{ //TODO this should be more restrictive, what if other radio buttons are added?
+                        //otherwise, radio button represent domestic or imported, add accordingly
                         DataField Entry = new DataField(radio.getText(), "domesticOrImported");
-                        System.out.println("HERE!!!!!!!1");
-                        System.out.println(radio.getText());
                         userParam.add(Entry);
                     }
                 }
             }
         }
-        if(userParam.isEmpty() == false) {
-            System.out.println("userParam below");
-            System.out.println(userParam);
-            Results.gatherSearchParam(userParam);
-           // System.out.println(Results.getParameters().getFirst());
+        if(userParam.isEmpty() == false) { //if we have search parameters, perform search
+            Results.gatherSearchParam(userParam); //results references global searchResults instance
         }
 
 
     }
 
+    //this function clears all search parameter inputs
     @FXML
     protected void clearSearchResult() throws Exception {
         repID.clear();
@@ -172,22 +168,34 @@ public class SearchController {
 
     }
 
-
+//setter for display screen. used in Main()
     public void setDisplayScene(Scene scene) {
         displayScene = scene;
     }
 
+    //this function performs a search, populates the table view, and then shows the results screen
     public void openDisplayScene(ActionEvent actionEvent) throws Exception{
-        dispController.clearPage();
-        fillSearchParam();
-        Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        primaryStage.setScene(displayScene); // See the search results class for information about query returns
-        dispController.updateSearchDisplay();
+        dispController.clearPage();//first, clear previous search result display
+        fillSearchParam();//perform search
+        Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();//get stage
+        primaryStage.setScene(displayScene); // show display screen
+        dispController.updateSearchDisplay(); //update table view
+    }
+    
+    //setter used to define what the home page is, used in Main()
+    public void setHomePage(Scene homePage) {
+        this.homePage = homePage;
     }
 
+    //returns the SearchResults global instance
+    public SearchResults get_results(){
+        return Results;
+    }
+
+    //function displays the home screen
     public void openHome(ActionEvent actionEvent) {
-        Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        primaryStage.setScene(homePage);
+        Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow(); //get current stage
+        primaryStage.setScene(homePage); //display hompage
     }
 
 

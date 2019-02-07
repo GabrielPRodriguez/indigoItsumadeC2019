@@ -14,9 +14,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<ScrollPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers.SearchDisplayController">
+<ScrollPane xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers.SearchDisplayController">
    <content>
-      <AnchorPane prefHeight="1000.0" prefWidth="1000.0">
+      <AnchorPane prefHeight="918.0" prefWidth="1289.0">
          <children>
             <AnchorPane layoutY="-1.0" prefHeight="918.0" prefWidth="1289.0">
                <children>
@@ -70,10 +70,10 @@
                   <Text fx:id="email" layoutX="145.0" layoutY="582.0" strokeType="OUTSIDE" strokeWidth="0.0" text="x" />
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="738.0" layoutX="502.0" layoutY="142.0" stroke="BLACK" strokeType="INSIDE" width="725.0" />
                   <ScrollBar fx:id="scrollBarVert" layoutX="1227.0" layoutY="142.0" orientation="VERTICAL" prefHeight="738.0" prefWidth="17.0" />
-                  <ScrollBar fx:id="scrollBarHoriz" layoutX="502.0" layoutY="878.0" prefHeight="17.0" prefWidth="725.0" />
-                  <Button fx:id="sortSerialNum" layoutX="580.0" layoutY="116.0" mnemonicParsing="false" text="Serial Number" />
-                  <Button fx:id="sortAlcPerc" layoutX="502.0" layoutY="116.0" mnemonicParsing="false" text="Alcohol%" />
-                  <Button fx:id="sortSubmitDate" layoutX="692.0" layoutY="116.0" mnemonicParsing="false" text="Date Of Submission" />
+                  <ScrollBar fx:id="scrollBarHoriz" layoutX="502.0" layoutY="885.0" prefHeight="17.0" prefWidth="725.0" />
+                  <Button fx:id="sortSerialNum" layoutX="585.0" layoutY="108.0" mnemonicParsing="false" text="Serial Number" />
+                  <Button fx:id="sortAlcPerc" layoutX="502.0" layoutY="108.0" mnemonicParsing="false" text="Alcohol%" />
+                  <Button fx:id="sortSubmitDate" layoutX="700.0" layoutY="108.0" mnemonicParsing="false" text="Date Of Submission" />
                   <Button fx:id="returnToSearch" layoutX="40.0" layoutY="779.0" mnemonicParsing="false" onAction="#openSearchScene" prefHeight="58.0" prefWidth="181.0" text="Return to Search">
                      <font>
                         <Font size="18.0" />
@@ -93,12 +93,12 @@
                         <TableColumn fx:id="AlcoholContent" prefWidth="147.0" text="Alcohol Content" />
                     </columns>
                   </TableView>
-                  <Button fx:id="home" layoutX="289.0" layoutY="784.0" mnemonicParsing="false" onAction="#openHome" prefHeight="50.0" prefWidth="137.0" text="Home">
+                  <Button fx:id="home" layoutX="289.0" layoutY="772.0" mnemonicParsing="false" onAction="#openHome" prefHeight="50.0" prefWidth="137.0" text="Home">
                      <font>
-                        <Font name="Berlin Sans FB" size="32.0" />
+                        <Font size="32.0" />
                      </font>
                   </Button>
-                  <Button fx:id="makeCSV" layoutX="33.0" layoutY="712.0" mnemonicParsing="false" onAction="#writeExcel" prefHeight="58.0" prefWidth="181.0" text="MAKE CSV">
+                  <Button fx:id="makeCSV" layoutX="41.0" layoutY="714.0" mnemonicParsing="false" onAction="#writeExcel" prefHeight="58.0" prefWidth="181.0" text="Download CSV">
                      <font>
                         <Font size="18.0" />
                      </font>

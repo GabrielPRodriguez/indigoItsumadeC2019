@@ -5,20 +5,27 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<ScrollPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers.LoginController">
+<ScrollPane xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers.LoginController">
    <content>
-      <AnchorPane prefHeight="400.0" prefWidth="600.0">
+      <AnchorPane prefHeight="918.0" prefWidth="1289.0">
          <children>
-            <TextField fx:id="username" layoutX="300.0" layoutY="145.0" promptText="Username" />
-            <Label layoutX="168.0" layoutY="149.0" text="Username" />
-            <Label layoutX="168.0" layoutY="192.0" text="Password" />
-            <Label layoutX="300.0" layoutY="107.0" />
-            <Button fx:id="login" layoutX="167.0" layoutY="253.0" mnemonicParsing="false" onAction="#attemptLogin" prefHeight="25.0" prefWidth="283.0" text="Login or Create Account" />
-            <PasswordField fx:id="password" layoutX="300.0" layoutY="197.0" />
-            <Label fx:id="errorMessage" layoutX="167.0" layoutY="305.0" prefHeight="17.0" prefWidth="247.0" text="Enter a Username and Pass to Login" />
-            <Button fx:id="goToHome" layoutX="98.0" layoutY="253.0" mnemonicParsing="false" onAction="#goHome" text="Home" />
+            <TextField fx:id="username" layoutX="619.0" layoutY="410.0" promptText="Username" />
+            <Label layoutX="487.0" layoutY="414.0" text="Username" />
+            <Label layoutX="487.0" layoutY="456.0" text="Password" />
+            <Label layoutX="652.0" layoutY="350.0" />
+            <Button fx:id="login" layoutX="538.0" layoutY="521.0" mnemonicParsing="false" onAction="#attemptLogin" prefHeight="25.0" prefWidth="283.0" text="Login or Create Account" />
+            <PasswordField fx:id="password" layoutX="619.0" layoutY="461.0" promptText="Password" />
+            <Label fx:id="errorMessage" layoutX="507.0" layoutY="361.0" prefHeight="21.0" prefWidth="291.0" text="Enter a Username and Password to Login" />
+            <Button fx:id="goToHome" layoutX="469.0" layoutY="521.0" mnemonicParsing="false" onAction="#goHome" text="Home" />
+            <ImageView fitHeight="293.0" fitWidth="449.0" layoutX="506.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Assets/treasury_high_density.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </content>

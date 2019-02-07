@@ -10,10 +10,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<ScrollPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers.HomeController">
+<ScrollPane xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers.HomeController">
    <content>
-      <AnchorPane minHeight="600.0" minWidth="600.0" style="-fx-background-color: #e3e3e3;">
+      <AnchorPane minHeight="600.0" minWidth="447.0" prefHeight="918.0" prefWidth="1289.0" style="-fx-background-color: #e3e3e3;">
          <children>
             <VBox alignment="CENTER" spacing="50.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="30.0">
                <children>

@@ -32,43 +32,39 @@ public class Main extends Application {
 //         primaryStage.show();
 //        // End of Original from main
 
-
         // getting loader and a pane for the first scene.
         // loader will then give a possibility to get related controller
         FXMLLoader firstPaneLoader = new FXMLLoader(getClass().getResource("Boundaries/SearchV2.fxml"));
         Parent firstPane = firstPaneLoader.load();
-        Scene firstScene = new Scene(firstPane, 1090, 916);
+        Scene firstScene = new Scene(firstPane, 1289, 918);
 
         FXMLLoader formCheckerPaneLoader = new FXMLLoader(getClass().getResource("Boundaries/FormChecker.fxml"));
         Parent formCheckerPane = formCheckerPaneLoader.load();
-        Scene formCheckerScene = new Scene(formCheckerPane, 1090, 916);
-
-
-
+        Scene formCheckerScene = new Scene(formCheckerPane, 1289, 918);
 
         // getting loader and a pane for the second scene
         FXMLLoader secondPageLoader = new FXMLLoader(getClass().getResource("Boundaries/ResultsPage.fxml"));
         Parent secondPane = secondPageLoader.load();
-        Scene secondScene = new Scene(secondPane, 1293, 922);
+        Scene secondScene = new Scene(secondPane, 1289, 918);
 
         //Loading the home pane
         FXMLLoader thirdPaneLoader = new FXMLLoader(getClass().getResource("Boundaries/homepage.fxml"));
         Parent thirdPane = thirdPaneLoader.load();
-        Scene thirdScene = new Scene(thirdPane, 850, 800);
+        Scene thirdScene = new Scene(thirdPane, 1289, 918);
         ((FormCheckerController) formCheckerPaneLoader.getController()).setHome(thirdScene);
 
 
         //Loading the submission page
         FXMLLoader fourthPaneLoader = new FXMLLoader(getClass().getResource("Boundaries/SubmissionProject.fxml"));
         Parent fourthPane = fourthPaneLoader.load();
-        Scene fourthScene = new Scene(fourthPane, 900, 920);
+        Scene fourthScene = new Scene(fourthPane, 1289, 918);
 
         ( (FormSubController) fourthPaneLoader.getController()).setHomeScene(thirdScene);
 
         //Loading the login page
         FXMLLoader loginPaneLoader = new FXMLLoader(getClass().getResource("Boundaries/Login.fxml"));
         Parent loginPane = loginPaneLoader.load();
-        Scene loginScene = new Scene(loginPane, 900, 920);
+        Scene loginScene = new Scene(loginPane, 1289, 918);
         LoginController loginController = (LoginController) loginPaneLoader.getController();
         loginController.setFormCheckerScene(formCheckerScene); //this is the problem
         loginController.setHomeScene(thirdScene);
@@ -97,7 +93,7 @@ public class Main extends Application {
         firstPaneController.dispController = secondPaneController;
         secondPaneController.setHomePage(thirdScene);
 
-        primaryStage.setTitle("");
+        primaryStage.setTitle("COLA SEARCH ENGINE");
         primaryStage.setScene(thirdScene);
         primaryStage.show();
     }

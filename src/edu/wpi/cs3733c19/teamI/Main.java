@@ -18,22 +18,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        /*
-        Parent root = FXMLLoader.load(getClass().getResource("Boundaries/SubmissionProject.fxml"));
-        primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 850, 800));
-        primaryStage.show();
-        */
 
-////        // Original From main
-//         Parent root = FXMLLoader.load(getClass().getResource("Boundaries/SearchV2.fxml"));
-//         primaryStage.setTitle("Hello World");
-//         primaryStage.setScene(new Scene(root, 850, 800));
-//         primaryStage.show();
-//        // End of Original from main
-
-        // getting loader and a pane for the first scene.
-        // loader will then give a possibility to get related controller
         FXMLLoader firstPaneLoader = new FXMLLoader(getClass().getResource("Boundaries/SearchV2.fxml"));
         Parent firstPane = firstPaneLoader.load();
         Scene firstScene = new Scene(firstPane, 1289, 918);
@@ -70,7 +55,6 @@ public class Main extends Application {
         loginController.setHomeScene(thirdScene);
 
         FormCheckerController formCheckControl = (FormCheckerController) formCheckerPaneLoader.getController();
-       // formCheckControl.setLoginCtrl(loginController);
         loginController.setFormCheck(formCheckControl);
 
 
@@ -81,17 +65,17 @@ public class Main extends Application {
         thirdPaneController.setLogin(loginScene);
 
 
-
         // injecting second scene into the controller of the first scene
         SearchController firstPaneController = (SearchController) firstPaneLoader.getController();
-        firstPaneController.setDisplayScene(secondScene);
-        firstPaneController.setHomePage(thirdScene);
+        firstPaneController.setDisplayScene(secondScene);//set display screen attribute
+        firstPaneController.setHomePage(thirdScene); //set the home screen attribute
+
 
         // injecting first scene into the controller of the second scene
         SearchDisplayController secondPaneController = (SearchDisplayController) secondPageLoader.getController();
         secondPaneController.setSearchScene(firstScene);
-        firstPaneController.dispController = secondPaneController;
-        secondPaneController.setHomePage(thirdScene);
+        firstPaneController.dispController = secondPaneController;//set the controller attribute
+        secondPaneController.setHomePage(thirdScene); //set the home screen attribute
 
         primaryStage.setTitle("COLA SEARCH ENGINE");
         primaryStage.setScene(thirdScene);

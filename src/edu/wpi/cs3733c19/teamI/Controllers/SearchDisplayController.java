@@ -19,9 +19,6 @@ import java.io.Writer;
 import java.util.HashMap;
 
 import static edu.wpi.cs3733c19.teamI.Main.Results;
-//import javafx.scene.shape.;
-
-
 
 public class SearchDisplayController {
 
@@ -58,8 +55,7 @@ public class SearchDisplayController {
 
     @FXML
     TableColumn AlcoholContent;
-
-
+    
     //Search param inputs
 
     @FXML
@@ -108,7 +104,7 @@ public class SearchDisplayController {
 
 
 
-
+//screen setters
     public void setSearchScene(Scene scene)
     {
         searchScene = scene;
@@ -117,13 +113,15 @@ public class SearchDisplayController {
         homePage = scene;
     }
 
+    //changes to the search screen
     public void openSearchScene(ActionEvent actionEvent){
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         primaryStage.setScene(searchScene);
     }
 
+    //updates the search parameters list with new inputs
     public void updateSearchDisplay(){
-
+        //first set all param to "NA" so that previous results wont be shown
         this.repID.setText("NA");
         this.plantRegistry.setText("NA");
         this.domesticOrImported.setText("NA");
@@ -139,9 +137,8 @@ public class SearchDisplayController {
         this.phoneNumber.setText("NA");
         this.email.setText("NA");
 
-
-
-
+        //link search param key words to thier text boxes
+        //TODO can initiate this somewhere else? maybe?
         this.ParamToTextFields = new HashMap<String, Text>();
         //TODO replace with for loop, search for text pre-req
         this.ParamToTextFields.put("repID", this.repID);
@@ -175,50 +172,49 @@ public class SearchDisplayController {
           //  ResultsList.getItems().remove(0, ResultsList.getItems().size()-1);
         }
 
+        //update columns on table view
         this.SerialNumber.setCellValueFactory(new PropertyValueFactory<sub_Form, String>("serialNumber"));
         this.SourceOfProduct.setCellValueFactory(new PropertyValueFactory<sub_Form, String>("domesticOrImported"));
         this.BrandName.setCellValueFactory(new PropertyValueFactory<sub_Form, String>("brandName"));
         this.BeverageType.setCellValueFactory(new PropertyValueFactory<sub_Form, String>("beverageType"));
         this.AlcoholContent.setCellValueFactory(new PropertyValueFactory<sub_Form, String>("alcoholContent"));
         this.ResultsList.setItems(DisplayedResults);
-
-
-
-        //    this.ResultsList.
-
     }
+
+    //clear search results function
     public void clearPage()
     {
         this.ResultsList.getItems().clear();
     }
 
+    //constructor
     public SearchDisplayController(){
 
     }
 
 
+    //function that brings you to home page
     public void openHome(ActionEvent actionEvent) {
-        Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        primaryStage.setScene(homePage);
+        Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow(); //get stage
+        primaryStage.setScene(homePage); //set to home
     }
 
+    //create CSV function
     public void writeExcel() throws Exception {
         Writer writer = null;
         try {
             File file = new File("C:\\Users\\Carkin\\indigoItsumadeC19\\out\\DATA.csv.");
-            writer = new BufferedWriter(new FileWriter(file));
+            writer = new BufferedWriter(new FileWriter(file)); //CSV library function
+            // grab text versions of all displayed results
             for (int i = 0; i < DisplayedResults.size(); i++) {
 
                String text = DisplayedResults.get(i).returnAll();
-
-
-
                 writer.write(text);
             }
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        finally {
+        finally {//when done, finish CSV creation
 
             writer.flush();
             writer.close();

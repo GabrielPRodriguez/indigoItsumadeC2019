@@ -154,8 +154,10 @@ public class FormCheckerController implements Initializable {
     String formStatus_string;
     int currentFormID = 0;
 
+    //pulls unread forms from the database to be selected
+
     @FXML
-    private void pull_Forms(ActionEvent choose) throws IOException, Exception{
+    private void pull_Forms() throws Exception{
         formID_1.setText("");
         formID_2.setText("");
         formID_3.setText("");
@@ -200,13 +202,17 @@ public class FormCheckerController implements Initializable {
         else{
             formID_1.setText("No forms to be approved");
             choose_button1.setDisable(true);
-            choose_button2.setDisable(true);
+            choose_button2.setDisable(true); //buttons are disabled when there are no forms
             choose_button3.setDisable(true);
         }
     }
 
+
+
+    //runs when any of the choose buttons are clicked. The text fields are filled with information from the form
+    //associated with the button clicked
     @FXML
-    private void chooseButtonHandler(ActionEvent choose) throws IOException, Exception{
+    private void chooseButtonHandler(ActionEvent choose) throws  Exception{
         submit_button.setDisable(false);
         reject_button.setDisable(false);
 
@@ -230,9 +236,12 @@ public class FormCheckerController implements Initializable {
 
 
 
+
         SQLDriver driver = new SQLDriver();
         HashMap<String, ReturnedValue>result = driver.get_data_by_value("form_data", "form_data.db", "formID", new DBValue<Integer>(currentFormID));
 
+
+        //setting the text for each field from values in the database
 
         repID_text.setText(result.get("repID").to_string());
         plantRegistry_text.setText(result.get("plantRegistry").to_string());
@@ -262,6 +271,8 @@ public class FormCheckerController implements Initializable {
 
     }
 
+    //runs when the submit button is clicked, and sets formstatus to approved.
+
     @FXML
     private void approveHandler() throws IOException, Exception{
 
@@ -279,13 +290,15 @@ public class FormCheckerController implements Initializable {
 
 
         clearFields();
-        pull_Forms(new ActionEvent());
+        pull_Forms();
 
         submit_button.setDisable(true);
         reject_button.setDisable(true);
 
     }
 
+
+    //code run when the reject button is pressed, sets the status of the form in the database to "reject"
     @FXML
     private void rejectHandler() throws IOException, Exception{
 
@@ -294,12 +307,14 @@ public class FormCheckerController implements Initializable {
         SQLDriver.setApprovalStatus(currentFormID, formStatus_string);
         clearFields();
 
-        pull_Forms(new ActionEvent());
+        pull_Forms();
 
-        submit_button.setDisable(true);
+        submit_button.setDisable(true); //submit and reject buttons cannot be pressed until another form is pulled
         reject_button.setDisable(true);
 
     }
+
+    //clears all of the displayed fields
 
     private void clearFields(){
         repID_text.clear();

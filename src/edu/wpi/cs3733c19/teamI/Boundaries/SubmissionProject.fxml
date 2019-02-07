@@ -257,7 +257,7 @@
                                     <Font name="Berlin Sans FB" size="18.0" />
                                 </font>
                             </Label>
-                            <TextField fx:id="appelllation_Field" disable="true">
+                            <TextField fx:id="appellation_Field" disable="true">
                                 <font>
                                     <Font size="17.0" />
                                 </font>

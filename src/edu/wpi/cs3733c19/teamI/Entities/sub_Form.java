@@ -4,9 +4,12 @@ import edu.wpi.cs3733c19.teamI.Controllers.dbUtilities.ReturnedValue;
 
 import java.util.HashMap;
 
+//this class is used to more easily represent data in our tableview on the results UI. Simply contains all attributes
+//a form can have
+//TODo evaluate if it is safe to switch this out for the standard form class
 public class sub_Form {
 
-
+//form attributes as strings
     private String repID;
     private String plantRegistry;
     private String domesticOrImported;
@@ -22,6 +25,7 @@ public class sub_Form {
     private String phoneNumber;
     private String email;
 
+    //getters
     public String getRepID() {
         return repID;
     }
@@ -78,6 +82,7 @@ public class sub_Form {
         return email;
     }
 
+    //setters
     public void setRepID(String repID) {
         this.repID = repID;
     }
@@ -134,7 +139,8 @@ public class sub_Form {
         this.email = email;
     }
 
-
+    //this function is used to generate the CSV download. It returns every form field as a list of string
+    // seperated by commas
     public String returnAll()
     {
         String CSV = this.repID + "," +this.plantRegistry + "," +this.domesticOrImported + "," +this.serialNumber + "," +this.beverageType + ","
@@ -144,6 +150,8 @@ public class sub_Form {
         return CSV;
     }
 
+    //constructor. This constructor takes a hasmap as an input, so we can quickly move between the DB query return type
+    // and displayable values
     public sub_Form(HashMap<String, ReturnedValue> entry){
         this.repID = entry.get("repID").to_string();
         this.plantRegistry = entry.get("plantRegistry").to_string();

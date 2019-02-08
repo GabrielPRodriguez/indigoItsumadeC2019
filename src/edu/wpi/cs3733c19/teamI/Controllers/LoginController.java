@@ -19,8 +19,6 @@ public class LoginController {
         this.formCheck = formCheck;
     }
 
-    //public LoginController formCheckerController;
-
     private Scene Home;
 
     public void setHomeScene(Scene home)
@@ -49,7 +47,6 @@ public class LoginController {
     public void attemptLogin(ActionEvent actionEvent) throws Exception { //attempts a login and will either create an account or login
         String users = "";
         users = readFile(users);
-        //System.out.println(users);
         if(username.getText().isEmpty()){
             errorMessage.setText(("Must use a username"));
         }
@@ -66,8 +63,6 @@ public class LoginController {
         else {
             createAccount(actionEvent); //otherwise make them an account
         }
-        //System.out.println("About to open display scene");
-
     }
 
     public String getName()
@@ -83,7 +78,6 @@ public class LoginController {
         while ((i=userLogin.read()) != -1) {
             users = users + ((char) i);
         }
-        //System.out.println(users);
         return users;
     }
 
@@ -95,7 +89,6 @@ public class LoginController {
         FileWriter userWriter = new FileWriter("UserSheet.txt", true);
         BufferedWriter outputStream = new BufferedWriter(userWriter);
         String addUser =  username.getText();
-        //System.out.println(password.getText());
         if(!password.getText().isEmpty()){
             addUser = ":"+addUser+":"+password.getText()+":";
         }
@@ -103,8 +96,6 @@ public class LoginController {
             addUser = ":"+addUser + ":none:";
         }
         outputStream.write("\n"+ addUser);
-        //System.out.println(addUser);
-        //System.out.println("creating account");
         outputStream.flush();
         outputStream.close();
             //and then scene switcher code, wait for merge
@@ -117,17 +108,14 @@ public class LoginController {
     }
 
     public void openDisplayScene(ActionEvent actionEvent) {
-        //System.out.println("made it into display scene");
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         primaryStage.setScene(formCheckerScene); // See the form checker page
         formCheck.setUserName(username.getText());
-        //System.out.println("Did eveything in display scene");
     }
 
     public void goHome(ActionEvent actionEvent){
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         primaryStage.setScene(Home);
-
     }
 
 }

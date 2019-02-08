@@ -4,9 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.*;
@@ -14,23 +12,24 @@ import java.io.*;
 public class LoginController {
     private Scene formCheckerScene;
     private FormCheckerController formCheck;
-
-    public void setFormCheck(FormCheckerController formCheck) {
-        this.formCheck = formCheck;
-    }
-
     private Scene Home;
+    private Scene Submission;
 
-    public void setHomeScene(Scene home)
-    {
-        this.Home = home;
-    }
-    
+
     @FXML
     TextField username;
 
     @FXML
     Button goToHome;
+
+    @FXML
+    ToggleGroup SignIn;
+
+    @FXML
+    RadioButton FormLogin;
+
+    @FXML
+    RadioButton TTBLogin;
 
     @FXML
     TextField password;
@@ -49,6 +48,9 @@ public class LoginController {
         users = readFile(users);
         if(username.getText().isEmpty()){
             errorMessage.setText(("Must use a username"));
+        }
+        else if(SignIn.getSelectedToggle()==null){
+            errorMessage.setText(("Must select log in type"));
         }
         else if (users.contains(":"+username.getText()+":"+password.getText()+":")){ //this file checks for the user and pass in the file
             System.out.println("logging in");
@@ -81,8 +83,13 @@ public class LoginController {
         return users;
     }
 
-    public void login(ActionEvent actionEvent){ //logs the user in and moves them to the check forms scene
-        openDisplayScene(actionEvent);
+    public void login(ActionEvent actionEvent){ //logs the user in and moves them to the check forms scene or submit scene
+        if(this.FormLogin.isSelected()){
+            goSubmission(actionEvent);
+        }
+        else if(this.TTBLogin.isSelected()) {
+            openDisplayScene(actionEvent);
+        }
     }
 
     public void createAccount(ActionEvent actionEvent) throws Exception {  //creates an account, then logs the user in and moves them to the checks form scene
@@ -103,9 +110,19 @@ public class LoginController {
 
     }
 
+    //Setters
     public void setFormCheckerScene(Scene scene) {
-        formCheckerScene = scene;
+        this.formCheckerScene = scene;
     }
+
+    public void setSubmission(Scene submission) { this.Submission = submission; }
+
+    public void setHomeScene(Scene home){ this.Home = home;}
+
+    public void setFormCheck(FormCheckerController formCheck) {
+        this.formCheck = formCheck;
+    }
+
 
     public void openDisplayScene(ActionEvent actionEvent) {
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
@@ -116,6 +133,12 @@ public class LoginController {
     public void goHome(ActionEvent actionEvent){
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         primaryStage.setScene(Home);
+    }
+
+    //function displays the submission page
+    public void goSubmission(ActionEvent actionEvent) {
+        Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow(); //get current stage
+        primaryStage.setScene(Submission); //display homepage
     }
 
 }

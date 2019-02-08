@@ -53,6 +53,7 @@ public class Main extends Application {
         LoginController loginController = (LoginController) loginPaneLoader.getController();
         loginController.setFormCheckerScene(formCheckerScene); //this is the problem
         loginController.setHomeScene(HomeScene);
+        loginController.setSubmission(SubmissionScene);
 
         FormCheckerController formCheckControl = (FormCheckerController) formCheckerPaneLoader.getController();
         loginController.setFormCheck(formCheckControl);

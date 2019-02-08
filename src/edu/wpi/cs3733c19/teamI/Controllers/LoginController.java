@@ -40,17 +40,38 @@ public class LoginController {
     @FXML
     Label errorMessage;
 
+
     FileReader userLogin;
     BufferedReader userReader;
+    String invalidCharacters = ":!@#$%^&*()/.,><;-=_+";
+    String userType = "@";
+    boolean isValid = true;
 
     public void attemptLogin(ActionEvent actionEvent) throws Exception { //attempts a login and will either create an account or login
         String users = "";
         users = readFile(users);
-        if(username.getText().isEmpty()){
-            errorMessage.setText(("Must use a username"));
+        for (int i = 0; i < invalidCharacters.length(); i++) {
+            Character currChar = invalidCharacters.charAt(i);
+            if (username.getText().contains(currChar.toString()) || password.getText().contains(currChar.toString())) {
+                errorMessage.setText("username or password contains illegal characters");
+                isValid = false;
+                System.out.println("illegal");
+            }
+        }
+        if (isValid == false){
+
+        }
+        else if(username.getText().isEmpty()){
+            errorMessage.setText(("Enter a username to login"));
+            System.out.println("no user");
+        }
+        else if(username.getText().length() < 8){
+            errorMessage.setText("Username too short");
+            System.out.println("short");
         }
         else if(SignIn.getSelectedToggle()==null){
             errorMessage.setText(("Must select log in type"));
+            System.out.println("log type");
         }
         else if (users.contains(":"+username.getText()+":"+password.getText()+":")){ //this file checks for the user and pass in the file
             System.out.println("logging in");
@@ -60,11 +81,19 @@ public class LoginController {
             login(actionEvent);
         }
         else if (users.contains(":"+username.getText()+":")){
-            errorMessage.setText("Username already taken!");
+            errorMessage.setText("Select an unused username");
         }
         else {
             createAccount(actionEvent); //otherwise make them an account
         }
+    }
+
+    public void setTTBLogin(){
+        userType = "#";
+    }
+
+    public void setSubmitterLogin(){
+        userType = "$";
     }
 
     public String getName()
@@ -97,10 +126,10 @@ public class LoginController {
         BufferedWriter outputStream = new BufferedWriter(userWriter);
         String addUser =  username.getText();
         if(!password.getText().isEmpty()){
-            addUser = ":"+addUser+":"+password.getText()+":";
+            addUser = ":"+addUser+":"+password.getText()+":"+ userType+":";
         }
         else{
-            addUser = ":"+addUser + ":none:";
+            addUser = ":"+addUser + ":none:"+ userType+":";
         }
         outputStream.write("\n"+ addUser);
         outputStream.flush();

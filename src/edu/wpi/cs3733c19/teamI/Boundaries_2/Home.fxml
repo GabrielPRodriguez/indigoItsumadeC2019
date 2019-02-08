@@ -1,14 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="edu.wpi.cs3733c19.teamI.Boundaries_2.Home"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Boundaries_2.Home">
+   <children>
+      <VBox alignment="TOP_CENTER" layoutX="250.0" layoutY="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ToolBar nodeOrientation="LEFT_TO_RIGHT" style="-fx-background-color: #66ccff;">
+               <items>
+                  <HBox alignment="CENTER">
+                     <children>
+                        <JFXButton buttonType="RAISED" mnemonicParsing="false" ripplerFill="BLACK" text="TTB COLA Search" textFill="WHITE">
+                           <graphic>
+                              <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Assets/treasury_high_density.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </JFXButton>
+                        <Region minHeight="50.0" minWidth="80.0" />
+                        <JFXButton alignment="CENTER_RIGHT" mnemonicParsing="false" text="About" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton mnemonicParsing="false" text="Submit Form" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </JFXButton>
+                        <MenuButton mnemonicParsing="false" style="-fx-background-color: transparent;" text="Login" textFill="WHITE">
+                          <items>
+                            <MenuItem mnemonicParsing="false" text="Logout" />
+                            <MenuItem mnemonicParsing="false" text="Work" />
+                              <MenuItem mnemonicParsing="false" text="Pending Applications" />
+                          </items>
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                        </MenuButton>
+                     </children>
+                  </HBox>
+               </items>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </ToolBar>
+            <Pane />
+         </children>
+      </VBox>
+   </children>
 </AnchorPane>

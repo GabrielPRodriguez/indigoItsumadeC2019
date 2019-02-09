@@ -1,5 +1,6 @@
 package edu.wpi.cs3733c19.teamI.Controllers;
 
+import edu.wpi.cs3733c19.teamI.Entities.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -113,6 +114,9 @@ public class LoginController {
     }
 
     public void login(ActionEvent actionEvent){ //logs the user in and moves them to the check forms scene or submit scene
+        User currentUser = User.getUser(username.getText(), password.getText(), User.userPower.Standard);
+
+
         if(this.FormLogin.isSelected()){
             goSubmission(actionEvent);
         }

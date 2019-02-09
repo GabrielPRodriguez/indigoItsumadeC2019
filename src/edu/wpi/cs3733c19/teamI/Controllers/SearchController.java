@@ -19,7 +19,7 @@ import static edu.wpi.cs3733c19.teamI.Main.Results;
 // controller for the search screen UI
 public class SearchController {
     private Scene displayScene; // scene that we use to display results
-    public SearchDisplayController dispController; //controller of the display screen, needed to access update functions
+    private SearchDisplayController dispController; //controller of the display screen, needed to access update functions
     private Scene homePage; //home page that we may want to switch back to
 
 
@@ -105,7 +105,7 @@ public class SearchController {
 
     //following function iterates through all elements on search page and determines if they are a control
     //if they are, it uses the fxID as the parameter name and the data as the paramter data
-    //TODO was a terrible idea this needs to be handled differently ASAP, at very least move all search controls to seprate anchor
+    //TODO was a terrible idea this needs to be handled differently ASAP, at very least move all search controls to seperate anchor
 
     @FXML
     protected void fillSearchParam() throws Exception
@@ -140,8 +140,6 @@ public class SearchController {
         if(userParam.isEmpty() == false) { //if we have search parameters, perform search
             Results.gatherSearchParam(userParam); //results references global searchResults instance
         }
-
-
     }
 
     //this function clears all search parameter inputs
@@ -181,7 +179,7 @@ public class SearchController {
         primaryStage.setScene(displayScene); // show display screen
         dispController.updateSearchDisplay(); //update table view
     }
-    
+
     //setter used to define what the home page is, used in Main()
     public void setHomePage(Scene homePage) {
         this.homePage = homePage;
@@ -192,10 +190,15 @@ public class SearchController {
         return Results;
     }
 
+    //setter for the display controller
+    public void setDispController(SearchDisplayController dispController) {
+        this.dispController = dispController;
+    }
+
     //function displays the home screen
     public void openHome(ActionEvent actionEvent) {
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow(); //get current stage
-        primaryStage.setScene(homePage); //display hompage
+        primaryStage.setScene(homePage); //display homepage
     }
 
 

@@ -100,7 +100,7 @@ public class FormSubController implements Initializable {
         TextField grape_Field;
 
         @FXML
-        TextField appelllation_Field;
+        TextField appellation_Field;
 
         @FXML
         TextField ph_Field;
@@ -116,19 +116,22 @@ public class FormSubController implements Initializable {
 
 
 
-
+        //Enables the fields that are only used for wine when the wine radial button is selected
 
         @FXML
         private void activateWineFields(ActionEvent wineSelect) throws IOException {
-            appelllation_Field.setDisable(false);
+            appellation_Field.setDisable(false);
             ph_Field.setDisable(false);
             vintage_Field.setDisable(false);
             grape_Field.setDisable(false);
         }
 
+
+        //Disables the wine-only fields when the beer or liquor radial buttons are selected
+
         @FXML
         private void disableWineFields(ActionEvent wineDeselect) throws IOException{
-            appelllation_Field.setDisable(true);
+            appellation_Field.setDisable(true);
             ph_Field.setDisable(true);
             vintage_Field.setDisable(true);
             grape_Field.setDisable(true);
@@ -139,8 +142,8 @@ public class FormSubController implements Initializable {
         private void handleSubmitButton(ActionEvent event) throws IOException, Exception{
             if(event.getSource()== submit_Button){
                 Form sentForm = new Form();
-                boolean readyToSend = true;
-                submit_message.setText("");
+                boolean readyToSend = true; //if true by the end of the method, the form will be sent to database
+                submit_message.setText(""); //string to insert into textfield either confirming submission or printing error messge
 
                 //sets Domestic Or Imported field
 
@@ -187,7 +190,6 @@ public class FormSubController implements Initializable {
                 sentForm.setFancifulName(fancyName_Field.getText());
 
                 //Sets Date of Submission
-                //Note: get_datetime() vs date field? which should be used?
 
                 sentForm.setDateOfApplication(date_Field.getText());
 
@@ -215,7 +217,7 @@ public class FormSubController implements Initializable {
                     sentForm.setGrapeVarietals(grape_Field.getText());
 
                     //Sets Wine Appellation
-                    sentForm.setWineAppellation(appelllation_Field.getText());
+                    sentForm.setWineAppellation(appellation_Field.getText());
 
                     //Sets Wine Vintage year
                     sentForm.setVintage(vintage_Field.getText());
@@ -234,7 +236,7 @@ public class FormSubController implements Initializable {
                 }
 
 
-                //Sets alcohol content percentage
+                //Sets alcohol content percentage and checks to see if it is a double
                 try {
                     sentForm.setAlcoholContent(Double.parseDouble(alcoholPercent_Field.getText()));
                 }
@@ -245,6 +247,10 @@ public class FormSubController implements Initializable {
 
                 }
 
+                //checks if required fields are missing, prints an error message stating which ones are
+                //missing, prevents the form from actually being submitted
+                //to set more required fields, please edit missingRequired() and getMissingStatement() in Form.java
+
                 if(sentForm.missingRequired()){
                     readyToSend = false;
                     String oldMessage = submit_message.getText();
@@ -252,6 +258,9 @@ public class FormSubController implements Initializable {
                     String errorMessage = sentForm.getMissingFieldsStatement(); //apply to a Label
                     submit_message.setText(oldMessage + "  " +  errorMessage);
                 }
+
+                //sends the form to database when int/double fields contain the correct datatype and
+                //all required fields have received input
 
                 if(readyToSend){
                     //add code to sent to database
@@ -282,7 +291,10 @@ public class FormSubController implements Initializable {
                     */
                     //System.out.println("making db");
                     SQLDriver driver = new SQLDriver();
+                    //sets the names of columns in the database, if additional form fields are added, please add a new column
                     String [] columns = {"formID", "repID", "plantRegistry", "domesticOrImported", "serialNumber", "brandName", "beverageType", "fancifulName", "nameAndAddress", "mailingAddress", "extraInfo", "dateOfApplication", "nameOfApplicant", "formula", "grapeVarietals", "vintage", "wineAppellation", "email", "phoneNumber", "pHValue", "alcoholContent", "status", "approvingUser", "approvalDate", "expirationDate"};
+                    //contains the datatype of each column in the database, when adding a new column, please also add it's datatype here/
+                    //"text" for strings and "real" for doubles/integers
                     DBTypes [] full_types = {new DBTypes("real"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("real"), new DBTypes("real"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text")};
                     try{
                         driver.create_table("form_data", "form_data.db", columns, full_types);
@@ -291,6 +303,8 @@ public class FormSubController implements Initializable {
                         System.out.println("exception, create_table");
                     }
                     //int _id_count = driver.select_all("form_data.db", "form_data").size();
+
+                    //iterates through the formID column of the database in order to find the current highest formID value
                     double _id_count = 0;
                     for (HashMap<String, ReturnedValue>result:driver.select_all("form_data.db", "form_data")){
                         double _test = result.get("formID").to_double();
@@ -298,11 +312,15 @@ public class FormSubController implements Initializable {
                             _id_count = _test;
                         }
                     }
+
+                    //collects values from fields of sentForm object (see Form.java)
                     DBValue [] all_vals = {new DBValue<Integer>((int)(_id_count)+1), new DBValue<String>(sentForm.getrepID()), new DBValue<String>(sentForm.getplantRegistry()), new DBValue<String>(sentForm.getdomesticOrImported()), new DBValue<String>(sentForm.getserialNumber()), new DBValue<String>(sentForm.getbrandName()), new DBValue<String>(sentForm.getbeverageType()), new DBValue<String>(sentForm.getfancifulName()), new DBValue<String>(sentForm.getnameAndAddress()), new DBValue<String>(sentForm.getmailingAddress()), new DBValue<String>(sentForm.getextraInfo()), new DBValue<String>(sentForm.getdateOfApplication()), new DBValue<String>(sentForm.getnameOfApplicant()), new DBValue<String>(sentForm.getformula()), new DBValue<String>(sentForm.getgrapeVarietals()), new DBValue<String>(sentForm.getvintage()), new DBValue<String>(sentForm.getwineAppellation()), new DBValue<String>(sentForm.getemail()), new DBValue<String>(sentForm.getphoneNumber()), new DBValue<Double>(sentForm.getpHValue()), new DBValue<Double>(sentForm.getalcoholContent()), new DBValue<String>("unread"), new DBValue<String>("noUser"), new DBValue<String>("NoDateAprroved"), new DBValue<String>("NoDateExir")};
 
+                    //the values above are actually entered into the database (contained in form_data.db)
                     driver.insert_vals("form_data", "form_data.db", all_vals);
 
-                    String success = "Form successfully submitted."; //apply to a Label
+                    //displays message after form has successfully been entered into the database
+                    String success = "Form successfully submitted.";
                     submit_message.setText(success);
 
                     //clears all fields
@@ -318,7 +336,7 @@ public class FormSubController implements Initializable {
                     phoneNum_Field.clear();
                     mailAddr_Field.clear();
                     email_Field.clear();
-                    appelllation_Field.clear();
+                    appellation_Field.clear();
                     grape_Field.clear();
                     ph_Field.clear();
                     vintage_Field.clear();
@@ -334,6 +352,7 @@ public class FormSubController implements Initializable {
             }
         }
 
+        //the following runs formsubmission page is opened
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -387,7 +406,7 @@ public class FormSubController implements Initializable {
 
         // Appellation
         final Tooltip tooltipWineAppellation = new Tooltip("WINE APPELLATION (If on label)");
-        appelllation_Field.setTooltip(tooltipWineAppellation);
+        appellation_Field.setTooltip(tooltipWineAppellation);
 
         // Phone Number
         final Tooltip tooltipPhoneNumber = new Tooltip("PHONE NUMBER");
@@ -414,6 +433,8 @@ public class FormSubController implements Initializable {
 
 
     }
+
+    //return to the homepage
 
     public void goHome(ActionEvent actionEvent){
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();

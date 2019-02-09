@@ -55,7 +55,7 @@ public class SearchDisplayController {
 
     @FXML
     TableColumn AlcoholContent;
-    
+
     //Search param inputs
 
     @FXML

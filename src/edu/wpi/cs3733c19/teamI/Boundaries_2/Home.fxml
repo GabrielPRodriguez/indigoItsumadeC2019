@@ -11,19 +11,19 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="400.0" minWidth="600.0" style="-fx-background-color: #e4e2e0;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Boundaries_2.Home">
+<AnchorPane minHeight="400.0" minWidth="600.0" style="-fx-background-color: #e4e2e0;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox alignment="TOP_CENTER" layoutX="250.0" layoutY="100.0" minHeight="400.0" minWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ToolBar minHeight="50.0" minWidth="600.0" nodeOrientation="LEFT_TO_RIGHT" style="-fx-background-color: #aeb0b5;">
+            <ToolBar minHeight="60.0" minWidth="600.0" nodeOrientation="LEFT_TO_RIGHT" style="-fx-background-color: #aeb0b5;">
                <items>
-                  <HBox alignment="CENTER">
+                  <AnchorPane minHeight="60.0" minWidth="600.0">
                      <children>
-                        <JFXButton buttonType="RAISED" mnemonicParsing="false" ripplerFill="BLACK" text="TTB COLA Search" textFill="WHITE">
+                        <JFXButton mnemonicParsing="false" text="TTB COLA Search" textFill="WHITE" AnchorPane.leftAnchor="10.0">
                            <graphic>
                               <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -32,47 +32,50 @@
                               </ImageView>
                            </graphic>
                            <font>
-                              <Font name="System Bold" size="18.0" />
+                              <Font name="System Bold" size="14.0" />
                            </font>
                         </JFXButton>
-                        <Region minHeight="50.0" minWidth="80.0" />
-                        <JFXButton alignment="CENTER_RIGHT" mnemonicParsing="false" text="About" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="16.0" />
-                           </font>
-                        </JFXButton>
-                        <JFXButton mnemonicParsing="false" text="Submit Form" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="16.0" />
-                           </font>
-                        </JFXButton>
-                        <MenuButton mnemonicParsing="false" style="-fx-background-color: transparent;" text="Login" textFill="WHITE">
-                          <items>
-                            <MenuItem mnemonicParsing="false" text="Logout" />
-                            <MenuItem mnemonicParsing="false" text="Work" />
-                              <MenuItem mnemonicParsing="false" text="Pending Applications" />
-                          </items>
-                           <font>
-                              <Font name="System Bold" size="17.0" />
-                           </font>
-                        </MenuButton>
+                        <HBox alignment="CENTER" layoutX="304.0" layoutY="11.0" AnchorPane.rightAnchor="14.0">
+                           <children>
+                              <JFXButton alignment="CENTER_RIGHT" mnemonicParsing="false" text="About" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </JFXButton>
+                              <JFXButton mnemonicParsing="false" text="Submit Form" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </JFXButton>
+                              <MenuButton mnemonicParsing="false" style="-fx-background-color: transparent;" text="Login" textFill="WHITE">
+                                <items>
+                                  <MenuItem mnemonicParsing="false" text="Logout" />
+                                  <MenuItem mnemonicParsing="false" text="Work" />
+                                    <MenuItem mnemonicParsing="false" text="Pending Applications" />
+                                </items>
+                                 <font>
+                                    <Font name="System Bold" size="17.0" />
+                                 </font>
+                              </MenuButton>
+                           </children>
+                        </HBox>
                      </children>
-                  </HBox>
+                  </AnchorPane>
                </items>
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
             </ToolBar>
-            <AnchorPane minHeight="350.0" minWidth="600.0">
+            <AnchorPane>
                <children>
-                  <VBox alignment="CENTER" layoutX="138.0" layoutY="102.0" spacing="20.0">
+                  <Pane AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
                      <children>
-                        <Label alignment="CENTER" text="TTB COLA Search">
+                        <Label alignment="CENTER" layoutX="61.0" text="TTB COLA Search">
                            <font>
                               <Font name="System Bold" size="25.0" />
                            </font>
                         </Label>
-                        <HBox alignment="CENTER" spacing="20.0">
+                        <HBox alignment="CENTER" layoutY="53.0" spacing="20.0">
                            <children>
                               <TextField minHeight="25.0" minWidth="250.0" />
                               <JFXButton mnemonicParsing="false" style="-fx-background-color: #046b99;" text="Search" textFill="WHITE">
@@ -82,13 +85,13 @@
                               </JFXButton>
                            </children>
                         </HBox>
+                        <JFXButton alignment="CENTER" layoutY="103.0" mnemonicParsing="false" style="-fx-background-color: #205493;" text="Advanced Search" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </JFXButton>
                      </children>
-                  </VBox>
-                  <JFXButton layoutX="138.0" layoutY="196.0" mnemonicParsing="false" style="-fx-background-color: #205493;" text="Advanced Search" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="13.0" />
-                     </font>
-                  </JFXButton>
+                  </Pane>
                </children>
             </AnchorPane>
          </children>

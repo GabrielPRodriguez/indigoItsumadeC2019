@@ -20,9 +20,9 @@ public class Main extends Application {
 
         FXMLLoader firstPaneLoader = new FXMLLoader(getClass().getResource("Boundaries_2/Home.fxml"));
         Parent firstPane = firstPaneLoader.load();
-        Scene firstScene = new Scene(firstPane, 600, 400);
-
-      /*  FXMLLoader formCheckerPaneLoader = new FXMLLoader(getClass().getResource("Boundaries/FormChecker.fxml"));
+        Scene firstScene = new Scene(firstPane);
+/*
+        FXMLLoader formCheckerPaneLoader = new FXMLLoader(getClass().getResource("Boundaries/FormChecker.fxml"));
         Parent formCheckerPane = formCheckerPaneLoader.load();
         Scene formCheckerScene = new Scene(formCheckerPane, 1289, 918);
 
@@ -78,6 +78,7 @@ public class Main extends Application {
 */
         primaryStage.setTitle("COLA SEARCH ENGINE");
         primaryStage.setScene(firstScene);
+        primaryStage.setMaximized(true);
         primaryStage.show();
 
     }

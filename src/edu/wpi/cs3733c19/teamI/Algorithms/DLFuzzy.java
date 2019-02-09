@@ -55,7 +55,7 @@ public class DLFuzzy implements IStrategyFuzzy {
         //      for j :=1 to length(b) inclusive do
 
         for (int i = 1; i < sourceLength +1; i++){
-            for (int j = 1; j < sourceLength +1; j++){
+            for (int j = 1; j < targetLength +1; j++){
 
                 //  if a[i]=b[j]then cost :=0
                 // else cost :=1

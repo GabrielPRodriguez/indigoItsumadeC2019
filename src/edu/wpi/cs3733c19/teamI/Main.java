@@ -1,6 +1,5 @@
 package edu.wpi.cs3733c19.teamI;
 
-import edu.wpi.cs3733c19.teamI.Controllers.*;
 import edu.wpi.cs3733c19.teamI.Entities.SearchResults;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -19,11 +18,11 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
 
-        FXMLLoader firstPaneLoader = new FXMLLoader(getClass().getResource("Boundaries/SearchV2.fxml"));
+        FXMLLoader firstPaneLoader = new FXMLLoader(getClass().getResource("Boundaries_2/Home.fxml"));
         Parent firstPane = firstPaneLoader.load();
-        Scene firstScene = new Scene(firstPane, 1289, 918);
+        Scene firstScene = new Scene(firstPane, 600, 400);
 
-        FXMLLoader formCheckerPaneLoader = new FXMLLoader(getClass().getResource("Boundaries/FormChecker.fxml"));
+      /*  FXMLLoader formCheckerPaneLoader = new FXMLLoader(getClass().getResource("Boundaries/FormChecker.fxml"));
         Parent formCheckerPane = formCheckerPaneLoader.load();
         Scene formCheckerScene = new Scene(formCheckerPane, 1289, 918);
 
@@ -76,10 +75,11 @@ public class Main extends Application {
         secondPaneController.setSearchScene(firstScene);
         firstPaneController.dispController = secondPaneController;//set the controller attribute
         secondPaneController.setHomePage(thirdScene); //set the home screen attribute
-
+*/
         primaryStage.setTitle("COLA SEARCH ENGINE");
-        primaryStage.setScene(thirdScene);
+        primaryStage.setScene(firstScene);
         primaryStage.show();
+
     }
 
 

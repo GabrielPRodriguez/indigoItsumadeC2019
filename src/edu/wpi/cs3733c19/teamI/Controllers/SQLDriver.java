@@ -76,6 +76,25 @@ public class SQLDriver{
 
 
     }
+    public int l_distance(String a, String b){
+        int counter = Math.abs(a.length()-b.length());
+        if (a.length() >= b.length()){
+            for (int i = 0; i < b.length(); i++){
+                if (b.charAt(i) != a.charAt(i)){
+                    counter++;
+                }
+            }
+        }
+        else{
+            for (int i = 0; i < b.length(); i++){
+                if (b.charAt(i) != a.charAt(i)){
+                    counter++;
+                }
+            }
+        }
+        return counter;
+    }
+
     public void insert_vals(String tablename, String filename, DBValue [] vals) throws Exception{
         if (!filename.endsWith(".db")){
             throw new Exception("filename must end with '.db'");
@@ -222,7 +241,68 @@ public class SQLDriver{
 
     }
 
+    public HashMap<String, ReturnedValue>search_for_l(String tablename, String filename, String target, String _key) throws Exception{
+        //required: @target must be a string
+        //simple Levenshtein distance: https://en.wikipedia.org/wiki/Levenshtein_distance
+        //sample method call: search_for_l("form_data", "form_data.db", "MyFancyTitle", "fancifulName");
 
+        int _count = -1;
+        HashMap<String, ReturnedValue>seen;
+        for (HashMap<String, ReturnedValue>result:select_all(filename, tablename)){
+            if (_count == -1){
+
+                _count = l_distance(result.get(_key).to_string(), target);
+                seen = result;
+            }
+            else{
+                int new_distance = l_distance(result.get(_key).to_string(), target);
+                if (new_distance < _count){
+                    seen = result;
+                    _count = new_distance;
+                }
+            }
+        }
+
+        return seen;
+    }
+    public ArrayList<HashMap<String, ReturnedValue>>search_sql_wildcard(String tablename, String filename, String target, String _key) throws Exception{
+        //sample method call: search_for_l("form_data", "form_data.db", "MyFancyTitle", "fancifulName");
+        String _query = "SELECT * FROM "+tablename+" * WHERE "+_key+" LIKE "+"%'"+target+"'%";
+        if (!filename.endsWith(".db")){
+            throw new Exception("filename must end with '.db'");
+        }
+        Connection _about_db = connect_about_file(filename);
+        ArrayList<String>columns = new ArrayList<String>();
+        Statement stmt = _about_db.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT rowname FROM "+tablename);
+        while (rs.next()) {
+            columns.add(rs.getString("rowname"));
+        }
+        HashMap<String, String>row_types = new HashMap<String, String>();
+        Connection _about_db1 = connect_about_file(filename);
+        Statement stmt1 = _about_db1.createStatement();
+        ResultSet rs1 = stmt1.executeQuery("SELECT rowname, rowtype FROM "+tablename);
+        while (rs1.next()) {
+            row_types.put(rs1.getString("rowname"), rs1.getString("rowtype"));
+
+        }
+
+        Connection _connector = connect_file(filename);
+        Statement conn = _connector.createStatement();
+        ResultSet _rs_conn = conn.executeQuery(_query);
+        ArrayList<HashMap<String, ReturnedValue>>full_payload = new ArrayList<HashMap<String, ReturnedValue>>();
+
+        while (_rs_conn.next()){
+
+            HashMap<String, ReturnedValue>_temp = new HashMap<String, ReturnedValue>();
+            for (String col:columns){
+                _temp.put(col, new ReturnedValue(_rs_conn.getString(col).toString(), row_types.get(col)));
+            }
+            full_payload.add(_temp);
+        }
+        return full_payload;
+
+    }
     public ArrayList<HashMap<String, ReturnedValue>>get_data_by_value(String tablename, String filename, LinkedList<String>search_fields, HashMap<String, DataField>targets) throws Exception{
         //System.out.println("in search method");
 

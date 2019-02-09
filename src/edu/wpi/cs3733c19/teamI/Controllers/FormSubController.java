@@ -18,7 +18,7 @@ import java.util.HashMap;
 import java.util.ResourceBundle;
 
 
-public class FormSubController implements Initializable {
+public class FormSubController extends ToolBarController implements Initializable {
 
     private Scene HomeScene;
 

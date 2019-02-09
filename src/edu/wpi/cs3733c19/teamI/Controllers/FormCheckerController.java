@@ -14,7 +14,7 @@ import java.util.*;
 
 import java.io.IOException;
 
-public class FormCheckerController implements Initializable {
+public class FormCheckerController extends ToolBarController implements Initializable {
     private LoginController loginCtrl;
 
     public void setLoginCtrl(LoginController loginCtrl) {

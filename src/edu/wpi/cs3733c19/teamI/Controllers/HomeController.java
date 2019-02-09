@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 
 import javafx.event.ActionEvent;
 
-public class HomeController {
+public class HomeController extends ToolBarController{
 
     private Scene submissionScene;
     private Scene searchScene;

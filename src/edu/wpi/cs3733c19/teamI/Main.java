@@ -77,6 +77,9 @@ public class Main extends Application {
         firstPaneController.dispController = secondPaneController;//set the controller attribute
         secondPaneController.setHomePage(thirdScene); //set the home screen attribute
 
+
+
+
         primaryStage.setTitle("COLA SEARCH ENGINE");
         primaryStage.setScene(thirdScene);
         primaryStage.show();

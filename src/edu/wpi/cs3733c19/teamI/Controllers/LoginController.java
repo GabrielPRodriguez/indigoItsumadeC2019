@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 
 import java.io.*;
 
-public class LoginController {
+public class LoginController extends ToolBarController {
     private Scene formCheckerScene;
     private FormCheckerController formCheck;
 

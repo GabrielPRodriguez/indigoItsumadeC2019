@@ -1,7 +1,6 @@
 package edu.wpi.cs3733c19.teamI;
 
 import edu.wpi.cs3733c19.teamI.Controllers.ToolBarController;
-import edu.wpi.cs3733c19.teamI.Controllers2.*;
 import edu.wpi.cs3733c19.teamI.Entities.SearchResults;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -27,23 +26,23 @@ public class Main extends Application {
 
         FXMLLoader newHomePaneLoader = new FXMLLoader(getClass().getResource("Boundaries_2/Home.fxml"));
         Parent homePane = newHomePaneLoader.load();
-        Scene homeScene = new Scene(homePane, 1289, 918);
+        Scene homeScene = new Scene(homePane);
 
         FXMLLoader loginResultLoader = new FXMLLoader(getClass().getResource("Boundaries_2/Login_CreateAccount.fxml"));
         Parent loginCreatePane = loginResultLoader.load();
-        Scene loginCreateScene = new Scene(loginCreatePane, 1289, 918);
+        Scene loginCreateScene = new Scene(loginCreatePane);
 
         FXMLLoader formSubLoader = new FXMLLoader(getClass().getResource("Boundaries_2/FormSubmission.fxml"));
         Parent formSubPane = formSubLoader.load();
-        Scene formSubScene = new Scene(formSubPane, 1289, 918);
+        Scene formSubScene = new Scene(formSubPane);
 
         FXMLLoader detailedResultLoader = new FXMLLoader(getClass().getResource("Boundaries_2/DetailedSearchResults.fxml"));
         Parent detailedResultPane = detailedResultLoader.load();
-        Scene detailedResultScene = new Scene(detailedResultPane, 1289, 918);
+        Scene detailedResultScene = new Scene(detailedResultPane);
 
         FXMLLoader searchResultLoader = new FXMLLoader(getClass().getResource("Boundaries_2/SearchResults.fxml"));
         Parent searchResultPane = searchResultLoader.load();
-        Scene searchResultScene = new Scene(searchResultPane, 1289, 918);
+        Scene searchResultScene = new Scene(searchResultPane);
 
         /*
 
@@ -108,6 +107,7 @@ public class Main extends Application {
 
         */
 
+        /*
         //controllers for search scene
         NewHomeController newHomeController = (NewHomeController) newHomePaneLoader.getController();
         SubmissionController submissionController = (SubmissionController) formSubLoader.getController();
@@ -115,9 +115,10 @@ public class Main extends Application {
         DetailedResultsController detailedResultsController = (DetailedResultsController) detailedResultLoader.getController();
         ResultsController resultsController = (ResultsController) searchResultLoader.getController();
 
-        newHomeController.setSearchResultScene(searchResultScene);
+        newHomeController.setSearchResultScene(SearchResults);
 
         //inject toolbar controls into each scene
+
 
         newHomeController.setToolBarController(toolBarController);
         detailedResultsController.setToolBarController(toolBarController);
@@ -138,7 +139,7 @@ public class Main extends Application {
 
 
 
-
+        */
 
 
         primaryStage.setTitle("COLA SEARCH ENGINE");

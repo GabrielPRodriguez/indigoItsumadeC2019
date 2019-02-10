@@ -60,7 +60,7 @@ public class DLFuzzy implements IStrategyFuzzy {
                 // if the pointer on Source and Target are the same, cost is 1, else 0.
                 //  if a[i]=b[j] then cost :=0
                 // else cost :=1
-                int cost = source.charAt(i-1) == target.charAt(j-1) ? 0:1;
+                int cost = source.toLowerCase().charAt(i-1) == target.toLowerCase().charAt(j-1) ? 0:1;
 
                 //   d[i,j]:= minimum(
                 //      d[i-1, j]+1,     // deletion
@@ -75,8 +75,8 @@ public class DLFuzzy implements IStrategyFuzzy {
                 // if i >1 and j >1 and a[i]=b[j-1] and a[i-1]=b[j]then
                 if (i > 1 &&
                         j >1 &&
-                        source.charAt(i-1) == target.charAt(j-2) &&
-                        source.charAt(i-2) == target.charAt(j-1)){
+                        source.toLowerCase().charAt(i-1) == target.toLowerCase().charAt(j-2) &&
+                        source.toLowerCase().charAt(i-2) == target.toLowerCase().charAt(j-1)){
 
                     //  d[i,j]:= minimum(d[i, j], d[i-2, j-2]+cost)  // transposition
                     dist[i][j] = Math.min(dist[i][j],dist[i-2][j-2] + cost); // transposition

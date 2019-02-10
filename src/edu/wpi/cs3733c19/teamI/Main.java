@@ -1,6 +1,6 @@
 package edu.wpi.cs3733c19.teamI;
 
-import edu.wpi.cs3733c19.teamI.Controllers2.ToolBarController;
+import edu.wpi.cs3733c19.teamI.Controllers.ToolBarController;
 import edu.wpi.cs3733c19.teamI.Controllers2.*;
 import edu.wpi.cs3733c19.teamI.Entities.SearchResults;
 import javafx.application.Application;

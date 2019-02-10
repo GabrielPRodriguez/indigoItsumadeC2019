@@ -19,6 +19,17 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
 
+        ToolBarController toolBarController = new ToolBarController();
+
+
+        FXMLLoader newHomePaneLoader = new FXMLLoader(getClass().getResource("Boundaries_2/Home.fxml"));
+        Parent homePane = newHomePaneLoader.load();
+        Scene homeScene = new Scene(homePane, 1289, 918);
+
+        FXMLLoader loginResultLoader = new FXMLLoader(getClass().getResource("Boundaries_2/Login_CreateAccount.fxml"));
+        Parent loginCreatePane = loginResultLoader.load();
+        Scene loginCreateScene = new Scene(loginCreatePane, 1289, 918);
+
         FXMLLoader firstPaneLoader = new FXMLLoader(getClass().getResource("Boundaries/SearchV2.fxml"));
         Parent firstPane = firstPaneLoader.load();
         Scene firstScene = new Scene(firstPane, 1289, 918);
@@ -47,12 +58,13 @@ public class Main extends Application {
         ( (FormSubController) fourthPaneLoader.getController()).setHomeScene(thirdScene);
 
         //Loading the login page
-        FXMLLoader loginPaneLoader = new FXMLLoader(getClass().getResource("Boundaries/Login.fxml"));
+        FXMLLoader loginPaneLoader = new FXMLLoader(getClass().getResource("Boundaries_2/Login_CreateAccount.fxml"));
         Parent loginPane = loginPaneLoader.load();
         Scene loginScene = new Scene(loginPane, 1289, 918);
         LoginController loginController = (LoginController) loginPaneLoader.getController();
         loginController.setFormCheckerScene(formCheckerScene); //this is the problem
-        loginController.setHomeScene(thirdScene);
+        loginController.setHomeScene(homeScene);
+        loginController.setFormSub(formCheckerScene);
 
         FormCheckerController formCheckControl = (FormCheckerController) formCheckerPaneLoader.getController();
         loginController.setFormCheck(formCheckControl);
@@ -77,11 +89,24 @@ public class Main extends Application {
         firstPaneController.dispController = secondPaneController;//set the controller attribute
         secondPaneController.setHomePage(thirdScene); //set the home screen attribute
 
+        NewHomeController newHomeController = (NewHomeController) newHomePaneLoader.getController();
+        newHomeController.setToolBarController(toolBarController);
+        newHomeController.setHomeScene(homeScene);
+        newHomeController.setFormSub(fourthScene);
+        newHomeController.setLogin(loginScene);
+
+        toolBarController.setFormCheck(formCheckerScene);
+        toolBarController.setHomeScene(homeScene);
+        toolBarController.setLogin(loginScene);
+        toolBarController.setSubScene(fourthScene);
+
+
+
 
 
 
         primaryStage.setTitle("COLA SEARCH ENGINE");
-        primaryStage.setScene(thirdScene);
+        primaryStage.setScene(loginScene);
         primaryStage.show();
     }
 

@@ -1,5 +1,6 @@
 package edu.wpi.cs3733c19.teamI.Controllers;
 
+import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -14,6 +15,7 @@ import java.io.*;
 public class LoginController extends ToolBarController {
     private Scene formCheckerScene;
     private FormCheckerController formCheck;
+    private Scene FormSub;
 
     public void setFormCheck(FormCheckerController formCheck) {
         this.formCheck = formCheck;
@@ -27,12 +29,15 @@ public class LoginController extends ToolBarController {
     {
         this.Home = home;
     }
+    public void setFormSub(Scene formSub){
+        this.FormSub = formSub;
+    }
     
     @FXML
     TextField username;
 
     @FXML
-    Button goToHome;
+    JFXButton goToHome;
 
     @FXML
     TextField password;
@@ -124,10 +129,18 @@ public class LoginController extends ToolBarController {
         //System.out.println("Did eveything in display scene");
     }
 
+    @FXML
     public void goHome(ActionEvent actionEvent){
+        System.out.println("going home");
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         primaryStage.setScene(Home);
 
+    }
+
+    @FXML
+    public void goFormSub(ActionEvent actionEvent){
+        Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        primaryStage.setScene(FormSub);
     }
 
 }

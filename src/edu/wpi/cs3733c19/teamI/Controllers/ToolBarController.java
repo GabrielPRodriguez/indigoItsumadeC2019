@@ -11,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import sun.rmi.runtime.Log;
 
@@ -18,16 +19,22 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ToolBarController implements Initializable {
+public class ToolBarController extends VBox {
 
-    private Scene HomeScene;
-    private Scene SearchScene;
+    public ToolBarController(){
+        FXMLLoader toolBarLoader = new FXMLLoader(getClass().getResource("Boundaries_2/Toolbar.fxml"));
+        toolBarLoader.setRoot(this);
+        toolBarLoader.setController(this);
+    }
+
+    protected Scene HomeScene;
+    protected Scene SearchScene;
     private Scene SubScene;
     private Scene AboutScene;
     private Scene Login;
     private Scene FormCheck;
 
-    public void initializeSceneSwitch() throws IOException {
+   /* public void initializeSceneSwitch() throws IOException {
 
         FXMLLoader searchPaneLoader = new FXMLLoader(getClass().getResource("Boundaries/SearchV2.fxml"));
         Parent firstPane = searchPaneLoader.load();
@@ -39,11 +46,11 @@ public class ToolBarController implements Initializable {
         Scene formCheckerScene = new Scene(formCheckerPane, 1289, 918);
         FormCheck = formCheckerScene;
 
-        FXMLLoader resultsPageLoader = new FXMLLoader(getClass().getResource("Boundaries/ResultsPage.fxml"));
+        FXMLLoader resultsPageLoader = new FXMLLoader(getClass().getResource("Boundaries_2/SearchResults.fxml"));
         Parent resultPane = resultsPageLoader.load();
         Scene resultScene = new Scene(resultPane, 1289, 918);
 
-        FXMLLoader homePaneLoader = new FXMLLoader(getClass().getResource("Boundaries/homepage.fxml"));
+        FXMLLoader homePaneLoader = new FXMLLoader(getClass().getResource("Boundaries_2/Home.fxml"));
         Parent homePane = homePaneLoader.load();
         Scene homeScene = new Scene(homePane, 1289, 918);
         HomeScene = homeScene;
@@ -54,13 +61,36 @@ public class ToolBarController implements Initializable {
         Scene subScene = new Scene(subPane, 1289, 918);
         SubScene = subScene;
 
-        FXMLLoader loginPaneLoader = new FXMLLoader(getClass().getResource("Boundaries/Login.fxml"));
+        FXMLLoader loginPaneLoader = new FXMLLoader(getClass().getResource("Boundaries_2/Login_CreateAccount.fxml"));
         Parent loginPane = loginPaneLoader.load();
         Scene loginScene = new Scene(loginPane, 1289, 918);
         Login = loginScene;
 
+    } */
+
+    public void setHomeScene(Scene homeScene) {
+        HomeScene = homeScene;
     }
 
+    public void setSearchScene(Scene searchScene) {
+        SearchScene = searchScene;
+    }
+
+    public void setSubScene(Scene subScene) {
+        SubScene = subScene;
+    }
+
+    public void setAboutScene(Scene aboutScene) {
+        AboutScene = aboutScene;
+    }
+
+    public void setLogin(Scene login) {
+        Login = login;
+    }
+
+    public void setFormCheck(Scene formCheck) {
+        FormCheck = formCheck;
+    }
 
 
 
@@ -87,10 +117,47 @@ public class ToolBarController implements Initializable {
 
     @FXML
     public void goHome(ActionEvent actionEvent){
+        System.out.println("HomeAction");
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         primaryStage.setScene(HomeScene);
     }
 
+    @FXML
+    public void goAbout(ActionEvent actionEvent){
+        Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        primaryStage.setScene(AboutScene);
+    }
+
+    @FXML
+    public void goSubmit(ActionEvent actionEvent){
+        Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        primaryStage.setScene(SubScene);
+    }
+
+    @FXML
+    public void goLogin(ActionEvent actionEvent){
+        Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        primaryStage.setScene(SubScene);
+    }
+
+    @FXML
+    public void Logout(ActionEvent actionEvent){
+        Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        primaryStage.setScene(SubScene);
+    }
+
+    @FXML
+    public void goPending(ActionEvent actionEvent){
+        Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        primaryStage.setScene(SubScene);
+    }
+
+    @FXML
+    public void goWorkflow(ActionEvent actionEvent){
+        Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        primaryStage.setScene(SubScene);
+    }
+/*
     @Override
     public void initialize(URL location, ResourceBundle resources)  {
         try{
@@ -98,7 +165,7 @@ public class ToolBarController implements Initializable {
 
         }
         catch (IOException e){
-            
+
         }
-    }
+    } */
 }

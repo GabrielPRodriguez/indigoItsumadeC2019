@@ -12,7 +12,7 @@ public class DLFuzzy implements IStrategyFuzzy {
      * @return int the diffrecne between source and target
      * @throws IllegalArgumentException If either source or target is null.
      */
-    private static int OSA_distance(String source, String target) {
+    public int OSA_distance(String source, String target) {
 
 
         // throw if parameter is a null
@@ -91,7 +91,7 @@ public class DLFuzzy implements IStrategyFuzzy {
     }
 
     
-    private static int yearDistance(String source){
+    private int yearDistance(String source){
         int yearIn1000s = OSA_distance(source, "1000");
 
         int yearIn1500s = OSA_distance(source, "1500");

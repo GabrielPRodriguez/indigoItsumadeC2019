@@ -1,5 +1,6 @@
 package edu.wpi.cs3733c19.teamI;
 
+import edu.wpi.cs3733c19.teamI.Controllers2.ToolBarController;
 import edu.wpi.cs3733c19.teamI.Controllers2.*;
 import edu.wpi.cs3733c19.teamI.Entities.SearchResults;
 import javafx.application.Application;
@@ -20,6 +21,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
 
         ToolBarController toolBarController = new ToolBarController();
+        System.out.println(toolBarController);
 
 
         FXMLLoader newHomePaneLoader = new FXMLLoader(getClass().getResource("Boundaries_2/Home.fxml"));
@@ -45,6 +47,7 @@ public class Main extends Application {
         /*
 
         FXMLLoader firstPaneLoader = new FXMLLoader(getClass().getResource("Boundaries/SearchV2.fxml"));
+        FXMLLoader firstPaneLoader = new FXMLLoader(getClass().getResource("Boundaries_2/WorkflowAgent.fxml"));
         Parent firstPane = firstPaneLoader.load();
         Scene firstScene = new Scene(firstPane);
 
@@ -65,7 +68,7 @@ public class Main extends Application {
 
 
         //Loading the submission page
-        FXMLLoader fourthPaneLoader = new FXMLLoader(getClass().getResource("Boundaries_2/FormSubmission.fxml"));
+        FXMLLoader fourthPaneLoader = new FXMLLoader(getClass().getResource("Boundaries/SubmissionProject.fxml"));
         Parent fourthPane = fourthPaneLoader.load();
         Scene fourthScene = new Scene(fourthPane, 1289, 918);
 
@@ -74,13 +77,12 @@ public class Main extends Application {
 
 
         //Loading the login page
-        FXMLLoader loginPaneLoader = new FXMLLoader(getClass().getResource("Boundaries_2/Login_CreateAccount.fxml"));
+        FXMLLoader loginPaneLoader = new FXMLLoader(getClass().getResource("Boundaries/Login.fxml"));
         Parent loginPane = loginPaneLoader.load();
         Scene loginScene = new Scene(loginPane, 1289, 918);
-
-       // loginController.setFormCheckerScene(formCheckerScene); //this is the problem
-        //loginController.setHomeScene(homeScene);
-        //loginController.setFormSub(formCheckerScene);
+        LoginController loginController = (LoginController) loginPaneLoader.getController();
+        loginController.setFormCheckerScene(formCheckerScene); //this is the problem
+        loginController.setHomeScene(thirdScene);
 
 
         //FormCheckerController formCheckControl = (FormCheckerController) formCheckerPaneLoader.getController();
@@ -121,9 +123,12 @@ public class Main extends Application {
         //inject toolbar controls into each scene
 
         newHomeController.setToolBarController(toolBarController);
-        loginController.setToolBarController(toolBarController);
-        submissionController.setToolBarController(toolBarController);
         detailedResultsController.setToolBarController(toolBarController);
+        submissionController.setToolBarController(toolBarController);
+
+        loginController.setToolBarController(toolBarController);
+
+
         resultsController.setToolBarController(toolBarController);
 
 
@@ -142,7 +147,6 @@ public class Main extends Application {
         primaryStage.setTitle("COLA SEARCH ENGINE");
         primaryStage.setScene(homeScene);
         primaryStage.setMaximized(true);
-        //primaryStage.setScene(loginScene);
         primaryStage.show();
 
     }

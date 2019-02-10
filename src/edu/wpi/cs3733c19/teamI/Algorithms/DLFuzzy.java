@@ -57,7 +57,8 @@ public class DLFuzzy implements IStrategyFuzzy {
         for (int i = 1; i < sourceLength +1; i++){
             for (int j = 1; j < targetLength +1; j++){
 
-                //  if a[i]=b[j]then cost :=0
+                // if the pointer on Source and Target are the same, cost is 1, else 0.
+                //  if a[i]=b[j] then cost :=0
                 // else cost :=1
                 int cost = source.charAt(i-1) == target.charAt(j-1) ? 0:1;
 
@@ -67,9 +68,9 @@ public class DLFuzzy implements IStrategyFuzzy {
                 //      d[i-1, j-1]+cost)  // substitution
                 dist[i][j] = Math.min(
                         Math.min(
-                                dist[i-1][j] + 1,
-                                dist[i][j-1]+1),
-                        dist[i-1][j-1]+cost);
+                                dist[i-1][j] + 1, // deletion
+                                dist[i][j-1]+1), // insertion
+                        dist[i-1][j-1]+cost); // substitution
 
                 // if i >1 and j >1 and a[i]=b[j-1] and a[i-1]=b[j]then
                 if (i > 1 &&
@@ -78,7 +79,7 @@ public class DLFuzzy implements IStrategyFuzzy {
                         source.charAt(i-2) == target.charAt(j-1)){
 
                     //  d[i,j]:= minimum(d[i, j], d[i-2, j-2]+cost)  // transposition
-                    dist[i][j] = Math.min(dist[i][j],dist[i-2][j-2] + cost);
+                    dist[i][j] = Math.min(dist[i][j],dist[i-2][j-2] + cost); // transposition
                 }
             }
         }
@@ -89,6 +90,22 @@ public class DLFuzzy implements IStrategyFuzzy {
         return dist[sourceLength][targetLength];
     }
 
+    
+    private static int yearDistance(String source){
+        int yearIn1000s = OSA_distance(source, "1000");
+
+        int yearIn1500s = OSA_distance(source, "1500");
+
+        int yearIn1600s = OSA_distance(source, "1600");
+
+        int yearIn1700s = OSA_distance(source, "1700");
+
+        int yearIn1800s = OSA_distance(source, "1800");
+
+        int yearIn1900s = OSA_distance(source, "1900");
+
+        return 0;
+    }
 }
 
 

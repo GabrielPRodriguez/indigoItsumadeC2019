@@ -20,7 +20,7 @@ import java.util.HashMap;
 
 import static edu.wpi.cs3733c19.teamI.Main.Results;
 
-public class SearchDisplayController {
+public class SearchDisplayController extends ToolBarController {
 
     private Scene searchScene;
     //public SearchResults currentResults = new SearchResults();

@@ -20,6 +20,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
 
+        FXMLLoader firstPaneLoader = new FXMLLoader(getClass().getResource("Boundaries_2/Home.fxml"));
         ToolBarController toolBarController = new ToolBarController();
         System.out.println(toolBarController);
 
@@ -74,8 +75,6 @@ public class Main extends Application {
 
         ( (FormSubController) fourthPaneLoader.getController()).setHomeScene(thirdScene);
 
-
-
         //Loading the login page
         FXMLLoader loginPaneLoader = new FXMLLoader(getClass().getResource("Boundaries/Login.fxml"));
         Parent loginPane = loginPaneLoader.load();
@@ -84,10 +83,8 @@ public class Main extends Application {
         loginController.setFormCheckerScene(formCheckerScene); //this is the problem
         loginController.setHomeScene(thirdScene);
 
-
-        //FormCheckerController formCheckControl = (FormCheckerController) formCheckerPaneLoader.getController();
-        //loginController.setFormCheck(formCheckControl);
-
+        FormCheckerController formCheckControl = (FormCheckerController) formCheckerPaneLoader.getController();
+        loginController.setFormCheck(formCheckControl);
 
 
         //injecting the first and second and login scenes into the controller of the home page

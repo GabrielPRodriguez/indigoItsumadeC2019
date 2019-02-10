@@ -12,7 +12,7 @@ public class DLFuzzy implements IStrategyFuzzy {
      * @return int the diffrecne between source and target
      * @throws IllegalArgumentException If either source or target is null.
      */
-    private static int OSA_distance(String source, String target) {
+    public static int OSA_distance(String source, String target) {
 
 
         // throw if parameter is a null

@@ -13,7 +13,7 @@ public class fuzzyContext implements IStrategyFuzzy {
         this.fuzzyAlgorithm = myfuzzy;
     }
 
-    public double run() {
-        return fuzzyAlgorithm.run();
+    public double run(String searchString) {
+        return fuzzyAlgorithm.run(searchString);
     }
 }

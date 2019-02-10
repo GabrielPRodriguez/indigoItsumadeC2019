@@ -3,6 +3,7 @@ package edu.wpi.cs3733c19.teamI.Controllers;
 import edu.wpi.cs3733c19.teamI.Controllers.dbUtilities.DBTypes;
 import edu.wpi.cs3733c19.teamI.Controllers.dbUtilities.DBValue;
 import edu.wpi.cs3733c19.teamI.Controllers.dbUtilities.ReturnedValue;
+import edu.wpi.cs3733c19.teamI.Controllers2.ToolBarController;
 import edu.wpi.cs3733c19.teamI.Entities.Form;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -338,6 +339,7 @@ public class FormSubController extends ToolBarController implements Initializabl
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //REP ID Tooltip
+        /*
         final Tooltip tooltipRepID = new Tooltip();
         tooltipRepID.setText("REPRESENTATIVE ID. NUMBER (If any)");
         repIdNum_Field.setTooltip(tooltipRepID);
@@ -410,6 +412,7 @@ public class FormSubController extends ToolBarController implements Initializabl
         vintage_Field.setTooltip(tooltipVintage);
 
 
+*/
 
 
 

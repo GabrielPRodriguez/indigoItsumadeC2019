@@ -1,6 +1,6 @@
 package edu.wpi.cs3733c19.teamI;
 
-import edu.wpi.cs3733c19.teamI.Controllers.*;
+import edu.wpi.cs3733c19.teamI.Controllers2.*;
 import edu.wpi.cs3733c19.teamI.Entities.SearchResults;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -30,9 +30,23 @@ public class Main extends Application {
         Parent loginCreatePane = loginResultLoader.load();
         Scene loginCreateScene = new Scene(loginCreatePane, 1289, 918);
 
+        FXMLLoader formSubLoader = new FXMLLoader(getClass().getResource("Boundaries_2/FormSubmission.fxml"));
+        Parent formSubPane = formSubLoader.load();
+        Scene formSubScene = new Scene(formSubPane, 1289, 918);
+
+        FXMLLoader detailedResultLoader = new FXMLLoader(getClass().getResource("Boundaries_2/DetailedSearchResults.fxml"));
+        Parent detailedResultPane = detailedResultLoader.load();
+        Scene detailedResultScene = new Scene(detailedResultPane, 1289, 918);
+
+        FXMLLoader searchResultLoader = new FXMLLoader(getClass().getResource("Boundaries_2/SearchResults.fxml"));
+        Parent searchResultPane = searchResultLoader.load();
+        Scene searchResultScene = new Scene(searchResultPane, 1289, 918);
+
+        /*
+
         FXMLLoader firstPaneLoader = new FXMLLoader(getClass().getResource("Boundaries/SearchV2.fxml"));
         Parent firstPane = firstPaneLoader.load();
-        Scene firstScene = new Scene(firstPane, 1289, 918);
+        Scene firstScene = new Scene(firstPane);
 
         FXMLLoader formCheckerPaneLoader = new FXMLLoader(getClass().getResource("Boundaries/FormChecker.fxml"));
         Parent formCheckerPane = formCheckerPaneLoader.load();
@@ -51,23 +65,27 @@ public class Main extends Application {
 
 
         //Loading the submission page
-        FXMLLoader fourthPaneLoader = new FXMLLoader(getClass().getResource("Boundaries/SubmissionProject.fxml"));
+        FXMLLoader fourthPaneLoader = new FXMLLoader(getClass().getResource("Boundaries_2/FormSubmission.fxml"));
         Parent fourthPane = fourthPaneLoader.load();
         Scene fourthScene = new Scene(fourthPane, 1289, 918);
 
         ( (FormSubController) fourthPaneLoader.getController()).setHomeScene(thirdScene);
 
+
+
         //Loading the login page
         FXMLLoader loginPaneLoader = new FXMLLoader(getClass().getResource("Boundaries_2/Login_CreateAccount.fxml"));
         Parent loginPane = loginPaneLoader.load();
         Scene loginScene = new Scene(loginPane, 1289, 918);
-        LoginController loginController = (LoginController) loginPaneLoader.getController();
-        loginController.setFormCheckerScene(formCheckerScene); //this is the problem
-        loginController.setHomeScene(homeScene);
-        loginController.setFormSub(formCheckerScene);
 
-        FormCheckerController formCheckControl = (FormCheckerController) formCheckerPaneLoader.getController();
-        loginController.setFormCheck(formCheckControl);
+       // loginController.setFormCheckerScene(formCheckerScene); //this is the problem
+        //loginController.setHomeScene(homeScene);
+        //loginController.setFormSub(formCheckerScene);
+
+
+        //FormCheckerController formCheckControl = (FormCheckerController) formCheckerPaneLoader.getController();
+        //loginController.setFormCheck(formCheckControl);
+
 
 
         //injecting the first and second and login scenes into the controller of the home page
@@ -89,16 +107,32 @@ public class Main extends Application {
         firstPaneController.dispController = secondPaneController;//set the controller attribute
         secondPaneController.setHomePage(thirdScene); //set the home screen attribute
 
-        NewHomeController newHomeController = (NewHomeController) newHomePaneLoader.getController();
-        newHomeController.setToolBarController(toolBarController);
-        newHomeController.setHomeScene(homeScene);
-        newHomeController.setFormSub(fourthScene);
-        newHomeController.setLogin(loginScene);
+        */
 
-        toolBarController.setFormCheck(formCheckerScene);
+        //controllers for search scene
+        NewHomeController newHomeController = (NewHomeController) newHomePaneLoader.getController();
+        SubmissionController submissionController = (SubmissionController) formSubLoader.getController();
+        LoginAccountController loginController = (LoginAccountController) loginResultLoader.getController();
+        DetailedResultsController detailedResultsController = (DetailedResultsController) detailedResultLoader.getController();
+        ResultsController resultsController = (ResultsController) searchResultLoader.getController();
+
+        newHomeController.setSearchResultScene(searchResultScene);
+
+        //inject toolbar controls into each scene
+
+        newHomeController.setToolBarController(toolBarController);
+        loginController.setToolBarController(toolBarController);
+        submissionController.setToolBarController(toolBarController);
+        detailedResultsController.setToolBarController(toolBarController);
+        resultsController.setToolBarController(toolBarController);
+
+
+
+
+        //toolBarController.setFormCheck(formCheckerScene);
         toolBarController.setHomeScene(homeScene);
-        toolBarController.setLogin(loginScene);
-        toolBarController.setSubScene(fourthScene);
+        toolBarController.setLogin(loginCreateScene);
+        toolBarController.setSubScene(formSubScene);
 
 
 
@@ -106,8 +140,11 @@ public class Main extends Application {
 
 
         primaryStage.setTitle("COLA SEARCH ENGINE");
-        primaryStage.setScene(loginScene);
+        primaryStage.setScene(homeScene);
+        primaryStage.setMaximized(true);
+        //primaryStage.setScene(loginScene);
         primaryStage.show();
+
     }
 
 

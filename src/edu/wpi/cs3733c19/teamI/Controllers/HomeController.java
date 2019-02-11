@@ -1,10 +1,13 @@
 package edu.wpi.cs3733c19.teamI.Controllers;
 
+import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.validation.RequiredFieldValidator;
 import edu.wpi.cs3733c19.teamI.Algorithms.DLFuzzy;
 import edu.wpi.cs3733c19.teamI.Algorithms.LFuzzy;
 import edu.wpi.cs3733c19.teamI.Algorithms.SQLFuzzy;
 import edu.wpi.cs3733c19.teamI.Algorithms.fuzzyContext;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -16,7 +19,10 @@ import javafx.stage.Stage;
 
 import javafx.event.ActionEvent;
 
-public class HomeController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class HomeController implements Initializable {
 
     private Scene submissionScene;
     private Scene searchScene;
@@ -37,7 +43,7 @@ public class HomeController {
     Label emptyLabel;
 
     @FXML
-    TextField searchField; // TODO make sure we set the right ID on the Scene Builder side
+    JFXTextField searchField; // TODO make sure we set the right ID on the Scene Builder side
 
     @FXML
     Button fuzzSearch; // TODO we have to assign this to the fuzzy search button
@@ -110,12 +116,17 @@ public class HomeController {
     public void startSearch(ActionEvent actionEvent){
         if (searchField.getText() == null || searchField.getText().trim().isEmpty()){
             // TODO set a label in Homepage SceneBuilder below the TextField, the Label is empty until the user preses search and TextField is empty
-            emptyLabel.setText("No search text entered");
-            emptyLabel.setTextFill(Color.web("#FF0000"));
+            // emptyLabel.setText("No search text entered");
+            // emptyLabel.setTextFill(Color.web("#FF0000"));
         }else {
             setAlgorithm();
             searchAlgorithmSelection.run(searchField.getText());
         }
     }
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+
+    }
 }

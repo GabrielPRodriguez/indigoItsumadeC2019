@@ -1,4 +1,4 @@
-package edu.wpi.cs3733c19.teamI.Controllers;
+package edu.wpi.cs3733c19.teamI.Controllers2;
 
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ToolBarController extends VBox {
+public class ToolBarController implements Initializable{
 
     public ToolBarController(){
         FXMLLoader toolBarLoader = new FXMLLoader(getClass().getResource("Boundaries_2/Toolbar.fxml"));
@@ -33,22 +33,31 @@ public class ToolBarController extends VBox {
     private Scene AboutScene;
     private Scene Login;
     private Scene FormCheck;
+    private Scene Pending;
+    private Scene Info;
+    private Scene Result;
 
-   /* public void initializeSceneSwitch() throws IOException {
+    public void initializeSceneSwitch() throws IOException {
 
-        FXMLLoader searchPaneLoader = new FXMLLoader(getClass().getResource("Boundaries/SearchV2.fxml"));
-        Parent firstPane = searchPaneLoader.load();
-        Scene searchScene = new Scene(firstPane, 1289, 918);
+        FXMLLoader searchPaneLoader = new FXMLLoader(getClass().getResource("Boundaries_2/Advanced Search.fxml"));
+        Parent searchPane = searchPaneLoader.load();
+        Scene searchScene = new Scene(searchPane, 1289, 918);
         SearchScene = searchScene;
 
-        FXMLLoader formCheckerPaneLoader = new FXMLLoader(getClass().getResource("Boundaries/FormChecker.fxml"));
+        AdvancedSearchController advancedSearchController = searchPaneLoader.getController();
+        advancedSearchController.setToolBarController(this);
+
+        FXMLLoader formCheckerPaneLoader = new FXMLLoader(getClass().getResource("Boundaries_2/WorkflowAgent.fxml"));
         Parent formCheckerPane = formCheckerPaneLoader.load();
         Scene formCheckerScene = new Scene(formCheckerPane, 1289, 918);
         FormCheck = formCheckerScene;
 
+
+
         FXMLLoader resultsPageLoader = new FXMLLoader(getClass().getResource("Boundaries_2/SearchResults.fxml"));
         Parent resultPane = resultsPageLoader.load();
         Scene resultScene = new Scene(resultPane, 1289, 918);
+        Result = resultScene;
 
         FXMLLoader homePaneLoader = new FXMLLoader(getClass().getResource("Boundaries_2/Home.fxml"));
         Parent homePane = homePaneLoader.load();
@@ -56,7 +65,7 @@ public class ToolBarController extends VBox {
         HomeScene = homeScene;
 
 
-        FXMLLoader subPaneLoader = new FXMLLoader(getClass().getResource("Boundaries/SubmissionProject.fxml"));
+        FXMLLoader subPaneLoader = new FXMLLoader(getClass().getResource("Boundaries_2/FormSubmission.fxml"));
         Parent subPane = subPaneLoader.load();
         Scene subScene = new Scene(subPane, 1289, 918);
         SubScene = subScene;
@@ -66,7 +75,25 @@ public class ToolBarController extends VBox {
         Scene loginScene = new Scene(loginPane, 1289, 918);
         Login = loginScene;
 
-    } */
+        FXMLLoader aboutPaneLoader = new FXMLLoader(getClass().getResource("Boundaries_2/About.fxml"));
+        Parent aboutPane = aboutPaneLoader.load();
+        Scene aboutScene = new Scene(aboutPane, 1289, 918);
+        AboutScene = aboutScene;
+
+        FXMLLoader manufacturerPaneLoader = new FXMLLoader(getClass().getResource("Boundaries_2/WorkflowManufacturer.fxml"));
+        Parent manufacturerPane = manufacturerPaneLoader.load();
+        Scene manufacturerScene = new Scene(manufacturerPane, 1289,918);
+        Pending = manufacturerScene;
+
+        FXMLLoader detailedLoader = new FXMLLoader(getClass().getResource("Boundaries_2/DetailedSearchResults.fxml"));
+        Parent detailedPane = detailedLoader.load();
+        Scene detailedScene = new Scene(detailedPane,1289,918);
+        Info = detailedScene;
+
+
+
+
+    }
 
     public void setHomeScene(Scene homeScene) {
         HomeScene = homeScene;
@@ -137,28 +164,42 @@ public class ToolBarController extends VBox {
     @FXML
     public void goLogin(ActionEvent actionEvent){
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        primaryStage.setScene(SubScene);
+        primaryStage.setScene(Login);
     }
 
     @FXML
     public void Logout(ActionEvent actionEvent){
-        Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        primaryStage.setScene(SubScene);
+
     }
 
     @FXML
     public void goPending(ActionEvent actionEvent){
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        primaryStage.setScene(SubScene);
+        primaryStage.setScene(Pending);
     }
 
     @FXML
     public void goWorkflow(ActionEvent actionEvent){
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        primaryStage.setScene(SubScene);
+        primaryStage.setScene(FormCheck);
     }
-/*
-    @Override
+
+    public void goAdvancedSearch(ActionEvent actionEvent){
+        Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        primaryStage.setScene(SearchScene);
+    }
+
+    public void goSearch(ActionEvent actionEvent){
+        Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        primaryStage.setScene(Result);
+    }
+    public void goDetails(ActionEvent actionEvent){
+        Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        primaryStage.setScene(Info);
+
+    }
+
+
     public void initialize(URL location, ResourceBundle resources)  {
         try{
             initializeSceneSwitch();
@@ -167,5 +208,5 @@ public class ToolBarController extends VBox {
         catch (IOException e){
 
         }
-    } */
+    }
 }

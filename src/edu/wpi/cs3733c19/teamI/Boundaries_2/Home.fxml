@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane minHeight="400.0" minWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers2.HomeControllerTest">
+<BorderPane minHeight="400.0" minWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers2.NewHomeController">
    <top>
       <JFXToolbar minHeight="50.0" minWidth="600.0" style="-fx-background-color: #323a45;" BorderPane.alignment="CENTER">
          <left>
@@ -47,7 +47,7 @@
                         <Font name="Segoe UI Bold" size="16.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton mnemonicParsing="false" text="Login" textFill="WHITE">
+                  <JFXButton mnemonicParsing="false" onAction="#goLogin" text="Login" textFill="WHITE">
                      <font>
                         <Font name="Segoe UI Bold" size="16.0" />
                      </font>

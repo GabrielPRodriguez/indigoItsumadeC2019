@@ -1,6 +1,7 @@
 package edu.wpi.cs3733c19.teamI;
 
 
+import edu.wpi.cs3733c19.teamI.Controllers2.ToolBarController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -17,12 +18,16 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
 
-        Parent root = FXMLLoader.load(getClass().getResource("Boundaries_2/FormSubmission.fxml"));
+        ToolBarController toolBarController = new ToolBarController();
+
+        Parent root = FXMLLoader.load(getClass().getResource("Boundaries_2/Home.fxml"));
         Scene homeScene = new Scene(root);
         primaryStage.setTitle("COLA SEARCH ENGINE");
         primaryStage.setScene(homeScene);
         primaryStage.setMaximized(true);
         primaryStage.show();
+
+
 
 
         /*

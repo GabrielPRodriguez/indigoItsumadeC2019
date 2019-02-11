@@ -1,5 +1,6 @@
 package edu.wpi.cs3733c19.teamI.Controllers;
 
+import edu.wpi.cs3733c19.teamI.Controllers2.ToolBarController;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -8,7 +9,7 @@ import javafx.stage.Stage;
 
 import javafx.event.ActionEvent;
 
-public class HomeController extends ToolBarController{
+public class HomeController extends ToolBarController {
 
     private Scene submissionScene;
     private Scene searchScene;

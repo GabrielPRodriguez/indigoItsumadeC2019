@@ -8,9 +8,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import javax.imageio.IIOParam;
+
 public class Main extends Application {
 
     public static SearchResults Results = new SearchResults();
+    private IIOParam SearchLoader;
+    private Object SearchScene;
 
     public static void main(String[] args) {
         launch(args);
@@ -61,7 +65,7 @@ public class Main extends Application {
         //injecting the first and second and login scenes into the controller of the home page
         HomeController HomeController = (HomeController) HomepageLoader.getController();
         HomeController.setSubmission(SubmissionScene);
-        HomeController.setSearch(SearchScene);
+//        HomeController.setSearch(SearchScene);
         HomeController.setLogin(loginScene);
 
 
@@ -73,7 +77,7 @@ public class Main extends Application {
 
         // injecting first scene into the controller of the second scene
         SearchDisplayController ResultsController = (SearchDisplayController) ResultsPageLoader.getController();
-        ResultsController.setSearchScene(SearchScene);
+//        ResultsController.setSearchScene(SearchScene);
         SearchController.setDispController(ResultsController);//set the controller attribute
         ResultsController.setHomePage(HomeScene); //set the home screen attribute
 

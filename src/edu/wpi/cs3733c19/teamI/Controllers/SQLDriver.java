@@ -247,7 +247,7 @@ public class SQLDriver{
         //sample method call: search_for_l("form_data", "form_data.db", "MyFancyTitle", "fancifulName");
 
         int _count = -1;
-        HashMap<String, ReturnedValue>seen;
+        HashMap<String, ReturnedValue>seen = null;
         for (HashMap<String, ReturnedValue>result:select_all(filename, tablename)){
             if (_count == -1){
 

@@ -7,8 +7,15 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import sun.misc.BASE64Decoder;
+import sun.misc.BASE64Encoder;
 
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
+import javax.crypto.spec.IvParameterSpec;
 import java.io.*;
+import java.security.Key;
+import java.util.Base64;
 
 public class LoginController {
     private Scene formCheckerScene;
@@ -41,12 +48,15 @@ public class LoginController {
     @FXML
     Label errorMessage;
 
-
     FileReader userLogin;
     BufferedReader userReader;
     String invalidCharacters = ":!@#$%^&*()/.,><;-=_+";
     String userType = "@";
     boolean isValid = true;
+
+    private static final String characterEncoding       = "UTF-8";
+    private static final String cipherTransformation    = "AES/CBC/PKCS5Padding";
+    private static final String aesEncryptionAlgorithim = "AES";
 
     public void attemptLogin(ActionEvent actionEvent) throws Exception { //attempts a login and will either create an account or login
         String users = "";
@@ -74,10 +84,15 @@ public class LoginController {
             errorMessage.setText(("Must select log in type"));
             System.out.println("log type");
         }
-        else if (users.contains(":"+username.getText()+":"+password.getText()+":")){ //this file checks for the user and pass in the file
+
+        else if (users.contains(":"+username.getText()+":"+encryptPassword(password.getText())+":")){ //this file checks for the user and pass in the file
             System.out.println("logging in");
+            String pass = encryptPassword(password.getText());
+            System.out.println(pass);
+            System.out.println(decryptPassword(pass));
             login(actionEvent);  //if they exist, login
         }
+
         else if (users.contains(":"+username.getText()+":none:") && (password.getText().isEmpty())){
             login(actionEvent);
         }
@@ -87,6 +102,54 @@ public class LoginController {
         else {
             createAccount(actionEvent); //otherwise make them an account
         }
+    }
+
+    public String encryptPassword(String origionalPassword) throws Exception
+    {
+        String strData;
+
+        try
+        {
+            Key key = generateKey();
+            Cipher cipher = Cipher.getInstance("AES");
+            cipher.init(Cipher.ENCRYPT_MODE, key);
+            byte[] e = cipher.doFinal(origionalPassword.getBytes());
+            strData = new BASE64Encoder().encode(e);
+        }
+        catch (Exception e)
+        {
+            throw new Exception(e);
+        }
+        return strData;
+    }
+
+    public String decryptPassword(String encryptedPassword) throws Exception
+    {
+        String strData;
+
+        try
+        {
+            Key key = generateKey();
+            Cipher cipher = Cipher.getInstance("AES");
+            cipher.init(Cipher.DECRYPT_MODE, key);
+            byte[] decodedValue = new BASE64Decoder().decodeBuffer(encryptedPassword);
+            byte[] d = cipher.doFinal(decodedValue);
+            strData = new String(d);
+        }
+        catch (Exception e)
+        {
+            throw new Exception(e);
+        }
+        return strData;
+    }
+
+    private Key generateKey() throws Exception
+    {
+        String key = "AaBbCcDdEeFfGgHh";
+        byte[] encryptionKey = key.getBytes();
+        Key k = new SecretKeySpec(encryptionKey, "AES");
+
+        return k;
     }
 
     public void setTTBLogin(){
@@ -113,6 +176,7 @@ public class LoginController {
         return users;
     }
 
+    //TODO needs decryption
     public void login(ActionEvent actionEvent){ //logs the user in and moves them to the check forms scene or submit scene
         User currentUser = User.getUser(username.getText(), password.getText(), User.userPower.Standard);
 
@@ -130,7 +194,7 @@ public class LoginController {
         BufferedWriter outputStream = new BufferedWriter(userWriter);
         String addUser =  username.getText();
         if(!password.getText().isEmpty()){
-            addUser = ":"+addUser+":"+password.getText()+":"+ userType+":";
+            addUser = ":"+addUser+":"+encryptPassword(password.getText())+":"+ userType+":";
         }
         else{
             addUser = ":"+addUser + ":none:"+ userType+":";

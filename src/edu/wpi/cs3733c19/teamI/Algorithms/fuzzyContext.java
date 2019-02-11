@@ -1,6 +1,11 @@
 package edu.wpi.cs3733c19.teamI.Algorithms;
 
-public class fuzzyContext implements IStrategyFuzzy {
+import edu.wpi.cs3733c19.teamI.Controllers.dbUtilities.ReturnedValue;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
+public class fuzzyContext {
     private IStrategyFuzzy fuzzyAlgorithm;
 
     public fuzzyContext() {}
@@ -13,7 +18,9 @@ public class fuzzyContext implements IStrategyFuzzy {
         this.fuzzyAlgorithm = myfuzzy;
     }
 
-    public double run(String searchString) {
-        return fuzzyAlgorithm.run(searchString);
+    //this is where the
+    public  ArrayList<HashMap<String, ReturnedValue>> run(String searchString) {
+        fuzzyAlgorithm.run(searchString);
+        return fuzzyAlgorithm.matches;
     }
 }

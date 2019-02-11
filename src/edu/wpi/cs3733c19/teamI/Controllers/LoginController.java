@@ -1,6 +1,7 @@
 package edu.wpi.cs3733c19.teamI.Controllers;
 
 import com.jfoenix.controls.JFXButton;
+import edu.wpi.cs3733c19.teamI.Controllers2.ToolBarController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -12,7 +13,7 @@ import javafx.stage.Stage;
 
 import java.io.*;
 
-public class LoginController extends ToolBarController {
+public class LoginController {
     private Scene formCheckerScene;
     private FormCheckerController formCheck;
     private Scene FormSub;

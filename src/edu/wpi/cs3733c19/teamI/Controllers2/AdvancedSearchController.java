@@ -3,9 +3,13 @@ package edu.wpi.cs3733c19.teamI.Controllers2;
 import com.jfoenix.controls.JFXComboBox;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -91,4 +95,30 @@ public class AdvancedSearchController implements Initializable {
 
         fieldSelector.setItems(labelList);
     }
+
+    private ToolBarController toolBarController;
+
+
+    public void setToolBarController(ToolBarController toolBarController){
+        this.toolBarController = toolBarController;
+    }
+
+
+    @FXML
+    public void goHome(ActionEvent actionEvent){
+        toolBarController.goHome(actionEvent);
+
+    }
+
+    @FXML
+    public void goSubmit(ActionEvent actionEvent){
+        toolBarController.goSubmit(actionEvent);
+    }
+
+    @FXML
+    public void goLogin(ActionEvent actionEvent){
+        toolBarController.goLogin(actionEvent);
+    }
+
+
 }

@@ -1,5 +1,6 @@
 package edu.wpi.cs3733c19.teamI.Controllers;
 
+import edu.wpi.cs3733c19.teamI.Controllers2.ToolBarController;
 import edu.wpi.cs3733c19.teamI.Entities.sub_Form;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,7 +21,7 @@ import java.util.HashMap;
 
 import static edu.wpi.cs3733c19.teamI.Main.Results;
 
-public class SearchDisplayController extends ToolBarController {
+public class SearchDisplayController {
 
     private Scene searchScene;
     //public SearchResults currentResults = new SearchResults();

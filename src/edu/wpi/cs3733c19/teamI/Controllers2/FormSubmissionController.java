@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXRadioButton;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Toggle;
@@ -46,6 +47,30 @@ public class FormSubmissionController implements Initializable {
         }
 
     }
+    private ToolBarController toolBarController;
+
+
+    public void setToolBarController(ToolBarController toolBarController){
+        this.toolBarController = toolBarController;
+    }
+
+
+    @FXML
+    public void goHome(ActionEvent actionEvent){
+        toolBarController.goHome(actionEvent);
+
+    }
+
+    @FXML
+    public void goSubmit(ActionEvent actionEvent){
+        toolBarController.goSubmit(actionEvent);
+    }
+
+    @FXML
+    public void goLogin(ActionEvent actionEvent){
+        toolBarController.goLogin(actionEvent);
+    }
+
 
 
     @Override

@@ -17,7 +17,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
 
-        Parent root = FXMLLoader.load(getClass().getResource("Boundaries_2/Advanced Search.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("Boundaries_2/About.fxml"));
         Scene homeScene = new Scene(root);
         primaryStage.setTitle("COLA SEARCH ENGINE");
         primaryStage.setScene(homeScene);

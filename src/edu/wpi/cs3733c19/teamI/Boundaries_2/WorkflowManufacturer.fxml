@@ -58,7 +58,7 @@
          <children>
             <Label text="Pending Submissions">
                <font>
-                  <Font name="Segoe UI Bold" size="31.0" />
+                  <Font name="Segoe UI Bold" size="32.0" />
                </font>
             </Label>
             <Separator prefWidth="200.0" />

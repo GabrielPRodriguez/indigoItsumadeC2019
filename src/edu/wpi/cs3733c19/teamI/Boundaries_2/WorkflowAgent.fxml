@@ -336,7 +336,7 @@
                                                       <Font name="Segoe UI Bold" size="16.0" />
                                                    </font>
                                                 </Label>
-                                                <JFXTextField disable="true" editable="false" promptText="Filled by TTB Agent" />
+                                                <JFXTextField />
                                              </children>
                                           </VBox>
                                           <VBox layoutX="10.0" layoutY="10.0" spacing="10.0" HBox.hgrow="ALWAYS">
@@ -346,7 +346,7 @@
                                                       <Font name="Segoe UI Bold" size="16.0" />
                                                    </font>
                                                 </Label>
-                                                <JFXTextField disable="true" editable="false" promptText="Filled By TTB Agent" />
+                                                <JFXTextField />
                                              </children>
                                           </VBox>
                                           <VBox spacing="10.0" HBox.hgrow="ALWAYS">
@@ -356,7 +356,7 @@
                                                       <Font name="Segoe UI Bold" size="16.0" />
                                                    </font>
                                                 </Label>
-                                                <JFXTextField disable="true" editable="false" promptText="Filled By TTB Agent" />
+                                                <JFXTextField />
                                              </children>
                                           </VBox>
                                           <VBox spacing="10.0" HBox.hgrow="ALWAYS">
@@ -366,7 +366,7 @@
                                                       <Font name="Segoe UI Bold" size="16.0" />
                                                    </font>
                                                 </Label>
-                                                <JFXTextField disable="true" editable="false" promptText="Filled by TTB Agent" />
+                                                <JFXTextField />
                                              </children>
                                           </VBox>
                                           <VBox spacing="10.0" HBox.hgrow="ALWAYS">
@@ -376,7 +376,7 @@
                                                       <Font name="Segoe UI Bold" size="16.0" />
                                                    </font>
                                                 </Label>
-                                                <JFXTextField disable="true" editable="false" promptText="Filled By TTB Agent" />
+                                                <JFXTextField />
                                              </children>
                                           </VBox>
                                        </children>
@@ -390,7 +390,7 @@
                                                       <Font name="Segoe UI Bold" size="16.0" />
                                                    </font>
                                                 </Label>
-                                                <JFXTextField disable="true" editable="false" promptText="Filled By TTB Agent" />
+                                                <JFXTextField />
                                              </children>
                                           </VBox>
                                           <VBox spacing="10.0" HBox.hgrow="ALWAYS">
@@ -400,7 +400,7 @@
                                                       <Font name="Segoe UI Bold" size="16.0" />
                                                    </font>
                                                 </Label>
-                                                <JFXTextField disable="true" editable="false" promptText="Filled By TTB Agent" />
+                                                <JFXTextField />
                                              </children>
                                           </VBox>
                                           <VBox spacing="10.0" HBox.hgrow="ALWAYS">
@@ -410,7 +410,7 @@
                                                       <Font name="Segoe UI Bold" size="16.0" />
                                                    </font>
                                                 </Label>
-                                                <JFXTextField disable="true" editable="false" promptText="Filled By TTB Agent" />
+                                                <JFXTextField />
                                              </children>
                                           </VBox>
                                           <VBox spacing="10.0" HBox.hgrow="ALWAYS">
@@ -420,7 +420,7 @@
                                                       <Font name="Segoe UI Bold" size="16.0" />
                                                    </font>
                                                 </Label>
-                                                <JFXTextField disable="true" editable="false" promptText="Filled By TTB Agent" />
+                                                <JFXTextField />
                                              </children>
                                           </VBox>
                                        </children>

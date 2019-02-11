@@ -8,7 +8,7 @@ import java.util.HashMap;
 public class DLFuzzy implements IStrategyFuzzy {
     public void run(String searchString) {
         try{
-            ArrayList<HashMap<String, ReturnedValue>> mylist=querydata.search_for_l("form_data.db", "form_data.db", searchString, "field", 10);
+            ArrayList<HashMap<String, ReturnedValue>> mylist=querydata.search_for_dl_multiple("form_data", "form_data.db",searchParameters,searchString, 10);
         }catch (Exception e){
             System.out.println("Unsuccessful query.");
         }
@@ -27,7 +27,7 @@ public class DLFuzzy implements IStrategyFuzzy {
 //
 //        // throw if parameter is a null
 //        if (source == null || target == null) {
-//            throw new IllegalArgumentException("Parameter must not be null");
+//            throw new IllegalArgumel_ntException("Parameter must not be null");
 //        }
 //
 //        int sourceLength = source.length();

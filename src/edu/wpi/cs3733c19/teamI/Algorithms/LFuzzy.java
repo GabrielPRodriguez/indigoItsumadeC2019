@@ -11,7 +11,8 @@ public class LFuzzy implements IStrategyFuzzy {
 
         //Todo: The second to last parameter is impending a change
         try{
-            ArrayList<HashMap<String, ReturnedValue>> mylist=querydata.search_for_l("form_data.db", "form_data.db", searchString, "field", 10);
+            ArrayList<HashMap<String, ReturnedValue>> mylist=querydata.search_for_l_multiple("form_data", "form_data.db",searchParameters, searchString, 10);
+            matches.addAll(mylist);
         }catch (Exception e){
             System.out.println("Unsuccessful query.");
         }

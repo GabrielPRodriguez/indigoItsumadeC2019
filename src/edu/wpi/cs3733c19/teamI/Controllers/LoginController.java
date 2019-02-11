@@ -180,7 +180,7 @@ public class LoginController {
     }
 
     //TODO needs decryption
-    //TODO Can anyone tell me what this method fucking does??
+    //TODO Can anyone tell me what this method does??
     public void login(ActionEvent actionEvent){ //logs the user in and moves them to the check forms scene or submit scene
         User currentUser = User.getUser(username.getText(), password.getText(), User.userPower.Standard);
 

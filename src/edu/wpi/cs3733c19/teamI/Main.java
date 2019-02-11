@@ -81,7 +81,7 @@ public class Main extends Application {
         SearchController.setDispController(ResultsController);//set the controller attribute
         ResultsController.setHomePage(HomeScene); //set the home screen attribute
 
-        primaryStage.setTitle("CO_keyLA SEARCH ENGINE");
+        primaryStage.setTitle("COLA SEARCH ENGINE");
         primaryStage.setScene(HomeScene);
         primaryStage.show();
     }

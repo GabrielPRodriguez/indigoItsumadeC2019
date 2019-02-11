@@ -1,8 +1,10 @@
 package edu.wpi.cs3733c19.teamI.Algorithms;
 
 public class DLFuzzy implements IStrategyFuzzy {
-    public void run(String searchString) {
+    public double run(String searchString) {
+        return 1.0;
     }
+
     /**
      * algorithm OSA-distance
      * @param source the user given string
@@ -86,6 +88,7 @@ public class DLFuzzy implements IStrategyFuzzy {
 
         return dist[sourceLength][targetLength];
     }
+
 }
 
 

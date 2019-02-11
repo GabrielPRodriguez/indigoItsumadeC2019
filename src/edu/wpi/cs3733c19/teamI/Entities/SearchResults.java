@@ -87,16 +87,13 @@ public class SearchResults {
     //call DB function to query. Be sure to update search parameters first
     protected void UpdateList() throws Exception
     {
-
         //get_data_by_value()
         System.out.println("in UpdateList");
-        //look here
-//>>>>>>> Stashed changes
-//        SQLDriver driver = new SQLDriver();
-//        ArrayList<HashMap<String, ReturnedValue>>results = driver.get_data_by_value("form_data", "form_data.db", this.Parameters, this.searchMap);
-//        this.listOfForms = results;
-//        //System.out.println(results);
-//        //System.out.println("Error, is that you?");
+        SQLDriver driver = new SQLDriver();
+        ArrayList<HashMap<String, ReturnedValue>>results = driver.get_data_by_value("form_data", "form_data.db", this.Parameters, this.searchMap);
+        this.listOfForms = results;
+        //System.out.println(results);
+        //System.out.println("Error, is that you?");
     }
 
     //Constructor/////////////////////////////////////////////////

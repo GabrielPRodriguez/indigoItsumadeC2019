@@ -12,7 +12,6 @@ import edu.wpi.cs3733c19.teamI.Entities.DataField;
 
 import edu.wpi.cs3733c19.teamI.Controllers.dbUtilities.*;
 
-
 public class SQLDriver{
 
 
@@ -242,16 +241,16 @@ public class SQLDriver{
 
     }
 
-
     public HashMap<String, ReturnedValue>search_for_l(String tablename, String filename, String target, String _key) throws Exception{
         //required: @target must be a string
         //simple Levenshtein distance: https://en.wikipedia.org/wiki/Levenshtein_distance
         //sample method call: search_for_l("form_data", "form_data.db", "MyFancyTitle", "fancifulName");
-        HashMap <String, ReturnedValue> seen=null;
+
         int _count = -1;
         HashMap<String, ReturnedValue>seen = null;
         for (HashMap<String, ReturnedValue>result:select_all(filename, tablename)){
             if (_count == -1){
+
                 _count = l_distance(result.get(_key).to_string(), target);
                 seen = result;
             }

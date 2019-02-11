@@ -131,6 +131,83 @@ public class SQLDriver{
         return dist[sourceLength][targetLength];
 
     }
+    public ArrayList<HashMap<String, ReturnedValue>>search_for_dl_multiple(String tablename, String filename, ArrayList<String>keys, String _user_input, int top_results) throws Exception{
+        if (top_results < 1){
+            throw new Exception("'top_results' must be a value greater than zero");
+        }
+        ArrayList<Integer>all_distances = new ArrayList<Integer>();
+        HashMap<Integer, HashMap<String, ReturnedValue>>results = new HashMap<Integer, HashMap<String, ReturnedValue>>();
+        for (HashMap<String, ReturnedValue>result:select_all(filename, tablename)){
+
+
+            int _count = 0;
+            for (String key:keys){
+                _count += dl_distance(result.get(key).to_string(), _user_input);
+            }
+            all_distances.add(_count);
+            results.put(_count, result);
+
+        }
+        Collections.sort(all_distances);
+        ArrayList<HashMap<String, ReturnedValue>>final_results = new ArrayList<HashMap<String, ReturnedValue>>();
+        int _final_count = 0;
+        int index_counter = 1;
+        int last_seen_distance = all_distances.get(0);
+        final_results.add(results.get(last_seen_distance));
+        while (_final_count < top_results){
+            int new_val = all_distances.get(index_counter);
+            final_results.add(results.get(new_val));
+            if (new_val != last_seen_distance){
+                _final_count++;
+            }
+            index_counter++;
+            last_seen_distance = new_val;
+
+        }
+
+        return final_results;
+
+    }
+
+
+
+    public ArrayList<HashMap<String, ReturnedValue>>search_for_l_multiple(String tablename, String filename, ArrayList<String>keys, String _user_input, int top_results) throws Exception{
+        if (top_results < 1){
+            throw new Exception("'top_results' must be a value greater than zero");
+        }
+        ArrayList<Integer>all_distances = new ArrayList<Integer>();
+        HashMap<Integer, HashMap<String, ReturnedValue>>results = new HashMap<Integer, HashMap<String, ReturnedValue>>();
+        for (HashMap<String, ReturnedValue>result:select_all(filename, tablename)){
+
+
+            int _count = 0;
+            for (String key:keys){
+                _count += l_distance(result.get(key).to_string(), _user_input);
+            }
+            all_distances.add(_count);
+            results.put(_count, result);
+
+        }
+        Collections.sort(all_distances);
+        ArrayList<HashMap<String, ReturnedValue>>final_results = new ArrayList<HashMap<String, ReturnedValue>>();
+        int _final_count = 0;
+        int index_counter = 1;
+        int last_seen_distance = all_distances.get(0);
+        final_results.add(results.get(last_seen_distance));
+        while (_final_count < top_results){
+            int new_val = all_distances.get(index_counter);
+            final_results.add(results.get(new_val));
+            if (new_val != last_seen_distance){
+                _final_count++;
+            }
+            index_counter++;
+            last_seen_distance = new_val;
+
+        }
+
+        return final_results;
+
+    }
 
     public void insert_vals(String tablename, String filename, DBValue [] vals) throws Exception{
         if (!filename.endsWith(".db")){

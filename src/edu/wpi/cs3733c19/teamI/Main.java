@@ -1,6 +1,8 @@
 package edu.wpi.cs3733c19.teamI;
 
 import edu.wpi.cs3733c19.teamI.Controllers.*;
+import edu.wpi.cs3733c19.teamI.Entities.PacketListener;
+import edu.wpi.cs3733c19.teamI.Entities.RFID;
 import edu.wpi.cs3733c19.teamI.Entities.SearchResults;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -81,6 +83,8 @@ public class Main extends Application {
         primaryStage.setTitle("COLA SEARCH ENGINE");
         primaryStage.setScene(HomeScene);
         primaryStage.show();
+
+        PacketListener newReader = new PacketListener();
     }
 
 

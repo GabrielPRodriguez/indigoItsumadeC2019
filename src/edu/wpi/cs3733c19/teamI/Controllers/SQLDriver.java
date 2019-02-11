@@ -241,30 +241,45 @@ public class SQLDriver{
 
     }
 
-    public HashMap<String, ReturnedValue>search_for_l(String tablename, String filename, String target, String _key) throws Exception{
+    public ArrayList<HashMap<String, ReturnedValue>>search_for_l(String tablename, String filename, String target, String _key, int top_results) throws Exception{
         //required: @target must be a string
         //simple Levenshtein distance: https://en.wikipedia.org/wiki/Levenshtein_distance
         //sample method call: search_for_l("form_data", "form_data.db", "MyFancyTitle", "fancifulName");
-
-        int _count = -1;
-        HashMap<String, ReturnedValue>seen = null;
+        if (top_results < 1){
+            throw new Exception("'top_results' must be a value greater than zero");
+        }
+        ArrayList<Integer>all_distances = new ArrayList<Integer>();
+        HashMap<Integer, HashMap<String, ReturnedValue>>results = new HashMap<Integer, HashMap<String, ReturnedValue>>();
         for (HashMap<String, ReturnedValue>result:select_all(filename, tablename)){
-            if (_count == -1){
 
-                _count = l_distance(result.get(_key).to_string(), target);
-                seen = result;
+
+            int _count = l_distance(result.get(_key).to_string(), target);
+            all_distances.add(_count);
+            results.put(_count, result);
+
+
+
+        }
+        Collections.sort(all_distances);
+        ArrayList<HashMap<String, ReturnedValue>>final_results = new ArrayList<HashMap<String, ReturnedValue>>();
+        int _final_count = 0;
+        int index_counter = 1;
+        int last_seen_distance = all_distances.get(0);
+        final_results.add(results.get(last_seen_distance));
+        while (_final_count < top_results){
+            int new_val = all_distances.get(index_counter);
+            final_results.add(results.get(new_val));
+            if (new_val != last_seen_distance){
+                _final_count++;
             }
-            else{
-                int new_distance = l_distance(result.get(_key).to_string(), target);
-                if (new_distance < _count){
-                    seen = result;
-                    _count = new_distance;
-                }
-            }
+            index_counter++;
+            last_seen_distance = new_val;
+
         }
 
-        return seen;
+        return final_results;
     }
+    
     public ArrayList<HashMap<String, ReturnedValue>>search_sql_wildcard(String tablename, String filename, String target, String _key) throws Exception{
         //sample method call: search_for_l("form_data", "form_data.db", "MyFancyTitle", "fancifulName");
         String _query = "SELECT * FROM "+tablename+" * WHERE "+_key+" LIKE "+"%'"+target+"'%";

@@ -2,6 +2,7 @@ package edu.wpi.cs3733c19.teamI.Entities;
 
 public class Form {
 
+
     private String repID; //optional
     private String plantRegistry; //optional
     private String domesticOrImported; //required
@@ -9,7 +10,12 @@ public class Form {
     private String brandName; //required
     private String beverageType; //required
     private String fancifulName; //optional
-    private String nameAndAddress; //required
+    private String permitName; //required
+    private String streetAddress; //required
+    //private String nameAndAddress; //outdated field
+    private String city; //required
+    private String stateABB; //required (state abbreviation eg. Massachussetts is MA)
+    private String zipCode; //required
     private String mailingAddress; //optional
     private String extraInfo; //optional
     private String dateOfApplication; //required (assumed)
@@ -22,10 +28,18 @@ public class Form {
     private String phoneNumber; //required
     private double pHValue; //wine only
     private double alcoholContent; //required
+    private String approvingUser; //generated in background
     private String formStatus; //generated in background
     private String approvalDate; //generated in background
-    private String approvingUser; //generated in background
     private String expirationDate; //generated in background
+    private String issuedDate; //gen in background
+    private String qualification; //filled out by TTB employee
+    private String volume; //(string because different units)
+    private String receivedType; //generated, how it was received
+    private String classTypeCode; //unsure for these last 3
+    private String originCode; //
+    private String permitID;
+
 
     public Form() {
         this.repID = "";
@@ -35,7 +49,10 @@ public class Form {
         this.brandName = "";
         this.beverageType = "";
         this.fancifulName = "";
-        this.nameAndAddress = "";
+        this.permitName = "";
+        this.streetAddress = "";
+        this.city = "";
+        this.stateABB = "";
         this.mailingAddress = "";
         this.extraInfo = "";
         this.dateOfApplication = "";
@@ -49,9 +66,16 @@ public class Form {
         this.pHValue = 0;
         this.alcoholContent = 0;
         this.formStatus = "unread"; //new forms have had no action taken on them
-        this.approvalDate = "1/1/1";
-        this.approvingUser = "UserNotFound";
-        this.expirationDate = "ExpirNotFound";
+        this.approvalDate = "Undated";
+        this.approvingUser = "No User";
+        this.expirationDate = "Undated";
+        this.issuedDate = "Undated";
+        this.qualification = "";
+        this.volume = "";
+        this.receivedType = "";
+        this.classTypeCode = "";
+        this.originCode = "";
+        this.permitID = "";
     }
 
 
@@ -63,7 +87,11 @@ public class Form {
         this.brandName = brandName;
         this.beverageType = beverageType;
         this.fancifulName = fancifulName;
-        this.nameAndAddress = nameAndAddress;
+        this.permitName = permitName;
+        this.streetAddress = streetAddress;
+        this.city = city;
+        this.stateABB = stateABB;
+        this. zipCode = zipCode;
         this.mailingAddress = mailingAddress;
         this.extraInfo = extraInfo;
         this.dateOfApplication = date;
@@ -76,10 +104,17 @@ public class Form {
         this.phoneNumber = phoneNumber;
         this.pHValue = pHValue;
         this.alcoholContent = alcoholContent;
+        this.approvingUser = approvingUser;
         this.formStatus = formStatus;
         this.approvalDate = approvalDate;
-        this.approvingUser = approvingUser;
         this.expirationDate = expirationDate;
+        this.issuedDate = issuedDate;
+        this.qualification = qualification;
+        this.volume = volume;
+        this.receivedType = receivedType;
+        this.classTypeCode = classTypeCode;
+        this.originCode = originCode;
+        this.permitID = permitID;
     }
 
     public void setRepID(String repID) {
@@ -110,10 +145,6 @@ public class Form {
 
     public void setFancifulName(String fancifulName) {
         this.fancifulName = fancifulName;
-    }
-
-    public void setNameAndAddress(String nameAndAddress) {
-        this.nameAndAddress = nameAndAddress;
     }
 
     public void setMailingAddress(String mailingAddress) {
@@ -212,10 +243,6 @@ public class Form {
         return this.fancifulName;
     }
 
-    public String getnameAndAddress() {
-        return this.nameAndAddress;
-    }
-
     public String getmailingAddress() {
         return this.mailingAddress;
     }
@@ -292,7 +319,7 @@ public class Form {
     //returns true if any required field is empty
     public boolean missingRequired() {
         return (isEmpty(domesticOrImported) || isEmpty(serialNumber) || isEmpty(brandName)
-                || isEmpty(beverageType) || isEmpty(nameAndAddress) || isEmpty(dateOfApplication) || isEmpty(nameOfApplicant)
+                || isEmpty(beverageType) || isEmpty(dateOfApplication) || isEmpty(nameOfApplicant)
                 || isEmpty(phoneNumber) || isEmpty(alcoholContent));
 
     }
@@ -311,9 +338,6 @@ public class Form {
         }
         if (isEmpty(beverageType)) {
             missingStatement = missingStatement + " Type of Product,";
-        }
-        if (isEmpty(nameAndAddress)) {
-            missingStatement = missingStatement + " Name and Address of Applicant,";
         }
         if (isEmpty(dateOfApplication)) {
             missingStatement = missingStatement + " Date of Application,";

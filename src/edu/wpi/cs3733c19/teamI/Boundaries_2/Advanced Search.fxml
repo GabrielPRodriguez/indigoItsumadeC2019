@@ -17,8 +17,39 @@
 <?import javafx.scene.text.Font?>
 
 <BorderPane minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers2.AdvancedSearchController">
+   <center>
+      <VBox alignment="CENTER_LEFT" spacing="10.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="Advanced Search">
+               <font>
+                  <Font name="Segoe UI Bold" size="32.0" />
+               </font>
+            </Label>
+            <Separator prefWidth="200.0" />
+            <HBox alignment="CENTER_LEFT" spacing="20.0">
+               <children>
+                  <TextField prefHeight="50.0" HBox.hgrow="ALWAYS" />
+                  <JFXComboBox fx:id="fieldSelector" promptText="Search By:" />
+               </children></HBox>
+            <HBox alignment="CENTER_LEFT" spacing="20.0">
+               <children>
+                  <JFXRadioButton mnemonicParsing="false" selected="true" text="Algorithm 1">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="Algorithm" />
+                     </toggleGroup>
+                  </JFXRadioButton>
+                  <JFXRadioButton mnemonicParsing="false" text="Algorithm 2" toggleGroup="$Algorithm" />
+                  <JFXRadioButton mnemonicParsing="false" text="Algorithm 3" toggleGroup="$Algorithm" />
+               </children>
+            </HBox>
+         </children>
+         <BorderPane.margin>
+            <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
+         </BorderPane.margin>
+      </VBox>
+   </center>
    <top>
-      <JFXToolbar minHeight="50.0" minWidth="600.0" style="-fx-background-color: #323a45;" BorderPane.alignment="CENTER">
+      <JFXToolbar minHeight="50.0" minWidth="600.0" style="-fx-background-color: #323a45;">
          <left>
             <JFXButton mnemonicParsing="false" text="TTB COLA Search" textFill="WHITE" BorderPane.alignment="CENTER">
                <font>
@@ -46,45 +77,22 @@
                         <Font name="Segoe UI Bold" size="16.0" />
                      </font>
                   </JFXButton>
+                  <JFXButton mnemonicParsing="false" text="Workflow" textFill="WHITE">
+                     <font>
+                        <Font name="Segoe UI Bold" size="16.0" />
+                     </font>
+                  </JFXButton>
                   <JFXButton mnemonicParsing="false" text="Login" textFill="WHITE">
                      <font>
                         <Font name="Segoe UI Bold" size="16.0" />
                      </font>
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
                   </JFXButton>
                </children>
             </HBox>
          </right>
       </JFXToolbar>
    </top>
-   <center>
-      <VBox alignment="CENTER_LEFT" spacing="10.0" BorderPane.alignment="CENTER">
-         <children>
-            <Label text="Advanced Search">
-               <font>
-                  <Font name="Segoe UI Bold" size="32.0" />
-               </font>
-            </Label>
-            <Separator prefWidth="200.0" />
-            <HBox alignment="CENTER_LEFT" spacing="20.0">
-               <children>
-                  <TextField HBox.hgrow="ALWAYS" />
-                  <JFXComboBox fx:id="fieldSelector" promptText="Search By:" />
-               </children></HBox>
-            <HBox alignment="CENTER_LEFT" spacing="20.0">
-               <children>
-                  <JFXRadioButton mnemonicParsing="false" selected="true" text="Algorithm 1">
-                     <toggleGroup>
-                        <ToggleGroup fx:id="Algorithm" />
-                     </toggleGroup>
-                  </JFXRadioButton>
-                  <JFXRadioButton mnemonicParsing="false" text="Algorithm 2" toggleGroup="$Algorithm" />
-                  <JFXRadioButton mnemonicParsing="false" text="Algorithm 3" toggleGroup="$Algorithm" />
-               </children>
-            </HBox>
-         </children>
-         <BorderPane.margin>
-            <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
-         </BorderPane.margin>
-      </VBox>
-   </center>
 </BorderPane>

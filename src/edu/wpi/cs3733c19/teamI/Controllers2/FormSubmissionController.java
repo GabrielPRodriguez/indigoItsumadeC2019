@@ -1,5 +1,6 @@
 package edu.wpi.cs3733c19.teamI.Controllers2;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXRadioButton;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -24,7 +25,8 @@ public class FormSubmissionController implements Initializable {
     @FXML
     ToggleGroup beverage;
 
-
+    @FXML
+    JFXButton submit;
 
 
     private void setWineToggle(){
@@ -54,5 +56,8 @@ public class FormSubmissionController implements Initializable {
                 setWineToggle();
             }
         });
+
+
+
     }
 }

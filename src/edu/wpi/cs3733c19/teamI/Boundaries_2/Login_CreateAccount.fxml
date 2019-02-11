@@ -8,6 +8,7 @@
 <?import com.jfoenix.controls.JFXToolbar?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -16,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../Assets/Style.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers2.LoginAccountController">
+<BorderPane stylesheets="@../Assets/Style.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers2.LoginAccountController">
    <top>
       <JFXToolbar minHeight="50.0" minWidth="600.0" style="-fx-background-color: #323a45;" BorderPane.alignment="CENTER">
          <left>
@@ -57,12 +58,9 @@
       </JFXToolbar>
    </top>
    <center>
-      <JFXTabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="200.0" minWidth="100.0" prefHeight="300.0" prefWidth="250.0" style="-fx-background-color: #e4e2e0;" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
-         <BorderPane.margin>
-            <Insets />
-         </BorderPane.margin>
+      <JFXTabPane fx:id="primaryPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: #e4e2e0;" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
          <tabs>
-            <Tab closable="false" style="-fx-background-color: #112e51;" text="Login   ">
+            <Tab closable="false" style="-fx-background-color: #112e51;" text="Login">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -104,12 +102,16 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <VBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <VBox alignment="CENTER" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                                  <children>
-                                    <JFXRadioButton mnemonicParsing="false" text="Agent" />
-                                    <JFXRadioButton mnemonicParsing="false" text="Manufacturer" />
+                                    <JFXRadioButton mnemonicParsing="false" text="Agent">
+                                       <toggleGroup>
+                                          <ToggleGroup fx:id="User" />
+                                       </toggleGroup>
+                                    </JFXRadioButton>
+                                    <JFXRadioButton mnemonicParsing="false" text="Manufacturer" toggleGroup="$User" />
                                  </children>
                               </HBox>
                               <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0">
@@ -149,7 +151,8 @@
                               <Insets bottom="10.0" left="30.0" right="30.0" top="20.0" />
                            </padding>
                         </VBox>
-                     </children></AnchorPane>
+                     </children>
+                  </AnchorPane>
               </content>
             </Tab>
          </tabs>

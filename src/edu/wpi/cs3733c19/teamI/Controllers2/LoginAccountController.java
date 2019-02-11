@@ -1,29 +1,21 @@
 package edu.wpi.cs3733c19.teamI.Controllers2;
 
-import javafx.event.ActionEvent;
+import com.jfoenix.controls.JFXTabPane;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 
-public class LoginAccountController {
-    private ToolBarController toolBarController;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-    public void setToolBarController(ToolBarController toolBarController){
-        this.toolBarController = toolBarController;
-    }
 
-    @FXML
-    public void goHome(ActionEvent actionEvent){
-        toolBarController.goHome(actionEvent);
-
-    }
+public class LoginAccountController implements Initializable {
 
     @FXML
-    public void goSubmit(ActionEvent actionEvent){
-        toolBarController.goSubmit(actionEvent);
-    }
+    JFXTabPane primaryPane;
 
-    @FXML
-    public void goLogin(ActionEvent actionEvent){
-        toolBarController.goLogin(actionEvent);
-    }
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+    }
 }

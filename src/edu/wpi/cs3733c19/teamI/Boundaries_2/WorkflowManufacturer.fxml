@@ -63,7 +63,7 @@
    <center>
       <VBox alignment="CENTER_LEFT" spacing="10.0" BorderPane.alignment="CENTER_LEFT">
          <children>
-            <Label alignment="CENTER" text="TTB Work Page" VBox.vgrow="ALWAYS">
+            <Label alignment="CENTER" text="Pending Applications" VBox.vgrow="ALWAYS">
                <font>
                   <Font name="Segoe UI Bold" size="32.0" />
                </font>
@@ -74,12 +74,6 @@
                   <VBox alignment="CENTER" HBox.hgrow="ALWAYS">
                      <children>
                         <JFXToolbar style="-fx-background-color: #9bdaf1;">
-                           <left>
-                              <JFXButton mnemonicParsing="false" text="Edit" BorderPane.alignment="CENTER" />
-                           </left>
-                           <center>
-                              <JFXButton mnemonicParsing="false" text="View" BorderPane.alignment="CENTER" />
-                           </center>
                            <right>
                               <JFXButton mnemonicParsing="false" text="Refresh" BorderPane.alignment="CENTER" />
                            </right>
@@ -96,17 +90,12 @@
                   </VBox>
                   <VBox alignment="CENTER" spacing="40.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <JFXButton mnemonicParsing="false" style="-fx-background-color: #2e8540;" text="Accept" textFill="WHITE">
+                        <JFXButton mnemonicParsing="false" style="-fx-background-color: #2e8540;" text="View" textFill="WHITE">
                            <font>
                               <Font name="Segoe UI Bold" size="16.0" />
                            </font>
                         </JFXButton>
-                        <JFXButton mnemonicParsing="false" style="-fx-background-color: #981b1e;" text="Reject" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="16.0" />
-                           </font>
-                        </JFXButton>
-                        <JFXButton mnemonicParsing="false" style="-fx-background-color: #205493;" text="Comment" textFill="WHITE">
+                        <JFXButton mnemonicParsing="false" style="-fx-background-color: #205493;" text="Edit" textFill="WHITE">
                            <font>
                               <Font name="Segoe UI Bold" size="16.0" />
                            </font>
@@ -337,7 +326,7 @@
                                                       <Font name="Segoe UI Bold" size="16.0" />
                                                    </font>
                                                 </Label>
-                                                <JFXTextField />
+                                                <JFXTextField disable="true" editable="false" promptText="Filled by TTB Agent" />
                                              </children>
                                           </VBox>
                                           <VBox layoutX="10.0" layoutY="10.0" spacing="10.0" HBox.hgrow="ALWAYS">
@@ -347,7 +336,7 @@
                                                       <Font name="Segoe UI Bold" size="16.0" />
                                                    </font>
                                                 </Label>
-                                                <JFXTextField />
+                                                <JFXTextField disable="true" editable="false" promptText="Filled By TTB Agent" />
                                              </children>
                                           </VBox>
                                           <VBox spacing="10.0" HBox.hgrow="ALWAYS">
@@ -357,7 +346,7 @@
                                                       <Font name="Segoe UI Bold" size="16.0" />
                                                    </font>
                                                 </Label>
-                                                <JFXTextField />
+                                                <JFXTextField disable="true" editable="false" promptText="Filled By TTB Agent" />
                                              </children>
                                           </VBox>
                                           <VBox spacing="10.0" HBox.hgrow="ALWAYS">
@@ -367,7 +356,7 @@
                                                       <Font name="Segoe UI Bold" size="16.0" />
                                                    </font>
                                                 </Label>
-                                                <JFXTextField />
+                                                <JFXTextField disable="true" editable="false" promptText="Filled by TTB Agent" />
                                              </children>
                                           </VBox>
                                           <VBox spacing="10.0" HBox.hgrow="ALWAYS">
@@ -377,7 +366,7 @@
                                                       <Font name="Segoe UI Bold" size="16.0" />
                                                    </font>
                                                 </Label>
-                                                <JFXTextField />
+                                                <JFXTextField disable="true" editable="false" promptText="Filled By TTB Agent" />
                                              </children>
                                           </VBox>
                                        </children>
@@ -391,7 +380,7 @@
                                                       <Font name="Segoe UI Bold" size="16.0" />
                                                    </font>
                                                 </Label>
-                                                <JFXTextField />
+                                                <JFXTextField disable="true" editable="false" promptText="Filled By TTB Agent" />
                                              </children>
                                           </VBox>
                                           <VBox spacing="10.0" HBox.hgrow="ALWAYS">
@@ -401,7 +390,7 @@
                                                       <Font name="Segoe UI Bold" size="16.0" />
                                                    </font>
                                                 </Label>
-                                                <JFXTextField />
+                                                <JFXTextField disable="true" editable="false" promptText="Filled By TTB Agent" />
                                              </children>
                                           </VBox>
                                           <VBox spacing="10.0" HBox.hgrow="ALWAYS">
@@ -411,7 +400,7 @@
                                                       <Font name="Segoe UI Bold" size="16.0" />
                                                    </font>
                                                 </Label>
-                                                <JFXTextField />
+                                                <JFXTextField disable="true" editable="false" promptText="Filled By TTB Agent" />
                                              </children>
                                           </VBox>
                                           <VBox spacing="10.0" HBox.hgrow="ALWAYS">
@@ -421,7 +410,7 @@
                                                       <Font name="Segoe UI Bold" size="16.0" />
                                                    </font>
                                                 </Label>
-                                                <JFXTextField />
+                                                <JFXTextField disable="true" editable="false" promptText="Filled By TTB Agent" />
                                              </children>
                                           </VBox>
                                        </children>
@@ -552,6 +541,7 @@
          </children>
          <BorderPane.margin>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-         </BorderPane.margin></VBox>
+         </BorderPane.margin>
+      </VBox>
    </center>
 </BorderPane>

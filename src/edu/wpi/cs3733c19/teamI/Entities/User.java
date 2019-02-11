@@ -4,7 +4,7 @@ public class User {
     private String username;
     private String password;
     private Boolean isAdmin = false;
-    private userPower userType = userPower.Standard;
+    private userPower userType;
         public enum userPower
         {
         Standard, Company, TTBEmployee, SuperAdmin

@@ -145,6 +145,7 @@ public class LoginController {
         return strData;
     }
 
+    //Generages the key needed for encryption/ decryption
     private Key generateKey() throws Exception
     {
         String key = "AaBbCcDdEeFfGgHh";

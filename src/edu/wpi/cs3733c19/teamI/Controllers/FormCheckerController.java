@@ -1,5 +1,6 @@
 package edu.wpi.cs3733c19.teamI.Controllers;
 
+import edu.wpi.cs3733c19.teamI.Controllers2.ToolBarController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -14,7 +15,7 @@ import java.util.*;
 
 import java.io.IOException;
 
-public class FormCheckerController implements Initializable {
+public class FormCheckerController extends ToolBarController implements Initializable {
     private LoginController loginCtrl;
 
     public void setLoginCtrl(LoginController loginCtrl) {

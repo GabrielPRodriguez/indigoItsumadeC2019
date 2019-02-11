@@ -104,6 +104,7 @@ public class LoginController {
         }
     }
 
+    //Encrypts user's password
     public String encryptPassword(String origionalPassword) throws Exception
     {
         String strData;
@@ -123,6 +124,7 @@ public class LoginController {
         return strData;
     }
 
+    //TODO figure out how we can impliment this so that retrieving a password is not just decrypting origional password to see if it matches
     public String decryptPassword(String encryptedPassword) throws Exception
     {
         String strData;
@@ -177,9 +179,9 @@ public class LoginController {
     }
 
     //TODO needs decryption
+    //TODO Can anyone tell me what this method fucking does??
     public void login(ActionEvent actionEvent){ //logs the user in and moves them to the check forms scene or submit scene
         User currentUser = User.getUser(username.getText(), password.getText(), User.userPower.Standard);
-
 
         if(this.FormLogin.isSelected()){
             goSubmission(actionEvent);

@@ -473,7 +473,7 @@
    <top>
       <JFXToolbar minHeight="50.0" minWidth="600.0" style="-fx-background-color: #323a45;">
          <left>
-            <JFXButton mnemonicParsing="false" text="TTB COLA Search" textFill="WHITE" BorderPane.alignment="CENTER">
+            <JFXButton mnemonicParsing="false" onAction="#goHome" text="TTB COLA Search" textFill="WHITE" BorderPane.alignment="CENTER">
                <font>
                   <Font name="Segoe UI Bold" size="18.0" />
                </font>

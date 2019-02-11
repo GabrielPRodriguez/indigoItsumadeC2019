@@ -40,6 +40,11 @@ public class HomeControllerTest implements Initializable{
         toolBarController.goLogin(actionEvent);
     }
 
+    @FXML
+    public void goWork(ActionEvent actionEvent){
+        //scene switch depending on currently logged in user
+    }
+
 
 
     @Override

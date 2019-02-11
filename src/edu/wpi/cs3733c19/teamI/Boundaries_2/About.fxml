@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers2.AboutController">
    <center>
       <GridPane BorderPane.alignment="CENTER">
          <BorderPane.margin>
@@ -60,7 +60,7 @@
    <top>
       <JFXToolbar minHeight="50.0" minWidth="600.0" style="-fx-background-color: #323a45;">
          <left>
-            <JFXButton mnemonicParsing="false" text="TTB COLA Search" textFill="WHITE" BorderPane.alignment="CENTER">
+            <JFXButton mnemonicParsing="false" onAction="#goHome" text="TTB COLA Search" textFill="WHITE" BorderPane.alignment="CENTER">
                <font>
                   <Font name="Segoe UI Bold" size="18.0" />
                </font>

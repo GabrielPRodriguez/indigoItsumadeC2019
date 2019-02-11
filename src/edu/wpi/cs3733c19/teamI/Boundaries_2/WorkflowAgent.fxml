@@ -20,7 +20,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane style="-fx-background-color: #e4e2e0;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane style="-fx-background-color: #e4e2e0;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers2.AgentWorkflowController">
    <center>
       <VBox alignment="CENTER_LEFT" spacing="10.0" BorderPane.alignment="CENTER_LEFT">
          <children>
@@ -518,7 +518,7 @@
    <top>
       <JFXToolbar minHeight="50.0" minWidth="600.0" style="-fx-background-color: #323a45;">
          <left>
-            <JFXButton mnemonicParsing="false" text="TTB COLA Search" textFill="WHITE" BorderPane.alignment="CENTER">
+            <JFXButton fx:id="goHome" mnemonicParsing="false" text="TTB COLA Search" textFill="WHITE" BorderPane.alignment="CENTER">
                <font>
                   <Font name="Segoe UI Bold" size="18.0" />
                </font>

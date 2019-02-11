@@ -1,9 +1,14 @@
 package edu.wpi.cs3733c19.teamI.Algorithms;
 
+import edu.wpi.cs3733c19.teamI.Controllers.dbUtilities.ReturnedValue;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class DLFuzzy implements IStrategyFuzzy {
     public void run(String searchString) {
         try{
-            this.matches.add(querydata.search_for_dl("form_data.db", "form_data.db", searchString,"fanciful_name"));
+            ArrayList<HashMap<String, ReturnedValue>> mylist=querydata.search_for_l("form_data.db", "form_data.db", searchString, "field", 10);
         }catch (Exception e){
             System.out.println("Unsuccessful query.");
         }

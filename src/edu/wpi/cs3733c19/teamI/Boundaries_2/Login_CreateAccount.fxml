@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../Assets/Style.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers2.LoginAccountController">
+<BorderPane stylesheets="@../Assets/Style.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers2.LoginAccountController">
    <top>
       <JFXToolbar minHeight="50.0" minWidth="600.0" style="-fx-background-color: #323a45;" BorderPane.alignment="CENTER">
          <left>
@@ -58,10 +58,7 @@
       </JFXToolbar>
    </top>
    <center>
-      <JFXTabPane fx:id="primaryPane" maxHeight="-Infinity" maxWidth="-Infinity" style="-fx-background-color: #e4e2e0;" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
-         <BorderPane.margin>
-            <Insets />
-         </BorderPane.margin>
+      <JFXTabPane fx:id="primaryPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: #e4e2e0;" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
          <tabs>
             <Tab closable="false" style="-fx-background-color: #112e51;" text="Login">
               <content>
@@ -112,7 +109,8 @@
                                     <JFXRadioButton mnemonicParsing="false" text="Agent">
                                        <toggleGroup>
                                           <ToggleGroup fx:id="User" />
-                                       </toggleGroup></JFXRadioButton>
+                                       </toggleGroup>
+                                    </JFXRadioButton>
                                     <JFXRadioButton mnemonicParsing="false" text="Manufacturer" toggleGroup="$User" />
                                  </children>
                               </HBox>
@@ -153,7 +151,8 @@
                               <Insets bottom="10.0" left="30.0" right="30.0" top="20.0" />
                            </padding>
                         </VBox>
-                     </children></AnchorPane>
+                     </children>
+                  </AnchorPane>
               </content>
             </Tab>
          </tabs>

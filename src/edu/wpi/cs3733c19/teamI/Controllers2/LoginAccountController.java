@@ -16,10 +16,6 @@ public class LoginAccountController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        primaryPane.widthProperty().addListener((observable, oldValue, newValue) ->
-        {
-            primaryPane.setTabMinWidth(primaryPane.getWidth() / 2);
-            primaryPane.setTabMaxWidth(primaryPane.getWidth() / 2);
-        });
+
     }
 }

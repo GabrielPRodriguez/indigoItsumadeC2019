@@ -1,7 +1,6 @@
 package edu.wpi.cs3733c19.teamI;
 
-import edu.wpi.cs3733c19.teamI.Controllers.ToolBarController;
-import edu.wpi.cs3733c19.teamI.Entities.SearchResults;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,7 +9,6 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
-    public static SearchResults Results = new SearchResults();
 
     public static void main(String[] args) {
         launch(args);
@@ -19,15 +17,15 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
 
-        FXMLLoader firstPaneLoader = new FXMLLoader(getClass().getResource("Boundaries_2/Home.fxml"));
-        ToolBarController toolBarController = new ToolBarController();
-        System.out.println(toolBarController);
+        Parent root = FXMLLoader.load(getClass().getResource("Boundaries_2/Home.fxml"));
+        Scene homeScene = new Scene(root);
+        primaryStage.setTitle("COLA SEARCH ENGINE");
+        primaryStage.setScene(homeScene);
+        primaryStage.setMaximized(true);
+        primaryStage.show();
 
 
-        FXMLLoader newHomePaneLoader = new FXMLLoader(getClass().getResource("Boundaries_2/Home.fxml"));
-        Parent homePane = newHomePaneLoader.load();
-        Scene homeScene = new Scene(homePane);
-
+        /*
         FXMLLoader loginResultLoader = new FXMLLoader(getClass().getResource("Boundaries_2/Login_CreateAccount.fxml"));
         Parent loginCreatePane = loginResultLoader.load();
         Scene loginCreateScene = new Scene(loginCreatePane);
@@ -46,7 +44,6 @@ public class Main extends Application {
 
         /*
 
-        FXMLLoader firstPaneLoader = new FXMLLoader(getClass().getResource("Boundaries/SearchV2.fxml"));
         FXMLLoader firstPaneLoader = new FXMLLoader(getClass().getResource("Boundaries_2/WorkflowAgent.fxml"));
         Parent firstPane = firstPaneLoader.load();
         Scene firstScene = new Scene(firstPane);
@@ -142,10 +139,8 @@ public class Main extends Application {
         */
 
 
-        primaryStage.setTitle("COLA SEARCH ENGINE");
-        primaryStage.setScene(homeScene);
-        primaryStage.setMaximized(true);
-        primaryStage.show();
+
+
 
     }
 

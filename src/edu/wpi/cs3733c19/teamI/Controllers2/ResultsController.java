@@ -18,14 +18,12 @@ import java.util.ResourceBundle;
 public class ResultsController implements Initializable {
     private ToolBarController toolBarController;
     private ArrayList<HashMap<String, ReturnedValue>> resultsList;
-    private String testString = "original";
+
 
     public void  setResultsList(ArrayList<HashMap<String, ReturnedValue>> results){
         this.resultsList = results;
     }
-    public void setTestString(String newString){
-        this.testString=newString;
-    }
+
 
     @FXML
     JFXListView<Label> listView;
@@ -54,10 +52,11 @@ public class ResultsController implements Initializable {
 
             listView.getItems().add(label);
 
-            System.out.println(testString);
 
-            System.out.println("Transfered:" + resultsList);
+
+
         }
+        setResultsList(toolBarController.getResultsMap());
     }
 
 

@@ -30,11 +30,16 @@ public class ToolBarController {
     private Scene Info;
     private Scene Result;
 
-    private ResultsController resultsController;
+    private ArrayList<HashMap<String, ReturnedValue>> resultsMap;
 
-    public void setResultsController(ResultsController resultsController){
-        this.resultsController = resultsController;
 
+    public void setResultsMap(ArrayList<HashMap<String, ReturnedValue>> resultsMap){
+        this.resultsMap = resultsMap;
+
+    }
+
+    public ArrayList<HashMap<String, ReturnedValue>> getResultsMap() {
+        return resultsMap;
     }
 
     public void setPending(Scene pending) {
@@ -158,12 +163,7 @@ public class ToolBarController {
         primaryStage.setScene(Info);
 
     }
-    public void transferSearchInfo(ArrayList<HashMap<String, ReturnedValue>> resultsList){
-        resultsController.setTestString("a new string");
-        resultsController.setResultsList(resultsList);
-        System.out.println("toolbar: " + resultsList);
 
-    }
 
 
 

@@ -4,20 +4,11 @@ import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import sun.rmi.runtime.Log;
-
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class ToolBarController {
 
@@ -100,24 +91,28 @@ public class ToolBarController {
     public void goHome(ActionEvent actionEvent){
         System.out.println("HomeAction");
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        primaryStage.setMaximized(true);
         primaryStage.setScene(HomeScene);
     }
 
     @FXML
     public void goAbout(ActionEvent actionEvent){
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        primaryStage.setMaximized(true);
         primaryStage.setScene(AboutScene);
     }
 
     @FXML
     public void goSubmit(ActionEvent actionEvent){
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        primaryStage.setMaximized(true);
         primaryStage.setScene(SubScene);
     }
 
     @FXML
     public void goLogin(ActionEvent actionEvent){
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        primaryStage.setMaximized(true);
         primaryStage.setScene(Login);
     }
 
@@ -129,26 +124,31 @@ public class ToolBarController {
     @FXML
     public void goPending(ActionEvent actionEvent){
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        primaryStage.setMaximized(true);
         primaryStage.setScene(Pending);
     }
 
     @FXML
     public void goWorkflow(ActionEvent actionEvent){
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        primaryStage.setMaximized(true);
         primaryStage.setScene(FormCheck);
     }
 
     public void goAdvancedSearch(ActionEvent actionEvent){
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        primaryStage.setMaximized(true);
         primaryStage.setScene(SearchScene);
     }
 
     public void goSearch(ActionEvent actionEvent){
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        primaryStage.setMaximized(true);
         primaryStage.setScene(Result);
     }
     public void goDetails(ActionEvent actionEvent){
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        primaryStage.setMaximized(true);
         primaryStage.setScene(Info);
 
     }

@@ -22,7 +22,7 @@ public class Main extends Application {
         ToolBarController toolBarController = new ToolBarController();
         FXMLLoader formCheckerPaneLoader = new FXMLLoader(getClass().getResource("Boundaries_2/WorkflowAgent.fxml"));
         Parent formCheckerPane = formCheckerPaneLoader.load();
-        Scene formCheckerScene = new Scene(formCheckerPane, 1289, 918);
+        Scene formCheckerScene = new Scene(formCheckerPane);
         toolBarController.setFormCheck(formCheckerScene);
 
         AgentWorkflowController agentWorkflowController = formCheckerPaneLoader.getController();
@@ -30,7 +30,7 @@ public class Main extends Application {
 
         FXMLLoader searchPaneLoader = new FXMLLoader(getClass().getResource("Boundaries_2/Advanced Search.fxml"));
         Parent searchPane = searchPaneLoader.load();
-        Scene searchScene = new Scene(searchPane, 1289, 918);
+        Scene searchScene = new Scene(searchPane);
         toolBarController.setSearchScene(searchScene);
 
         AdvancedSearchController advancedSearchController = searchPaneLoader.getController();
@@ -40,7 +40,7 @@ public class Main extends Application {
 
         FXMLLoader resultsPageLoader = new FXMLLoader(getClass().getResource("Boundaries_2/SearchResults.fxml"));
         Parent resultPane = resultsPageLoader.load();
-        Scene resultScene = new Scene(resultPane, 1289, 918);
+        Scene resultScene = new Scene(resultPane);
         toolBarController.setResult(resultScene);
 
         ResultsController resultsController = resultsPageLoader.getController();
@@ -48,7 +48,7 @@ public class Main extends Application {
 
         FXMLLoader subPaneLoader = new FXMLLoader(getClass().getResource("Boundaries_2/FormSubmission.fxml"));
         Parent subPane = subPaneLoader.load();
-        Scene subScene = new Scene(subPane, 1289, 918);
+        Scene subScene = new Scene(subPane);
         toolBarController.setSubScene(subScene);
 
         FormSubmissionController formSubmissionController = subPaneLoader.getController();
@@ -57,7 +57,7 @@ public class Main extends Application {
 
         FXMLLoader loginPaneLoader = new FXMLLoader(getClass().getResource("Boundaries_2/Login_CreateAccount.fxml"));
         Parent loginPane = loginPaneLoader.load();
-        Scene loginScene = new Scene(loginPane, 1289, 918);
+        Scene loginScene = new Scene(loginPane);
         toolBarController.setLogin(loginScene);
 
         LoginAccountController loginAccountController = loginPaneLoader.getController();
@@ -66,7 +66,7 @@ public class Main extends Application {
 
         FXMLLoader aboutPaneLoader = new FXMLLoader(getClass().getResource("Boundaries_2/About.fxml"));
         Parent aboutPane = aboutPaneLoader.load();
-        Scene aboutScene = new Scene(aboutPane, 1289, 918);
+        Scene aboutScene = new Scene(aboutPane);
         toolBarController.setAboutScene(aboutScene);
 
         AboutController aboutController = aboutPaneLoader.getController();
@@ -74,7 +74,7 @@ public class Main extends Application {
 
         FXMLLoader manufacturerPaneLoader = new FXMLLoader(getClass().getResource("Boundaries_2/WorkflowManufacturer.fxml"));
         Parent manufacturerPane = manufacturerPaneLoader.load();
-        Scene manufacturerScene = new Scene(manufacturerPane, 1289,918);
+        Scene manufacturerScene = new Scene(manufacturerPane);
         toolBarController.setPending(manufacturerScene);
 
         ManufacturerWorkflowController manufacturerWorkflowController = manufacturerPaneLoader.getController();
@@ -82,7 +82,7 @@ public class Main extends Application {
 
         FXMLLoader detailedLoader = new FXMLLoader(getClass().getResource("Boundaries_2/DetailedSearchResults.fxml"));
         Parent detailedPane = detailedLoader.load();
-        Scene detailedScene = new Scene(detailedPane,1289,918);
+        Scene detailedScene = new Scene(detailedPane);
         toolBarController.setInfo(detailedScene);
 
         DetailedResultsController detailedResultsController = detailedLoader.getController();
@@ -91,7 +91,7 @@ public class Main extends Application {
 
         FXMLLoader homePaneLoader = new FXMLLoader(getClass().getResource("Boundaries_2/Home.fxml"));
         Parent homePane = homePaneLoader.load();
-        Scene homeScene = new Scene(homePane, 1289, 918);
+        Scene homeScene = new Scene(homePane);
         toolBarController.setHomeScene(homeScene);
 
 

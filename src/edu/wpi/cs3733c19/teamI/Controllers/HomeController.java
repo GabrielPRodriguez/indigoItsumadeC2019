@@ -1,5 +1,6 @@
 package edu.wpi.cs3733c19.teamI.Controllers;
 
+import edu.wpi.cs3733c19.teamI.Controllers2.ToolBarController;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.RequiredFieldValidator;
 import edu.wpi.cs3733c19.teamI.Algorithms.DLFuzzy;
@@ -21,6 +22,7 @@ import javafx.event.ActionEvent;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+public class HomeController extends ToolBarController {
 
 public class HomeController implements Initializable {
 
@@ -29,6 +31,7 @@ public class HomeController implements Initializable {
     private Scene work;
     private Scene loginScene;
     private fuzzyContext searchAlgorithmSelection = new fuzzyContext();
+
 
     @FXML
     Button search; // TODO make sure this is actually the advanced button to change scenes to the advanced search

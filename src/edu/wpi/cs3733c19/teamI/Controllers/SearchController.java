@@ -1,5 +1,6 @@
 package edu.wpi.cs3733c19.teamI.Controllers;
 
+import edu.wpi.cs3733c19.teamI.Controllers2.ToolBarController;
 import edu.wpi.cs3733c19.teamI.Entities.DataField;
 import edu.wpi.cs3733c19.teamI.Entities.SearchResults;
 import javafx.event.ActionEvent;
@@ -17,7 +18,7 @@ import java.util.LinkedList;
 import static edu.wpi.cs3733c19.teamI.Main.Results;
 
 // controller for the search screen UI
-public class SearchController {
+public class SearchController extends ToolBarController {
     private Scene displayScene; // scene that we use to display results
     private SearchDisplayController dispController; //controller of the display screen, needed to access update functions
     private Scene homePage; //home page that we may want to switch back to

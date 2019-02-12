@@ -32,6 +32,7 @@ public class NewHomeController implements Initializable {
     @FXML
     JFXButton tb_loginButton;
 
+
     @FXML
     TextField searchTextField;
 

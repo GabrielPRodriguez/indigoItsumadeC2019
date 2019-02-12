@@ -46,9 +46,15 @@ public class Main extends Application implements SerialPortPacketListener {
     @Override
     public void serialEvent(SerialPortEvent event)
     {
-        if(!mThread.isAlive()){
-            comPort.removeDataListener();
-            comPort.closePort();
+        try {
+            if (!mThread.isAlive()) {
+              //  comPort.removeDataListener();
+             //   comPort.closePort();
+            }
+        }
+        catch (NullPointerException n){
+           // comPort.removeDataListener();
+           // comPort.closePort();
         }
         String user = " ";
         byte[] newData = event.getReceivedData();
@@ -73,13 +79,10 @@ public class Main extends Application implements SerialPortPacketListener {
         System.out.println("\n");
         try {
             Thread.sleep(1000);
-
         }
         catch(InterruptedException e){
             System.out.println("couldnt sleep");
         }
-//        comPort.removeDataListener();
-//        comPort.closePort();
     }
 
     public static SearchResults Results = new SearchResults();
@@ -154,6 +157,7 @@ public class Main extends Application implements SerialPortPacketListener {
         HomeController.setSubmission(SubmissionScene);
         HomeController.setSearch(SearchScene);
         HomeController.setLogin(loginScene);
+        HomeController.comPort = this.comPort;
 
 
         // injecting second scene into the controller of the first scene

@@ -45,7 +45,7 @@
                                     </JFXPasswordField>
                                  </children>
                               </VBox>
-                              <JFXButton alignment="CENTER" mnemonicParsing="false" style="-fx-background-color: #046b99;" text="Log In" textFill="WHITE">
+                              <JFXButton alignment="CENTER" mnemonicParsing="false" onAction="#login" style="-fx-background-color: #046b99;" text="Log In" textFill="WHITE">
                                  <font>
                                     <Font name="Segoe UI Bold" size="16.0" />
                                  </font>
@@ -153,7 +153,7 @@
                         <Font name="Segoe UI Bold" size="16.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton mnemonicParsing="false" onAction="#goLogin" text="Login" textFill="WHITE">
+                  <JFXButton fx:id="tb_loginButton" mnemonicParsing="false" onAction="#goLogin" text="Login" textFill="WHITE">
                      <font>
                         <Font name="Segoe UI Bold" size="16.0" />
                      </font>

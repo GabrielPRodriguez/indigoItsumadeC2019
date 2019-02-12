@@ -19,7 +19,7 @@
          <children>
             <HBox alignment="CENTER" spacing="40.0">
                <children>
-                  <TextField prefHeight="50.0" promptText="Find A Beverage" HBox.hgrow="ALWAYS" />
+                  <TextField onAction="#goSearch" prefHeight="50.0" promptText="Find A Beverage" HBox.hgrow="ALWAYS" />
                   <JFXButton mnemonicParsing="false" text="View Form" HBox.hgrow="ALWAYS">
                      <font>
                         <Font name="Segoe UI Bold" size="15.0" />

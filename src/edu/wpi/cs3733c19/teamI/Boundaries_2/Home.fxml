@@ -52,7 +52,7 @@
                         <Font name="Segoe UI Bold" size="16.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton mnemonicParsing="false" onAction="#goLogin" text="Login" textFill="WHITE">
+                  <JFXButton fx:id="tb_loginButton" mnemonicParsing="false" onAction="#goLogin" text="Login" textFill="WHITE">
                      <font>
                         <Font name="Segoe UI Bold" size="16.0" />
                      </font>
@@ -88,7 +88,7 @@
             </Label>
             <HBox alignment="CENTER" fillHeight="false" spacing="20.0" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                <children>
-                  <TextField fx:id="searchTextField" prefHeight="50.0" promptText="Find A Beverage" HBox.hgrow="ALWAYS" />
+                  <TextField fx:id="searchTextField" onAction="#goSearch" prefHeight="50.0" promptText="Find A Beverage" HBox.hgrow="ALWAYS" />
                   <JFXButton fx:id="search" mnemonicParsing="false" onAction="#goSearch" style="-fx-background-color: #046b99;" text="Search" textFill="WHITE" HBox.hgrow="ALWAYS">
                      <font>
                         <Font name="Segoe UI Bold" size="22.0" />

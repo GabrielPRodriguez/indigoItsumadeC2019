@@ -28,7 +28,7 @@
             <Separator prefWidth="200.0" />
             <HBox alignment="CENTER_LEFT" spacing="20.0">
                <children>
-                  <TextField prefHeight="50.0" HBox.hgrow="ALWAYS" />
+                  <TextField onAction="#goSearch" prefHeight="50.0" HBox.hgrow="ALWAYS" />
                   <JFXComboBox fx:id="fieldSelector" promptText="Search By:" />
                </children></HBox>
             <HBox alignment="CENTER_LEFT" spacing="20.0">

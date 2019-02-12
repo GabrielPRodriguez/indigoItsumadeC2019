@@ -12,16 +12,25 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.VBox;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class NewHomeController implements Initializable {
 
+    //@FXML
+    //JFXComboBox<JFXButton> search;
+
+    @FXML
+    VBox primary;
+
 
     private ToolBarController toolBarController;
     private fuzzyContext searchAlgorithmSelection = new fuzzyContext();
 
+    @FXML
+    JFXButton tb_loginButton;
 
     @FXML
     TextField searchTextField;
@@ -64,7 +73,14 @@ public class NewHomeController implements Initializable {
 
     @FXML
     public void goLogin(ActionEvent actionEvent){
+        System.out.println("logging in");
         toolBarController.goLogin(actionEvent);
+    }
+
+    @FXML
+    public void goLogout(ActionEvent actionEvent){
+        System.out.println("logging out");
+        toolBarController.goLogout(actionEvent);
     }
 
     @FXML
@@ -75,6 +91,7 @@ public class NewHomeController implements Initializable {
 
     @FXML
     public void goAdvancedSearch(ActionEvent actionEvent){toolBarController.goAdvancedSearch(actionEvent);}
+
 
 
     @FXML
@@ -98,9 +115,15 @@ public class NewHomeController implements Initializable {
         if (searchTextField.getText() == null || searchTextField.getText().trim().isEmpty()){
             // TODO Insert here anything you want the app to do when user click search and box is epty
 
-        }else {
+        }
+        else {
             setAlgorithm();
-            System.out.println(searchAlgorithmSelection.run(searchTextField.getText().trim()));// TODO:this will return what fuzzys return
+            System.out.println(searchAlgorithmSelection.run(searchTextField.getText().trim()));
+            toolBarController.transferSearchInfo(searchAlgorithmSelection.run(searchTextField.getText().trim()));
+            toolBarController.goSearch(actionEvent);
+            System.out.println("Finished Gosearch");
+
+            // TODO:this will return what fuzzys return
             // TODO link the return of the fuzzy alghoriths to a listView on the next page (maybe just have field of hashmap that gets passed to the next scene)
 
         }

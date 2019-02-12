@@ -103,10 +103,7 @@ public class AdvancedSearchController implements Initializable {
 
 
     @FXML
-    public void goHome(ActionEvent actionEvent){
-        toolBarController.goHome(actionEvent);
-
-    }
+    public void goHome(ActionEvent actionEvent){ toolBarController.goHome(actionEvent); }
 
     @FXML
     public void goSubmit(ActionEvent actionEvent){
@@ -123,6 +120,9 @@ public class AdvancedSearchController implements Initializable {
 
     @FXML
     public void goAbout(ActionEvent actionEvent){toolBarController.goAbout(actionEvent);}
+
+    @FXML
+    public void goSearch(ActionEvent actionEvent){toolBarController.goSearch(actionEvent);}
 
 
 }

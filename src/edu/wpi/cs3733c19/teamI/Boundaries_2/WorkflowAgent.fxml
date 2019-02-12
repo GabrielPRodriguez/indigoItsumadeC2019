@@ -2,10 +2,10 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXDatePicker?>
-<?import com.jfoenix.controls.JFXListView?>
 <?import com.jfoenix.controls.JFXRadioButton?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import com.jfoenix.controls.JFXToolbar?>
+<?import com.jfoenix.controls.JFXTreeTableView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -48,11 +48,7 @@
                               <DropShadow />
                            </effect>
                         </JFXToolbar>
-                        <JFXListView style="-fx-background-color: #f1f1f1;" VBox.vgrow="ALWAYS">
-                           <effect>
-                              <DropShadow />
-                           </effect>
-                        </JFXListView>
+                        <JFXTreeTableView VBox.vgrow="ALWAYS" />
                      </children>
                   </VBox>
                   <VBox alignment="CENTER" spacing="40.0" HBox.hgrow="ALWAYS">

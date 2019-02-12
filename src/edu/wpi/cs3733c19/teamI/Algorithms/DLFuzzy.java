@@ -10,7 +10,7 @@ public class DLFuzzy implements IStrategyFuzzy {
         try{
             ArrayList<HashMap<String, ReturnedValue>> mylist=querydata.search_for_dl_multiple("form_data", "form_data.db",searchParameters,searchString, 10);
         }catch (Exception e){
-            System.out.println("Unsuccessful query.");
+            System.out.println("Unsuccessful qury.");
         }
     }
 

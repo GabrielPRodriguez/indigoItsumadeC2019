@@ -9,7 +9,7 @@ public interface IStrategyFuzzy {
     // this interface includes a class called run to run the fuzzy search, its own sql driver class, and an Array List of hashmaps
     //TODO: Maybe we should create getters and setters but test the algorithms first
 
-    void run(String searchString);
+    void run(String searchString) throws Exception;
     ArrayList<HashMap<String, ReturnedValue>> matches = new ArrayList<HashMap<String, ReturnedValue>>();
     SQLDriver querydata = new SQLDriver();
     ArrayList<String> searchParameters = new ArrayList<String>(){
@@ -17,7 +17,7 @@ public interface IStrategyFuzzy {
             add("fancifulName");
             add("beverageType");
             add("extraInfo");
-            add("brandName");
+            //TODO: fix these so that they Actually match up with the fields in the database
         }
 
     };

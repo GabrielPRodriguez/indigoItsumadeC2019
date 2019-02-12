@@ -22,7 +22,9 @@ import javafx.event.ActionEvent;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-public class HomeController extends ToolBarController {
+
+
+public class HomeController extends ToolBarController implements Initializable {
 
     private Scene submissionScene;
     private Scene searchScene;
@@ -97,7 +99,7 @@ public class HomeController extends ToolBarController {
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         primaryStage.setScene(loginScene);
     }
-
+    /*
     @FXML
     public void setAlgorithm(){
         RadioButton selectedRadioButton = (RadioButton) group.getSelectedToggle();
@@ -120,11 +122,12 @@ public class HomeController extends ToolBarController {
             // emptyLabel.setText("No search text entered");
             // emptyLabel.setTextFill(Color.web("#FF0000"));
         }else {
+            System.out.println("Test worked");
             setAlgorithm();
             searchAlgorithmSelection.run(searchField.getText());// TODO:this will return a set of fie
         }
     }
-
+*/
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 

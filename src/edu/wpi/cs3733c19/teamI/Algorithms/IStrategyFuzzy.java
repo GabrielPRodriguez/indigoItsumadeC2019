@@ -8,10 +8,11 @@ import java.util.HashMap;
 public interface IStrategyFuzzy {
     // this interface includes a class called run to run the fuzzy search, its own sql driver class, and an Array List of hashmaps
     //TODO: Maybe we should create getters and setters but test the algorithms first
+
     void run(String searchString);
-    ArrayList<HashMap<String, ReturnedValue>> matches=new ArrayList<HashMap<String, ReturnedValue>>();
-    SQLDriver querydata=new SQLDriver();
-    ArrayList<String> searchParameters=new ArrayList<String>(){
+    ArrayList<HashMap<String, ReturnedValue>> matches = new ArrayList<HashMap<String, ReturnedValue>>();
+    SQLDriver querydata = new SQLDriver();
+    ArrayList<String> searchParameters = new ArrayList<String>(){
         {
             add("fanciful_name");
             add("beverage_type");

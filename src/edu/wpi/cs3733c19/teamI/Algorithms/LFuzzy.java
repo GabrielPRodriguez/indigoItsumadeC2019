@@ -6,6 +6,7 @@ import java.util.HashMap;
 
 
 public class LFuzzy implements IStrategyFuzzy {
+
     public void run(String searchString){
 
         //Todo: The second to last parameter is impending a change
@@ -16,4 +17,6 @@ public class LFuzzy implements IStrategyFuzzy {
             System.out.println("Unsuccessful query.");
         }
     }
+
+
 }

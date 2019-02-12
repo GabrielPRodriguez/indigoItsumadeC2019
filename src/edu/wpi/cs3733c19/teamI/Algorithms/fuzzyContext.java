@@ -18,8 +18,12 @@ public class fuzzyContext {
         this.fuzzyAlgorithm = myfuzzy;
     }
 
+
     public ArrayList<HashMap<String, ReturnedValue>> run(String searchString) {
         fuzzyAlgorithm.run(searchString);
         return fuzzyAlgorithm.matches;
     }
+
+
+
 }

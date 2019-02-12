@@ -98,7 +98,7 @@ public class ToolBarController {
 
     @FXML
     public void goHome(ActionEvent actionEvent){
-        System.out.println("HomeAction");
+        //System.out.println("HomeAction"); // Commented out because it prints too much
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         primaryStage.setScene(HomeScene);
     }

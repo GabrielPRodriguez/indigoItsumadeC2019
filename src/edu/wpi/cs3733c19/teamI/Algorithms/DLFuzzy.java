@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class DLFuzzy implements IStrategyFuzzy {
+
     public void run(String searchString) {
         try{
             ArrayList<HashMap<String, ReturnedValue>> mylist=querydata.search_for_dl_multiple("form_data", "form_data.db",searchParameters,searchString, 10);
@@ -13,6 +14,8 @@ public class DLFuzzy implements IStrategyFuzzy {
             System.out.println("Unsuccessful query.");
         }
     }
+
+
 
     /**
      * algorithm OSA-distance

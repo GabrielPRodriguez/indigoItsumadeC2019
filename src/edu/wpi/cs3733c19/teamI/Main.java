@@ -52,6 +52,8 @@ public class Main extends Application {
         ResultsController resultsController = resultsPageLoader.getController();
         resultsController.setToolBarController(toolBarController);
 
+        toolBarController.setResultsController(resultsController);
+
         FXMLLoader subPaneLoader = new FXMLLoader(getClass().getResource("Boundaries_2/FormSubmission.fxml"));
         Parent subPane = subPaneLoader.load();
         Scene subScene = new Scene(subPane, 1289, 918);

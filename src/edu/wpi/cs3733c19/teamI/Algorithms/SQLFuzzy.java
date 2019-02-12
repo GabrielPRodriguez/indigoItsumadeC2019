@@ -11,12 +11,12 @@ public class SQLFuzzy implements IStrategyFuzzy {
 
     public void run(String searchString){
         try{
+            //querying for each form parameter
             for(String myparam: searchParameters){
-                ArrayList<HashMap<String, ReturnedValue>> mylist=querydata.search_sql_wildcard("form_data", "form_data.db", searchString, myparam);
+                ArrayList<HashMap<String, ReturnedValue>> mylist=querydata.search_sql_wildcard("form_db", "form_db_from_spreadsheet.db", searchString, myparam);
                 matches.addAll(mylist);
             }
-            //remove duplicates for mathcing
-            //TODO: remove the duplicates from here
+            removeDuplicates();
 
         }catch(Exception e){
             System.out.println("Unable to query the results.");
@@ -24,11 +24,18 @@ public class SQLFuzzy implements IStrategyFuzzy {
     }
 
     void removeDuplicates(){
-        ArrayList<String> formIDs = new ArrayList<>();
+        ArrayList<Double> formIDs = new ArrayList<>();
         //Collections.sort(matches,  )
+
         for(HashMap<String,ReturnedValue> e:matches){
-            //add the form id here
-            //check if the form is being repeated, if it is, then remove the repeated form
+            Double form_id=e.get("formID").to_double();
+            for(Double x:formIDs){
+                if(x==form_id){
+                    matches.remove(e);
+                }else{
+                    formIDs.add(form_id);
+                }
+            }
         }
     }
 /*

@@ -14,10 +14,10 @@ public interface IStrategyFuzzy {
     SQLDriver querydata = new SQLDriver();
     ArrayList<String> searchParameters = new ArrayList<String>(){
         {
-            add("fanciful_name");
-            add("beverage_type");
-            add("extra_info");
-            //TODO: fix these so that they Actually match up with the fields in the database
+            add("fancifulName");
+            add("beverageType");
+            add("extraInfo");
+            add("brandName");
         }
 
     };

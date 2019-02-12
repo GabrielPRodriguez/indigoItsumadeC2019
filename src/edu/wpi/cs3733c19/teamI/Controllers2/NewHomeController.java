@@ -7,22 +7,30 @@ import edu.wpi.cs3733c19.teamI.Algorithms.LFuzzy;
 import edu.wpi.cs3733c19.teamI.Algorithms.SQLFuzzy;
 import edu.wpi.cs3733c19.teamI.Algorithms.fuzzyContext;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.VBox;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class NewHomeController implements Initializable {
 
+    //@FXML
+    //JFXComboBox<JFXButton> search;
+
+    @FXML
+    VBox primary;
+
 
     private ToolBarController toolBarController;
     private fuzzyContext searchAlgorithmSelection = new fuzzyContext();
+
+    @FXML
+    JFXButton tb_loginButton;
 
 
     @FXML
@@ -66,11 +74,25 @@ public class NewHomeController implements Initializable {
 
     @FXML
     public void goLogin(ActionEvent actionEvent){
+        System.out.println("logging in");
         toolBarController.goLogin(actionEvent);
     }
 
     @FXML
+    public void goLogout(ActionEvent actionEvent){
+        System.out.println("logging out");
+        toolBarController.goLogout(actionEvent);
+    }
+
+    @FXML
     public void goAbout(ActionEvent actionEvent){toolBarController.goAbout(actionEvent);}
+
+    @FXML
+    public void goWorkflow(ActionEvent actionEvent){toolBarController.goWorkflow(actionEvent);}
+
+    @FXML
+    public void goAdvancedSearch(ActionEvent actionEvent){toolBarController.goAdvancedSearch(actionEvent);}
+
 
 
     @FXML
@@ -90,13 +112,19 @@ public class NewHomeController implements Initializable {
     }
 
 
-    public void startSearch(ActionEvent actionEvent){
+    public void goSearch(ActionEvent actionEvent){
         if (searchTextField.getText() == null || searchTextField.getText().trim().isEmpty()){
             // TODO Insert here anything you want the app to do when user click search and box is epty
 
-        }else {
+        }
+        else {
             setAlgorithm();
-            System.out.println(searchAlgorithmSelection.run(searchTextField.getText().trim()));// TODO:this will return what fuzzys return
+            System.out.println(searchAlgorithmSelection.run(searchTextField.getText().trim()));
+            // toolBarController.transferSearchInfo(searchAlgorithmSelection.run(searchTextField.getText().trim()));
+            // toolBarController.goSearch(actionEvent);
+            // System.out.println("Finished Gosearch");
+
+            // TODO:this will return what fuzzys return
             // TODO link the return of the fuzzy alghoriths to a listView on the next page (maybe just have field of hashmap that gets passed to the next scene)
 
         }

@@ -1,5 +1,6 @@
 package edu.wpi.cs3733c19.teamI.Controllers;
 
+import com.fazecast.jSerialComm.SerialPort;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -16,10 +17,15 @@ public class HomeController {
     private Scene searchScene;
     private Scene work;
     private Scene loginScene;
+    public SerialPort comPort;
+
 
 
     @FXML
     Button search;
+
+    @FXML
+    Button exit;
 
     @FXML
     Button submit;
@@ -64,5 +70,11 @@ public class HomeController {
     public void openLogin(ActionEvent actionEvent){
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         primaryStage.setScene(loginScene);
+    }
+
+    public void closeAll(ActionEvent actionEvent){
+        //comPort.removeDataListener();
+        //comPort.closePort();
+        System.exit(0);
     }
 }

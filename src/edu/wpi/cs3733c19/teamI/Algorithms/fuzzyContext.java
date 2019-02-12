@@ -19,6 +19,12 @@ public class fuzzyContext {
     }
 
 
+    public ArrayList<HashMap<String, ReturnedValue>> run(String searchString){
+        fuzzyAlgorithm.run(searchString);
+        return fuzzyAlgorithm.matches;
+    }
+
+    /*
     public ArrayList<HashMap<String, ReturnedValue>> run(String searchString) {
        // fuzzyAlgorithm.run(searchString);
         HashMap<String, ReturnedValue> testMap = new HashMap<>();
@@ -27,7 +33,7 @@ public class fuzzyContext {
         fuzzyAlgorithm.matches.add(testMap);
         return fuzzyAlgorithm.matches;
     }
-
+    */
 
 
 }

@@ -23,13 +23,14 @@ public class Main extends Application implements SerialPortPacketListener {
     private SerialPort comPort;
     public Scene formCheckerScene;
     public Parent formCheckerPane;
+    public Thread mThread;
 
 
     public void PacketListener() {
         try {
-            this.comPort = SerialPort.getCommPorts()[0];
-            this.comPort.openPort();
-            this.comPort.addDataListener(this);
+            SerialPort comPort = SerialPort.getCommPorts()[0];
+            comPort.openPort();
+            comPort.addDataListener(this);
         }
         catch(Exception e){
             System.out.println("No peripheral connected");
@@ -45,6 +46,10 @@ public class Main extends Application implements SerialPortPacketListener {
     @Override
     public void serialEvent(SerialPortEvent event)
     {
+        if(!mThread.isAlive()){
+            comPort.removeDataListener();
+            comPort.closePort();
+        }
         String user = " ";
         byte[] newData = event.getReceivedData();
         System.out.println("Received data of size: " + newData.length);
@@ -53,14 +58,13 @@ public class Main extends Application implements SerialPortPacketListener {
             System.out.print((char) newData[i]);
         }
         System.out.println(user);
-        if(user.equals(" AAAA")){
-            //do nothing
-        }
-        else{
+        if(user.equals(" ERIC")){
             System.out.println("Change?");
             Platform.runLater(new Runnable() {
+
                 @Override
                 public void run() {
+
                     finalStage.setScene(formCheckerScene);
                 }
             });
@@ -69,10 +73,13 @@ public class Main extends Application implements SerialPortPacketListener {
         System.out.println("\n");
         try {
             Thread.sleep(1000);
+
         }
         catch(InterruptedException e){
-            System.out.println("DIE!");
+            System.out.println("couldnt sleep");
         }
+//        comPort.removeDataListener();
+//        comPort.closePort();
     }
 
     public static SearchResults Results = new SearchResults();
@@ -88,6 +95,16 @@ public class Main extends Application implements SerialPortPacketListener {
     @Override
     public void start(Stage primaryStage) throws Exception{
         this.finalStage = primaryStage;
+        Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        System.out.println("made it");
+                        comPort.removeDataListener();
+                        comPort.closePort();
+                    }
+                }));
+
+        mThread = Thread.currentThread();
 
 
 

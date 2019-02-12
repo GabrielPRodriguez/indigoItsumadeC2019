@@ -14,6 +14,7 @@ public class LoginController {
     private FormCheckerController formCheck;
     private Scene Home;
     private Scene Submission;
+    public int setFlag;
 
 
     @FXML
@@ -117,7 +118,7 @@ public class LoginController {
             goSubmission(actionEvent);
         }
         else if(this.TTBLogin.isSelected()) {
-            openDisplayScene(actionEvent);
+            openDisplayScene();
         }
     }
 
@@ -135,7 +136,7 @@ public class LoginController {
         outputStream.flush();
         outputStream.close();
             //and then scene switcher code, wait for merge
-        openDisplayScene(actionEvent);
+        openDisplayScene();
 
     }
 
@@ -153,8 +154,9 @@ public class LoginController {
     }
 
 
-    public void openDisplayScene(ActionEvent actionEvent) {
-        Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+    public void openDisplayScene(){//ActionEvent actionEvent) {
+        //Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+    Stage primaryStage = (Stage) (TTBLogin.getScene().getWindow());
         primaryStage.setScene(formCheckerScene); // See the form checker page
         formCheck.setUserName(username.getText());
     }

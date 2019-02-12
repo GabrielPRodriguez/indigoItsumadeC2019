@@ -1,16 +1,79 @@
 package edu.wpi.cs3733c19.teamI;
 
+import com.fazecast.jSerialComm.SerialPort;
+import com.fazecast.jSerialComm.SerialPortEvent;
+import com.fazecast.jSerialComm.SerialPortPacketListener;
 import edu.wpi.cs3733c19.teamI.Controllers.*;
 import edu.wpi.cs3733c19.teamI.Entities.PacketListener;
 import edu.wpi.cs3733c19.teamI.Entities.RFID;
 import edu.wpi.cs3733c19.teamI.Entities.SearchResults;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class Main extends Application {
+public class Main extends Application implements SerialPortPacketListener {
+
+    private LoginController login_controller;
+
+    private Stage finalStage;
+
+    private SerialPort comPort;
+    public Scene formCheckerScene;
+    public Parent formCheckerPane;
+
+
+    public void PacketListener() {
+        try {
+            this.comPort = SerialPort.getCommPorts()[0];
+            this.comPort.openPort();
+            this.comPort.addDataListener(this);
+        }
+        catch(Exception e){
+            System.out.println("No peripheral connected");
+        }
+    }
+
+    @Override
+    public int getListeningEvents() { return SerialPort.LISTENING_EVENT_DATA_RECEIVED; }
+
+    @Override
+    public int getPacketSize() { return 4; }
+
+    @Override
+    public void serialEvent(SerialPortEvent event)
+    {
+        String user = " ";
+        byte[] newData = event.getReceivedData();
+        System.out.println("Received data of size: " + newData.length);
+        for (int i = 0; i < newData.length; ++i) {
+            user += (char)newData[i];
+            System.out.print((char) newData[i]);
+        }
+        System.out.println(user);
+        if(user.equals(" AAAA")){
+            //do nothing
+        }
+        else{
+            System.out.println("Change?");
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    finalStage.setScene(formCheckerScene);
+                }
+            });
+            System.out.println("Continued?");
+        }
+        System.out.println("\n");
+        try {
+            Thread.sleep(1000);
+        }
+        catch(InterruptedException e){
+            System.out.println("DIE!");
+        }
+    }
 
     public static SearchResults Results = new SearchResults();
 
@@ -18,16 +81,24 @@ public class Main extends Application {
         launch(args);
     }
 
+    void changeScene(){
+        finalStage.setScene(this.formCheckerScene);
+    }
+
     @Override
     public void start(Stage primaryStage) throws Exception{
+        this.finalStage = primaryStage;
+
+
 
         FXMLLoader SearchLoader = new FXMLLoader(getClass().getResource("Boundaries/SearchV2.fxml"));
         Parent SearchPane = SearchLoader.load();
         Scene SearchScene = new Scene(SearchPane, 1289, 918);
 
         FXMLLoader formCheckerPaneLoader = new FXMLLoader(getClass().getResource("Boundaries/FormChecker.fxml"));
-        Parent formCheckerPane = formCheckerPaneLoader.load();
-        Scene formCheckerScene = new Scene(formCheckerPane, 1289, 918);
+        this.formCheckerPane = formCheckerPaneLoader.load();
+        this.formCheckerScene = new Scene(formCheckerPane, 1289, 918);
+        //this.userPage = formCheckerScene;
 
         // getting loader and a pane for the second scene
         FXMLLoader ResultsPageLoader = new FXMLLoader(getClass().getResource("Boundaries/ResultsPage.fxml"));
@@ -83,8 +154,8 @@ public class Main extends Application {
         primaryStage.setTitle("COLA SEARCH ENGINE");
         primaryStage.setScene(HomeScene);
         primaryStage.show();
+        PacketListener();
 
-        PacketListener newReader = new PacketListener();
     }
 
 

@@ -76,7 +76,8 @@ public class SQLDriver{
 
 
     }
-    public int l_distance(String a, String b){//one thing you ned
+    public int l_distance(String a, String b){
+        System.out.println("in l_distance");
         int counter = Math.abs(a.length()-b.length());
         if (a.length() >= b.length()){
             for (int i = 0; i < b.length(); i++){
@@ -94,7 +95,7 @@ public class SQLDriver{
         }
         return counter;
     }
-    public int dl_distance(String source, String target){// the other
+    public int dl_distance(String source, String target){
         // throw if parameter is a null
         if (source == null || target == null) {
             throw new IllegalArgumentException("Parameter must not be null");
@@ -142,7 +143,8 @@ public class SQLDriver{
 
             int _count = 0;
             for (String key:keys){
-                _count += dl_distance(result.get(key).to_string(), _user_input);
+                String _val = result.get(key).to_string();
+                _count += dl_distance(_val, _user_input);
             }
             all_distances.add(_count);
             results.put(_count, result);
@@ -152,9 +154,10 @@ public class SQLDriver{
         ArrayList<HashMap<String, ReturnedValue>>final_results = new ArrayList<HashMap<String, ReturnedValue>>();
         int _final_count = 0;
         int index_counter = 1;
+        int _size = all_distances.size();
         int last_seen_distance = all_distances.get(0);
         final_results.add(results.get(last_seen_distance));
-        while (_final_count < top_results){
+        while (_final_count < top_results && index_counter < _size){
             int new_val = all_distances.get(index_counter);
             final_results.add(results.get(new_val));
             if (new_val != last_seen_distance){
@@ -172,6 +175,7 @@ public class SQLDriver{
 
 
     public ArrayList<HashMap<String, ReturnedValue>>search_for_l_multiple(String tablename, String filename, ArrayList<String>keys, String _user_input, int top_results) throws Exception{
+        System.out.println("In search_for_l_multiple");
         if (top_results < 1){
             throw new Exception("'top_results' must be a value greater than zero");
         }
@@ -182,7 +186,11 @@ public class SQLDriver{
 
             int _count = 0;
             for (String key:keys){
-                _count += l_distance(result.get(key).to_string(), _user_input);
+                String _val = result.get(key).to_string();
+                if (_val.length() > 0){
+                    _count += l_distance(_val, _user_input);
+                }
+
             }
             all_distances.add(_count);
             results.put(_count, result);
@@ -192,9 +200,10 @@ public class SQLDriver{
         ArrayList<HashMap<String, ReturnedValue>>final_results = new ArrayList<HashMap<String, ReturnedValue>>();
         int _final_count = 0;
         int index_counter = 1;
+        int _size = all_distances.size();
         int last_seen_distance = all_distances.get(0);
         final_results.add(results.get(last_seen_distance));
-        while (_final_count < top_results){
+        while (_final_count < top_results && index_counter < _size){
             int new_val = all_distances.get(index_counter);
             final_results.add(results.get(new_val));
             if (new_val != last_seen_distance){
@@ -431,7 +440,8 @@ public class SQLDriver{
 
     public ArrayList<HashMap<String, ReturnedValue>>search_sql_wildcard(String tablename, String filename, String target, String _key) throws Exception{
         //sample method call: search_for_l("form_data", "form_data.db", "MyFancyTitle", "fancifulName");
-        String _query = "SELECT * FROM "+tablename+" * WHERE "+_key+" LIKE "+"%'"+target+"'%";
+        String _query = "SELECT * FROM "+tablename+" WHERE "+_key+" LIKE "+"'%"+target+"%'";
+        System.out.println(_query);
         if (!filename.endsWith(".db")){
             throw new Exception("filename must end with '.db'");
         }
@@ -467,6 +477,7 @@ public class SQLDriver{
         return full_payload;
 
     }
+
     public ArrayList<HashMap<String, ReturnedValue>>get_data_by_value(String tablename, String filename, LinkedList<String>search_fields, HashMap<String, DataField>targets) throws Exception{
         //System.out.println("in search method");
 

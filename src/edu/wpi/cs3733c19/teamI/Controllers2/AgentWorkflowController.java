@@ -13,10 +13,7 @@ public class AgentWorkflowController {
     }
 
     @FXML
-    public void goHome(ActionEvent actionEvent){
-        toolBarController.goHome(actionEvent);
-
-    }
+    public void goHome(ActionEvent actionEvent){ toolBarController.goHome(actionEvent); }
 
     @FXML
     public void goSubmit(ActionEvent actionEvent){
@@ -27,4 +24,10 @@ public class AgentWorkflowController {
     public void goLogin(ActionEvent actionEvent){
         toolBarController.goLogin(actionEvent);
     }
+
+    @FXML
+    public void goAbout(ActionEvent actionEvent){toolBarController.goAbout(actionEvent); }
+
+    @FXML
+    public void goWorkflow(ActionEvent actionEvent){toolBarController.goWorkflow(actionEvent);}
 }

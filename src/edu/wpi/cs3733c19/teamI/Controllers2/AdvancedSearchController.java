@@ -6,15 +6,13 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class AdvancedSearchController implements Initializable {
+
 
     @FXML
     JFXComboBox fieldSelector;
@@ -105,10 +103,7 @@ public class AdvancedSearchController implements Initializable {
 
 
     @FXML
-    public void goHome(ActionEvent actionEvent){
-        toolBarController.goHome(actionEvent);
-
-    }
+    public void goHome(ActionEvent actionEvent){ toolBarController.goHome(actionEvent); }
 
     @FXML
     public void goSubmit(ActionEvent actionEvent){
@@ -119,6 +114,15 @@ public class AdvancedSearchController implements Initializable {
     public void goLogin(ActionEvent actionEvent){
         toolBarController.goLogin(actionEvent);
     }
+
+    @FXML
+    public void goWorkflow(ActionEvent actionEvent){toolBarController.goWorkflow(actionEvent);}
+
+    @FXML
+    public void goAbout(ActionEvent actionEvent){toolBarController.goAbout(actionEvent);}
+
+    @FXML
+    public void goSearch(ActionEvent actionEvent){toolBarController.goSearch(actionEvent);}
 
 
 }

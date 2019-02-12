@@ -19,11 +19,21 @@ public class fuzzyContext {
     }
 
 
-    public ArrayList<HashMap<String, ReturnedValue>> run(String searchString) {
+    public ArrayList<HashMap<String, ReturnedValue>> run(String searchString){
         fuzzyAlgorithm.run(searchString);
         return fuzzyAlgorithm.matches;
     }
 
+    /*
+    public ArrayList<HashMap<String, ReturnedValue>> run(String searchString) {
+       // fuzzyAlgorithm.run(searchString);
+        HashMap<String, ReturnedValue> testMap = new HashMap<>();
+        ReturnedValue test = new ReturnedValue("one", "two");
+       testMap.put("rainbow", test);
+        fuzzyAlgorithm.matches.add(testMap);
+        return fuzzyAlgorithm.matches;
+    }
+    */
 
 
 }

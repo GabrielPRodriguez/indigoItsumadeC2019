@@ -23,10 +23,7 @@ public class LoginAccountController implements Initializable {
 
 
     @FXML
-    public void goHome(ActionEvent actionEvent){
-        toolBarController.goHome(actionEvent);
-
-    }
+    public void goHome(ActionEvent actionEvent){ toolBarController.goHome(actionEvent); }
 
     @FXML
     public void goSubmit(ActionEvent actionEvent){
@@ -38,7 +35,16 @@ public class LoginAccountController implements Initializable {
         toolBarController.goLogin(actionEvent);
     }
 
+    @FXML
+    public void goWorkflow(ActionEvent actionEvent){toolBarController.goWorkflow(actionEvent);}
 
+    @FXML
+    public void goAbout(ActionEvent actionEvent){toolBarController.goAbout(actionEvent);}
+
+    @FXML
+    public void login(ActionEvent actionEvent){
+        toolBarController.login(actionEvent);
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

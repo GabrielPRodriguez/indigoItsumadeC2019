@@ -1,7 +1,8 @@
 package edu.wpi.cs3733c19.teamI;
 
 
-import edu.wpi.cs3733c19.teamI.Controllers2.ToolBarController;
+import edu.wpi.cs3733c19.teamI.Controllers2.*;
+import edu.wpi.cs3733c19.teamI.Entities.SearchResults;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -23,10 +24,93 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
 
+
         ToolBarController toolBarController = new ToolBarController();
+        FXMLLoader formCheckerPaneLoader = new FXMLLoader(getClass().getResource("Boundaries_2/WorkflowAgent.fxml"));
+        Parent formCheckerPane = formCheckerPaneLoader.load();
+        Scene formCheckerScene = new Scene(formCheckerPane, 1289, 918);
+        toolBarController.setFormCheck(formCheckerScene);
+
+        AgentWorkflowController agentWorkflowController = formCheckerPaneLoader.getController();
+        agentWorkflowController.setToolBarController(toolBarController);
+
+        FXMLLoader searchPaneLoader = new FXMLLoader(getClass().getResource("Boundaries_2/Advanced Search.fxml"));
+        Parent searchPane = searchPaneLoader.load();
+        Scene searchScene = new Scene(searchPane, 1289, 918);
+        toolBarController.setSearchScene(searchScene);
+
+        AdvancedSearchController advancedSearchController = searchPaneLoader.getController();
+        advancedSearchController.setToolBarController(toolBarController);
+
+
+
+        FXMLLoader resultsPageLoader = new FXMLLoader(getClass().getResource("Boundaries_2/SearchResults.fxml"));
+        Parent resultPane = resultsPageLoader.load();
+        Scene resultScene = new Scene(resultPane, 1289, 918);
+        toolBarController.setResult(resultScene);
+
+        ResultsController resultsController = resultsPageLoader.getController();
+        resultsController.setToolBarController(toolBarController);
+
+        FXMLLoader subPaneLoader = new FXMLLoader(getClass().getResource("Boundaries_2/FormSubmission.fxml"));
+        Parent subPane = subPaneLoader.load();
+        Scene subScene = new Scene(subPane, 1289, 918);
+        toolBarController.setSubScene(subScene);
+
+        FormSubmissionController formSubmissionController = subPaneLoader.getController();
+        formSubmissionController.setToolBarController(toolBarController);
+
+
+        FXMLLoader loginPaneLoader = new FXMLLoader(getClass().getResource("Boundaries_2/Login_CreateAccount.fxml"));
+        Parent loginPane = loginPaneLoader.load();
+        Scene loginScene = new Scene(loginPane, 1289, 918);
+        toolBarController.setLogin(loginScene);
+
+        LoginAccountController loginAccountController = loginPaneLoader.getController();
+        loginAccountController.setToolBarController(toolBarController);
+
+
+        FXMLLoader aboutPaneLoader = new FXMLLoader(getClass().getResource("Boundaries_2/About.fxml"));
+        Parent aboutPane = aboutPaneLoader.load();
+        Scene aboutScene = new Scene(aboutPane, 1289, 918);
+        toolBarController.setAboutScene(aboutScene);
+
+        AboutController aboutController = aboutPaneLoader.getController();
+        aboutController.setToolBarController(toolBarController);
+
+        FXMLLoader manufacturerPaneLoader = new FXMLLoader(getClass().getResource("Boundaries_2/WorkflowManufacturer.fxml"));
+        Parent manufacturerPane = manufacturerPaneLoader.load();
+        Scene manufacturerScene = new Scene(manufacturerPane, 1289,918);
+        toolBarController.setPending(manufacturerScene);
+
+        ManufacturerWorkflowController manufacturerWorkflowController = manufacturerPaneLoader.getController();
+        manufacturerWorkflowController.setToolBarController(toolBarController);
+
+        FXMLLoader detailedLoader = new FXMLLoader(getClass().getResource("Boundaries_2/DetailedSearchResults.fxml"));
+        Parent detailedPane = detailedLoader.load();
+        Scene detailedScene = new Scene(detailedPane,1289,918);
+        toolBarController.setInfo(detailedScene);
+
+        DetailedResultsController detailedResultsController = detailedLoader.getController();
+        detailedResultsController.setToolBarController(toolBarController);
+
+
+        FXMLLoader homePaneLoader = new FXMLLoader(getClass().getResource("Boundaries_2/Home.fxml"));
+        Parent homePane = homePaneLoader.load();
+        Scene homeScene = new Scene(homePane, 1289, 918);
+        toolBarController.setHomeScene(homeScene);
+
+
+        NewHomeController newHomeController = homePaneLoader.getController();
+        newHomeController.setToolBarController(toolBarController);
+
+
+
+
+
 
         Parent root = FXMLLoader.load(getClass().getResource("Boundaries_2/Home.fxml"));
-        Scene homeScene = new Scene(root);
+        Scene startScene = new Scene(root);
         primaryStage.setTitle("COLA SEARCH ENGINE");
         primaryStage.setScene(homeScene);
         primaryStage.setMaximized(true);

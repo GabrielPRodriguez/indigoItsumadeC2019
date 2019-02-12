@@ -1,12 +1,12 @@
 package edu.wpi.cs3733c19.teamI.Algorithms;
-import edu.wpi.cs3733c19.teamI.Controllers.SQLDriver;
-import edu.wpi.cs3733c19.teamI.Controllers.dbUtilities.ReturnedValue;
+import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.ReturnedValue;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 
 public class LFuzzy implements IStrategyFuzzy {
+
     public void run(String searchString){
 
         //Todo: The second to last parameter is impending a change
@@ -17,4 +17,6 @@ public class LFuzzy implements IStrategyFuzzy {
             System.out.println("Unsuccessful query.");
         }
     }
+
+
 }

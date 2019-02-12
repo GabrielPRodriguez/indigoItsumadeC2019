@@ -23,9 +23,9 @@ import javafx.event.ActionEvent;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-public class HomeController extends ToolBarController {
 
-public class HomeController implements Initializable {
+
+public class HomeController extends ToolBarController implements Initializable {
 
     private Scene submissionScene;
     private Scene searchScene;
@@ -100,17 +100,17 @@ public class HomeController implements Initializable {
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         primaryStage.setScene(loginScene);
     }
-
+    /*
     @FXML
     public void setAlgorithm(){
         RadioButton selectedRadioButton = (RadioButton) group.getSelectedToggle();
         String toggleGroupValue = selectedRadioButton.getText();
 
-        if (toggleGroupValue.equals("algorithm1")){  // TODO Change the name in the string to the actual text of the radio button
+        if (toggleGroupValue.equals("SQL Wildcards Search")){  // TODO Change the name in the string to the actual text of the radio button
             searchAlgorithmSelection.setContext(new SQLFuzzy());
-        }else if(toggleGroupValue.equals("algorithm2")){ // TODO Change the name in the string to the actual text of the radio button
+        }else if(toggleGroupValue.equals("Damarau-Levenshtein Search")){ // TODO Change the name in the string to the actual text of the radio button
             searchAlgorithmSelection.setContext(new DLFuzzy());
-        }else if(toggleGroupValue.equals("algorithm2")){ // TODO Change the name in the string to the actual text of the radio button
+        }else if(toggleGroupValue.equals("Levenshtein Search")){ // TODO Change the name in the string to the actual text of the radio button
             searchAlgorithmSelection.setContext(new LFuzzy());
         }
 
@@ -123,11 +123,12 @@ public class HomeController implements Initializable {
             // emptyLabel.setText("No search text entered");
             // emptyLabel.setTextFill(Color.web("#FF0000"));
         }else {
+            System.out.println("Test worked");
             setAlgorithm();
-            searchAlgorithmSelection.run(searchField.getText());
+            searchAlgorithmSelection.run(searchField.getText());// TODO:this will return a set of fie
         }
     }
-
+*/
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 

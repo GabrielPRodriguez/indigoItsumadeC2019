@@ -1,18 +1,21 @@
 package edu.wpi.cs3733c19.teamI.Algorithms;
 
-import edu.wpi.cs3733c19.teamI.Controllers.dbUtilities.ReturnedValue;
+import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.ReturnedValue;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class DLFuzzy implements IStrategyFuzzy {
+
     public void run(String searchString) {
         try{
             ArrayList<HashMap<String, ReturnedValue>> mylist=querydata.search_for_dl_multiple("form_data", "form_data.db",searchParameters,searchString, 10);
         }catch (Exception e){
-            System.out.println("Unsuccessful qury.");
+            System.out.println("Unsuccessful query.");
         }
     }
+
+
 
     /**
      * algorithm OSA-distance

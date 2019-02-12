@@ -1,28 +1,16 @@
 package edu.wpi.cs3733c19.teamI.Controllers2;
 
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXComboBox;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.layout.VBox;
+import javafx.scene.Scene;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
-public class HomeControllerTest implements Initializable{
-    @FXML
-    JFXComboBox<JFXButton> search;
-
-    @FXML
-    VBox primary;
+public class ManufacturerWorkflowController {
     private ToolBarController toolBarController;
-
+    private Scene ResultsScene;
 
     public void setToolBarController(ToolBarController toolBarController){
         this.toolBarController = toolBarController;
     }
-
 
     @FXML
     public void goHome(ActionEvent actionEvent){
@@ -38,17 +26,5 @@ public class HomeControllerTest implements Initializable{
     @FXML
     public void goLogin(ActionEvent actionEvent){
         toolBarController.goLogin(actionEvent);
-    }
-
-    @FXML
-    public void goWork(ActionEvent actionEvent){
-        //scene switch depending on currently logged in user
-    }
-
-
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-
     }
 }

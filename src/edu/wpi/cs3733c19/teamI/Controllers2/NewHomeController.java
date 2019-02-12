@@ -25,6 +25,7 @@ public class NewHomeController implements Initializable {
     private fuzzyContext searchAlgorithmSelection = new fuzzyContext();
 
 
+
     @FXML
     TextField searchTextField;
 

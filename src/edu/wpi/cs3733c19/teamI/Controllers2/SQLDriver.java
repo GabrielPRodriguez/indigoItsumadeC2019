@@ -87,7 +87,7 @@ public class SQLDriver{
             }
         }
         else{
-            for (int i = 0; i < b.length(); i++){
+            for (int i = 0; i < a.length(); i++){
                 if (b.charAt(i) != a.charAt(i)){
                     counter++;
                 }

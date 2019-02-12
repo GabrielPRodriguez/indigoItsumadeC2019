@@ -48,7 +48,20 @@
                         <Image url="@../Assets/placeholder_icon.png" />
                      </image>
                   </ImageView>
-                  <Label text="InfoInfoInfoInfoInfoInfoInfoInfoInfoInfoInfoInfoInfoInfoInfoInfoInfoInfoInfoInfoInfoInfoInfoInfoInfoInfoInfoInfoInfoInfoInfoInfoInfoInfoInfoInfoInfoInfoInfoInfoInfoInfoInfoInfoInfoInfoInfoInfoInfoInfoInfoInfoInfoInfoInfoInfoInfoInfoInfoInfoInfoInfoInfoInfoInfoInfoInfoInfoInfoInfoInfoInfoInfoInfoInfoInfoInfoInfoInfoInfoInfo" wrapText="true" HBox.hgrow="ALWAYS">
+                  <Label text="Michael Antonelli: Lead Software Engineer
+
+Marissa Bennett: Team Coach
+Eric Carkin: Product Owner
+Grant Ferguson: Scrum Master
+Fareya Ikram: Assistant Lead Software Engineer
+Stephen Lucas: Documentation Analyst
+Yossef Naim: Algorithms Specialist
+James Petullo: Database Specialist
+Gabriel Rodriguez: Test Engineer
+Rachael Sallie: Assistant Lead Software Engineer
+Rasheeda Samih: UI-Graphics Engineer
+Jeremy Wong: Project Manager
+" wrapText="true" HBox.hgrow="ALWAYS">
                      <font>
                         <Font size="20.0" />
                      </font></Label>
@@ -76,22 +89,22 @@
          <right>
             <HBox alignment="CENTER" spacing="30.0" BorderPane.alignment="CENTER">
                <children>
-                  <JFXButton mnemonicParsing="false" text="About" textFill="WHITE">
+                  <JFXButton mnemonicParsing="false" onAction="#goAbout" text="About" textFill="WHITE">
                      <font>
                         <Font name="Segoe UI Bold" size="16.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton mnemonicParsing="false" text="Submit Form" textFill="WHITE">
+                  <JFXButton mnemonicParsing="false" onAction="#goSubmit" text="Submit Form" textFill="WHITE">
                      <font>
                         <Font name="Segoe UI Bold" size="16.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton mnemonicParsing="false" text="Workflow" textFill="WHITE">
+                  <JFXButton mnemonicParsing="false" onAction="#goWorkflow" text="Workflow" textFill="WHITE">
                      <font>
                         <Font name="Segoe UI Bold" size="16.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton mnemonicParsing="false" text="Login" textFill="WHITE">
+                  <JFXButton mnemonicParsing="false" onAction="#goLogin" text="Login" textFill="WHITE">
                      <font>
                         <Font name="Segoe UI Bold" size="16.0" />
                      </font>

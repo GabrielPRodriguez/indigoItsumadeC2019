@@ -27,4 +27,10 @@ public class AgentWorkflowController {
     public void goLogin(ActionEvent actionEvent){
         toolBarController.goLogin(actionEvent);
     }
+
+    @FXML
+    public void goAbout(ActionEvent actionEvent){toolBarController.goAbout(actionEvent); }
+
+    @FXML
+    public void goWorkflow(ActionEvent actionEvent){toolBarController.goWorkflow(actionEvent);}
 }

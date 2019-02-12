@@ -67,7 +67,7 @@
    <top>
       <JFXToolbar minHeight="50.0" minWidth="600.0" style="-fx-background-color: #323a45;">
          <left>
-            <JFXButton fx:id="goHome" mnemonicParsing="false" text="TTB COLA Search" textFill="WHITE" BorderPane.alignment="CENTER">
+            <JFXButton mnemonicParsing="false" onAction="#goHome" text="TTB COLA Search" textFill="WHITE" BorderPane.alignment="CENTER">
                <font>
                   <Font name="Segoe UI Bold" size="18.0" />
                </font>
@@ -83,22 +83,22 @@
          <right>
             <HBox alignment="CENTER" spacing="30.0" BorderPane.alignment="CENTER">
                <children>
-                  <JFXButton mnemonicParsing="false" text="About" textFill="WHITE">
+                  <JFXButton mnemonicParsing="false" onAction="#goAbout" text="About" textFill="WHITE">
                      <font>
                         <Font name="Segoe UI Bold" size="16.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton mnemonicParsing="false" text="Submit Form" textFill="WHITE">
+                  <JFXButton mnemonicParsing="false" onAction="#goSubmit" text="Submit Form" textFill="WHITE">
                      <font>
                         <Font name="Segoe UI Bold" size="16.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton mnemonicParsing="false" text="Workflow" textFill="WHITE">
+                  <JFXButton mnemonicParsing="false" onAction="#goWorkflow" text="Workflow" textFill="WHITE">
                      <font>
                         <Font name="Segoe UI Bold" size="16.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton mnemonicParsing="false" text="Login" textFill="WHITE">
+                  <JFXButton mnemonicParsing="false" onAction="#goLogin" text="Login" textFill="WHITE">
                      <font>
                         <Font name="Segoe UI Bold" size="16.0" />
                      </font>

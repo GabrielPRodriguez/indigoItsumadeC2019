@@ -7,10 +7,8 @@ import edu.wpi.cs3733c19.teamI.Algorithms.LFuzzy;
 import edu.wpi.cs3733c19.teamI.Algorithms.SQLFuzzy;
 import edu.wpi.cs3733c19.teamI.Algorithms.fuzzyContext;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
@@ -72,6 +70,12 @@ public class NewHomeController implements Initializable {
     @FXML
     public void goAbout(ActionEvent actionEvent){toolBarController.goAbout(actionEvent);}
 
+    @FXML
+    public void goWorkflow(ActionEvent actionEvent){toolBarController.goWorkflow(actionEvent);}
+
+    @FXML
+    public void goAdvancedSearch(ActionEvent actionEvent){toolBarController.goAdvancedSearch(actionEvent);}
+
 
     @FXML
     public void setAlgorithm(){
@@ -90,7 +94,7 @@ public class NewHomeController implements Initializable {
     }
 
 
-    public void startSearch(ActionEvent actionEvent){
+    public void goSearch(ActionEvent actionEvent){
         if (searchTextField.getText() == null || searchTextField.getText().trim().isEmpty()){
             // TODO Insert here anything you want the app to do when user click search and box is epty
 

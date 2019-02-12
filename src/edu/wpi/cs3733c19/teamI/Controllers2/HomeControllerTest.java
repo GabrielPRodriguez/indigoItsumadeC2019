@@ -41,6 +41,15 @@ public class HomeControllerTest implements Initializable{
     }
 
     @FXML
+    public void goWorkflow(ActionEvent actionEvent){toolBarController.goWorkflow(actionEvent);}
+
+    @FXML
+    public void goAbout(ActionEvent actionEvent){toolBarController.goAbout(actionEvent);}
+
+    @FXML
+    public void goAdvancedSearch(ActionEvent actionEvent){toolBarController.goAdvancedSearch(actionEvent);}
+
+    @FXML
     public void goWork(ActionEvent actionEvent){
         //scene switch depending on currently logged in user
     }

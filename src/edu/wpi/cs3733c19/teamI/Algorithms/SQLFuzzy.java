@@ -19,5 +19,13 @@ public class SQLFuzzy implements IStrategyFuzzy {
             System.out.println("Unable to query the results.");
         }
     }
+    void removeDuplicates(){
+        ArrayList<String> formIDs=new ArrayList<>();
+        for(HashMap<String,ReturnedValue> e:matches){
+            //add the form id here
+            //check if the form is being repeated, if it is, then remove the repeated form
+        }
+    }
+
 
 }

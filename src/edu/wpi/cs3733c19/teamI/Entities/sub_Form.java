@@ -1,6 +1,6 @@
 package edu.wpi.cs3733c19.teamI.Entities;
 
-import edu.wpi.cs3733c19.teamI.Controllers.dbUtilities.ReturnedValue;
+import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.ReturnedValue;
 
 import java.util.HashMap;
 

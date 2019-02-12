@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ToolBarController implements Initializable{
+public class ToolBarController {
 
     public ToolBarController(){
         FXMLLoader toolBarLoader = new FXMLLoader(getClass().getResource("Boundaries_2/Toolbar.fxml"));
@@ -37,62 +37,16 @@ public class ToolBarController implements Initializable{
     private Scene Info;
     private Scene Result;
 
-    public void initializeSceneSwitch() throws IOException {
+    public void setPending(Scene pending) {
+        Pending = pending;
+    }
 
-        FXMLLoader searchPaneLoader = new FXMLLoader(getClass().getResource("Boundaries_2/Advanced Search.fxml"));
-        Parent searchPane = searchPaneLoader.load();
-        Scene searchScene = new Scene(searchPane, 1289, 918);
-        SearchScene = searchScene;
+    public void setInfo(Scene info) {
+        Info = info;
+    }
 
-        AdvancedSearchController advancedSearchController = searchPaneLoader.getController();
-        advancedSearchController.setToolBarController(this);
-
-        FXMLLoader formCheckerPaneLoader = new FXMLLoader(getClass().getResource("Boundaries_2/WorkflowAgent.fxml"));
-        Parent formCheckerPane = formCheckerPaneLoader.load();
-        Scene formCheckerScene = new Scene(formCheckerPane, 1289, 918);
-        FormCheck = formCheckerScene;
-
-
-
-        FXMLLoader resultsPageLoader = new FXMLLoader(getClass().getResource("Boundaries_2/SearchResults.fxml"));
-        Parent resultPane = resultsPageLoader.load();
-        Scene resultScene = new Scene(resultPane, 1289, 918);
-        Result = resultScene;
-
-        FXMLLoader homePaneLoader = new FXMLLoader(getClass().getResource("Boundaries_2/Home.fxml"));
-        Parent homePane = homePaneLoader.load();
-        Scene homeScene = new Scene(homePane, 1289, 918);
-        HomeScene = homeScene;
-
-
-        FXMLLoader subPaneLoader = new FXMLLoader(getClass().getResource("Boundaries_2/FormSubmission.fxml"));
-        Parent subPane = subPaneLoader.load();
-        Scene subScene = new Scene(subPane, 1289, 918);
-        SubScene = subScene;
-
-        FXMLLoader loginPaneLoader = new FXMLLoader(getClass().getResource("Boundaries_2/Login_CreateAccount.fxml"));
-        Parent loginPane = loginPaneLoader.load();
-        Scene loginScene = new Scene(loginPane, 1289, 918);
-        Login = loginScene;
-
-        FXMLLoader aboutPaneLoader = new FXMLLoader(getClass().getResource("Boundaries_2/About.fxml"));
-        Parent aboutPane = aboutPaneLoader.load();
-        Scene aboutScene = new Scene(aboutPane, 1289, 918);
-        AboutScene = aboutScene;
-
-        FXMLLoader manufacturerPaneLoader = new FXMLLoader(getClass().getResource("Boundaries_2/WorkflowManufacturer.fxml"));
-        Parent manufacturerPane = manufacturerPaneLoader.load();
-        Scene manufacturerScene = new Scene(manufacturerPane, 1289,918);
-        Pending = manufacturerScene;
-
-        FXMLLoader detailedLoader = new FXMLLoader(getClass().getResource("Boundaries_2/DetailedSearchResults.fxml"));
-        Parent detailedPane = detailedLoader.load();
-        Scene detailedScene = new Scene(detailedPane,1289,918);
-        Info = detailedScene;
-
-
-
-
+    public void setResult(Scene result) {
+        Result = result;
     }
 
     public void setHomeScene(Scene homeScene) {
@@ -200,13 +154,5 @@ public class ToolBarController implements Initializable{
     }
 
 
-    public void initialize(URL location, ResourceBundle resources)  {
-        try{
-            initializeSceneSwitch();
 
-        }
-        catch (IOException e){
-
-        }
-    }
 }

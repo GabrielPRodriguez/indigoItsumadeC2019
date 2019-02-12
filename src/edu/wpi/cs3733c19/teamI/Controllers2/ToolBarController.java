@@ -1,23 +1,16 @@
 package edu.wpi.cs3733c19.teamI.Controllers2;
 
 import com.jfoenix.controls.JFXButton;
+import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.ReturnedValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import sun.rmi.runtime.Log;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class ToolBarController {
 
@@ -36,6 +29,13 @@ public class ToolBarController {
     private Scene Pending;
     private Scene Info;
     private Scene Result;
+
+    private ResultsController resultsController;
+
+    public void setResultsController(ResultsController resultsController){
+        this.resultsController = resultsController;
+
+    }
 
     public void setPending(Scene pending) {
         Pending = pending;
@@ -85,16 +85,16 @@ public class ToolBarController {
     JFXButton tb_submitFormButton;
 
     @FXML
-    MenuButton tb_loginButton;
+    JFXButton tb_loginButton;
 
     @FXML
-    MenuItem tb_logout;
+    JFXButton tb_logout;
 
     @FXML
-    MenuItem tb_workFlow;
+    JFXButton tb_workFlow;
 
     @FXML
-    MenuItem tb_pendingApps;
+    JFXButton tb_pendingApps;
 
     @FXML
     public void goHome(ActionEvent actionEvent){
@@ -117,13 +117,19 @@ public class ToolBarController {
 
     @FXML
     public void goLogin(ActionEvent actionEvent){
+
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         primaryStage.setScene(Login);
     }
 
     @FXML
-    public void Logout(ActionEvent actionEvent){
+    public void goLogout(ActionEvent actionEvent){
 
+    }
+
+    @FXML
+    public void login(ActionEvent actionEvent){
+        tb_loginButton.setText("Logout");
     }
 
     @FXML
@@ -150,6 +156,12 @@ public class ToolBarController {
     public void goDetails(ActionEvent actionEvent){
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         primaryStage.setScene(Info);
+
+    }
+    public void transferSearchInfo(ArrayList<HashMap<String, ReturnedValue>> resultsList){
+        resultsController.setTestString("a new string");
+        resultsController.setResultsList(resultsList);
+        System.out.println("toolbar: " + resultsList);
 
     }
 

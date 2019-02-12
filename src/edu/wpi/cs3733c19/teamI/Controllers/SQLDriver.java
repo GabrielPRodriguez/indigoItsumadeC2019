@@ -76,7 +76,7 @@ public class SQLDriver{
 
 
     }
-    public int l_distance(String a, String b){
+    public int l_distance(String a, String b){//one thing you ned
         int counter = Math.abs(a.length()-b.length());
         if (a.length() >= b.length()){
             for (int i = 0; i < b.length(); i++){
@@ -94,7 +94,7 @@ public class SQLDriver{
         }
         return counter;
     }
-    public int dl_distance(String source, String target){
+    public int dl_distance(String source, String target){// the other
         // throw if parameter is a null
         if (source == null || target == null) {
             throw new IllegalArgumentException("Parameter must not be null");

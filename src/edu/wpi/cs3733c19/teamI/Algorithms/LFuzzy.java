@@ -7,15 +7,13 @@ import java.util.HashMap;
 
 public class LFuzzy implements IStrategyFuzzy {
 
-    public void run(String searchString){
+    public void run(String searchString) throws Exception{
 
         //Todo: The second to last parameter is impending a change
-        try{
+
             ArrayList<HashMap<String, ReturnedValue>> mylist=querydata.search_for_l_multiple("form_db", "form_db_from_spreadsheet.db",searchParameters, searchString, 10);
             matches.addAll(mylist);
-        }catch (Exception e){
-            System.out.println("Unsuccessful query.");
-        }
+
     }
 
 

@@ -35,6 +35,8 @@ public class ToolBarController {
     private Scene Result;
     private ResultsController ResultsController;
     private DetailedResultsController InfoController;
+    private User curUser;
+    private boolean signedIn = false;
 
     private ArrayList<HashMap<String, ReturnedValue>> resultsMap = new ArrayList<HashMap<String, ReturnedValue>>();
 
@@ -42,8 +44,7 @@ public class ToolBarController {
     public void setResultsMap(ArrayList<HashMap<String, ReturnedValue>> resultsMap){
             this.resultsMap = resultsMap;
             ResultsController.convertToForms(0);
-    private User curUser;
-    private boolean signedIn = false;
+
 
         }
 
@@ -140,9 +141,6 @@ public class ToolBarController {
 
     @FXML
     public void goSubmit(ActionEvent actionEvent){
-        Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        primaryStage.setScene(SubScene);
-        primaryStage.setFullScreen(true);
 
         if(curUser == null) {
             goLogin(actionEvent);
@@ -151,25 +149,24 @@ public class ToolBarController {
 
             Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             primaryStage.setScene(SubScene);
+            primaryStage.setFullScreen(true);
         }
     }
 
     @FXML
     public void goLogin(ActionEvent actionEvent){
 
-        Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        primaryStage.setScene(Login);
-        primaryStage.setFullScreen(true);
-
         if(signedIn == false) {
             Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             primaryStage.setScene(Login);
+            primaryStage.setFullScreen(true);
         }
         else if (signedIn == true){
             signedIn = false;
             curUser = null;
             Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             primaryStage.setScene(Login);
+            primaryStage.setFullScreen(true);
         }
     }
 
@@ -204,18 +201,14 @@ public class ToolBarController {
     }
 
     @FXML
-    public void goWorkflow(ActionEvent actionEvent){
-        Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        primaryStage.setScene(FormCheck);
-        primaryStage.setFullScreen(true);
-
-    public void goWorkflow(ActionEvent actionEvent) {
+       public void goWorkflow(ActionEvent actionEvent) {
         if (curUser == null) {
             goLogin(actionEvent);
         }
         else if (!curUser.getUserType().equals(User.userPower.Company)){
             Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             primaryStage.setScene(FormCheck);
+            primaryStage.setFullScreen(true);
         }
     }
 
@@ -245,8 +238,8 @@ public class ToolBarController {
     }
 
     public void transferSearchInfo(ArrayList<HashMap<String, ReturnedValue>> resultsList){
-        resultsController.setTestString("a new string");
-        resultsController.setResultsList(resultsList);
+        ResultsController.setTestString("a new string");
+        ResultsController.setResultsList(resultsList);
         System.out.println("toolbar: " + resultsList);
     }
 

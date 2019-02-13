@@ -387,10 +387,10 @@ public class FormSubmissionController implements Initializable {
 
 
             }
-
+/*
                 submit_message.setText(success);
                 System.out.println(success);
-
+*/
 
         }
     }

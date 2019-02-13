@@ -282,7 +282,7 @@ public class AgentWorkflowController {
     ListView listView;
 
     String formStatus_string;
-    int currentFormID = 0;
+    double currentFormID = 0;
 
     //pulls unread forms from the database to be selected
 
@@ -308,7 +308,7 @@ public class AgentWorkflowController {
         choose_button9.setDisable(false);
         SQLDriver driver = new SQLDriver();
         ArrayList<HashMap<String, ReturnedValue>>filtered_results = new ArrayList<HashMap<String, ReturnedValue>>();
-        for (HashMap<String, ReturnedValue>result:driver.select_all("form_db_from_spreadsheet.db", "form_db")){
+        for (HashMap<String, ReturnedValue>result:driver.select_all("new_csv_from_spreadsheet.db", "form_data")){
             //if (result.get("status").to_string().equals("unread")){
 
                 filtered_results.add(result);
@@ -386,37 +386,37 @@ public class AgentWorkflowController {
 
         //int formID = 0;
         if (choose.getSource() == choose_button1) {
-            //System.out.println(formID_1.getText());
-            currentFormID = Integer.parseInt(formID_1.getText());
+            System.out.println(formID_1.getText());
+            currentFormID = Long.parseLong(formID_1.getText());
 
         } else if (choose.getSource() == choose_button2) {
-            currentFormID = Integer.parseInt(formID_2.getText());
+            currentFormID = Long.parseLong(formID_2.getText());
 
         } else if (choose.getSource() == choose_button3) {
-            currentFormID = Integer.parseInt(formID_3.getText());
+            currentFormID = Long.parseLong(formID_3.getText());
 
         }else if (choose.getSource() == choose_button4) {
-            currentFormID = Integer.parseInt(formID_4.getText());
+            currentFormID = Long.parseLong(formID_4.getText());
 
         }else if (choose.getSource() == choose_button5) {
-            currentFormID = Integer.parseInt(formID_5.getText());
+            currentFormID = Long.parseLong(formID_5.getText());
 
         }else if (choose.getSource() == choose_button6) {
-            currentFormID = Integer.parseInt(formID_6.getText());
+            currentFormID = Long.parseLong(formID_6.getText());
 
         }else if (choose.getSource() == choose_button7) {
-            currentFormID = Integer.parseInt(formID_7.getText());
+            currentFormID = Long.parseLong(formID_7.getText());
 
         }else if (choose.getSource() == choose_button8) {
-            currentFormID = Integer.parseInt(formID_8.getText());
+            currentFormID = Long.parseLong(formID_8.getText());
 
         }else if (choose.getSource() == choose_button9) {
-            currentFormID = Integer.parseInt(formID_9.getText());
+            currentFormID = Long.parseLong(formID_9.getText());
 
         }
 
         SQLDriver driver = new SQLDriver();
-        HashMap<String, ReturnedValue>result = driver.get_data_by_value("form_db", "form_db_from_spreadsheet.db", "formID", new DBValue<Integer>(currentFormID));
+        HashMap<String, ReturnedValue>result = driver.get_data_by_value("form_data", "new_csv_from_spreadsheet.db", "formID", new DBValue<Double>(currentFormID));
 
 
         //setting the text for each field from values in the database

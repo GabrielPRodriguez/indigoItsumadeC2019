@@ -132,6 +132,41 @@ public class SQLDriver{
         return dist[sourceLength][targetLength];
 
     }
+    public void update_user_rfid(int id, String rfid) throws Exception{
+        ArrayList<String>_target_cols = new ArrayList<String>();
+        _target_cols.add("rfid");
+        ArrayList<DBValue>_value_cols = new ArrayList<DBValue>();
+        _value_cols.add(new DBValue<String>(rfid));
+
+        generic_update("user_credentials", "user_credentials.db", _target_cols, _value_cols, "id", new DBValue<Integer>(id));
+    }
+    public void create_user_account(String email, String password, int role) throws Exception{
+        String [] columns = {"id", "email", "password", "role", "rfid"};
+        DBTypes [] full_types = {new DBTypes("real"), new DBTypes("text"), new DBTypes("text"), new DBTypes("real"), new DBTypes("text")};
+        /*
+        role is a in integer 0 or 1: 0 => Agent, 1 => Manufacturer
+         */
+        try{
+            create_table("user_credentials", "user_credentials.db", columns, full_types);
+        }
+        catch (Exception e){
+            //pass
+            //db already created
+        }
+        double _id = 1;
+        for (HashMap<String, ReturnedValue>result:select_all("user_credentials.db", "user_credentials")){
+            double _temp_id = result.get("id").to_double();
+            if (_temp_id > _id){
+                _id = _temp_id;
+            }
+
+        }
+        DBValue [] all_vals = {new DBValue<Integer>((int)_id), new DBValue<String>(email),  new DBValue<String>(password), new DBValue<Integer>(role), new DBValue<String>("")};
+        insert_vals("user_credentials", "user_credentials.db.db", all_vals);
+
+
+    }
+
     public ArrayList<HashMap<String, ReturnedValue>>search_for_dl_multiple(String tablename, String filename, ArrayList<String>keys, String _user_input, int top_results) throws Exception{
         if (top_results < 1){
             throw new Exception("'top_results' must be a value greater than zero");
@@ -333,6 +368,41 @@ public class SQLDriver{
             }
         }
         throw new Exception("Cannot find row");
+    }
+    public void generic_update(String tablename, String filename, ArrayList<String>targetcols, ArrayList<DBValue>values, String anchor_col, DBValue anchor_val) throws Exception{
+        Connection _connector = connect_file(filename);
+        ArrayList<String>temp = new ArrayList<String>();
+        for (String col:targetcols){
+            temp.add(col+" = ?");
+        }
+        String statement = "UPDATE "+tablename+" SET "+String.join(", ", temp)+" WHERE "+anchor_col+" = ?";
+        PreparedStatement pstmt = _connector.prepareStatement(statement);
+        int _count = 1;
+        for (DBValue val:values){
+            if (val.statement().equals("setInt")){
+                pstmt.setInt(_count, val.to_int());
+            }
+            else if (val.statement().equals("setDouble")){
+                pstmt.setDouble(_count, val.to_double());
+            }
+            else{
+                System.out.println("sets a string");
+                pstmt.setString(_count, val.to_string());
+            }
+            _count ++;
+        }
+        if (anchor_val.statement().equals("setInt")){
+            pstmt.setInt(_count, anchor_val.to_int());
+        }
+        else if (anchor_val.statement().equals("setDouble")){
+            pstmt.setDouble(_count, anchor_val.to_double());
+        }
+        else{
+            pstmt.setString(_count, anchor_val.to_string());
+        }
+
+
+        pstmt.executeUpdate();
     }
     public void update(String tablename, String filename, ArrayList<String>targetcols, ArrayList<DBValue>values, int formid) throws Exception {
 

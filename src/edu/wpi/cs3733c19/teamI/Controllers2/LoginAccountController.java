@@ -73,19 +73,22 @@ public class LoginAccountController implements Initializable {
     public void goAbout(ActionEvent actionEvent){toolBarController.goAbout(actionEvent);}
 
     @FXML
-    public void login(ActionEvent actionEvent){
-
+    public void login(ActionEvent actionEvent) throws Exception {
+        attemptLogin(actionEvent);
+        User curUser = User.getUser(Email.getText(), Password.getText(), User.userPower.Standard);
         //check if their info is valid
         toolBarController.login(actionEvent); //doesnt work
     }
 
     @FXML
-    public void logInCreate(ActionEvent actionEvent){
+    public void logInCreate(ActionEvent actionEvent) throws Exception {
         //make account if possible
+        attemptLogin(actionEvent);
+        User curUser = User.getUser(Email.getText(), Password.getText(), User.userPower.Standard);
         toolBarController.login((actionEvent));
     }
 
-    String invalidCharacters = ":!@#$%^&*()/.,><;-=_+";
+    String invalidCharacters = ":!#$%^&*()/,><;-=_+";
     boolean isValid = true;
 
     public String readFile(String users) throws Exception { //this file will populate users with a string of all users
@@ -102,7 +105,7 @@ public class LoginAccountController implements Initializable {
 
     public void attemptLogin(ActionEvent actionEvent) throws Exception { //attempts a login and will either create an account or login
         String users = "";
-        //User curUser = getUser(a, b, c);
+
         users = readFile(users);
         for (int i = 0; i < invalidCharacters.length(); i++) {
             Character currChar = invalidCharacters.charAt(i);
@@ -122,17 +125,18 @@ public class LoginAccountController implements Initializable {
         else if(Email.getText().length() < 8){
             //errorMessage.setText("Username too short");
             System.out.println("short");
-        }
+        }/*
         else if(SignIn.getSelectedToggle()==null){
             //errorMessage.setText(("Must select log in type"));
             System.out.println("log type");
         }
-
+*/
         else if (users.contains(":"+Email.getText()+":"+encryptPassword(Password.getText())+":")){ //this file checks for the user and pass in the file
             System.out.println("logging in");
             String pass = encryptPassword(Password.getText());
             System.out.println(pass);
             System.out.println(decryptPassword(pass));
+
             login(actionEvent);  //if they exist, login
         }
 

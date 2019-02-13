@@ -73,7 +73,7 @@ public class LoginController {
     private static final String characterEncoding       = "UTF-8";
     private static final String cipherTransformation    = "AES/CBC/PKCS5Padding";
     private static final String aesEncryptionAlgorithim = "AES";
-/*
+
     public void attemptLogin(ActionEvent actionEvent) throws Exception { //attempts a login and will either create an account or login
         String users = "";
         users = readFile(users);
@@ -119,8 +119,7 @@ public class LoginController {
             createAccount(actionEvent); //otherwise make them an account
         }
     }
-*/
-/*
+
     //Encrypts user's password
     public String encryptPassword(String origionalPassword) throws Exception
     {
@@ -161,8 +160,7 @@ public class LoginController {
         }
         return strData;
     }
-*/
-/*
+
     //Generages the key needed for encryption/ decryption
     private Key generateKey() throws Exception
     {
@@ -172,7 +170,7 @@ public class LoginController {
 
         return k;
     }
-/*
+
     public void setTTBLogin(){
         userType = "#";
     }

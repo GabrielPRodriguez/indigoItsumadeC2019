@@ -191,6 +191,10 @@ public class ToolBarController {
 
 
     }
+    public void goExit(ActionEvent actionEvent){
+        Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        primaryStage.close();
+    }
 
 
 

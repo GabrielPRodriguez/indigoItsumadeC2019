@@ -82,6 +82,9 @@ public class FormSubmissionController implements Initializable {
     public void goAbout(ActionEvent actionEvent){toolBarController.goAbout(actionEvent);}
 
     @FXML
+    public void goExit(ActionEvent actionEvent){toolBarController.goExit(actionEvent);}
+
+    @FXML
     Button save_Button;
 
     @FXML

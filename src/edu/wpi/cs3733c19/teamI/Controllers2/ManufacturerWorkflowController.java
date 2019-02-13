@@ -31,4 +31,7 @@ public class ManufacturerWorkflowController {
     @FXML
     public void goAbout(ActionEvent actionEvent){toolBarController.goAbout(actionEvent);}
 
+    @FXML
+    public void goExit(ActionEvent actionEvent){toolBarController.goExit(actionEvent);}
+
 }

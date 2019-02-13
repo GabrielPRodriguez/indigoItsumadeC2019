@@ -73,6 +73,9 @@ public class LoginAccountController implements Initializable {
     public void goAbout(ActionEvent actionEvent){toolBarController.goAbout(actionEvent);}
 
     @FXML
+    public void goExit(ActionEvent actionEvent){toolBarController.goExit(actionEvent);}
+
+    @FXML
     public void login(ActionEvent actionEvent) throws Exception {
         attemptLogin(actionEvent);
         User curUser = User.getUser(Email.getText(), Password.getText(), User.userPower.Standard);

@@ -7,6 +7,7 @@
 <?import com.jfoenix.controls.JFXTextField?>
 <?import com.jfoenix.controls.JFXToolbar?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
@@ -25,19 +26,29 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <VBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <VBox alignment="CENTER" spacing="40.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0">
+                              <VBox alignment="CENTER_LEFT" spacing="20.0">
                                  <children>
-                                    <JFXTextField promptText="Username">
+                                    <Label text="Email">
+                                       <font>
+                                          <Font name="Segoe UI Bold" size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <JFXTextField promptText="Email">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
                                     </JFXTextField>
                                  </children>
                               </VBox>
-                              <VBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="21.0" prefHeight="200.0" prefWidth="100.0">
+                              <VBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="21.0" spacing="20.0">
                                  <children>
+                                    <Label text="Password">
+                                       <font>
+                                          <Font name="Segoe UI Bold" size="20.0" />
+                                       </font>
+                                    </Label>
                                     <JFXPasswordField promptText="Password">
                                        <font>
                                           <Font size="15.0" />
@@ -63,9 +74,9 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <VBox alignment="CENTER" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <VBox alignment="CENTER" spacing="40.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                              <HBox alignment="CENTER" spacing="20.0">
                                  <children>
                                     <JFXRadioButton mnemonicParsing="false" text="Agent">
                                        <toggleGroup>
@@ -75,17 +86,27 @@
                                     <JFXRadioButton mnemonicParsing="false" text="Manufacturer" toggleGroup="$User" />
                                  </children>
                               </HBox>
-                              <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0">
+                              <VBox alignment="CENTER_LEFT" spacing="20.0">
                                  <children>
-                                    <JFXTextField promptText="Username">
+                                    <Label text="Email">
+                                       <font>
+                                          <Font name="Segoe UI Bold" size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <JFXTextField promptText="Email">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
                                     </JFXTextField>
                                  </children>
                               </VBox>
-                              <VBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="21.0" prefHeight="200.0" prefWidth="100.0">
+                              <VBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="21.0" spacing="20.0">
                                  <children>
+                                    <Label text="Password">
+                                       <font>
+                                          <Font name="Segoe UI Bold" size="20.0" />
+                                       </font>
+                                    </Label>
                                     <JFXPasswordField promptText="Password">
                                        <font>
                                           <Font size="15.0" />
@@ -93,8 +114,13 @@
                                     </JFXPasswordField>
                                  </children>
                               </VBox>
-                              <VBox alignment="CENTER_LEFT" layoutX="40.0" layoutY="105.0" prefHeight="200.0" prefWidth="100.0">
+                              <VBox alignment="CENTER_LEFT" layoutX="40.0" layoutY="105.0" spacing="20.0">
                                  <children>
+                                    <Label text="Re-Enter Password">
+                                       <font>
+                                          <Font name="Segoe UI Bold" size="20.0" />
+                                       </font>
+                                    </Label>
                                     <JFXPasswordField promptText="Re-Enter Password">
                                        <font>
                                           <Font size="15.0" />

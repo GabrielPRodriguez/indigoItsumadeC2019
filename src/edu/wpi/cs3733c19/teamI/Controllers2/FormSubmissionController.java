@@ -348,8 +348,10 @@ public class FormSubmissionController implements Initializable {
             //sends the form to database when int/double fields contain the correct datatype and
             //all required fields have received input
 
+
             if(readyToSend){
                 //System.out.println("making db");
+                System.out.println("ready to send");
                 SQLDriver driver = new SQLDriver();
                 //sets the names of columns in the database, if additional form fields are added, please add a new column
                 String [] columns = {"formID", "repID", "plantRegistry", "domesticOrImported", "serialNumber", "brandName", "beverageType", "fancifulName", "nameAndAddress", "mailingAddress", "extraInfo", "dateOfApplication", "nameOfApplicant", "formula", "grapeVarietals", "vintage", "wineAppellation", "email", "phoneNumber", "pHValue", "alcoholContent", "status", "approvingUser", "approvalDate", "expirationDate", "volume", "city", "street", "zip", "state", "permitName" };

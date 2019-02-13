@@ -1,7 +1,9 @@
 package edu.wpi.cs3733c19.teamI.Controllers2;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXListView;
+import com.jfoenix.controls.JFXTreeTableView;
 import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.ReturnedValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,20 +19,18 @@ import java.util.ResourceBundle;
 
 public class ResultsController implements Initializable {
     private ToolBarController toolBarController;
-    private ArrayList<HashMap<String, ReturnedValue>> resultsList;
 
 
-    public void  setResultsList(ArrayList<HashMap<String, ReturnedValue>> results){
-        this.resultsList = results;
-    }
+   // @FXML
+    //JFXTreeTableView<> listView;
 
+  //  @FXML
+   // JFXTreeTableView
 
-    @FXML
-    JFXListView<Label> listView;
 
     public void setUp() {
-        for (int i = 0; i < 4; i++) listView.getItems().add(new Label("Item " + i + " DRANK " + i));
-        listView.getStyleClass().add("mylistview");
+      //  for (int i = 0; i < 4; i++) listView.getItems().add(new Label("Item " + i + " DRANK " + i));
+      //  listView.getStyleClass().add("mylistview");
     }
 
 
@@ -50,13 +50,13 @@ public class ResultsController implements Initializable {
 
             label.setGraphic(new ImageView("edu/wpi/cs3733c19/teamI/Assets/placeholder_icon.png"));
 
-            listView.getItems().add(label);
+           // listView.getItems().add(label);
 
 
 
 
         }
-        setResultsList(toolBarController.getResultsMap());
+
     }
 
 

@@ -1,5 +1,6 @@
 package edu.wpi.cs3733c19.teamI.Controllers;
 
+import edu.wpi.cs3733c19.teamI.Algorithms.fuzzyContext;
 import edu.wpi.cs3733c19.teamI.Controllers2.ToolBarController;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.RequiredFieldValidator;
@@ -7,7 +8,7 @@ import com.jfoenix.validation.RequiredFieldValidator;
 //import edu.wpi.cs3733c19.teamI.Algorithms.LFuzzy;
 //import edu.wpi.cs3733c19.teamI.Algorithms.SQLFuzzy;
 //import edu.wpi.cs3733c19.teamI.Algorithms.fuzzyContext;
-import edu.wpi.cs3733c19.teamI.Controllers.SQLDriver;
+import edu.wpi.cs3733c19.teamI.Controllers2.SQLDriver;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;

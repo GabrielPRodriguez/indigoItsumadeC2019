@@ -174,7 +174,7 @@
                         </VBox>
                      </children>
                   </HBox>
-                  <HBox fx:id="wineFields" alignment="CENTER" disable="true" spacing="20.0" visible="false" VBox.vgrow="ALWAYS">
+                  <HBox fx:id="wineFields" alignment="CENTER" disable="true" maxHeight="0.0" maxWidth="0.0" spacing="20.0" visible="false" VBox.vgrow="ALWAYS">
                      <children>
                         <VBox spacing="10.0" HBox.hgrow="ALWAYS">
                            <children>

@@ -112,10 +112,10 @@ public class NewHomeController implements Initializable {
             searchAlgorithmSelection.setContext(new SQLFuzzy());
             System.out.println("Algo 1");
         }else if(toggleGroupValue.equals("Levenshtein")){ // TODO Change the name in the string to the actual text of the radio button
-            searchAlgorithmSelection.setContext(new DLFuzzy());
+            searchAlgorithmSelection.setContext(new LFuzzy());
             System.out.println("Algo 2");
         }else if(toggleGroupValue.equals("Damerau-Levenshtein")){ // TODO Change the name in the string to the actual text of the radio button
-            searchAlgorithmSelection.setContext(new LFuzzy());
+            searchAlgorithmSelection.setContext(new DLFuzzy());
             System.out.println("Algo 3");
         }
 

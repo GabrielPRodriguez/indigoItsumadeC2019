@@ -8,11 +8,10 @@ import java.util.HashMap;
 public class LFuzzy implements IStrategyFuzzy {
 
     public void run(String searchString) throws Exception{
-
         //Todo: The second to last parameter is impending a change
-
-            ArrayList<HashMap<String, ReturnedValue>> mylist=querydata.search_for_l_multiple("form_data", "new_csv_from_spreadsheet.db",searchParameters, searchString, 10);
-            matches.addAll(mylist);
+        //this function (search_for_dl_multiple) can be found in the SQLDriver
+        ArrayList<HashMap<String, ReturnedValue>> mylist=querydata.search_for_l_multiple("form_data", "new_csv_from_spreadsheet.db",searchParameters, searchString, 10);
+        matches.addAll(mylist);
 
     }
 

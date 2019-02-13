@@ -33,11 +33,11 @@ public class ToolBarController {
     private ArrayList<HashMap<String, ReturnedValue>> resultsMap = new ArrayList<HashMap<String, ReturnedValue>>();
 
 
-
     public void setResultsMap(ArrayList<HashMap<String, ReturnedValue>> resultsMap){
-        this.resultsMap = resultsMap;
+            this.resultsMap = resultsMap;
+        }
 
-    }
+
 
     public ArrayList<HashMap<String, ReturnedValue>> getResultsMap() {
         return this.resultsMap;

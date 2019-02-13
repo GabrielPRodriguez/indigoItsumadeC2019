@@ -35,6 +35,9 @@
                <font>
                   <Font name="Segoe UI Bold" size="32.0" />
                </font>
+               <GridPane.margin>
+                  <Insets bottom="10.0" right="10.0" top="10.0" />
+               </GridPane.margin>
             </Label>
             <Separator GridPane.rowIndex="1">
                <GridPane.margin>
@@ -120,6 +123,9 @@
                <font>
                   <Font name="Segoe UI Bold" size="20.0" />
                </font>
+               <GridPane.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </GridPane.margin>
             </Label>
          </children>
       </GridPane>

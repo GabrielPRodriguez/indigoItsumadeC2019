@@ -3,6 +3,7 @@ package edu.wpi.cs3733c19.teamI;
 
 import com.fazecast.jSerialComm.SerialPort;
 import com.fazecast.jSerialComm.SerialPortEvent;
+import com.fazecast.jSerialComm.SerialPortPacketListener;
 import edu.wpi.cs3733c19.teamI.Controllers2.*;
 import edu.wpi.cs3733c19.teamI.Entities.SearchResults;
 import javafx.application.Application;
@@ -14,7 +15,7 @@ import javafx.stage.Stage;
 
 import javax.imageio.IIOParam;
 
-public class Main extends Application {
+public class Main extends Application implements SerialPortPacketListener {
 
     public static SearchResults Results = new SearchResults();
     private IIOParam SearchLoader;
@@ -23,6 +24,9 @@ public class Main extends Application {
     public Scene formCheckerScene;
     public Parent formCheckerPane;
     public Thread mThread;
+    private Stage finalStage;
+    private Scene loginPage;
+    private LoginAccountController ctrl;
 
 
     public void PacketListener() {
@@ -45,16 +49,7 @@ public class Main extends Application {
     @Override
     public void serialEvent(SerialPortEvent event)
     {
-        try {
-            if (!mThread.isAlive()) {
-                //  comPort.removeDataListener();
-                //   comPort.closePort();
-            }
-        }
-        catch (NullPointerException n){
-            // comPort.removeDataListener();
-            // comPort.closePort();
-        }
+
         String user = " ";
         byte[] newData = event.getReceivedData();
         System.out.println("Received data of size: " + newData.length);
@@ -64,13 +59,12 @@ public class Main extends Application {
         }
         System.out.println(user);
         if(user.equals(" ERIC")){
-            System.out.println("Change?");
             Platform.runLater(new Runnable() {
 
                 @Override
                 public void run() {
 
-                    finalStage.setScene(formCheckerScene);
+                    RFID_Login();
                 }
             });
             System.out.println("Continued?");
@@ -82,6 +76,12 @@ public class Main extends Application {
         catch(InterruptedException e){
             System.out.println("couldnt sleep");
         }
+    }
+
+    public void RFID_Login(){
+
+        this.finalStage.setScene(loginPage);
+
     }
 
 
@@ -185,6 +185,9 @@ public class Main extends Application {
         primaryStage.setScene(homeScene);
         primaryStage.setMaximized(true);
         primaryStage.show();
+
+        finalStage = primaryStage;
+        this.loginPage = loginScene;
 
 
         PacketListener();

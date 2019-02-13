@@ -20,6 +20,7 @@ public class fuzzyContext {
 
 
     public ArrayList<HashMap<String, ReturnedValue>> run(String searchString) throws Exception {
+        fuzzyAlgorithm.matches.clear();
         fuzzyAlgorithm.run(searchString);
         return fuzzyAlgorithm.matches;
     }

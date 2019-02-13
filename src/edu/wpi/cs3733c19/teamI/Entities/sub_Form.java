@@ -24,6 +24,7 @@ public class sub_Form {
     private String alcoholContent;
     private String phoneNumber;
     private String email;
+    private int index;
 
     //getters
     public String getRepID() {
@@ -82,6 +83,8 @@ public class sub_Form {
         return email;
     }
 
+    public int getIndex(){return index;}
+
     //setters
     public void setRepID(String repID) {
         this.repID = repID;
@@ -139,6 +142,8 @@ public class sub_Form {
         this.email = email;
     }
 
+    public void setIndex(int index) { this.email = email; }
+
     //this function is used to generate the CSV download. It returns every form field as a list of string
     // seperated by commas
     public String returnAll()
@@ -152,7 +157,7 @@ public class sub_Form {
 
     //constructor. This constructor takes a hasmap as an input, so we can quickly move between the DB query return type
     // and displayable values
-    public sub_Form(HashMap<String, ReturnedValue> entry){
+    public sub_Form(HashMap<String, ReturnedValue> entry, int index){
         this.repID = entry.get("repID").to_string();
         this.plantRegistry = entry.get("plantRegistry").to_string();
         this.domesticOrImported = entry.get("domesticOrImported").to_string();
@@ -167,6 +172,7 @@ public class sub_Form {
         this.alcoholContent = entry.get("alcoholContent").to_string();
         this.phoneNumber = entry.get("phoneNumber").to_string();
         this.email = entry.get("email").to_string();
+        this.index = index;
     }
 }
 

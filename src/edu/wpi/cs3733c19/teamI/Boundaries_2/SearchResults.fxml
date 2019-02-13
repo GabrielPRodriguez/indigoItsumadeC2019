@@ -27,7 +27,7 @@
                      <children>
                         <TextField onAction="#goSearch" prefHeight="50.0" promptText="Find A Beverage" HBox.hgrow="ALWAYS" />
                         <JFXComboBox focusColor="#aeb0b5" promptText="Sort By:" unFocusColor="BLACK" HBox.hgrow="ALWAYS" />
-                        <JFXButton mnemonicParsing="false" style="-fx-background-color: #4773aa;" text="Export CSV" textFill="WHITE" HBox.hgrow="ALWAYS">
+                        <JFXButton fx:id="CSV" mnemonicParsing="false" onAction="#setTable" style="-fx-background-color: #4773aa;" text="Export CSV" textFill="WHITE" HBox.hgrow="ALWAYS">
                            <font>
                               <Font name="Segoe UI Bold" size="15.0" />
                            </font>
@@ -39,7 +39,7 @@
             <Separator prefWidth="200.0" />
             <ScrollPane fitToHeight="true" fitToWidth="true" VBox.vgrow="ALWAYS">
                <content>
-                  <TableView fx:id="tableView" onMouseClicked="#setTable">
+                  <TableView fx:id="tableView">
                      <columns>
                         <TableColumn fx:id="ResultNumber" minWidth="40.0" prefWidth="-1.0" text="No." />
                         <TableColumn fx:id="BrandName" minWidth="100.0" prefWidth="-1.0" text="Brand Name" />

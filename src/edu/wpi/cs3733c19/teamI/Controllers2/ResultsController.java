@@ -3,6 +3,7 @@ package edu.wpi.cs3733c19.teamI.Controllers2;
 import com.jfoenix.controls.JFXButton;
 import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.ReturnedValue;
 import edu.wpi.cs3733c19.teamI.Entities.sub_Form;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -13,6 +14,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
+import org.json.XML;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.binding.ObjectBinding;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -24,13 +28,21 @@ public class ResultsController implements Initializable {
     private ToolBarController toolBarController;
     private ArrayList<HashMap<String, ReturnedValue>> resultsList;
     private String testString = "original";
+    private int batches = 0; //variable to track number batches
+
 
     private final ObservableList<sub_Form> DisplayedResults = FXCollections.observableArrayList();
+    ObjectProperty<ObservableList<sub_Form>> dispList = new SimpleObjectProperty<>(DisplayedResults);
+
 
     //Table Stuff
 
     @FXML
     TableView tableView;
+
+    @FXML
+    JFXButton CSV;
+
 
     @FXML
     TableColumn BrandName;
@@ -58,19 +70,24 @@ public class ResultsController implements Initializable {
     public void convertToForms(){
         for(int i = 0; i<20; i++)
         {
-            DisplayedResults.add(new sub_Form(resultsList.get(i)));
+            this.DisplayedResults.add(new sub_Form(toolBarController.getResultsMap().get(i+(batches*20)), i+batches*20 +1));
         }
+        batches++;
     }
 
     public void setTable(){
         //get results
-        convertToForms();
+        System.out.println("Updated");
+        //convertToForms();
         //update columns on table view
         this.Domestic.setCellValueFactory(new PropertyValueFactory<sub_Form, String>("domesticOrImported"));
         this.BrandName.setCellValueFactory(new PropertyValueFactory<sub_Form, String>("brandName"));
         this.Type.setCellValueFactory(new PropertyValueFactory<sub_Form, String>("beverageType"));
         this.AlchoholPercentage.setCellValueFactory(new PropertyValueFactory<sub_Form, String>("alcoholContent"));
-        this.tableView.setItems(DisplayedResults);
+        this.ResultNumber.setCellValueFactory(new PropertyValueFactory<sub_Form, Integer>("index"));
+        //this.tableView.setItems(DisplayedResults);
+        this.tableView.itemsProperty().bind(dispList);
+
     }
 
 
@@ -82,6 +99,7 @@ public class ResultsController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        setTable();
 
     }
 

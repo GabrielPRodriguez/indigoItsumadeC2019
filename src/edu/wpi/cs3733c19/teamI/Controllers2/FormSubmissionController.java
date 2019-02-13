@@ -1,9 +1,6 @@
 package edu.wpi.cs3733c19.teamI.Controllers2;
 
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXRadioButton;
-import com.jfoenix.controls.JFXTextArea;
-import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.*;
 import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.DBTypes;
 import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.DBValue;
 import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.ReturnedValue;
@@ -108,6 +105,9 @@ public class FormSubmissionController implements Initializable {
     JFXTextField repIdNum_Field;
 
     @FXML
+    JFXTextField permitName;
+
+    @FXML
     JFXTextField permitNum_Field;
 
     @FXML
@@ -126,10 +126,10 @@ public class FormSubmissionController implements Initializable {
     JFXTextField fancyName_Field;
 
     @FXML
-    JFXTextField date_Field;
+    JFXDatePicker date_Field;
 
     @FXML
-    JFXTextArea brandedInfo_Field;
+    JFXTextField brandedInfo_Field;
 
     @FXML
     JFXTextField applicantName_Field;
@@ -160,6 +160,22 @@ public class FormSubmissionController implements Initializable {
 
     @FXML
     Label submit_message;
+
+    @FXML
+    JFXTextField volume_Field;
+
+    @FXML
+    JFXTextField city_Field;
+
+    @FXML
+    JFXTextField street_Field;
+
+    @FXML
+    JFXTextField zip_Field;
+
+    @FXML
+    JFXTextField state_Field;
+
 
 
 
@@ -238,7 +254,8 @@ public class FormSubmissionController implements Initializable {
 
             //Sets Date of Submission
 
-            sentForm.setDateOfApplication(date_Field.getText());
+            //sentForm.setDateOfApplication(date_Field.getText());
+            sentForm.setDateOfApplication(date_Field.getValue().toString());
 
             //Sets Branded/Embossed Non-label info
             sentForm.setExtraInfo(brandedInfo_Field.getText());
@@ -375,10 +392,29 @@ public class FormSubmissionController implements Initializable {
     }
 
     //the following runs formsubmission page is opened
+    @FXML
+    private void delete(){
+        Domestic.selectToggle(null);
+        Drinks.selectToggle(null);
+        repIdNum_Field.clear();
+        serialNum_Field.clear();
+        brandName_Field.clear();
+        permitNum_Field.clear();
+        formula_Field.clear();
+        alcoholPercent_Field.clear();
+        fancyName_Field.clear();
+        phoneNum_Field.clear();
+        mailAddr_Field.clear();
+        email_Field.clear();
+        appellation_Field.clear();
+        grape_Field.clear();
+        ph_Field.clear();
+        vintage_Field.clear();
+        applicantName_Field.clear();
+        applicantNameAddr_Field.clear();
+        brandedInfo_Field.clear();
 
-
-
-
+    }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         beverage.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {

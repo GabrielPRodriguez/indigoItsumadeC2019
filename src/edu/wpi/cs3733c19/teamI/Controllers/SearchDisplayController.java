@@ -164,7 +164,7 @@ public class SearchDisplayController {
         }
         for(int i = 0; i<Results.getListOfForms().size(); i++)
         {
-            DisplayedResults.add(new sub_Form(Results.getListOfForms().get(i)));
+           // DisplayedResults.add(new sub_Form(Results.getListOfForms().get(i))); //TODO removed due to class change
         }
         //this.DisplayedResults = FXCollections.observableArrayList();
 

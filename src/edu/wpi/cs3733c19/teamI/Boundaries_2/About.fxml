@@ -105,7 +105,7 @@
                         <Insets />
                      </HBox.margin>
                   </JFXButton>
-                  <JFXButton fx:id="exitButton" mnemonicParsing="false" text="Exit" textFill="WHITE">
+                  <JFXButton mnemonicParsing="false" onAction="#goExit" text="Exit" textFill="WHITE">
                      <font>
                         <Font name="Segoe UI Bold" size="14.0" />
                      </font>

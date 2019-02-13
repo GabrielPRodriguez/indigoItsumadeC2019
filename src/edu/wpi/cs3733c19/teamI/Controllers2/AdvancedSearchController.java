@@ -140,5 +140,8 @@ public class AdvancedSearchController implements Initializable {
     @FXML
     public void goSearch(ActionEvent actionEvent){toolBarController.goSearch(actionEvent);}
 
+    @FXML
+    public void goExit(ActionEvent actionEvent){toolBarController.goExit(actionEvent);}
+
 
 }

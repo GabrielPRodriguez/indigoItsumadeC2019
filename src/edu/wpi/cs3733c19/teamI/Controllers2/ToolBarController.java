@@ -151,7 +151,8 @@ public class ToolBarController {
 
     @FXML
     public void login(ActionEvent actionEvent){
-        tb_loginButton.setText("Logout");
+        
+       //tb_loginButton.setText("Logout");
     }
 
     @FXML
@@ -189,6 +190,10 @@ public class ToolBarController {
         primaryStage.setFullScreen(true);
 
 
+    }
+    public void goExit(ActionEvent actionEvent){
+        Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        primaryStage.close();
     }
 
 

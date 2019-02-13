@@ -13,7 +13,7 @@ public class SQLFuzzy implements IStrategyFuzzy {
         try{
             //querying for each form parameter
             for(String myparam: searchParameters){
-                ArrayList<HashMap<String, ReturnedValue>> mylist=querydata.search_sql_wildcard("form_db", "form_db_from_spreadsheet.db", searchString, myparam);
+                ArrayList<HashMap<String, ReturnedValue>> mylist=querydata.search_sql_wildcard("form_data", "new_csv_from_spreadsheet.db", searchString, myparam);
                 matches.addAll(mylist);
             }
             removeDuplicates();

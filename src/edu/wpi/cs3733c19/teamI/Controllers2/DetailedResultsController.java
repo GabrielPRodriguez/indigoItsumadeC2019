@@ -46,4 +46,7 @@ public class DetailedResultsController {
         primaryStage.setMaximized(true);
     }
 
+    @FXML
+    public void goExit(ActionEvent actionEvent){toolBarController.goExit(actionEvent);}
+
 }

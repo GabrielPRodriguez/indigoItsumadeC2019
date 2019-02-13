@@ -61,7 +61,7 @@
                         <Insets />
                      </HBox.margin>
                   </JFXButton>
-                  <JFXButton fx:id="exitButton" mnemonicParsing="false" text="Exit" textFill="WHITE">
+                  <JFXButton mnemonicParsing="false" onAction="#goExit" text="Exit" textFill="WHITE">
                      <HBox.margin>
                         <Insets right="20.0" />
                      </HBox.margin>

@@ -96,6 +96,9 @@ public class NewHomeController implements Initializable {
     @FXML
     public void goAdvancedSearch(ActionEvent actionEvent){toolBarController.goAdvancedSearch(actionEvent);}
 
+    @FXML
+    public void goExit(ActionEvent actionEvent){toolBarController.goExit(actionEvent);}
+
 
 
     @FXML

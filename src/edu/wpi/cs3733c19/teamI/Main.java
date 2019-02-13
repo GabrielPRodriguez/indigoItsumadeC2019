@@ -107,14 +107,11 @@ public class Main extends Application {
 
 
 
-
-
-
         Parent root = FXMLLoader.load(getClass().getResource("Boundaries_2/Home.fxml"));
         Scene startScene = new Scene(root);
         primaryStage.setTitle("COLA SEARCH ENGINE");
         primaryStage.setScene(homeScene);
-        primaryStage.setMaximized(true);
+        primaryStage.setFullScreen(true);
         primaryStage.show();
 
 

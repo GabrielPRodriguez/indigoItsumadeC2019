@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
@@ -108,17 +109,30 @@ public class ToolBarController {
     public void goAbout(ActionEvent actionEvent){
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         primaryStage.setScene(AboutScene);
+
     }
 
     @FXML
     public void goSubmit(ActionEvent actionEvent){
-        Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        primaryStage.setScene(SubScene);
+        if(curUser == null) {
+            goLogin(actionEvent);
+        }
+        else if (!curUser.getUserType().equals(User.userPower.TTBEmployee)){
+
+            Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            primaryStage.setScene(SubScene);
+        }
     }
 
     @FXML
     public void goLogin(ActionEvent actionEvent){
         if(signedIn == false) {
+            Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            primaryStage.setScene(Login);
+        }
+        else if (signedIn == true){
+            signedIn = false;
+            curUser = null;
             Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             primaryStage.setScene(Login);
         }
@@ -153,9 +167,14 @@ public class ToolBarController {
     }
 
     @FXML
-    public void goWorkflow(ActionEvent actionEvent){
-        Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        primaryStage.setScene(FormCheck);
+    public void goWorkflow(ActionEvent actionEvent) {
+        if (curUser == null) {
+            goLogin(actionEvent);
+        }
+        else if (!curUser.getUserType().equals(User.userPower.Company)){
+            Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            primaryStage.setScene(FormCheck);
+        }
     }
 
     public void goAdvancedSearch(ActionEvent actionEvent){

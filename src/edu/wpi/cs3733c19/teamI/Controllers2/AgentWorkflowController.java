@@ -49,6 +49,9 @@ public class AgentWorkflowController {
     @FXML
     public void goWorkflow(ActionEvent actionEvent){toolBarController.goWorkflow(actionEvent);}
 
+    @FXML
+    public void goExit(ActionEvent actionEvent){toolBarController.goExit(actionEvent);}
+
     public void setUserName(String name){
         theUserName.setText(name);
     }

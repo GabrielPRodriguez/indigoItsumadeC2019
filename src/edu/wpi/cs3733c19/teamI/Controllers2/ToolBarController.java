@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.ReturnedValue;
 import edu.wpi.cs3733c19.teamI.Entities.User;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ToolBarController {
+
 
     public ToolBarController(){
         FXMLLoader toolBarLoader = new FXMLLoader(getClass().getResource("Boundaries_2/Toolbar.fxml"));
@@ -31,14 +33,24 @@ public class ToolBarController {
     private Scene Pending;
     private Scene Info;
     private Scene Result;
+    private ResultsController ResultsController;
+    private DetailedResultsController InfoController;
+
+    private ArrayList<HashMap<String, ReturnedValue>> resultsMap = new ArrayList<HashMap<String, ReturnedValue>>();
+
+
+    public void setResultsMap(ArrayList<HashMap<String, ReturnedValue>> resultsMap){
+            this.resultsMap = resultsMap;
+            ResultsController.convertToForms(0);
     private User curUser;
     private boolean signedIn = false;
 
-    private ResultsController resultsController;
+        }
 
-    public void setResultsController(ResultsController resultsController){
-        this.resultsController = resultsController;
 
+
+    public ArrayList<HashMap<String, ReturnedValue>> getResultsMap() {
+        return this.resultsMap;
     }
 
     public void setPending(Scene pending) {
@@ -77,6 +89,15 @@ public class ToolBarController {
         FormCheck = formCheck;
     }
 
+    public void setResultsController(ResultsController resultsController){ ResultsController = resultsController; }
+
+    public void setInfoController(DetailedResultsController details) { InfoController = details; }
+
+    public DetailedResultsController getInfoController() {return InfoController; };
+
+
+
+
     @FXML
     JFXButton tb_homeButton;
 
@@ -103,18 +124,26 @@ public class ToolBarController {
         //System.out.println("HomeAction"); // Commented out because it prints too much
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         primaryStage.setScene(HomeScene);
+        primaryStage.setFullScreen(true);
+
     }
 
     @FXML
     public void goAbout(ActionEvent actionEvent){
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         primaryStage.setScene(AboutScene);
+        primaryStage.setFullScreen(true);
+
         //about.setTb_logout();
 
     }
 
     @FXML
     public void goSubmit(ActionEvent actionEvent){
+        Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        primaryStage.setScene(SubScene);
+        primaryStage.setFullScreen(true);
+
         if(curUser == null) {
             goLogin(actionEvent);
         }
@@ -127,6 +156,11 @@ public class ToolBarController {
 
     @FXML
     public void goLogin(ActionEvent actionEvent){
+
+        Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        primaryStage.setScene(Login);
+        primaryStage.setFullScreen(true);
+
         if(signedIn == false) {
             Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             primaryStage.setScene(Login);
@@ -165,9 +199,16 @@ public class ToolBarController {
     public void goPending(ActionEvent actionEvent){
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         primaryStage.setScene(Pending);
+        primaryStage.setFullScreen(true);
+
     }
 
     @FXML
+    public void goWorkflow(ActionEvent actionEvent){
+        Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        primaryStage.setScene(FormCheck);
+        primaryStage.setFullScreen(true);
+
     public void goWorkflow(ActionEvent actionEvent) {
         if (curUser == null) {
             goLogin(actionEvent);
@@ -181,17 +222,28 @@ public class ToolBarController {
     public void goAdvancedSearch(ActionEvent actionEvent){
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         primaryStage.setScene(SearchScene);
+        primaryStage.setFullScreen(true);
+
     }
 
     public void goSearch(ActionEvent actionEvent){
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         primaryStage.setScene(Result);
-    }
-    public void goDetails(ActionEvent actionEvent){
-        Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        primaryStage.setScene(Info);
+        primaryStage.setFullScreen(true);
 
     }
+    public void goDetails(Event event){
+        Stage primaryStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        primaryStage.setScene(Info);
+        primaryStage.setFullScreen(true);
+
+
+    }
+    public void goExit(ActionEvent actionEvent){
+        Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        primaryStage.close();
+    }
+
     public void transferSearchInfo(ArrayList<HashMap<String, ReturnedValue>> resultsList){
         resultsController.setTestString("a new string");
         resultsController.setResultsList(resultsList);

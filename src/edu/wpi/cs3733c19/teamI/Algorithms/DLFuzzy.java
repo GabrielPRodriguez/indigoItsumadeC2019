@@ -8,9 +8,12 @@ import java.util.HashMap;
 public class DLFuzzy implements IStrategyFuzzy {
 
     public void run(String searchString) throws Exception{
-
-            ArrayList<HashMap<String, ReturnedValue>> mylist=querydata.search_for_dl_multiple("form_db", "form_db_from_spreadsheet.db",searchParameters,searchString, 10);
-
+        //"form_data", "new_csv_from_spreadsheet.db"
+        //this function (search_for_dl_multiple) can be found in the SQLDriver
+        ArrayList<HashMap<String, ReturnedValue>> mylist=querydata.search_for_dl_multiple("form_data", "new_csv_from_spreadsheet.db",searchParameters,searchString, 10);
+        matches.addAll(mylist);
+        //System.out.println(mylist.get(100).get("brandName").to_string());
+        System.out.println(searchString);
     }
 
 

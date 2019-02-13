@@ -13,7 +13,8 @@ public class SQLFuzzy implements IStrategyFuzzy {
         try{
             //querying for each form parameter
             for(String myparam: searchParameters){
-                ArrayList<HashMap<String, ReturnedValue>> mylist=querydata.search_sql_wildcard("form_db", "form_db_from_spreadsheet.db", searchString, myparam);
+                //this function (search_for_sql_wildcard) can be found in the SQLDriver
+                ArrayList<HashMap<String, ReturnedValue>> mylist=querydata.search_sql_wildcard("form_data", "new_csv_from_spreadsheet.db", searchString, myparam);
                 matches.addAll(mylist);
             }
             removeDuplicates();
@@ -22,16 +23,14 @@ public class SQLFuzzy implements IStrategyFuzzy {
             System.out.println("Unable to query the results.");
         }
     }
-
+    //function to remove duplicate search results (from the multiple sql queries)
     void removeDuplicates(){
         ArrayList<Double> formIDs = new ArrayList<>();
-        //Collections.sort(matches,  )
-
         for(HashMap<String,ReturnedValue> e:matches){
             Double form_id=e.get("formID").to_double();
             for(Double x:formIDs){
                 if(x==form_id){
-                    matches.remove(e);
+                    matches.remove(e);//this is actually where things are being removed
                 }else{
                     formIDs.add(form_id);
                 }

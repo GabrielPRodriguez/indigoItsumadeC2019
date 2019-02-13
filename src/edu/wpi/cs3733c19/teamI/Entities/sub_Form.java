@@ -1,8 +1,11 @@
 package edu.wpi.cs3733c19.teamI.Entities;
 
 import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.ReturnedValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.util.HashMap;
+import java.util.LinkedList;
 
 //this class is used to more easily represent data in our tableview on the results UI. Simply contains all attributes
 //a form can have
@@ -24,6 +27,7 @@ public class sub_Form {
     private String alcoholContent;
     private String phoneNumber;
     private String email;
+    private int index;
     private int form_ID;
 
     //getters
@@ -85,6 +89,8 @@ public class sub_Form {
 
     public int getForm_ID() {return form_ID;}
 
+    public int getIndex(){return index;}
+
     //setters
     public void setRepID(String repID) {
         this.repID = repID;
@@ -142,6 +148,8 @@ public class sub_Form {
         this.email = email;
     }
 
+    public void setIndex(int index) { this.email = email; }
+
     public void setForm_ID(int form_ID) { this.form_ID = form_ID; }
 
     //this function is used to generate the CSV download. It returns every form field as a list of string
@@ -155,9 +163,27 @@ public class sub_Form {
         return CSV;
     }
 
+    public ObservableList<String> getSummary(){
+        ObservableList<String> list_of_Param = FXCollections.observableArrayList();
+        list_of_Param.add("RepID: " + this.getRepID());
+        list_of_Param.add("PlantRegistry: " + this.getPlantRegistry());
+        list_of_Param.add("Origin: " + this.getDomesticOrImported());
+        list_of_Param.add("Serial Number: " + this.getSerialNumber());
+        list_of_Param.add("Type: " + this.getBeverageType());
+        list_of_Param.add("Brand Name: " + this.getBrandName());
+        list_of_Param.add("Fanciful Name: " + this.getFancifulName());
+        list_of_Param.add("Vintage: " + this.getVintage());
+        list_of_Param.add("Grape Varietals: " + this.getGrapeVarietals());
+        list_of_Param.add("PH Value: " + this.getpHValue());
+        list_of_Param.add("Wine Appellation: " + this.getWineAppellation());
+        list_of_Param.add("Alcohol Content: " + this.getAlcoholContent());
+        return(list_of_Param );
+
+    }
+
     //constructor. This constructor takes a hasmap as an input, so we can quickly move between the DB query return type
     // and displayable values
-    public sub_Form(HashMap<String, ReturnedValue> entry){
+    public sub_Form(HashMap<String, ReturnedValue> entry, int index){
         this.repID = entry.get("repID").to_string();
         this.plantRegistry = entry.get("plantRegistry").to_string();
         this.domesticOrImported = entry.get("domesticOrImported").to_string();
@@ -172,6 +198,7 @@ public class sub_Form {
         this.alcoholContent = entry.get("alcoholContent").to_string();
         this.phoneNumber = entry.get("phoneNumber").to_string();
         this.email = entry.get("email").to_string();
+        this.index = index;
     }
 }
 

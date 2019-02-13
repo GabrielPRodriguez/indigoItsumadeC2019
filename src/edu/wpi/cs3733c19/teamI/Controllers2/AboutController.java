@@ -48,4 +48,7 @@ public class AboutController implements Initializable {
 
 
     }
+
+    @FXML
+    public void goExit(ActionEvent actionEvent){toolBarController.goExit(actionEvent);}
 }

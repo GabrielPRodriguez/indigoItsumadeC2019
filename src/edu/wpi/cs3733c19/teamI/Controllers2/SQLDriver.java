@@ -77,7 +77,9 @@ public class SQLDriver{
 
     }
     public int l_distance(String a, String b){
-        System.out.println("in l_distance");
+       // System.out.println("in l_distance");
+        a.toLowerCase();
+        b.toLowerCase();
         int counter = Math.abs(a.length()-b.length());
         if (a.length() >= b.length()){
             for (int i = 0; i < b.length(); i++){
@@ -97,6 +99,8 @@ public class SQLDriver{
     }
     public int dl_distance(String source, String target){
         // throw if parameter is a null
+        source.toLowerCase();
+        target.toLowerCase();
         if (source == null || target == null) {
             throw new IllegalArgumentException("Parameter must not be null");
         }
@@ -132,6 +136,41 @@ public class SQLDriver{
         return dist[sourceLength][targetLength];
 
     }
+    public void update_user_rfid(int id, String rfid) throws Exception{
+        ArrayList<String>_target_cols = new ArrayList<String>();
+        _target_cols.add("rfid");
+        ArrayList<DBValue>_value_cols = new ArrayList<DBValue>();
+        _value_cols.add(new DBValue<String>(rfid));
+
+        generic_update("user_credentials", "user_credentials.db", _target_cols, _value_cols, "id", new DBValue<Integer>(id));
+    }
+    public void create_user_account(String email, String password, int role) throws Exception{
+        String [] columns = {"id", "email", "password", "role", "rfid"};
+        DBTypes [] full_types = {new DBTypes("real"), new DBTypes("text"), new DBTypes("text"), new DBTypes("real"), new DBTypes("text")};
+        /*
+        role is a in integer 0 or 1: 0 => Agent, 1 => Manufacturer
+         */
+        try{
+            create_table("user_credentials", "user_credentials.db", columns, full_types);
+        }
+        catch (Exception e){
+            //pass
+            //db already created
+        }
+        double _id = 1;
+        for (HashMap<String, ReturnedValue>result:select_all("user_credentials.db", "user_credentials")){
+            double _temp_id = result.get("id").to_double();
+            if (_temp_id > _id){
+                _id = _temp_id;
+            }
+
+        }
+        DBValue [] all_vals = {new DBValue<Integer>((int)_id), new DBValue<String>(email),  new DBValue<String>(password), new DBValue<Integer>(role), new DBValue<String>("")};
+        insert_vals("user_credentials", "user_credentials.db.db", all_vals);
+
+
+    }
+
     public ArrayList<HashMap<String, ReturnedValue>>search_for_dl_multiple(String tablename, String filename, ArrayList<String>keys, String _user_input, int top_results) throws Exception{
         if (top_results < 1){
             throw new Exception("'top_results' must be a value greater than zero");
@@ -175,7 +214,7 @@ public class SQLDriver{
 
 
     public ArrayList<HashMap<String, ReturnedValue>>search_for_l_multiple(String tablename, String filename, ArrayList<String>keys, String _user_input, int top_results) throws Exception{
-        System.out.println("In search_for_l_multiple");
+       // System.out.println("In search_for_l_multiple");
         if (top_results < 1){
             throw new Exception("'top_results' must be a value greater than zero");
         }
@@ -310,8 +349,8 @@ public class SQLDriver{
             }
 
             if (flag){
-                System.out.println("in the main result find");
-                System.out.println(result.get("formID").to_double());
+              //  System.out.println("in the main result find");
+              //  System.out.println(result.get("formID").to_double());
                 return result;
             }
         }
@@ -334,6 +373,41 @@ public class SQLDriver{
         }
         throw new Exception("Cannot find row");
     }
+    public void generic_update(String tablename, String filename, ArrayList<String>targetcols, ArrayList<DBValue>values, String anchor_col, DBValue anchor_val) throws Exception{
+        Connection _connector = connect_file(filename);
+        ArrayList<String>temp = new ArrayList<String>();
+        for (String col:targetcols){
+            temp.add(col+" = ?");
+        }
+        String statement = "UPDATE "+tablename+" SET "+String.join(", ", temp)+" WHERE "+anchor_col+" = ?";
+        PreparedStatement pstmt = _connector.prepareStatement(statement);
+        int _count = 1;
+        for (DBValue val:values){
+            if (val.statement().equals("setInt")){
+                pstmt.setInt(_count, val.to_int());
+            }
+            else if (val.statement().equals("setDouble")){
+                pstmt.setDouble(_count, val.to_double());
+            }
+            else{
+               // System.out.println("sets a string");
+                pstmt.setString(_count, val.to_string());
+            }
+            _count ++;
+        }
+        if (anchor_val.statement().equals("setInt")){
+            pstmt.setInt(_count, anchor_val.to_int());
+        }
+        else if (anchor_val.statement().equals("setDouble")){
+            pstmt.setDouble(_count, anchor_val.to_double());
+        }
+        else{
+            pstmt.setString(_count, anchor_val.to_string());
+        }
+
+
+        pstmt.executeUpdate();
+    }
     public void update(String tablename, String filename, ArrayList<String>targetcols, ArrayList<DBValue>values, int formid) throws Exception {
 
         //System.out.println("actually makes into update method");
@@ -353,7 +427,7 @@ public class SQLDriver{
                 pstmt.setDouble(_count, val.to_double());
             }
             else{
-                System.out.println("sets a string");
+              //  System.out.println("sets a string");
                 pstmt.setString(_count, val.to_string());
             }
             _count ++;
@@ -441,7 +515,7 @@ public class SQLDriver{
     public ArrayList<HashMap<String, ReturnedValue>>search_sql_wildcard(String tablename, String filename, String target, String _key) throws Exception{
         //sample method call: search_for_l("form_data", "form_data.db", "MyFancyTitle", "fancifulName");
         String _query = "SELECT * FROM "+tablename+" WHERE "+_key+" LIKE "+"'%"+target+"%'";
-        System.out.println(_query);
+      //  System.out.println(_query);
         if (!filename.endsWith(".db")){
             throw new Exception("filename must end with '.db'");
         }
@@ -483,21 +557,21 @@ public class SQLDriver{
 
         ArrayList<HashMap<String, ReturnedValue>> final_results = new ArrayList<HashMap<String, ReturnedValue>>();
         for (HashMap<String, ReturnedValue>result: select_all(filename, tablename)){
-            System.out.println(result.get("status"));
+            //System.out.println(result.get("status"));
             String _new_flag = result.get("status").to_string();
             if (_new_flag.equals("approved")){
                 boolean _flag = false;
                 for (String field:search_fields){
-                    System.out.println("search field: "+field);
+                   // System.out.println("search field: "+field);
                     ReturnedValue type1 = result.get(field);
                     DataField type2 = targets.get(field);
 
-                    System.out.println("type in final search");
+                  //  System.out.println("type in final search");
 
 
                     if (type1.type.equals("text")){
                         if (type1.to_string().equals(type2.getValue().toString())){
-                            System.out.println("successfull comparison!!!");
+                          //  System.out.println("successfull comparison!!!");
 
                             _flag = true;
                         }
@@ -509,7 +583,7 @@ public class SQLDriver{
                     }
                     else{
                         //System.out.println("should not see this");
-                        System.out.println(type1.type);
+                      //  System.out.println(type1.type);
                         if (type1.to_double() == Double.parseDouble(type2.getValue().toString())){
                             _flag = true;
                         }

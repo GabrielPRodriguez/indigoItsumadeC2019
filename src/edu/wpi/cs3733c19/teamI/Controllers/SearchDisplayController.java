@@ -204,7 +204,7 @@ public class SearchDisplayController {
     public void writeExcel() throws Exception {
         Writer writer = null;
         try {
-            File file = new File("C:\\Users\\Carkin\\indigoItsumadeC19\\out\\DATA.csv.");
+            File file = new File("\\out\\DATA.csv.");
             writer = new BufferedWriter(new FileWriter(file)); //CSV library function
             // grab text versions of all displayed results
             for (int i = 0; i < DisplayedResults.size(); i++) {

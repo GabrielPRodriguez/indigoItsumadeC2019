@@ -29,9 +29,9 @@
             <Separator prefWidth="200.0" />
             <HBox alignment="CENTER_LEFT" spacing="20.0">
                <children>
-                  <TextField onAction="#goSearch" prefHeight="50.0" HBox.hgrow="ALWAYS" />
+                  <TextField fx:id="searchBar" prefHeight="50.0" HBox.hgrow="ALWAYS" />
                   <JFXComboBox fx:id="fieldSelector" promptText="Search By:" />
-                  <JFXButton fx:id="search" mnemonicParsing="false" onMouseClicked="#spinnerVisible" style="-fx-background-color: #046b99;" text="Search" textFill="WHITE">
+                  <JFXButton fx:id="search" mnemonicParsing="false" onAction="#performSearch" onMouseClicked="#spinnerVisible" style="-fx-background-color: #046b99;" text="Search" textFill="WHITE">
                      <font>
                         <Font name="Segoe UI Bold" size="16.0" />
                      </font>

@@ -32,7 +32,7 @@
             <Separator prefWidth="200.0" />
             <HBox alignment="CENTER" spacing="20.0" VBox.vgrow="ALWAYS">
                <children>
-                  <VBox alignment="TOP_CENTER" HBox.hgrow="ALWAYS">
+                  <VBox alignment="TOP_CENTER" prefHeight="1184.0" prefWidth="324.0" HBox.hgrow="ALWAYS">
                      <children>
                         <JFXToolbar style="-fx-background-color: #9bdaf1;">
                            <left>
@@ -50,68 +50,68 @@
                         </JFXToolbar>
                         <AnchorPane>
                            <children>
-                              <Label fx:id="formID_1" layoutY="36.0" text="Form 1 (Description)" />
+                              <Label fx:id="formID_1" layoutY="36.0" />
                               <Button fx:id="choose_button1" disable="true" layoutX="352.0" layoutY="32.0" mnemonicParsing="false" onAction="#chooseButtonHandler" text="Select" />
                            </children>
                         </AnchorPane>
                         <AnchorPane>
                            <children>
-                              <Label fx:id="formID_11" layoutY="36.0" text="Form 1 (Description)" />
-                              <Button fx:id="choose_button11" disable="true" layoutX="352.0" layoutY="32.0" mnemonicParsing="false" onAction="#chooseButtonHandler" text="Select" />
+                              <Label fx:id="formID_2" layoutY="36.0" />
+                              <Button fx:id="choose_button2" disable="true" layoutX="352.0" layoutY="32.0" mnemonicParsing="false" onAction="#chooseButtonHandler" text="Select" />
                            </children>
                         </AnchorPane>
                         <AnchorPane>
                            <children>
-                              <Label fx:id="formID_12" layoutY="36.0" text="Form 1 (Description)" />
-                              <Button fx:id="choose_button12" disable="true" layoutX="352.0" layoutY="32.0" mnemonicParsing="false" onAction="#chooseButtonHandler" text="Select" />
+                              <Label fx:id="formID_3" layoutY="36.0" />
+                              <Button fx:id="choose_button3" disable="true" layoutX="352.0" layoutY="32.0" mnemonicParsing="false" onAction="#chooseButtonHandler" text="Select" />
                            </children>
                         </AnchorPane>
                         <AnchorPane>
                            <children>
-                              <Label fx:id="formID_13" layoutY="36.0" text="Form 1 (Description)" />
-                              <Button fx:id="choose_button13" disable="true" layoutX="352.0" layoutY="32.0" mnemonicParsing="false" onAction="#chooseButtonHandler" text="Select" />
+                              <Label fx:id="formID_4" layoutY="36.0" />
+                              <Button fx:id="choose_button4" disable="true" layoutX="352.0" layoutY="32.0" mnemonicParsing="false" onAction="#chooseButtonHandler" text="Select" />
                            </children>
                         </AnchorPane>
                         <AnchorPane>
                            <children>
-                              <Label fx:id="formID_131" layoutY="36.0" text="Form 1 (Description)" />
-                              <Button fx:id="choose_button131" disable="true" layoutX="352.0" layoutY="32.0" mnemonicParsing="false" onAction="#chooseButtonHandler" text="Select" />
+                              <Label fx:id="formID_5" layoutY="36.0" />
+                              <Button fx:id="choose_button5" disable="true" layoutX="352.0" layoutY="32.0" mnemonicParsing="false" onAction="#chooseButtonHandler" text="Select" />
                            </children>
                         </AnchorPane>
                         <AnchorPane>
                            <children>
-                              <Label fx:id="formID_132" layoutY="36.0" text="Form 1 (Description)" />
-                              <Button fx:id="choose_button132" disable="true" layoutX="352.0" layoutY="32.0" mnemonicParsing="false" onAction="#chooseButtonHandler" text="Select" />
+                              <Label fx:id="formID_6" layoutY="36.0" />
+                              <Button fx:id="choose_button6" disable="true" layoutX="352.0" layoutY="32.0" mnemonicParsing="false" onAction="#chooseButtonHandler" text="Select" />
                            </children>
                         </AnchorPane>
                         <AnchorPane>
                            <children>
-                              <Label fx:id="formID_133" layoutY="36.0" text="Form 1 (Description)" />
-                              <Button fx:id="choose_button133" disable="true" layoutX="352.0" layoutY="32.0" mnemonicParsing="false" onAction="#chooseButtonHandler" text="Select" />
+                              <Label fx:id="formID_7" layoutY="36.0" />
+                              <Button fx:id="choose_button7" disable="true" layoutX="352.0" layoutY="32.0" mnemonicParsing="false" onAction="#chooseButtonHandler" text="Select" />
                            </children>
                         </AnchorPane>
                         <AnchorPane>
                            <children>
-                              <Label fx:id="formID_134" layoutY="36.0" text="Form 1 (Description)" />
-                              <Button fx:id="choose_button134" disable="true" layoutX="352.0" layoutY="32.0" mnemonicParsing="false" onAction="#chooseButtonHandler" text="Select" />
+                              <Label fx:id="formID_8" layoutY="36.0" />
+                              <Button fx:id="choose_button8" disable="true" layoutX="352.0" layoutY="32.0" mnemonicParsing="false" onAction="#chooseButtonHandler" text="Select" />
                            </children>
                         </AnchorPane>
                         <AnchorPane>
                            <children>
-                              <Label fx:id="formID_135" layoutY="36.0" text="Form 1 (Description)" />
-                              <Button fx:id="choose_button135" disable="true" layoutX="352.0" layoutY="32.0" mnemonicParsing="false" onAction="#chooseButtonHandler" text="Select" />
+                              <Label fx:id="formID_9" layoutY="36.0" />
+                              <Button fx:id="choose_button9" disable="true" layoutX="352.0" layoutY="32.0" mnemonicParsing="false" onAction="#chooseButtonHandler" text="Select" />
                            </children>
                         </AnchorPane>
                      </children>
                   </VBox>
                   <VBox alignment="CENTER" spacing="40.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <JFXButton mnemonicParsing="false" style="-fx-background-color: #2e8540;" text="Accept" textFill="WHITE">
+                        <JFXButton fx:id="accept_button" mnemonicParsing="false" style="-fx-background-color: #2e8540;" text="Accept" textFill="WHITE">
                            <font>
                               <Font name="Segoe UI Bold" size="16.0" />
                            </font>
                         </JFXButton>
-                        <JFXButton mnemonicParsing="false" style="-fx-background-color: #981b1e;" text="Reject" textFill="WHITE">
+                        <JFXButton fx:id="reject_button" mnemonicParsing="false" style="-fx-background-color: #981b1e;" text="Reject" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>

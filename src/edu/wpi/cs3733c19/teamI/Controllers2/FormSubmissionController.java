@@ -357,8 +357,10 @@ public class FormSubmissionController implements Initializable {
             //sends the form to database when int/double fields contain the correct datatype and
             //all required fields have received input
 
+
             if(readyToSend){
                 //System.out.println("making db");
+                System.out.println("ready to send");
                 SQLDriver driver = new SQLDriver();
                 System.out.println("Ready to Send");
                 //sets the names of columns in the database, if additional form fields are added, please add a new column

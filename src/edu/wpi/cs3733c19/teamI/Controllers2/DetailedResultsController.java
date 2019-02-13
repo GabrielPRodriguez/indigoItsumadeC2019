@@ -76,7 +76,7 @@ public class DetailedResultsController {
     public void goResults(ActionEvent actionEvent){
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         primaryStage.setScene(ResultsScene);
-        //primaryStage.setMaximized(true);
+        primaryStage.setMaximized(true);
     }
 
     @FXML

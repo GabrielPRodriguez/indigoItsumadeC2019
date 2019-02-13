@@ -26,6 +26,10 @@ import javafx.stage.PopupWindow;
 import javafx.stage.PopupWindow.AnchorLocation;
 
 import javax.swing.text.View;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.Writer;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -276,4 +280,27 @@ public class ResultsController implements Initializable {
 
 
     }
+
+    //create CSV function
+    public void writeExcel() throws Exception {
+        Writer writer = null;
+        try {
+            File file = new File(System.getProperty("user.home")+ "/Downloads/DATA.CSV");
+            writer = new BufferedWriter(new FileWriter(file)); //CSV library function
+            // grab text versions of all displayed results
+            for (int i = 0; i < DisplayedResults.size(); i++) {
+
+                String text = DisplayedResults.get(i).returnAll();
+                writer.write(text);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        finally {//when done, finish CSV creation
+
+            writer.flush();
+            writer.close();
+        }
+    }
+
 }

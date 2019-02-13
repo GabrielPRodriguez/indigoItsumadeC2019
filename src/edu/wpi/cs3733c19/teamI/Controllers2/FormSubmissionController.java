@@ -344,6 +344,7 @@ public class FormSubmissionController implements Initializable {
                 //displays message after form has successfully been entered into the database
                 String success = "Form successfully submitted.";
                 submit_message.setText(success);
+                System.out.println(success);
 
                 //clears all fields
                 Domestic.selectToggle(null);

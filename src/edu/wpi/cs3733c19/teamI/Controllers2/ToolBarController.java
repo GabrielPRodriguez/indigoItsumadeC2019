@@ -109,6 +109,7 @@ public class ToolBarController {
     public void goAbout(ActionEvent actionEvent){
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         primaryStage.setScene(AboutScene);
+        //about.setTb_logout();
 
     }
 

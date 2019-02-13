@@ -24,6 +24,7 @@ public class sub_Form {
     private String alcoholContent;
     private String phoneNumber;
     private String email;
+    private int form_ID;
 
     //getters
     public String getRepID() {
@@ -82,6 +83,8 @@ public class sub_Form {
         return email;
     }
 
+    public int getForm_ID() {return form_ID;}
+
     //setters
     public void setRepID(String repID) {
         this.repID = repID;
@@ -138,6 +141,8 @@ public class sub_Form {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public void setForm_ID(int form_ID) { this.form_ID = form_ID; }
 
     //this function is used to generate the CSV download. It returns every form field as a list of string
     // seperated by commas

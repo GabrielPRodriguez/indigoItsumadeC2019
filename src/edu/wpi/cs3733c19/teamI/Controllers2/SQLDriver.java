@@ -80,6 +80,7 @@ public class SQLDriver{
        // System.out.println("in l_distance");
         a.toLowerCase();
         b.toLowerCase();
+        System.out.println(a+b);
         int counter = Math.abs(a.length()-b.length());
         if (a.length() >= b.length()){
             for (int i = 0; i < b.length(); i++){
@@ -95,6 +96,7 @@ public class SQLDriver{
                 }
             }
         }
+        System.out.println(counter);
         return counter;
     }
     public int dl_distance(String source, String target){
@@ -178,7 +180,6 @@ public class SQLDriver{
         ArrayList<Integer>all_distances = new ArrayList<Integer>();
         HashMap<Integer, HashMap<String, ReturnedValue>>results = new HashMap<Integer, HashMap<String, ReturnedValue>>();
         for (HashMap<String, ReturnedValue>result:select_all(filename, tablename)){
-
 
             int _count = 0;
             for (String key:keys){

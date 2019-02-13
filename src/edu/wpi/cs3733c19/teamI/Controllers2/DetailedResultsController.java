@@ -9,8 +9,13 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.scene.control.ListView;
+
+import java.io.IOException;
+import java.net.URL;
 
 
 public class DetailedResultsController {
@@ -25,6 +30,10 @@ public class DetailedResultsController {
 
     @FXML
     JFXButton back_button;
+
+    @FXML
+    ImageView image;
+
 
     ObservableList<String> items = FXCollections.observableArrayList();
 

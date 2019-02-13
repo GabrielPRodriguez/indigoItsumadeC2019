@@ -40,7 +40,7 @@
                      <children>
                         <ImageView fitHeight="300.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
                            <image>
-                              <Image url="@../Assets/placeholder_icon.png" />
+                              <Image url="@../Assets/bottle.png" />
                            </image>
                         </ImageView>
                         <ListView fx:id="info" prefHeight="295.0" prefWidth="399.0" />

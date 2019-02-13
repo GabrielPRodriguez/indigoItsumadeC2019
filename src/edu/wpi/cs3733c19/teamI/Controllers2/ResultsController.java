@@ -1,20 +1,23 @@
 package edu.wpi.cs3733c19.teamI.Controllers2;
 
-import com.jfoenix.controls.JFXListView;
-import com.jfoenix.controls.JFXListView;
+import com.jfoenix.controls.JFXButton;
 import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.ReturnedValue;
+import edu.wpi.cs3733c19.teamI.Entities.sub_Form;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.ResourceBundle;
 
 public class ResultsController implements Initializable {
@@ -22,25 +25,27 @@ public class ResultsController implements Initializable {
     private ArrayList<HashMap<String, ReturnedValue>> resultsList;
     private String testString = "original";
 
+    private final ObservableList<sub_Form> DisplayedResults = FXCollections.observableArrayList();
+
     //Table Stuff
 
     @FXML
-    TableView ResultsList;
-
-    @FXML
-    TableColumn SerialNumber;
-
-    @FXML
-    TableColumn SourceOfProduct;
+    TableView tableView;
 
     @FXML
     TableColumn BrandName;
 
     @FXML
-    TableColumn BeverageType;
+    TableColumn ResultNumber;
 
     @FXML
-    TableColumn AlcoholContent;
+    TableColumn AlchoholPercentage;
+
+    @FXML
+    TableColumn Domestic;
+
+    @FXML
+    TableColumn Type;
 
 
     public void  setResultsList(ArrayList<HashMap<String, ReturnedValue>> results){
@@ -50,9 +55,22 @@ public class ResultsController implements Initializable {
         this.testString=newString;
     }
 
-    public void setTable(){
+    public void convertToForms(){
+        for(int i = 0; i<20; i++)
+        {
+            DisplayedResults.add(new sub_Form(resultsList.get(i)));
+        }
+    }
 
-        toolBarController.getResultsList();
+    public void setTable(){
+        //get results
+        convertToForms();
+        //update columns on table view
+        this.Domestic.setCellValueFactory(new PropertyValueFactory<sub_Form, String>("domesticOrImported"));
+        this.BrandName.setCellValueFactory(new PropertyValueFactory<sub_Form, String>("brandName"));
+        this.Type.setCellValueFactory(new PropertyValueFactory<sub_Form, String>("beverageType"));
+        this.AlchoholPercentage.setCellValueFactory(new PropertyValueFactory<sub_Form, String>("alcoholContent"));
+        this.tableView.setItems(DisplayedResults);
     }
 
 
@@ -64,20 +82,7 @@ public class ResultsController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        for(int i=0;i<50;i++)
-        {
 
-
-            Label label = new Label("DESCRIPTION" + i);
-
-            label.setGraphic(new ImageView("edu/wpi/cs3733c19/teamI/Assets/placeholder_icon.png"));
-
-            //listView.getItems().add(label);
-
-            System.out.println(testString);
-
-            System.out.println("Transfered:" + resultsList);
-        }
     }
 
 

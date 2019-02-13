@@ -3,11 +3,12 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXToolbar?>
-<?import com.jfoenix.controls.JFXTreeTableView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -38,7 +39,15 @@
             <Separator prefWidth="200.0" />
             <ScrollPane fitToHeight="true" fitToWidth="true" VBox.vgrow="ALWAYS">
                <content>
-                  <JFXTreeTableView />
+                  <TableView fx:id="tableView" onMouseClicked="#setTable">
+                     <columns>
+                        <TableColumn fx:id="ResultNumber" minWidth="40.0" prefWidth="-1.0" text="No." />
+                        <TableColumn fx:id="BrandName" minWidth="100.0" prefWidth="-1.0" text="Brand Name" />
+                        <TableColumn fx:id="Type" minWidth="100.0" prefWidth="-1.0" text="Type" />
+                        <TableColumn fx:id="AlchoholPercentage" minWidth="100.0" prefWidth="-1.0" text="Percentage" />
+                        <TableColumn fx:id="Domestic" minWidth="100.0" prefWidth="-1.0" text="Origin" />
+                        <TableColumn minWidth="100.0" prefWidth="75.0" text="Column X" />
+                     </columns></TableView>
                </content>
             </ScrollPane>
             <HBox alignment="CENTER" spacing="10.0">

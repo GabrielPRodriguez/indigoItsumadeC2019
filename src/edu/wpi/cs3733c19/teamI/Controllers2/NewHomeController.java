@@ -128,6 +128,7 @@ public class NewHomeController implements Initializable {
             // TODO link the return of the fuzzy alghoriths to a listView on the next page (maybe just have field of hashmap that gets passed to the next scene)
 
         }
+        
     }
 
 

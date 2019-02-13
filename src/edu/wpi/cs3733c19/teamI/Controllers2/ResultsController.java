@@ -8,6 +8,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.image.ImageView;
 
 import java.net.URL;
@@ -20,6 +22,27 @@ public class ResultsController implements Initializable {
     private ArrayList<HashMap<String, ReturnedValue>> resultsList;
     private String testString = "original";
 
+    //Table Stuff
+
+    @FXML
+    TableView ResultsList;
+
+    @FXML
+    TableColumn SerialNumber;
+
+    @FXML
+    TableColumn SourceOfProduct;
+
+    @FXML
+    TableColumn BrandName;
+
+    @FXML
+    TableColumn BeverageType;
+
+    @FXML
+    TableColumn AlcoholContent;
+
+
     public void  setResultsList(ArrayList<HashMap<String, ReturnedValue>> results){
         this.resultsList = results;
     }
@@ -27,12 +50,9 @@ public class ResultsController implements Initializable {
         this.testString=newString;
     }
 
-    @FXML
-    JFXListView<Label> listView;
+    public void setTable(){
 
-    public void setUp() {
-        for (int i = 0; i < 4; i++) listView.getItems().add(new Label("Item " + i + " DRANK " + i));
-        listView.getStyleClass().add("mylistview");
+        toolBarController.getResultsList();
     }
 
 

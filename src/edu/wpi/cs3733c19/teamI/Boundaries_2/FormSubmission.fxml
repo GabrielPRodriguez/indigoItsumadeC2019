@@ -32,7 +32,7 @@
                                     <Font name="Segoe UI Bold" size="16.0" />
                                  </font>
                               </Label>
-                              <JFXTextField />
+                              <JFXTextField fx:id="repIdNum_Field" />
                            </children>
                         </VBox>
                         <VBox layoutX="10.0" layoutY="10.0" spacing="10.0" HBox.hgrow="ALWAYS">
@@ -42,7 +42,7 @@
                                     <Font name="Segoe UI Bold" size="16.0" />
                                  </font>
                               </Label>
-                              <JFXTextField />
+                              <JFXTextField fx:id="permitNum" />
                            </children>
                         </VBox>
                         <VBox layoutX="230.0" layoutY="10.0" spacing="10.0" HBox.hgrow="ALWAYS">
@@ -52,7 +52,7 @@
                                     <Font name="Segoe UI Bold" size="16.0" />
                                  </font>
                               </Label>
-                              <JFXTextField />
+                              <JFXTextField fx:id="permitName" />
                            </children>
                         </VBox>
                      </children>
@@ -66,7 +66,7 @@
                                     <Font name="Segoe UI Bold" size="16.0" />
                                  </font>
                               </Label>
-                              <JFXTextField />
+                              <JFXTextField fx:id="serialNum_Field" />
                            </children>
                         </VBox>
                         <VBox spacing="10.0" HBox.hgrow="ALWAYS">
@@ -76,7 +76,7 @@
                                     <Font name="Segoe UI Bold" size="16.0" />
                                  </font>
                               </Label>
-                              <JFXTextField />
+                              <JFXTextField fx:id="brandName_Field" />
                            </children>
                         </VBox>
                         <VBox layoutX="10.0" layoutY="10.0" spacing="10.0" HBox.hgrow="ALWAYS">
@@ -86,7 +86,7 @@
                                     <Font name="Segoe UI Bold" size="16.0" />
                                  </font>
                               </Label>
-                              <JFXTextField />
+                              <JFXTextField fx:id="fancyName_Field" />
                            </children>
                         </VBox>
                         <VBox layoutX="230.0" layoutY="10.0" spacing="10.0" HBox.hgrow="ALWAYS">
@@ -98,12 +98,12 @@
                               </Label>
                               <VBox alignment="CENTER_LEFT" spacing="10.0">
                                  <children>
-                                    <JFXRadioButton mnemonicParsing="false" text="Domestic">
+                                    <JFXRadioButton fx:id="domestic_RadButton" mnemonicParsing="false" text="Domestic">
                                        <toggleGroup>
                                           <ToggleGroup fx:id="origin" />
                                        </toggleGroup>
                                     </JFXRadioButton>
-                                    <JFXRadioButton mnemonicParsing="false" text="Imported" toggleGroup="$origin" />
+                                    <JFXRadioButton fx:id="imported_RadButton" mnemonicParsing="false" text="Imported" toggleGroup="$origin" />
                                  </children>
                               </VBox>
                            </children>
@@ -122,8 +122,8 @@
                                           <ToggleGroup fx:id="beverage" />
                                        </toggleGroup>
                                     </JFXRadioButton>
-                                    <JFXRadioButton mnemonicParsing="false" text="Malt Beverage" toggleGroup="$beverage" />
-                                    <JFXRadioButton mnemonicParsing="false" text="Distilled Spirits" toggleGroup="$beverage" />
+                                    <JFXRadioButton fx:id="beer_RadButton" mnemonicParsing="false" text="Malt Beverage" toggleGroup="$beverage" />
+                                    <JFXRadioButton fx:id="liquor_RadButton" mnemonicParsing="false" text="Distilled Spirits" toggleGroup="$beverage" />
                                  </children>
                               </VBox>
                            </children>
@@ -139,7 +139,7 @@
                                     <Font name="Segoe UI Bold" size="16.0" />
                                  </font>
                               </Label>
-                              <JFXTextField />
+                              <JFXTextField fx:id="applicantName_Field" />
                            </children>
                         </VBox>
                         <VBox spacing="10.0" HBox.hgrow="ALWAYS">
@@ -149,7 +149,7 @@
                                     <Font name="Segoe UI Bold" size="16.0" />
                                  </font>
                               </Label>
-                              <JFXTextField />
+                              <JFXTextField fx:id="alcoholPercent_Field" />
                            </children>
                         </VBox>
                         <VBox layoutX="10.0" layoutY="10.0" spacing="10.0" HBox.hgrow="ALWAYS">
@@ -159,7 +159,7 @@
                                     <Font name="Segoe UI Bold" size="16.0" />
                                  </font>
                               </Label>
-                              <JFXTextField />
+                              <JFXTextField fx:id="volume_Field" />
                            </children>
                         </VBox>
                         <VBox layoutX="176.0" layoutY="10.0" spacing="10.0" HBox.hgrow="ALWAYS">
@@ -169,7 +169,7 @@
                                     <Font name="Segoe UI Bold" size="16.0" />
                                  </font>
                               </Label>
-                              <JFXTextField />
+                              <JFXTextField fx:id="formula_Field" />
                            </children>
                         </VBox>
                      </children>
@@ -227,7 +227,7 @@
                                     <Font name="Segoe UI Bold" size="16.0" />
                                  </font>
                               </Label>
-                              <JFXTextField />
+                              <JFXTextField fx:id="brandedInfo_Field" />
                            </children>
                         </VBox>
                      </children>
@@ -241,7 +241,7 @@
                                     <Font name="Segoe UI Bold" size="16.0" />
                                  </font>
                               </Label>
-                              <JFXTextField />
+                              <JFXTextField fx:id="street_Field" />
                            </children>
                         </VBox>
                         <VBox spacing="10.0" HBox.hgrow="ALWAYS">
@@ -251,7 +251,7 @@
                                     <Font name="Segoe UI Bold" size="16.0" />
                                  </font>
                               </Label>
-                              <JFXTextField />
+                              <JFXTextField fx:id="city_Field" />
                            </children>
                         </VBox>
                         <VBox layoutX="10.0" layoutY="10.0" spacing="10.0" HBox.hgrow="ALWAYS">
@@ -261,7 +261,7 @@
                                     <Font name="Segoe UI Bold" size="16.0" />
                                  </font>
                               </Label>
-                              <JFXTextField />
+                              <JFXTextField fx:id="state_Field" />
                            </children>
                         </VBox>
                         <VBox layoutX="230.0" layoutY="10.0" spacing="10.0" HBox.hgrow="ALWAYS">
@@ -271,7 +271,7 @@
                                     <Font name="Segoe UI Bold" size="16.0" />
                                  </font>
                               </Label>
-                              <JFXTextField />
+                              <JFXTextField fx:id="zip_Field" />
                            </children>
                         </VBox>
                      </children>
@@ -285,7 +285,7 @@
                                     <Font name="Segoe UI Bold" size="16.0" />
                                  </font>
                               </Label>
-                              <JFXDatePicker defaultColor="#046b99" />
+                              <JFXDatePicker fx:id="date_Field" defaultColor="#046b99" />
                            </children>
                         </VBox>
                         <VBox spacing="10.0" HBox.hgrow="ALWAYS">
@@ -295,7 +295,7 @@
                                     <Font name="Segoe UI Bold" size="16.0" />
                                  </font>
                               </Label>
-                              <JFXTextField />
+                              <JFXTextField fx:id="phoneNum_Field" />
                            </children>
                         </VBox>
                         <VBox layoutX="10.0" layoutY="10.0" spacing="10.0" HBox.hgrow="ALWAYS">
@@ -305,7 +305,7 @@
                                     <Font name="Segoe UI Bold" size="16.0" />
                                  </font>
                               </Label>
-                              <JFXTextField />
+                              <JFXTextField fx:id="email_Field" />
                            </children>
                         </VBox>
                      </children>
@@ -319,7 +319,7 @@
                                     <Font name="Segoe UI Bold" size="16.0" />
                                  </font>
                               </Label>
-                              <JFXButton alignment="CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" text="Click Here to Upload Front Image">
+                              <JFXButton fx:id="front_Upload" alignment="CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" text="Click Here to Upload Front Image">
                                  <font>
                                     <Font name="Segoe UI Bold" size="11.0" />
                                  </font>
@@ -333,7 +333,7 @@
                                     <Font name="Segoe UI Bold" size="16.0" />
                                  </font>
                               </Label>
-                              <JFXButton alignment="CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" text="Click Here to Upload Back Image">
+                              <JFXButton fx:id="back_Upload" alignment="CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" text="Click Here to Upload Back Image">
                                  <font>
                                     <Font name="Segoe UI Bold" size="11.0" />
                                  </font>
@@ -341,17 +341,17 @@
                            </children>
                         </VBox>
                         <Pane HBox.hgrow="ALWAYS" />
-                        <JFXButton layoutX="511.0" layoutY="25.0" mnemonicParsing="false" style="-fx-background-color: #2e8540;" text="Save" textFill="WHITE" HBox.hgrow="ALWAYS">
+                        <JFXButton fx:id="save_Button" layoutX="511.0" layoutY="25.0" mnemonicParsing="false" style="-fx-background-color: #2e8540;" text="Save" textFill="WHITE" HBox.hgrow="ALWAYS">
                            <font>
                               <Font name="Segoe UI Bold" size="16.0" />
                            </font>
                         </JFXButton>
-                        <JFXButton fx:id="submit" layoutX="583.0" layoutY="25.0" mnemonicParsing="false" style="-fx-background-color: #205493;" text="Submit" textFill="WHITE" HBox.hgrow="ALWAYS">
+                        <JFXButton fx:id="submit" layoutX="583.0" layoutY="25.0" mnemonicParsing="false" onAction="#handleSubmitButton" style="-fx-background-color: #205493;" text="Submit" textFill="WHITE" HBox.hgrow="ALWAYS">
                            <font>
                               <Font name="Segoe UI Bold" size="16.0" />
                            </font>
                         </JFXButton>
-                        <JFXButton mnemonicParsing="false" style="-fx-background-color: #981b1e;" text="Delete" textFill="WHITE" HBox.hgrow="ALWAYS">
+                        <JFXButton mnemonicParsing="false" onAction="#delete" style="-fx-background-color: #981b1e;" text="Delete" textFill="WHITE" HBox.hgrow="ALWAYS">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>

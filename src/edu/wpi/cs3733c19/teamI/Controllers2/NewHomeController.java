@@ -124,6 +124,7 @@ public class NewHomeController implements Initializable {
             // toolBarController.goSearch(actionEvent);
             // System.out.println("Finished Gosearch");
             toolBarController.setResultsMap(searchAlgorithmSelection.run(searchTextField.getText().trim()));
+            toolBarController.goSearch(actionEvent);
 
             // TODO:this will return what fuzzys return
             // TODO link the return of the fuzzy alghoriths to a listView on the next page (maybe just have field of hashmap that gets passed to the next scene)

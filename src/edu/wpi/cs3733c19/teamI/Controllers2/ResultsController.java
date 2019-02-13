@@ -1,21 +1,12 @@
 package edu.wpi.cs3733c19.teamI.Controllers2;
 
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXListView;
-import com.jfoenix.controls.JFXListView;
-import com.jfoenix.controls.JFXTreeTableView;
-import com.jfoenix.controls.JFXButton;
-import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.ReturnedValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TableView;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class ResultsController implements Initializable {
@@ -81,10 +72,4 @@ public class ResultsController implements Initializable {
 
     @FXML
     public void goSearch(ActionEvent actionEvent){toolBarController.goSearch(actionEvent);}
-
-
-
-
-
-
 }

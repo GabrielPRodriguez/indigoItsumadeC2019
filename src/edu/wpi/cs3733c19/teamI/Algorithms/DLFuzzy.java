@@ -9,7 +9,8 @@ public class DLFuzzy implements IStrategyFuzzy {
 
     public void run(String searchString) throws Exception{
 
-            ArrayList<HashMap<String, ReturnedValue>> mylist=querydata.search_for_dl_multiple("form_db", "form_db_from_spreadsheet.db",searchParameters,searchString, 10);
+        ArrayList<HashMap<String, ReturnedValue>> mylist=querydata.search_for_dl_multiple("form_db", "form_db_from_spreadsheet.db",searchParameters,searchString, 10);
+        matches.addAll(mylist);
 
     }
 

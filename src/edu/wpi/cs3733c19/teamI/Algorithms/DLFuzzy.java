@@ -12,6 +12,8 @@ public class DLFuzzy implements IStrategyFuzzy {
         //this function (search_for_dl_multiple) can be found in the SQLDriver
         ArrayList<HashMap<String, ReturnedValue>> mylist=querydata.search_for_dl_multiple("form_data", "new_csv_from_spreadsheet.db",searchParameters,searchString, 10);
         matches.addAll(mylist);
+        //System.out.println(mylist.get(100).get("brandName").to_string());
+        System.out.println(searchString);
     }
 
 

@@ -39,7 +39,7 @@
             <Separator prefWidth="200.0" />
             <ScrollPane fitToHeight="true" fitToWidth="true" VBox.vgrow="ALWAYS">
                <content>
-                  <TableView fx:id="tableView">
+                  <TableView fx:id="tableView" onMouseClicked="#table_selected">
                      <columns>
                         <TableColumn fx:id="ResultNumber" minWidth="40.0" prefWidth="-1.0" text="No." />
                         <TableColumn fx:id="BrandName" minWidth="100.0" prefWidth="-1.0" text="Brand Name" />

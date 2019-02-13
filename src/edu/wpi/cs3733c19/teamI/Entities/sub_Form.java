@@ -1,8 +1,11 @@
 package edu.wpi.cs3733c19.teamI.Entities;
 
 import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.ReturnedValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.util.HashMap;
+import java.util.LinkedList;
 
 //this class is used to more easily represent data in our tableview on the results UI. Simply contains all attributes
 //a form can have
@@ -153,6 +156,24 @@ public class sub_Form {
                 + this.pHValue + "," + this.wineAppellation + "," + this.alcoholContent+ "," + this.phoneNumber+ "," +
                 this.email + "\n";
         return CSV;
+    }
+
+    public ObservableList<String> getSummary(){
+        ObservableList<String> list_of_Param = FXCollections.observableArrayList();
+        list_of_Param.add("RepID: " + this.getRepID());
+        list_of_Param.add("PlantRegistry: " + this.getPlantRegistry());
+        list_of_Param.add("Origin: " + this.getDomesticOrImported());
+        list_of_Param.add("Serial Number: " + this.getSerialNumber());
+        list_of_Param.add("Type: " + this.getBeverageType());
+        list_of_Param.add("Brand Name: " + this.getBrandName());
+        list_of_Param.add("Fanciful Name: " + this.getFancifulName());
+        list_of_Param.add("Vintage: " + this.getVintage());
+        list_of_Param.add("Grape Varietals: " + this.getGrapeVarietals());
+        list_of_Param.add("PH Value: " + this.getpHValue());
+        list_of_Param.add("Wine Appellation: " + this.getWineAppellation());
+        list_of_Param.add("Alcohol Content: " + this.getAlcoholContent());
+        return(list_of_Param );
+
     }
 
     //constructor. This constructor takes a hasmap as an input, so we can quickly move between the DB query return type

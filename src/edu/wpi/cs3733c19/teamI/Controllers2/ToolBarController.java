@@ -3,6 +3,7 @@ package edu.wpi.cs3733c19.teamI.Controllers2;
 import com.jfoenix.controls.JFXButton;
 import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.ReturnedValue;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -31,6 +32,7 @@ public class ToolBarController {
     private Scene Info;
     private Scene Result;
     private ResultsController ResultsController;
+    private DetailedResultsController InfoController;
 
     private ArrayList<HashMap<String, ReturnedValue>> resultsMap = new ArrayList<HashMap<String, ReturnedValue>>();
 
@@ -83,9 +85,12 @@ public class ToolBarController {
         FormCheck = formCheck;
     }
 
-    public void setResultsController(ResultsController resultsController){
-        ResultsController = resultsController;
-    }
+    public void setResultsController(ResultsController resultsController){ ResultsController = resultsController; }
+
+    public void setInfoController(DetailedResultsController details) { InfoController = details; }
+
+    public DetailedResultsController getInfoController() {return InfoController; };
+
 
 
 
@@ -184,8 +189,8 @@ public class ToolBarController {
         primaryStage.setFullScreen(true);
 
     }
-    public void goDetails(ActionEvent actionEvent){
-        Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+    public void goDetails(Event event){
+        Stage primaryStage = (Stage)((Node)event.getSource()).getScene().getWindow();
         primaryStage.setScene(Info);
         primaryStage.setFullScreen(true);
 

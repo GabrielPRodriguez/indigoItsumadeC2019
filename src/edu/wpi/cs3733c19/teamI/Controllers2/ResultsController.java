@@ -1,6 +1,7 @@
 package edu.wpi.cs3733c19.teamI.Controllers2;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXPopup;
 import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.ReturnedValue;
 import edu.wpi.cs3733c19.teamI.Entities.sub_Form;
 import javafx.beans.property.ObjectProperty;
@@ -8,12 +9,23 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TreeItem;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+import javafx.stage.PopupWindow;
+import javafx.stage.PopupWindow.AnchorLocation;
 
+import javax.swing.text.View;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -33,7 +45,7 @@ public class ResultsController implements Initializable {
     //Table Stuff
 
     @FXML
-    TableView tableView;
+    TableView<sub_Form> tableView;
 
     @FXML
     JFXButton CSV;
@@ -191,9 +203,13 @@ public class ResultsController implements Initializable {
         }
         for(int i = 0; i<numResults; i++)
         {
-            this.DisplayedResults.add(new sub_Form(toolBarController.getResultsMap().get(i+((currentPage-1)*numResults)), i+1+(currentPage-1)*numResults));
+            try {
+                this.DisplayedResults.add(new sub_Form(toolBarController.getResultsMap().get(i + ((currentPage - 1) * numResults)), i + 1 + (currentPage - 1) * numResults));
+            }
+            catch(IndexOutOfBoundsException e){
+
+            }
         }
-        batches++;
     }
 
     public void setTable(){
@@ -208,7 +224,6 @@ public class ResultsController implements Initializable {
         this.ResultNumber.setCellValueFactory(new PropertyValueFactory<sub_Form, Integer>("index"));
         //this.tableView.setItems(DisplayedResults);
         this.tableView.itemsProperty().bind(dispList);
-
     }
 
 
@@ -221,7 +236,6 @@ public class ResultsController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         setTable();
-
     }
 
 
@@ -250,9 +264,16 @@ public class ResultsController implements Initializable {
     @FXML
     public void goExit(ActionEvent actionEvent){toolBarController.goExit(actionEvent);}
 
+    public void table_selected(Event event){
+        sub_Form item = tableView.getSelectionModel().getSelectedItem();
+        toolBarController.getInfoController().updateList(item);
+        toolBarController.goDetails(event);
+    }
+
+
+    private void showSelectTabPopUp() {
 
 
 
-
-
+    }
 }

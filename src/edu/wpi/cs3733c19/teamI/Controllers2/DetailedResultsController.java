@@ -1,17 +1,41 @@
 package edu.wpi.cs3733c19.teamI.Controllers2;
 
+import com.jfoenix.controls.JFXButton;
+import edu.wpi.cs3733c19.teamI.Entities.sub_Form;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import javafx.scene.control.ListView;
+
 
 public class DetailedResultsController {
     private ToolBarController toolBarController;
-    private Scene ResultsScene;
+    public Scene ResultsScene;
+
+    @FXML
+    ListView<String> info;
+
+    @FXML
+    Label ProductName;
+
+    @FXML
+    JFXButton back_button;
+
+    ObservableList<String> items = FXCollections.observableArrayList();
 
     public void setToolBarController(ToolBarController toolBarController){
         this.toolBarController = toolBarController;
+    }
+
+    public void updateList(sub_Form form){
+        info.setItems(form.getSummary());
+        ProductName.setText(form.getSummary().get(5));
+
     }
     public void setResultsScene(Scene resultsScene){
         this.ResultsScene = resultsScene;
@@ -43,7 +67,7 @@ public class DetailedResultsController {
     public void goResults(ActionEvent actionEvent){
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         primaryStage.setScene(ResultsScene);
-        primaryStage.setMaximized(true);
+        //primaryStage.setMaximized(true);
     }
 
     @FXML

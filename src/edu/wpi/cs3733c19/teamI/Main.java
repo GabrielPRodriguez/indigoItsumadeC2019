@@ -94,6 +94,8 @@ public class Main extends Application {
 
         DetailedResultsController detailedResultsController = detailedLoader.getController();
         detailedResultsController.setToolBarController(toolBarController);
+        detailedResultsController.ResultsScene = resultScene;
+        toolBarController.setInfoController(detailedResultsController);
 
 
         FXMLLoader homePaneLoader = new FXMLLoader(getClass().getResource("Boundaries_2/Home.fxml"));

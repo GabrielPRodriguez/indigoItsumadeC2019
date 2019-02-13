@@ -1,5 +1,7 @@
 package edu.wpi.cs3733c19.teamI.Controllers;
 
+import com.jfoenix.controls.JFXButton;
+import edu.wpi.cs3733c19.teamI.Controllers2.ToolBarController;
 import edu.wpi.cs3733c19.teamI.Entities.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,15 +22,29 @@ import java.util.Base64;
 public class LoginController {
     private Scene formCheckerScene;
     private FormCheckerController formCheck;
+    private Scene FormSub;
+
+    public void setFormCheck(FormCheckerController formCheck) {
+        this.formCheck = formCheck;
+    }
+
     private Scene Home;
     private Scene Submission;
+
+    public void setHomeScene(Scene home)
+    {
+        this.Home = home;
+    }
+    public void setFormSub(Scene formSub){
+        this.FormSub = formSub;
+    }
 
 
     @FXML
     TextField username;
 
     @FXML
-    Button goToHome;
+    JFXButton goToHome;
 
     @FXML
     ToggleGroup SignIn;
@@ -57,7 +73,7 @@ public class LoginController {
     private static final String characterEncoding       = "UTF-8";
     private static final String cipherTransformation    = "AES/CBC/PKCS5Padding";
     private static final String aesEncryptionAlgorithim = "AES";
-
+/*
     public void attemptLogin(ActionEvent actionEvent) throws Exception { //attempts a login and will either create an account or login
         String users = "";
         users = readFile(users);
@@ -103,7 +119,8 @@ public class LoginController {
             createAccount(actionEvent); //otherwise make them an account
         }
     }
-
+*/
+/*
     //Encrypts user's password
     public String encryptPassword(String origionalPassword) throws Exception
     {
@@ -144,7 +161,8 @@ public class LoginController {
         }
         return strData;
     }
-
+*/
+/*
     //Generages the key needed for encryption/ decryption
     private Key generateKey() throws Exception
     {
@@ -154,7 +172,7 @@ public class LoginController {
 
         return k;
     }
-
+/*
     public void setTTBLogin(){
         userType = "#";
     }
@@ -217,11 +235,7 @@ public class LoginController {
 
     public void setSubmission(Scene submission) { this.Submission = submission; }
 
-    public void setHomeScene(Scene home){ this.Home = home;}
 
-    public void setFormCheck(FormCheckerController formCheck) {
-        this.formCheck = formCheck;
-    }
 
 
     public void openDisplayScene(ActionEvent actionEvent) {
@@ -230,7 +244,9 @@ public class LoginController {
         formCheck.setUserName(username.getText());
     }
 
+    @FXML
     public void goHome(ActionEvent actionEvent){
+        System.out.println("going home");
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         primaryStage.setScene(Home);
     }
@@ -239,6 +255,12 @@ public class LoginController {
     public void goSubmission(ActionEvent actionEvent) {
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow(); //get current stage
         primaryStage.setScene(Submission); //display homepage
+    }
+
+    @FXML
+    public void goFormSub(ActionEvent actionEvent){
+        Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        primaryStage.setScene(FormSub);
     }
 
 }

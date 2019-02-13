@@ -28,6 +28,8 @@ public class User {
         return UserHelper.theUser;
     }
 
+
+
     public String getUsername() {
         return theUser.username;
     }
@@ -43,6 +45,8 @@ public class User {
     public userPower getUserType() {
         return theUser.userType;
     }
+
+
 
 
 }

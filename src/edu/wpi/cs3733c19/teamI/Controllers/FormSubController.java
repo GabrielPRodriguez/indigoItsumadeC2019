@@ -1,8 +1,10 @@
 package edu.wpi.cs3733c19.teamI.Controllers;
 
-import edu.wpi.cs3733c19.teamI.Controllers.dbUtilities.DBTypes;
-import edu.wpi.cs3733c19.teamI.Controllers.dbUtilities.DBValue;
-import edu.wpi.cs3733c19.teamI.Controllers.dbUtilities.ReturnedValue;
+import edu.wpi.cs3733c19.teamI.Controllers2.SQLDriver;
+import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.DBTypes;
+import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.DBValue;
+import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.ReturnedValue;
+import edu.wpi.cs3733c19.teamI.Controllers2.ToolBarController;
 import edu.wpi.cs3733c19.teamI.Entities.Form;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,7 +20,7 @@ import java.util.HashMap;
 import java.util.ResourceBundle;
 
 
-public class FormSubController implements Initializable {
+public class FormSubController extends ToolBarController implements Initializable {
 
     private Scene HomeScene;
 
@@ -365,6 +367,7 @@ public class FormSubController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //REP ID Tooltip
+        /*
         final Tooltip tooltipRepID = new Tooltip();
         tooltipRepID.setText("REPRESENTATIVE ID. NUMBER (If any)");
         repIdNum_Field.setTooltip(tooltipRepID);
@@ -437,6 +440,7 @@ public class FormSubController implements Initializable {
         vintage_Field.setTooltip(tooltipVintage);
 
 
+*/
 
 
 

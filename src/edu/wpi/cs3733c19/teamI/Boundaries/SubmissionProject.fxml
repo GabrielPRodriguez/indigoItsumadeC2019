@@ -12,7 +12,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -22,7 +21,6 @@
          <content>
             <AnchorPane prefHeight="918.0" prefWidth="1289.0">
                   <children>
-                      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e3e3e3" height="918.0" layoutX="-1.0" stroke="BLACK" strokeType="INSIDE" width="1293.0" />
                   <VBox layoutX="242.0" layoutY="76.0">
                      <children>
                             <Label text="1. Rep. ID No.">

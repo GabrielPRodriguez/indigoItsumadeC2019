@@ -130,9 +130,24 @@ public class NewHomeController implements Initializable {
         }
     }
 
+    void logButton(){
+        if(toolBarController == null){
+            tb_loginButton.setText("login");
+        }
+        else if(toolBarController.isSignedIn()){
+            tb_loginButton.setText("logout");
+        }
+        else if(!toolBarController.isSignedIn()) {
+            tb_loginButton.setText("login");
+        }else{
+            tb_loginButton.setText("login");
+        }
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources){
-
+        System.out.println("helooooooo");
     }
+
+
 }

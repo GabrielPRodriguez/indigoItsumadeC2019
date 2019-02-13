@@ -31,6 +31,7 @@ public class ToolBarController {
     private Scene Info;
     private Scene Result;
     private User curUser;
+    private boolean signedIn = false;
 
     private ResultsController resultsController;
 
@@ -75,8 +76,6 @@ public class ToolBarController {
         FormCheck = formCheck;
     }
 
-
-
     @FXML
     JFXButton tb_homeButton;
 
@@ -119,9 +118,10 @@ public class ToolBarController {
 
     @FXML
     public void goLogin(ActionEvent actionEvent){
-
-        Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        primaryStage.setScene(Login);
+        if(signedIn == false) {
+            Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            primaryStage.setScene(Login);
+        }
     }
 
     @FXML
@@ -131,6 +131,7 @@ public class ToolBarController {
 
     @FXML
     public void login(ActionEvent actionEvent, String username, String password, User.userPower power){
+        signedIn = true;
         curUser = User.getUser(username, password, power);
         if(curUser.getUserType().equals(User.userPower.TTBEmployee)){
             goWorkflow(actionEvent);
@@ -175,7 +176,13 @@ public class ToolBarController {
         resultsController.setTestString("a new string");
         resultsController.setResultsList(resultsList);
         System.out.println("toolbar: " + resultsList);
-
     }
 
+    public boolean isSignedIn() {
+        return signedIn;
+    }
+
+    public void setSignedIn(boolean signedIn) {
+        this.signedIn = signedIn;
+    }
 }

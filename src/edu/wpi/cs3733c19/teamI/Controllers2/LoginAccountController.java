@@ -1,9 +1,6 @@
 package edu.wpi.cs3733c19.teamI.Controllers2;
 
-import com.jfoenix.controls.JFXPasswordField;
-import com.jfoenix.controls.JFXRadioButton;
-import com.jfoenix.controls.JFXTabPane;
-import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.*;
 import edu.wpi.cs3733c19.teamI.Entities.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -25,6 +22,9 @@ import java.util.ResourceBundle;
 
 
 public class LoginAccountController implements Initializable {
+
+    @FXML
+    JFXButton tb_loginButton;
 
     @FXML
     JFXTextField Email;
@@ -309,7 +309,7 @@ public class LoginAccountController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        logButton();
     }
 
     User.userPower getType() throws Exception {
@@ -338,5 +338,19 @@ public class LoginAccountController implements Initializable {
             return User.userPower.Standard;
         }
 
+    }
+
+    void logButton(){
+        if(toolBarController == null){
+            tb_loginButton.setText("login");
+        }
+        else if(toolBarController.isSignedIn()){
+            tb_loginButton.setText("logout");
+        }
+        else if(!toolBarController.isSignedIn()) {
+            tb_loginButton.setText("login");
+        }else{
+            tb_loginButton.setText("login");
+        }
     }
 }

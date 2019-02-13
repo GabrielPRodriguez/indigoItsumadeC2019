@@ -37,7 +37,7 @@ public class ToolBarController {
 
     public void setResultsMap(ArrayList<HashMap<String, ReturnedValue>> resultsMap){
             this.resultsMap = resultsMap;
-            ResultsController.convertToForms();
+            ResultsController.convertToForms(true);
 
         }
 

@@ -62,7 +62,11 @@ public class ResultsController implements Initializable {
         this.testString=newString;
     }
 
-    public void convertToForms(){
+    public void convertToForms(Boolean newSearch){
+        if(newSearch){
+            DisplayedResults.clear();
+            batches = 0;
+        }
         for(int i = 0; i<20; i++)
         {
             this.DisplayedResults.add(new sub_Form(toolBarController.getResultsMap().get(i+(batches*20)), i+batches*20 +1));

@@ -2,7 +2,7 @@ package edu.wpi.cs3733c19.teamI.Test;
 
 //import edu.wpi.cs3733c19.teamI.Algorithms.DLFuzzy;
 //import edu.wpi.cs3733c19.teamI.Controllers.SQLDriver;
-import  edu.wpi.cs3733c19.teamI.Controllers.SQLDriver;
+import  edu.wpi.cs3733c19.teamI.Controllers2.SQLDriver;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

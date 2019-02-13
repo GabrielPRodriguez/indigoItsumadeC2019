@@ -52,7 +52,7 @@ public class ResultsController implements Initializable {
 
             label.setGraphic(new ImageView("edu/wpi/cs3733c19/teamI/Assets/placeholder_icon.png"));
 
-            listView.getItems().add(label);
+            //listView.getItems().add(label);
 
             System.out.println(testString);
 

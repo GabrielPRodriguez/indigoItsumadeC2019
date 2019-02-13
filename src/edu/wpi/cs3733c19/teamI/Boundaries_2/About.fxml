@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers2.AboutController">
+<BorderPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers2.AboutController">
    <center>
       <GridPane BorderPane.alignment="CENTER">
          <BorderPane.margin>
@@ -25,6 +25,7 @@
          </columnConstraints>
          <rowConstraints>
             <RowConstraints vgrow="ALWAYS" />
+            <RowConstraints valignment="CENTER" vgrow="ALWAYS" />
             <RowConstraints valignment="CENTER" vgrow="ALWAYS" />
             <RowConstraints valignment="CENTER" vgrow="ALWAYS" />
          </rowConstraints>
@@ -43,7 +44,7 @@
                </padding></Separator>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS">
                <children>
-                  <ImageView fitHeight="400.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+                  <ImageView fitHeight="300.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
                      <image>
                         <Image url="@../Assets/placeholder_icon.png" />
                      </image>
@@ -54,6 +55,11 @@
                      </font></Label>
                </children>
             </HBox>
+            <Label text="Extending a special thank you to the US Treasury and The Tobacco Tax &amp; Trade Bureau" wrapText="true" GridPane.rowIndex="3">
+               <font>
+                  <Font name="Segoe UI Bold" size="20.0" />
+               </font>
+            </Label>
          </children>
       </GridPane>
    </center>
@@ -78,22 +84,30 @@
                <children>
                   <JFXButton mnemonicParsing="false" onAction="#goAbout" text="About" textFill="WHITE">
                      <font>
-                        <Font name="Segoe UI Bold" size="16.0" />
+                        <Font name="Segoe UI Bold" size="14.0" />
                      </font>
                   </JFXButton>
                   <JFXButton mnemonicParsing="false" onAction="#goSubmit" text="Submit Form" textFill="WHITE">
                      <font>
-                        <Font name="Segoe UI Bold" size="16.0" />
+                        <Font name="Segoe UI Bold" size="14.0" />
                      </font>
                   </JFXButton>
                   <JFXButton mnemonicParsing="false" onAction="#goWorkflow" text="Workflow" textFill="WHITE">
                      <font>
-                        <Font name="Segoe UI Bold" size="16.0" />
+                        <Font name="Segoe UI Bold" size="14.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton mnemonicParsing="false" onAction="#goLogin" text="Login" textFill="WHITE">
+                  <JFXButton fx:id="tb_loginButton" mnemonicParsing="false" onAction="#goLogin" text="Login" textFill="WHITE">
                      <font>
-                        <Font name="Segoe UI Bold" size="16.0" />
+                        <Font name="Segoe UI Bold" size="14.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </JFXButton>
+                  <JFXButton mnemonicParsing="false" onAction="#goExit" text="Exit" textFill="WHITE">
+                     <font>
+                        <Font name="Segoe UI Bold" size="14.0" />
                      </font>
                      <HBox.margin>
                         <Insets right="20.0" />

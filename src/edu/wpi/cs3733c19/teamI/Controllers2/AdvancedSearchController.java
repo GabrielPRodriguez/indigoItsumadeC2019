@@ -1,24 +1,40 @@
 package edu.wpi.cs3733c19.teamI.Controllers2;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXSpinner;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Region;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class AdvancedSearchController implements Initializable {
 
+    @FXML
+    JFXSpinner spin;
 
     @FXML
     JFXComboBox fieldSelector;
 
+    @FXML
+    JFXButton search;
+
+    public void spinnerVisible()
+    {
+        spin.setMaxSize(Region.USE_COMPUTED_SIZE,Region.USE_COMPUTED_SIZE);
+    }
+
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        spin.setMaxSize(0,0);
+
         Label formID = new Label("Form ID Number");
         Label repID = new Label("COLA Representative ID Number");
         Label plantRegistry = new Label("Plant Registry Number");
@@ -123,6 +139,9 @@ public class AdvancedSearchController implements Initializable {
 
     @FXML
     public void goSearch(ActionEvent actionEvent){toolBarController.goSearch(actionEvent);}
+
+    @FXML
+    public void goExit(ActionEvent actionEvent){toolBarController.goExit(actionEvent);}
 
 
 }

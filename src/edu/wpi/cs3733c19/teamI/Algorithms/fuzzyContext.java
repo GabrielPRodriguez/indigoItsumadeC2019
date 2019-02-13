@@ -13,27 +13,16 @@ public class fuzzyContext {
         this.fuzzyAlgorithm = myfuzzy;
     }
 
-    // Step 5: Create the context class methods to set the strategy and call the interface methods
+    //the setContext method allows you to  choose a given algorithm
     public void setContext(IStrategyFuzzy myfuzzy) {
         this.fuzzyAlgorithm = myfuzzy;
     }
 
-
+    //this allows users to  get a list of forms back
     public ArrayList<HashMap<String, ReturnedValue>> run(String searchString) throws Exception {
+        fuzzyAlgorithm.matches.clear();
         fuzzyAlgorithm.run(searchString);
         return fuzzyAlgorithm.matches;
     }
-
-    /*
-    public ArrayList<HashMap<String, ReturnedValue>> run(String searchString) {
-       // fuzzyAlgorithm.run(searchString);
-        HashMap<String, ReturnedValue> testMap = new HashMap<>();
-        ReturnedValue test = new ReturnedValue("one", "two");
-       testMap.put("rainbow", test);
-        fuzzyAlgorithm.matches.add(testMap);
-        return fuzzyAlgorithm.matches;
-    }
-    */
-
 
 }

@@ -5,14 +5,20 @@ import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.ReturnedValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ToolBarController {
+
+    Rectangle2D screenSize = Screen.getPrimary().getVisualBounds();
+
+
 
     public ToolBarController(){
         FXMLLoader toolBarLoader = new FXMLLoader(getClass().getResource("Boundaries_2/Toolbar.fxml"));
@@ -107,18 +113,27 @@ public class ToolBarController {
         //System.out.println("HomeAction"); // Commented out because it prints too much
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         primaryStage.setScene(HomeScene);
+        primaryStage.setWidth(screenSize.getWidth());
+        primaryStage.setHeight(screenSize.getHeight());
+
     }
 
     @FXML
     public void goAbout(ActionEvent actionEvent){
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         primaryStage.setScene(AboutScene);
+        primaryStage.setWidth(screenSize.getWidth());
+        primaryStage.setHeight(screenSize.getHeight());
+
     }
 
     @FXML
     public void goSubmit(ActionEvent actionEvent){
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         primaryStage.setScene(SubScene);
+        primaryStage.setWidth(screenSize.getWidth());
+        primaryStage.setHeight(screenSize.getHeight());
+
     }
 
     @FXML
@@ -126,6 +141,9 @@ public class ToolBarController {
 
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         primaryStage.setScene(Login);
+        primaryStage.setWidth(screenSize.getWidth());
+        primaryStage.setHeight(screenSize.getHeight());
+
     }
 
     @FXML
@@ -142,26 +160,41 @@ public class ToolBarController {
     public void goPending(ActionEvent actionEvent){
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         primaryStage.setScene(Pending);
+        primaryStage.setWidth(screenSize.getWidth());
+        primaryStage.setHeight(screenSize.getHeight());
+
     }
 
     @FXML
     public void goWorkflow(ActionEvent actionEvent){
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         primaryStage.setScene(FormCheck);
+        primaryStage.setWidth(screenSize.getWidth());
+        primaryStage.setHeight(screenSize.getHeight());
+
     }
 
     public void goAdvancedSearch(ActionEvent actionEvent){
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         primaryStage.setScene(SearchScene);
+        primaryStage.setWidth(screenSize.getWidth());
+        primaryStage.setHeight(screenSize.getHeight());
+
     }
 
     public void goSearch(ActionEvent actionEvent){
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         primaryStage.setScene(Result);
+        primaryStage.setWidth(screenSize.getWidth());
+        primaryStage.setHeight(screenSize.getHeight());
+
     }
     public void goDetails(ActionEvent actionEvent){
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         primaryStage.setScene(Info);
+        primaryStage.setWidth(screenSize.getWidth());
+        primaryStage.setHeight(screenSize.getHeight());
+
 
     }
 

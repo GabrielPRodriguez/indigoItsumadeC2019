@@ -54,6 +54,121 @@ public class ResultsController implements Initializable {
     @FXML
     TableColumn Type;
 
+    @FXML
+    JFXButton fiveResultsButton;
+
+    @FXML
+    JFXButton tenResultsButton;
+
+    @FXML
+    JFXButton fiftyResultsButton;
+
+    @FXML
+    JFXButton hundredResultsButton;
+
+    @FXML
+    JFXButton lowerResults;
+
+    @FXML
+    JFXButton higherResults;
+
+    @FXML
+    JFXButton firstPage;
+
+    @FXML
+    JFXButton secondPage;
+
+    @FXML
+    JFXButton thirdPage;
+
+    @FXML
+    JFXButton fourthPage;
+
+    private int numResults = 10;
+    private int currentPage = 1;
+
+    @FXML
+    private void perPageAction(ActionEvent actionEvent){
+        if(actionEvent.getSource() == fiveResultsButton){
+            this.numResults = 5;
+            convertToForms(1);
+
+        }
+        if(actionEvent.getSource() == tenResultsButton){
+            this.numResults = 10;
+            convertToForms(1);
+
+        }
+        if(actionEvent.getSource() == fiftyResultsButton){
+            this.numResults = 50;
+            convertToForms(1);
+
+        }
+        if(actionEvent.getSource() == hundredResultsButton){
+            this.numResults = 100;
+            convertToForms(1);
+
+        }
+
+    }
+
+
+    @FXML
+    private void pageNumAction(ActionEvent actionEvent){
+        if(actionEvent.getSource() == firstPage){
+            currentPage = Integer.parseInt(firstPage.getText());
+
+        }
+        if(actionEvent.getSource() == secondPage){
+            currentPage = Integer.parseInt(secondPage.getText());
+
+        }
+        if(actionEvent.getSource() == thirdPage){
+            currentPage = Integer.parseInt(thirdPage.getText());
+
+        }
+        if(actionEvent.getSource() == fourthPage){
+            currentPage = Integer.parseInt(fourthPage.getText());
+
+        }
+        convertToForms(2);
+    }
+
+    @FXML
+    private void setHigherPages(ActionEvent event){
+       int firstVal = Integer.parseInt(firstPage.getText())+4;
+       firstPage.setText(String.valueOf(firstVal));
+
+       int secondVal = Integer.parseInt(secondPage.getText())+4;
+       secondPage.setText(String.valueOf(secondVal));
+
+       int thirdVal = Integer.parseInt(thirdPage.getText())+4;
+       thirdPage.setText(String.valueOf(thirdVal));
+
+       int fourthVal = Integer.parseInt(fourthPage.getText())+4;
+       fourthPage.setText(String.valueOf(fourthVal));
+    }
+
+    @FXML
+    private void setLowerPages(ActionEvent event){
+
+        int firstVal = Integer.parseInt(firstPage.getText())-4;
+        if(firstVal >= 1){
+
+            firstPage.setText(String.valueOf(firstVal));
+
+            int secondVal = Integer.parseInt(secondPage.getText())-4;
+            secondPage.setText(String.valueOf(secondVal));
+
+            int thirdVal = Integer.parseInt(thirdPage.getText())-4;
+            thirdPage.setText(String.valueOf(thirdVal));
+
+            int fourthVal = Integer.parseInt(fourthPage.getText())-4;
+            fourthPage.setText(String.valueOf(fourthVal));
+        }
+
+    }
+
 
     public void  setResultsList(ArrayList<HashMap<String, ReturnedValue>> results){
         this.resultsList = results;
@@ -62,14 +177,21 @@ public class ResultsController implements Initializable {
         this.testString=newString;
     }
 
-    public void convertToForms(Boolean newSearch){
-        if(newSearch){
+    public void convertToForms(int newSearch){
+        if(newSearch == 0){
             DisplayedResults.clear();
-            batches = 0;
+            currentPage = 1;
         }
-        for(int i = 0; i<20; i++)
+        if(newSearch == 1){
+            DisplayedResults.clear();
+            if(currentPage > 1) currentPage--;
+        }
+        if(newSearch == 2){
+            DisplayedResults.clear();
+        }
+        for(int i = 0; i<numResults; i++)
         {
-            this.DisplayedResults.add(new sub_Form(toolBarController.getResultsMap().get(i+(batches*20)), i+batches*20 +1));
+            this.DisplayedResults.add(new sub_Form(toolBarController.getResultsMap().get(i+((currentPage-1)*numResults)), i+1+(currentPage-1)*numResults));
         }
         batches++;
     }

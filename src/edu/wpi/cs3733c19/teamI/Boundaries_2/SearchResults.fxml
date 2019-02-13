@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers2.ResultsController">
+<BorderPane minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers2.ResultsController">
    <center>
       <VBox alignment="CENTER" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
@@ -56,19 +56,19 @@
                      <font>
                         <Font name="Segoe UI Bold" size="15.0" />
                      </font></Label>
-                  <JFXButton mnemonicParsing="false" text="5">
+                  <JFXButton fx:id="fiveResultsButton" mnemonicParsing="false" onAction="#perPageAction" text="5">
                      <font>
                         <Font name="Segoe UI Bold" size="15.0" />
                      </font></JFXButton>
-                  <JFXButton mnemonicParsing="false" text="10">
+                  <JFXButton fx:id="tenResultsButton" mnemonicParsing="false" onAction="#perPageAction" text="10">
                      <font>
                         <Font name="Segoe UI Bold" size="15.0" />
                      </font></JFXButton>
-                  <JFXButton layoutX="282.0" layoutY="10.0" mnemonicParsing="false" text="50">
+                  <JFXButton fx:id="fiftyResultsButton" layoutX="282.0" layoutY="10.0" mnemonicParsing="false" onAction="#perPageAction" text="50">
                      <font>
                         <Font name="Segoe UI Bold" size="15.0" />
                      </font></JFXButton>
-                  <JFXButton layoutX="302.0" layoutY="10.0" mnemonicParsing="false" text="100">
+                  <JFXButton fx:id="hundredResultsButton" layoutX="302.0" layoutY="10.0" mnemonicParsing="false" onAction="#perPageAction" text="100">
                      <font>
                         <Font name="Segoe UI Bold" size="15.0" />
                      </font></JFXButton>
@@ -80,27 +80,27 @@
                      <font>
                         <Font name="Segoe UI Bold" size="15.0" />
                      </font></Label>
-                  <JFXButton mnemonicParsing="false" text="1">
+                  <JFXButton fx:id="lowerResults" mnemonicParsing="false" onAction="#setLowerPages" text="...">
                      <font>
                         <Font name="Segoe UI Bold" size="15.0" />
                      </font></JFXButton>
-                  <JFXButton layoutX="269.0" layoutY="10.0" mnemonicParsing="false" text="2">
+                  <JFXButton fx:id="firstPage" layoutX="269.0" layoutY="10.0" mnemonicParsing="false" onAction="#pageNumAction" text="1">
                      <font>
                         <Font name="Segoe UI Bold" size="15.0" />
                      </font></JFXButton>
-                  <JFXButton layoutX="280.0" layoutY="10.0" mnemonicParsing="false" text="3">
+                  <JFXButton fx:id="secondPage" layoutX="280.0" layoutY="10.0" mnemonicParsing="false" onAction="#pageNumAction" text="2">
                      <font>
                         <Font name="Segoe UI Bold" size="15.0" />
                      </font></JFXButton>
-                  <JFXButton layoutX="292.0" layoutY="10.0" mnemonicParsing="false" text="4">
+                  <JFXButton fx:id="thirdPage" layoutX="292.0" layoutY="10.0" mnemonicParsing="false" onAction="#pageNumAction" text="3">
                      <font>
                         <Font name="Segoe UI Bold" size="15.0" />
                      </font></JFXButton>
-                  <JFXButton layoutX="303.0" layoutY="10.0" mnemonicParsing="false" text="5">
+                  <JFXButton fx:id="fourthPage" layoutX="303.0" layoutY="10.0" mnemonicParsing="false" onAction="#pageNumAction" text="4">
                      <font>
                         <Font name="Segoe UI Bold" size="15.0" />
                      </font></JFXButton>
-                  <JFXButton mnemonicParsing="false" text="...">
+                  <JFXButton fx:id="higherResults" mnemonicParsing="false" onAction="#setHigherPages" text="...">
                      <font>
                         <Font name="Segoe UI Bold" size="15.0" />
                      </font></JFXButton>

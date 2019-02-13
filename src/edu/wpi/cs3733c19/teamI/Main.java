@@ -6,6 +6,7 @@ import com.fazecast.jSerialComm.SerialPortEvent;
 import com.fazecast.jSerialComm.SerialPortPacketListener;
 import edu.wpi.cs3733c19.teamI.Controllers2.*;
 import edu.wpi.cs3733c19.teamI.Entities.SearchResults;
+import edu.wpi.cs3733c19.teamI.Entities.User;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -26,6 +27,7 @@ public class Main extends Application implements SerialPortPacketListener {
     public Thread mThread;
     private Stage finalStage;
     private Scene loginPage;
+    private ToolBarController ToolController;
     private LoginAccountController ctrl;
 
 
@@ -49,39 +51,67 @@ public class Main extends Application implements SerialPortPacketListener {
     @Override
     public void serialEvent(SerialPortEvent event)
     {
-
-        String user = " ";
-        byte[] newData = event.getReceivedData();
-        System.out.println("Received data of size: " + newData.length);
-        for (int i = 0; i < newData.length; ++i) {
-            user += (char)newData[i];
-            System.out.print((char) newData[i]);
-        }
-        System.out.println(user);
-        if(user.equals(" ERIC")){
-            Platform.runLater(new Runnable() {
-
-                @Override
-                public void run() {
-
-                    RFID_Login();
-                }
-            });
-            System.out.println("Continued?");
-        }
-        System.out.println("\n");
         try {
-            Thread.sleep(1000);
+            String user = " ";
+            byte[] newData = event.getReceivedData();
+            System.out.println("Received data of size: " + newData.length);
+            for (int i = 0; i < newData.length; ++i) {
+                user += (char) newData[i];
+                System.out.print((char) newData[i]);
+            }
+            String RF_User;
+            String RF_Password;
+            User.userPower RF_Power;
+            if (user.equals(" ERIC")) {
+                RF_User = "eric@wpi.edu";
+                RF_Password = "MZsTH5v6ZMNem/AR2WJYnQ==";
+                RF_Power = User.userPower.TTBEmployee;
+            }
+            else if(user.equals(" BOSS")) {
+                RF_User = "Ferguson@wpi.edu";
+                RF_Password = "uL6WBrubtA3Tw0KodBS8uQ==";
+                RF_Power = User.userPower.TTBEmployee;
+            }
+            else if(user.equals(" WONG")) {
+                RF_User = "admin@admin.admin";
+                RF_Password = "cV48VsuJMMuSXqnxsMu90w==";
+                RF_Power = User.userPower.SuperAdmin;
+            }
+            else {
+                RF_User = " ";
+                RF_Password = " ";
+                RF_Power = null;
+            }
+
+            if(!RF_User.equals(" ")){
+
+                Platform.runLater(new Runnable() {
+
+                    @Override
+                    public void run() {
+
+                        RFID_Login(RF_User, RF_Password, RF_Power);
+                    }
+                });
+                System.out.println("Continued?");
+            }
+            System.out.println("\n");
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                System.out.println("couldnt sleep");
+            }
         }
-        catch(InterruptedException e){
-            System.out.println("couldnt sleep");
+        catch(NullPointerException n){
+
         }
     }
 
-    public void RFID_Login(){
 
+
+    public void RFID_Login(String username, String password, User.userPower power){
+        this.ToolController.loginRFID(username, password, power);
         this.finalStage.setScene(loginPage);
-
     }
 
 
@@ -185,7 +215,8 @@ public class Main extends Application implements SerialPortPacketListener {
         primaryStage.show();
 
         finalStage = primaryStage;
-        this.loginPage = loginScene;
+        ToolController = toolBarController;
+        this.loginPage = formCheckerScene;
 
 
         PacketListener();
@@ -193,8 +224,8 @@ public class Main extends Application implements SerialPortPacketListener {
             @Override
             public void run() {
                 System.out.println("made it");
-                comPort.removeDataListener();
-                comPort.closePort();
+//                comPort.removeDataListener();
+ //               comPort.closePort();
             }
         }));
 

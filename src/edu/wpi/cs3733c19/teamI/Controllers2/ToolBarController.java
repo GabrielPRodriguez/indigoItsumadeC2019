@@ -175,6 +175,12 @@ public class ToolBarController {
 
     }
 
+    public void loginRFID(String username, String password, User.userPower power){
+        signedIn = true;
+        curUser = User.getUser(username, password, power);
+
+    }
+
     @FXML
     public void login(ActionEvent actionEvent, String username, String password, User.userPower power){
         signedIn = true;
@@ -234,7 +240,7 @@ public class ToolBarController {
     }
     public void goExit(ActionEvent actionEvent){
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        primaryStage.close();
+        System.exit(0);
     }
 
     public void transferSearchInfo(ArrayList<HashMap<String, ReturnedValue>> resultsList){

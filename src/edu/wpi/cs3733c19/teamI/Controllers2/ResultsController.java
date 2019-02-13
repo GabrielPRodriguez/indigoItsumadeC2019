@@ -4,13 +4,12 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTreeTableView;
+import com.jfoenix.controls.JFXButton;
 import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.ReturnedValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
+import javafx.scene.control.TableView;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -27,10 +26,14 @@ public class ResultsController implements Initializable {
   //  @FXML
    // JFXTreeTableView
 
+    @FXML
+    TableView<JFXButton> tableView;
 
     public void setUp() {
       //  for (int i = 0; i < 4; i++) listView.getItems().add(new Label("Item " + i + " DRANK " + i));
       //  listView.getStyleClass().add("mylistview");
+        for (int i = 0; i < 4; i++) tableView.getItems().add(new JFXButton("Item " + i + " DRANK " + i));
+
     }
 
 
@@ -42,20 +45,6 @@ public class ResultsController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        for(int i=0;i<50;i++)
-        {
-
-
-            Label label = new Label("DESCRIPTION" + i);
-
-            label.setGraphic(new ImageView("edu/wpi/cs3733c19/teamI/Assets/placeholder_icon.png"));
-
-           // listView.getItems().add(label);
-
-
-
-
-        }
 
     }
 

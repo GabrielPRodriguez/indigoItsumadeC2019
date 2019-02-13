@@ -25,7 +25,7 @@ public class FormSubmissionController implements Initializable {
     HBox wineFields;
 
     @FXML
-    JFXRadioButton wine_RadButton;
+    JFXRadioButton wineRad;
 
     @FXML
     ToggleGroup beverage;
@@ -38,7 +38,7 @@ public class FormSubmissionController implements Initializable {
 
         JFXRadioButton rb = (JFXRadioButton)beverage.getSelectedToggle();
 
-        if(rb == wine_RadButton)
+        if(rb == wineRad)
         {
             wineFields.setVisible(true);
             wineFields.setDisable(false);

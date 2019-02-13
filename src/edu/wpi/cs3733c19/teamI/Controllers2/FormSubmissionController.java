@@ -354,7 +354,7 @@ public class FormSubmissionController implements Initializable {
                 //"text" for strings and "real" for doubles/integers
                 DBTypes[] full_types = {new DBTypes("real"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("real"), new DBTypes("real"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"),new DBTypes("text"),new DBTypes("text")};
                 try{
-                    driver.create_table("form_data", "form_data.db", columns, full_types);
+                    driver.create_table("form_data", "new_csv_from_spreadsheet.db", columns, full_types);
                 }
                 catch(Exception e){
                     System.out.println("exception, create_table");
@@ -363,7 +363,7 @@ public class FormSubmissionController implements Initializable {
 
                 //iterates through the formID column of the database in order to find the current highest formID value
                 double _id_count = 0;
-                for (HashMap<String, ReturnedValue> result:driver.select_all("form_data.db", "form_data")){
+                for (HashMap<String, ReturnedValue> result:driver.select_all("new_csv_from_spreadsheet.db", "form_data")){
                     double _test = result.get("formID").to_double();
                     if (_test > _id_count){
                         _id_count = _test;
@@ -374,7 +374,7 @@ public class FormSubmissionController implements Initializable {
                 DBValue[] all_vals = {new DBValue<Integer>((int)(_id_count)+1), new DBValue<String>(sentForm.getrepID()), new DBValue<String>(sentForm.getplantRegistry()), new DBValue<String>(sentForm.getdomesticOrImported()), new DBValue<String>(sentForm.getserialNumber()), new DBValue<String>(sentForm.getbrandName()), new DBValue<String>(sentForm.getbeverageType()), new DBValue<String>(sentForm.getfancifulName()), new DBValue<String>(sentForm.getnameAndAddress()), new DBValue<String>(sentForm.getmailingAddress()), new DBValue<String>(sentForm.getextraInfo()), new DBValue<String>(sentForm.getdateOfApplication()), new DBValue<String>(sentForm.getnameOfApplicant()), new DBValue<String>(sentForm.getformula()), new DBValue<String>(sentForm.getgrapeVarietals()), new DBValue<String>(sentForm.getvintage()), new DBValue<String>(sentForm.getwineAppellation()), new DBValue<String>(sentForm.getemail()), new DBValue<String>(sentForm.getphoneNumber()), new DBValue<Double>(sentForm.getpHValue()), new DBValue<Double>(sentForm.getalcoholContent()), new DBValue<String>("unread"), new DBValue<String>("noUser"), new DBValue<String>("NoDateAprroved"), new DBValue<String>("NoDateExir"), new DBValue<String>(sentForm.getVolume()), new DBValue<String>(sentForm.getCity()), new DBValue<String>(sentForm.getStreet()), new DBValue<String>(sentForm.getZip()), new DBValue<String>(sentForm.getState()), new DBValue<String>(sentForm.getPermitname())};
 
                 //the values above are actually entered into the database (contained in form_data.db)
-                driver.insert_vals("form_data", "form_data.db", all_vals);
+                driver.insert_vals("form_data", "new_csv_from_spreadsheet.db", all_vals);
 
                 //displays message after form has successfully been entered into the database
                 String success = "Form successfully submitted.";

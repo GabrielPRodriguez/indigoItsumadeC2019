@@ -9,6 +9,7 @@ public class User {
         {
         Standard, Company, TTBEmployee, SuperAdmin
     }
+    private int appsPer = 5;
 
     private static User theUser;
     private User(String name, String pass, userPower type){
@@ -46,6 +47,8 @@ public class User {
         return theUser.userType;
     }
 
+    public int getAppsPer(){return theUser.appsPer;}
 
+    public void setAppsPer(int newApps){theUser.appsPer = newApps; }
 
 }

@@ -2,6 +2,7 @@ package edu.wpi.cs3733c19.teamI.Controllers2;
 
 import com.jfoenix.controls.JFXButton;
 import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.ReturnedValue;
+import edu.wpi.cs3733c19.teamI.Entities.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -29,6 +30,7 @@ public class ToolBarController {
     private Scene Pending;
     private Scene Info;
     private Scene Result;
+    private User curUser;
 
     private ResultsController resultsController;
 
@@ -128,9 +130,19 @@ public class ToolBarController {
     }
 
     @FXML
-    public void login(ActionEvent actionEvent){
-        
-       //tb_loginButton.setText("Logout");
+    public void login(ActionEvent actionEvent, String username, String password, User.userPower power){
+        curUser = User.getUser(username, password, power);
+        if(curUser.getUserType().equals(User.userPower.TTBEmployee)){
+            goWorkflow(actionEvent);
+        }
+        else if(curUser.getUserType().equals(User.userPower.Company)){
+            goSubmit(actionEvent);
+        }
+        else{
+            goSearch(actionEvent);
+        }
+
+        //tb_loginButton.setText("Logout");
     }
 
     @FXML
@@ -165,7 +177,5 @@ public class ToolBarController {
         System.out.println("toolbar: " + resultsList);
 
     }
-
-
 
 }

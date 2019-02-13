@@ -80,10 +80,10 @@
                                  <children>
                                     <JFXRadioButton fx:id="Agent" mnemonicParsing="false" text="Agent">
                                        <toggleGroup>
-                                          <ToggleGroup fx:id="User" />
+                                          <ToggleGroup fx:id="ToggleType" />
                                        </toggleGroup>
                                     </JFXRadioButton>
-                                    <JFXRadioButton fx:id="Manufacturer" mnemonicParsing="false" text="Manufacturer" toggleGroup="$User" />
+                                    <JFXRadioButton fx:id="Manufacturer" mnemonicParsing="false" text="Manufacturer" toggleGroup="$ToggleType" />
                                  </children>
                               </HBox>
                               <VBox alignment="CENTER_LEFT" spacing="20.0">

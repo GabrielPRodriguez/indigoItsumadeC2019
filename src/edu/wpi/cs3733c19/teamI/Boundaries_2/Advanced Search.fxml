@@ -40,13 +40,13 @@
                </children></HBox>
             <HBox alignment="CENTER_LEFT" spacing="20.0">
                <children>
-                  <JFXRadioButton mnemonicParsing="false" selected="true" text="Algorithm 1">
+                  <JFXRadioButton mnemonicParsing="false" selected="true" text="SQL">
                      <toggleGroup>
                         <ToggleGroup fx:id="Algorithm" />
                      </toggleGroup>
                   </JFXRadioButton>
-                  <JFXRadioButton mnemonicParsing="false" text="Algorithm 2" toggleGroup="$Algorithm" />
-                  <JFXRadioButton mnemonicParsing="false" text="Algorithm 3" toggleGroup="$Algorithm" />
+                  <JFXRadioButton mnemonicParsing="false" text="Levenshtein" toggleGroup="$Algorithm" />
+                  <JFXRadioButton mnemonicParsing="false" text="Damerau-Levenshtein" toggleGroup="$Algorithm" />
                </children>
             </HBox>
          </children>

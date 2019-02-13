@@ -82,38 +82,36 @@ public class LoginAccountController implements Initializable {
 
     @FXML
     public void login(ActionEvent actionEvent) throws Exception {
-        attemptLogin(actionEvent);
-        //User curUser = User.getUser(Email.getText(), Password.getText(), User.userPower.Standard);
-        //check if their info is valid
+        if(!attemptLogin(actionEvent)){
 
-        User.userPower powerCreate = User.userPower.Standard;
+        }
+        else {
+            User.userPower powerCreate = User.userPower.Standard;
 
-        powerCreate = getType();
-        System.out.println(powerCreate.toString());
-        String toggleGroupValue = "Standard";
-        //check the text file for the user type and assign it
-        if(ToggleType.getSelectedToggle() != null) {
-            RadioButton selectedRadioButton = (RadioButton) ToggleType.getSelectedToggle();
-            toggleGroupValue = selectedRadioButton.getText();
-        }
-        System.out.println(powerCreate.toString());
+            powerCreate = getType();
+            System.out.println(powerCreate.toString());
+            String toggleGroupValue = "Standard";
+            //check the text file for the user type and assign it
+            if (ToggleType.getSelectedToggle() != null) {
+                RadioButton selectedRadioButton = (RadioButton) ToggleType.getSelectedToggle();
+                toggleGroupValue = selectedRadioButton.getText();
+            }
+            System.out.println(powerCreate.toString());
 
-        if(ToggleType.getSelectedToggle() == null){
-            powerCreate = powerCreate;
+            if (ToggleType.getSelectedToggle() == null) {
+                powerCreate = powerCreate;
+            } else if (toggleGroupValue.equals("Manufacturer")) {
+                powerCreate = User.userPower.Company;
+                System.out.println("toggle man");
+            } else if (toggleGroupValue.equals("Agent")) {
+                powerCreate = User.userPower.TTBEmployee;
+                System.out.println("toggle employ");
+            } else {
+                powerCreate = User.userPower.Standard;
+                System.out.println("togg stand");
+            }
+            toolBarController.login(actionEvent, Email.getText(), Password.getText(), powerCreate);
         }
-        else if (toggleGroupValue.equals("Manufacturer")){
-            powerCreate = User.userPower.Company;
-            System.out.println("toggle man");
-        }
-        else if(toggleGroupValue.equals("Agent")){
-            powerCreate = User.userPower.TTBEmployee;
-            System.out.println("toggle employ");
-        }
-        else{
-            powerCreate = User.userPower.Standard;
-            System.out.println("togg stand");
-        }
-        toolBarController.login(actionEvent, Email.getText(), Password.getText(), powerCreate);
     }
 
     @FXML
@@ -121,6 +119,7 @@ public class LoginAccountController implements Initializable {
         //make account if possible
         attemptCreate(actionEvent);
         //User curUser = User.getUser(Email.getText(), Password.getText(), User.userPower.Standard);
+
         login(actionEvent);
         //
     }
@@ -159,7 +158,11 @@ public class LoginAccountController implements Initializable {
         }
         if (isValid2 == false){
         }
-        else if (!EmailCreate.getText().contains("@")){
+        else if(PasswordCreate.getText().length() < 8){
+            //errorMessage.setText("Username too short");
+            System.out.println("short");
+        }
+        else if (!EmailCreate.getText().contains("@") || !EmailCreate.getText().contains(".")){
             System.out.println("Enter an email");
         }
         else if(ToggleType.getSelectedToggle() == null){
@@ -185,6 +188,8 @@ public class LoginAccountController implements Initializable {
                 powerCreate = User.userPower.Standard;
             }
             createAccount(EmailCreate.getText(), PasswordCreate.getText(), powerCreate);
+            Email.setText(EmailCreate.getText());
+            Password.setText(PasswordCreate.getText());
         }
 
     }
@@ -217,7 +222,7 @@ public class LoginAccountController implements Initializable {
         //openDisplayScene(actionEvent);
     }
 
-    public void attemptLogin(ActionEvent actionEvent) throws Exception { //attempts a login and will either create an account or login
+    public boolean attemptLogin(ActionEvent actionEvent) throws Exception { //attempts a login and will either create an account or login
         String users = "";
 
         users = readFile(users);
@@ -225,10 +230,7 @@ public class LoginAccountController implements Initializable {
         if(Email.getText().isEmpty()){
            // errorMessage.setText(("Enter a username to login"));
             System.out.println("no user");
-        }
-        else if(Email.getText().length() < 8){
-            //errorMessage.setText("Username too short");
-            System.out.println("short");
+            return false;
         }/*
         else if(ToggleType.getSelectedToggle()==null){ //should read user type
             //errorMessage.setText(("Must select log in type"));
@@ -237,6 +239,7 @@ public class LoginAccountController implements Initializable {
 
         else if (users.contains(":"+Email.getText()+":"+encryptPassword(Password.getText())+":")){ //this file checks for the user and pass in the file
             System.out.println("logging in");
+            return true;
             /*
             String pass = encryptPassword(Password.getText());
             System.out.println(pass);
@@ -248,11 +251,14 @@ public class LoginAccountController implements Initializable {
 
         else if (users.contains(":"+Email.getText()+":none:") && (Password.getText().isEmpty())){
             //login(actionEvent);
+            return true;
         }
         else if (users.contains(":"+Email.getText()+":")){
+            return false;
             //errorMessage.setText("Select an unused username");
         }
         else {
+            return false;
             //createAccount(actionEvent); //otherwise make them an account
         }
     }

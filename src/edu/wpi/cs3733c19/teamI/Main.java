@@ -186,6 +186,8 @@ public class Main extends Application {
         primaryStage.setMaximized(true);
         primaryStage.show();
 
+
+        PacketListener();
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
             @Override
             public void run() {

@@ -37,7 +37,10 @@ public class FormSubmissionController implements Initializable {
     JFXButton submit;
 
 
+
     private void setWineToggle(){
+
+        System.out.println("wine");
 
         JFXRadioButton rb = (JFXRadioButton)beverage.getSelectedToggle();
 
@@ -209,7 +212,9 @@ public class FormSubmissionController implements Initializable {
     //sets the values for each field into a Form object when the submit button is pressed.
     @FXML
     private void handleSubmitButton(ActionEvent event) throws IOException, Exception{
+        System.out.println("Starting submit");
         if(event.getSource()== submit){
+            System.out.println("event get source");
             Form sentForm = new Form();
             boolean readyToSend = true; //if true by the end of the method, the form will be sent to database
             //submit_message.setText(""); //string to insert into textfield either confirming submission or printing error messge
@@ -311,6 +316,7 @@ public class FormSubmissionController implements Initializable {
                     sentForm.setpHValue(Double.parseDouble(ph_Field.getText()));
                 }
                 catch (NumberFormatException e){
+                    System.out.println("ph");
                     readyToSend = false;
                    // String oldMessage = submit_message.getText();
                     //submit_message.setText(oldMessage + "  Please enter a number for pH Value" );
@@ -326,6 +332,7 @@ public class FormSubmissionController implements Initializable {
             }
             catch (NumberFormatException e){
                 readyToSend = false;
+                System.out.println("Al content");
                // String oldMessage = submit_message.getText();
                // submit_message.setText(oldMessage + "  Please enter a number for Alcohol Percentage.");
 
@@ -341,7 +348,9 @@ public class FormSubmissionController implements Initializable {
                 readyToSend = false;
                // String oldMessage = submit_message.getText();
 
-                //String errorMessage = sentForm.getMissingFieldsStatement(); //apply to a Label
+                String errorMessage = sentForm.getMissingFieldsStatement(); //apply to a Label
+                System.out.println("error message");
+                System.out.println(errorMessage);
                 //submit_message.setText(oldMessage + "  " +  errorMessage);
             }
 
@@ -353,11 +362,12 @@ public class FormSubmissionController implements Initializable {
                 //System.out.println("making db");
                 System.out.println("ready to send");
                 SQLDriver driver = new SQLDriver();
+                System.out.println("Ready to Send");
                 //sets the names of columns in the database, if additional form fields are added, please add a new column
-                String [] columns = {"formID", "repID", "plantRegistry", "domesticOrImported", "serialNumber", "brandName", "beverageType", "fancifulName", "nameAndAddress", "mailingAddress", "extraInfo", "dateOfApplication", "nameOfApplicant", "formula", "grapeVarietals", "vintage", "wineAppellation", "email", "phoneNumber", "pHValue", "alcoholContent", "status", "approvingUser", "approvalDate", "expirationDate", "volume", "city", "street", "zip", "state", "permitName" };
+                String [] columns = {"formID", "repID", "plantRegistry", "domesticOrImported", "serialNumber", "brandName", "beverageType", "fancifulName", "permitName", "streetAddress","city","state", "zip", "extraInfo", "dateOfApplication", "formula", "grapeVarietals", "vintage", "wineAppellation", "email", "phoneNumber", "pHValue", "alcoholContent", "status", "approvingUser", "approvalDate", "expirationDate", "issuedDate", "volume", "appType", "surrenderDate"};
                 //contains the datatype of each column in the database, when adding a new column, please also add it's datatype here/
                 //"text" for strings and "real" for doubles/integers
-                DBTypes[] full_types = {new DBTypes("real"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("real"), new DBTypes("real"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"),new DBTypes("text"),new DBTypes("text")};
+                DBTypes[] full_types = {new DBTypes("real"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("real"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"),new DBTypes("text"),new DBTypes("text"), new DBTypes("text")};
                 try{
                     driver.create_table("form_data", "new_csv_from_spreadsheet.db", columns, full_types);
                 }
@@ -376,7 +386,7 @@ public class FormSubmissionController implements Initializable {
                 }
 
                 //collects values from fields of sentForm object (see Form.java)
-                DBValue[] all_vals = {new DBValue<Integer>((int)(_id_count)+1), new DBValue<String>(sentForm.getrepID()), new DBValue<String>(sentForm.getplantRegistry()), new DBValue<String>(sentForm.getdomesticOrImported()), new DBValue<String>(sentForm.getserialNumber()), new DBValue<String>(sentForm.getbrandName()), new DBValue<String>(sentForm.getbeverageType()), new DBValue<String>(sentForm.getfancifulName()), new DBValue<String>(sentForm.getnameAndAddress()), new DBValue<String>(sentForm.getmailingAddress()), new DBValue<String>(sentForm.getextraInfo()), new DBValue<String>(sentForm.getdateOfApplication()), new DBValue<String>(sentForm.getnameOfApplicant()), new DBValue<String>(sentForm.getformula()), new DBValue<String>(sentForm.getgrapeVarietals()), new DBValue<String>(sentForm.getvintage()), new DBValue<String>(sentForm.getwineAppellation()), new DBValue<String>(sentForm.getemail()), new DBValue<String>(sentForm.getphoneNumber()), new DBValue<Double>(sentForm.getpHValue()), new DBValue<Double>(sentForm.getalcoholContent()), new DBValue<String>("unread"), new DBValue<String>("noUser"), new DBValue<String>("NoDateAprroved"), new DBValue<String>("NoDateExir"), new DBValue<String>(sentForm.getVolume()), new DBValue<String>(sentForm.getCity()), new DBValue<String>(sentForm.getStreet()), new DBValue<String>(sentForm.getZip()), new DBValue<String>(sentForm.getState()), new DBValue<String>(sentForm.getPermitname())};
+                DBValue[] all_vals = {new DBValue<Integer>((int)(_id_count)+1), new DBValue<String>(sentForm.getrepID()), new DBValue<String>(sentForm.getplantRegistry()), new DBValue<String>(sentForm.getdomesticOrImported()), new DBValue<String>(sentForm.getserialNumber()), new DBValue<String>(sentForm.getbrandName()), new DBValue<String>(sentForm.getbeverageType()), new DBValue<String>(sentForm.getfancifulName()), new DBValue<String>(sentForm.getPermitname()), new DBValue<String>(sentForm.getStreet()), new DBValue<String>(sentForm.getCity()), new DBValue<String>(sentForm.getState()), new DBValue<String>(sentForm.getZip()), new DBValue<String>(sentForm.getextraInfo()), new DBValue<String>(sentForm.getdateOfApplication()), new DBValue<String>(sentForm.getformula()), new DBValue<String>(sentForm.getgrapeVarietals()), new DBValue<String>(sentForm.getvintage()), new DBValue<String>(sentForm.getwineAppellation()), new DBValue<String>(sentForm.getemail()), new DBValue<String>(sentForm.getphoneNumber()), new DBValue<Double>(sentForm.getpHValue()), new DBValue<Double>(sentForm.getalcoholContent()), new DBValue<String>("unread"), new DBValue<String>("noUser"), new DBValue<String>("NoDateAprroved"), new DBValue<String>("NoDateExir"), new DBValue<String>("No issued date"), new DBValue<String>(sentForm.getVolume()), new DBValue<String>("No App Type"), new DBValue<String>("No Surrender Date"), new DBValue<String>("no qualification")};
 
                 //the values above are actually entered into the database (contained in form_data.db)
                 driver.insert_vals("form_data", "new_csv_from_spreadsheet.db", all_vals);
@@ -427,9 +437,11 @@ public class FormSubmissionController implements Initializable {
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        System.out.println("init");
         beverage.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
             @Override
             public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {
+                System.out.println("wineToggle" );
                 setWineToggle();
             }
         });

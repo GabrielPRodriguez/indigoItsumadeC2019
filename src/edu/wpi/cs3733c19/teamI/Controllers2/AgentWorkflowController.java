@@ -309,10 +309,10 @@ public class AgentWorkflowController {
         SQLDriver driver = new SQLDriver();
         ArrayList<HashMap<String, ReturnedValue>>filtered_results = new ArrayList<HashMap<String, ReturnedValue>>();
         for (HashMap<String, ReturnedValue>result:driver.select_all("new_csv_from_spreadsheet.db", "form_data")){
-            //if (result.get("status").to_string().equals("unread")){
+            if (result.get("status").to_string().equals("unread")){
 
                 filtered_results.add(result);
-            //}
+            }
         }
         HashMap<Integer, Label>test = new HashMap<Integer, Label>();
         test.put(1, formID_1);

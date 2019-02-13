@@ -80,6 +80,7 @@ public class SQLDriver{
        // System.out.println("in l_distance");
         a.toLowerCase();
         b.toLowerCase();
+
         int counter = Math.abs(a.length()-b.length());
         if (a.length() >= b.length()){
             for (int i = 0; i < b.length(); i++){
@@ -181,40 +182,107 @@ public class SQLDriver{
 
 
             int _count = 0;
+            boolean seen_result = false;
             for (String key:keys){
                 String _val = result.get(key).to_string();
-                _count += dl_distance(_val, _user_input);
+                System.out.println(_val);
+                System.out.println(_user_input);
+                System.out.println("---------------------");
+
+                if (_val.length() > 0 && _user_input.length() > 0 && filter_immediate(_val, _user_input)){
+                    System.out.println("Got in here");
+                    _count += dl_distance(_val, _user_input);
+                    if (!seen_result){
+                        seen_result = true;
+                    }
+
+                }
+
+
             }
-            all_distances.add(_count);
-            results.put(_count, result);
+            if (seen_result){
+                all_distances.add(_count);
+                results.put(_count, result);
+                System.out.println("Beverage type here "+result.get("beverageType").to_string());
+            }
+
 
         }
-        Collections.sort(all_distances);
         ArrayList<HashMap<String, ReturnedValue>>final_results = new ArrayList<HashMap<String, ReturnedValue>>();
-        int _final_count = 0;
-        int index_counter = 1;
-        int _size = all_distances.size();
-        int last_seen_distance = all_distances.get(0);
-        final_results.add(results.get(last_seen_distance));
-        while (_final_count < top_results && index_counter < _size){
-            int new_val = all_distances.get(index_counter);
-            final_results.add(results.get(new_val));
-            if (new_val != last_seen_distance){
-                _final_count++;
-            }
-            index_counter++;
-            last_seen_distance = new_val;
+        if (all_distances.size() > 0){
+            Collections.sort(all_distances);
 
+            int _final_count = 0;
+            int index_counter = 1;
+            int _size = all_distances.size();
+            int last_seen_distance = all_distances.get(0);
+            final_results.add(results.get(last_seen_distance));
+            while (_final_count < top_results && index_counter < _size){
+                int new_val = all_distances.get(index_counter);
+                final_results.add(results.get(new_val));
+                if (new_val != last_seen_distance){
+                    _final_count++;
+                }
+                index_counter++;
+                last_seen_distance = new_val;
+
+            }
         }
+
 
         return final_results;
 
     }
 
 
+    public boolean filter_immediate(String a, String b){
+        a.toLowerCase();
+        b.toLowerCase();
 
+        if (a.length() >= b.length()){
+            boolean flag = false;
+            for (int d = 0; d <a.length()-b.length(); d++){
+                for (int i = 0; i < b.length(); i++) {
+                    if (b.charAt(i) != a.charAt(d + i)) {
+                        flag = false;
+                        break;
+                    } else {
+                        flag = true;
+                    }
+
+                }
+                if (flag){
+                    break;
+                }
+
+            }
+            return flag;
+
+        }
+        else{
+            boolean flag = false;
+            for (int d = 0; d <b.length()-a.length(); d++){
+                for (int i = 0; i < a.length(); i++) {
+                    if (a.charAt(i) != b.charAt(d + i)) {
+                        flag = false;
+                        break;
+                    } else {
+                        flag = true;
+                    }
+
+                }
+                if (flag){
+                    break;
+                }
+
+            }
+            return flag;
+        }
+
+
+    }
     public ArrayList<HashMap<String, ReturnedValue>>search_for_l_multiple(String tablename, String filename, ArrayList<String>keys, String _user_input, int top_results) throws Exception{
-       // System.out.println("In search_for_l_multiple");
+        System.out.println("In search_for_l_multiple");
         if (top_results < 1){
             throw new Exception("'top_results' must be a value greater than zero");
         }
@@ -224,34 +292,53 @@ public class SQLDriver{
 
 
             int _count = 0;
+            boolean seen_result = false;
             for (String key:keys){
                 String _val = result.get(key).to_string();
-                if (_val.length() > 0){
+                System.out.println(_val);
+                System.out.println(_user_input);
+                System.out.println("---------------------");
+
+                if (_val.length() > 0 && _user_input.length() > 0 && filter_immediate(_val, _user_input)){
+                    System.out.println("Got in here");
                     _count += l_distance(_val, _user_input);
+                    if (!seen_result){
+                        seen_result = true;
+                    }
+
                 }
 
+
             }
-            all_distances.add(_count);
-            results.put(_count, result);
+            if (seen_result){
+                all_distances.add(_count);
+                results.put(_count, result);
+                System.out.println("Beverage type here "+result.get("beverageType").to_string());
+            }
+
 
         }
-        Collections.sort(all_distances);
         ArrayList<HashMap<String, ReturnedValue>>final_results = new ArrayList<HashMap<String, ReturnedValue>>();
-        int _final_count = 0;
-        int index_counter = 1;
-        int _size = all_distances.size();
-        int last_seen_distance = all_distances.get(0);
-        final_results.add(results.get(last_seen_distance));
-        while (_final_count < top_results && index_counter < _size){
-            int new_val = all_distances.get(index_counter);
-            final_results.add(results.get(new_val));
-            if (new_val != last_seen_distance){
-                _final_count++;
-            }
-            index_counter++;
-            last_seen_distance = new_val;
+        if (all_distances.size() > 0){
+            Collections.sort(all_distances);
 
+            int _final_count = 0;
+            int index_counter = 1;
+            int _size = all_distances.size();
+            int last_seen_distance = all_distances.get(0);
+            final_results.add(results.get(last_seen_distance));
+            while (_final_count < top_results && index_counter < _size){
+                int new_val = all_distances.get(index_counter);
+                final_results.add(results.get(new_val));
+                if (new_val != last_seen_distance){
+                    _final_count++;
+                }
+                index_counter++;
+                last_seen_distance = new_val;
+
+            }
         }
+
 
         return final_results;
 

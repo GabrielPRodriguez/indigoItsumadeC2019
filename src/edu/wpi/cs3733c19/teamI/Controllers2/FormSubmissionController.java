@@ -25,10 +25,13 @@ public class FormSubmissionController implements Initializable {
     HBox wineFields;
 
     @FXML
-    JFXRadioButton wine_RadButton;
+    JFXRadioButton wineRad;
 
     @FXML
     ToggleGroup beverage;
+
+    @FXML
+    ToggleGroup origin;
 
     @FXML
     JFXButton submit;
@@ -38,7 +41,7 @@ public class FormSubmissionController implements Initializable {
 
         JFXRadioButton rb = (JFXRadioButton)beverage.getSelectedToggle();
 
-        if(rb == wine_RadButton)
+        if(rb == wineRad)
         {
             wineFields.setVisible(true);
             wineFields.setDisable(false);
@@ -158,8 +161,8 @@ public class FormSubmissionController implements Initializable {
     @FXML
     JFXTextField vintage_Field;
 
-    @FXML
-    Label submit_message;
+    //@FXML
+    //Label submit_message;
 
     @FXML
     JFXTextField volume_Field;
@@ -180,7 +183,7 @@ public class FormSubmissionController implements Initializable {
 
 
     //Enables the fields that are only used for wine when the wine radial button is selected
-
+/*
     @FXML
     private void activateWineFields(ActionEvent wineSelect) throws IOException {
         appellation_Field.setDisable(false);
@@ -199,27 +202,27 @@ public class FormSubmissionController implements Initializable {
         vintage_Field.setDisable(true);
         grape_Field.setDisable(true);
     }
-
+*/
     //sets the values for each field into a Form object when the submit button is pressed.
     @FXML
     private void handleSubmitButton(ActionEvent event) throws IOException, Exception{
         if(event.getSource()== submit){
             Form sentForm = new Form();
             boolean readyToSend = true; //if true by the end of the method, the form will be sent to database
-            submit_message.setText(""); //string to insert into textfield either confirming submission or printing error messge
+            //submit_message.setText(""); //string to insert into textfield either confirming submission or printing error messge
 
             //sets Domestic Or Imported field
 
-            if (Domestic.getSelectedToggle() != null) {
-                RadioButton selectedOption = (RadioButton) Domestic.getSelectedToggle();
+            if (origin.getSelectedToggle() != null) {
+                RadioButton selectedOption = (RadioButton) origin.getSelectedToggle();
                 sentForm.setDomesticOrImported(selectedOption.getText());
             }
 
 
             //sets the Type of Drink (either wine, beer, or liquor)
 
-            if(Drinks.getSelectedToggle() != null){
-                RadioButton selectedBevType = (RadioButton) Drinks.getSelectedToggle();
+            if(beverage.getSelectedToggle() != null){
+                RadioButton selectedBevType = (RadioButton) beverage.getSelectedToggle();
                 sentForm.setBeverageType(selectedBevType.getText());
             }
 
@@ -236,8 +239,8 @@ public class FormSubmissionController implements Initializable {
             }
             catch (NumberFormatException e){
                 readyToSend = false;
-                String oldMessage = submit_message.getText();
-                submit_message.setText(oldMessage + "  Please enter a number for Serial Number" );
+                //String oldMessage = submit_message.getText();
+                //submit_message.setText(oldMessage + "  Please enter a number for Serial Number" );
             }
 
             //Sets Phone Number
@@ -263,11 +266,25 @@ public class FormSubmissionController implements Initializable {
             //Sets Name of Applicant
             sentForm.setNameOfApplicant(applicantName_Field.getText());
 
+            sentForm.setVolume(volume_Field.getText());
+
+            sentForm.setCity(city_Field.getText());
+
+            sentForm.setStreet(street_Field.getText());
+
+            sentForm.setState(state_Field.getText());
+
+            sentForm.setZip(zip_Field.getText());
+
+            sentForm.setPermitname(permitName.getText());
+
             //Sets Name and Address
-            sentForm.setNameAndAddress(applicantNameAddr_Field.getText());
+            //sentForm.setNameAndAddress(applicantNameAddr_Field.getText());
+
+
 
             //Sets Mailing Address
-            sentForm.setMailingAddress(mailAddr_Field.getText());
+            //sentForm.setMailingAddress(mailAddr_Field.getText());
 
             //Sets Formula
             sentForm.setFormula(formula_Field.getText());
@@ -292,8 +309,8 @@ public class FormSubmissionController implements Initializable {
                 }
                 catch (NumberFormatException e){
                     readyToSend = false;
-                    String oldMessage = submit_message.getText();
-                    submit_message.setText(oldMessage + "  Please enter a number for pH Value" );
+                   // String oldMessage = submit_message.getText();
+                    //submit_message.setText(oldMessage + "  Please enter a number for pH Value" );
 
 
                 }
@@ -306,10 +323,12 @@ public class FormSubmissionController implements Initializable {
             }
             catch (NumberFormatException e){
                 readyToSend = false;
-                String oldMessage = submit_message.getText();
-                submit_message.setText(oldMessage + "  Please enter a number for Alcohol Percentage.");
+               // String oldMessage = submit_message.getText();
+               // submit_message.setText(oldMessage + "  Please enter a number for Alcohol Percentage.");
 
             }
+
+
 
             //checks if required fields are missing, prints an error message stating which ones are
             //missing, prevents the form from actually being submitted
@@ -317,24 +336,23 @@ public class FormSubmissionController implements Initializable {
 
             if(sentForm.missingRequired()){
                 readyToSend = false;
-                String oldMessage = submit_message.getText();
+               // String oldMessage = submit_message.getText();
 
-                String errorMessage = sentForm.getMissingFieldsStatement(); //apply to a Label
-                submit_message.setText(oldMessage + "  " +  errorMessage);
+                //String errorMessage = sentForm.getMissingFieldsStatement(); //apply to a Label
+                //submit_message.setText(oldMessage + "  " +  errorMessage);
             }
 
             //sends the form to database when int/double fields contain the correct datatype and
             //all required fields have received input
 
             if(readyToSend){
-
                 //System.out.println("making db");
                 SQLDriver driver = new SQLDriver();
                 //sets the names of columns in the database, if additional form fields are added, please add a new column
-                String [] columns = {"formID", "repID", "plantRegistry", "domesticOrImported", "serialNumber", "brandName", "beverageType", "fancifulName", "nameAndAddress", "mailingAddress", "extraInfo", "dateOfApplication", "nameOfApplicant", "formula", "grapeVarietals", "vintage", "wineAppellation", "email", "phoneNumber", "pHValue", "alcoholContent", "status", "approvingUser", "approvalDate", "expirationDate"};
+                String [] columns = {"formID", "repID", "plantRegistry", "domesticOrImported", "serialNumber", "brandName", "beverageType", "fancifulName", "nameAndAddress", "mailingAddress", "extraInfo", "dateOfApplication", "nameOfApplicant", "formula", "grapeVarietals", "vintage", "wineAppellation", "email", "phoneNumber", "pHValue", "alcoholContent", "status", "approvingUser", "approvalDate", "expirationDate", "volume", "city", "street", "zip", "state", "permitName" };
                 //contains the datatype of each column in the database, when adding a new column, please also add it's datatype here/
                 //"text" for strings and "real" for doubles/integers
-                DBTypes[] full_types = {new DBTypes("real"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("real"), new DBTypes("real"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text")};
+                DBTypes[] full_types = {new DBTypes("real"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("real"), new DBTypes("real"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"),new DBTypes("text"),new DBTypes("text")};
                 try{
                     driver.create_table("form_data", "form_data.db", columns, full_types);
                 }
@@ -353,35 +371,16 @@ public class FormSubmissionController implements Initializable {
                 }
 
                 //collects values from fields of sentForm object (see Form.java)
-                DBValue[] all_vals = {new DBValue<Integer>((int)(_id_count)+1), new DBValue<String>(sentForm.getrepID()), new DBValue<String>(sentForm.getplantRegistry()), new DBValue<String>(sentForm.getdomesticOrImported()), new DBValue<String>(sentForm.getserialNumber()), new DBValue<String>(sentForm.getbrandName()), new DBValue<String>(sentForm.getbeverageType()), new DBValue<String>(sentForm.getfancifulName()), new DBValue<String>(sentForm.getnameAndAddress()), new DBValue<String>(sentForm.getmailingAddress()), new DBValue<String>(sentForm.getextraInfo()), new DBValue<String>(sentForm.getdateOfApplication()), new DBValue<String>(sentForm.getnameOfApplicant()), new DBValue<String>(sentForm.getformula()), new DBValue<String>(sentForm.getgrapeVarietals()), new DBValue<String>(sentForm.getvintage()), new DBValue<String>(sentForm.getwineAppellation()), new DBValue<String>(sentForm.getemail()), new DBValue<String>(sentForm.getphoneNumber()), new DBValue<Double>(sentForm.getpHValue()), new DBValue<Double>(sentForm.getalcoholContent()), new DBValue<String>("unread"), new DBValue<String>("noUser"), new DBValue<String>("NoDateAprroved"), new DBValue<String>("NoDateExir")};
+                DBValue[] all_vals = {new DBValue<Integer>((int)(_id_count)+1), new DBValue<String>(sentForm.getrepID()), new DBValue<String>(sentForm.getplantRegistry()), new DBValue<String>(sentForm.getdomesticOrImported()), new DBValue<String>(sentForm.getserialNumber()), new DBValue<String>(sentForm.getbrandName()), new DBValue<String>(sentForm.getbeverageType()), new DBValue<String>(sentForm.getfancifulName()), new DBValue<String>(sentForm.getnameAndAddress()), new DBValue<String>(sentForm.getmailingAddress()), new DBValue<String>(sentForm.getextraInfo()), new DBValue<String>(sentForm.getdateOfApplication()), new DBValue<String>(sentForm.getnameOfApplicant()), new DBValue<String>(sentForm.getformula()), new DBValue<String>(sentForm.getgrapeVarietals()), new DBValue<String>(sentForm.getvintage()), new DBValue<String>(sentForm.getwineAppellation()), new DBValue<String>(sentForm.getemail()), new DBValue<String>(sentForm.getphoneNumber()), new DBValue<Double>(sentForm.getpHValue()), new DBValue<Double>(sentForm.getalcoholContent()), new DBValue<String>("unread"), new DBValue<String>("noUser"), new DBValue<String>("NoDateAprroved"), new DBValue<String>("NoDateExir"), new DBValue<String>(sentForm.getVolume()), new DBValue<String>(sentForm.getCity()), new DBValue<String>(sentForm.getStreet()), new DBValue<String>(sentForm.getZip()), new DBValue<String>(sentForm.getState()), new DBValue<String>(sentForm.getPermitname())};
 
                 //the values above are actually entered into the database (contained in form_data.db)
                 driver.insert_vals("form_data", "form_data.db", all_vals);
 
                 //displays message after form has successfully been entered into the database
                 String success = "Form successfully submitted.";
-                submit_message.setText(success);
+               // submit_message.setText(success);
 
-                //clears all fields
-                Domestic.selectToggle(null);
-                Drinks.selectToggle(null);
-                repIdNum_Field.clear();
-                serialNum_Field.clear();
-                brandName_Field.clear();
-                permitNum_Field.clear();
-                formula_Field.clear();
-                alcoholPercent_Field.clear();
-                fancyName_Field.clear();
-                phoneNum_Field.clear();
-                mailAddr_Field.clear();
-                email_Field.clear();
-                appellation_Field.clear();
-                grape_Field.clear();
-                ph_Field.clear();
-                vintage_Field.clear();
-                applicantName_Field.clear();
-                applicantNameAddr_Field.clear();
-                brandedInfo_Field.clear();
+                delete();
 
 
             }
@@ -394,8 +393,8 @@ public class FormSubmissionController implements Initializable {
     //the following runs formsubmission page is opened
     @FXML
     private void delete(){
-        Domestic.selectToggle(null);
-        Drinks.selectToggle(null);
+        origin.selectToggle(null);
+        beverage.selectToggle(null);
         repIdNum_Field.clear();
         serialNum_Field.clear();
         brandName_Field.clear();
@@ -404,15 +403,19 @@ public class FormSubmissionController implements Initializable {
         alcoholPercent_Field.clear();
         fancyName_Field.clear();
         phoneNum_Field.clear();
-        mailAddr_Field.clear();
         email_Field.clear();
         appellation_Field.clear();
         grape_Field.clear();
         ph_Field.clear();
         vintage_Field.clear();
         applicantName_Field.clear();
-        applicantNameAddr_Field.clear();
         brandedInfo_Field.clear();
+        volume_Field.clear();
+        state_Field.clear();
+        street_Field.clear();
+        city_Field.clear();
+        zip_Field.clear();
+        permitName.clear();
 
     }
     @Override

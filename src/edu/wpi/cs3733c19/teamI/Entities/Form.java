@@ -9,7 +9,7 @@ public class Form {
     private String brandName; //required
     private String beverageType; //required
     private String fancifulName; //optional
-    private String nameAndAddress; //required
+    private String nameAndAddress; //doesn't exist
     private String mailingAddress; //optional
     private String extraInfo; //optional
     private String dateOfApplication; //required (assumed)
@@ -26,6 +26,12 @@ public class Form {
     private String approvalDate; //generated in background
     private String approvingUser; //generated in background
     private String expirationDate; //generated in background
+    private String volume;
+    private String city;
+    private String street;
+    private String state;
+    private String zip;
+    private String permitname;
 
     public Form() {
         this.repID = "";
@@ -52,10 +58,16 @@ public class Form {
         this.approvalDate = "1/1/1";
         this.approvingUser = "UserNotFound";
         this.expirationDate = "ExpirNotFound";
+        this.volume ="";
+        this.city = "";
+        this.state = "";
+        this.street = "";
+        this.zip = "";
+        this.permitname = "";
     }
 
 
-    public Form(String repID, String plantRegistry, String domesticOrImported, String serialNumber, String brandName, String beverageType, String fancifulName, String nameAndAddress, String mailingAddress, String extraInfo, String date, String nameOfApplicant, String formula, String grapeVarietals, String vintage, String wineAppellation, String email, String phoneNumber, double pHValue, double alcoholContent, String formStatus, String approvingUser, String approvalDate, String expirationDate) {
+    public Form(String repID, String plantRegistry, String domesticOrImported, String serialNumber, String brandName, String beverageType, String fancifulName, String nameAndAddress, String mailingAddress, String extraInfo, String date, String nameOfApplicant, String formula, String grapeVarietals, String vintage, String wineAppellation, String email, String phoneNumber, double pHValue, double alcoholContent, String formStatus, String approvingUser, String approvalDate, String expirationDate, String volume, String street, String city, String state, String zip, String permitname) {
         this.repID = repID;
         this.plantRegistry = plantRegistry;
         this.domesticOrImported = domesticOrImported;
@@ -80,6 +92,36 @@ public class Form {
         this.approvalDate = approvalDate;
         this.approvingUser = approvingUser;
         this.expirationDate = expirationDate;
+        this.volume = volume;
+        this.street = street;
+        this.city = city;
+        this.state = state;
+        this.zip = zip;
+        this.permitname = permitname;
+    }
+
+    public void setVolume(String volume) {
+        this.volume = volume;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public void setZip(String zip) {
+        this.zip = zip;
+    }
+
+    public void setPermitname(String permitname) {
+        this.permitname = permitname;
     }
 
     public void setRepID(String repID) {
@@ -264,6 +306,30 @@ public class Form {
         return this.alcoholContent;
     }
 
+    public String getVolume() {
+        return this.volume;
+    }
+
+    public String getCity() {
+        return this.city;
+    }
+
+    public String getStreet() {
+        return this.street;
+    }
+
+    public String getState() {
+        return this.state;
+    }
+
+    public String getZip() {
+        return this.zip;
+    }
+
+    public String getPermitname() {
+        return this.permitname;
+    }
+
     public String getFormStatus(){
         return this.formStatus;
     }
@@ -292,7 +358,7 @@ public class Form {
     //returns true if any required field is empty
     public boolean missingRequired() {
         return (isEmpty(domesticOrImported) || isEmpty(serialNumber) || isEmpty(brandName)
-                || isEmpty(beverageType) || isEmpty(nameAndAddress) || isEmpty(dateOfApplication) || isEmpty(nameOfApplicant)
+                || isEmpty(beverageType)  || isEmpty(dateOfApplication) || isEmpty(nameOfApplicant)
                 || isEmpty(phoneNumber) || isEmpty(alcoholContent));
 
     }
@@ -312,9 +378,7 @@ public class Form {
         if (isEmpty(beverageType)) {
             missingStatement = missingStatement + " Type of Product,";
         }
-        if (isEmpty(nameAndAddress)) {
-            missingStatement = missingStatement + " Name and Address of Applicant,";
-        }
+
         if (isEmpty(dateOfApplication)) {
             missingStatement = missingStatement + " Date of Application,";
         }

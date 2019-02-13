@@ -42,7 +42,7 @@
                                     <Font name="Segoe UI Bold" size="16.0" />
                                  </font>
                               </Label>
-                              <JFXTextField fx:id="permitNum" />
+                              <JFXTextField fx:id="permitNum_Field" />
                            </children>
                         </VBox>
                         <VBox layoutX="230.0" layoutY="10.0" spacing="10.0" HBox.hgrow="ALWAYS">
@@ -174,7 +174,7 @@
                         </VBox>
                      </children>
                   </HBox>
-                  <HBox fx:id="wineFields" alignment="CENTER" disable="true" spacing="20.0" visible="false" VBox.vgrow="ALWAYS">
+                  <HBox fx:id="wineFields" alignment="CENTER" disable="true" maxHeight="0.0" maxWidth="0.0" spacing="20.0" visible="false" VBox.vgrow="ALWAYS">
                      <children>
                         <VBox spacing="10.0" HBox.hgrow="ALWAYS">
                            <children>
@@ -183,7 +183,7 @@
                                     <Font name="Segoe UI Bold" size="16.0" />
                                  </font>
                               </Label>
-                              <JFXTextField />
+                              <JFXTextField fx:id="grape_Field" />
                            </children>
                         </VBox>
                         <VBox spacing="10.0" HBox.hgrow="ALWAYS">
@@ -193,7 +193,7 @@
                                     <Font name="Segoe UI Bold" size="16.0" />
                                  </font>
                               </Label>
-                              <JFXTextField />
+                              <JFXTextField fx:id="vintage_Field" />
                            </children>
                         </VBox>
                         <VBox layoutX="10.0" layoutY="10.0" spacing="10.0" HBox.hgrow="ALWAYS">
@@ -203,7 +203,7 @@
                                     <Font name="Segoe UI Bold" size="16.0" />
                                  </font>
                               </Label>
-                              <JFXTextField />
+                              <JFXTextField fx:id="appellation_Field" />
                            </children>
                         </VBox>
                         <VBox layoutX="230.0" layoutY="10.0" spacing="10.0" HBox.hgrow="ALWAYS">
@@ -213,7 +213,7 @@
                                     <Font name="Segoe UI Bold" size="16.0" />
                                  </font>
                               </Label>
-                              <JFXTextField />
+                              <JFXTextField fx:id="ph_Field" />
                            </children>
                         </VBox>
                      </children>

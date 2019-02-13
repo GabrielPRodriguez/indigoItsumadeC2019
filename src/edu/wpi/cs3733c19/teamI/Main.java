@@ -1,9 +1,12 @@
 package edu.wpi.cs3733c19.teamI;
 
 
+import com.fazecast.jSerialComm.SerialPort;
+import com.fazecast.jSerialComm.SerialPortEvent;
 import edu.wpi.cs3733c19.teamI.Controllers2.*;
 import edu.wpi.cs3733c19.teamI.Entities.SearchResults;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -16,6 +19,71 @@ public class Main extends Application {
     public static SearchResults Results = new SearchResults();
     private IIOParam SearchLoader;
     private Object SearchScene;
+    private SerialPort comPort;
+    public Scene formCheckerScene;
+    public Parent formCheckerPane;
+    public Thread mThread;
+
+
+    public void PacketListener() {
+        try {
+            SerialPort comPort = SerialPort.getCommPorts()[0];
+            comPort.openPort();
+            comPort.addDataListener(this);
+        }
+        catch(Exception e){
+            System.out.println("No peripheral connected");
+        }
+    }
+
+    @Override
+    public int getListeningEvents() { return SerialPort.LISTENING_EVENT_DATA_RECEIVED; }
+
+    @Override
+    public int getPacketSize() { return 4; }
+
+    @Override
+    public void serialEvent(SerialPortEvent event)
+    {
+        try {
+            if (!mThread.isAlive()) {
+                //  comPort.removeDataListener();
+                //   comPort.closePort();
+            }
+        }
+        catch (NullPointerException n){
+            // comPort.removeDataListener();
+            // comPort.closePort();
+        }
+        String user = " ";
+        byte[] newData = event.getReceivedData();
+        System.out.println("Received data of size: " + newData.length);
+        for (int i = 0; i < newData.length; ++i) {
+            user += (char)newData[i];
+            System.out.print((char) newData[i]);
+        }
+        System.out.println(user);
+        if(user.equals(" ERIC")){
+            System.out.println("Change?");
+            Platform.runLater(new Runnable() {
+
+                @Override
+                public void run() {
+
+                    finalStage.setScene(formCheckerScene);
+                }
+            });
+            System.out.println("Continued?");
+        }
+        System.out.println("\n");
+        try {
+            Thread.sleep(1000);
+        }
+        catch(InterruptedException e){
+            System.out.println("couldnt sleep");
+        }
+    }
+
 
     public static void main(String[] args) {
         launch(args);
@@ -117,6 +185,17 @@ public class Main extends Application {
         primaryStage.setScene(homeScene);
         primaryStage.setMaximized(true);
         primaryStage.show();
+
+        Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("made it");
+                comPort.removeDataListener();
+                comPort.closePort();
+            }
+        }));
+
+        mThread = Thread.currentThread();
 
 
 

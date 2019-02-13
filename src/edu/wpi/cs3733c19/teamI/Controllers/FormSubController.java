@@ -294,10 +294,18 @@ public class FormSubController extends ToolBarController implements Initializabl
                     //System.out.println("making db");
                     SQLDriver driver = new SQLDriver();
                     //sets the names of columns in the database, if additional form fields are added, please add a new column
-                    String [] columns = {"formID", "repID", "plantRegistry", "domesticOrImported", "serialNumber", "brandName", "beverageType", "fancifulName", "nameAndAddress", "mailingAddress", "extraInfo", "dateOfApplication", "nameOfApplicant", "formula", "grapeVarietals", "vintage", "wineAppellation", "email", "phoneNumber", "pHValue", "alcoholContent", "status", "approvingUser", "approvalDate", "expirationDate"};
+                    String [] columns = {"formID",  "repID",    "plantRegistry",    "domesticOrImported",   "serialNumber", "brandName",    "beverageType",     "fancifulName", "nameAndAddress",   "mailingAddress",   "extraInfo",    "dateOfApplication",    "nameOfApplicant",  "formula",  "grapeVarietals",   "vintage",  "wineAppellation",  "email",    "phoneNumber",  "pHValue",  "alcoholContent",   "status",   "approvingUser",    "approvalDate",     "expirationDate"};
+                    String [] types =   {"real",    "text",     "text",             "text",                 "text",         "text",         "text",             "text",         "text",             "text",             "text",         "text",                 "text",             "text",     "text",             "text",     "text",             "text",     "text",         "real",     "real",             "text",     "text",             "text",             "text"};
+                        //these two lines are the formID and its type, formatted for easy readability
                     //contains the datatype of each column in the database, when adding a new column, please also add it's datatype here/
                     //"text" for strings and "real" for doubles/integers
-                    DBTypes [] full_types = {new DBTypes("real"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("real"), new DBTypes("real"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text")};
+
+                    DBTypes [] full_types = new DBTypes[types.length];
+
+                    for (int i = 0; i < columns.length; i++){ //this for loop takes the columns and their types and makes the full_types list for later
+                        full_types[i] = new DBTypes(types[i]);
+                    }
+
                     try{
                         driver.create_table("form_data", "form_data.db", columns, full_types);
                     }

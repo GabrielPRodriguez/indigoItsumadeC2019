@@ -160,7 +160,8 @@ public class ToolBarController {
 
     @FXML
     public void login(ActionEvent actionEvent){
-        tb_loginButton.setText("Logout");
+        
+       //tb_loginButton.setText("Logout");
     }
 
     @FXML

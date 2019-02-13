@@ -30,7 +30,8 @@ public class ToolBarController {
     private Scene Info;
     private Scene Result;
 
-    private ArrayList<HashMap<String, ReturnedValue>> resultsMap;
+    private ArrayList<HashMap<String, ReturnedValue>> resultsMap = new ArrayList<HashMap<String, ReturnedValue>>();
+
 
 
     public void setResultsMap(ArrayList<HashMap<String, ReturnedValue>> resultsMap){
@@ -39,7 +40,7 @@ public class ToolBarController {
     }
 
     public ArrayList<HashMap<String, ReturnedValue>> getResultsMap() {
-        return resultsMap;
+        return this.resultsMap;
     }
 
     public void setPending(Scene pending) {

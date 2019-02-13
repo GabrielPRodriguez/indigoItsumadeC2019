@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
 
 import java.net.URL;
@@ -24,6 +25,11 @@ public class AdvancedSearchController implements Initializable {
 
     @FXML
     JFXButton search;
+
+    @FXML
+    TextField searchBar;
+
+    SQLDriver querydata = new SQLDriver();
 
     public void spinnerVisible()
     {
@@ -142,6 +148,21 @@ public class AdvancedSearchController implements Initializable {
 
     @FXML
     public void goExit(ActionEvent actionEvent){toolBarController.goExit(actionEvent);}
+
+
+
+   public void performSearch(ActionEvent event){
+        try {
+            System.out.println((String) fieldSelector.getValue());
+            toolBarController.setResultsMap(querydata.search_sql_wildcard("form_data", "new_csv_from_spreadsheet.db", searchBar.getText(), (String) fieldSelector.getValue()));
+            System.out.println((String) fieldSelector.getValue());
+        }
+        catch(Exception e){
+
+        }
+       System.out.println( fieldSelector.valueProperty().getValue());
+        toolBarController.goSearch(event);
+    }
 
 
 }

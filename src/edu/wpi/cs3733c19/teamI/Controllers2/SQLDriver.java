@@ -243,10 +243,11 @@ public class SQLDriver{
             boolean flag = false;
             for (int d = 0; d <a.length()-b.length(); d++){
                 for (int i = 0; i < b.length(); i++) {
-                    if (b.charAt(i) != a.charAt(d + i)) {
+                    if (Character.toLowerCase(b.charAt(i)) != Character.toLowerCase(a.charAt(d + i))) {
                         flag = false;
                         break;
                     } else {
+                        System.out.println("got true result");
                         flag = true;
                     }
 
@@ -256,6 +257,7 @@ public class SQLDriver{
                 }
 
             }
+            //System.out.println(flag);
             return flag;
 
         }
@@ -263,10 +265,11 @@ public class SQLDriver{
             boolean flag = false;
             for (int d = 0; d <b.length()-a.length(); d++){
                 for (int i = 0; i < a.length(); i++) {
-                    if (a.charAt(i) != b.charAt(d + i)) {
+                    if (Character.toLowerCase(a.charAt(i)) != Character.toLowerCase(b.charAt(d + i))) {
                         flag = false;
                         break;
                     } else {
+                        System.out.println("got true result");
                         flag = true;
                     }
 
@@ -276,6 +279,7 @@ public class SQLDriver{
                 }
 
             }
+
             return flag;
         }
 

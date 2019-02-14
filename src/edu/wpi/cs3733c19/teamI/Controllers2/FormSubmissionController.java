@@ -13,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
 
 import java.io.IOException;
 import java.net.URL;
@@ -167,8 +168,8 @@ public class FormSubmissionController implements Initializable {
     @FXML
     JFXTextField vintage_Field;
 
-    //@FXML
-    //Label submit_message;
+    @FXML
+    Label submit_message;
 
     @FXML
     JFXTextField volume_Field;
@@ -217,8 +218,9 @@ public class FormSubmissionController implements Initializable {
             System.out.println("event get source");
             Form sentForm = new Form();
             boolean readyToSend = true; //if true by the end of the method, the form will be sent to database
-            //submit_message.setText(""); //string to insert into textfield either confirming submission or printing error messge
+            submit_message.setText("");//string to insert into textfield either confirming submission or printing error messge
 
+            submit_message.setTextFill(Color.web("#FF0000"));
             //sets Domestic Or Imported field
 
             if (origin.getSelectedToggle() != null) {
@@ -247,8 +249,8 @@ public class FormSubmissionController implements Initializable {
             }
             catch (NumberFormatException e){
                 readyToSend = false;
-                //String oldMessage = submit_message.getText();
-                //submit_message.setText(oldMessage + "  Please enter a number for Serial Number" );
+                String oldMessage = submit_message.getText();
+                submit_message.setText(oldMessage + "  Please enter a number for Serial Number" );
             }
 
             //Sets Phone Number
@@ -266,7 +268,13 @@ public class FormSubmissionController implements Initializable {
             //Sets Date of Submission
 
             //sentForm.setDateOfApplication(date_Field.getText());
-            sentForm.setDateOfApplication(date_Field.getValue().toString());
+            try{
+                sentForm.setDateOfApplication(date_Field.getValue().toString());
+            }
+            catch (NullPointerException e){
+
+            }
+
 
             //Sets Branded/Embossed Non-label info
             sentForm.setExtraInfo(brandedInfo_Field.getText());
@@ -318,8 +326,8 @@ public class FormSubmissionController implements Initializable {
                 catch (NumberFormatException e){
                     System.out.println("ph");
                     readyToSend = false;
-                   // String oldMessage = submit_message.getText();
-                    //submit_message.setText(oldMessage + "  Please enter a number for pH Value" );
+                    String oldMessage = submit_message.getText();
+                    submit_message.setText(oldMessage + "  Please enter a number for pH Value" );
 
 
                 }
@@ -333,8 +341,8 @@ public class FormSubmissionController implements Initializable {
             catch (NumberFormatException e){
                 readyToSend = false;
                 System.out.println("Al content");
-               // String oldMessage = submit_message.getText();
-               // submit_message.setText(oldMessage + "  Please enter a number for Alcohol Percentage.");
+                String oldMessage = submit_message.getText();
+                submit_message.setText(oldMessage + "  Please enter a number for Alcohol Percentage.");
 
             }
 
@@ -346,12 +354,12 @@ public class FormSubmissionController implements Initializable {
 
             if(sentForm.missingRequired()){
                 readyToSend = false;
-               // String oldMessage = submit_message.getText();
+                String oldMessage = submit_message.getText();
 
                 String errorMessage = sentForm.getMissingFieldsStatement(); //apply to a Label
                 System.out.println("error message");
                 System.out.println(errorMessage);
-                //submit_message.setText(oldMessage + "  " +  errorMessage);
+                submit_message.setText(oldMessage + "  " +  errorMessage);
             }
 
             //sends the form to database when int/double fields contain the correct datatype and
@@ -393,12 +401,14 @@ public class FormSubmissionController implements Initializable {
 
                 //displays message after form has successfully been entered into the database
                 String success = "Form successfully submitted.";
-               // submit_message.setText(success);
+                submit_message.setTextFill(Color.web("#4BB543"));
+                submit_message.setText(success);
 
                 delete();
 
 
             }
+
 /*
                 submit_message.setText(success);
                 System.out.println(success);

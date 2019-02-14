@@ -12,12 +12,12 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers2.AboutController">
+<BorderPane prefHeight="790.0" prefWidth="1919.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers2.AboutController">
    <center>
-      <GridPane BorderPane.alignment="CENTER">
+      <GridPane prefHeight="528.0" prefWidth="1149.0" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets bottom="100.0" left="100.0" right="100.0" top="100.0" />
          </BorderPane.margin>
@@ -26,9 +26,9 @@
          </columnConstraints>
          <rowConstraints>
             <RowConstraints vgrow="ALWAYS" />
-            <RowConstraints valignment="CENTER" vgrow="ALWAYS" />
-            <RowConstraints valignment="CENTER" vgrow="ALWAYS" />
-            <RowConstraints valignment="CENTER" vgrow="ALWAYS" />
+            <RowConstraints maxHeight="17.0" minHeight="0.0" prefHeight="0.0" valignment="CENTER" vgrow="ALWAYS" />
+            <RowConstraints maxHeight="468.0" minHeight="214.0" prefHeight="468.0" valignment="CENTER" vgrow="ALWAYS" />
+            <RowConstraints maxHeight="231.0" minHeight="0.0" prefHeight="0.0" valignment="CENTER" vgrow="ALWAYS" />
          </rowConstraints>
          <children>
             <Label text="About">
@@ -46,77 +46,52 @@
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding></Separator>
-            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="20.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS">
+            <HBox alignment="CENTER_LEFT" prefHeight="468.0" prefWidth="1509.0" spacing="20.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS">
                <children>
-                  <ImageView fitHeight="400.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
-                     <image>
-                        <Image url="@../Assets/placeholder_icon.png" />
-                     </image>
-                  </ImageView>
-                  <VBox alignment="CENTER_LEFT" spacing="10.0" HBox.hgrow="ALWAYS">
+                  <GridPane alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="468.0" prefWidth="1735.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="456.0" minWidth="9.0" prefWidth="119.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="451.0" minWidth="4.0" prefWidth="292.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="568.0" minWidth="0.0" prefWidth="114.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="656.0" minWidth="10.0" prefWidth="301.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="562.0" minWidth="3.0" prefWidth="110.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="562.0" minWidth="10.0" prefWidth="335.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="463.0" minWidth="0.0" prefWidth="111.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="463.0" minWidth="10.0" prefWidth="374.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
                      <children>
-                        <Label text="Michael Antonelli: Lead Software Engineer">
-                           <font>
-                              <Font name="Segoe UI Bold" size="16.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="10.0" layoutY="10.0" text="Marissa Bennett: Team Coach">
-                           <font>
-                              <Font name="Segoe UI Bold" size="16.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="10.0" layoutY="27.0" text="Eric Carkin: Product Owner">
-                           <font>
-                              <Font name="Segoe UI Bold" size="16.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="10.0" layoutY="44.0" text="Grant Ferguson: Scrum Master">
-                           <font>
-                              <Font name="Segoe UI Bold" size="16.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="10.0" layoutY="61.0" text="Fareya Ikram: Assistant Lead Software Engineer">
-                           <font>
-                              <Font name="Segoe UI Bold" size="16.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="10.0" layoutY="78.0" text="Stephen Lucas: Documentation Analyst">
-                           <font>
-                              <Font name="Segoe UI Bold" size="16.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="10.0" layoutY="95.0" text="Yossef Naim: Algorithms Specialist">
-                           <font>
-                              <Font name="Segoe UI Bold" size="16.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="10.0" layoutY="112.0" text="James Petullo: Database Specialist">
-                           <font>
-                              <Font name="Segoe UI Bold" size="16.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="10.0" layoutY="129.0" text="Gabriel Rodriguez: Test Engineer">
-                           <font>
-                              <Font name="Segoe UI Bold" size="16.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="10.0" layoutY="146.0" text="Rachael Sallie: Assistant Lead Software Engineer">
-                           <font>
-                              <Font name="Segoe UI Bold" size="16.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="10.0" layoutY="163.0" text="Rasheeda Samih: UI-Graphics Engineer">
-                           <font>
-                              <Font name="Segoe UI Bold" size="16.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="10.0" layoutY="180.0" text="Jeremy Wong: Project Manager">
-                           <font>
-                              <Font name="Segoe UI Bold" size="16.0" />
-                           </font>
-                        </Label>
+                        <Circle fill="DODGERBLUE" radius="49.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fill="WHITE" radius="49.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="4" />
+                        <Circle fill="WHITE" radius="49.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" />
+                        <Circle fill="WHITE" radius="49.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="6" />
+                        <Circle fill="WHITE" radius="49.0" stroke="BLACK" strokeType="INSIDE" GridPane.rowIndex="1" />
+                        <Circle fill="WHITE" radius="49.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                        <Circle fill="WHITE" radius="49.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <Circle fill="WHITE" radius="49.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="6" GridPane.rowIndex="1" />
+                        <Circle fill="WHITE" radius="49.0" stroke="BLACK" strokeType="INSIDE" GridPane.rowIndex="2" />
+                        <Circle fill="WHITE" radius="49.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                        <Circle fx:id="yossef" fill="WHITE" radius="49.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fill="WHITE" radius="49.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                        <Circle fill="WHITE" radius="49.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="6" GridPane.rowIndex="2" />
+                        <Label prefHeight="175.0" prefWidth="260.0" text="Yossef is an Electrical and Computer Engineering major and has the position of Algorithms Specialist for Team Indigo Itsumade. He enjoys street skateboarding and is a varsity athlete for the WPI Track and Field/ Cross Country team. " wrapText="true" GridPane.columnIndex="1" />
+                        <Label prefHeight="156.0" prefWidth="244.0" text="Michael is a Robotics and Biomedical Engineering major who serves as Lead Software Engineer. He likes video game development and weightlifting, and plays for the WPI club Ice Hockey team." wrapText="true" GridPane.columnIndex="3" />
+                        <Label prefHeight="175.0" prefWidth="260.0" wrapText="true" GridPane.columnIndex="5" />
+                        <Label prefHeight="156.0" prefWidth="244.0" wrapText="true" GridPane.columnIndex="7" />
+                        <Label prefHeight="175.0" prefWidth="260.0" wrapText="true" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                        <Label prefHeight="175.0" prefWidth="260.0" wrapText="true" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+                        <Label prefHeight="175.0" prefWidth="260.0" wrapText="true" GridPane.columnIndex="7" GridPane.rowIndex="1" />
+                        <Label prefHeight="175.0" prefWidth="260.0" wrapText="true" GridPane.columnIndex="7" GridPane.rowIndex="2" />
+                        <Label prefHeight="175.0" prefWidth="260.0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label prefHeight="175.0" prefWidth="260.0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label prefHeight="175.0" prefWidth="260.0" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                        <Label prefHeight="175.0" prefWidth="260.0" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                      </children>
-                  </VBox>
+                  </GridPane>
                </children>
             </HBox>
             <Label text="Extending a special thank you to the US Treasury and The Tobacco Tax &amp; Trade Bureau" wrapText="true" GridPane.rowIndex="3">

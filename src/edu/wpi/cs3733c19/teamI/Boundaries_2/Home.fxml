@@ -6,6 +6,7 @@
 <?import com.jfoenix.controls.JFXToolbar?>
 <?import com.jfoenix.validation.RequiredFieldValidator?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
@@ -128,14 +129,19 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </GridPane.margin>
             </HBox>
-            <JFXButton mnemonicParsing="false" onAction="#goAdvancedSearch" ripplerFill="#02bfe7" style="-fx-background-color: #046b99;" text="Advanced Search" textFill="WHITE" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.valignment="CENTER">
-               <font>
-                  <Font name="Segoe UI Bold" size="14.0" />
-               </font>
-               <GridPane.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </GridPane.margin>
-            </JFXButton>
+            <HBox alignment="CENTER" prefHeight="47.0" prefWidth="563.0" spacing="15.0" GridPane.rowIndex="2">
+               <children>
+                  <CheckBox fx:id="beverageType" mnemonicParsing="false" text="Type" />
+                  <CheckBox fx:id="brandName" mnemonicParsing="false" text="Brand" />
+                  <CheckBox fx:id="fancifulName" mnemonicParsing="false" text="Fanciful" />
+                  <CheckBox fx:id="extraInfo" mnemonicParsing="false" text="extraInfo" />
+                  <JFXButton mnemonicParsing="false" onAction="#goAdvancedSearch" ripplerFill="#02bfe7" style="-fx-background-color: #046b99;" text="Advanced Search" textFill="WHITE">
+                     <font>
+                        <Font name="Segoe UI Bold" size="14.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+            </HBox>
          </children>
          <BorderPane.margin>
             <Insets bottom="80.0" left="80.0" right="80.0" top="80.0" />

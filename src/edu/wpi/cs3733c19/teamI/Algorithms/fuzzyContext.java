@@ -25,4 +25,8 @@ public class fuzzyContext {
         return fuzzyAlgorithm.matches;
     }
 
+    public void setParam(ArrayList<String> param){
+        this.fuzzyAlgorithm.setSearchParam(param);
+    }
+
 }

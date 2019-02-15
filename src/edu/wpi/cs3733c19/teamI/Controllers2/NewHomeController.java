@@ -10,6 +10,7 @@ import edu.wpi.cs3733c19.teamI.Algorithms.fuzzyContext;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
@@ -17,6 +18,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class NewHomeController implements Initializable {
@@ -58,6 +60,17 @@ public class NewHomeController implements Initializable {
     @FXML
     JFXRadioButton algorithm3;
 
+    @FXML
+    CheckBox brandName;
+
+    @FXML
+    CheckBox fancifulName;
+
+    @FXML
+    CheckBox extraInfo;
+
+    @FXML
+    CheckBox beverageType;
 
 
     public void setToolBarController(ToolBarController toolBarController){
@@ -122,6 +135,23 @@ public class NewHomeController implements Initializable {
 
     }
 
+    public void setSearchParam(){
+        ArrayList<String> paramList = new ArrayList<String>();
+        if(extraInfo.isSelected()){
+            paramList.add("extraInfo");
+        }
+        if (brandName.isSelected()) {
+            paramList.add("brandName");
+        }
+        if (fancifulName.isSelected()) {
+            paramList.add("fancifulName");
+        }
+        if(beverageType.isSelected()){
+            paramList.add("beverageType");
+        }
+        searchAlgorithmSelection.setParam(paramList);
+    }
+
 
     public void goSearch(ActionEvent actionEvent) throws Exception {
 
@@ -132,6 +162,7 @@ public class NewHomeController implements Initializable {
         else {
            // spin.setMaxSize(Region.USE_COMPUTED_SIZE,Region.USE_COMPUTED_SIZE);
             setAlgorithm();
+            setSearchParam();
            // System.out.println(searchAlgorithmSelection.run(searchTextField.getText().trim()));
             // toolBarController.transferSearchInfo(searchAlgorithmSelection.run(searchTextField.getText().trim()));
             // toolBarController.goSearch(actionEvent);
@@ -164,7 +195,6 @@ public class NewHomeController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources){
         spin.setMaxSize(0,0);
-        //System.out.println("helooooooo");
     }
 
 }

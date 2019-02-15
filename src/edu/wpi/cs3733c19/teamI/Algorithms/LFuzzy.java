@@ -15,6 +15,20 @@ public class LFuzzy implements IStrategyFuzzy {
         System.out.println(searchString);
         System.out.println(mylist.get(0).get("beverageType").to_string());
         System.out.println("here 1");
+
+
+    }
+    public void setSearchParam(ArrayList<String> searchParam){
+        if(searchParam.isEmpty()){
+            searchParam.add("fancifulName");
+            searchParam.add("beverageType");
+            searchParam.add("extraInfo");
+        }
+        searchParameters.clear();
+        for(String param: searchParam) {
+            System.out.println(param);
+            searchParameters.add(param);
+        }
     }
 
 

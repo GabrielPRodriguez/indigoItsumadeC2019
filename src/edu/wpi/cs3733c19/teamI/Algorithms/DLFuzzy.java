@@ -17,6 +17,19 @@ public class DLFuzzy implements IStrategyFuzzy {
         System.out.println(searchString);
     }
 
+    public void setSearchParam(ArrayList<String> searchParam){
+        if(searchParam.isEmpty()){
+            searchParam.add("fancifulName");
+            searchParam.add("beverageType");
+            searchParam.add("extraInfo");
+        }
+        searchParameters.clear();
+        for(String param: searchParam) {
+            System.out.println(param);
+            searchParameters.add(param);
+        }
+    }
+
 
 
     /**

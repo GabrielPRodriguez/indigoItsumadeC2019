@@ -70,7 +70,7 @@
                         <Circle fill="WHITE" radius="49.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="6" />
                         <Circle fill="WHITE" radius="49.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="4" GridPane.rowIndex="1" />
                         <Circle fill="WHITE" radius="49.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                        <Circle fill="WHITE" radius="49.0" stroke="BLACK" strokeType="INSIDE" GridPane.rowIndex="2" />
+                        <Circle fill="WHITE" radius="49.0" stroke="BLACK" strokeType="INSIDE" GridPane.rowIndex="1" />
                         <Circle fill="WHITE" radius="49.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="4" GridPane.rowIndex="2" />
                         <Circle fill="WHITE" radius="49.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                         <Circle fill="WHITE" radius="49.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="6" GridPane.rowIndex="2" />
@@ -96,7 +96,7 @@
                               <Image url="@../Assets/rasheeda.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="110.0" fitWidth="103.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
+                        <ImageView fitHeight="110.0" fitWidth="103.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
                            <image>
                               <Image url="@../Assets/JamesPetullo.png" />
                            </image>

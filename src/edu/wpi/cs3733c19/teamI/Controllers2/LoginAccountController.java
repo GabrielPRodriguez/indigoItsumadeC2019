@@ -1,6 +1,9 @@
 package edu.wpi.cs3733c19.teamI.Controllers2;
 
-import com.jfoenix.controls.*;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXRadioButton;
+import com.jfoenix.controls.JFXTabPane;
+import com.jfoenix.controls.JFXTextField;
 import edu.wpi.cs3733c19.teamI.Entities.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,7 +18,6 @@ import javax.crypto.spec.SecretKeySpec;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.net.URL;
 import java.security.Key;
 import java.util.ResourceBundle;
@@ -23,8 +25,6 @@ import java.util.ResourceBundle;
 
 public class LoginAccountController implements Initializable {
 
-    @FXML
-    JFXButton tb_loginButton;
 
     @FXML
     JFXTextField Email;
@@ -53,35 +53,7 @@ public class LoginAccountController implements Initializable {
     @FXML
     ToggleGroup ToggleType;
 
-    private ToolBarController toolBarController;
 
-
-    public void setToolBarController(ToolBarController toolBarController){
-        this.toolBarController = toolBarController;
-    }
-
-
-    @FXML
-    public void goHome(ActionEvent actionEvent){ toolBarController.goHome(actionEvent); }
-
-    @FXML
-    public void goSubmit(ActionEvent actionEvent){
-        toolBarController.goSubmit(actionEvent);
-    }
-
-    @FXML
-    public void goLogin(ActionEvent actionEvent){
-        toolBarController.goLogin(actionEvent);
-    }
-
-    @FXML
-    public void goWorkflow(ActionEvent actionEvent){toolBarController.goWorkflow(actionEvent);}
-
-    @FXML
-    public void goAbout(ActionEvent actionEvent){toolBarController.goAbout(actionEvent);}
-
-    @FXML
-    public void goExit(ActionEvent actionEvent){toolBarController.goExit(actionEvent);}
 
     @FXML
     public void login(ActionEvent actionEvent) throws Exception {
@@ -113,7 +85,7 @@ public class LoginAccountController implements Initializable {
                 powerCreate = User.userPower.Standard;
                 System.out.println("togg stand");
             }
-            toolBarController.login(actionEvent, Email.getText(), Password.getText(), powerCreate);
+
         }
     }
 
@@ -318,7 +290,7 @@ public class LoginAccountController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        logButton();
+
     }
 
     User.userPower getType() throws Exception {
@@ -349,17 +321,5 @@ public class LoginAccountController implements Initializable {
 
     }
 
-    void logButton(){
-        if(toolBarController == null){
-            tb_loginButton.setText("login");
-        }
-        else if(toolBarController.isSignedIn()){
-            tb_loginButton.setText("logout");
-        }
-        else if(!toolBarController.isSignedIn()) {
-            tb_loginButton.setText("login");
-        }else{
-            tb_loginButton.setText("login");
-        }
-    }
+
 }

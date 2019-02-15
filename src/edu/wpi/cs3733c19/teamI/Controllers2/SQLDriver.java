@@ -253,7 +253,15 @@ public class SQLDriver{
     public boolean filter_immediate(String a, String b){
         a.toLowerCase();
         b.toLowerCase();
+        if (a.length() == b.length()){
+            for (int i = 0; i < b.length(); i++) {
+                if (Character.toLowerCase(b.charAt(i)) != Character.toLowerCase(a.charAt(i))) {
+                    return false;
+                }
 
+            }
+            return true;
+        }
         if (a.length() >= b.length()){
             boolean flag = false;
             for (int d = 0; d <a.length()-b.length(); d++){

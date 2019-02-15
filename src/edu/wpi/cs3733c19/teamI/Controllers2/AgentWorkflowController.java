@@ -444,7 +444,7 @@ public class AgentWorkflowController {
         //emailAddress_text.setText(result.get("email").to_string());
         brandedInfo_text.setText(result.get("extraInfo").to_string());
         //applicationDate_text.setText(result.get("dateOfApplication").to_string());
-        applicantName_text.setText(result.get("nameOfApplicant").to_string());
+       // applicantName_text.setText(result.get("nameOfApplicant").to_string());
         formStatus_string = (result.get("status").to_string()); //I use two variables because I need the formStatus text as a string
         //formStatus_text.setText(formStatus_string);
     }

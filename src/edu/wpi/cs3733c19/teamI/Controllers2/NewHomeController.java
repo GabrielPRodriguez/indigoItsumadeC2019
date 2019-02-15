@@ -197,8 +197,4 @@ public class NewHomeController implements Initializable {
         spin.setMaxSize(0,0);
     }
 
-    
-
-
-
 }

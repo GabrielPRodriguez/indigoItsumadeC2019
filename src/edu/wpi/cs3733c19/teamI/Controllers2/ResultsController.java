@@ -270,15 +270,26 @@ public class ResultsController implements Initializable {
 
     public void table_selected(Event event){
         sub_Form item = tableView.getSelectionModel().getSelectedItem();
-        toolBarController.getInfoController().updateList(item);
-        toolBarController.goDetails(event);
+
+        showSelectedBeverage(item);
+        // toolBarController.getInfoController().updateList(item);
+        // toolBarController.goDetails(event);
     }
 
 
-    private void showSelectTabPopUp() {
+    private void showSelectedBeverage(sub_Form oneBeverage) {
+        /**
+         Hey Grant here is where you are going to assign all the FXID and information
+         I am passing you a sub_Form called "oneBeverage" that you can get all the
+         information you need of the beverage that is selected
 
+         Also I messed around with the Scene Builder application and you should not have
+         enough space to present your data.
 
-
+         If you look at this link https://drizly.com/smirnoff-no-21-vodka/p4683
+         and scroll down to the Product Detail its a good exmple of how you can fir
+         a lot of information close together
+        */
     }
 
     //create CSV function

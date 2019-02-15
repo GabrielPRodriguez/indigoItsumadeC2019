@@ -13,6 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
 
 import java.net.URL;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class AdvancedSearchController implements Initializable {
@@ -36,6 +37,7 @@ public class AdvancedSearchController implements Initializable {
         spin.setMaxSize(Region.USE_COMPUTED_SIZE,Region.USE_COMPUTED_SIZE);
     }
 
+    HashMap<String, String > hmap = new HashMap<String,String>();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -74,6 +76,42 @@ public class AdvancedSearchController implements Initializable {
         Label appType = new Label("Type of Application");
         Label surrenderDate = new Label("Date of Application Surrender");
         Label qualification = new Label("Qualification of Application");
+
+
+        hmap.put("Form ID Number", "formID");
+        hmap.put("COLA Representative ID Number", "repID");
+        hmap.put("Plant Registry Number", "plantRegistry");
+        hmap.put("Domestic", "domestic");
+        hmap.put("Imported", "imported");
+        hmap.put("Serial Number", "serialNumber");
+        hmap.put("Brand Name", "brandName");
+        hmap.put("Type of Beverage", "beverageType");
+        hmap.put("Name other than Brand Name", "fancifulName");
+        hmap.put("Permit Name", "permitName");
+        hmap.put("Street Address of Applicant", "streetAddress");
+        hmap.put("City of Applicant", "city");
+        hmap.put("State of Applicant", "state");
+        hmap.put("Zip Code of Applicant", "zip");
+        hmap.put("Any Information Embossed Onto the Packaging", "extraInfo");
+        hmap.put("Application Date", "dateOfApplicaiton");
+        hmap.put("Formula of Alcohol","formula");
+        hmap.put("Grape Varietal(s)","grapeVarietals");
+        hmap.put("Vintage Year","vintage");
+        hmap.put("Wine Appellation","wineAppellation");
+        hmap.put("Email Address of Applicant","email");
+        hmap.put("Phone Number of Applicant","phoneNumber");
+        hmap.put("PH of Wine","pHValue");
+        hmap.put("Alcohol Percentage","alcoholContent");
+        hmap.put("Status of Application","status");
+        hmap.put("Approving User of TTB","approvingUser");
+        hmap.put("Date of Application Approval","approvalDate");
+        hmap.put("Expiration Date of Application","expirationDate");
+        hmap.put("Date License was Issued","issuedDate");
+        hmap.put("Volume of Alcohol","volume");
+        hmap.put("Type of Application","appType");
+        hmap.put("Date of Application Surrender","surrenderDate");
+        hmap.put("Qualification of Application","qualification");
+
 
         ObservableList<Label> labelList =
                 FXCollections.observableArrayList(
@@ -116,6 +154,7 @@ public class AdvancedSearchController implements Initializable {
         fieldSelector.setItems(labelList);
     }
 
+
     private ToolBarController toolBarController;
 
 
@@ -154,7 +193,7 @@ public class AdvancedSearchController implements Initializable {
    public void performSearch(ActionEvent event){
         try {
             System.out.println((String) fieldSelector.getValue());
-            toolBarController.setResultsMap(querydata.search_sql_wildcard("form_data", "new_csv_from_spreadsheet.db", searchBar.getText(), (String) fieldSelector.getValue()));
+            toolBarController.setResultsMap(querydata.search_sql_wildcard("form_data", "new_csv_from_spreadsheet.db", searchBar.getText(), (String) hmap.get(fieldSelector.getValue())));
             System.out.println((String) fieldSelector.getValue());
         }
         catch(Exception e){

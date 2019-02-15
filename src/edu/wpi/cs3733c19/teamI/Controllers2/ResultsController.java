@@ -19,7 +19,9 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.Writer;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
@@ -227,8 +229,9 @@ public class ResultsController implements Initializable {
     //create CSV function
     public void writeExcel() throws Exception {
         Writer writer = null;
+        String fileTimestamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
         try {
-            File file = new File(System.getProperty("user.home")+ "/Downloads/DATA.CSV");
+            File file = new File(System.getProperty("user.home")+ "/Downloads/DATA" + fileTimestamp + ".CSV");
             writer = new BufferedWriter(new FileWriter(file)); //CSV library function
             // grab text versions of all displayed results
             for (int i = 0; i < DisplayedResults.size(); i++) {
@@ -237,6 +240,7 @@ public class ResultsController implements Initializable {
                 writer.write(text);
             }
         } catch (Exception ex) {
+            System.out.println("Error exporting CSV");
             ex.printStackTrace();
         }
         finally {//when done, finish CSV creation

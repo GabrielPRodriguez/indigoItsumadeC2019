@@ -195,6 +195,24 @@ public class FormSubmissionController implements Initializable {
     @FXML
     Label ph_warning;
 
+    @FXML
+    Label brand_warning;
+
+    @FXML
+    Label domestic_warning;
+
+    @FXML
+    Label beverage_warning;
+
+    @FXML
+    Label phoneNum_warning;
+
+    @FXML
+    Label date_warning;
+
+    @FXML
+    Label name_warning;
+
 
 
 
@@ -255,7 +273,7 @@ public class FormSubmissionController implements Initializable {
             //Sets Serial Number
 
             sentForm.setSerialNumber((serialNum_Field.getText()));
-                
+
 
             //Sets Phone Number
             sentForm.setPhoneNumber(phoneNum_Field.getText());
@@ -360,12 +378,16 @@ public class FormSubmissionController implements Initializable {
 
             if(sentForm.missingRequired()){
                 readyToSend = false;
-                String oldMessage = submit_message.getText();
+                if(sentForm.getdomesticOrImported().isEmpty()){
+                    domestic_warning.setTextFill(Color.web("#FF0000"));
+                    domestic_warning.setText("Required");
+                }
+                //String oldMessage = submit_message.getText();
 
-                String errorMessage = sentForm.getMissingFieldsStatement(); //apply to a Label
-                System.out.println("error message");
-                System.out.println(errorMessage);
-                submit_message.setText(oldMessage + "  " +  errorMessage);
+                //String errorMessage = sentForm.getMissingFieldsStatement(); //apply to a Label
+                //System.out.println("error message");
+                //System.out.println(errorMessage);
+                //submit_message.setText(oldMessage + "  " +  errorMessage);
             }
 
             //sends the form to database when int/double fields contain the correct datatype and

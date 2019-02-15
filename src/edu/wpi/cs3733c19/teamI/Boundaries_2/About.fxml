@@ -17,7 +17,7 @@
 
 <BorderPane prefHeight="790.0" prefWidth="1919.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers2.AboutController">
    <center>
-      <GridPane prefHeight="528.0" prefWidth="1149.0" BorderPane.alignment="CENTER">
+      <GridPane prefHeight="569.0" prefWidth="1719.0" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets bottom="100.0" left="100.0" right="100.0" top="100.0" />
          </BorderPane.margin>
@@ -31,7 +31,7 @@
             <RowConstraints maxHeight="231.0" minHeight="0.0" prefHeight="0.0" valignment="CENTER" vgrow="ALWAYS" />
          </rowConstraints>
          <children>
-            <Label text="About">
+            <Label text="About Indigo Itsumade">
                <font>
                   <Font name="Segoe UI Bold" size="32.0" />
                </font>
@@ -50,14 +50,14 @@
                <children>
                   <GridPane alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="468.0" prefWidth="1735.0">
                     <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="456.0" minWidth="9.0" prefWidth="119.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="451.0" minWidth="4.0" prefWidth="292.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="568.0" minWidth="0.0" prefWidth="114.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="656.0" minWidth="10.0" prefWidth="301.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="456.0" minWidth="9.0" prefWidth="109.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="451.0" minWidth="4.0" prefWidth="304.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="568.0" minWidth="0.0" prefWidth="109.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="656.0" minWidth="10.0" prefWidth="293.0" />
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="562.0" minWidth="3.0" prefWidth="110.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="562.0" minWidth="10.0" prefWidth="335.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="463.0" minWidth="0.0" prefWidth="111.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="463.0" minWidth="10.0" prefWidth="374.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="562.0" minWidth="10.0" prefWidth="330.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="463.0" minWidth="0.0" prefWidth="107.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="463.0" minWidth="10.0" prefWidth="363.0" />
                     </columnConstraints>
                     <rowConstraints>
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -68,13 +68,10 @@
                         <Circle fill="WHITE" radius="49.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="4" />
                         <Circle fill="WHITE" radius="49.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" />
                         <Circle fill="WHITE" radius="49.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="6" />
-                        <Circle fill="WHITE" radius="49.0" stroke="BLACK" strokeType="INSIDE" GridPane.rowIndex="1" />
                         <Circle fill="WHITE" radius="49.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="4" GridPane.rowIndex="1" />
                         <Circle fill="WHITE" radius="49.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                        <Circle fill="WHITE" radius="49.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="6" GridPane.rowIndex="1" />
                         <Circle fill="WHITE" radius="49.0" stroke="BLACK" strokeType="INSIDE" GridPane.rowIndex="2" />
                         <Circle fill="WHITE" radius="49.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-                        <Circle fx:id="yossef" fill="WHITE" radius="49.0" stroke="BLACK" strokeType="INSIDE" />
                         <Circle fill="WHITE" radius="49.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                         <Circle fill="WHITE" radius="49.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="6" GridPane.rowIndex="2" />
                         <Label prefHeight="175.0" prefWidth="260.0" text="Yossef is an Electrical and Computer Engineering major and has the position of Algorithms Specialist for Team Indigo Itsumade. He enjoys street skateboarding and is a varsity athlete for the WPI Track and Field/ Cross Country team. " wrapText="true" GridPane.columnIndex="1" />
@@ -83,10 +80,10 @@
                         <Label prefHeight="156.0" prefWidth="244.0" text="Gabriel is majoring in Robotic and Mechanical Engineering, and serves as the teams Test Engineering. He enjoys working on hands on projects especially in the Unmanned Aerial System’s world. " wrapText="true" GridPane.columnIndex="7" />
                         <Label prefHeight="175.0" prefWidth="260.0" text="Stephen is the document analysist. I help when I can. I like games especially warhammer." wrapText="true" GridPane.columnIndex="5" GridPane.rowIndex="1" />
                         <Label prefHeight="175.0" prefWidth="260.0" wrapText="true" GridPane.columnIndex="5" GridPane.rowIndex="2" />
-                        <Label prefHeight="175.0" prefWidth="260.0" wrapText="true" GridPane.columnIndex="7" GridPane.rowIndex="1" />
+                        <Label prefHeight="175.0" prefWidth="260.0" text="Rasheeda is a Computer Science major who likes repairing old game consoles, making costumes and props, and doing CAD/CAM work." wrapText="true" GridPane.columnIndex="7" GridPane.rowIndex="1" />
                         <Label prefHeight="175.0" prefWidth="260.0" wrapText="true" GridPane.columnIndex="7" GridPane.rowIndex="2" />
                         <Label prefHeight="175.0" prefWidth="260.0" text="Fareya is a computer science major and enjoys reading, listening to podcasts, and outdoorsy things like hiking and camping." wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Label prefHeight="175.0" prefWidth="260.0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label prefHeight="178.0" prefWidth="290.0" text="James Petullo is a computer science major with a broad range of interests within the academic discipline, including NLP, web application development, Peer-to-Peer (p2p) technologies, and compiler development. James believes that all the world is code, and contributes quite frequently to StackOverflow as an answerer for “Python” and “JQuery”-tagged questions." wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <Label prefHeight="175.0" prefWidth="260.0" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="2" />
                         <Label prefHeight="175.0" prefWidth="260.0" text="Rachael is a Computer Science major with a minor in Interactive Media and Game Design. She enjoys creating digital art and taking nature photography." wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                         <ImageView fitHeight="130.0" fitWidth="99.0" pickOnBounds="true" preserveRatio="true">
@@ -94,18 +91,20 @@
                               <Image url="@../Assets/yossef.png" />
                            </image>
                         </ImageView>
+                        <ImageView fitHeight="103.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6" GridPane.rowIndex="1">
+                           <image>
+                              <Image url="@../Assets/rasheeda.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="110.0" fitWidth="103.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
+                           <image>
+                              <Image url="@../Assets/JamesPetullo.png" />
+                           </image>
+                        </ImageView>
                      </children>
                   </GridPane>
                </children>
             </HBox>
-            <Label text="Extending a special thank you to the US Treasury and The Tobacco Tax &amp; Trade Bureau" wrapText="true" GridPane.rowIndex="3">
-               <font>
-                  <Font name="Segoe UI Bold" size="20.0" />
-               </font>
-               <GridPane.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </GridPane.margin>
-            </Label>
          </children>
       </GridPane>
    </center>
@@ -164,4 +163,11 @@
          </right>
       </JFXToolbar>
    </top>
+   <bottom>
+      <Label text="Extending a special thank you to the US Treasury and The Tobacco Tax &amp; Trade Bureau" wrapText="true" BorderPane.alignment="CENTER">
+         <font>
+            <Font name="Segoe UI Bold" size="20.0" />
+         </font>
+      </Label>
+   </bottom>
 </BorderPane>

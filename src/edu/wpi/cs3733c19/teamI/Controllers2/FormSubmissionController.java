@@ -186,6 +186,9 @@ public class FormSubmissionController implements Initializable {
     @FXML
     JFXTextField state_Field;
 
+    @FXML
+    Label alcoholPercent_warning;
+
 
 
 
@@ -341,8 +344,10 @@ public class FormSubmissionController implements Initializable {
             catch (NumberFormatException e){
                 readyToSend = false;
                 System.out.println("Al content");
-                String oldMessage = submit_message.getText();
-                submit_message.setText(oldMessage + "  Please enter a number for Alcohol Percentage.");
+                //String oldMessage = submit_message.getText();
+                //submit_message.setText(oldMessage + "  Please enter a number for Alcohol Percentage.");
+                alcoholPercent_warning.setTextFill(Color.web("#FF0000"));
+                alcoholPercent_warning.setText("Please enter a number");
 
             }
 
@@ -443,6 +448,7 @@ public class FormSubmissionController implements Initializable {
         city_Field.clear();
         zip_Field.clear();
         permitName.clear();
+        alcoholPercent_warning.setText("");
 
     }
     @Override

@@ -67,6 +67,7 @@
                                  </font>
                               </Label>
                               <JFXTextField fx:id="serialNum_Field" />
+                              <Label fx:id="serial_warning" />
                            </children>
                         </VBox>
                         <VBox spacing="10.0" HBox.hgrow="ALWAYS">
@@ -150,6 +151,7 @@
                                  </font>
                               </Label>
                               <JFXTextField fx:id="alcoholPercent_Field" />
+                              <Label fx:id="alcoholPercent_warning" prefHeight="17.0" prefWidth="189.0" />
                            </children>
                         </VBox>
                         <VBox layoutX="10.0" layoutY="10.0" spacing="10.0" HBox.hgrow="ALWAYS">
@@ -214,6 +216,7 @@
                                  </font>
                               </Label>
                               <JFXTextField fx:id="ph_Field" />
+                              <Label text="ph_warning" />
                            </children>
                         </VBox>
                      </children>
@@ -343,7 +346,7 @@
                         <Pane HBox.hgrow="ALWAYS" />
                         <VBox prefHeight="158.0" prefWidth="336.0" spacing="20.0">
                            <children>
-                              <Label fx:id="submit_message" prefHeight="65.0" prefWidth="336.0" wrapText="true">
+                              <Label fx:id="submit_message" nodeOrientation="LEFT_TO_RIGHT" wrapText="true" VBox.vgrow="ALWAYS">
                                  <padding>
                                     <Insets top="50.0" />
                                  </padding>

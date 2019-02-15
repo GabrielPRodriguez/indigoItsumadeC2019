@@ -253,14 +253,9 @@ public class FormSubmissionController implements Initializable {
 
 
             //Sets Serial Number
-            try {
-                sentForm.setSerialNumber((serialNum_Field.getText()));
-            }
-            catch (NumberFormatException e){
-                readyToSend = false;
-                serial_warning.setTextFill(Color.web("#FF0000"));
-                serial_warning.setText("Please enter a number");
-            }
+
+            sentForm.setSerialNumber((serialNum_Field.getText()));
+                
 
             //Sets Phone Number
             sentForm.setPhoneNumber(phoneNum_Field.getText());

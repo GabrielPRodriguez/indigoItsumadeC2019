@@ -216,7 +216,7 @@
                                  </font>
                               </Label>
                               <JFXTextField fx:id="ph_Field" />
-                              <Label text="ph_warning" />
+                              <Label fx:id="ph_warning" />
                            </children>
                         </VBox>
                      </children>

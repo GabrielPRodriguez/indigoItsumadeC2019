@@ -47,16 +47,10 @@ public class AboutController implements Initializable {
         tb_loginButton.setText("logout");
     }
 
-    @FXML
-    Circle yossef;
-
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-//        Image image = new Image(new File("Assets/blue_pill_button.png").toURI().toString());
-//        ImagePattern imagePattern = new ImagePattern(image);
-//
-//        yossef.setFill(imagePattern);
+        
     }
 
     @FXML

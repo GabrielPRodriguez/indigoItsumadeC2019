@@ -189,6 +189,12 @@ public class FormSubmissionController implements Initializable {
     @FXML
     Label alcoholPercent_warning;
 
+    @FXML
+    Label serial_warning;
+
+    @FXML
+    Label ph_warning;
+
 
 
 
@@ -252,8 +258,8 @@ public class FormSubmissionController implements Initializable {
             }
             catch (NumberFormatException e){
                 readyToSend = false;
-                String oldMessage = submit_message.getText();
-                submit_message.setText(oldMessage + "  Please enter a number for Serial Number" );
+                serial_warning.setTextFill(Color.web("#FF0000"));
+                serial_warning.setText("Please enter a number");
             }
 
             //Sets Phone Number
@@ -327,10 +333,10 @@ public class FormSubmissionController implements Initializable {
                     sentForm.setpHValue(Double.parseDouble(ph_Field.getText()));
                 }
                 catch (NumberFormatException e){
-                    System.out.println("ph");
+
                     readyToSend = false;
-                    String oldMessage = submit_message.getText();
-                    submit_message.setText(oldMessage + "  Please enter a number for pH Value" );
+                    ph_warning.setTextFill(Color.web("#FF0000"));
+                    ph_warning.setText("Please enter a number");
 
 
                 }

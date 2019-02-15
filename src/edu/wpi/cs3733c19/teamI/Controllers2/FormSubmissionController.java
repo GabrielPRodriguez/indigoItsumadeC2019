@@ -13,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
 
 import java.io.IOException;
 import java.net.URL;
@@ -167,8 +168,8 @@ public class FormSubmissionController implements Initializable {
     @FXML
     JFXTextField vintage_Field;
 
-    //@FXML
-    //Label submit_message;
+    @FXML
+    Label submit_message;
 
     @FXML
     JFXTextField volume_Field;
@@ -184,6 +185,33 @@ public class FormSubmissionController implements Initializable {
 
     @FXML
     JFXTextField state_Field;
+
+    @FXML
+    Label alcoholPercent_warning;
+
+    @FXML
+    Label serial_warning;
+
+    @FXML
+    Label ph_warning;
+
+    @FXML
+    Label brand_warning;
+
+    @FXML
+    Label domestic_warning;
+
+    @FXML
+    Label beverage_warning;
+
+    @FXML
+    Label phoneNum_warning;
+
+    @FXML
+    Label date_warning;
+
+    @FXML
+    Label name_warning;
 
 
 
@@ -214,11 +242,13 @@ public class FormSubmissionController implements Initializable {
     private void handleSubmitButton(ActionEvent event) throws IOException, Exception{
         System.out.println("Starting submit");
         if(event.getSource()== submit){
+            clearWarnings();
             System.out.println("event get source");
             Form sentForm = new Form();
             boolean readyToSend = true; //if true by the end of the method, the form will be sent to database
-            //submit_message.setText(""); //string to insert into textfield either confirming submission or printing error messge
+            submit_message.setText("");//string to insert into textfield either confirming submission or printing error messge
 
+            submit_message.setTextFill(Color.web("#FF0000"));
             //sets Domestic Or Imported field
 
             if (origin.getSelectedToggle() != null) {
@@ -242,14 +272,9 @@ public class FormSubmissionController implements Initializable {
 
 
             //Sets Serial Number
-            try {
-                sentForm.setSerialNumber((serialNum_Field.getText()));
-            }
-            catch (NumberFormatException e){
-                readyToSend = false;
-                //String oldMessage = submit_message.getText();
-                //submit_message.setText(oldMessage + "  Please enter a number for Serial Number" );
-            }
+
+            sentForm.setSerialNumber((serialNum_Field.getText()));
+
 
             //Sets Phone Number
             sentForm.setPhoneNumber(phoneNum_Field.getText());
@@ -266,7 +291,13 @@ public class FormSubmissionController implements Initializable {
             //Sets Date of Submission
 
             //sentForm.setDateOfApplication(date_Field.getText());
-            sentForm.setDateOfApplication(date_Field.getValue().toString());
+            try{
+                sentForm.setDateOfApplication(date_Field.getValue().toString());
+            }
+            catch (NullPointerException e){
+
+            }
+
 
             //Sets Branded/Embossed Non-label info
             sentForm.setExtraInfo(brandedInfo_Field.getText());
@@ -316,10 +347,10 @@ public class FormSubmissionController implements Initializable {
                     sentForm.setpHValue(Double.parseDouble(ph_Field.getText()));
                 }
                 catch (NumberFormatException e){
-                    System.out.println("ph");
+
                     readyToSend = false;
-                   // String oldMessage = submit_message.getText();
-                    //submit_message.setText(oldMessage + "  Please enter a number for pH Value" );
+                    ph_warning.setTextFill(Color.web("#FF0000"));
+                    ph_warning.setText("Please enter a number");
 
 
                 }
@@ -333,8 +364,10 @@ public class FormSubmissionController implements Initializable {
             catch (NumberFormatException e){
                 readyToSend = false;
                 System.out.println("Al content");
-               // String oldMessage = submit_message.getText();
-               // submit_message.setText(oldMessage + "  Please enter a number for Alcohol Percentage.");
+                //String oldMessage = submit_message.getText();
+                //submit_message.setText(oldMessage + "  Please enter a number for Alcohol Percentage.");
+                alcoholPercent_warning.setTextFill(Color.web("#FF0000"));
+                alcoholPercent_warning.setText("Please enter a number");
 
             }
 
@@ -346,11 +379,42 @@ public class FormSubmissionController implements Initializable {
 
             if(sentForm.missingRequired()){
                 readyToSend = false;
-               // String oldMessage = submit_message.getText();
+                if(sentForm.getdomesticOrImported().isEmpty()){
+                    domestic_warning.setTextFill(Color.web("#FF0000"));
+                    domestic_warning.setText("Required");
+                }
+                if(sentForm.getbeverageType().isEmpty()){
+                    beverage_warning.setTextFill(Color.web("#FF0000"));
+                    beverage_warning.setText("Required");
+                }
 
-                String errorMessage = sentForm.getMissingFieldsStatement(); //apply to a Label
-                System.out.println("error message");
-                System.out.println(errorMessage);
+                if(sentForm.getserialNumber().isEmpty()){
+                    serial_warning.setTextFill(Color.web("#FF0000"));
+                    serial_warning.setText("Required");
+                }
+
+                if(sentForm.getbrandName().isEmpty()){
+                    brand_warning.setTextFill(Color.web("#FF0000"));
+                    brand_warning.setText("Required");
+                }
+                if(sentForm.getdateOfApplication().isEmpty()){
+                    date_warning.setTextFill(Color.web("#FF0000"));
+                    date_warning.setText("Required");
+                }
+                if(sentForm.getnameOfApplicant().isEmpty()){
+                    name_warning.setTextFill(Color.web("#FF0000"));
+                    name_warning.setText("Required");
+                }
+                if(sentForm.getphoneNumber().isEmpty()){
+                    phoneNum_warning.setTextFill(Color.web("#FF0000"));
+                    phoneNum_warning.setText("Required");
+
+                }
+                //String oldMessage = submit_message.getText();
+
+                //String errorMessage = sentForm.getMissingFieldsStatement(); //apply to a Label
+                //System.out.println("error message");
+                //System.out.println(errorMessage);
                 //submit_message.setText(oldMessage + "  " +  errorMessage);
             }
 
@@ -393,12 +457,14 @@ public class FormSubmissionController implements Initializable {
 
                 //displays message after form has successfully been entered into the database
                 String success = "Form successfully submitted.";
-               // submit_message.setText(success);
+                submit_message.setTextFill(Color.web("#4BB543"));
+                submit_message.setText(success);
 
                 delete();
 
 
             }
+
 /*
                 submit_message.setText(success);
                 System.out.println(success);
@@ -433,7 +499,30 @@ public class FormSubmissionController implements Initializable {
         city_Field.clear();
         zip_Field.clear();
         permitName.clear();
+        alcoholPercent_warning.setText("");
+        phoneNum_warning.setText("");
+        name_warning.setText("");
+        date_warning.setText("");
+        brand_warning.setText("");
+        beverage_warning.setText("");
+        serial_warning.setText("");
+        domestic_warning.setText("");
+        ph_warning.setText("");
 
+
+    }
+
+    private void clearWarnings(){
+        alcoholPercent_warning.setText("");
+        phoneNum_warning.setText("");
+        name_warning.setText("");
+        date_warning.setText("");
+        brand_warning.setText("");
+        beverage_warning.setText("");
+        serial_warning.setText("");
+        domestic_warning.setText("");
+        ph_warning.setText("");
+        submit_message.setText("");
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {

@@ -210,6 +210,21 @@ public class SQLDriver{
         }
         ArrayList<HashMap<String, ReturnedValue>>final_results = new ArrayList<HashMap<String, ReturnedValue>>();
         if (all_distances.size() > 0){
+            ArrayList<Integer>_distances = new ArrayList<Integer>();
+            for (int val:all_distances){
+                boolean _flag = true;
+                for (int _val:_distances){
+                    if (val == _val){
+                        _flag = false;
+                        break;
+                    }
+
+                }
+                if (_flag){
+                    _distances.add(val);
+                }
+            }
+            all_distances = _distances;
             Collections.sort(all_distances);
 
             int _final_count = 0;
@@ -238,7 +253,15 @@ public class SQLDriver{
     public boolean filter_immediate(String a, String b){
         a.toLowerCase();
         b.toLowerCase();
+        if (a.length() == b.length()){
+            for (int i = 0; i < b.length(); i++) {
+                if (Character.toLowerCase(b.charAt(i)) != Character.toLowerCase(a.charAt(i))) {
+                    return false;
+                }
 
+            }
+            return true;
+        }
         if (a.length() >= b.length()){
             boolean flag = false;
             for (int d = 0; d <a.length()-b.length(); d++){
@@ -324,6 +347,21 @@ public class SQLDriver{
         }
         ArrayList<HashMap<String, ReturnedValue>>final_results = new ArrayList<HashMap<String, ReturnedValue>>();
         if (all_distances.size() > 0){
+            ArrayList<Integer>_distances = new ArrayList<Integer>();
+            for (int val:all_distances){
+                boolean _flag = true;
+                for (int _val:_distances){
+                    if (val == _val){
+                        _flag = false;
+                        break;
+                    }
+
+                }
+                if (_flag){
+                    _distances.add(val);
+                }
+            }
+            all_distances = _distances;
             Collections.sort(all_distances);
 
             int _final_count = 0;

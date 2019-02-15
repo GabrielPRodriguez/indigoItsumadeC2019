@@ -2,10 +2,7 @@ package edu.wpi.cs3733c19.teamI.Algorithms;
 
 import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.ReturnedValue;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
+import java.util.*;
 
 public class SQLFuzzy implements IStrategyFuzzy {
 
@@ -22,6 +19,19 @@ public class SQLFuzzy implements IStrategyFuzzy {
 
         }catch(Exception e){
             System.out.println("Unable to query the results.");
+        }
+    }
+
+    public void setSearchParam(ArrayList<String> searchParam){
+        if(searchParam.isEmpty()){
+            searchParam.add("fancifulName");
+            searchParam.add("beverageType");
+            searchParam.add("extraInfo");
+        }
+        searchParameters.clear();
+        for(String param: searchParam) {
+            System.out.println(param);
+            searchParameters.add(param);
         }
     }
     //function to remove duplicate search results (from the multiple sql queries)

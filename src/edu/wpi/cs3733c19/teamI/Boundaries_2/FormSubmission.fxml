@@ -78,6 +78,7 @@
                                  </font>
                               </Label>
                               <JFXTextField fx:id="brandName_Field" />
+                              <Label fx:id="brand_warning" />
                            </children>
                         </VBox>
                         <VBox layoutX="10.0" layoutY="10.0" spacing="10.0" HBox.hgrow="ALWAYS">
@@ -107,6 +108,7 @@
                                     <JFXRadioButton fx:id="imported_RadButton" mnemonicParsing="false" text="Imported" toggleGroup="$origin" />
                                  </children>
                               </VBox>
+                              <Label fx:id="domestic_warning" />
                            </children>
                         </VBox>
                         <VBox spacing="10.0" HBox.hgrow="ALWAYS">
@@ -125,6 +127,7 @@
                                     </JFXRadioButton>
                                     <JFXRadioButton fx:id="beer_RadButton" mnemonicParsing="false" text="Malt Beverage" toggleGroup="$beverage" />
                                     <JFXRadioButton fx:id="liquor_RadButton" mnemonicParsing="false" text="Distilled Spirits" toggleGroup="$beverage" />
+                                    <Label fx:id="beverage_warning" />
                                  </children>
                               </VBox>
                            </children>
@@ -289,6 +292,7 @@
                                  </font>
                               </Label>
                               <JFXDatePicker fx:id="date_Field" defaultColor="#046b99" />
+                              <Label fx:id="date_warning" />
                            </children>
                         </VBox>
                         <VBox spacing="10.0" HBox.hgrow="ALWAYS">

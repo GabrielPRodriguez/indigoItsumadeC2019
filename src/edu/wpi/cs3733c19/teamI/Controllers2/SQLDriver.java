@@ -210,6 +210,21 @@ public class SQLDriver{
         }
         ArrayList<HashMap<String, ReturnedValue>>final_results = new ArrayList<HashMap<String, ReturnedValue>>();
         if (all_distances.size() > 0){
+            ArrayList<Integer>_distances = new ArrayList<Integer>();
+            for (int val:all_distances){
+                boolean _flag = true;
+                for (int _val:_distances){
+                    if (val == _val){
+                        _flag = false;
+                        break;
+                    }
+
+                }
+                if (_flag){
+                    _distances.add(val);
+                }
+            }
+            all_distances = _distances;
             Collections.sort(all_distances);
 
             int _final_count = 0;
@@ -324,6 +339,21 @@ public class SQLDriver{
         }
         ArrayList<HashMap<String, ReturnedValue>>final_results = new ArrayList<HashMap<String, ReturnedValue>>();
         if (all_distances.size() > 0){
+            ArrayList<Integer>_distances = new ArrayList<Integer>();
+            for (int val:all_distances){
+                boolean _flag = true;
+                for (int _val:_distances){
+                    if (val == _val){
+                        _flag = false;
+                        break;
+                    }
+
+                }
+                if (_flag){
+                    _distances.add(val);
+                }
+            }
+            all_distances = _distances;
             Collections.sort(all_distances);
 
             int _final_count = 0;

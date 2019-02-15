@@ -242,6 +242,7 @@ public class FormSubmissionController implements Initializable {
     private void handleSubmitButton(ActionEvent event) throws IOException, Exception{
         System.out.println("Starting submit");
         if(event.getSource()== submit){
+            clearWarnings();
             System.out.println("event get source");
             Form sentForm = new Form();
             boolean readyToSend = true; //if true by the end of the method, the form will be sent to database
@@ -382,6 +383,33 @@ public class FormSubmissionController implements Initializable {
                     domestic_warning.setTextFill(Color.web("#FF0000"));
                     domestic_warning.setText("Required");
                 }
+                if(sentForm.getbeverageType().isEmpty()){
+                    beverage_warning.setTextFill(Color.web("#FF0000"));
+                    beverage_warning.setText("Required");
+                }
+
+                if(sentForm.getserialNumber().isEmpty()){
+                    serial_warning.setTextFill(Color.web("#FF0000"));
+                    serial_warning.setText("Required");
+                }
+
+                if(sentForm.getbrandName().isEmpty()){
+                    brand_warning.setTextFill(Color.web("#FF0000"));
+                    brand_warning.setText("Required");
+                }
+                if(sentForm.getdateOfApplication().isEmpty()){
+                    date_warning.setTextFill(Color.web("#FF0000"));
+                    date_warning.setText("Required");
+                }
+                if(sentForm.getnameOfApplicant().isEmpty()){
+                    name_warning.setTextFill(Color.web("#FF0000"));
+                    name_warning.setText("Required");
+                }
+                if(sentForm.getphoneNumber().isEmpty()){
+                    phoneNum_warning.setTextFill(Color.web("#FF0000"));
+                    phoneNum_warning.setText("Required");
+
+                }
                 //String oldMessage = submit_message.getText();
 
                 //String errorMessage = sentForm.getMissingFieldsStatement(); //apply to a Label
@@ -472,7 +500,29 @@ public class FormSubmissionController implements Initializable {
         zip_Field.clear();
         permitName.clear();
         alcoholPercent_warning.setText("");
+        phoneNum_warning.setText("");
+        name_warning.setText("");
+        date_warning.setText("");
+        brand_warning.setText("");
+        beverage_warning.setText("");
+        serial_warning.setText("");
+        domestic_warning.setText("");
+        ph_warning.setText("");
 
+
+    }
+
+    private void clearWarnings(){
+        alcoholPercent_warning.setText("");
+        phoneNum_warning.setText("");
+        name_warning.setText("");
+        date_warning.setText("");
+        brand_warning.setText("");
+        beverage_warning.setText("");
+        serial_warning.setText("");
+        domestic_warning.setText("");
+        ph_warning.setText("");
+        submit_message.setText("");
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {

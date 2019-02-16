@@ -18,6 +18,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.net.URL;
 import java.security.Key;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 
@@ -125,9 +126,10 @@ public class LoginAccountController implements Initializable {
     }
 
     public void attemptCreate(ActionEvent actionEvent) throws Exception{
-        String users = "";
+        HashMap<String> users = "";
+        SQLDriver loginDriver = new SQLDriver();
 
-        users = readFile(users);
+        users = loginDriver.search_sql_wildcard("user_credentials", "user_credentials.db", "email", EmailCreate.getText());//readFile(users);
 
 
 

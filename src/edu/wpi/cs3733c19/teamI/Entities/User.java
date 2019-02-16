@@ -5,7 +5,7 @@ public class User {
     private String password;
     private Boolean isAdmin = false;
     private userPower userType;
-        public enum userPower
+    public enum userPower
         {
         Standard, Company, TTBEmployee, SuperAdmin
     }

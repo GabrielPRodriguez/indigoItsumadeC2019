@@ -19,6 +19,9 @@ import java.util.HashMap;
 
 public class ToolBarController {
 
+
+    public Stage primaryStage = Main.getWindow();
+
     @FXML
     JFXButton tb_homeButton;
 
@@ -39,25 +42,16 @@ public class ToolBarController {
     Label signInLabel   //here is what we are going to write to when the person signs in
     */
     static ToolBarController instance;
-
-    public Stage primaryStage = Main.getWindow();
-
+    private User curUser;
     private ResultsController ResultsController;
     private DetailedResultsController InfoController;
-    private User curUser;
     private boolean signedIn = false;
 
     private ArrayList<HashMap<String, ReturnedValue>> resultsMap = new ArrayList<HashMap<String, ReturnedValue>>();
 
 
-    // Observable Classes for displaying the name
-    private Message clearText;
-    private ToolBarSignInName toolBarSignInName;
-
     public ToolBarController() {
-        clearText = new Message();
-        toolBarSignInName = new ToolBarSignInName();
-        clearText.register(toolBarSignInName);
+
     }
 
     static {
@@ -67,8 +61,6 @@ public class ToolBarController {
     public static ToolBarController getInstance() {
         return instance;
     }
-
-
 
 
     void setResultsMap(ArrayList<HashMap<String, ReturnedValue>> resultsMap){
@@ -90,82 +82,88 @@ public class ToolBarController {
     public void loginRFID(String username, String password, User.userPower power){
         signedIn = true;
         curUser = User.getUser(username, password, power);
-
     }
 
-    void login(String username, String password, User.userPower power) throws IOException {
-        signedIn = true;
-        curUser = User.getUser(username, password, power);
-        if(curUser.getUserType().equals(User.userPower.TTBEmployee)){
-            goWorkflow();
-        }
-        else if(curUser.getUserType().equals(User.userPower.Company)){
-            goSubmit();
-        }
-        else{
-            goSearch();
-        }
-
-        tb_loginButton.setText("Logout");
+    public void login(String username, String password, User.userPower power) throws IOException
+    {
+       signedIn =true;
+       curUser = User.getUser(username, password, power);
+       goWorkflow();
     }
-
-
-
-
 
 
     public void goHome() throws IOException {
         Parent homeParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/Home.fxml"));
+        primaryStage = Main.getWindow();
         primaryStage.getScene().setRoot(homeParent);
     }
 
 
     public void goAbout() throws IOException {
         Parent aboutParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/About.fxml"));
+        primaryStage = Main.getWindow();
         primaryStage.getScene().setRoot(aboutParent);
     }
 
     public void goSubmit() throws IOException {
-
-        if(curUser == null) {
+        if (signedIn == false)
+        {
             goLogin();
         }
-        else if (!curUser.getUserType().equals(User.userPower.TTBEmployee)){
-            Parent formSubParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/FormSubmission.fxml"));
-            primaryStage.getScene().setRoot(formSubParent);
+        Parent submitParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/FormSubmission.fxml"));
+        primaryStage = Main.getWindow();
+        primaryStage.getScene().setRoot(submitParent);
 
-        }
     }
 
     public void goLogin() throws IOException {
+        Parent loginParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/Login_CreateAccount.fxml"));
+        primaryStage = Main.getWindow();
+        primaryStage.getScene().setRoot(loginParent);
 
-        if(!signedIn) {
-            Parent loginParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/Login_CreateAccount.fxml"));
-            primaryStage.getScene().setRoot(loginParent);
-        }
-        else if (signedIn){
-            signedIn = false;
-            curUser = null;
-            Parent loginParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/Login_CreateAccount.fxml"));
-            primaryStage.getScene().setRoot(loginParent);
-        }
     }
-
 
     public void goWorkflow() throws IOException {
-        if (curUser == null) {
+        System.out.print(signedIn);
+
+        if(curUser == null)
+        {
             goLogin();
         }
-        else if (!curUser.getUserType().equals(User.userPower.Company)){
-            Parent workflowAgentParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/WorkflowAgent.fxml"));
-            System.out.println("parent: " + workflowAgentParent);
-
-            primaryStage.getScene().setRoot(workflowAgentParent);
+        if(curUser.getUserType() == User.userPower.TTBEmployee)
+        {
+            goWorkflowAgent();
         }
+        if(curUser.getUserType().equals(User.userPower.Company))
+        {
+            goWorkflowManufacturer();
+        }
+        if(curUser.getUserType().equals(User.userPower.Standard));
+        {
+            goHome();
+        }
+
+        goLogin();
+
     }
+
+    public void goWorkflowAgent() throws IOException {
+        Parent agentWorkParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/WorkflowAgent.fxml"));
+        primaryStage = Main.getWindow();
+        primaryStage.getScene().setRoot(agentWorkParent);
+    }
+
+    public void goWorkflowManufacturer() throws IOException
+    {
+        Parent manuWorkParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/WorkflowManufacturer.fxml"));
+        primaryStage = Main.getWindow();
+        primaryStage.getScene().setRoot(manuWorkParent);
+    }
+
 
     public void goAdvancedSearch() throws IOException {
         Parent advancedSearchParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/AdvancedSearch.fxml"));
+        primaryStage = Main.getWindow();
         primaryStage.getScene().setRoot(advancedSearchParent);
 
     }
@@ -173,6 +171,7 @@ public class ToolBarController {
     public void goSearch() throws IOException {
 
         Parent searchParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/Home.fxml"));
+        primaryStage = Main.getWindow();
         primaryStage.getScene().setRoot(searchParent);
     }
 
@@ -187,21 +186,7 @@ public class ToolBarController {
         System.out.println("toolbar: " + resultsList);
     }
 
-    public void displaySignInName(String name){
-        clearText.setText(name);
-        // TODO implement Label on the FXML ToolBar to display the sign in of the person
-        // signInLabel.setText(toolBarSignInName.getText());
-    }
-    // TODO call this method when the person signs out of the account
-    public void takeOffSignInName(){
-        // signInLabel.setText("");
-    }
 
-    public boolean isSignedIn() {
-        return signedIn;
-    }
 
-    public void setSignedIn(boolean signedIn) {
-        this.signedIn = signedIn;
-    }
+
 }

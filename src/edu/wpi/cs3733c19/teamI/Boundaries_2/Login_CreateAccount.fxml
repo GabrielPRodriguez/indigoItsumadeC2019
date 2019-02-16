@@ -17,7 +17,7 @@
 
 <BorderPane stylesheets="@../Assets/Style.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers2.LoginAccountController">
    <top>
-      <fx:include source="TTBToolbar.fxml"/>
+      <fx:include source="TTBToolbar.fxml" />
    </top>
    <center>
       <JFXTabPane fx:id="primaryPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: #e4e2e0;" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
@@ -56,7 +56,7 @@
                                     </JFXPasswordField>
                                  </children>
                               </VBox>
-                              <JFXButton alignment="CENTER" mnemonicParsing="false" onAction="#login" style="-fx-background-color: #046b99;" text="Log In" textFill="WHITE">
+                              <JFXButton fx:id="loginEnterButton" alignment="CENTER" mnemonicParsing="false" onAction="#login" style="-fx-background-color: #046b99;" text="Log In" textFill="WHITE">
                                  <font>
                                     <Font name="Segoe UI Bold" size="16.0" />
                                  </font>
@@ -128,7 +128,7 @@
                                     </JFXPasswordField>
                                  </children>
                               </VBox>
-                              <JFXButton alignment="CENTER" mnemonicParsing="false" onAction="#logInCreate" style="-fx-background-color: #046b99;" text="Log In" textFill="WHITE">
+                              <JFXButton fx:id="createAccountButton" alignment="CENTER" mnemonicParsing="false" onAction="#logInCreate" style="-fx-background-color: #046b99;" text="Create Account" textFill="WHITE">
                                  <font>
                                     <Font name="Segoe UI Bold" size="16.0" />
                                  </font>

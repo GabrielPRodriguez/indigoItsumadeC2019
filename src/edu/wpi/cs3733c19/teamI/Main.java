@@ -19,6 +19,7 @@ import javax.imageio.IIOParam;
 
 public class Main extends Application implements SerialPortPacketListener {
 
+
     ToolBarController toolBarController = ToolBarController.getInstance();
     public static SearchResults Results = new SearchResults();
     private IIOParam SearchLoader;
@@ -106,8 +107,9 @@ public class Main extends Application implements SerialPortPacketListener {
 
 
     public void RFID_Login(String username, String password, User.userPower power){
-        toolBarController.loginRFID(username, password, power);
-        //goLogin(ActionEvent e) from ToolBarController instance
+        if(!power.equals(null)) {
+            toolBarController.loginRFID(username, password, power);
+        }
     }
 
 

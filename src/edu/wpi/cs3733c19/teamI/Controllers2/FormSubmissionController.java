@@ -15,12 +15,13 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class FormSubmissionController implements Initializable {
+
+    private ToolBarController toolBarController = ToolBarController.getInstance();
 
     @FXML
     HBox wineFields;
@@ -58,35 +59,6 @@ public class FormSubmissionController implements Initializable {
         }
 
     }
-    private ToolBarController toolBarController;
-
-
-    public void setToolBarController(ToolBarController toolBarController){
-        this.toolBarController = toolBarController;
-    }
-
-
-    @FXML
-    public void goHome(ActionEvent actionEvent){ toolBarController.goHome(actionEvent); }
-
-    @FXML
-    public void goSubmit(ActionEvent actionEvent){
-        toolBarController.goSubmit(actionEvent);
-    }
-
-    @FXML
-    public void goLogin(ActionEvent actionEvent){
-        toolBarController.goLogin(actionEvent);
-    }
-
-    @FXML
-    public void goWorkflow(ActionEvent actionEvent){toolBarController.goWorkflow(actionEvent);}
-
-    @FXML
-    public void goAbout(ActionEvent actionEvent){toolBarController.goAbout(actionEvent);}
-
-    @FXML
-    public void goExit(ActionEvent actionEvent){toolBarController.goExit(actionEvent);}
 
     @FXML
     Button save_Button;
@@ -214,32 +186,8 @@ public class FormSubmissionController implements Initializable {
     Label name_warning;
 
 
-
-
-    //Enables the fields that are only used for wine when the wine radial button is selected
-/*
     @FXML
-    private void activateWineFields(ActionEvent wineSelect) throws IOException {
-        appellation_Field.setDisable(false);
-        ph_Field.setDisable(false);
-        vintage_Field.setDisable(false);
-        grape_Field.setDisable(false);
-    }
-
-
-    //Disables the wine-only fields when the beer or liquor radial buttons are selected
-
-    @FXML
-    private void disableWineFields(ActionEvent wineDeselect) throws IOException{
-        appellation_Field.setDisable(true);
-        ph_Field.setDisable(true);
-        vintage_Field.setDisable(true);
-        grape_Field.setDisable(true);
-    }
-*/
-    //sets the values for each field into a Form object when the submit button is pressed.
-    @FXML
-    private void handleSubmitButton(ActionEvent event) throws IOException, Exception{
+    private void handleSubmitButton(ActionEvent event) throws Exception{
         System.out.println("Starting submit");
         if(event.getSource()== submit){
             clearWarnings();
@@ -534,8 +482,6 @@ public class FormSubmissionController implements Initializable {
                 setWineToggle();
             }
         });
-
-
 
     }
 }

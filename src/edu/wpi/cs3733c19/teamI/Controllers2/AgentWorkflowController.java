@@ -6,63 +6,18 @@ import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.DBValue;
 import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.ReturnedValue;
-import edu.wpi.cs3733c19.teamI.Entities.sub_Form;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.MenuItem;
 
-import java.awt.event.MouseEvent;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.Observable;
 
 public class AgentWorkflowController {
-    private ToolBarController toolBarController;
-    private Scene ResultsScene;
-
-    public void setToolBarController(ToolBarController toolBarController){
-        this.toolBarController = toolBarController;
-    }
-
-    @FXML
-    public void goHome(ActionEvent actionEvent){ toolBarController.goHome(actionEvent); }
-
-    @FXML
-    public void goSubmit(ActionEvent actionEvent){
-        toolBarController.goSubmit(actionEvent);
-    }
-
-    @FXML
-    public void goLogin(ActionEvent actionEvent){
-        toolBarController.goLogin(actionEvent);
-    }
-
-    @FXML
-    public void goAbout(ActionEvent actionEvent){toolBarController.goAbout(actionEvent); }
-
-    @FXML
-    public void goWorkflow(ActionEvent actionEvent){toolBarController.goWorkflow(actionEvent);}
-
-    @FXML
-    public void goExit(ActionEvent actionEvent){toolBarController.goExit(actionEvent);}
-
-    public void setUserName(String name){
-        theUserName.setText(name);
-    }
-
-    Scene Home;
-
-    public void setHome(Scene home)
-    {
-        Home = home;
-    }
-
+    private ToolBarController toolBarController = ToolBarController.getInstance();
 
     @FXML
     JFXButton accept_button;
@@ -132,10 +87,6 @@ public class AgentWorkflowController {
 
     @FXML
     Label formID_9;
-
-
-
-
 
     @FXML
     JFXButton refresh_button;
@@ -449,16 +400,6 @@ public class AgentWorkflowController {
         //formStatus_text.setText(formStatus_string);
     }
 
-/*
-    @FXML
-    TextField approvalStatus_text;
 
-    @FXML
-    TextField approvingUser_text;
-
-    @FXML
-    TextField expirationDate_text;
-
-*/
 
 }

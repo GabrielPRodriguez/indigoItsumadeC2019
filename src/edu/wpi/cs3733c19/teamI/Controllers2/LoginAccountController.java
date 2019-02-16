@@ -15,7 +15,6 @@ import javax.crypto.spec.SecretKeySpec;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.net.URL;
 import java.security.Key;
 import java.util.ResourceBundle;
@@ -23,8 +22,8 @@ import java.util.ResourceBundle;
 
 public class LoginAccountController implements Initializable {
 
-    @FXML
-    JFXButton tb_loginButton;
+    private ToolBarController toolBarController = ToolBarController.getInstance();
+
 
     @FXML
     JFXTextField Email;
@@ -53,35 +52,8 @@ public class LoginAccountController implements Initializable {
     @FXML
     ToggleGroup ToggleType;
 
-    private ToolBarController toolBarController;
 
 
-    public void setToolBarController(ToolBarController toolBarController){
-        this.toolBarController = toolBarController;
-    }
-
-
-    @FXML
-    public void goHome(ActionEvent actionEvent){ toolBarController.goHome(actionEvent); }
-
-    @FXML
-    public void goSubmit(ActionEvent actionEvent){
-        toolBarController.goSubmit(actionEvent);
-    }
-
-    @FXML
-    public void goLogin(ActionEvent actionEvent){
-        toolBarController.goLogin(actionEvent);
-    }
-
-    @FXML
-    public void goWorkflow(ActionEvent actionEvent){toolBarController.goWorkflow(actionEvent);}
-
-    @FXML
-    public void goAbout(ActionEvent actionEvent){toolBarController.goAbout(actionEvent);}
-
-    @FXML
-    public void goExit(ActionEvent actionEvent){toolBarController.goExit(actionEvent);}
 
     @FXML
     public void login(ActionEvent actionEvent) throws Exception {
@@ -113,7 +85,7 @@ public class LoginAccountController implements Initializable {
                 powerCreate = User.userPower.Standard;
                 System.out.println("togg stand");
             }
-            toolBarController.login(actionEvent, Email.getText(), Password.getText(), powerCreate);
+            toolBarController.login(Email.getText(), Password.getText(), powerCreate);
         }
     }
 
@@ -127,14 +99,14 @@ public class LoginAccountController implements Initializable {
         //
     }
 
-    String invalidCharacters = ":!#$%^&*()/,><;-=_+";
+    private String invalidCharacters = ":!#$%^&*()/,><;-=_+";
     boolean isValid = true;
 
     public String readFile(String users) throws Exception { //this file will populate users with a string of all users
         // pass the path to the file as a parameter
         //userLogin = new FileReader("UserSheet.txt");
         FileReader userLogin;
-        userLogin = new FileReader("UserSheet.txt");
+        userLogin = new FileReader("indigoItsumadeC19/UserSheet.txt");
         int i;
         while ((i=userLogin.read()) != -1) {
             users = users + ((char) i);
@@ -317,8 +289,7 @@ public class LoginAccountController implements Initializable {
 
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        logButton();
+    public void initialize(URL location, ResourceBundle resources){
     }
 
     User.userPower getType() throws Exception {
@@ -349,17 +320,5 @@ public class LoginAccountController implements Initializable {
 
     }
 
-    void logButton(){
-        if(toolBarController == null){
-            tb_loginButton.setText("login");
-        }
-        else if(toolBarController.isSignedIn()){
-            tb_loginButton.setText("logout");
-        }
-        else if(!toolBarController.isSignedIn()) {
-            tb_loginButton.setText("login");
-        }else{
-            tb_loginButton.setText("login");
-        }
-    }
+
 }

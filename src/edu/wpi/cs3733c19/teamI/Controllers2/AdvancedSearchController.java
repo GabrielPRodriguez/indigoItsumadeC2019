@@ -192,9 +192,9 @@ public class AdvancedSearchController implements Initializable {
 
    public void performSearch(ActionEvent event){
         try {
-            System.out.println((String) fieldSelector.getValue());
-            toolBarController.setResultsMap(querydata.search_sql_wildcard("form_data", "new_csv_from_spreadsheet.db", searchBar.getText(),hmap.get(fieldSelector.getValue())));
-            System.out.println((String) fieldSelector.getValue());
+            System.out.println("Field Selector: " + ((Label)fieldSelector.getValue()).getText());
+            //System.out.println()
+            toolBarController.setResultsMap(querydata.search_sql_wildcard("form_data", "new_csv_from_spreadsheet.db", searchBar.getText(),hmap.get(((Label)fieldSelector.getValue()).getText())));
         }
         catch(Exception e){
 

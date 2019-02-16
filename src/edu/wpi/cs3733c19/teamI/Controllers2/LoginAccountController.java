@@ -5,6 +5,7 @@ import edu.wpi.cs3733c19.teamI.Entities.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import sun.misc.BASE64Decoder;
@@ -51,6 +52,15 @@ public class LoginAccountController implements Initializable {
 
     @FXML
     ToggleGroup ToggleType;
+
+    @FXML
+    Label ErrorMessage;
+
+    @FXML
+    Label UserNameError;
+
+    @FXML
+    Label PasswordError;
 
 
 
@@ -126,30 +136,36 @@ public class LoginAccountController implements Initializable {
 
             Character currChar = invalidCharacters.charAt(i);
             if (EmailCreate.getText().contains(currChar.toString()) || PasswordCreate.getText().contains(currChar.toString())) {
-                //errorMessage.setText("username or password contains illegal characters");
+                UserNameError.setText("username or password contains illegal characters");
+                PasswordError.setText("");
                 isValid2 = false;
-                System.out.println("illegal");
             }
         }
         if (isValid2 == false){
         }
         else if(PasswordCreate.getText().length() < 8){
-            //errorMessage.setText("Username too short");
-            System.out.println("short");
+            PasswordError.setText("Password too short");
+            UserNameError.setText("");
         }
         else if (!EmailCreate.getText().contains("@") || !EmailCreate.getText().contains(".")){
-            System.out.println("Enter an email");
+            UserNameError.setText("Please Enter Email");
+            PasswordError.setText("");
         }
         else if(ToggleType.getSelectedToggle() == null){
-            System.out.println("Select a user type");
+            UserNameError.setText("Select Type Above");
+            PasswordError.setText("");
         }
         else if (users.contains(":"+EmailCreate.getText()+":")){
-            System.out.println("Email already taken");
+            UserNameError.setText("Email already taken");
+            PasswordError.setText("");
         }
         else if (!PasswordCreate.getText().equals(PasswordCreateCheck.getText())){
-            System.out.println("Passwords do not match");
+            PasswordError.setText("Passwords do not match");
+            UserNameError.setText("");
         }
         else{
+            UserNameError.setText("");
+            PasswordError.setText("");
             User.userPower powerCreate;
             RadioButton selectedRadioButton = (RadioButton) ToggleType.getSelectedToggle();
             String toggleGroupValue = selectedRadioButton.getText();
@@ -203,38 +219,27 @@ public class LoginAccountController implements Initializable {
         users = readFile(users);
 
         if(Email.getText().isEmpty()){
-           // errorMessage.setText(("Enter a username to login"));
-            System.out.println("no user");
+            ErrorMessage.setText(("Enter a username to login"));
+            ErrorMessage.setOpacity(1);
             return false;
-        }/*
-        else if(ToggleType.getSelectedToggle()==null){ //should read user type
-            //errorMessage.setText(("Must select log in type"));
-            System.out.println("log type");
-        }*/
+        }
 
         else if (users.contains(":"+Email.getText()+":"+encryptPassword(Password.getText())+":")){ //this file checks for the user and pass in the file
-            System.out.println("logging in");
-            return true;
-            /*
-            String pass = encryptPassword(Password.getText());
-            System.out.println(pass);
-            */
-
-            //login(actionEvent);  //if they exist, login
-        }
-
-
-        else if (users.contains(":"+Email.getText()+":none:") && (Password.getText().isEmpty())){
-            //login(actionEvent);
+            System.out.println("Login Complete");
+            ErrorMessage.setOpacity(0);
             return true;
         }
+
         else if (users.contains(":"+Email.getText()+":")){
+            ErrorMessage.setText("Select an unused username");
+            ErrorMessage.setOpacity(1);
             return false;
-            //errorMessage.setText("Select an unused username");
+
         }
-        else {
+        else { //user name and password dont match
+            ErrorMessage.setText("Invalid Username/ Password");
+            ErrorMessage.setOpacity(1);
             return false;
-            //createAccount(actionEvent); //otherwise make them an account
         }
     }
 

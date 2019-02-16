@@ -1,6 +1,7 @@
 package edu.wpi.cs3733c19.teamI.Controllers2;
 
 import com.jfoenix.controls.*;
+import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.ReturnedValue;
 import edu.wpi.cs3733c19.teamI.Entities.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,6 +19,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.net.URL;
 import java.security.Key;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
@@ -126,11 +128,16 @@ public class LoginAccountController implements Initializable {
     }
 
     public void attemptCreate(ActionEvent actionEvent) throws Exception{
-        HashMap<String> users = "";
+
+        ArrayList<HashMap<String, ReturnedValue>> users = new ArrayList<HashMap<String, ReturnedValue>>();
         SQLDriver loginDriver = new SQLDriver();
 
-        users = loginDriver.search_sql_wildcard("user_credentials", "user_credentials.db", "email", EmailCreate.getText());//readFile(users);
-
+        try {
+            users = loginDriver.search_sql_wildcard("user_credentials", "user_credentials.db", "email", EmailCreate.getText());//readFile(users);
+        }
+        catch(Exception e){
+            System.out.println("no db");
+        }
 
 
         boolean isValid2 = true;
@@ -157,7 +164,7 @@ public class LoginAccountController implements Initializable {
             UserNameError.setText("Select Type Above");
             PasswordError.setText("");
         }
-        else if (users.contains(":"+EmailCreate.getText()+":")){
+        else if (!users.isEmpty()){
             UserNameError.setText("Email already taken");
             PasswordError.setText("");
         }
@@ -165,12 +172,19 @@ public class LoginAccountController implements Initializable {
             PasswordError.setText("Passwords do not match");
             UserNameError.setText("");
         }
-        else{
+        else{ //add user to db
             UserNameError.setText("");
             PasswordError.setText("");
             User.userPower powerCreate;
             RadioButton selectedRadioButton = (RadioButton) ToggleType.getSelectedToggle();
             String toggleGroupValue = selectedRadioButton.getText();
+            int role = 0;
+            if(toggleGroupValue.equals("Agent")){
+                role = 0;
+            }
+            else{
+                role = 1;
+            }
             if(toggleGroupValue.equals("Manufacturer")){
                 powerCreate = User.userPower.Company;
             }
@@ -180,39 +194,17 @@ public class LoginAccountController implements Initializable {
             else{
                 powerCreate = User.userPower.Standard;
             }
-            createAccount(EmailCreate.getText(), PasswordCreate.getText(), powerCreate);
+            loginDriver.create_user_account(EmailCreate.getText(), encryptPassword(PasswordCreate.getText()), role);
+
+            createAccount(EmailCreate.getText(), PasswordCreate.getText(), powerCreate, loginDriver, role);
             Email.setText(EmailCreate.getText());
             Password.setText(PasswordCreate.getText());
         }
 
     }
 
-    public void createAccount(String userCreate, String passCreate, User.userPower typeCreate) throws Exception {
-        FileWriter userWriter = new FileWriter("UserSheet.txt", true);
-        BufferedWriter outputStream = new BufferedWriter(userWriter);
-        String addUser = userCreate;
-        String userType;
+    public void createAccount(String userCreate, String passCreate, User.userPower typeCreate, SQLDriver driver, int role) throws Exception {
 
-        if(typeCreate.equals(User.userPower.TTBEmployee)){
-            userType = "&";
-        }
-        else if (typeCreate.equals(User.userPower.Company)){
-            userType = "#";
-        }
-        else if (typeCreate.equals(User.userPower.SuperAdmin)){
-            userType = "%";
-        }
-        else{
-            userType = "!";
-        }
-        System.out.println("Creating an Account");
-        addUser = ":"+addUser+":"+encryptPassword(passCreate)+":"+ userType+":";
-
-        outputStream.write("\n"+ addUser);
-        outputStream.flush();
-        outputStream.close();
-        //and then scene switcher code, wait for merge
-        //openDisplayScene(actionEvent);
     }
 
     public boolean attemptLogin(ActionEvent actionEvent) throws Exception { //attempts a login and will either create an account or login

@@ -1,7 +1,6 @@
 package edu.wpi.cs3733c19.teamI.Controllers2;
 
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXPopup;
 import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.ReturnedValue;
 import edu.wpi.cs3733c19.teamI.Entities.sub_Form;
 import javafx.beans.property.ObjectProperty;
@@ -12,20 +11,10 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
-import javafx.scene.Node;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TreeItem;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
-import javafx.stage.PopupWindow;
-import javafx.stage.PopupWindow.AnchorLocation;
 
-import javax.swing.text.View;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -38,7 +27,7 @@ import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class ResultsController implements Initializable {
-    private ToolBarController toolBarController;
+    private ToolBarController toolBarController = ToolBarController.getInstance();
     private ArrayList<HashMap<String, ReturnedValue>> resultsList;
     private String testString = "original";
     private int batches = 0; //variable to track number batches
@@ -233,42 +222,13 @@ public class ResultsController implements Initializable {
     }
 
 
-
-    public void setToolBarController(ToolBarController toolBarController){
-        this.toolBarController = toolBarController;
-    }
-    
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         setTable();
     }
 
 
-    @FXML
-    public void goHome(ActionEvent actionEvent){ toolBarController.goHome(actionEvent); }
 
-    @FXML
-    public void goSubmit(ActionEvent actionEvent){
-        toolBarController.goSubmit(actionEvent);
-    }
-
-    @FXML
-    public void goLogin(ActionEvent actionEvent){
-        toolBarController.goLogin(actionEvent);
-    }
-
-    @FXML
-    public void goWorkflow(ActionEvent actionEvent){toolBarController.goWorkflow(actionEvent);}
-
-    @FXML
-    public void goAbout(ActionEvent actionEvent){toolBarController.goAbout(actionEvent);}
-
-    @FXML
-    public void goSearch(ActionEvent actionEvent){toolBarController.goSearch(actionEvent);}
-
-    @FXML
-    public void goExit(ActionEvent actionEvent){toolBarController.goExit(actionEvent);}
 
     public void table_selected(Event event){
         sub_Form item = tableView.getSelectionModel().getSelectedItem();

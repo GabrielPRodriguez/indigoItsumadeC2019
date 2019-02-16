@@ -80,7 +80,7 @@
                   <CheckBox fx:id="brandName" mnemonicParsing="false" text="Brand" />
                   <CheckBox fx:id="fancifulName" mnemonicParsing="false" text="Fanciful" />
                   <CheckBox fx:id="extraInfo" mnemonicParsing="false" text="extraInfo" />
-                  <JFXButton mnemonicParsing="false" onAction="#goAdvancedSearch" ripplerFill="#02bfe7" style="-fx-background-color: #046b99;" text="Advanced Search" textFill="WHITE">
+                  <JFXButton mnemonicParsing="false"  ripplerFill="#02bfe7" style="-fx-background-color: #046b99;" text="Advanced Search" textFill="WHITE">
                      <font>
                         <Font name="Segoe UI Bold" size="14.0" />
                      </font>

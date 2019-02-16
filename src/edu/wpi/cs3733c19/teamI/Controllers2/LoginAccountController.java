@@ -106,7 +106,7 @@ public class LoginAccountController implements Initializable {
         // pass the path to the file as a parameter
         //userLogin = new FileReader("UserSheet.txt");
         FileReader userLogin;
-        userLogin = new FileReader("indigoItsumadeC19/UserSheet.txt");
+        userLogin = new FileReader(System.getProperty("user.dir") + "/UserSheet.txt");
         int i;
         while ((i=userLogin.read()) != -1) {
             users = users + ((char) i);

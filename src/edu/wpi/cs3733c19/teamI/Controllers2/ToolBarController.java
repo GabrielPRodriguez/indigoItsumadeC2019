@@ -141,6 +141,8 @@ public class ToolBarController {
         }
         else if (!curUser.getUserType().equals(User.userPower.Company)){
             Parent workflowAgentParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/WorkflowAgent.fxml"));
+            System.out.println("parent: " + workflowAgentParent);
+
             primaryStage.getScene().setRoot(workflowAgentParent);
         }
     }

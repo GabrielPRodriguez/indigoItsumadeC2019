@@ -87,7 +87,9 @@ public class ToolBarController {
 
         }
 
-
+    public User getCurUser() {
+        return curUser;
+    }
 
     public ArrayList<HashMap<String, ReturnedValue>> getResultsMap() {
         return this.resultsMap;

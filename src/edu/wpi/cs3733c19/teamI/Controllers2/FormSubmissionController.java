@@ -17,6 +17,7 @@ import javafx.scene.paint.Color;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
@@ -534,6 +535,15 @@ public class FormSubmissionController implements Initializable {
                 setWineToggle();
             }
         });
+
+        LocalDate date = LocalDate.now();
+        date_Field.setValue(date);
+
+        if(toolBarController != null){
+            email_Field.setText(toolBarController.getCurUser().getUsername());
+
+        }
+
 
 
 

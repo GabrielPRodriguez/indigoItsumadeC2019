@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers2.ResultsController">
+<BorderPane minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers2.ResultsController">
    <center>
       <VBox alignment="CENTER" prefHeight="784.0" prefWidth="1527.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
@@ -27,11 +27,22 @@
                      <children>
                         <TextField onAction="#goSearch" prefHeight="50.0" promptText="Find A Beverage" HBox.hgrow="ALWAYS" />
                         <JFXComboBox focusColor="#aeb0b5" promptText="Sort By:" unFocusColor="BLACK" HBox.hgrow="ALWAYS" />
-                        <JFXButton fx:id="CSV" mnemonicParsing="false" onAction="#writeExcel" style="-fx-background-color: #4773aa;" text="Export CSV" textFill="WHITE" HBox.hgrow="ALWAYS">
-                           <font>
-                              <Font name="Segoe UI Bold" size="15.0" />
-                           </font>
-                        </JFXButton>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Label fx:id="export_message" prefHeight="17.0" prefWidth="106.0">
+                                 <VBox.margin>
+                                    <Insets top="35.0" />
+                                 </VBox.margin></Label>
+                              <JFXButton fx:id="CSV" mnemonicParsing="false" onAction="#writeExcel" style="-fx-background-color: #4773aa;" text="Export CSV" textFill="WHITE">
+                                 <font>
+                                    <Font name="Segoe UI Bold" size="15.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="7.0" />
+                                 </VBox.margin>
+                              </JFXButton>
+                           </children>
+                        </VBox>
                      </children>
                   </HBox>
                </children>

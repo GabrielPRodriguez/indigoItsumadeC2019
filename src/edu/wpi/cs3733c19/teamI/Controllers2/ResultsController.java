@@ -22,6 +22,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.PopupWindow;
 import javafx.stage.PopupWindow.AnchorLocation;
 
@@ -101,7 +102,26 @@ public class ResultsController implements Initializable {
 
     @FXML
     JFXButton fourthPage;
-
+    @FXML
+    Text regText;
+    @FXML
+    Text typeText;
+    @FXML
+    Text fanText;
+    @FXML
+    Text percentText;
+    @FXML
+    Text originText;
+    @FXML
+    Text phText;
+    @FXML
+    Text vinText;
+    @FXML
+    Text appText;
+    @FXML
+    Text varText;
+    @FXML
+    Text nameText;
     private int numResults = 10;
     private int currentPage = 1;
 
@@ -292,6 +312,17 @@ public class ResultsController implements Initializable {
          and scroll down to the Product Detail its a good exmple of how you can fir
          a lot of information close together
         */
+
+        regText.setText(oneBeverage.getSummary().get(1));
+        typeText.setText(oneBeverage.getSummary().get(4));
+        fanText.setText(oneBeverage.getSummary().get(6));
+        percentText.setText(oneBeverage.getSummary().get(11) + "%");
+        originText.setText(oneBeverage.getSummary().get(2));
+        phText.setText(oneBeverage.getSummary().get(9));
+        vinText.setText(oneBeverage.getSummary().get(7));
+        appText.setText(oneBeverage.getSummary().get(10));
+        varText.setText(oneBeverage.getSummary().get(8));
+        nameText.setText(oneBeverage.getSummary().get(5));
     }
 
     //create CSV function

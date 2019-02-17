@@ -10,7 +10,7 @@
    <children>
       <ImageView fitHeight="400.0" fitWidth="610.0" layoutX="-5.0" layoutY="-1.0">
          <image>
-            <Image url="@Screen%20Shot%202019-02-15%20at%206.21.37%20PM.png" />
+            <Image url="@../Assets/ScreenShotTTAWorkPage.png" />
          </image>
       </ImageView>
       <Text layoutX="390.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Applicant's Form" />

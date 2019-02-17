@@ -28,6 +28,11 @@
                      <children>
                         <VBox alignment="CENTER" spacing="40.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
+                              <ImageView fitHeight="258.0" fitWidth="252.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Assets/treasury_high_density.png" />
+                                 </image>
+                              </ImageView>
                                <VBox alignment="CENTER_LEFT" spacing="20.0">
                                    <children>
                                        <HBox prefHeight="0.0" prefWidth="540.0" spacing="30.0">

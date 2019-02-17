@@ -2,6 +2,8 @@ package edu.wpi.cs3733c19.teamI.Controllers2;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPopup;
+import edu.wpi.cs3733c19.teamI.Algorithms.SQLFuzzy;
+import edu.wpi.cs3733c19.teamI.Algorithms.fuzzyContext;
 import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.ReturnedValue;
 import edu.wpi.cs3733c19.teamI.Entities.sub_Form;
 import javafx.beans.property.ObjectProperty;
@@ -14,10 +16,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TreeItem;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -99,6 +98,10 @@ public class ResultsController implements Initializable {
 
     @FXML
     JFXButton thirdPage;
+
+    @FXML
+    TextField searchTextField;
+    private fuzzyContext searchAlgorithmSelection = new fuzzyContext();
 
     @FXML
     JFXButton fourthPage;
@@ -284,8 +287,26 @@ public class ResultsController implements Initializable {
     @FXML
     public void goAbout(ActionEvent actionEvent){toolBarController.goAbout(actionEvent);}
 
-    @FXML
-    public void goSearch(ActionEvent actionEvent){toolBarController.goSearch(actionEvent);}
+  //  @FXML
+   // public void goSearch(ActionEvent actionEvent){toolBarController.goSearch(actionEvent);}
+
+    public void goSearch(ActionEvent actionEvent) throws Exception {
+
+        if (searchTextField.getText() == null || searchTextField.getText().trim().isEmpty()){
+            // TODO Insert here anything you want the app to do when user click search and box is epty
+
+        }
+        else {
+            searchAlgorithmSelection.setContext(new SQLFuzzy());
+            toolBarController.setResultsMap(searchAlgorithmSelection.run(searchTextField.getText().trim()));
+            toolBarController.goSearch(actionEvent);
+
+            // TODO:this will return what fuzzys return
+            // TODO link the return of the fuzzy alghoriths to a listView on the next page (maybe just have field of hashmap that gets passed to the next scene)
+
+        }
+
+    }
 
     @FXML
     public void goExit(ActionEvent actionEvent){toolBarController.goExit(actionEvent);}

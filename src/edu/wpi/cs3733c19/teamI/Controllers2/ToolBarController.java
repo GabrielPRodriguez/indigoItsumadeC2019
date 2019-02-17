@@ -44,6 +44,7 @@ public class ToolBarController {
     static ToolBarController instance;
     private User curUser;
     private ResultsController ResultsController;
+    private Parent searchParent;
     private DetailedResultsController InfoController;
     private boolean signedIn = false;
 
@@ -64,9 +65,14 @@ public class ToolBarController {
 
 
     void setResultsMap(ArrayList<HashMap<String, ReturnedValue>> resultsMap){
+        System.out.println(ResultsController);
             this.resultsMap = resultsMap;
             ResultsController.convertToForms(0);
 
+    }
+
+    public void setSearchParent(Parent searchParent) {
+        this.searchParent = searchParent;
     }
 
     ArrayList<HashMap<String, ReturnedValue>> getResultsMap() {
@@ -169,10 +175,12 @@ public class ToolBarController {
     }
 
     public void goSearch() throws IOException {
+        System.out.println("toolSearch");
 
-        Parent searchParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/Home.fxml"));
+       // Parent searchParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/Home.fxml"));
         primaryStage = Main.getWindow();
         primaryStage.getScene().setRoot(searchParent);
+        System.out.println("Should have changed?");
     }
 
 

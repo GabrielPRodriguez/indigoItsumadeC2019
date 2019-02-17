@@ -2,6 +2,8 @@ package edu.wpi.cs3733c19.teamI.Controllers2;
 
 import com.jfoenix.controls.JFXButton;
 import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.ReturnedValue;
+import edu.wpi.cs3733c19.teamI.Entities.Message;
+import edu.wpi.cs3733c19.teamI.Entities.ToolBarSignInName;
 import edu.wpi.cs3733c19.teamI.Entities.User;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -10,6 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
@@ -18,11 +21,31 @@ import java.util.HashMap;
 public class ToolBarController {
 
 
-    public ToolBarController(){
-        FXMLLoader toolBarLoader = new FXMLLoader(getClass().getResource("Boundaries_2/Toolbar.fxml"));
-        toolBarLoader.setRoot(this);
-        toolBarLoader.setController(this);
-    }
+    @FXML
+    JFXButton tb_homeButton;
+
+    @FXML
+    JFXButton tb_aboutButton;
+
+    @FXML
+    JFXButton tb_submitFormButton;
+
+    @FXML
+    JFXButton tb_loginButton;
+
+    @FXML
+    JFXButton tb_logout;
+
+    @FXML
+    JFXButton tb_workFlow;
+
+    @FXML
+    JFXButton tb_pendingApps;
+
+    @FXML
+    Label signInNameLabel; // Sign in name on ToolBar
+    @FXML
+    Label signInTemplateLabel; // Sign in as
 
     protected Scene HomeScene;
     protected Scene SearchScene;
@@ -39,6 +62,22 @@ public class ToolBarController {
     private boolean signedIn = false;
 
     private ArrayList<HashMap<String, ReturnedValue>> resultsMap = new ArrayList<HashMap<String, ReturnedValue>>();
+
+    // Observable Class fields
+    private Message clearText;
+    private ToolBarSignInName toolBarSignInName;
+
+    public ToolBarController(){
+        FXMLLoader toolBarLoader = new FXMLLoader(getClass().getResource("Boundaries_2/Toolbar.fxml"));
+        toolBarLoader.setRoot(this);
+        toolBarLoader.setController(this);
+
+        clearText = new Message();
+        toolBarSignInName = new ToolBarSignInName();
+        clearText.register(toolBarSignInName);
+    }
+
+
 
 
     public void setResultsMap(ArrayList<HashMap<String, ReturnedValue>> resultsMap){
@@ -99,26 +138,7 @@ public class ToolBarController {
 
 
 
-    @FXML
-    JFXButton tb_homeButton;
 
-    @FXML
-    JFXButton tb_aboutButton;
-
-    @FXML
-    JFXButton tb_submitFormButton;
-
-    @FXML
-    JFXButton tb_loginButton;
-
-    @FXML
-    JFXButton tb_logout;
-
-    @FXML
-    JFXButton tb_workFlow;
-
-    @FXML
-    JFXButton tb_pendingApps;
 
     @FXML
     public void goHome(ActionEvent actionEvent){
@@ -161,18 +181,26 @@ public class ToolBarController {
             primaryStage.setScene(Login);
             primaryStage.setFullScreen(true);
         }
-        else if (signedIn == true){
+        else if (signedIn == true){ // This is where the sign out happends
+            goLogout(actionEvent);
+            /*
             signedIn = false;
             curUser = null;
             Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             primaryStage.setScene(Login);
             primaryStage.setFullScreen(true);
+            */
+            // takeOffSignInName(); // TODO when the labels are made on the FXML ToolBar uncomment files
         }
     }
 
     @FXML
     public void goLogout(ActionEvent actionEvent){
-
+        signedIn = false;
+        curUser = null;
+        Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        primaryStage.setScene(Login);
+        primaryStage.setFullScreen(true);
     }
 
     public void loginRFID(String username, String password, User.userPower power){
@@ -194,6 +222,7 @@ public class ToolBarController {
         else{
             goSearch(actionEvent);
         }
+        displaySignInName(username); // Here is where function is what calls observer when logedIn
 
         //tb_loginButton.setText("Logout");
     }
@@ -247,6 +276,19 @@ public class ToolBarController {
         ResultsController.setTestString("a new string");
         ResultsController.setResultsList(resultsList);
         System.out.println("toolbar: " + resultsList);
+    }
+
+    public void displaySignInName(String name){
+        clearText.setText(name);
+        // TODO implement Label on the FXML ToolBar to display the sign in of the person
+        //signInTemplateLabel.setText("Signed in as")
+        //signInNameLabel.setText(toolBarSignInName.getText()); //Erase these comments when label is made
+        System.out.println(toolBarSignInName.getText());
+    }
+    // TODO call this method when the person signs out of the account
+    public void takeOffSignInName(){
+        signInNameLabel.setText("");
+        signInTemplateLabel.setText("");
     }
 
     public boolean isSignedIn() {

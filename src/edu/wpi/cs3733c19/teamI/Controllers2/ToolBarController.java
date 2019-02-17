@@ -26,6 +26,7 @@ public class ToolBarController {
 
     protected Scene HomeScene;
     protected Scene SearchScene;
+    protected Scene HomeHelp;
     private Scene SubScene;
     private Scene AboutScene;
     private Scene Login;
@@ -125,6 +126,15 @@ public class ToolBarController {
         //System.out.println("HomeAction"); // Commented out because it prints too much
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         primaryStage.setScene(HomeScene);
+        primaryStage.setFullScreen(true);
+
+    }
+
+    @FXML
+    public void goHomehelp(ActionEvent actionEvent){
+        //System.out.println("HomeAction"); // Commented out because it prints too much
+        Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        primaryStage.setScene(HomeHelp);
         primaryStage.setFullScreen(true);
 
     }

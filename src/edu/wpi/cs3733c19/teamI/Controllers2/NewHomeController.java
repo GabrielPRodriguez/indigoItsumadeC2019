@@ -10,12 +10,14 @@ import edu.wpi.cs3733c19.teamI.Algorithms.fuzzyContext;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -75,6 +77,11 @@ public class NewHomeController implements Initializable {
 
     public void setToolBarController(ToolBarController toolBarController){
         this.toolBarController = toolBarController;
+    }
+
+    @FXML
+    public void goHomeHelp(ActionEvent actionEvent){
+        toolBarController.goHomehelp(actionEvent);
     }
 
 

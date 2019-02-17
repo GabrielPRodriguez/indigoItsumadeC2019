@@ -25,7 +25,7 @@
                <children>
                   <HBox alignment="CENTER" spacing="80.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <TextField onAction="#goSearch" prefHeight="50.0" promptText="Find A Beverage" HBox.hgrow="ALWAYS" />
+                        <TextField prefHeight="50.0" promptText="Find A Beverage" HBox.hgrow="ALWAYS" />
                         <JFXComboBox focusColor="#aeb0b5" promptText="Sort By:" unFocusColor="BLACK" HBox.hgrow="ALWAYS" />
                         <JFXButton fx:id="CSV" mnemonicParsing="false" onAction="#writeExcel" style="-fx-background-color: #4773aa;" text="Export CSV" textFill="WHITE" HBox.hgrow="ALWAYS">
                            <font>

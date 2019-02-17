@@ -107,6 +107,7 @@ public class NewHomeController implements Initializable {
 
         }
         else {
+            System.out.println("Home search");
            // spin.setMaxSize(Region.USE_COMPUTED_SIZE,Region.USE_COMPUTED_SIZE);
             setAlgorithm();
             setSearchParam();

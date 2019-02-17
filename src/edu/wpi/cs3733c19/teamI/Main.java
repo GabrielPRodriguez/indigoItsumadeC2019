@@ -129,10 +129,13 @@ public class Main extends Application implements SerialPortPacketListener {
         window = primaryStage;
         Parent homeParent = FXMLLoader.load(getClass().getResource("Boundaries_2/Home.fxml"));
         Scene homeScene = new Scene(homeParent);
-        FXMLLoader resultsLoader = new FXMLLoader();
-        Pane resultPane = resultsLoader.load(getClass().getResource("Boundaries_2/SearchResults.fxml").openStream());
-        ResultsController resultsController = (ResultsController) resultsLoader.getController();
-        toolBarController.setResultsController(resultsController);
+        FXMLLoader resultsPageLoader = new FXMLLoader(getClass().getResource("Boundaries_2/SearchResults.fxml"));
+
+        Parent resultPane = resultsPageLoader.load();
+        //Scene resultScene = new Scene(resultPane);
+
+        toolBarController.setResultsController(resultsPageLoader.getController());
+        toolBarController.setSearchParent(resultPane);
         window.setScene(homeScene);
         window.setFullScreen(true);
         window.show();

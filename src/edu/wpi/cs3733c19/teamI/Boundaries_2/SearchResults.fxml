@@ -39,7 +39,7 @@
                </children>
             </VBox>
             <Separator prefWidth="200.0" />
-            <AnchorPane VBox.vgrow="ALWAYS">
+            <AnchorPane prefHeight="552.0" prefWidth="1702.0" VBox.vgrow="ALWAYS">
                <children>
                   <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="504.0" prefWidth="770.0">
                      <content>

@@ -105,6 +105,14 @@ public class ToolBarController {
         Result = result;
     }
 
+    public void setCurUser(User curUser) {
+        this.curUser = curUser;
+    }
+
+    public User getCurUser() {
+        return curUser;
+    }
+
     public void setHomeScene(Scene homeScene) {
         HomeScene = homeScene;
     }

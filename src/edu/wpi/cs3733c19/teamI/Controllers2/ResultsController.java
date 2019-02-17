@@ -298,13 +298,19 @@ public class ResultsController implements Initializable {
     public void writeExcel() throws Exception {
         Writer writer = null;
         String fileTimestamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+        String delimiter = ",";
+
+        if (toolBarController.getCurUser().getDelim() != null ){
+            delimiter = toolBarController.getCurUser().getDelim();
+        }
+
         try {
             File file = new File(System.getProperty("user.home")+ "/Downloads/DATA" + fileTimestamp + ".CSV");
             writer = new BufferedWriter(new FileWriter(file)); //CSV library function
             // grab text versions of all displayed results
             for (int i = 0; i < DisplayedResults.size(); i++) {
 
-                String text = DisplayedResults.get(i).returnAll();
+                String text = DisplayedResults.get(i).returnAll(delimiter);
                 writer.write(text);
             }
         } catch (Exception ex) {

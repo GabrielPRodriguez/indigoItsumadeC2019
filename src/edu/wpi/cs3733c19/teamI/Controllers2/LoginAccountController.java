@@ -61,6 +61,9 @@ public class LoginAccountController implements Initializable {
     Label UserNameError;
 
     @FXML
+    Label ErrorMessage;
+
+    @FXML
     Label PasswordError;
 
     private ToolBarController toolBarController;
@@ -262,38 +265,27 @@ public class LoginAccountController implements Initializable {
         users = readFile(users);
 
         if(Email.getText().isEmpty()){
-           // errorMessage.setText(("Enter a username to login"));
-            System.out.println("no user");
+            ErrorMessage.setText(("Enter a username to login"));
+            ErrorMessage.setOpacity(1);
             return false;
-        }/*
-        else if(ToggleType.getSelectedToggle()==null){ //should read user type
-            //errorMessage.setText(("Must select log in type"));
-            System.out.println("log type");
-        }*/
+        }
 
         else if (users.contains(":"+Email.getText()+":"+encryptPassword(Password.getText())+":")){ //this file checks for the user and pass in the file
-            System.out.println("logging in");
-            return true;
-            /*
-            String pass = encryptPassword(Password.getText());
-            System.out.println(pass);
-            */
-
-            //login(actionEvent);  //if they exist, login
-        }
-
-
-        else if (users.contains(":"+Email.getText()+":none:") && (Password.getText().isEmpty())){
-            //login(actionEvent);
+            System.out.println("Login Complete");
+            ErrorMessage.setOpacity(0);
             return true;
         }
+
         else if (users.contains(":"+Email.getText()+":")){
+            ErrorMessage.setText("Select an unused username");
+            ErrorMessage.setOpacity(1);
             return false;
-            //errorMessage.setText("Select an unused username");
+
         }
-        else {
+        else { //user name and password dont match
+            ErrorMessage.setText("Invalid Username/ Password");
+            ErrorMessage.setOpacity(1);
             return false;
-            //createAccount(actionEvent); //otherwise make them an account
         }
     }
 

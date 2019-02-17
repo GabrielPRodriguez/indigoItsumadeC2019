@@ -26,7 +26,7 @@
       <Text layoutX="244.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Except form" />
       <Ellipse fill="#2197fffb" layoutX="79.0" layoutY="124.0" radiusX="84.0" radiusY="28.0" stroke="BLACK" strokeType="INSIDE" />
       <Text layoutX="7.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="select a from the given least" wrappingWidth="145.70409774780273" />
-      <Button layoutX="511.0" layoutY="37.0" mnemonicParsing="false" text="Button" />
+      <Button fx:id="closeHelp" layoutX="511.0" layoutY="37.0" mnemonicParsing="false" onAction="#goWorkflow" text="Close" />
       
    </children>
 </Pane>

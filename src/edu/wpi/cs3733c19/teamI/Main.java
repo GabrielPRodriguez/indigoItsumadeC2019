@@ -201,6 +201,21 @@ public class Main extends Application implements SerialPortPacketListener {
         Scene homeScene = new Scene(homePane);
         toolBarController.setHomeScene(homeScene);
 
+        FXMLLoader helpHomeLoader = new FXMLLoader(getClass().getResource("Boundaries_2/HomeHelp.fxml"));
+        Parent helpHomePane = helpHomeLoader.load();
+        Scene helpHomeScene = new Scene(helpHomePane);
+        toolBarController.setHomeScene(helpHomeScene);
+
+        FXMLLoader TTBWorkHelpLoader = new FXMLLoader(getClass().getResource("Boundaries_2/TTBWorkHelp.fxml"));
+        Parent TTBWorkHelpPane = TTBWorkHelpLoader.load();
+        Scene TTBWorkHelpScene = new Scene(TTBWorkHelpPane);
+        toolBarController.setHomeScene(TTBWorkHelpScene);
+
+        FXMLLoader FormSubmissionHelpLoader = new FXMLLoader(getClass().getResource("Boundaries_2/FormSubmissionHelp.fxml"));
+        Parent FormSubmissionHelpPane = FormSubmissionHelpLoader.load();
+        Scene FormSubmissionHelpScene = new Scene(FormSubmissionHelpPane);
+        toolBarController.setHomeScene(FormSubmissionHelpScene);
+
 
         NewHomeController newHomeController = homePaneLoader.getController();
         newHomeController.setToolBarController(toolBarController);

@@ -8,8 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fitHeight="400.0" fitWidth="600.0">
          <image>
@@ -29,7 +28,7 @@
       <Text layoutX="482.0" layoutY="255.0" strokeType="OUTSIDE" strokeWidth="0.0" text="help find spacific beverage " wrappingWidth="106.39990234375" />
       <Text layoutX="29.0" layoutY="261.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search py partucular attribute" wrappingWidth="63.811030983924866" />
       <Text layoutX="231.0" layoutY="341.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search algarithem in use" />
-      <Button fx:id="HelpExitButton" layoutX="14.0" layoutY="60.0" mnemonicParsing="false" text="Button" />
+      <Button fx:id="closeHelp" layoutX="14.0" layoutY="60.0" mnemonicParsing="false" onAction="#goHome" text="Close" />
       <Ellipse fill="#1f93ff2f" layoutX="216.0" layoutY="83.0" radiusX="50.0" radiusY="30.0" stroke="BLACK" strokeType="INSIDE" />
       <Ellipse fill="#1f93ff2f" layoutX="306.0" layoutY="83.0" radiusX="50.0" radiusY="34.0" stroke="BLACK" strokeType="INSIDE" />
       <Ellipse fill="#1f93ff2f" layoutX="412.0" layoutY="99.0" radiusX="50.0" radiusY="46.0" stroke="BLACK" strokeType="INSIDE" />

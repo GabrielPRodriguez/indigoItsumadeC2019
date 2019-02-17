@@ -65,6 +65,23 @@ public class LoginAccountController implements Initializable {
 
     @FXML
     Label PasswordError;
+    @FXML
+    JFXTextField state;
+    @FXML
+    JFXTextField zip;
+    @FXML
+    JFXTextField city;
+    @FXML
+    JFXTextField address;
+    @FXML
+    JFXTextField firstName;
+    @FXML
+    JFXTextField lastName;
+    @FXML
+    JFXTextField phone;
+    @FXML
+    JFXTextField delim;
+
 
     private ToolBarController toolBarController;
 

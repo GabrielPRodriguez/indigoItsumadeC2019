@@ -19,9 +19,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers2.ResultsController">
+<BorderPane minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers2.ResultsController">
    <center>
-      <VBox alignment="CENTER" prefHeight="784.0" prefWidth="1527.0" spacing="10.0" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="784.0" prefWidth="900.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
             <VBox spacing="15.0">
                <children>
@@ -44,7 +44,7 @@
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </VBox.margin>
                <children>
-                  <AnchorPane prefHeight="552.0" prefWidth="1702.0">
+                  <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="552.0" prefWidth="900.0">
                      <children>
                         <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="504.0" prefWidth="770.0">
                            <content>
@@ -59,7 +59,7 @@
                               </TableView>
                            </content>
                         </ScrollPane>
-                        <AnchorPane layoutX="769.0" layoutY="1.0" prefHeight="504.0" prefWidth="699.0">
+                        <AnchorPane layoutX="769.0" layoutY="1.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="504.0" prefWidth="699.0">
                            <children>
                               <Text fx:id="nameText" layoutX="312.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" wrappingWidth="600.61669921875">
                                  <font>

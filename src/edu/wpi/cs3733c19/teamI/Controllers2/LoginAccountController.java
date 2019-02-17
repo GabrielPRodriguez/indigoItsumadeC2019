@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.text.Text;
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 
@@ -81,6 +82,8 @@ public class LoginAccountController implements Initializable {
     JFXTextField phone;
     @FXML
     JFXTextField delim;
+    @FXML
+    Text req_error;
 
 
     private ToolBarController toolBarController;

@@ -303,7 +303,11 @@ public class LoginAccountController implements Initializable {
         String users = "";
 
         users = readFile(users);
-
+        if(Email.getText().isEmpty() || Password.getText().isEmpty() || firstName.getText().isEmpty() || lastName.getText().isEmpty()
+        || PasswordCreateCheck.getText().isEmpty()){
+            req_error.setOpacity(1);
+            return(false);
+        }
         if(Email.getText().isEmpty()){
             ErrorMessage.setText(("Enter a username to login"));
             ErrorMessage.setOpacity(1);

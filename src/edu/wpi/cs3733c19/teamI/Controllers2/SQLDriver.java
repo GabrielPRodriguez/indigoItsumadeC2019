@@ -695,8 +695,6 @@ public class SQLDriver{
                     ReturnedValue type1 = result.get(field);
                     DataField type2 = targets.get(field);
 
-                  //  System.out.println("type in final search");
-
 
                     if (type1.type.equals("text")){
                         if (type1.to_string().equals(type2.getValue().toString())){
@@ -735,6 +733,58 @@ public class SQLDriver{
         }
         return final_results;
     }
+
+
+    public ArrayList<HashMap<String, ReturnedValue>>get_user_data_by_value(String tablename, String filename, LinkedList<String>search_fields, HashMap<String, DataField>targets) throws Exception{
+        //System.out.println("in search method");
+
+        ArrayList<HashMap<String, ReturnedValue>> final_results = new ArrayList<HashMap<String, ReturnedValue>>();
+        for (HashMap<String, ReturnedValue>result: select_all(filename, tablename)){
+                boolean _flag = false;
+                for (String field:search_fields){
+                    // System.out.println("search field: "+field);
+                    ReturnedValue type1 = result.get(field);
+                    DataField type2 = targets.get(field);
+
+
+                    if (type1.type.equals("text")){
+                        if (type1.to_string().equals(type2.getValue().toString())){
+                            //  System.out.println("successfull comparison!!!");
+
+                            _flag = true;
+                        }
+                        else{
+                            //System.out.println("comparision failed");
+                            _flag = false;
+                            break;
+                        }
+                    }
+                    else{
+                        //System.out.println("should not see this");
+                        //  System.out.println(type1.type);
+                        if (type1.to_double() == Double.parseDouble(type2.getValue().toString())){
+                            _flag = true;
+                        }
+                        else{
+                            _flag = false;
+                            break;
+                        }
+
+                    }
+
+
+                }
+                if (_flag) {
+                    final_results.add(result);
+                }
+
+
+
+        }
+        return final_results;
+    }
+
+
 
     public static void setApprovalStatus(int formID, String approvalStatus) throws IOException, Exception {
         setField(formID, approvalStatus, "status");

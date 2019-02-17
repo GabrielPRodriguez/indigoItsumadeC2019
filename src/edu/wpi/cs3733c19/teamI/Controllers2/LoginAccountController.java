@@ -1,7 +1,9 @@
 package edu.wpi.cs3733c19.teamI.Controllers2;
 
 import com.jfoenix.controls.*;
+import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.DBValue;
 import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.ReturnedValue;
+import edu.wpi.cs3733c19.teamI.Entities.DataField;
 import edu.wpi.cs3733c19.teamI.Entities.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,9 +22,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.security.Key;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.ResourceBundle;
+import java.util.*;
 
 
 public class LoginAccountController implements Initializable {
@@ -176,9 +176,13 @@ public class LoginAccountController implements Initializable {
 
         ArrayList<HashMap<String, ReturnedValue>> users = new ArrayList<HashMap<String, ReturnedValue>>();
         SQLDriver loginDriver = new SQLDriver();
+        LinkedList<String> param = new LinkedList<String>();
+        param.add("email");
+        HashMap<String, DataField> searchParam = new HashMap<>();
+        searchParam.put("email", new DataField(EmailCreate.getText(), "email"));
 
         try {
-            users = loginDriver.search_sql_wildcard("user_credentials", "user_credentials.db", "email", EmailCreate.getText());//readFile(users);
+            users = loginDriver.get_user_data_by_value("user_credentials", "user_credentials.db", param, searchParam);//readFile(users);
         }
         catch(Exception e){
             System.out.println("no db");

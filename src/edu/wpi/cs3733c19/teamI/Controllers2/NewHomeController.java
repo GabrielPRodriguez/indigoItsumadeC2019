@@ -70,13 +70,13 @@ public class NewHomeController implements Initializable {
 
         if (toggleGroupValue.equals("SQL")){  // TODO Change the name in the string to the actual text of the radio button
             searchAlgorithmSelection.setContext(new SQLFuzzy());
-            System.out.println("Algo 1");
+            //System.out.println("Algo 1");
         }else if(toggleGroupValue.equals("Levenshtein")){ // TODO Change the name in the string to the actual text of the radio button
             searchAlgorithmSelection.setContext(new LFuzzy());
-            System.out.println("Algo 2");
+            //System.out.println("Algo 2");
         }else if(toggleGroupValue.equals("Damerau-Levenshtein")){ // TODO Change the name in the string to the actual text of the radio button
             searchAlgorithmSelection.setContext(new DLFuzzy());
-            System.out.println("Algo 3");
+            //System.out.println("Algo 3");
         }
 
 
@@ -94,6 +94,11 @@ public class NewHomeController implements Initializable {
             paramList.add("fancifulName");
         }
         if(beverageType.isSelected()){
+            paramList.add("beverageType");
+        }else if  (paramList.isEmpty()){
+            paramList.add("extraInfo");
+            paramList.add("brandName");
+            paramList.add("fancifulName");
             paramList.add("beverageType");
         }
         searchAlgorithmSelection.setParam(paramList);

@@ -42,7 +42,7 @@ public class ToolBarController {
     Label signInLabel   //here is what we are going to write to when the person signs in
     */
     static ToolBarController instance;
-    private User curUser;
+    private User curUser = null;
     private ResultsController ResultsController;
     private Parent searchParent;
     private DetailedResultsController InfoController;
@@ -136,7 +136,7 @@ public class ToolBarController {
         {
             goLogin();
         }
-        if(curUser.getUserType() == User.userPower.TTBEmployee)
+        if(curUser.getUserType().equals(User.userPower.TTBEmployee))
         {
             goWorkflowAgent();
         }
@@ -144,12 +144,10 @@ public class ToolBarController {
         {
             goWorkflowManufacturer();
         }
-        if(curUser.getUserType().equals(User.userPower.Standard));
+        if(curUser.getUserType().equals(User.userPower.Standard))
         {
             goHome();
         }
-
-        goLogin();
 
     }
 

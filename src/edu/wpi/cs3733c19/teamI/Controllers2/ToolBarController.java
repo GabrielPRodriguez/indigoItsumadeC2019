@@ -193,6 +193,7 @@ public class ToolBarController {
     }
 
 
-
-
+    public User getCurUser() {
+        return curUser;
+    }
 }

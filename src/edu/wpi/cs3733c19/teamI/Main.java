@@ -5,6 +5,7 @@ import com.fazecast.jSerialComm.SerialPort;
 import com.fazecast.jSerialComm.SerialPortEvent;
 import com.fazecast.jSerialComm.SerialPortPacketListener;
 import edu.wpi.cs3733c19.teamI.Controllers2.LoginAccountController;
+import edu.wpi.cs3733c19.teamI.Controllers2.ResultsController;
 import edu.wpi.cs3733c19.teamI.Controllers2.ToolBarController;
 import edu.wpi.cs3733c19.teamI.Entities.SearchResults;
 import edu.wpi.cs3733c19.teamI.Entities.User;
@@ -13,6 +14,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import javax.imageio.IIOParam;
@@ -27,6 +29,8 @@ public class Main extends Application implements SerialPortPacketListener {
     public Thread mThread;
     private static Stage window;
     private LoginAccountController ctrl;
+
+
 
 
     public void PacketListener() {
@@ -114,6 +118,7 @@ public class Main extends Application implements SerialPortPacketListener {
 
 
     public static void main(String[] args) {
+
         launch(args);
     }
 
@@ -124,6 +129,10 @@ public class Main extends Application implements SerialPortPacketListener {
         window = primaryStage;
         Parent homeParent = FXMLLoader.load(getClass().getResource("Boundaries_2/Home.fxml"));
         Scene homeScene = new Scene(homeParent);
+        FXMLLoader resultsLoader = new FXMLLoader();
+        Pane resultPane = resultsLoader.load(getClass().getResource("Boundaries_2/SearchResults.fxml").openStream());
+        ResultsController resultsController = (ResultsController) resultsLoader.getController();
+        toolBarController.setResultsController(resultsController);
         window.setScene(homeScene);
         window.setFullScreen(true);
         window.show();

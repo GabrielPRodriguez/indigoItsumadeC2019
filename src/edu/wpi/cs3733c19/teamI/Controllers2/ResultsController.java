@@ -300,8 +300,8 @@ public class ResultsController implements Initializable {
         String fileTimestamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
         String delimiter = ",";
 
-        if (toolBarController.getCurUser().getDelim() != null ){
-            delimiter = toolBarController.getCurUser().getDelim();
+        if (toolBarController.getCurUser() != null ){
+            delimiter = String.valueOf(toolBarController.getCurUser().getDelim());
         }
 
         try {

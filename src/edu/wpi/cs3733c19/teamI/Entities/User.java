@@ -5,7 +5,7 @@ public class User {
     private String password;
     private Boolean isAdmin = false;
     private userPower userType;
-    private String delim;
+    private char delim;
         public enum userPower
         {
         Standard, Company, TTBEmployee, SuperAdmin
@@ -53,11 +53,11 @@ public class User {
 
     public void setAppsPer(int newApps){theUser.appsPer = newApps; }
 
-    public String getDelim() {
+    public char getDelim() {
         return delim;
     }
 
-    public void setDelim(String delim) {
+    public void setDelim(char delim) {
         this.delim = delim;
     }
 }

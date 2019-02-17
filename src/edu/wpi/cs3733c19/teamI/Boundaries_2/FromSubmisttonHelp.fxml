@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Text?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="400.0" fitWidth="600.0">
+         <image>
+            <Image url="@../Assets/ScreenShotFormSubmition.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="527.0" layoutY="25.0" mnemonicParsing="false" text="Close" />
+      <Text layoutX="272.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fill in Form Here" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff5c" height="27.0" layoutX="258.0" layoutY="20.0" stroke="BLACK" strokeType="INSIDE" width="122.0" />
+      <Text layoutX="143.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="List of pending Applications" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff5c" height="27.0" layoutX="129.0" layoutY="67.0" stroke="BLACK" strokeType="INSIDE" width="189.0" />
+      <Text layoutX="143.0" layoutY="251.0" strokeType="OUTSIDE" strokeWidth="0.0" text="View or Edit a Pending Aplication" wrappingWidth="99.81689304113388" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff5c" height="51.0" layoutX="129.0" layoutY="237.0" stroke="BLACK" strokeType="INSIDE" width="122.0" />
+   </children>
+</Pane>

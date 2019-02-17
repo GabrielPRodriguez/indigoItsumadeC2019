@@ -14,7 +14,6 @@ import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.*;
 
 public class SQLDriver{
 
-
     public Connection connect_file(String filename) throws Exception{
         if (!filename.endsWith(".db")){
             throw new Exception("filename must end with '.db'");
@@ -23,6 +22,7 @@ public class SQLDriver{
         Connection connection = DriverManager.getConnection("jdbc:sqlite:"+filename);
         return connection;
     }
+
     public Connection connect_about_file(String filename) throws Exception{
         if (!filename.endsWith(".db")){
             throw new Exception("filename must end with '.db'");
@@ -31,10 +31,11 @@ public class SQLDriver{
         Connection connection = DriverManager.getConnection("jdbc:sqlite:_about_"+filename);
         return connection;
     }
+
     public DBTypes create_type(String type){
         return new DBTypes(type);
-
     }
+
     private void about_database(String tablename, String filename, String [] columns, DBTypes [] _types) throws Exception{
         Connection _connector = connect_file("_about_"+filename);
         Statement statement = _connector.createStatement();
@@ -48,9 +49,8 @@ public class SQLDriver{
             pstmt.executeUpdate();
         }
         _connector.close();
-
-
     }
+
     public Connection create_table(String tablename, String filename, String [] columns, DBTypes [] _types) throws Exception{
 
         if (!filename.endsWith(".db")){
@@ -147,7 +147,9 @@ public class SQLDriver{
     }
     public void create_user_account(String email, String password, int role) throws Exception{
         String [] columns = {"RepIDnum", "firstName", "lastName", "phoneNumber", "streetAdress",  "city", "zipCode", "state", "deliminator", "email", "password", "role", "rfid"};
-        DBTypes [] full_types = {new DBTypes("real"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("real"), new DBTypes("text")};
+        DBTypes [] full_types = {new DBTypes("real"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"),
+                new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"),
+                new DBTypes("text"), new DBTypes("real"), new DBTypes("text")};
         /*
         role is a in integer 0 or 1: 0 => Agent, 1 => Manufacturer
          */
@@ -160,7 +162,7 @@ public class SQLDriver{
         }
         double _id = 1;
         for (HashMap<String, ReturnedValue>result:select_all("user_database.db", "credentials")){
-            double _temp_id = result.get("id").to_double();
+            double _temp_id = result.get("RepIDnum").to_double();
             if (_temp_id > _id){
                 _id = _temp_id;
             }
@@ -736,18 +738,23 @@ public class SQLDriver{
 
 
     public ArrayList<HashMap<String, ReturnedValue>>get_user_data_by_value(String tablename, String filename, LinkedList<String>search_fields, HashMap<String, DataField>targets) throws Exception{
-        //System.out.println("in search method");
+        System.out.println("in search method");
 
         ArrayList<HashMap<String, ReturnedValue>> final_results = new ArrayList<HashMap<String, ReturnedValue>>();
         for (HashMap<String, ReturnedValue>result: select_all(filename, tablename)){
+            System.out.println("In first loop");
                 boolean _flag = false;
                 for (String field:search_fields){
-                    // System.out.println("search field: "+field);
+                    System.out.println("search field: "+field);
                     ReturnedValue type1 = result.get(field);
                     DataField type2 = targets.get(field);
 
+                    System.out.println("At end");
+                    System.out.println("Type1: " + type1);
 
-                    if (type1.type.equals("text")){
+
+                    if (type1.type.equals("text")|| type1.type.equals("TEXT")){
+                        System.out.println("Type accepted");
                         if (type1.to_string().equals(type2.getValue().toString())){
                             //  System.out.println("successfull comparison!!!");
 

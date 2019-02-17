@@ -146,28 +146,28 @@ public class SQLDriver{
         generic_update("user_credentials", "user_credentials.db", _target_cols, _value_cols, "id", new DBValue<Integer>(id));
     }
     public void create_user_account(String email, String password, int role) throws Exception{
-        String [] columns = {"id", "email", "password", "role", "rfid"};
-        DBTypes [] full_types = {new DBTypes("real"), new DBTypes("text"), new DBTypes("text"), new DBTypes("real"), new DBTypes("text")};
+        String [] columns = {"RepIDnum", "firstName", "lastName", "phoneNumber", "streetAdress",  "city", "zipCode", "state", "deliminator", "email", "password", "role", "rfid"};
+        DBTypes [] full_types = {new DBTypes("real"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("real"), new DBTypes("text")};
         /*
         role is a in integer 0 or 1: 0 => Agent, 1 => Manufacturer
          */
         try{
-            create_table("user_credentials", "user_credentials.db", columns, full_types);
+            create_table("credentials", "user_database.db", columns, full_types);
         }
         catch (Exception e){
             //pass
             //db already created
         }
         double _id = 1;
-        for (HashMap<String, ReturnedValue>result:select_all("user_credentials.db", "user_credentials")){
+        for (HashMap<String, ReturnedValue>result:select_all("user_database.db", "credentials")){
             double _temp_id = result.get("id").to_double();
             if (_temp_id > _id){
                 _id = _temp_id;
             }
 
         }
-        DBValue [] all_vals = {new DBValue<Integer>((int)_id), new DBValue<String>(email),  new DBValue<String>(password), new DBValue<Integer>(role), new DBValue<String>("")};
-        insert_vals("user_credentials", "user_credentials.db", all_vals);
+        DBValue [] all_vals = {new DBValue<Integer>((int)_id), new DBValue<String>(""), new DBValue<String>(""), new DBValue<String>(""), new DBValue<String>(""), new DBValue<String>(""), new DBValue<String>(""), new DBValue<String>(""), new DBValue<String>(""), new DBValue<String>(email),  new DBValue<String>(password), new DBValue<Integer>(role), new DBValue<String>("")};
+        insert_vals("credentials", "user_database.db", all_vals);
 
 
     }

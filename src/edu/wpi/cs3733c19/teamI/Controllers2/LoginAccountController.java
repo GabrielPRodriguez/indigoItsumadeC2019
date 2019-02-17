@@ -185,7 +185,7 @@ public class LoginAccountController implements Initializable {
         searchParam.put("email", new DataField(EmailCreate.getText(), "email"));
 
         try {
-            users = loginDriver.get_user_data_by_value("user_credentials", "user_credentials.db", param, searchParam);//readFile(users);
+            users = loginDriver.get_user_data_by_value("credentials", "user_database.db", param, searchParam);//readFile(users);
         }
         catch(Exception e){
             System.out.println("no db");

@@ -328,7 +328,8 @@
                                     <Font name="Segoe UI Bold" size="16.0" />
                                  </font>
                               </Label>
-                              <JFXButton fx:id="front_Upload" alignment="CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" text="Click Here to Upload Front Image">
+                              <ImageView fx:id="frontImageDisp" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                              <JFXButton fx:id="front_Upload" alignment="CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" onAction="#uploadFile" prefHeight="0.0" prefWidth="200.0" text="Click Here to Upload Front Image">
                                  <font>
                                     <Font name="Segoe UI Bold" size="11.0" />
                                  </font>
@@ -342,7 +343,8 @@
                                     <Font name="Segoe UI Bold" size="16.0" />
                                  </font>
                               </Label>
-                              <JFXButton fx:id="back_Upload" alignment="CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" text="Click Here to Upload Back Image">
+                              <ImageView fx:id="backImageDisp" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                              <JFXButton fx:id="back_Upload" alignment="CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" onAction="#uploadFile" prefHeight="0.0" prefWidth="200.0" text="Click Here to Upload Back Image">
                                  <font>
                                     <Font name="Segoe UI Bold" size="11.0" />
                                  </font>

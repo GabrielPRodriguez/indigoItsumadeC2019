@@ -11,14 +11,23 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 
+import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.ResourceBundle;
+
+import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class FormSubmissionController implements Initializable {
 
@@ -213,8 +222,49 @@ public class FormSubmissionController implements Initializable {
     @FXML
     Label name_warning;
 
+    @FXML
+    JFXButton front_Upload;
 
+    @FXML
+    JFXButton back_Upload;
 
+    @FXML
+    ImageView frontImageDisp;
+
+    @FXML
+    ImageView backImageDisp;
+
+    @FXML
+    private void uploadFile(ActionEvent event)
+    {
+        if((event.getSource() == front_Upload) || (event.getSource() == back_Upload))
+        {
+            JButton open = new JButton();
+            JFileChooser chooseFile = new JFileChooser();
+
+            chooseFile.setCurrentDirectory(new java.io.File("System.dir"));
+            FileNameExtensionFilter filter = new FileNameExtensionFilter("*.Images", "jpg", "png");
+            chooseFile.addChoosableFileFilter(filter);
+            chooseFile.setDialogTitle("Please Choose A Picture to Upload");
+            chooseFile.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+            if(chooseFile.showOpenDialog(open) == JFileChooser.APPROVE_OPTION)
+            {
+                File selectedFile = chooseFile.getSelectedFile();
+                String filePath = selectedFile.getAbsolutePath();
+                Image selectedImage = new Image(new File(filePath).toURI().toString());
+
+                if(event.getSource() == front_Upload)
+                {
+                    frontImageDisp.setImage(selectedImage);
+                }
+
+                if(event.getSource() == back_Upload)
+                {
+                    backImageDisp.setImage(selectedImage);
+                }
+            }
+        }
+    }
 
     //Enables the fields that are only used for wine when the wine radial button is selected
 /*

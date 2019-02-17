@@ -52,6 +52,9 @@
                                            </font>
                                        </JFXTextField>
                                    </children>
+                                 <padding>
+                                    <Insets left="150.0" right="150.0" />
+                                 </padding>
                                </VBox>
                               <VBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="21.0" spacing="20.0">
                                  <children>
@@ -66,6 +69,9 @@
                                        </font>
                                     </JFXPasswordField>
                                  </children>
+                                 <padding>
+                                    <Insets left="150.0" right="150.0" />
+                                 </padding>
                               </VBox>
                               <JFXButton alignment="CENTER" mnemonicParsing="false" onAction="#login" style="-fx-background-color: #046b99;" text="Log In" textFill="WHITE">
                                  <font>

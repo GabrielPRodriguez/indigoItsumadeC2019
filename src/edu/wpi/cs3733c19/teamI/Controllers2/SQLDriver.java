@@ -167,7 +167,7 @@ public class SQLDriver{
 
         }
         DBValue [] all_vals = {new DBValue<Integer>((int)_id), new DBValue<String>(email),  new DBValue<String>(password), new DBValue<Integer>(role), new DBValue<String>("")};
-        insert_vals("user_credentials", "user_credentials.db.db", all_vals);
+        insert_vals("user_credentials", "user_credentials.db", all_vals);
 
 
     }

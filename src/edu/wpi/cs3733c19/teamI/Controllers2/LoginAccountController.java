@@ -1,10 +1,12 @@
 package edu.wpi.cs3733c19.teamI.Controllers2;
 
 import com.jfoenix.controls.*;
+import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.ReturnedValue;
 import edu.wpi.cs3733c19.teamI.Entities.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import sun.misc.BASE64Decoder;
@@ -18,6 +20,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.security.Key;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 
@@ -52,6 +56,12 @@ public class LoginAccountController implements Initializable {
 
     @FXML
     ToggleGroup ToggleType;
+
+    @FXML
+    Label UserNameError;
+
+    @FXML
+    Label PasswordError;
 
     private ToolBarController toolBarController;
 
@@ -143,10 +153,16 @@ public class LoginAccountController implements Initializable {
     }
 
     public void attemptCreate(ActionEvent actionEvent) throws Exception{
-        String users = "";
 
-        users = readFile(users);
+        ArrayList<HashMap<String, ReturnedValue>> users = new ArrayList<HashMap<String, ReturnedValue>>();
+        SQLDriver loginDriver = new SQLDriver();
 
+        try {
+            users = loginDriver.search_sql_wildcard("user_credentials", "user_credentials.db", "email", EmailCreate.getText());//readFile(users);
+        }
+        catch(Exception e){
+            System.out.println("no db");
+        }
 
 
         boolean isValid2 = true;
@@ -154,33 +170,46 @@ public class LoginAccountController implements Initializable {
 
             Character currChar = invalidCharacters.charAt(i);
             if (EmailCreate.getText().contains(currChar.toString()) || PasswordCreate.getText().contains(currChar.toString())) {
-                //errorMessage.setText("username or password contains illegal characters");
+                UserNameError.setText("username or password contains illegal characters");
+                PasswordError.setText("");
                 isValid2 = false;
-                System.out.println("illegal");
             }
         }
         if (isValid2 == false){
         }
         else if(PasswordCreate.getText().length() < 8){
-            //errorMessage.setText("Username too short");
-            System.out.println("short");
+            PasswordError.setText("Password too short");
+            UserNameError.setText("");
         }
         else if (!EmailCreate.getText().contains("@") || !EmailCreate.getText().contains(".")){
-            System.out.println("Enter an email");
+            UserNameError.setText("Please Enter Email");
+            PasswordError.setText("");
         }
         else if(ToggleType.getSelectedToggle() == null){
-            System.out.println("Select a user type");
+            UserNameError.setText("Select Type Above");
+            PasswordError.setText("");
         }
-        else if (users.contains(":"+EmailCreate.getText()+":")){
-            System.out.println("Email already taken");
+        else if (!users.isEmpty()){
+            UserNameError.setText("Email already taken");
+            PasswordError.setText("");
         }
         else if (!PasswordCreate.getText().equals(PasswordCreateCheck.getText())){
-            System.out.println("Passwords do not match");
+            PasswordError.setText("Passwords do not match");
+            UserNameError.setText("");
         }
-        else{
+        else{ //add user to db
+            UserNameError.setText("");
+            PasswordError.setText("");
             User.userPower powerCreate;
             RadioButton selectedRadioButton = (RadioButton) ToggleType.getSelectedToggle();
             String toggleGroupValue = selectedRadioButton.getText();
+            int role = 0;
+            if(toggleGroupValue.equals("Agent")){
+                role = 0;
+            }
+            else{
+                role = 1;
+            }
             if(toggleGroupValue.equals("Manufacturer")){
                 powerCreate = User.userPower.Company;
             }
@@ -190,7 +219,9 @@ public class LoginAccountController implements Initializable {
             else{
                 powerCreate = User.userPower.Standard;
             }
-            createAccount(EmailCreate.getText(), PasswordCreate.getText(), powerCreate);
+            loginDriver.create_user_account(EmailCreate.getText(), encryptPassword(PasswordCreate.getText()), role);
+
+            //createAccount(EmailCreate.getText(), PasswordCreate.getText(), powerCreate, loginDriver, role);
             Email.setText(EmailCreate.getText());
             Password.setText(PasswordCreate.getText());
         }

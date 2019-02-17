@@ -13,46 +13,8 @@ import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class AboutController implements Initializable {
-    private ToolBarController toolBarController;
-    private Scene ResultsScene;
+public class AboutController{
+    private ToolBarController toolBarController = ToolBarController.getInstance();
 
-    @FXML
-    JFXButton tb_loginButton;
 
-    public void setToolBarController(ToolBarController toolBarController){
-        this.toolBarController = toolBarController;
-    }
-
-    @FXML
-    public void goHome(ActionEvent actionEvent){ toolBarController.goHome(actionEvent); }
-
-    @FXML
-    public void goSubmit(ActionEvent actionEvent){
-        toolBarController.goSubmit(actionEvent);
-    }
-
-    @FXML
-    public void goLogin(ActionEvent actionEvent){
-        toolBarController.goLogin(actionEvent);
-    }
-
-    @FXML
-    public void goWorkflow(ActionEvent actionEvent){toolBarController.goWorkflow(actionEvent);}
-
-    @FXML
-    public void goAbout(ActionEvent actionEvent){toolBarController.goAbout(actionEvent);}
-
-    public void setTb_logout() {
-        tb_loginButton.setText("logout");
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources)
-    {
-        
-    }
-
-    @FXML
-    public void goExit(ActionEvent actionEvent){toolBarController.goExit(actionEvent);}
 }

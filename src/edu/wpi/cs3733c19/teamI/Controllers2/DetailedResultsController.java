@@ -19,8 +19,7 @@ import java.net.URL;
 
 
 public class DetailedResultsController {
-    private ToolBarController toolBarController;
-    public Scene ResultsScene;
+    private ToolBarController toolBarController = ToolBarController.getInstance();
 
     @FXML
     ListView<String> info;
@@ -37,49 +36,18 @@ public class DetailedResultsController {
 
     ObservableList<String> items = FXCollections.observableArrayList();
 
-    public void setToolBarController(ToolBarController toolBarController){
-        this.toolBarController = toolBarController;
-    }
-
     public void updateList(sub_Form form){
         info.setItems(form.getSummary());
         ProductName.setText(form.getSummary().get(5));
 
     }
-    public void setResultsScene(Scene resultsScene){
-        this.ResultsScene = resultsScene;
+
+    public void goSearch(ActionEvent actionEvent) throws IOException {
+        toolBarController.goSearch();}
+
+
+    public void goResults() throws IOException {
+        toolBarController.goSearch();
     }
-
-    @FXML
-    public void goHome(ActionEvent actionEvent){ toolBarController.goHome(actionEvent); }
-
-    @FXML
-    public void goSubmit(ActionEvent actionEvent){
-        toolBarController.goSubmit(actionEvent);
-    }
-
-    @FXML
-    public void goLogin(ActionEvent actionEvent){
-        toolBarController.goLogin(actionEvent);
-    }
-
-    @FXML
-    public void goWorkflow(ActionEvent actionEvent){toolBarController.goWorkflow(actionEvent);}
-
-    @FXML
-    public void goAbout(ActionEvent actionEvent){toolBarController.goAbout(actionEvent);}
-
-    @FXML
-    public void goSearch(ActionEvent actionEvent){toolBarController.goSearch(actionEvent);}
-
-    @FXML
-    public void goResults(ActionEvent actionEvent){
-        Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        primaryStage.setScene(ResultsScene);
-        primaryStage.setMaximized(true);
-    }
-
-    @FXML
-    public void goExit(ActionEvent actionEvent){toolBarController.goExit(actionEvent);}
 
 }

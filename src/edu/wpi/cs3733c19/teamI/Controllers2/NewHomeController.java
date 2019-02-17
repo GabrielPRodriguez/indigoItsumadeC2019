@@ -17,6 +17,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -26,16 +27,10 @@ public class NewHomeController implements Initializable {
 
 
     @FXML
-    VBox primary;
-
-    @FXML
     JFXSpinner spin;
 
-    private ToolBarController toolBarController;
+    private ToolBarController toolBarController = ToolBarController.getInstance();
     private fuzzyContext searchAlgorithmSelection = new fuzzyContext();
-
-    @FXML
-    JFXButton tb_loginButton;
 
 
     @FXML
@@ -73,44 +68,8 @@ public class NewHomeController implements Initializable {
     CheckBox beverageType;
 
 
-    public void setToolBarController(ToolBarController toolBarController){
-        this.toolBarController = toolBarController;
-    }
-
-
     @FXML
-    public void goHome(ActionEvent actionEvent){
-        toolBarController.goHome(actionEvent);
-    }
-
-    @FXML
-    public void goSubmit(ActionEvent actionEvent){
-        toolBarController.goSubmit(actionEvent);
-    }
-
-    @FXML
-    public void goLogin(ActionEvent actionEvent){
-        System.out.println("logging in");
-        toolBarController.goLogin(actionEvent);
-    }
-
-    @FXML
-    public void goLogout(ActionEvent actionEvent){
-        System.out.println("logging out");
-        toolBarController.goLogout(actionEvent);
-    }
-
-    @FXML
-    public void goAbout(ActionEvent actionEvent){toolBarController.goAbout(actionEvent);}
-
-    @FXML
-    public void goWorkflow(ActionEvent actionEvent){toolBarController.goWorkflow(actionEvent);}
-
-    @FXML
-    public void goAdvancedSearch(ActionEvent actionEvent){toolBarController.goAdvancedSearch(actionEvent);}
-
-    @FXML
-    public void goExit(ActionEvent actionEvent){toolBarController.goExit(actionEvent);}
+    public void goAdvancedSearch() throws IOException {toolBarController.goAdvancedSearch();}
 
 
 
@@ -135,7 +94,7 @@ public class NewHomeController implements Initializable {
 
     }
 
-    public void setSearchParam(){
+    private void setSearchParam(){
         ArrayList<String> paramList = new ArrayList<String>();
         if(extraInfo.isSelected()){
             paramList.add("extraInfo");
@@ -167,9 +126,9 @@ public class NewHomeController implements Initializable {
             // toolBarController.transferSearchInfo(searchAlgorithmSelection.run(searchTextField.getText().trim()));
             // toolBarController.goSearch(actionEvent);
             // System.out.println("Finished Gosearch");
-
+            toolBarController = ToolBarController.getInstance();
             toolBarController.setResultsMap(searchAlgorithmSelection.run(searchTextField.getText().trim()));
-            toolBarController.goSearch(actionEvent);
+            toolBarController.goSearch();
 
             // TODO:this will return what fuzzys return
             // TODO link the return of the fuzzy alghoriths to a listView on the next page (maybe just have field of hashmap that gets passed to the next scene)
@@ -178,19 +137,6 @@ public class NewHomeController implements Initializable {
 
     }
 
-    void logButton(){
-        if(toolBarController == null){
-            tb_loginButton.setText("login");
-        }
-        else if(toolBarController.isSignedIn()){
-            tb_loginButton.setText("logout");
-        }
-        else if(!toolBarController.isSignedIn()) {
-            tb_loginButton.setText("login");
-        }else{
-            tb_loginButton.setText("login");
-        }
-    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources){

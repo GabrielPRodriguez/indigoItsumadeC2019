@@ -118,11 +118,14 @@ public class LoginAccountController implements Initializable {
 
     @FXML
     public void login(ActionEvent actionEvent) throws Exception {
+        System.out.println("about to check..");
         if(!attemptLogin(actionEvent)){
+            System.out.println("attempt login fail");
 
         }
         else {
             User.userPower powerCreate = User.userPower.Standard;
+            //TODO: eliminate following toggel button code, shold be handled by DB
 
             powerCreate = getType();
             System.out.println(powerCreate.toString());
@@ -145,6 +148,20 @@ public class LoginAccountController implements Initializable {
             } else {
                 powerCreate = User.userPower.Standard;
                 System.out.println("togg stand");
+            }
+
+            ArrayList<HashMap<String, ReturnedValue>> users = new ArrayList<>();
+            SQLDriver loginDriver = new SQLDriver();
+            LinkedList<String> param = new LinkedList<String>();
+            param.add("email");
+            HashMap<String, DataField> searchParam = new HashMap<>();
+            searchParam.put("email", new DataField(Email.getText(), "email"));
+            users = loginDriver.get_user_data_by_value("credentials", "user_database.db", param, searchParam);
+            if(users.get(0).get("role").to_double() == 0){
+                powerCreate = User.userPower.TTBEmployee;
+            }
+            else{
+                powerCreate = User.userPower.Company;
             }
             toolBarController.login(actionEvent, Email.getText(), Password.getText(), powerCreate);
         }
@@ -230,22 +247,22 @@ public class LoginAccountController implements Initializable {
             User.userPower powerCreate;
             RadioButton selectedRadioButton = (RadioButton) ToggleType.getSelectedToggle();
             String toggleGroupValue = selectedRadioButton.getText();
-            int role = 0;
+            String role = "0.0";
             if(toggleGroupValue.equals("Agent")){
-                role = 0;
+                role = "0.0";
             }
             else{
-                role = 1;
+                role = "1.0";
             }
-            if(toggleGroupValue.equals("Manufacturer")){
-                powerCreate = User.userPower.Company;
-            }
-            else if(toggleGroupValue.equals("Agent")){
-                powerCreate = User.userPower.TTBEmployee;
-            }
-            else{
-                powerCreate = User.userPower.Standard;
-            }
+//            if(toggleGroupValue.equals("Manufacturer")){
+//                powerCreate = User.userPower.Company;
+//            }
+//            else if(toggleGroupValue.equals("Agent")){
+//                powerCreate = User.userPower.TTBEmployee;
+//            }
+//            else{
+//                powerCreate = User.userPower.Standard;
+//            }
             
             
             
@@ -300,11 +317,18 @@ public class LoginAccountController implements Initializable {
     }
 
     public boolean attemptLogin(ActionEvent actionEvent) throws Exception { //attempts a login and will either create an account or login
-        String users = "";
+        System.out.println("cecking");
+        ArrayList<HashMap<String, ReturnedValue>> users = new ArrayList<>();
+        SQLDriver loginDriver = new SQLDriver();
+        LinkedList<String> param = new LinkedList<String>();
+        param.add("email");
+        HashMap<String, DataField> searchParam = new HashMap<>();
+        searchParam.put("email", new DataField(Email.getText(), "email"));
+        System.out.println("Data collected");
 
-        users = readFile(users);
-        if(Email.getText().isEmpty() || Password.getText().isEmpty() || firstName.getText().isEmpty() || lastName.getText().isEmpty()
-        || PasswordCreateCheck.getText().isEmpty()){
+        users = loginDriver.get_user_data_by_value("credentials", "user_database.db", param, searchParam);//readFile(users);
+        if(Email.getText().isEmpty() || Password.getText().isEmpty()){// || firstName.getText().isEmpty() || lastName.getText().isEmpty()
+        //|| PasswordCreateCheck.getText().isEmpty()){
             req_error.setOpacity(1);
             return(false);
         }
@@ -314,21 +338,23 @@ public class LoginAccountController implements Initializable {
             return false;
         }
 
-        else if (users.contains(":"+Email.getText()+":"+encryptPassword(Password.getText())+":")){ //this file checks for the user and pass in the file
+        else if ((!users.isEmpty() && users.get(0).get("password").to_string().equals(encryptPassword(Password.getText())))){//users.contains(":"+Email.getText()+":"+encryptPassword(Password.getText())+":")){ //this file checks for the user and pass in the file
+
             System.out.println("Login Complete");
             ErrorMessage.setOpacity(0);
             return true;
         }
 
-        else if (users.contains(":"+Email.getText()+":")){
-            ErrorMessage.setText("Select an unused username");
-            ErrorMessage.setOpacity(1);
-            return false;
-
-        }
+//        else if (users.contains(":"+Email.getText()+":")){
+//            ErrorMessage.setText("Select an unused username");
+//            ErrorMessage.setOpacity(1);
+//            return false;
+//
+//        }
         else { //user name and password dont match
             ErrorMessage.setText("Invalid Username/ Password");
             ErrorMessage.setOpacity(1);
+
             return false;
         }
     }

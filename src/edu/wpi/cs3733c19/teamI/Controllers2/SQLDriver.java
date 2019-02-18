@@ -13,6 +13,7 @@ import edu.wpi.cs3733c19.teamI.Entities.DataField;
 import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.*;
 
 public class SQLDriver{
+    //TODO: URGENT!!!!! converte ALL user DB values to be inserted as strings!!!
 
     public Connection connect_file(String filename) throws Exception{
         if (!filename.endsWith(".db")){
@@ -145,11 +146,11 @@ public class SQLDriver{
 
         generic_update("user_credentials", "user_credentials.db", _target_cols, _value_cols, "id", new DBValue<Integer>(id));
     }
-    public void create_user_account(String email, String password, int role) throws Exception{
+    public void create_user_account(String email, String password, String role) throws Exception{
         String [] columns = {"RepIDnum", "firstName", "lastName", "phoneNumber", "streetAdress",  "city", "zipCode", "state", "deliminator", "email", "password", "role", "rfid"};
         DBTypes [] full_types = {new DBTypes("real"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"),
                 new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"),
-                new DBTypes("text"), new DBTypes("real"), new DBTypes("text")};
+                new DBTypes("text"), new DBTypes("text"), new DBTypes("text")};
         /*
         role is a in integer 0 or 1: 0 => Agent, 1 => Manufacturer
          */
@@ -168,7 +169,7 @@ public class SQLDriver{
             }
 
         }
-        DBValue [] all_vals = {new DBValue<Integer>((int)_id), new DBValue<String>(""), new DBValue<String>(""), new DBValue<String>(""), new DBValue<String>(""), new DBValue<String>(""), new DBValue<String>(""), new DBValue<String>(""), new DBValue<String>(""), new DBValue<String>(email),  new DBValue<String>(password), new DBValue<Integer>(role), new DBValue<String>("")};
+        DBValue [] all_vals = {new DBValue<Integer>((int)_id), new DBValue<String>(""), new DBValue<String>(""), new DBValue<String>(""), new DBValue<String>(""), new DBValue<String>(""), new DBValue<String>(""), new DBValue<String>(""), new DBValue<String>(""), new DBValue<String>(email),  new DBValue<String>(password), new DBValue<String>(role), new DBValue<String>("")};
         insert_vals("credentials", "user_database.db", all_vals);
 
 

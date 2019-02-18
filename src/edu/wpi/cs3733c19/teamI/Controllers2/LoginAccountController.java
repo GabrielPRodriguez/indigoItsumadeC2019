@@ -245,22 +245,29 @@ public class LoginAccountController implements Initializable {
 
 
 
-            /*
-            SQLDriver driver = new SQLDriver();
+
             double _id_count = 0;
-            for (HashMap<String, ReturnedValue>result:driver.select_all("user_database.db", "credentials")){
+            for (HashMap<String, ReturnedValue>result:loginDriver.select_all("user_database.db", "credentials")){
                double _test = result.get("RepIDnum").to_double();
                if (_test > _id_count){
                    _id_count = _test;
                }
             }
             //values needed: firstName, lastName, phoneNumber, streetAdress, city, zipCode, state, deliminator
-            DBValue [] user_row = {new DBValue<Integer>((int)(_id_count)+1), new DBValue<String>(firstName), new DBValue<String>(lastName), new DBValue<String>(phoneNumber), new DBValue<String>(streetAddress), new DBValue<String>(city), new DBValue<String>(zipCode), new DBValue<String>(state), new DBValue<String>(deliminator)};
-            driver.insert_vals("credentials", "user_database.db", user_row);
+           // String [] columns = {"RepIDnum", "firstName", "lastName", "phoneNumber", "streetAdress",  "city", "zipCode", "state", "deliminator", "email", "password", "role", "rfid"};
+//
+//            DBValue[] user_row = {new DBValue<Integer>((int)(_id_count)+1), new DBValue<String>(firstName.getText()), new DBValue<String>(lastName.getText()),
+//                    new DBValue<String>(address.getText())};
+
+
+            DBValue [] user_row = {new DBValue<Integer>((int)(_id_count)+1), new DBValue<String>(firstName.getText()), new DBValue<String>(lastName.getText()), new DBValue<String>(phone.getText()), new DBValue<String>(address.getText()),
+                    new DBValue<String>(city.getText()), new DBValue<String>(zip.getText()), new DBValue<String>(state.getText()),
+                    new DBValue<String>(delim.getText()), new DBValue<String>(EmailCreate.getText()), new DBValue<String>(encryptPassword(PasswordCreate.getText())), new DBValue<String>(role), new DBValue<String>("NULL")};
+            loginDriver.insert_vals("credentials", "user_database.db", user_row);
             //when you are ready, uncomment this block, and remove create_user_account below
-            */
+
             //createAccount(EmailCreate.getText(), PasswordCreate.getText(), powerCreate, loginDriver, role);
-            loginDriver.create_user_account(EmailCreate.getText(), encryptPassword(PasswordCreate.getText()), role);
+           // loginDriver.create_user_account(EmailCreate.getText(), encryptPassword(PasswordCreate.getText()), role);
             Email.setText(EmailCreate.getText());
             Password.setText(PasswordCreate.getText());
         }

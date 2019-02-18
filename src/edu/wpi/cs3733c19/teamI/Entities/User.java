@@ -21,7 +21,7 @@ public class User {
     }
     private int appsPer = 5;
 
-    private static User theUser;
+    private static User curUser;
 
     private User(String name, String pass, userPower type){
         username = name;
@@ -30,37 +30,37 @@ public class User {
             }
 
     private static class UserHelper{
-        private static final User theUser = new User("","",userPower.Standard);
+        private static final User curUser = new User("","",userPower.Standard);
     }
 
     public static User getUser(String name, String pass, userPower type){
-        if(theUser == null){
-            theUser = new User(name, pass, type);
+        if(curUser == null){
+            curUser = new User(name, pass, type);
         }
-        return UserHelper.theUser;
+        return UserHelper.curUser;
     }
 
 
 
     public String getUsername() {
-        return theUser.username;
+        return curUser.username;
     }
 
     public String getPassword() {
-        return theUser.password;
+        return curUser.password;
     }
 
     public Boolean getAdmin() {
-        return theUser.isAdmin;
+        return curUser.isAdmin;
     }
 
     public userPower getUserType() {
-        return theUser.userType;
+        return curUser.userType;
     }
 
-    public int getAppsPer(){return theUser.appsPer;}
+    public int getAppsPer(){return curUser.appsPer;}
 
-    public void setAppsPer(int newApps){theUser.appsPer = newApps; }
+    public void setAppsPer(int newApps){curUser.appsPer = newApps; }
 
     public char getDelim() {
         return delim;
@@ -71,34 +71,34 @@ public class User {
     }
 
     public String getState() {
-        return theUser.state;
+        return curUser.state;
     }
 
     public String getCity() {
-        return theUser.city;
+        return curUser.city;
     }
 
     public String getZip() {
-        return theUser.zip;
+        return curUser.zip;
     }
 
     public String getStreet() {
-        return theUser.street;
+        return curUser.street;
     }
 
     public String getFirstName() {
-        return theUser.firstName;
+        return curUser.firstName;
     }
 
     public String getLastName() {
-        return theUser.lastName;
+        return curUser.lastName;
     }
 
     public String getPhone() {
-        return theUser.phone;
+        return curUser.phone;
     }
 
     public String getRepId() {
-        return theUser.repId;
+        return curUser.repId;
     }
 }

@@ -92,11 +92,12 @@ public class ToolBarController {
 
     public void login(String username, String password, User.userPower power) throws IOException
     {
-        System.out.println("logging in");
+        //System.out.println("logging in");
        signedIn = true;
-       curUser = User.getUser(username, password, power);
+       curUser = null;
+       curUser = curUser.getUser(username, password, power);
        goWorkflow();
-       System.out.println("Post Login"+ signedIn);
+       //System.out.println("Post Login"+ signedIn);
     }
 
 
@@ -142,15 +143,15 @@ public class ToolBarController {
         {
             goLogin();
         }
-        if(curUser.getUserType().equals(User.userPower.TTBEmployee))
+        else if(curUser.getUserType().equals(User.userPower.TTBEmployee))
         {
             goWorkflowAgent();
         }
-        if(curUser.getUserType().equals(User.userPower.Company))
+        else if(curUser.getUserType().equals(User.userPower.Company))
         {
             goWorkflowManufacturer();
         }
-        if(curUser.getUserType().equals(User.userPower.Standard))
+        else if(curUser.getUserType().equals(User.userPower.Standard))
         {
             goHome();
         }

@@ -273,6 +273,24 @@ public class ResultsController implements Initializable {
         // toolBarController.goDetails(event);
     }
 
+    public void goSearch(ActionEvent actionEvent) throws Exception {
+
+        if (searchTextField.getText() == null || searchTextField.getText().trim().isEmpty()){
+            // TODO Insert here anything you want the app to do when user click search and box is empty
+
+        }
+        else {
+            searchAlgorithmSelection.setContext(new SQLFuzzy());
+            toolBarController.setResultsMap(searchAlgorithmSelection.run(searchTextField.getText().trim()));
+            toolBarController.goSearch();
+
+            // TODO:this will return what fuzzys return
+            // TODO link the return of the fuzzy alghoriths to a listView on the next page (maybe just have field of hashmap that gets passed to the next scene)
+
+        }
+
+    }
+
 
     private void showSelectedBeverage(sub_Form oneBeverage) {
         /**

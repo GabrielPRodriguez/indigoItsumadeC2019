@@ -553,6 +553,13 @@ public class FormSubmissionController implements Initializable {
         LocalDate date = LocalDate.now();
         date_Field.setValue(date);
         email_Field.setText(toolBarController.getCurUser().getUsername());
+        applicantName_Field.setText(toolBarController.getCurUser().getFirstName() + " " + toolBarController.getCurUser().getLastName());
+        street_Field.setText(toolBarController.getCurUser().getStreet());
+        city_Field.setText(toolBarController.getCurUser().getCity());
+        state_Field.setText(toolBarController.getCurUser().getState());
+        zip_Field.setText(toolBarController.getCurUser().getZip());
+        repIdNum_Field.setText(toolBarController.getCurUser().getRepId());
+        phoneNum_Field.setText(toolBarController.getCurUser().getPhone());
 
 
 

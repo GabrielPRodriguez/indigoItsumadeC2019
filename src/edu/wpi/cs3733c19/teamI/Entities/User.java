@@ -5,6 +5,15 @@ public class User {
     private String password;
     private Boolean isAdmin = false;
     private userPower userType;
+    private String state;
+    private String city;
+    private String zip;
+    private String street;
+    private String firstName;
+    private String lastName;
+    private String phone;
+    private String repId;
+
     private char delim;
         public enum userPower
         {
@@ -59,5 +68,37 @@ public class User {
 
     public void setDelim(char delim) {
         this.delim = delim;
+    }
+
+    public String getState() {
+        return theUser.state;
+    }
+
+    public String getCity() {
+        return theUser.city;
+    }
+
+    public String getZip() {
+        return theUser.zip;
+    }
+
+    public String getStreet() {
+        return theUser.street;
+    }
+
+    public String getFirstName() {
+        return theUser.firstName;
+    }
+
+    public String getLastName() {
+        return theUser.lastName;
+    }
+
+    public String getPhone() {
+        return theUser.phone;
+    }
+
+    public String getRepId() {
+        return theUser.repId;
     }
 }

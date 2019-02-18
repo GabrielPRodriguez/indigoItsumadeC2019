@@ -15,8 +15,8 @@ public class TTBWorkHelpController implements Initializable {
         this.toolBarController = toolBarController;
     }
 
-    @FXML
-    Button closeHelp;
+//    @FXML
+//    Button closeHelp;
 
     @FXML
     public void goWorkflow(ActionEvent actionEvent){toolBarController.goWorkflow(actionEvent);}

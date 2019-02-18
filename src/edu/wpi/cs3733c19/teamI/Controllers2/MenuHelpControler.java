@@ -15,10 +15,7 @@ public class MenuHelpControler implements Initializable {
     public void setToolBarController(ToolBarController toolBarController) {
         this.toolBarController = toolBarController;
     }
-
-    @FXML
-    Button closeHelp;
-
+    
     @FXML
     public void goHome(ActionEvent actionEvent){
         toolBarController.goHome(actionEvent);

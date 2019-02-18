@@ -94,7 +94,9 @@ public class ToolBarController {
     {
         //System.out.println("logging in");
        signedIn = true;
-       curUser = null;
+       if(curUser != null) {
+           curUser.logOutUser();
+       }
        curUser = curUser.getUser(username, password, power);
        goWorkflow();
        //System.out.println("Post Login"+ signedIn);

@@ -33,8 +33,12 @@ public class User {
         private static final User curUser = new User("","",userPower.Standard);
     }
 
+    public void logOutUser(){
+        curUser = new User("", "", userPower.Standard);
+    }
+
     public static User getUser(String name, String pass, userPower type){
-        if(curUser == null){
+        if((curUser == null)|| curUser.username.equals("")){
             curUser = new User(name, pass, type);
         }
         return UserHelper.curUser;

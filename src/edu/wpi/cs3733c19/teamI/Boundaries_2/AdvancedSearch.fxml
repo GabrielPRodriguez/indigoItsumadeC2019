@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXRadioButton?>
+<?import com.jfoenix.controls.JFXSpinner?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers2.AdvancedSearchController">
+   <top>
+      <fx:include source="TTBToolbar.fxml"/>
+   </top>
+   <center>
+      <VBox alignment="CENTER_LEFT" spacing="10.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="Advanced Search">
+               <font>
+                  <Font name="Segoe UI Bold" size="32.0" />
+               </font>
+            </Label>
+            <Separator prefWidth="200.0" />
+            <HBox alignment="CENTER_LEFT" spacing="20.0">
+               <children>
+                  <TextField fx:id="searchBar" prefHeight="50.0" HBox.hgrow="ALWAYS" />
+                  <JFXComboBox fx:id="fieldSelector" promptText="Search By:" />
+                  <JFXButton fx:id="search" mnemonicParsing="false" onAction="#performSearch" onMouseClicked="#spinnerVisible" style="-fx-background-color: #046b99;" text="Search" textFill="WHITE">
+                     <font>
+                        <Font name="Segoe UI Bold" size="16.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXSpinner fx:id="spin" maxHeight="0.0" maxWidth="0.0" radius="20.0" />
+               </children></HBox>
+            <HBox alignment="CENTER_LEFT" spacing="20.0">
+               <children>
+                  <JFXRadioButton mnemonicParsing="false" selected="true" text="SQL">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="Algorithm" />
+                     </toggleGroup>
+                  </JFXRadioButton>
+                  <JFXRadioButton mnemonicParsing="false" text="Levenshtein" toggleGroup="$Algorithm" />
+                  <JFXRadioButton mnemonicParsing="false" text="Damerau-Levenshtein" toggleGroup="$Algorithm" />
+               </children>
+            </HBox>
+         </children>
+         <BorderPane.margin>
+            <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
+         </BorderPane.margin>
+      </VBox>
+   </center>
+</BorderPane>

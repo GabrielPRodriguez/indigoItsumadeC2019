@@ -155,52 +155,17 @@ public class AdvancedSearchController implements Initializable {
     }
 
 
-    private ToolBarController toolBarController;
-
-
-    public void setToolBarController(ToolBarController toolBarController){
-        this.toolBarController = toolBarController;
-    }
-
-
-    @FXML
-    public void goHome(ActionEvent actionEvent){ toolBarController.goHome(actionEvent); }
-
-    @FXML
-    public void goSubmit(ActionEvent actionEvent){
-        toolBarController.goSubmit(actionEvent);
-    }
-
-    @FXML
-    public void goLogin(ActionEvent actionEvent){
-        toolBarController.goLogin(actionEvent);
-    }
-
-    @FXML
-    public void goWorkflow(ActionEvent actionEvent){toolBarController.goWorkflow(actionEvent);}
-
-    @FXML
-    public void goAbout(ActionEvent actionEvent){toolBarController.goAbout(actionEvent);}
-
-    @FXML
-    public void goSearch(ActionEvent actionEvent){toolBarController.goSearch(actionEvent);}
-
-    @FXML
-    public void goExit(ActionEvent actionEvent){toolBarController.goExit(actionEvent);}
+    private ToolBarController toolBarController = ToolBarController.getInstance();
 
 
 
-   public void performSearch(ActionEvent event){
-        try {
-            System.out.println("Field Selector: " + ((Label)fieldSelector.getValue()).getText());
-            //System.out.println()
-            toolBarController.setResultsMap(querydata.search_sql_wildcard("form_data", "new_csv_from_spreadsheet.db", searchBar.getText(),hmap.get(((Label)fieldSelector.getValue()).getText())));
-        }
-        catch(Exception e){
+   public void performSearch(ActionEvent event) throws Exception {
 
-        }
+       System.out.println("Field Selector: " + ((Label)fieldSelector.getValue()).getText());
+       toolBarController.setResultsMap(querydata.search_sql_wildcard("form_data", "new_csv_from_spreadsheet.db", searchBar.getText(),hmap.get(((Label)fieldSelector.getValue()).getText())));
+
        System.out.println( hmap.get(fieldSelector.getValue()));
-        toolBarController.goSearch(event);
+       toolBarController.goSearch();
     }
 
 

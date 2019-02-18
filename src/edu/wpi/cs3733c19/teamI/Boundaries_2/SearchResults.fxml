@@ -12,54 +12,124 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<BorderPane minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers2.ResultsController">
+<BorderPane maxHeight="1000.0" maxWidth="1000.0" prefHeight="1000.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers2.ResultsController">
+   <top>
+      <fx:include source="TTBToolbar.fxml"/>
+   </top>
    <center>
-      <VBox alignment="CENTER" prefHeight="784.0" prefWidth="1527.0" spacing="10.0" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="1000.0" prefHeight="784.0" prefWidth="1471.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
             <VBox spacing="15.0">
                <children>
                   <HBox alignment="CENTER" spacing="80.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <TextField onAction="#goSearch" prefHeight="50.0" promptText="Find A Beverage" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="searchTextField"  prefHeight="50.0" promptText="Find A Beverage" HBox.hgrow="ALWAYS" />
+                        <TextField prefHeight="50.0" promptText="Find A Beverage" HBox.hgrow="ALWAYS" />
                         <JFXComboBox focusColor="#aeb0b5" promptText="Sort By:" unFocusColor="BLACK" HBox.hgrow="ALWAYS" />
-                        <VBox prefHeight="200.0" prefWidth="100.0">
-                           <children>
-                              <Label fx:id="export_message" prefHeight="17.0" prefWidth="106.0">
-                                 <VBox.margin>
-                                    <Insets top="35.0" />
-                                 </VBox.margin></Label>
-                              <JFXButton fx:id="CSV" mnemonicParsing="false" onAction="#writeExcel" style="-fx-background-color: #4773aa;" text="Export CSV" textFill="WHITE">
-                                 <font>
-                                    <Font name="Segoe UI Bold" size="15.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets top="7.0" />
-                                 </VBox.margin>
-                              </JFXButton>
-                           </children>
-                        </VBox>
+                        <JFXButton fx:id="CSV" mnemonicParsing="false" onAction="#writeExcel" style="-fx-background-color: #4773aa;" text="Export CSV" textFill="WHITE" HBox.hgrow="ALWAYS">
+                           <font>
+                              <Font name="Segoe UI Bold" size="15.0" />
+                           </font>
+                        </JFXButton>
                      </children>
                   </HBox>
                </children>
             </VBox>
             <Separator prefWidth="200.0" />
-            <ScrollPane fitToHeight="true" fitToWidth="true" VBox.vgrow="ALWAYS">
-               <content>
-                  <TableView fx:id="tableView" maxWidth="-Infinity" minWidth="-Infinity" onMouseClicked="#table_selected" prefHeight="500.0" prefWidth="722.0">
-                     <columns>
-                        <TableColumn fx:id="ResultNumber" minWidth="40.0" prefWidth="-1.0" text="No." />
-                        <TableColumn fx:id="BrandName" minWidth="100.0" prefWidth="-1.0" text="Brand Name" />
-                        <TableColumn fx:id="Type" minWidth="100.0" prefWidth="-1.0" text="Type" />
-                        <TableColumn fx:id="AlchoholPercentage" minWidth="100.0" prefWidth="-1.0" text="Percentage" />
-                        <TableColumn fx:id="Domestic" minWidth="100.0" prefWidth="-1.0" text="Origin" />
-                     </columns></TableView>
-               </content>
-            </ScrollPane>
+            <HBox maxWidth="-Infinity" prefHeight="527.0" prefWidth="1366.0" VBox.vgrow="ALWAYS">
+               <VBox.margin>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </VBox.margin>
+               <children>
+                  <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="527.0" prefWidth="1549.0">
+                     <children>
+                        <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="504.0" prefWidth="470.0">
+                           <content>
+                              <TableView fx:id="tableView" maxWidth="-Infinity" minWidth="-Infinity" onMouseClicked="#table_selected" prefHeight="502.0" prefWidth="466.0">
+                                 <columns>
+                                    <TableColumn fx:id="ResultNumber" minWidth="40.0" prefWidth="-1.0" text="No." />
+                                    <TableColumn fx:id="BrandName" minWidth="100.0" prefWidth="-1.0" text="Brand Name" />
+                                    <TableColumn fx:id="Type" minWidth="100.0" prefWidth="-1.0" text="Type" />
+                                    <TableColumn fx:id="AlchoholPercentage" minWidth="100.0" prefWidth="-1.0" text="Percentage" />
+                                    <TableColumn fx:id="Domestic" minWidth="100.0" prefWidth="-1.0" text="Origin" />
+                                 </columns>
+                              </TableView>
+                           </content>
+                        </ScrollPane>
+                        <AnchorPane layoutX="470.0" layoutY="1.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="504.0" prefWidth="699.0">
+                           <children>
+                              <Text fx:id="nameText" layoutX="312.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" wrappingWidth="600.61669921875">
+                                 <font>
+                                    <Font name="Segoe UI Bold" size="32.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="typeText" layoutX="316.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type" wrappingWidth="288.55859375">
+                                 <font>
+                                    <Font name="Segoe UI Bold" size="23.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="fanText" layoutX="39.0" layoutY="218.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fanciful Name" wrappingWidth="431.4970703125">
+                                 <font>
+                                    <Font name="Segoe UI Bold" size="23.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="percentText" layoutX="39.0" layoutY="297.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Alcohol Percent" wrappingWidth="288.66943359375">
+                                 <font>
+                                    <Font name="Segoe UI Bold" size="23.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="vinText" layoutX="39.0" layoutY="365.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vintage" wrappingWidth="308.8017578125">
+                                 <font>
+                                    <Font name="Segoe UI Bold" size="23.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="appText" layoutX="477.0" layoutY="365.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Appelation" wrappingWidth="325.5146484375">
+                                 <font>
+                                    <Font name="Segoe UI Bold" size="23.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="varText" layoutX="40.0" layoutY="454.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Varietals" wrappingWidth="604.83056640625">
+                                 <font>
+                                    <Font name="Segoe UI Bold" size="23.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="originText" layoutX="477.0" layoutY="297.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Origin" wrappingWidth="213.82080078125">
+                                 <font>
+                                    <Font name="Segoe UI Bold" size="23.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="phText" layoutX="728.0" layoutY="297.0" strokeType="OUTSIDE" strokeWidth="0.0" text="pH" wrappingWidth="130.88330078125">
+                                 <font>
+                                    <Font name="Segoe UI Bold" size="23.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="regText" layoutX="477.0" layoutY="216.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Registry" wrappingWidth="205.8330078125">
+                                 <font>
+                                    <Font name="Segoe UI Bold" size="23.0" />
+                                 </font>
+                              </Text>
+                              <Separator layoutX="25.0" layoutY="178.0" prefHeight="5.0" prefWidth="868.0" />
+                              <Separator layoutX="23.0" layoutY="259.0" prefHeight="8.0" prefWidth="866.0" />
+                              <Separator layoutX="25.0" layoutY="325.0" prefHeight="11.0" prefWidth="870.0" />
+                              <Separator layoutX="28.0" layoutY="411.0" prefHeight="10.0" prefWidth="865.0" />
+                              <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="44.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+                              <Separator layoutX="25.0" layoutY="494.0" prefHeight="12.0" prefWidth="862.0" />
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </HBox>
             <HBox alignment="CENTER" spacing="10.0">
                <children>
                   <Label text="Results Per Page:">
@@ -122,59 +192,4 @@
          </padding>
       </VBox>
    </center>
-   <top>
-      <JFXToolbar minHeight="50.0" minWidth="600.0" style="-fx-background-color: #323a45;">
-         <left>
-            <JFXButton mnemonicParsing="false" onAction="#goHome" text="TTB COLA Search" textFill="WHITE" BorderPane.alignment="CENTER">
-               <font>
-                  <Font name="Segoe UI Bold" size="18.0" />
-               </font>
-               <graphic>
-                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Assets/treasury_high_density.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </JFXButton>
-         </left>
-         <right>
-            <HBox alignment="CENTER" spacing="30.0" BorderPane.alignment="CENTER">
-               <children>
-                  <JFXButton mnemonicParsing="false" onAction="#goAbout" text="About" textFill="WHITE">
-                     <font>
-                        <Font name="Segoe UI Bold" size="14.0" />
-                     </font>
-                  </JFXButton>
-                  <JFXButton mnemonicParsing="false" onAction="#goSubmit" text="Submit Form" textFill="WHITE">
-                     <font>
-                        <Font name="Segoe UI Bold" size="14.0" />
-                     </font>
-                  </JFXButton>
-                  <JFXButton mnemonicParsing="false" onAction="#goWorkflow" text="Workflow" textFill="WHITE">
-                     <font>
-                        <Font name="Segoe UI Bold" size="14.0" />
-                     </font>
-                  </JFXButton>
-                  <JFXButton mnemonicParsing="false" onAction="#goLogin" text="Login" textFill="WHITE">
-                     <font>
-                        <Font name="Segoe UI Bold" size="14.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </JFXButton>
-                  <JFXButton mnemonicParsing="false" onAction="#goExit" text="Exit" textFill="WHITE">
-                     <font>
-                        <Font name="Segoe UI Bold" size="14.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets right="20.0" />
-                     </HBox.margin>
-                  </JFXButton>
-               </children>
-            </HBox>
-         </right>
-      </JFXToolbar>
-   </top>
 </BorderPane>

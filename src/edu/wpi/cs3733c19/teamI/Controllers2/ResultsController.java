@@ -2,6 +2,8 @@ package edu.wpi.cs3733c19.teamI.Controllers2;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPopup;
+import edu.wpi.cs3733c19.teamI.Algorithms.SQLFuzzy;
+import edu.wpi.cs3733c19.teamI.Algorithms.fuzzyContext;
 import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.ReturnedValue;
 import edu.wpi.cs3733c19.teamI.Entities.sub_Form;
 import javafx.beans.property.ObjectProperty;
@@ -12,6 +14,11 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.control.*;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.*;
@@ -19,6 +26,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.scene.paint.Color;
 import javafx.stage.PopupWindow;
 import javafx.stage.PopupWindow.AnchorLocation;
@@ -37,7 +45,7 @@ import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class ResultsController implements Initializable {
-    private ToolBarController toolBarController;
+    private ToolBarController toolBarController = ToolBarController.getInstance();
     private ArrayList<HashMap<String, ReturnedValue>> resultsList;
     private String testString = "original";
     private int batches = 0; //variable to track number batches
@@ -99,7 +107,31 @@ public class ResultsController implements Initializable {
     JFXButton thirdPage;
 
     @FXML
+    TextField searchTextField;
+    private fuzzyContext searchAlgorithmSelection = new fuzzyContext();
+
+    @FXML
     JFXButton fourthPage;
+    @FXML
+    Text regText;
+    @FXML
+    Text typeText;
+    @FXML
+    Text fanText;
+    @FXML
+    Text percentText;
+    @FXML
+    Text originText;
+    @FXML
+    Text phText;
+    @FXML
+    Text vinText;
+    @FXML
+    Text appText;
+    @FXML
+    Text varText;
+    @FXML
+    Text nameText;
 
     @FXML
     Label export_message;
@@ -235,42 +267,13 @@ public class ResultsController implements Initializable {
     }
 
 
-
-    public void setToolBarController(ToolBarController toolBarController){
-        this.toolBarController = toolBarController;
-    }
-    
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         setTable();
     }
 
 
-    @FXML
-    public void goHome(ActionEvent actionEvent){ toolBarController.goHome(actionEvent); }
 
-    @FXML
-    public void goSubmit(ActionEvent actionEvent){
-        toolBarController.goSubmit(actionEvent);
-    }
-
-    @FXML
-    public void goLogin(ActionEvent actionEvent){
-        toolBarController.goLogin(actionEvent);
-    }
-
-    @FXML
-    public void goWorkflow(ActionEvent actionEvent){toolBarController.goWorkflow(actionEvent);}
-
-    @FXML
-    public void goAbout(ActionEvent actionEvent){toolBarController.goAbout(actionEvent);}
-
-    @FXML
-    public void goSearch(ActionEvent actionEvent){toolBarController.goSearch(actionEvent);}
-
-    @FXML
-    public void goExit(ActionEvent actionEvent){toolBarController.goExit(actionEvent);}
 
     public void table_selected(Event event){
         sub_Form item = tableView.getSelectionModel().getSelectedItem();
@@ -294,6 +297,17 @@ public class ResultsController implements Initializable {
          and scroll down to the Product Detail its a good exmple of how you can fir
          a lot of information close together
         */
+
+        regText.setText(oneBeverage.getSummary().get(1));
+        typeText.setText(oneBeverage.getSummary().get(4));
+        fanText.setText(oneBeverage.getSummary().get(6));
+        percentText.setText(oneBeverage.getSummary().get(11) + "%");
+        originText.setText(oneBeverage.getSummary().get(2));
+        phText.setText(oneBeverage.getSummary().get(9));
+        vinText.setText(oneBeverage.getSummary().get(7));
+        appText.setText(oneBeverage.getSummary().get(10));
+        varText.setText(oneBeverage.getSummary().get(8));
+        nameText.setText(oneBeverage.getSummary().get(5));
     }
 
     //create CSV function
@@ -301,13 +315,19 @@ public class ResultsController implements Initializable {
         export_message.setText("");
         Writer writer = null;
         String fileTimestamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+        String delimiter = ",";
+
+        if (toolBarController.getCurUser() != null ){
+            delimiter = String.valueOf(toolBarController.getCurUser().getDelim());
+        }
+
         try {
             File file = new File(System.getProperty("user.home")+ "/Downloads/DATA" + fileTimestamp + ".CSV");
             writer = new BufferedWriter(new FileWriter(file)); //CSV library function
             // grab text versions of all displayed results
             for (int i = 0; i < DisplayedResults.size(); i++) {
 
-                String text = DisplayedResults.get(i).returnAll();
+                String text = DisplayedResults.get(i).returnAll(delimiter);
                 writer.write(text);
             }
 

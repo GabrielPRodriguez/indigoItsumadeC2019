@@ -154,11 +154,11 @@ public class sub_Form {
 
     //this function is used to generate the CSV download. It returns every form field as a list of string
     // seperated by commas
-    public String returnAll()
+    public String returnAll(String delim)
     {
-        String CSV = this.repID + "," +this.plantRegistry + "," +this.domesticOrImported + "," +this.serialNumber + "," +this.beverageType + ","
-                +this.brandName + "," +this.fancifulName + "," + this.vintage + "," +this.grapeVarietals
-                + this.pHValue + "," + this.wineAppellation + "," + this.alcoholContent+ "," + this.phoneNumber+ "," +
+        String CSV = this.repID + delim +this.plantRegistry + delim +this.domesticOrImported + delim +this.serialNumber + delim +this.beverageType + delim
+                +this.brandName + delim +this.fancifulName + delim + this.vintage + delim +this.grapeVarietals
+                + this.pHValue + delim + this.wineAppellation + delim + this.alcoholContent+ delim + this.phoneNumber+ delim +
                 this.email + "\n";
         return CSV;
     }

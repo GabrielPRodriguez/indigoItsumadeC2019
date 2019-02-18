@@ -11,7 +11,7 @@
 
 <JFXToolbar minHeight="50.0" minWidth="600.0" style="-fx-background-color: #323a45;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers2.ToolBarController">
    <left>
-      <JFXButton mnemonicParsing="false" onAction="#goHome" text="TTB COLA Search" textFill="WHITE" BorderPane.alignment="CENTER">
+      <JFXButton fx:id="tb_homeButton" mnemonicParsing="false" onAction="#goHome" text="TTB COLA Search" textFill="WHITE" BorderPane.alignment="CENTER">
          <font>
             <Font name="Segoe UI Bold" size="18.0" />
          </font>
@@ -32,12 +32,12 @@
                   <Font name="Segoe UI Bold" size="14.0" />
                </font>
             </JFXButton>
-            <JFXButton mnemonicParsing="false" onAction="#goSubmit" text="Submit Form" textFill="WHITE">
+            <JFXButton fx:id="tb_submitFormButton" mnemonicParsing="false" onAction="#goSubmit" text="Submit Form" textFill="WHITE">
                <font>
                   <Font name="Segoe UI Bold" size="14.0" />
                </font>
             </JFXButton>
-            <JFXButton mnemonicParsing="false" onAction="#goWorkflow" text="Workflow" textFill="WHITE">
+            <JFXButton fx:id="tb_workflowButton" mnemonicParsing="false" onAction="#goWorkflow" text="Workflow" textFill="WHITE">
                <font>
                   <Font name="Segoe UI Bold" size="14.0" />
                </font>
@@ -50,7 +50,7 @@
                   <Insets />
                </HBox.margin>
             </JFXButton>
-            <JFXButton mnemonicParsing="false" onAction="#goExit" text="Exit" textFill="WHITE">
+            <JFXButton fx:id="tb_exitButton" mnemonicParsing="false" onAction="#goExit" text="Exit" textFill="WHITE">
                <HBox.margin>
                   <Insets right="20.0" />
                </HBox.margin>

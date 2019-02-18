@@ -5,21 +5,22 @@ import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.ReturnedValue;
 import edu.wpi.cs3733c19.teamI.Entities.Message;
 import edu.wpi.cs3733c19.teamI.Entities.ToolBarSignInName;
 import edu.wpi.cs3733c19.teamI.Entities.User;
+import edu.wpi.cs3733c19.teamI.Main;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ToolBarController {
 
+
+    public Stage primaryStage = Main.getWindow();
 
     @FXML
     JFXButton tb_homeButton;
@@ -34,243 +35,156 @@ public class ToolBarController {
     JFXButton tb_loginButton;
 
     @FXML
-    JFXButton tb_logout;
+    JFXButton tb_workflowButton;
 
+    /**
     @FXML
-    JFXButton tb_workFlow;
-
-    @FXML
-    JFXButton tb_pendingApps;
-
-    @FXML
-    Label signInNameLabel; // Sign in name on ToolBar
-    @FXML
-    Label signInTemplateLabel; // Sign in as
-
-    protected Scene HomeScene;
-    protected Scene SearchScene;
-    private Scene SubScene;
-    private Scene AboutScene;
-    private Scene Login;
-    private Scene FormCheck;
-    private Scene Pending;
-    private Scene Info;
-    private Scene Result;
+    Label signInLabel   //here is what we are going to write to when the person signs in
+    */
+    static ToolBarController instance;
+    private User curUser = null;
     private ResultsController ResultsController;
+    private Parent searchParent;
     private DetailedResultsController InfoController;
-    private User curUser;
     private boolean signedIn = false;
 
     private ArrayList<HashMap<String, ReturnedValue>> resultsMap = new ArrayList<HashMap<String, ReturnedValue>>();
 
-    // Observable Class fields
-    private Message clearText;
-    private ToolBarSignInName toolBarSignInName;
 
-    public ToolBarController(){
-        FXMLLoader toolBarLoader = new FXMLLoader(getClass().getResource("Boundaries_2/Toolbar.fxml"));
-        toolBarLoader.setRoot(this);
-        toolBarLoader.setController(this);
+    public ToolBarController() {
 
-        clearText = new Message();
-        toolBarSignInName = new ToolBarSignInName();
-        clearText.register(toolBarSignInName);
+    }
+
+    static {
+        instance = new ToolBarController();
+    }
+
+    public static ToolBarController getInstance() {
+        return instance;
     }
 
 
-
-
-    public void setResultsMap(ArrayList<HashMap<String, ReturnedValue>> resultsMap){
+    void setResultsMap(ArrayList<HashMap<String, ReturnedValue>> resultsMap){
+        System.out.println(ResultsController);
             this.resultsMap = resultsMap;
             ResultsController.convertToForms(0);
 
-
-        }
-
-    public User getCurUser() {
-        return curUser;
     }
 
-    public ArrayList<HashMap<String, ReturnedValue>> getResultsMap() {
+    public void setSearchParent(Parent searchParent) {
+        this.searchParent = searchParent;
+    }
+
+    ArrayList<HashMap<String, ReturnedValue>> getResultsMap() {
         return this.resultsMap;
-    }
-
-    public void setPending(Scene pending) {
-        Pending = pending;
-    }
-
-    public void setInfo(Scene info) {
-        Info = info;
-    }
-
-    public void setResult(Scene result) {
-        Result = result;
-    }
-
-    public void setHomeScene(Scene homeScene) {
-        HomeScene = homeScene;
-    }
-
-    public void setSearchScene(Scene searchScene) {
-        SearchScene = searchScene;
-    }
-
-    public void setSubScene(Scene subScene) {
-        SubScene = subScene;
-    }
-
-    public void setAboutScene(Scene aboutScene) {
-        AboutScene = aboutScene;
-    }
-
-    public void setLogin(Scene login) {
-        Login = login;
-    }
-
-    public void setFormCheck(Scene formCheck) {
-        FormCheck = formCheck;
     }
 
     public void setResultsController(ResultsController resultsController){ ResultsController = resultsController; }
 
     public void setInfoController(DetailedResultsController details) { InfoController = details; }
 
-    public DetailedResultsController getInfoController() {return InfoController; };
-
-
-
-
-
-
-    @FXML
-    public void goHome(ActionEvent actionEvent){
-        //System.out.println("HomeAction"); // Commented out because it prints too much
-        Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        primaryStage.setScene(HomeScene);
-        primaryStage.setFullScreen(true);
-
-    }
-
-    @FXML
-    public void goAbout(ActionEvent actionEvent){
-        Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        primaryStage.setScene(AboutScene);
-        primaryStage.setFullScreen(true);
-
-        //about.setTb_logout();
-
-    }
-
-    @FXML
-    public void goSubmit(ActionEvent actionEvent){
-
-        if(curUser == null) {
-            goLogin(actionEvent);
-        }
-        else if (!curUser.getUserType().equals(User.userPower.TTBEmployee)){
-
-            Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            primaryStage.setScene(SubScene);
-            primaryStage.setFullScreen(true);
-        }
-    }
-
-    @FXML
-    public void goLogin(ActionEvent actionEvent){
-
-        if(signedIn == false) {
-            Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            primaryStage.setScene(Login);
-            primaryStage.setFullScreen(true);
-        }
-        else if (signedIn == true){ // This is where the sign out happends
-            goLogout(actionEvent);
-            /*
-            signedIn = false;
-            curUser = null;
-            Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            primaryStage.setScene(Login);
-            primaryStage.setFullScreen(true);
-            */
-            // takeOffSignInName(); // TODO when the labels are made on the FXML ToolBar uncomment files
-        }
-    }
-
-    @FXML
-    public void goLogout(ActionEvent actionEvent){
-        signedIn = false;
-        curUser = null;
-        Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        primaryStage.setScene(Login);
-        primaryStage.setFullScreen(true);
-    }
+    public DetailedResultsController getInfoController() {return InfoController; }
 
     public void loginRFID(String username, String password, User.userPower power){
         signedIn = true;
         curUser = User.getUser(username, password, power);
-
     }
 
-    @FXML
-    public void login(ActionEvent actionEvent, String username, String password, User.userPower power){
-        signedIn = true;
-        curUser = User.getUser(username, password, power);
-        if(curUser.getUserType().equals(User.userPower.TTBEmployee)){
-            goWorkflow(actionEvent);
+    public void login(String username, String password, User.userPower power) throws IOException
+    {
+       signedIn =true;
+       curUser = User.getUser(username, password, power);
+       goWorkflow();
+       System.out.println(signedIn);
+    }
+
+
+    public void goHome() throws IOException {
+        Parent homeParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/Home.fxml"));
+        primaryStage = Main.getWindow();
+        primaryStage.getScene().setRoot(homeParent);
+    }
+
+
+    public void goAbout() throws IOException {
+        Parent aboutParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/About.fxml"));
+        primaryStage = Main.getWindow();
+        primaryStage.getScene().setRoot(aboutParent);
+    }
+
+    public void goSubmit() throws IOException {
+        System.out.println(signedIn);
+        if (signedIn == false)
+        {
+            goLogin();
         }
-        else if(curUser.getUserType().equals(User.userPower.Company)){
-            goSubmit(actionEvent);
+        Parent submitParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/FormSubmission.fxml"));
+        primaryStage = Main.getWindow();
+        primaryStage.getScene().setRoot(submitParent);
+
+    }
+
+    public void goLogin() throws IOException {
+        Parent loginParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/Login_CreateAccount.fxml"));
+        primaryStage = Main.getWindow();
+        primaryStage.getScene().setRoot(loginParent);
+
+    }
+
+    public void goWorkflow() throws IOException {
+        System.out.print(signedIn);
+
+        if(curUser == null)
+        {
+            goLogin();
         }
-        else{
-            goSearch(actionEvent);
+        if(curUser.getUserType().equals(User.userPower.TTBEmployee))
+        {
+            goWorkflowAgent();
         }
-        displaySignInName(username); // Here is where function is what calls observer when logedIn
-
-        //tb_loginButton.setText("Logout");
-    }
-
-    @FXML
-    public void goPending(ActionEvent actionEvent){
-        Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        primaryStage.setScene(Pending);
-        primaryStage.setFullScreen(true);
-
-    }
-
-    @FXML
-       public void goWorkflow(ActionEvent actionEvent) {
-        if (curUser == null) {
-            goLogin(actionEvent);
+        if(curUser.getUserType().equals(User.userPower.Company))
+        {
+            goWorkflowManufacturer();
         }
-        else if (!curUser.getUserType().equals(User.userPower.Company)){
-            Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            primaryStage.setScene(FormCheck);
-            primaryStage.setFullScreen(true);
+        if(curUser.getUserType().equals(User.userPower.Standard))
+        {
+            goHome();
         }
-    }
-
-    public void goAdvancedSearch(ActionEvent actionEvent){
-        Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        primaryStage.setScene(SearchScene);
-        primaryStage.setFullScreen(true);
 
     }
 
-    public void goSearch(ActionEvent actionEvent){
-        Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        primaryStage.setScene(Result);
-        primaryStage.setFullScreen(true);
+    public void goWorkflowAgent() throws IOException {
+        Parent agentWorkParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/WorkflowAgent.fxml"));
+        primaryStage = Main.getWindow();
+        primaryStage.getScene().setRoot(agentWorkParent);
+    }
+
+    public void goWorkflowManufacturer() throws IOException
+    {
+        Parent manuWorkParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/WorkflowManufacturer.fxml"));
+        primaryStage = Main.getWindow();
+        primaryStage.getScene().setRoot(manuWorkParent);
+    }
+
+
+    public void goAdvancedSearch() throws IOException {
+        Parent advancedSearchParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/AdvancedSearch.fxml"));
+        primaryStage = Main.getWindow();
+        primaryStage.getScene().setRoot(advancedSearchParent);
 
     }
-    public void goDetails(Event event){
-        Stage primaryStage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        primaryStage.setScene(Info);
-        primaryStage.setFullScreen(true);
 
+    public void goSearch() throws IOException {
+        System.out.println("toolSearch");
 
+       // Parent searchParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/Home.fxml"));
+        primaryStage = Main.getWindow();
+        primaryStage.getScene().setRoot(searchParent);
+        System.out.println("Should have changed?");
     }
+
+
     public void goExit(ActionEvent actionEvent){
-        Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         System.exit(0);
     }
 
@@ -280,24 +194,8 @@ public class ToolBarController {
         System.out.println("toolbar: " + resultsList);
     }
 
-    public void displaySignInName(String name){
-        clearText.setText(name);
-        // TODO implement Label on the FXML ToolBar to display the sign in of the person
-        //signInTemplateLabel.setText("Signed in as")
-        //signInNameLabel.setText(toolBarSignInName.getText()); //Erase these comments when label is made
-        System.out.println(toolBarSignInName.getText());
-    }
-    // TODO call this method when the person signs out of the account
-    public void takeOffSignInName(){
-        signInNameLabel.setText("");
-        signInTemplateLabel.setText("");
-    }
 
-    public boolean isSignedIn() {
-        return signedIn;
-    }
-
-    public void setSignedIn(boolean signedIn) {
-        this.signedIn = signedIn;
+    public User getCurUser() {
+        return curUser;
     }
 }

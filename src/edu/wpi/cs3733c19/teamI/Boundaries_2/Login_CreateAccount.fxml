@@ -164,6 +164,7 @@
                                                       <Font name="Segoe UI Bold" size="20.0" />
                                                    </font>
                                                 </Label>
+                                                <Label fx:id="firstNameError" textFill="RED" />
                                                 <Label fx:id="UserNameError1" textFill="RED" />
                                              </children>
                                           </HBox>
@@ -188,7 +189,7 @@
                                           <Label fx:id="UserNameError22" textFill="RED" />
                                        </children>
                                     </HBox>
-                                    <JFXTextField fx:id="Delim" promptText="Deliminator">
+                                    <JFXTextField fx:id="delim" promptText="Deliminator">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
@@ -212,6 +213,7 @@
                                              </font>
                                           </Label>
                                           <Label fx:id="UserNameError2" textFill="RED" />
+                                          <Label fx:id="lastNameError" textFill="RED" />
                                        </children>
                                     </HBox>
                                     <JFXTextField fx:id="lastName" promptText="Last Name">
@@ -233,7 +235,7 @@
                                           <Label fx:id="UserNameError3" textFill="RED" />
                                        </children>
                                     </HBox>
-                                    <JFXTextField fx:id="phoneNum" promptText="Phone Number">
+                                    <JFXTextField fx:id="phone" promptText="Phone Number">
                                        <font>
                                           <Font size="15.0" />
                                        </font>

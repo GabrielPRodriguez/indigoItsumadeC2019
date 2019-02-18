@@ -46,7 +46,7 @@ public class ToolBarController {
     private ResultsController ResultsController;
     private Parent searchParent;
     private DetailedResultsController InfoController;
-    private boolean signedIn = false;
+    private  static boolean signedIn = false;
 
     private ArrayList<HashMap<String, ReturnedValue>> resultsMap = new ArrayList<HashMap<String, ReturnedValue>>();
 
@@ -92,9 +92,11 @@ public class ToolBarController {
 
     public void login(String username, String password, User.userPower power) throws IOException
     {
-       signedIn =true;
+        System.out.println("logging in");
+       signedIn = true;
        curUser = User.getUser(username, password, power);
        goWorkflow();
+       System.out.println("Post Login"+ signedIn);
     }
 
 
@@ -112,13 +114,17 @@ public class ToolBarController {
     }
 
     public void goSubmit() throws IOException {
+        System.out.println(signedIn);
         if (signedIn == false)
         {
             goLogin();
         }
-        Parent submitParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/FormSubmission.fxml"));
-        primaryStage = Main.getWindow();
-        primaryStage.getScene().setRoot(submitParent);
+        else{
+            Parent submitParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/FormSubmission.fxml"));
+            primaryStage = Main.getWindow();
+            primaryStage.getScene().setRoot(submitParent);
+        }
+
 
     }
 

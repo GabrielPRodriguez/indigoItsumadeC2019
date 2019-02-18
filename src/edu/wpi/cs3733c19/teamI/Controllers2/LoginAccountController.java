@@ -84,6 +84,10 @@ public class LoginAccountController implements Initializable {
     JFXTextField delim;
     @FXML
     Text req_error;
+    @FXML
+    Label firstNameError;
+    @FXML
+    Label lastNameError;
 
 
 
@@ -203,26 +207,46 @@ public class LoginAccountController implements Initializable {
         else if(PasswordCreate.getText().length() < 8){
             PasswordError.setText("Password too short");
             UserNameError.setText("");
+            firstNameError.setText("");
+            lastNameError.setText("");
         }
         else if (!EmailCreate.getText().contains("@") || !EmailCreate.getText().contains(".")){
             UserNameError.setText("Please Enter Email");
             PasswordError.setText("");
+            firstNameError.setText("");
+            lastNameError.setText("");
         }
         else if(ToggleType.getSelectedToggle() == null){
             UserNameError.setText("Select Type Above");
             PasswordError.setText("");
+            firstNameError.setText("");
+            lastNameError.setText("");
         }
         else if (!users.isEmpty()){
             UserNameError.setText("Email already taken");
             PasswordError.setText("");
+            firstNameError.setText("");
+            lastNameError.setText("");
         }
         else if (!PasswordCreate.getText().equals(PasswordCreateCheck.getText())){
             PasswordError.setText("Passwords do not match");
             UserNameError.setText("");
+            firstNameError.setText("");
+            lastNameError.setText("");
+        }
+
+        else if(firstName.getText().isEmpty() || lastName.getText().isEmpty()){
+            firstNameError.setText("First and Last Name Required");
+            lastNameError.setText("First and Last Name Required");
+            PasswordError.setText("");
+            UserNameError.setText("");
+
         }
         else{ //add user to db
             UserNameError.setText("");
             PasswordError.setText("");
+            firstNameError.setText("");
+            lastNameError.setText("");
             User.userPower powerCreate;
             RadioButton selectedRadioButton = (RadioButton) ToggleType.getSelectedToggle();
             String toggleGroupValue = selectedRadioButton.getText();
@@ -233,15 +257,6 @@ public class LoginAccountController implements Initializable {
             else{
                 role = "1.0";
             }
-//            if(toggleGroupValue.equals("Manufacturer")){
-//                powerCreate = User.userPower.Company;
-//            }
-//            else if(toggleGroupValue.equals("Agent")){
-//                powerCreate = User.userPower.TTBEmployee;
-//            }
-//            else{
-//                powerCreate = User.userPower.Standard;
-//            }
 
 
 
@@ -253,21 +268,12 @@ public class LoginAccountController implements Initializable {
                    _id_count = _test;
                }
             }
-            //values needed: firstName, lastName, phoneNumber, streetAdress, city, zipCode, state, deliminator
-           // String [] columns = {"RepIDnum", "firstName", "lastName", "phoneNumber", "streetAdress",  "city", "zipCode", "state", "deliminator", "email", "password", "role", "rfid"};
-//
-//            DBValue[] user_row = {new DBValue<Integer>((int)(_id_count)+1), new DBValue<String>(firstName.getText()), new DBValue<String>(lastName.getText()),
-//                    new DBValue<String>(address.getText())};
 
 
             DBValue [] user_row = {new DBValue<Integer>((int)(_id_count)+1), new DBValue<String>(firstName.getText()), new DBValue<String>(lastName.getText()), new DBValue<String>(phone.getText()), new DBValue<String>(address.getText()),
                     new DBValue<String>(city.getText()), new DBValue<String>(zip.getText()), new DBValue<String>(state.getText()),
                     new DBValue<String>(delim.getText()), new DBValue<String>(EmailCreate.getText()), new DBValue<String>(encryptPassword(PasswordCreate.getText())), new DBValue<String>(role), new DBValue<String>("NULL")};
             loginDriver.insert_vals("credentials", "user_database.db", user_row);
-            //when you are ready, uncomment this block, and remove create_user_account below
-
-            //createAccount(EmailCreate.getText(), PasswordCreate.getText(), powerCreate, loginDriver, role);
-           // loginDriver.create_user_account(EmailCreate.getText(), encryptPassword(PasswordCreate.getText()), role);
             Email.setText(EmailCreate.getText());
             Password.setText(PasswordCreate.getText());
         }
@@ -303,7 +309,6 @@ public class LoginAccountController implements Initializable {
     }
 
     public boolean attemptLogin(ActionEvent actionEvent) throws Exception { //attempts a login and will either create an account or login
-        System.out.println("cecking");
         ArrayList<HashMap<String, ReturnedValue>> users = new ArrayList<>();
         SQLDriver loginDriver = new SQLDriver();
         LinkedList<String> param = new LinkedList<String>();
@@ -313,8 +318,7 @@ public class LoginAccountController implements Initializable {
         System.out.println("Data collected");
 
         users = loginDriver.get_user_data_by_value("credentials", "user_database.db", param, searchParam);//readFile(users);
-        if(Email.getText().isEmpty() || Password.getText().isEmpty()){// || firstName.getText().isEmpty() || lastName.getText().isEmpty()
-        //|| PasswordCreateCheck.getText().isEmpty()){
+        if(Email.getText().isEmpty() || Password.getText().isEmpty()){
             req_error.setOpacity(1);
             return(false);
         }
@@ -325,8 +329,6 @@ public class LoginAccountController implements Initializable {
         }
 
         else if ((!users.isEmpty() && users.get(0).get("password").to_string().equals(encryptPassword(Password.getText())))){//users.contains(":"+Email.getText()+":"+encryptPassword(Password.getText())+":")){ //this file checks for the user and pass in the file
-
-            System.out.println("Login Complete");
             ErrorMessage.setOpacity(0);
             return true;
         }

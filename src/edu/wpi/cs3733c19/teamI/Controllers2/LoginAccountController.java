@@ -1,12 +1,17 @@
 package edu.wpi.cs3733c19.teamI.Controllers2;
 
 import com.jfoenix.controls.*;
+import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.DBValue;
+import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.ReturnedValue;
+import edu.wpi.cs3733c19.teamI.Entities.DataField;
 import edu.wpi.cs3733c19.teamI.Entities.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.text.Text;
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 
@@ -15,9 +20,10 @@ import javax.crypto.spec.SecretKeySpec;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.net.URL;
 import java.security.Key;
-import java.util.ResourceBundle;
+import java.util.*;
 
 
 public class LoginAccountController implements Initializable {
@@ -52,16 +58,53 @@ public class LoginAccountController implements Initializable {
     @FXML
     ToggleGroup ToggleType;
 
+    @FXML
+    Label UserNameError;
+
+    @FXML
+    Label ErrorMessage;
+
+    @FXML
+    Label PasswordError;
+    @FXML
+    JFXTextField state;
+    @FXML
+    JFXTextField zip;
+    @FXML
+    JFXTextField city;
+    @FXML
+    JFXTextField address;
+    @FXML
+    JFXTextField firstName;
+    @FXML
+    JFXTextField lastName;
+    @FXML
+    JFXTextField phone;
+    @FXML
+    JFXTextField delim;
+    @FXML
+    Text req_error;
+
+
+
+
+    public void setToolBarController(ToolBarController toolBarController){
+        this.toolBarController = toolBarController;
+    }
+
 
 
 
     @FXML
     public void login(ActionEvent actionEvent) throws Exception {
+        System.out.println("about to check..");
         if(!attemptLogin(actionEvent)){
+            System.out.println("attempt login fail");
 
         }
         else {
             User.userPower powerCreate = User.userPower.Standard;
+            //TODO: eliminate following toggel button code, shold be handled by DB
 
             powerCreate = getType();
             System.out.println(powerCreate.toString());
@@ -84,6 +127,20 @@ public class LoginAccountController implements Initializable {
             } else {
                 powerCreate = User.userPower.Standard;
                 System.out.println("togg stand");
+            }
+
+            ArrayList<HashMap<String, ReturnedValue>> users = new ArrayList<>();
+            SQLDriver loginDriver = new SQLDriver();
+            LinkedList<String> param = new LinkedList<String>();
+            param.add("email");
+            HashMap<String, DataField> searchParam = new HashMap<>();
+            searchParam.put("email", new DataField(Email.getText(), "email"));
+            users = loginDriver.get_user_data_by_value("credentials", "user_database.db", param, searchParam);
+            if(users.get(0).get("role").to_double() == 0){
+                powerCreate = User.userPower.TTBEmployee;
+            }
+            else{
+                powerCreate = User.userPower.Company;
             }
             toolBarController.login(Email.getText(), Password.getText(), powerCreate);
         }
@@ -115,10 +172,20 @@ public class LoginAccountController implements Initializable {
     }
 
     public void attemptCreate(ActionEvent actionEvent) throws Exception{
-        String users = "";
 
-        users = readFile(users);
+        ArrayList<HashMap<String, ReturnedValue>> users = new ArrayList<HashMap<String, ReturnedValue>>();
+        SQLDriver loginDriver = new SQLDriver();
+        LinkedList<String> param = new LinkedList<String>();
+        param.add("email");
+        HashMap<String, DataField> searchParam = new HashMap<>();
+        searchParam.put("email", new DataField(EmailCreate.getText(), "email"));
 
+        try {
+            users = loginDriver.get_user_data_by_value("credentials", "user_database.db", param, searchParam);//readFile(users);
+        }
+        catch(Exception e){
+            System.out.println("no db");
+        }
 
 
         boolean isValid2 = true;
@@ -126,43 +193,74 @@ public class LoginAccountController implements Initializable {
 
             Character currChar = invalidCharacters.charAt(i);
             if (EmailCreate.getText().contains(currChar.toString()) || PasswordCreate.getText().contains(currChar.toString())) {
-                //errorMessage.setText("username or password contains illegal characters");
+                UserNameError.setText("username or password contains illegal characters");
+                PasswordError.setText("");
                 isValid2 = false;
-                System.out.println("illegal");
             }
         }
         if (isValid2 == false){
         }
         else if(PasswordCreate.getText().length() < 8){
-            //errorMessage.setText("Username too short");
-            System.out.println("short");
+            PasswordError.setText("Password too short");
+            UserNameError.setText("");
         }
         else if (!EmailCreate.getText().contains("@") || !EmailCreate.getText().contains(".")){
-            System.out.println("Enter an email");
+            UserNameError.setText("Please Enter Email");
+            PasswordError.setText("");
         }
         else if(ToggleType.getSelectedToggle() == null){
-            System.out.println("Select a user type");
+            UserNameError.setText("Select Type Above");
+            PasswordError.setText("");
         }
-        else if (users.contains(":"+EmailCreate.getText()+":")){
-            System.out.println("Email already taken");
+        else if (!users.isEmpty()){
+            UserNameError.setText("Email already taken");
+            PasswordError.setText("");
         }
         else if (!PasswordCreate.getText().equals(PasswordCreateCheck.getText())){
-            System.out.println("Passwords do not match");
+            PasswordError.setText("Passwords do not match");
+            UserNameError.setText("");
         }
-        else{
+        else{ //add user to db
+            UserNameError.setText("");
+            PasswordError.setText("");
             User.userPower powerCreate;
             RadioButton selectedRadioButton = (RadioButton) ToggleType.getSelectedToggle();
             String toggleGroupValue = selectedRadioButton.getText();
-            if(toggleGroupValue.equals("Manufacturer")){
-                powerCreate = User.userPower.Company;
-            }
-            else if(toggleGroupValue.equals("Agent")){
-                powerCreate = User.userPower.TTBEmployee;
+            String role = "0.0";
+            if(toggleGroupValue.equals("Agent")){
+                role = "0.0";
             }
             else{
-                powerCreate = User.userPower.Standard;
+                role = "1.0";
             }
-            createAccount(EmailCreate.getText(), PasswordCreate.getText(), powerCreate);
+//            if(toggleGroupValue.equals("Manufacturer")){
+//                powerCreate = User.userPower.Company;
+//            }
+//            else if(toggleGroupValue.equals("Agent")){
+//                powerCreate = User.userPower.TTBEmployee;
+//            }
+//            else{
+//                powerCreate = User.userPower.Standard;
+//            }
+
+
+
+            /*
+            SQLDriver driver = new SQLDriver();
+            double _id_count = 0;
+            for (HashMap<String, ReturnedValue>result:driver.select_all("user_database.db", "credentials")){
+               double _test = result.get("RepIDnum").to_double();
+               if (_test > _id_count){
+                   _id_count = _test;
+               }
+            }
+            //values needed: firstName, lastName, phoneNumber, streetAdress, city, zipCode, state, deliminator
+            DBValue [] user_row = {new DBValue<Integer>((int)(_id_count)+1), new DBValue<String>(firstName), new DBValue<String>(lastName), new DBValue<String>(phoneNumber), new DBValue<String>(streetAddress), new DBValue<String>(city), new DBValue<String>(zipCode), new DBValue<String>(state), new DBValue<String>(deliminator)};
+            driver.insert_vals("credentials", "user_database.db", user_row);
+            //when you are ready, uncomment this block, and remove create_user_account below
+            */
+            //createAccount(EmailCreate.getText(), PasswordCreate.getText(), powerCreate, loginDriver, role);
+            loginDriver.create_user_account(EmailCreate.getText(), encryptPassword(PasswordCreate.getText()), role);
             Email.setText(EmailCreate.getText());
             Password.setText(PasswordCreate.getText());
         }
@@ -198,43 +296,45 @@ public class LoginAccountController implements Initializable {
     }
 
     public boolean attemptLogin(ActionEvent actionEvent) throws Exception { //attempts a login and will either create an account or login
-        String users = "";
+        System.out.println("cecking");
+        ArrayList<HashMap<String, ReturnedValue>> users = new ArrayList<>();
+        SQLDriver loginDriver = new SQLDriver();
+        LinkedList<String> param = new LinkedList<String>();
+        param.add("email");
+        HashMap<String, DataField> searchParam = new HashMap<>();
+        searchParam.put("email", new DataField(Email.getText(), "email"));
+        System.out.println("Data collected");
 
-        users = readFile(users);
-
+        users = loginDriver.get_user_data_by_value("credentials", "user_database.db", param, searchParam);//readFile(users);
+        if(Email.getText().isEmpty() || Password.getText().isEmpty()){// || firstName.getText().isEmpty() || lastName.getText().isEmpty()
+        //|| PasswordCreateCheck.getText().isEmpty()){
+            req_error.setOpacity(1);
+            return(false);
+        }
         if(Email.getText().isEmpty()){
-           // errorMessage.setText(("Enter a username to login"));
-            System.out.println("no user");
+            ErrorMessage.setText(("Enter a username to login"));
+            ErrorMessage.setOpacity(1);
             return false;
-        }/*
-        else if(ToggleType.getSelectedToggle()==null){ //should read user type
-            //errorMessage.setText(("Must select log in type"));
-            System.out.println("log type");
-        }*/
-
-        else if (users.contains(":"+Email.getText()+":"+encryptPassword(Password.getText())+":")){ //this file checks for the user and pass in the file
-            System.out.println("logging in");
-            return true;
-            /*
-            String pass = encryptPassword(Password.getText());
-            System.out.println(pass);
-            */
-
-            //login(actionEvent);  //if they exist, login
         }
 
+        else if ((!users.isEmpty() && users.get(0).get("password").to_string().equals(encryptPassword(Password.getText())))){//users.contains(":"+Email.getText()+":"+encryptPassword(Password.getText())+":")){ //this file checks for the user and pass in the file
 
-        else if (users.contains(":"+Email.getText()+":none:") && (Password.getText().isEmpty())){
-            //login(actionEvent);
+            System.out.println("Login Complete");
+            ErrorMessage.setOpacity(0);
             return true;
         }
-        else if (users.contains(":"+Email.getText()+":")){
+
+//        else if (users.contains(":"+Email.getText()+":")){
+//            ErrorMessage.setText("Select an unused username");
+//            ErrorMessage.setOpacity(1);
+//            return false;
+//
+//        }
+        else { //user name and password dont match
+            ErrorMessage.setText("Invalid Username/ Password");
+            ErrorMessage.setOpacity(1);
+
             return false;
-            //errorMessage.setText("Select an unused username");
-        }
-        else {
-            return false;
-            //createAccount(actionEvent); //otherwise make them an account
         }
     }
 

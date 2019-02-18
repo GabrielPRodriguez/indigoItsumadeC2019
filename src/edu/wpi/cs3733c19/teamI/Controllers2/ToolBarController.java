@@ -37,10 +37,10 @@ public class ToolBarController {
     @FXML
     JFXButton tb_workflowButton;
 
-    /**
+
     @FXML
-    Label signInLabel   //here is what we are going to write to when the person signs in
-    */
+    Label signInLabel;   //here is what we are going to write to when the person signs in
+
     static ToolBarController instance;
     private User curUser = null;
     private ResultsController ResultsController;
@@ -50,9 +50,14 @@ public class ToolBarController {
 
     private ArrayList<HashMap<String, ReturnedValue>> resultsMap = new ArrayList<HashMap<String, ReturnedValue>>();
 
+    // Observable Classes for displaying the name
+    private Message clearText;
+    private ToolBarSignInName toolBarSignInName;
 
     public ToolBarController() {
-
+        clearText = new Message();
+        toolBarSignInName = new ToolBarSignInName();
+        clearText.register(toolBarSignInName);
     }
 
     static {
@@ -99,7 +104,7 @@ public class ToolBarController {
        }
        curUser = curUser.getUser(username, password, power);
        goWorkflow();
-       //System.out.println("Post Login"+ signedIn);
+        //displaySignInName(username);
     }
 
 
@@ -157,7 +162,6 @@ public class ToolBarController {
         {
             goHome();
         }
-
     }
 
     public void goWorkflowAgent() throws IOException {
@@ -198,7 +202,16 @@ public class ToolBarController {
     public void transferSearchInfo(ArrayList<HashMap<String, ReturnedValue>> resultsList){
         ResultsController.setTestString("a new string");
         ResultsController.setResultsList(resultsList);
-        System.out.println("toolbar: " + resultsList);
+    }
+
+    public void displaySignInName(String name){
+        clearText.setText(name);
+        // TODO implement Label on the FXML ToolBar to display the sign in of the person
+        signInLabel.setText(toolBarSignInName.getText());
+    }
+    // TODO call this method when the person signs out of the account
+    public void takeOffSignInName(){
+        signInLabel.setText("");
     }
 
 

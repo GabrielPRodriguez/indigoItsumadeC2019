@@ -146,7 +146,8 @@ public class LoginAccountController implements Initializable {
             else{
                 powerCreate = User.userPower.Company;
             }
-            toolBarController.login(Email.getText(), Password.getText(), powerCreate);
+
+            toolBarController.login(Email.getText(), Password.getText(), powerCreate, users.get(0).get("state").to_string(), users.get(0).get("city").to_string(), users.get(0).get("zipCode").to_string(), users.get(0).get("streetAdress").to_string(), users.get(0).get("firstName").to_string(), users.get(0).get("lastName").to_string(), users.get(0).get("phoneNumber").to_string(), users.get(0).get("RepIDnum").to_string() );
         }
     }
 

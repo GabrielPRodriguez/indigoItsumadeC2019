@@ -23,23 +23,33 @@ public class User {
 
     private static User curUser;
 
-    private User(String name, String pass, userPower type){
+    private User(String name, String pass, userPower type, String theState, String theCity, String theZip, String theStreet, String theFirstName, String theLastName, String thePhone, String theRepID){
         username = name;
         password = pass;
         userType = type;
+        state = theState;
+        city = theCity;
+        zip = theZip;
+        street = theStreet;
+        firstName = theFirstName;
+        lastName = theLastName;
+        phone = thePhone;
+        repId = theRepID;
+
+
             }
 
     private static class UserHelper{
-        private static final User curUser = new User("","",userPower.Standard);
+        private static final User curUser = new User("","",userPower.Standard, "", "", "", "", "", "", "", "");
     }
 
     public void logOutUser(){
-        curUser = new User("", "", userPower.Standard);
+        curUser = new User("", "", userPower.Standard, "", "","","","","","","");
     }
 
-    public static User getUser(String name, String pass, userPower type){
+    public static User getUser(String name, String pass, userPower type, String theState, String theCity, String theZip, String theStreet, String theFirstName, String theLastName, String thePhone, String theRepID){
         if((curUser == null)|| curUser.username.equals("")){
-            curUser = new User(name, pass, type);
+            curUser = new User(name, pass, type, theState, theCity, theZip, theStreet, theFirstName, theLastName, thePhone, theRepID);
         }
         return UserHelper.curUser;
     }

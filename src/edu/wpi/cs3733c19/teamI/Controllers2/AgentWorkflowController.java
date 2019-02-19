@@ -13,7 +13,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
 public class AgentWorkflowController {
@@ -233,7 +235,7 @@ public class AgentWorkflowController {
     ListView listView;
 
     String formStatus_string;
-    double currentFormID = 0;
+    String currentFormID = "";
 
     //pulls unread forms from the database to be selected
 
@@ -338,36 +340,36 @@ public class AgentWorkflowController {
         //int formID = 0;
         if (choose.getSource() == choose_button1) {
             System.out.println(formID_1.getText());
-            currentFormID = Long.parseLong(formID_1.getText());
+            currentFormID = (formID_1.getText());
 
         } else if (choose.getSource() == choose_button2) {
-            currentFormID = Long.parseLong(formID_2.getText());
+            currentFormID = (formID_2.getText());
 
         } else if (choose.getSource() == choose_button3) {
-            currentFormID = Long.parseLong(formID_3.getText());
+            currentFormID = (formID_3.getText());
 
         }else if (choose.getSource() == choose_button4) {
-            currentFormID = Long.parseLong(formID_4.getText());
+            currentFormID = (formID_4.getText());
 
         }else if (choose.getSource() == choose_button5) {
-            currentFormID = Long.parseLong(formID_5.getText());
+            currentFormID = (formID_5.getText());
 
         }else if (choose.getSource() == choose_button6) {
-            currentFormID = Long.parseLong(formID_6.getText());
+            currentFormID = (formID_6.getText());
 
         }else if (choose.getSource() == choose_button7) {
-            currentFormID = Long.parseLong(formID_7.getText());
+            currentFormID = (formID_7.getText());
 
         }else if (choose.getSource() == choose_button8) {
-            currentFormID = Long.parseLong(formID_8.getText());
+            currentFormID = (formID_8.getText());
 
         }else if (choose.getSource() == choose_button9) {
-            currentFormID = Long.parseLong(formID_9.getText());
+            currentFormID = (formID_9.getText());
 
         }
 
         SQLDriver driver = new SQLDriver();
-        HashMap<String, ReturnedValue>result = driver.get_data_by_value("form_data", "new_csv_from_spreadsheet.db", "formID", new DBValue<Double>(currentFormID));
+        HashMap<String, ReturnedValue>result = driver.get_data_by_value("form_data", "new_csv_from_spreadsheet.db", "formID", new DBValue<String>(currentFormID));
 
 
         //setting the text for each field from values in the database
@@ -399,6 +401,72 @@ public class AgentWorkflowController {
         formStatus_string = (result.get("status").to_string()); //I use two variables because I need the formStatus text as a string
         //formStatus_text.setText(formStatus_string);
     }
+
+    @FXML
+    private void approveHandler() throws IOException, Exception{
+
+        formStatus_string = "approved";
+
+        SQLDriver.setApprovalStatus(currentFormID, formStatus_string);
+        Date date = new Date();
+        String theDate = date.toString();
+        date.equals(date.getTime()+10000);
+        String exDate = date.toString();
+        SQLDriver.setApprovalDate(currentFormID, theDate);
+        SQLDriver.setApprovingUser(currentFormID, this.theUserName.getText());
+        SQLDriver.setExpirationDate(currentFormID, exDate);
+
+
+
+        clearFields();
+        pull_Forms();
+
+        accept_button.setDisable(true);
+        reject_button.setDisable(true);
+
+    }
+
+    @FXML
+    private void rejectHandler() throws IOException, Exception{
+
+        formStatus_string = "reject";
+
+        SQLDriver.setApprovalStatus(currentFormID, formStatus_string);
+        clearFields();
+
+        pull_Forms();
+
+        accept_button.setDisable(true);
+        reject_button.setDisable(true);
+
+    }
+
+    private void clearFields(){
+        repID_text.clear();
+        plantRegistry_text.clear();
+        applicantName_text.clear();
+        applicationDate_text.clear();
+        brandedInfo_text.clear();
+        emailAddress_text.clear();
+        phoneNum_text.clear();
+        alcoholContent_text.clear();
+        vintage_text.clear();
+        winepH_text.clear();
+        grapeVarietal_text.clear();
+        wineAppellation_text.clear();
+        formula_text.clear();
+        mailingAddress_text.clear();
+        fancifulName_text.clear();
+        brandName_text.clear();
+        productType_text.clear();
+        serialNum_text.clear();
+        domesticImported_text.clear();
+        nameAddress_text.clear();
+        formStatus_text.clear();
+
+    }
+
+
 
 
 

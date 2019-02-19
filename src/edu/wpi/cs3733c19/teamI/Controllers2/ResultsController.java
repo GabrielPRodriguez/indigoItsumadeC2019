@@ -19,14 +19,20 @@ import javafx.scene.control.TableView;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.scene.paint.Color;
 import javafx.stage.PopupWindow;
 import javafx.stage.PopupWindow.AnchorLocation;
+import org.junit.Test;
 
+import javax.swing.text.View;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -126,6 +132,10 @@ public class ResultsController implements Initializable {
     Text varText;
     @FXML
     Text nameText;
+
+    @FXML
+    Label export_message;
+
     private int numResults = 10;
     private int currentPage = 1;
 
@@ -320,6 +330,7 @@ public class ResultsController implements Initializable {
 
     //create CSV function
     public void writeExcel() throws Exception {
+        export_message.setText("");
         Writer writer = null;
         String fileTimestamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
         String delimiter = ",";
@@ -337,9 +348,14 @@ public class ResultsController implements Initializable {
                 String text = DisplayedResults.get(i).returnAll(delimiter);
                 writer.write(text);
             }
+
+            export_message.setTextFill(Color.web("#4BB543"));
+            export_message.setText("CSV Exported!");
         } catch (Exception ex) {
             System.out.println("Error exporting CSV");
             ex.printStackTrace();
+            export_message.setTextFill(Color.web("#FF0000"));
+            export_message.setText("Error exporting CSV");
         }
         finally {//when done, finish CSV creation
 

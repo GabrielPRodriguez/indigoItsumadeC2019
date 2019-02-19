@@ -9,6 +9,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.image.ImageView;
 
+import java.io.IOException;
+
 
 public class DetailedResultsController {
     private ToolBarController toolBarController = ToolBarController.getInstance();
@@ -32,6 +34,16 @@ public class DetailedResultsController {
         info.setItems(form.getSummary());
         ProductName.setText(form.getSummary().get(5));
 
+    }
+
+    @FXML
+    private void goSearch() throws IOException {
+        toolBarController.goSearch();
+    }
+
+    @FXML
+    private void goResults() throws IOException{
+        toolBarController.goSearch();
     }
 
 }

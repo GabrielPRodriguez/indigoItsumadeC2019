@@ -17,7 +17,7 @@ public class User {
     private char delim;
         public enum userPower
         {
-        Standard, Company, TTBEmployee, SuperAdmin
+        Standard, Company, TTBEmployee, SuperAdmin, Specialist
     }
     private int appsPer = 5;
 

@@ -7,7 +7,7 @@ public class DataTransfer {
         return ourInstance;
     }
 
-    public String name = "Text";
+    public String UserName = "Text";
 
     private DataTransfer() {
     }

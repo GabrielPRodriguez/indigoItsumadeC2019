@@ -99,6 +99,40 @@ public class SQLDriver{
         }
         return counter;
     }
+    public String generate_id(ArrayList<String>ids){
+        if (ids.size() == 0){
+            return "A";
+        }
+        int _max = ids.get(0).length();
+        String _start = ids.get(0);
+        for (int i = 1; i < ids.size(); i++){
+            if (_max < ids.get(i).length()){
+                _max = ids.get(i).length();
+                _start = ids.get(i);
+            }
+
+        }
+        ArrayList<String>current = new ArrayList<String>();
+        for (String i:ids){
+            if (i.length() == _max){
+                current.add(i);
+            }
+        }
+        String [] alpha = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
+        for (int i = 0; i < _max; i++){
+            ArrayList<String>_row = new ArrayList<String>();
+            for (String c:current){
+                _row.add(Character.toString(c.charAt(i)));
+            }
+            for (int c = 0; c < alpha.length; c++){
+                if (!_row.contains(alpha[c])){
+                    String _start1 = current.get(0);
+                    return _start1.substring(0, i)+alpha[c]+_start1.substring(i+1);
+                }
+            }
+        }
+        return current.get(0)+"a";
+    }
     public int dl_distance(String source, String target){
         // throw if parameter is a null
         source.toLowerCase();

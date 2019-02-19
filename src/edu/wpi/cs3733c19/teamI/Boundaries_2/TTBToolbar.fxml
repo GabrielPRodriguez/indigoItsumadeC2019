@@ -3,10 +3,12 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXToolbar?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <JFXToolbar minHeight="50.0" minWidth="600.0" style="-fx-background-color: #323a45;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers2.ToolBarController">
@@ -50,6 +52,20 @@
                   <Insets />
                </HBox.margin>
             </JFXButton>
+            <VBox alignment="CENTER" spacing="10.0">
+               <children>
+                  <Label text="Label" textFill="WHITE">
+                     <font>
+                        <Font name="Segoe UI Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label text="Label" textFill="WHITE">
+                     <font>
+                        <Font name="Segoe UI Bold" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
             <JFXButton fx:id="tb_exitButton" mnemonicParsing="false" onAction="#goExit" text="Exit" textFill="WHITE">
                <HBox.margin>
                   <Insets right="20.0" />

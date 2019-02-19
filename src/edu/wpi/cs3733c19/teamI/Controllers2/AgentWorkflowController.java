@@ -100,6 +100,12 @@ public class AgentWorkflowController {
     JFXButton goHome;
 
     @FXML
+    JFXTextField domestic_text;
+
+    @FXML
+    JFXTextField beverage_text;
+
+    @FXML
     JFXTextField repID_text;
 
     @FXML
@@ -414,7 +420,7 @@ public class AgentWorkflowController {
         date.equals(date.getTime()+10000);
         String exDate = date.toString();
         SQLDriver.setApprovalDate(currentFormID, theDate);
-        SQLDriver.setApprovingUser(currentFormID, this.theUserName.getText());
+        SQLDriver.setApprovingUser(currentFormID, this.approvingUser_text.getText());
         SQLDriver.setExpirationDate(currentFormID, exDate);
 
 
@@ -446,24 +452,37 @@ public class AgentWorkflowController {
         repID_text.clear();
         plantRegistry_text.clear();
         applicantName_text.clear();
-        applicationDate_text.clear();
-        brandedInfo_text.clear();
-        emailAddress_text.clear();
-        phoneNum_text.clear();
-        alcoholContent_text.clear();
-        vintage_text.clear();
-        winepH_text.clear();
-        grapeVarietal_text.clear();
-        wineAppellation_text.clear();
-        formula_text.clear();
-        mailingAddress_text.clear();
-        fancifulName_text.clear();
-        brandName_text.clear();
-        productType_text.clear();
+        permitName_text.clear();
         serialNum_text.clear();
-        domesticImported_text.clear();
-        nameAddress_text.clear();
-        formStatus_text.clear();
+        brandName_text.clear();
+        fancifulName_text.clear();
+        domestic_text.clear();
+        beverage_text.clear();
+        alcoholContent_text.clear();
+        volume_text.clear();
+        formula_text.clear();
+        grapeVarietal_text.clear();
+        vintage_text.clear();
+        wineAppellation_text.clear();
+        winepH_text.clear();
+        brandedInfo_text.clear();
+        formID_text.clear();
+        status_text.clear();
+        approvalDate_text.clear();
+        expiryDate_text.clear();
+        issuedDate_text.clear();
+        surrenderDate_text.clear();
+        approvingUser_text.clear();
+        applicationType_text.clear();
+        formQualification_text.clear();
+        streetAdress_text.clear();
+        city_text.clear();
+        state_text.clear();
+        zip_text.clear();
+        dateOfApplication_text.clear();
+        phoneNumber_text.clear();
+        email_text.clear();
+
 
     }
 

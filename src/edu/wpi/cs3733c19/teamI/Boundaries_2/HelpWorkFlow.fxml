@@ -8,7 +8,7 @@
 <?import javafx.scene.shape.Ellipse?>
 <?import javafx.scene.shape.Line?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers2.HelpWorkflowController">
    <children>
       <ImageView fitHeight="313.0" fitWidth="524.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -24,6 +24,6 @@
       <Label layoutX="250.0" layoutY="322.0" prefHeight="63.0" prefWidth="139.0" text="Accept, Reject, Comment, or Foward To Specialist" textFill="WHITE" wrapText="true" />
       <Line endX="-45.0" endY="84.0" layoutX="280.0" layoutY="269.0" startX="-107.0" startY="-22.0" />
       <Label layoutX="415.0" layoutY="322.0" prefHeight="63.0" prefWidth="107.0" text="See Displayed Form" textFill="WHITE" wrapText="true" />
-      <Button layoutX="13.0" layoutY="367.0" mnemonicParsing="false" onAction="#goBack" text="Go Back" />
+      <Button layoutX="13.0" layoutY="367.0" mnemonicParsing="false" onAction="#goWorkflowAgent" text="Go Back" />
    </children>
 </AnchorPane>

@@ -8,7 +8,7 @@
 <?import javafx.scene.shape.Ellipse?>
 <?import javafx.scene.shape.Line?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers2.HelpSubmitController">
    <children>
       <ImageView fitHeight="350.0" fitWidth="485.0" layoutX="-4.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -19,7 +19,7 @@
       <Ellipse fill="#5ac8fa" layoutX="417.0" layoutY="350.0" radiusX="61.0" radiusY="36.0" stroke="BLACK" strokeType="INSIDE" />
       <Label layoutX="110.0" layoutY="321.0" prefHeight="58.0" prefWidth="99.0" text="Upload Front and Back Images" textFill="WHITE" wrapText="true" />
       <Label layoutX="373.0" layoutY="321.0" prefHeight="58.0" prefWidth="88.0" text="Save, Delete, or Submit the Form" textFill="WHITE" wrapText="true" />
-      <Button layoutX="11.0" layoutY="364.0" mnemonicParsing="false" onAction="#goBack" text="Go Back" />
+      <Button layoutX="11.0" layoutY="364.0" mnemonicParsing="false" onAction="#goNormalFormSub" text="Go Back" />
       <Line endX="-69.0" endY="39.0" layoutX="205.0" layoutY="276.0" startX="-107.0" startY="3.0" />
       <Line endX="4.0" endY="36.0" layoutX="130.0" layoutY="278.0" startX="-100.0" />
       <Line endX="44.0" endY="-7.0" layoutX="373.0" layoutY="321.0" startX="-7.0" startY="-18.875" />

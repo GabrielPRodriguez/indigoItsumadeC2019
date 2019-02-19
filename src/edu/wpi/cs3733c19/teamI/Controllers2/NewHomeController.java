@@ -61,12 +61,8 @@ public class NewHomeController implements Initializable {
     CheckBox beverageType;
 
     @FXML
-    Button goHelp;
-
-    public void goHelp() throws IOException {
-        Parent aboutParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/HelpHomePage.fxml"));
-       // primaryStage = Main.getWindow();
-       // primaryStage.getScene().setRoot(aboutParent);
+    public void goHelpHome() throws IOException {
+        toolBarController.goHelpHome();
     }
 
     @FXML

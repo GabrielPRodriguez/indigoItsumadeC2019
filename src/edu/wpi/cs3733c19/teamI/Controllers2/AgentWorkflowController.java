@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -235,8 +236,13 @@ public class AgentWorkflowController {
     String formStatus_string;
     double currentFormID = 0;
 
-    //pulls unread forms from the database to be selected
 
+    @FXML
+    public void goHelpWorkflow() throws IOException {
+        toolBarController.goHelpWorkflow();
+    }
+
+    //pulls unread forms from the database to be selected
     @FXML
     private void pull_Forms() throws Exception{
         formID_1.setText("");

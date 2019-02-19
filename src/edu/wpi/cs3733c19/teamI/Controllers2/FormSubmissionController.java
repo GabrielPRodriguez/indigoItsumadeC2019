@@ -207,6 +207,11 @@ public class FormSubmissionController implements Initializable {
     @FXML
     ImageView backImageDisp;
 
+    /** private void uploadFile - Used to upload an image file of either type .jpg or .png when the user
+     *                              is submitting a form. This method will throw an error if a file type
+     *                              other than the intended file type is uploaded.
+     * @param event -> Used to run the method when either front_Upload or back_Upload buttons are pressed.
+     */
     @FXML
     private void uploadFile(ActionEvent event)
     {
@@ -217,8 +222,8 @@ public class FormSubmissionController implements Initializable {
 
             chooseFile.setCurrentDirectory(new java.io.File("System.dir"));
             FileNameExtensionFilter filter = new FileNameExtensionFilter("*.Images", "jpg", "png");
-            chooseFile.addChoosableFileFilter(filter);
-            chooseFile.setDialogTitle("Please Choose A Picture to Upload");
+            chooseFile.setFileFilter(filter);
+            chooseFile.setDialogTitle("Please Choose an Image to Upload");
             chooseFile.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
             if(chooseFile.showOpenDialog(open) == JFileChooser.APPROVE_OPTION)
             {
@@ -344,6 +349,16 @@ public class FormSubmissionController implements Initializable {
 
             //sets non-read approval status
             sentForm.setFormStatus("unread");
+
+            if(!(frontImageDisp == null))
+            {
+                sentForm.setFront_Upload(frontImageDisp.getImage());
+            }
+
+            if(!(backImageDisp == null))
+            {
+                sentForm.setBack_Upload(backImageDisp.getImage());
+            }
 
             //only pull from these fields if Beverage Type is Wine
             if(sentForm.getBeverageType().equals("Wine")){

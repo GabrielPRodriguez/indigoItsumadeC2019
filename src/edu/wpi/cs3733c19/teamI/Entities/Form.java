@@ -1,5 +1,7 @@
 package edu.wpi.cs3733c19.teamI.Entities;
 
+import javafx.scene.image.Image;
+
 public class Form {
 
     private String repID; //optional
@@ -32,6 +34,8 @@ public class Form {
     private String state;
     private String zip;
     private String permitname;
+    private Image front_Upload;
+    private Image back_Upload;
 
     public Form() {
         this.repID = "";
@@ -64,10 +68,12 @@ public class Form {
         this.street = "";
         this.zip = "";
         this.permitname = "";
+        this.front_Upload = null;
+        this.back_Upload = null;
     }
 
 
-    public Form(String repID, String plantRegistry, String domesticOrImported, String serialNumber, String brandName, String beverageType, String fancifulName, String nameAndAddress, String mailingAddress, String extraInfo, String date, String nameOfApplicant, String formula, String grapeVarietals, String vintage, String wineAppellation, String email, String phoneNumber, double pHValue, double alcoholContent, String formStatus, String approvingUser, String approvalDate, String expirationDate, String volume, String street, String city, String state, String zip, String permitname) {
+    public Form(String repID, String plantRegistry, String domesticOrImported, String serialNumber, String brandName, String beverageType, String fancifulName, String nameAndAddress, String mailingAddress, String extraInfo, String date, String nameOfApplicant, String formula, String grapeVarietals, String vintage, String wineAppellation, String email, String phoneNumber, double pHValue, double alcoholContent, String formStatus, String approvingUser, String approvalDate, String expirationDate, String volume, String street, String city, String state, String zip, String permitname, Image front_Upload, Image back_Upload) {
         this.repID = repID;
         this.plantRegistry = plantRegistry;
         this.domesticOrImported = domesticOrImported;
@@ -98,6 +104,8 @@ public class Form {
         this.state = state;
         this.zip = zip;
         this.permitname = permitname;
+        this.front_Upload = front_Upload;
+        this.back_Upload = back_Upload;
     }
 
     public void setVolume(String volume) {
@@ -222,6 +230,16 @@ public class Form {
         this.expirationDate = expirationDate;
     }
 
+    public void setFront_Upload(Image front_Upload)
+    {
+        this.front_Upload = front_Upload;
+    }
+
+    public void setBack_Upload(Image back_Upload)
+    {
+        this.back_Upload = back_Upload;
+    }
+
     public String getBeverageType() {
         return beverageType;
     }
@@ -332,6 +350,16 @@ public class Form {
 
     public String getFormStatus(){
         return this.formStatus;
+    }
+
+    public Image getFront_Upload()
+    {
+        return this.front_Upload;
+    }
+
+    public Image getBack_Upload()
+    {
+        return this.back_Upload;
     }
 
     //inputs an int attribute to see if a value has been set

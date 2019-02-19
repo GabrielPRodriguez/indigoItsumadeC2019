@@ -383,16 +383,21 @@ public class AgentWorkflowController {
 
         repID_text.setText(result.get("repID").to_string());
         plantRegistry_text.setText(result.get("plantRegistry").to_string());
-        //omesticImported_text.setText(result.get("domesticOrImported").to_string());
+        domestic_text.setText(result.get("domesticOrImported").to_string());
         serialNum_text.setText(result.get("serialNumber").to_string());
-        //productType_text.setText(result.get("beverageType").to_string());
+
+        beverage_text.setText(result.get("beverageType").to_string());
         brandName_text.setText(result.get("brandName").to_string());
         fancifulName_text.setText(result.get("fancifulName").to_string());
+        permitName_text.setText(result.get("permitName").to_string());
         //nameAddress_text.setText(result.get("nameAndAddress").to_string());
         //mailingAddress_text.setText(result.get("mailingAddress").to_string());
 
-        System.out.println(result.toString());
         streetAdress_text.setText(result.get("streetAddress").to_string());
+        state_text.setText(result.get("state").to_string());
+        city_text.setText(result.get("city").to_string());
+
+
 
         formula_text.setText(result.get("formula").to_string());
         grapeVarietal_text.setText(result.get("grapeVarietals").to_string());
@@ -400,13 +405,19 @@ public class AgentWorkflowController {
         winepH_text.setText(result.get("pHValue").to_string());
         vintage_text.setText(result.get("vintage").to_string());
         alcoholContent_text.setText(result.get("alcoholContent").to_string());
-        //phoneNum_text.setText(result.get("phoneNumber").to_string());
-        //emailAddress_text.setText(result.get("email").to_string());
+        phoneNumber_text.setText(result.get("phoneNumber").to_string());
+        email_text.setText(result.get("email").to_string());
         brandedInfo_text.setText(result.get("extraInfo").to_string());
-        //applicationDate_text.setText(result.get("dateOfApplication").to_string());
+
        // applicantName_text.setText(result.get("nameOfApplicant").to_string());
         formStatus_string = (result.get("status").to_string()); //I use two variables because I need the formStatus text as a string
         //formStatus_text.setText(formStatus_string);
+        volume_text.setText(result.get("volume").to_string());
+
+        System.out.println(result.get("zip").to_string());
+        zip_text.setText(result.get("zip").to_string());
+        System.out.println(result.get("dateOfApplication").to_string());
+        dateOfApplication_text.setText(result.get("dateOfApplication").to_string());
     }
 
     @FXML

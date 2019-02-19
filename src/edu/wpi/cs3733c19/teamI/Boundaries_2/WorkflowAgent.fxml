@@ -332,7 +332,7 @@
                                                       <Font name="Segoe UI Bold" size="16.0" />
                                                    </font>
                                                 </Label>
-                                                <JFXTextField fx:id="brandedInfo_text" />
+                                                <JFXTextField fx:id="brandedInfo_text" editable="false" />
                                              </children>
                                           </VBox>
                                        </children>
@@ -346,7 +346,7 @@
                                                       <Font name="Segoe UI Bold" size="16.0" />
                                                    </font>
                                                 </Label>
-                                                <JFXTextField fx:id="formID_text" />
+                                                <JFXTextField fx:id="formID_text" editable="false" />
                                              </children>
                                           </VBox>
                                           <VBox layoutX="10.0" layoutY="10.0" spacing="10.0" HBox.hgrow="ALWAYS">
@@ -356,7 +356,7 @@
                                                       <Font name="Segoe UI Bold" size="16.0" />
                                                    </font>
                                                 </Label>
-                                                <JFXTextField fx:id="status_text" />
+                                                <JFXTextField fx:id="status_text" editable="false" />
                                              </children>
                                           </VBox>
                                           <VBox spacing="10.0" HBox.hgrow="ALWAYS">
@@ -488,7 +488,7 @@
                                                       <Font name="Segoe UI Bold" size="16.0" />
                                                    </font>
                                                 </Label>
-                                                <JFXTextField fx:id="dateOfApplication_text" />
+                                                <JFXTextField fx:id="dateOfApplication_text" editable="false" />
                                              </children>
                                           </VBox>
                                           <VBox spacing="10.0" HBox.hgrow="ALWAYS">

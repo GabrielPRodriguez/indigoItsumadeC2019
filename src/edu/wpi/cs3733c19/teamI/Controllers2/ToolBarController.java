@@ -42,7 +42,7 @@ public class ToolBarController {
     Label signInLabel;   //here is what we are going to write to when the person signs in
 
     static ToolBarController instance;
-    private User curUser = null;
+    private static User curUser = null;
     private ResultsController ResultsController;
     private Parent searchParent;
     private DetailedResultsController InfoController;
@@ -146,7 +146,7 @@ public class ToolBarController {
     public void goWorkflow() throws IOException {
         System.out.print(signedIn);
 
-        if(curUser == null)
+        if((curUser == null)|| curUser.getUsername().equals(""))
         {
             goLogin();
         }

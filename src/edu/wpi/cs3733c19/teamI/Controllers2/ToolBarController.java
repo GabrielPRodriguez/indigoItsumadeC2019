@@ -21,6 +21,7 @@ import java.util.ResourceBundle;
 
 public class ToolBarController implements Initializable {
 
+    DataTransfer data = DataTransfer.getInstance();
 
     public Stage primaryStage = Main.getWindow();
 
@@ -104,10 +105,10 @@ public class ToolBarController implements Initializable {
        if(curUser != null) {
            curUser.logOutUser();
        }
-
-
        curUser = curUser.getUser(username, password, power, theState, theCity,theZip,theStreet, theFirstName,theLastName,thePhone,theRepID);
-       goWorkflow();
+        data.UserName = curUser.getUsername();
+
+                goWorkflow();
         //displaySignInName(username);
     }
 
@@ -154,8 +155,8 @@ public class ToolBarController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        DataTransfer data = DataTransfer.getInstance();
-        signInLabel.setText(data.Username);
+        data = DataTransfer.getInstance();
+        signInLabel.setText(data.UserName);
 
     }
 

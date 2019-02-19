@@ -261,7 +261,7 @@ public class AgentWorkflowController {
         choose_button9.setDisable(false);
         SQLDriver driver = new SQLDriver();
         ArrayList<HashMap<String, ReturnedValue>>filtered_results = new ArrayList<HashMap<String, ReturnedValue>>();
-        for (HashMap<String, ReturnedValue>result:driver.select_all("new_csv_from_spreadsheet.db", "form_data")){
+        for (HashMap<String, ReturnedValue>result:driver.select_all("stringified_ids_db.db", "form_data")){
             if (result.get("status").to_string().equals("unread")){
 
                 filtered_results.add(result);
@@ -369,7 +369,8 @@ public class AgentWorkflowController {
         }
 
         SQLDriver driver = new SQLDriver();
-        HashMap<String, ReturnedValue>result = driver.get_data_by_value("form_data", "new_csv_from_spreadsheet.db", "formID", new DBValue<String>(currentFormID));
+        System.out.println(currentFormID);
+        HashMap<String, ReturnedValue>result = driver.get_data_by_value("form_data", "stringified_ids_db.db", "formID", new DBValue<String>(currentFormID));
 
 
         //setting the text for each field from values in the database

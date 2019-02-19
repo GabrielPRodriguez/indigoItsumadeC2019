@@ -18,7 +18,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane stylesheets="@../Assets/Style.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers2.LoginAccountController">
+<BorderPane stylesheets="@../Assets/Style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers2.LoginAccountController">
    <top>
       <fx:include source="TTBToolbar.fxml" />
    </top>
@@ -168,7 +168,7 @@
                                                 <Label fx:id="UserNameError1" textFill="RED" />
                                              </children>
                                           </HBox>
-                                          <JFXTextField fx:id="firstName" promptText="Email" text="First Name">
+                                          <JFXTextField fx:id="firstName" promptText="First Name">
                                              <font>
                                                 <Font size="15.0" />
                                              </font>

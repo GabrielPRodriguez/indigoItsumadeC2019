@@ -168,7 +168,7 @@
                                                 <Label fx:id="UserNameError1" textFill="RED" />
                                              </children>
                                           </HBox>
-                                          <JFXTextField fx:id="firstName" promptText="Email" text="First Name">
+                                          <JFXTextField fx:id="firstName" promptText="First Name">
                                              <font>
                                                 <Font size="15.0" />
                                              </font>

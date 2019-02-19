@@ -112,15 +112,28 @@ public class ToolBarController {
     }
 
     public void goSubmit() throws IOException {
-        if (signedIn == false)
+        if (!signedIn)
         {
             goLogin();
         }
-        Parent submitParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/FormSubmission.fxml"));
+        Parent submitParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/FormSubSelector.fxml"));
         primaryStage = Main.getWindow();
         primaryStage.getScene().setRoot(submitParent);
 
     }
+
+    public void goNormalFormSub() throws IOException {
+        Parent formSubParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/FormSubmission.fxml"));
+        primaryStage = Main.getWindow();
+        primaryStage.getScene().setRoot(formSubParent);
+    }
+
+    public void goMultiFormSub() throws IOException {
+        Parent multiFormSubParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/MultiFormSub.fxml"));
+        primaryStage = Main.getWindow();
+        primaryStage.getScene().setRoot(multiFormSubParent);
+    }
+
 
     public void goLogin() throws IOException {
         Parent loginParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/Login_CreateAccount.fxml"));

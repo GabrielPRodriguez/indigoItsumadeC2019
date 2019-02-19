@@ -27,14 +27,14 @@
                   </ImageView>
                </graphic>
             </JFXButton>
-            <VBox alignment="CENTER" prefHeight="62.0" prefWidth="67.0" spacing="10.0">
+            <VBox alignment="CENTER" prefHeight="62.0" prefWidth="118.0" spacing="10.0">
                <children>
-                  <Label fx:id="signInLabel" prefHeight="15.0" prefWidth="52.0" text="1" textFill="WHITE">
+                  <Label fx:id="signInLabel" prefHeight="15.0" prefWidth="116.0" text="1" textFill="WHITE">
                      <font>
                         <Font name="Segoe UI Bold" size="12.0" />
                      </font>
                   </Label>
-                  <Label prefHeight="15.0" prefWidth="57.0" textFill="WHITE">
+                  <Label fx:id="signInLabel2" prefHeight="15.0" prefWidth="120.0" text="2" textFill="WHITE">
                      <font>
                         <Font name="Segoe UI Bold" size="12.0" />
                      </font>

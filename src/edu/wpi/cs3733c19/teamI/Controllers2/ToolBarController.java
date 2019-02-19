@@ -43,6 +43,8 @@ public class ToolBarController implements Initializable {
 
     @FXML
     Label signInLabel;   //here is what we are going to write to when the person signs in
+    @FXML
+    Label signInLabel2;
 
     static ToolBarController instance;
     private static User curUser = null;
@@ -104,6 +106,8 @@ public class ToolBarController implements Initializable {
        signedIn = true;
        if(curUser != null) {
            curUser.logOutUser();
+           data.UserName = "";
+           System.out.println("LOGEDOUT------------------");
        }
        curUser = curUser.getUser(username, password, power, theState, theCity,theZip,theStreet, theFirstName,theLastName,thePhone,theRepID);
         data.UserName = curUser.getUsername();
@@ -156,7 +160,16 @@ public class ToolBarController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         data = DataTransfer.getInstance();
-        signInLabel.setText(data.UserName);
+        if(!data.UserName.isEmpty()){
+            System.out.println("ACTUAL-TEXT--------------");
+            System.out.println(data.UserName);
+            displaySignInName(data.UserName);
+        }else{
+            System.out.println("BRANK!!!!");
+            takeOffSignInName();
+        }
+
+        //signInLabel.setText(data.UserName);
 
     }
 
@@ -168,7 +181,7 @@ public class ToolBarController implements Initializable {
         primaryStage = Main.getWindow();
         primaryStage.getScene().setRoot(loginParent);
        // primaryStage.getScene().getRoot().g
-        displaySignInName("nope");
+        takeOffSignInName();
         System.out.println("YO");
         primaryStage.show();
 
@@ -237,14 +250,22 @@ public class ToolBarController implements Initializable {
     }
 
     public void displaySignInName(String name){
-        clearText.setText(name);
-        System.out.println("setting");
+        //clearText.setText(name);
+        //System.out.println("setting");
         // TODO implement Label on the FXML ToolBar to display the sign in of the person
-        signInLabel.setText("FUCK");
+        //signInLabel.setText("FUCK");
+
+
+        //data = DataTransfer.getInstance();
+        //signInLabel.setText(data.UserName);
+        clearText.setText(name);
+        signInLabel.setText("Signed in as");
+        signInLabel2.setText(toolBarSignInName.getText());
     }
     // TODO call this method when the person signs out of the account
     public void takeOffSignInName(){
         signInLabel.setText("");
+        signInLabel2.setText("");
     }
 
 

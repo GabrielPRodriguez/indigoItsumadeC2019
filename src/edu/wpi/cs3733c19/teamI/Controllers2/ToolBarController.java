@@ -104,8 +104,6 @@ public class ToolBarController {
        if(curUser != null) {
            curUser.logOutUser();
        }
-
-
        curUser = curUser.getUser(username, password, power, theState, theCity,theZip,theStreet, theFirstName,theLastName,thePhone,theRepID);
        goWorkflow();
         //displaySignInName(username);
@@ -126,10 +124,13 @@ public class ToolBarController {
     }
 
     public void goSubmit() throws IOException {
-        System.out.println(signedIn);
-        if (!signedIn)
+        //System.out.println(signedIn);
+        System.out.println("entering form subselector");
+        System.out.println(curUser);
+        if((curUser == null) || curUser.getUsername().equals(""))
         {
             goLogin();
+            return;
         }
         Parent submitParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/FormSubSelector.fxml"));
         primaryStage = Main.getWindow();

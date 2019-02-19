@@ -3,13 +3,14 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXToolbar?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<JFXToolbar minHeight="50.0" minWidth="600.0" style="-fx-background-color: #323a45;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers2.ToolBarController">
+<JFXToolbar minHeight="50.0" minWidth="600.0" prefHeight="62.0" prefWidth="765.0" style="-fx-background-color: #323a45;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers2.ToolBarController">
    <left>
       <JFXButton mnemonicParsing="false" onAction="#goHome" text="TTB COLA Search" textFill="WHITE" BorderPane.alignment="CENTER">
          <font>
@@ -61,4 +62,7 @@
          </children>
       </HBox>
    </right>
+   <center>
+      <Label fx:id="signInLabel" textFill="WHITE" BorderPane.alignment="CENTER" />
+   </center>
 </JFXToolbar>

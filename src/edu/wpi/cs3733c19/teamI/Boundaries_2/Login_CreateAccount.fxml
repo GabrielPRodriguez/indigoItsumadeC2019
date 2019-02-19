@@ -10,6 +10,7 @@
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -17,8 +18,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<?import javafx.scene.image.ImageView?>
-<BorderPane stylesheets="@../Assets/Style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers2.LoginAccountController">
+<BorderPane stylesheets="@../Assets/Style.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers2.LoginAccountController">
    <top>
       <fx:include source="TTBToolbar.fxml" />
    </top>
@@ -164,6 +164,7 @@
                                                       <Font name="Segoe UI Bold" size="20.0" />
                                                    </font>
                                                 </Label>
+                                                <Label fx:id="firstNameError" textFill="RED" />
                                                 <Label fx:id="UserNameError1" textFill="RED" />
                                              </children>
                                           </HBox>
@@ -188,7 +189,7 @@
                                           <Label fx:id="UserNameError22" textFill="RED" />
                                        </children>
                                     </HBox>
-                                    <JFXTextField fx:id="Delim" promptText="Deliminator">
+                                    <JFXTextField fx:id="delim" promptText="Deliminator">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
@@ -212,6 +213,7 @@
                                              </font>
                                           </Label>
                                           <Label fx:id="UserNameError2" textFill="RED" />
+                                          <Label fx:id="lastNameError" textFill="RED" />
                                        </children>
                                     </HBox>
                                     <JFXTextField fx:id="lastName" promptText="Last Name">
@@ -233,7 +235,7 @@
                                           <Label fx:id="UserNameError3" textFill="RED" />
                                        </children>
                                     </HBox>
-                                    <JFXTextField fx:id="phoneNum" promptText="Phone Number">
+                                    <JFXTextField fx:id="phone" promptText="Phone Number">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
@@ -316,17 +318,12 @@
                                     </JFXTextField>
                                  </children>
                               </VBox>
-                              <JFXButton fx:id="createAccountButton" alignment="CENTER" mnemonicParsing="false" onAction="#logInCreate" style="-fx-background-color: #046b99;" text="Create Account" textFill="WHITE">
-                                 <font>
-                                    <Font name="Segoe UI Bold" size="16.0" />
-                                 </font>
-                              </JFXButton>
                            </children>
                            <padding>
                               <Insets bottom="10.0" left="30.0" right="30.0" top="20.0" />
                            </padding>
                         </VBox>
-                        <JFXButton alignment="CENTER" layoutX="360.0" layoutY="563.0" mnemonicParsing="false" onAction="#logInCreate" style="-fx-background-color: #046b99;" text="Create Account" textFill="WHITE">
+                        <JFXButton fx:id="createAccountButton" alignment="CENTER" layoutX="360.0" layoutY="563.0" mnemonicParsing="false" onAction="#logInCreate" style="-fx-background-color: #046b99;" text="Create Account" textFill="WHITE">
                            <font>
                               <Font name="Segoe UI Bold" size="16.0" />
                            </font>

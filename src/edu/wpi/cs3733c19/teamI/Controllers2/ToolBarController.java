@@ -37,22 +37,27 @@ public class ToolBarController {
     @FXML
     JFXButton tb_workflowButton;
 
-    /**
+
     @FXML
-    Label signInLabel   //here is what we are going to write to when the person signs in
-    */
+    Label signInLabel;   //here is what we are going to write to when the person signs in
+
     static ToolBarController instance;
-    private User curUser = null;
+    private static User curUser = null;
     private ResultsController ResultsController;
     private Parent searchParent;
     private DetailedResultsController InfoController;
-    private boolean signedIn = false;
+    private  static boolean signedIn = false;
 
     private ArrayList<HashMap<String, ReturnedValue>> resultsMap = new ArrayList<HashMap<String, ReturnedValue>>();
 
+    // Observable Classes for displaying the name
+    private Message clearText;
+    private ToolBarSignInName toolBarSignInName;
 
     public ToolBarController() {
-
+        clearText = new Message();
+        toolBarSignInName = new ToolBarSignInName();
+        clearText.register(toolBarSignInName);
     }
 
     static {
@@ -92,9 +97,14 @@ public class ToolBarController {
 
     public void login(String username, String password, User.userPower power) throws IOException
     {
-       signedIn =true;
-       curUser = User.getUser(username, password, power);
+        //System.out.println("logging in");
+       signedIn = true;
+       if(curUser != null) {
+           curUser.logOutUser();
+       }
+       curUser = curUser.getUser(username, password, power);
        goWorkflow();
+        //displaySignInName(username);
     }
 
 
@@ -112,15 +122,29 @@ public class ToolBarController {
     }
 
     public void goSubmit() throws IOException {
-        if (signedIn == false)
+        System.out.println(signedIn);
+        if (!signedIn)
         {
             goLogin();
         }
-        Parent submitParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/FormSubmission.fxml"));
+        Parent submitParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/FormSubSelector.fxml"));
         primaryStage = Main.getWindow();
         primaryStage.getScene().setRoot(submitParent);
 
     }
+
+    public void goNormalFormSub() throws IOException {
+        Parent formSubParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/FormSubmission.fxml"));
+        primaryStage = Main.getWindow();
+        primaryStage.getScene().setRoot(formSubParent);
+    }
+
+    public void goMultiFormSub() throws IOException {
+        Parent multiFormSubParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/MultiFormSub.fxml"));
+        primaryStage = Main.getWindow();
+        primaryStage.getScene().setRoot(multiFormSubParent);
+    }
+
 
     public void goLogin() throws IOException {
         Parent loginParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/Login_CreateAccount.fxml"));
@@ -132,23 +156,22 @@ public class ToolBarController {
     public void goWorkflow() throws IOException {
         System.out.print(signedIn);
 
-        if(curUser == null)
+        if((curUser == null)|| curUser.getUsername().equals(""))
         {
             goLogin();
         }
-        if(curUser.getUserType().equals(User.userPower.TTBEmployee))
+        else if(curUser.getUserType().equals(User.userPower.TTBEmployee))
         {
             goWorkflowAgent();
         }
-        if(curUser.getUserType().equals(User.userPower.Company))
+        else if(curUser.getUserType().equals(User.userPower.Company))
         {
             goWorkflowManufacturer();
         }
-        if(curUser.getUserType().equals(User.userPower.Standard))
+        else if(curUser.getUserType().equals(User.userPower.Standard))
         {
             goHome();
         }
-
     }
 
     public void goWorkflowAgent() throws IOException {
@@ -189,7 +212,16 @@ public class ToolBarController {
     public void transferSearchInfo(ArrayList<HashMap<String, ReturnedValue>> resultsList){
         ResultsController.setTestString("a new string");
         ResultsController.setResultsList(resultsList);
-        System.out.println("toolbar: " + resultsList);
+    }
+
+    public void displaySignInName(String name){
+        clearText.setText(name);
+        // TODO implement Label on the FXML ToolBar to display the sign in of the person
+        signInLabel.setText(toolBarSignInName.getText());
+    }
+    // TODO call this method when the person signs out of the account
+    public void takeOffSignInName(){
+        signInLabel.setText("");
     }
 
 

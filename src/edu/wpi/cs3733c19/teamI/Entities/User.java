@@ -5,6 +5,15 @@ public class User {
     private String password;
     private Boolean isAdmin = false;
     private userPower userType;
+    private String state;
+    private String city;
+    private String zip;
+    private String street;
+    private String firstName;
+    private String lastName;
+    private String phone;
+    private String repId;
+
     private char delim;
         public enum userPower
         {
@@ -12,7 +21,7 @@ public class User {
     }
     private int appsPer = 5;
 
-    private static User theUser;
+    private static User curUser;
 
     private User(String name, String pass, userPower type){
         username = name;
@@ -21,37 +30,41 @@ public class User {
             }
 
     private static class UserHelper{
-        private static final User theUser = new User("","",userPower.Standard);
+        private static final User curUser = new User("","",userPower.Standard);
+    }
+
+    public void logOutUser(){
+        curUser = new User("", "", userPower.Standard);
     }
 
     public static User getUser(String name, String pass, userPower type){
-        if(theUser == null){
-            theUser = new User(name, pass, type);
+        if((curUser == null)|| curUser.username.equals("")){
+            curUser = new User(name, pass, type);
         }
-        return UserHelper.theUser;
+        return UserHelper.curUser;
     }
 
 
 
     public String getUsername() {
-        return theUser.username;
+        return curUser.username;
     }
 
     public String getPassword() {
-        return theUser.password;
+        return curUser.password;
     }
 
     public Boolean getAdmin() {
-        return theUser.isAdmin;
+        return curUser.isAdmin;
     }
 
     public userPower getUserType() {
-        return theUser.userType;
+        return curUser.userType;
     }
 
-    public int getAppsPer(){return theUser.appsPer;}
+    public int getAppsPer(){return curUser.appsPer;}
 
-    public void setAppsPer(int newApps){theUser.appsPer = newApps; }
+    public void setAppsPer(int newApps){curUser.appsPer = newApps; }
 
     public char getDelim() {
         return delim;
@@ -59,5 +72,37 @@ public class User {
 
     public void setDelim(char delim) {
         this.delim = delim;
+    }
+
+    public String getState() {
+        return curUser.state;
+    }
+
+    public String getCity() {
+        return curUser.city;
+    }
+
+    public String getZip() {
+        return curUser.zip;
+    }
+
+    public String getStreet() {
+        return curUser.street;
+    }
+
+    public String getFirstName() {
+        return curUser.firstName;
+    }
+
+    public String getLastName() {
+        return curUser.lastName;
+    }
+
+    public String getPhone() {
+        return curUser.phone;
+    }
+
+    public String getRepId() {
+        return curUser.repId;
     }
 }

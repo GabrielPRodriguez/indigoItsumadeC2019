@@ -17,7 +17,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class AgentWorkflowController {
-    private ToolBarController toolBarController = ToolBarController.getInstance();
+    @FXML
+    private ToolBarController toolBarController; //= ToolBarController.getInstance();
 
     @FXML
     JFXButton accept_button;
@@ -239,6 +240,8 @@ public class AgentWorkflowController {
 
     @FXML
     private void pull_Forms() throws Exception{
+        //toolBarController = ToolBarController.getInstance();
+        toolBarController.displaySignInName("YOLO");
         formID_1.setText("");
         formID_2.setText("");
         formID_3.setText("");

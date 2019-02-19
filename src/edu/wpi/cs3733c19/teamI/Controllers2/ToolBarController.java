@@ -2,24 +2,24 @@ package edu.wpi.cs3733c19.teamI.Controllers2;
 
 import com.jfoenix.controls.JFXButton;
 import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.ReturnedValue;
-import edu.wpi.cs3733c19.teamI.Entities.DataField;
-import edu.wpi.cs3733c19.teamI.Entities.Message;
-import edu.wpi.cs3733c19.teamI.Entities.ToolBarSignInName;
-import edu.wpi.cs3733c19.teamI.Entities.User;
+import edu.wpi.cs3733c19.teamI.Entities.*;
 import edu.wpi.cs3733c19.teamI.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.ResourceBundle;
 
-public class ToolBarController {
+public class ToolBarController implements Initializable {
 
 
     public Stage primaryStage = Main.getWindow();
@@ -148,12 +148,28 @@ public class ToolBarController {
         primaryStage = Main.getWindow();
         primaryStage.getScene().setRoot(multiFormSubParent);
     }
+    /*
+    create an init in this class
+     */
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        DataTransfer data = DataTransfer.getInstance();
+        signInLabel.setText(data.name);
+
+    }
 
 
     public void goLogin() throws IOException {
+
         Parent loginParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/Login_CreateAccount.fxml"));
+      //  loginParent.get
         primaryStage = Main.getWindow();
         primaryStage.getScene().setRoot(loginParent);
+       // primaryStage.getScene().getRoot().g
+        displaySignInName("nope");
+        System.out.println("YO");
+        primaryStage.show();
 
     }
 
@@ -200,6 +216,7 @@ public class ToolBarController {
     }
 
     public void goSearch() throws IOException {
+
         System.out.println("toolSearch");
 
        // Parent searchParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/Home.fxml"));
@@ -220,8 +237,9 @@ public class ToolBarController {
 
     public void displaySignInName(String name){
         clearText.setText(name);
+        System.out.println("setting");
         // TODO implement Label on the FXML ToolBar to display the sign in of the person
-        signInLabel.setText(toolBarSignInName.getText());
+        signInLabel.setText("FUCK");
     }
     // TODO call this method when the person signs out of the account
     public void takeOffSignInName(){

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Ellipse?>
+<?import javafx.scene.text.Text?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers2.TTBWorkHelpController">
+<children>
+    <ImageView fitHeight="400.0" fitWidth="610.0" layoutX="-5.0" layoutY="-1.0">
+        <image>
+            <Image url="@../Assets/ScreenShotTTAWorkPage.png" />
+        </image>
+    </ImageView>
+    <Text layoutX="390.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Applicant's Form" />
+    <Text layoutX="430.0" layoutY="382.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Explinatin for Regetion  " />
+    <Ellipse fill="#1f93ff3e" layoutX="439.0" layoutY="51.0" radiusX="64.0" radiusY="16.0" stroke="BLACK" strokeType="INSIDE" />
+    <Ellipse fill="#1f93ff3d" layoutX="503.0" layoutY="377.0" radiusX="80.0" radiusY="13.0" stroke="BLACK" strokeType="INSIDE" />
+    <Ellipse fill="#2197fffb" layoutX="310.0" layoutY="264.0" radiusX="80.0" radiusY="16.0" stroke="BLACK" strokeType="INSIDE" />
+    <Text layoutX="237.0" layoutY="269.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Explinatin for Regetion  " />
+    <Ellipse fill="#2197fffb" layoutX="282.0" layoutY="226.0" radiusX="46.0" radiusY="16.0" stroke="BLACK" strokeType="INSIDE" />
+    <Text layoutX="243.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reject Form" />
+    <Ellipse fill="#2197fffb" layoutX="283.0" layoutY="194.0" radiusX="46.0" radiusY="16.0" stroke="BLACK" strokeType="INSIDE" />
+    <Text layoutX="244.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Except form" />
+    <Ellipse fill="#2197fffb" layoutX="79.0" layoutY="124.0" radiusX="84.0" radiusY="28.0" stroke="BLACK" strokeType="INSIDE" />
+    <Text layoutX="7.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="select a from the given least" wrappingWidth="145.70409774780273" />
+    <Button fx:id="closeHelp" layoutX="511.0" layoutY="37.0" mnemonicParsing="false" onAction="#goWorkflow" text="Close" />
+
+</children>
+</Pane>

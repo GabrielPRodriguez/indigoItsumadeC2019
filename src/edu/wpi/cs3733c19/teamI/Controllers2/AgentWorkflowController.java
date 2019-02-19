@@ -257,7 +257,7 @@ public class AgentWorkflowController {
         choose_button7.setDisable(false);
         choose_button8.setDisable(false);
         choose_button9.setDisable(false);
-        SQLDriver driver = new SQLDriver();
+        MongoDriver driver = new MongoDriver("mongodb+srv://firstuser1:newTestCred@cs3733-hgmot.mongodb.net/test?retryWrites=true");
         ArrayList<HashMap<String, ReturnedValue>>filtered_results = new ArrayList<HashMap<String, ReturnedValue>>();
         for (HashMap<String, ReturnedValue>result:driver.select_all("stringified_ids_db.db", "form_data")){
             if (result.get("status").to_string().equals("unread")){
@@ -366,7 +366,7 @@ public class AgentWorkflowController {
 
         }
 
-        SQLDriver driver = new SQLDriver();
+        MongoDriver driver = new MongoDriver("mongodb+srv://firstuser1:newTestCred@cs3733-hgmot.mongodb.net/test?retryWrites=true");
         HashMap<String, ReturnedValue>result = driver.get_data_by_value("form_data", "stringified_ids_db.db", "formID", new DBValue<Double>(currentFormID));
 
 

@@ -13,7 +13,7 @@ public class LFuzzy implements IStrategyFuzzy {
         ArrayList<HashMap<String, ReturnedValue>> mylist=querydata.search_for_l_multiple("form_data", "stringified_ids_db.db",searchParameters, searchString, 10);
         matches.addAll(mylist);
         System.out.println(searchString);
-        System.out.println(mylist.get(0).get("beverageType").to_string());
+        //System.out.println(mylist.get(0).get("beverageType").to_string());
         System.out.println("here 1");
 
 

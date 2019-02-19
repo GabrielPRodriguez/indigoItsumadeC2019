@@ -1,5 +1,6 @@
 package edu.wpi.cs3733c19.teamI.Entities;
 
+import edu.wpi.cs3733c19.teamI.Controllers2.MongoDriver;
 import edu.wpi.cs3733c19.teamI.Controllers2.SQLDriver;
 import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.ReturnedValue;
 
@@ -89,7 +90,7 @@ public class SearchResults {
     {
         //get_data_by_value()
         System.out.println("in UpdateList");
-        SQLDriver driver = new SQLDriver();
+        MongoDriver driver = new MongoDriver("mongodb+srv://firstuser1:newTestCred@cs3733-hgmot.mongodb.net/test?retryWrites=true");
         ArrayList<HashMap<String, ReturnedValue>>results = driver.get_data_by_value("form_data", "stringified_ids_db.db", this.Parameters, this.searchMap);
         this.listOfForms = results;
         //System.out.println(results);

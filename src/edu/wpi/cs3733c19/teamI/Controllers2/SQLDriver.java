@@ -845,7 +845,8 @@ public class SQLDriver{
     }
 
     public static void setField(String formID, String approvalStatus, String field) throws IOException, Exception{
-        SQLDriver driver = new SQLDriver();
+        //SQLDriver driver = new SQLDriver();
+        MongoDriver driver = new MongoDriver("mongodb+srv://firstuser1:newTestCred@cs3733-hgmot.mongodb.net/test?retryWrites=true");
         HashMap<String, ReturnedValue> result = driver.get_data_by_value("form_data", "form_data.db", "formID", new DBValue<String>(formID));
 
         //result.get("formStatus");
@@ -860,7 +861,7 @@ public class SQLDriver{
         DBValue value1 = new DBValue<String>(approvalStatus);
         appStatus.add(value1);
 
-        driver.update("form_data", "form_data.db", appStatType, appStatus, formID);
+        driver.generic_update("form_data", "form_data.db", appStatType, appStatus, "formID", new DBValue<String>(formID));
         //result.put("status", value);
     }
 

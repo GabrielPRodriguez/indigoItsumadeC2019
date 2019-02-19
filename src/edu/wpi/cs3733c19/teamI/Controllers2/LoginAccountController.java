@@ -134,7 +134,8 @@ public class LoginAccountController implements Initializable {
             }
 
             ArrayList<HashMap<String, ReturnedValue>> users = new ArrayList<>();
-            SQLDriver loginDriver = new SQLDriver();
+           // SQLDriver loginDriver = new SQLDriver();
+            MongoDriver loginDriver = new MongoDriver("mongodb+srv://firstuser1:newTestCred@cs3733-hgmot.mongodb.net/test?retryWrites=true");
             LinkedList<String> param = new LinkedList<String>();
             param.add("email");
             HashMap<String, DataField> searchParam = new HashMap<>();
@@ -178,7 +179,8 @@ public class LoginAccountController implements Initializable {
     public void attemptCreate(ActionEvent actionEvent) throws Exception{
 
         ArrayList<HashMap<String, ReturnedValue>> users = new ArrayList<HashMap<String, ReturnedValue>>();
-        SQLDriver loginDriver = new SQLDriver();
+        //SQLDriver loginDriver = new SQLDriver();
+        MongoDriver loginDriver = new MongoDriver("mongodb+srv://firstuser1:newTestCred@cs3733-hgmot.mongodb.net/test?retryWrites=true");
         LinkedList<String> param = new LinkedList<String>();
         param.add("email");
         HashMap<String, DataField> searchParam = new HashMap<>();
@@ -310,7 +312,8 @@ public class LoginAccountController implements Initializable {
 
     public boolean attemptLogin(ActionEvent actionEvent) throws Exception { //attempts a login and will either create an account or login
         ArrayList<HashMap<String, ReturnedValue>> users = new ArrayList<>();
-        SQLDriver loginDriver = new SQLDriver();
+        //SQLDriver loginDriver = new SQLDriver();
+        MongoDriver loginDriver = new MongoDriver("mongodb+srv://firstuser1:newTestCred@cs3733-hgmot.mongodb.net/test?retryWrites=true");
         LinkedList<String> param = new LinkedList<String>();
         param.add("email");
         HashMap<String, DataField> searchParam = new HashMap<>();

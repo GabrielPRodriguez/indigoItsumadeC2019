@@ -12,8 +12,8 @@ public class SQLFuzzy implements IStrategyFuzzy {
             System.out.println("here 3");
             for(String myparam: searchParameters){
                 //this function (search_for_sql_wildcard) can be found in the SQLDriver
-                ArrayList<HashMap<String, ReturnedValue>> mylist=querydata.search_sql_wildcard("form_data", "stringified_ids_db.db", searchString, myparam);
-                matches.addAll(mylist);
+              //  ArrayList<HashMap<String, ReturnedValue>> mylist=querydata.search_sql_wildcard("form_data", "stringified_ids_db.db", searchString, myparam);
+               // matches.addAll(mylist);
             }
             removeDuplicates();
 

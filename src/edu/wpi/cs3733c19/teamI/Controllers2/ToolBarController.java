@@ -104,7 +104,9 @@ public class ToolBarController {
        }
        curUser = curUser.getUser(username, password, power);
        goWorkflow();
-        //displaySignInName(username);
+       displaySignInName(username);
+        // System.out.println("Testing ----------------------");
+        // System.out.println(toolBarSignInName.getText());
     }
 
 
@@ -217,11 +219,14 @@ public class ToolBarController {
     public void displaySignInName(String name){
         clearText.setText(name);
         // TODO implement Label on the FXML ToolBar to display the sign in of the person
-        signInLabel.setText(toolBarSignInName.getText());
+        //signInLabel.setText(toolBarSignInName.getText());
+        instance.signInLabel.setText("TESTING!!!");
+        System.out.println(signInLabel.getText());
     }
     // TODO call this method when the person signs out of the account
-    public void takeOffSignInName(){
+    public void takeOffSignInName() {
         signInLabel.setText("");
+
     }
 
 

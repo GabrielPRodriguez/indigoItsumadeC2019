@@ -96,6 +96,10 @@ public class LoginAccountController implements Initializable {
         this.toolBarController = toolBarController;
     }
 
+    public void changeLabel(){
+        this.toolBarController.signInLabel.setText("work");
+    }
+
 
 
 

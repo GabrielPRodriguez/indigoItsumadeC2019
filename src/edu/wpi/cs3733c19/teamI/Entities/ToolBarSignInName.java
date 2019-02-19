@@ -6,7 +6,7 @@ public class ToolBarSignInName implements Observer {
 
     public void setText(String text){
 
-        String newString = "Signed in as" + text;
+        String newString = "Signed in as: " + text;
 
         this.signInName = newString;
     }

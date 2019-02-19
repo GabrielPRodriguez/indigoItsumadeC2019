@@ -574,7 +574,7 @@ public class SQLDriver{
 
         pstmt.executeUpdate();
     }
-    public void update(String tablename, String filename, ArrayList<String>targetcols, ArrayList<DBValue>values, int formid) throws Exception {
+    public void update(String tablename, String filename, ArrayList<String>targetcols, ArrayList<DBValue>values, String formid) throws Exception {
 
         //System.out.println("actually makes into update method");
         Connection _connector = connect_file(filename);
@@ -598,7 +598,7 @@ public class SQLDriver{
             }
             _count ++;
         }
-        pstmt.setInt(_count, formid);
+        pstmt.setString(_count, formid);
 
         pstmt.executeUpdate();
 
@@ -828,25 +828,25 @@ public class SQLDriver{
 
 
 
-    public static void setApprovalStatus(int formID, String approvalStatus) throws IOException, Exception {
+    public static void setApprovalStatus(String formID, String approvalStatus) throws IOException, Exception {
         setField(formID, approvalStatus, "status");
     }
 
-    public static void setApprovingUser(int formID, String approvalStatus) throws IOException, Exception {
+    public static void setApprovingUser(String formID, String approvalStatus) throws IOException, Exception {
         setField(formID, approvalStatus, "approvingUser");
     }
 
-    public static void setApprovalDate(int formID, String approvalStatus) throws IOException, Exception {
+    public static void setApprovalDate(String formID, String approvalStatus) throws IOException, Exception {
         setField(formID, approvalStatus, "approvalDate");
     }
 
-    public static void setExpirationDate(int formID, String approvalStatus) throws IOException, Exception {
+    public static void setExpirationDate(String formID, String approvalStatus) throws IOException, Exception {
         setField(formID, approvalStatus, "expirationDate");
     }
 
-    public static void setField(int formID, String approvalStatus, String field) throws IOException, Exception{
+    public static void setField(String formID, String approvalStatus, String field) throws IOException, Exception{
         SQLDriver driver = new SQLDriver();
-        HashMap<String, ReturnedValue> result = driver.get_data_by_value("form_data", "form_data.db", "formID", new DBValue<Integer>(formID));
+        HashMap<String, ReturnedValue> result = driver.get_data_by_value("form_data", "form_data.db", "formID", new DBValue<String>(formID));
 
         //result.get("formStatus");
         ReturnedValue value = new ReturnedValue(field, approvalStatus);

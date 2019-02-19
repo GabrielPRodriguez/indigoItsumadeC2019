@@ -24,6 +24,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
@@ -471,7 +472,7 @@ public class FormSubmissionController implements Initializable {
                 //int _id_count = driver.select_all("form_data.db", "form_data").size();
 
                 //iterates through the formID column of the database in order to find the current highest formID value
-                ArrayList<String>current_ids = new ArrayList<String>();
+                ArrayList<String> current_ids = new ArrayList<String>();
                 for (HashMap<String, ReturnedValue> result:driver.select_all("stringified_ids_db.db", "form_data")){
                     current_ids.add(result.get("formID").to_string());
                     
@@ -493,10 +494,6 @@ public class FormSubmissionController implements Initializable {
 
             }
 
-/*
-                submit_message.setText(success);
-                System.out.println(success);
-*/
 
         }
     }

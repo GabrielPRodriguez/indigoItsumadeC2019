@@ -9,14 +9,12 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane style="-fx-background-color: #e4e2e0;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers2.ManufacturerWorkflowController">
+<BorderPane style="-fx-background-color: #e4e2e0;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers2.ManufacturerWorkflowController">
    <top>
       <fx:include source="TTBToolbar.fxml" />
    </top>
@@ -55,96 +53,64 @@
                               <DropShadow />
                            </effect>
                         </JFXToolbar>
-                        <HBox prefHeight="30.0" prefWidth="200.0" spacing="120.0">
+                        <VBox alignment="TOP_CENTER">
                            <children>
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                              <HBox alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="200.0" spacing="120.0">
                                  <children>
                                     <Label fx:id="formID_1" maxWidth="-Infinity" />
-                                    <Button fx:id="choose_button1" layoutX="148.0" layoutY="2.0" mnemonicParsing="false" onAction="#chooseButtonHandler" text="Select" />
+                                    <Button fx:id="choose_button1" mnemonicParsing="false" onAction="#chooseButtonHandler" text="Select" />
                                  </children>
-                              </AnchorPane>
-                           </children>
-                        </HBox>
-                        <HBox prefHeight="31.0" prefWidth="200.0" spacing="120.0">
-                           <children>
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                              </HBox>
+                              <HBox alignment="CENTER_RIGHT" prefHeight="31.0" prefWidth="200.0" spacing="120.0">
                                  <children>
                                     <Label fx:id="formID_2" />
-                                    <Button fx:id="choose_button2" layoutX="148.0" layoutY="2.0" mnemonicParsing="false" onAction="#chooseButtonHandler" text="Select" />
+                                    <Button fx:id="choose_button2" mnemonicParsing="false" onAction="#chooseButtonHandler" text="Select" />
                                  </children>
-                              </AnchorPane>
-                           </children>
-                        </HBox>
-                        <HBox prefHeight="30.0" prefWidth="200.0" spacing="120.0">
-                           <children>
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                              </HBox>
+                              <HBox alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="200.0" spacing="120.0">
                                  <children>
-                                    <Button fx:id="choose_button3" layoutX="148.0" layoutY="2.0" mnemonicParsing="false" onAction="#chooseButtonHandler" text="Select" />
                                     <Label fx:id="formID_3" />
+                                    <Button fx:id="choose_button3" mnemonicParsing="false" onAction="#chooseButtonHandler" text="Select" />
                                  </children>
-                              </AnchorPane>
-                           </children>
-                        </HBox>
-                        <HBox prefHeight="27.0" prefWidth="200.0" spacing="120.0">
-                           <children>
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                              </HBox>
+                              <HBox alignment="CENTER_RIGHT" prefHeight="27.0" prefWidth="200.0" spacing="120.0">
                                  <children>
                                     <Label fx:id="formID_4" />
-                                    <Button fx:id="choose_button4" layoutX="148.0" layoutY="2.0" mnemonicParsing="false" onAction="#chooseButtonHandler" text="Select" />
+                                    <Button fx:id="choose_button4" mnemonicParsing="false" onAction="#chooseButtonHandler" text="Select" />
                                  </children>
-                              </AnchorPane>
-                           </children>
-                        </HBox>
-                        <HBox prefHeight="24.0" prefWidth="200.0" spacing="120.0">
-                           <children>
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                              </HBox>
+                              <HBox alignment="CENTER_RIGHT" prefHeight="24.0" prefWidth="200.0" spacing="120.0">
                                  <children>
-                                    <Button fx:id="choose_button5" layoutX="148.0" layoutY="2.0" mnemonicParsing="false" onAction="#chooseButtonHandler" text="Select" />
                                     <Label fx:id="formID_5" />
+                                    <Button fx:id="choose_button5" mnemonicParsing="false" onAction="#chooseButtonHandler" text="Select" />
                                  </children>
-                              </AnchorPane>
-                           </children>
-                        </HBox>
-                        <HBox prefHeight="27.0" prefWidth="200.0" spacing="120.0">
-                           <children>
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                              </HBox>
+                              <HBox alignment="CENTER_RIGHT" prefHeight="27.0" prefWidth="200.0" spacing="120.0">
                                  <children>
                                     <Label fx:id="formID_6" />
-                                    <Button fx:id="choose_button6" layoutX="148.0" layoutY="2.0" mnemonicParsing="false" onAction="#chooseButtonHandler" text="Select" />
+                                    <Button fx:id="choose_button6" mnemonicParsing="false" onAction="#chooseButtonHandler" text="Select" />
                                  </children>
-                              </AnchorPane>
-                           </children>
-                        </HBox>
-                        <HBox prefHeight="29.0" prefWidth="200.0" spacing="120.0">
-                           <children>
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                              </HBox>
+                              <HBox alignment="CENTER_RIGHT" prefHeight="29.0" prefWidth="200.0" spacing="120.0">
                                  <children>
                                     <Label fx:id="formID_7" />
-                                    <Button fx:id="choose_button7" layoutX="148.0" layoutY="2.0" mnemonicParsing="false" onAction="#chooseButtonHandler" text="Select" />
+                                    <Button fx:id="choose_button7" mnemonicParsing="false" onAction="#chooseButtonHandler" text="Select" />
                                  </children>
-                              </AnchorPane>
-                           </children>
-                        </HBox>
-                        <HBox prefHeight="25.0" prefWidth="200.0" spacing="120.0">
-                           <children>
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                              </HBox>
+                              <HBox alignment="CENTER_RIGHT" prefHeight="25.0" prefWidth="200.0" spacing="120.0">
                                  <children>
                                     <Label fx:id="formID_8" />
-                                    <Button fx:id="choose_button8" layoutX="148.0" layoutY="2.0" mnemonicParsing="false" onAction="#chooseButtonHandler" text="Select" />
+                                    <Button fx:id="choose_button8" mnemonicParsing="false" onAction="#chooseButtonHandler" text="Select" />
                                  </children>
-                              </AnchorPane>
-                           </children>
-                        </HBox>
-                        <HBox prefHeight="27.0" prefWidth="200.0" spacing="120.0">
-                           <children>
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                              </HBox>
+                              <HBox alignment="CENTER_RIGHT" prefHeight="27.0" prefWidth="200.0" spacing="120.0">
                                  <children>
                                     <Label fx:id="formID_9" />
-                                    <Button fx:id="choose_button9" layoutX="148.0" layoutY="2.0" mnemonicParsing="false" onAction="#chooseButtonHandler" text="Select" />
+                                    <Button fx:id="choose_button9" mnemonicParsing="false" onAction="#chooseButtonHandler" text="Select" />
                                  </children>
-                              </AnchorPane>
+                              </HBox>
                            </children>
-                        </HBox>
+                        </VBox>
                      </children>
                   </VBox>
                   <VBox alignment="CENTER" spacing="40.0" HBox.hgrow="ALWAYS">
@@ -572,10 +538,7 @@
                                     </JFXButton>
                                  </children>
                               </VBox>
-                              <Pane HBox.hgrow="ALWAYS">
-                                 <children>
-                                    <TextArea fx:id="qualifier" editable="false" layoutX="14.0" layoutY="4.0" prefHeight="215.0" prefWidth="340.0" />
-                                 </children></Pane>
+                              <TextArea fx:id="qualifier" editable="false" promptText="Comments" />
                            </children>
                         </HBox>
                      </children>

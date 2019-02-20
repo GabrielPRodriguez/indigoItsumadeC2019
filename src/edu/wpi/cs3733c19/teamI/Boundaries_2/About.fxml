@@ -3,11 +3,12 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane prefHeight="2642.0" prefWidth="1931.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers2.AboutController">
@@ -26,14 +27,14 @@
               <rowConstraints>
                 <RowConstraints maxHeight="466.0" minHeight="10.0" prefHeight="165.0" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="443.0" minHeight="0.0" prefHeight="161.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="742.0" minHeight="0.0" prefHeight="204.0" vgrow="SOMETIMES" />
+                <RowConstraints vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="834.0" minHeight="0.0" prefHeight="82.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="904.0" minHeight="0.0" prefHeight="211.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="979.0" minHeight="0.0" prefHeight="205.0" vgrow="SOMETIMES" />
+                  <RowConstraints vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="1362.0" minHeight="0.0" prefHeight="117.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="1168.0" minHeight="10.0" prefHeight="248.0" vgrow="SOMETIMES" />
+                  <RowConstraints vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="1137.0" minHeight="10.0" prefHeight="86.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="1056.0" minHeight="10.0" prefHeight="284.0" vgrow="SOMETIMES" />
+                  <RowConstraints vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="950.0" minHeight="10.0" prefHeight="89.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="723.0" minHeight="10.0" prefHeight="704.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="723.0" minHeight="0.0" prefHeight="60.0" vgrow="SOMETIMES" />
@@ -50,11 +51,6 @@
                         <Insets left="50.0" />
                      </GridPane.margin>
                   </Label>
-                  <Circle fill="WHITE" radius="100.0" stroke="BLACK" strokeType="INSIDE" GridPane.rowIndex="2">
-                     <GridPane.margin>
-                        <Insets left="223.0" />
-                     </GridPane.margin>
-                  </Circle>
                   <Label prefHeight="43.0" prefWidth="426.0" text="Our Lead Engineers" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <font>
                         <Font name="Arial Bold Italic" size="38.0" />
@@ -63,16 +59,6 @@
                         <Insets left="130.0" right="110.0" />
                      </GridPane.margin>
                   </Label>
-                  <Circle fill="WHITE" radius="100.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                     <GridPane.margin>
-                        <Insets left="223.0" />
-                     </GridPane.margin>
-                  </Circle>
-                  <Circle fill="WHITE" radius="100.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.rowIndex="2">
-                     <GridPane.margin>
-                        <Insets left="223.0" />
-                     </GridPane.margin>
-                  </Circle>
                   <Label contentDisplay="CENTER" prefHeight="32.0" prefWidth="649.0" text="Fareya is a computer science major and enjoys reading, listening to podcasts, and outdoorsy things like hiking and camping." textAlignment="CENTER" wrapText="true" GridPane.rowIndex="3">
                      <GridPane.margin>
                         <Insets left="20.0" right="20.0" />
@@ -96,16 +82,6 @@
                         <Insets left="100.0" right="70.0" top="50.0" />
                      </GridPane.margin>
                   </Label>
-                  <Circle fill="WHITE" radius="100.0" stroke="BLACK" strokeType="INSIDE" GridPane.rowIndex="9">
-                     <GridPane.margin>
-                        <Insets left="223.0" top="50.0" />
-                     </GridPane.margin>
-                  </Circle>
-                  <Circle fill="WHITE" radius="100.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.rowIndex="9">
-                     <GridPane.margin>
-                        <Insets left="223.0" top="50.0" />
-                     </GridPane.margin>
-                  </Circle>
                   <Label text="Eric is a Robotics and Electrical Engineering major who acts as the product owner for the team. He enjoys working with his hands and working with old technologies. " textAlignment="CENTER" wrapText="true" GridPane.rowIndex="6">
                      <GridPane.margin>
                         <Insets left="20.0" right="20.0" />
@@ -126,21 +102,6 @@
                         <Font name="Segoe UI Bold" size="20.0" />
                      </font>
                   </Label>
-                  <Circle fill="WHITE" radius="100.0" stroke="BLACK" strokeType="INSIDE" GridPane.rowIndex="7">
-                     <GridPane.margin>
-                        <Insets left="223.0" top="40.0" />
-                     </GridPane.margin>
-                  </Circle>
-                  <Circle fill="WHITE" radius="100.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.rowIndex="7">
-                     <GridPane.margin>
-                        <Insets left="223.0" top="40.0" />
-                     </GridPane.margin>
-                  </Circle>
-                  <Circle fill="WHITE" radius="100.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="1" GridPane.rowIndex="7">
-                     <GridPane.margin>
-                        <Insets left="223.0" top="40.0" />
-                     </GridPane.margin>
-                  </Circle>
                   <Label text="Stephen is the document analyst. I help when I can. Like games especially warhammer." textAlignment="CENTER" wrapText="true" GridPane.rowIndex="8">
                      <GridPane.margin>
                         <Insets left="20.0" right="20.0" />
@@ -166,21 +127,61 @@
                         <Insets left="20.0" right="20.0" />
                      </GridPane.margin>
                   </Label>
-                  <Circle fill="WHITE" radius="100.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.rowIndex="5">
-                     <GridPane.margin>
-                        <Insets left="223.0" />
-                     </GridPane.margin>
-                  </Circle>
-                  <Circle fill="WHITE" radius="100.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="1" GridPane.rowIndex="5">
-                     <GridPane.margin>
-                        <Insets left="223.0" />
-                     </GridPane.margin>
-                  </Circle>
-                  <Circle fill="WHITE" radius="100.0" stroke="BLACK" strokeType="INSIDE" GridPane.rowIndex="5">
-                     <GridPane.margin>
-                        <Insets left="223.0" />
-                     </GridPane.margin>
-                  </Circle>
+                  <ImageView fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                     <image>
+                        <Image url="@../Assets/circleMike.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                     <image>
+                        <Image url="@../Assets/circleRachael.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                     <image>
+                        <Image url="@../Assets/circleFareya.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+                     <image>
+                        <Image url="@../Assets/circleEric.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
+                     <image>
+                        <Image url="@../Assets/circleStephen.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER">
+                     <image>
+                        <Image url="@../Assets/circleRasheeda.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER">
+                     <image>
+                        <Image url="@../Assets/circleJeremy.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
+                     <image>
+                        <Image url="@../Assets/circleGabe.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+                     <image>
+                        <Image url="@../Assets/circleJames.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+                     <image>
+                        <Image url="@../Assets/circleGrant.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
+                     <image>
+                        <Image url="@../Assets/circleYossef.png" />
+                     </image>
+                  </ImageView>
                </children>
             </GridPane>
          </content>

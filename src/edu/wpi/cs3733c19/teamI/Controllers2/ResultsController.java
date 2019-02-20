@@ -47,7 +47,6 @@ public class ResultsController implements Initializable {
     private String testString = "original";
     private int batches = 0; //variable to track number batches
 
-
     private final ObservableList<sub_Form> DisplayedResults = FXCollections.observableArrayList();
     ObjectProperty<ObservableList<sub_Form>> dispList = new SimpleObjectProperty<>(DisplayedResults);
 
@@ -254,6 +253,20 @@ public class ResultsController implements Initializable {
         }
     }
 
+    public void setAllDisplayedReseults(){
+        DisplayedResults.clear();
+        int index = 1;
+        try{
+            for (HashMap<String, ReturnedValue> i : toolBarController.getResultsMap()) {
+
+                this.DisplayedResults.add(new sub_Form(i, index));
+                index++;
+            }
+        }catch (IndexOutOfBoundsException e){
+
+        }
+    }
+
     public void setTable(){
         //get results
         System.out.println("Updated");
@@ -272,6 +285,8 @@ public class ResultsController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         setTable();
+        convertToForms(0);
+        toolBarController = ToolBarController.getInstance();
     }
 
 
@@ -305,18 +320,6 @@ public class ResultsController implements Initializable {
 
 
     private void showSelectedBeverage(sub_Form oneBeverage) {
-        /**
-         Hey Grant here is where you are going to assign all the FXID and information
-         I am passing you a sub_Form called "oneBeverage" that you can get all the
-         information you need of the beverage that is selected
-
-         Also I messed around with the Scene Builder application and you should not have
-         enough space to present your data.
-
-         If you look at this link https://drizly.com/smirnoff-no-21-vodka/p4683
-         and scroll down to the Product Detail its a good exmple of how you can fir
-         a lot of information close together
-        */
 
         regText.setText(oneBeverage.getSummary().get(1));
         typeText.setText(oneBeverage.getSummary().get(4));
@@ -334,9 +337,9 @@ public class ResultsController implements Initializable {
     public void writeExcel() throws Exception {
         export_message.setText("");
         Writer writer = null;
-        String fileTimestamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+        String fileTimestamp = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss").format(new Date());
         String delimiter = ",";
-
+        setAllDisplayedReseults();
         if (toolBarController.getCurUser() != null ){
             delimiter = String.valueOf(toolBarController.getCurUser().getDelim());
         }
@@ -364,6 +367,7 @@ public class ResultsController implements Initializable {
             writer.flush();
             writer.close();
         }
+
     }
 
 }

@@ -48,7 +48,7 @@
                                                <Label fx:id="ErrorMessage" opacity="0.0" text="Label" textFill="RED" />
                                            </children>
                                        </HBox>
-                                       <JFXTextField fx:id="Email" promptText="Email">
+                                       <JFXTextField fx:id="Email" onAction="#login" promptText="Email">
                                            <font>
                                                <Font size="15.0" />
                                            </font>
@@ -65,7 +65,7 @@
                                           <Font name="Segoe UI Bold" size="20.0" />
                                        </font>
                                     </Label>
-                                    <JFXPasswordField fx:id="Password" promptText="Password">
+                                    <JFXPasswordField fx:id="Password" onAction="#login" promptText="Password">
                                        <font>
                                           <Font size="15.0" />
                                        </font>

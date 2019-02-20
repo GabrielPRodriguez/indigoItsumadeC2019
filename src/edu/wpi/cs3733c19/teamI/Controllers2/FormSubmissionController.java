@@ -221,12 +221,12 @@ public class FormSubmissionController implements Initializable {
         {
             JButton open = new JButton();
             JFileChooser chooseFile = new JFileChooser();
-
             chooseFile.setCurrentDirectory(new java.io.File("System.dir"));
             FileNameExtensionFilter filter = new FileNameExtensionFilter("*.Images", "jpg", "png");
             chooseFile.setFileFilter(filter);
             chooseFile.setDialogTitle("Please Choose an Image to Upload");
             chooseFile.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+
             if(chooseFile.showOpenDialog(open) == JFileChooser.APPROVE_OPTION)
             {
                 File selectedFile = chooseFile.getSelectedFile();

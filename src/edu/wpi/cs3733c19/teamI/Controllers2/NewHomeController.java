@@ -85,9 +85,6 @@ public class NewHomeController implements Initializable {
 
     public void setSearchParam(){
         ArrayList<String> paramList = new ArrayList<String>();
-        if(extraInfo.isSelected()){
-            paramList.add("extraInfo");
-        }
         if (brandName.isSelected()) {
             paramList.add("brandName");
         }
@@ -97,7 +94,6 @@ public class NewHomeController implements Initializable {
         if(beverageType.isSelected()){
             paramList.add("beverageType");
         }else if  (paramList.isEmpty()){
-            paramList.add("extraInfo");
             paramList.add("brandName");
             paramList.add("fancifulName");
             paramList.add("beverageType");

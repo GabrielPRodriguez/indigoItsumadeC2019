@@ -2,6 +2,7 @@ package edu.wpi.cs3733c19.teamI.Controllers2;
 
 import com.jfoenix.controls.JFXButton;
 import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.ReturnedValue;
+import edu.wpi.cs3733c19.teamI.Entities.DataField;
 import edu.wpi.cs3733c19.teamI.Entities.Message;
 import edu.wpi.cs3733c19.teamI.Entities.ToolBarSignInName;
 import edu.wpi.cs3733c19.teamI.Entities.User;
@@ -16,6 +17,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 
 public class ToolBarController {
 
@@ -92,17 +94,17 @@ public class ToolBarController {
 
     public void loginRFID(String username, String password, User.userPower power){
         signedIn = true;
-        curUser = User.getUser(username, password, power);
+        curUser = User.getUser(username, password, power, "", "","","","","","","");
     }
 
-    public void login(String username, String password, User.userPower power) throws IOException
+    public void login(String username, String password, User.userPower power, String theState, String theCity, String theZip, String theStreet, String theFirstName, String theLastName, String thePhone, String theRepID ) throws IOException
     {
         //System.out.println("logging in");
        signedIn = true;
        if(curUser != null) {
            curUser.logOutUser();
        }
-       curUser = curUser.getUser(username, password, power);
+       curUser = curUser.getUser(username, password, power, theState, theCity,theZip,theStreet, theFirstName,theLastName,thePhone,theRepID);
        goWorkflow();
         //displaySignInName(username);
     }
@@ -122,10 +124,13 @@ public class ToolBarController {
     }
 
     public void goSubmit() throws IOException {
-        System.out.println(signedIn);
-        if (!signedIn)
+        //System.out.println(signedIn);
+        System.out.println("entering form subselector");
+        System.out.println(curUser);
+        if((curUser == null) || curUser.getUsername().equals(""))
         {
             goLogin();
+            return;
         }
         Parent submitParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/FormSubSelector.fxml"));
         primaryStage = Main.getWindow();

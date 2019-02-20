@@ -390,8 +390,44 @@ public class SQLDriver {
         return final_results;
     }
 
+    public ArrayList<HashMap<String, ReturnedValue>>search_for_l_actual(String tablename, String filename, ArrayList<String> keys, String _user_input, int top_results) throws Exception {
+        ArrayList<HashMap<String, ReturnedValue>>final_results = new ArrayList<HashMap<String, ReturnedValue>>(); //list of hashmaps of a string and a returned value type
+        ArrayList<Double>all_distances = new ArrayList<Double>(); //list of doubles for each item
+        HashMap<Double, HashMap<String, ReturnedValue>>results = new HashMap<Double, HashMap<String, ReturnedValue>>(); //hashmap of doubles and hashmaps with a string and returned value
+        double counter = 0.00001;
+        _user_input.toLowerCase();
+        for(HashMap<String, ReturnedValue>result:select_all(filename, tablename)){ //for every item in our big ol table
+//            if(all_distances.size() > top_results){
+//                break;
+//            }
+            for (String key:keys){ //for each key (search type), should just be 1
+                String dataVal = result.get(key).to_string();
+                dataVal = dataVal.toLowerCase();
+                double maxDistance = counter;
+                counter = counter + 0.00001;
+                maxDistance = l_distance(_user_input, dataVal);
+                if (maxDistance / dataVal.length() < 7) {
+                    results.put(maxDistance, result);
+                    all_distances.add(maxDistance);
+                }
+            }
 
-        public ArrayList<HashMap<String, ReturnedValue>>search_for_l_multipleNOTUSED(String tablename, String filename, ArrayList<String>keys, String _user_input, int top_results) throws Exception{
+        }
+        if (all_distances.size() > 0) {
+            Collections.sort(all_distances);
+            Collections.reverse(all_distances);
+        }
+        for (int i = 0; i < all_distances.size(); i++){
+            final_results.add(results.get(all_distances.get(i))); //for some reason these are getting set as null
+        }
+        //System.out.println("final distances are:" + all_distances);
+        //System.out.println("final results are: " + final_results);
+        return final_results;
+    }
+
+
+
+    public ArrayList<HashMap<String, ReturnedValue>>search_for_l_multipleNOTUSED(String tablename, String filename, ArrayList<String>keys, String _user_input, int top_results) throws Exception{
         if (top_results < 1){
             throw new Exception("'top_results' must be a value greater than zero");
         }

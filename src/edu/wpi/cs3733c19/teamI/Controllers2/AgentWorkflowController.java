@@ -273,7 +273,7 @@ public class AgentWorkflowController implements Initializable {
 
     @FXML
     public void update(){
-        if(User.getUser("a","a", User.userPower.Specialist,"a","a","a","a","a","a","a","a",",").getUserType().equals("Specialist")){
+        if(toolBarController.getCurUser().getUserType().equals(User.userPower.Specialist)){
             specialText.setOpacity(1);
            commentBox.setPromptText("Add any comments as to why this particular form was rejected, accepted, or comments for corrections");
            special = true;
@@ -329,7 +329,7 @@ public class AgentWorkflowController implements Initializable {
         ArrayList<HashMap<String, ReturnedValue>>filtered_results = new ArrayList<HashMap<String, ReturnedValue>>();
         for (HashMap<String, ReturnedValue>result:driver.select_all("stringified_ids_db.db", "form_data")){
             if(special){
-                if (result.get("status").to_string().equals("specialist")){
+                if (result.get("status").to_string().contains("specialist")){
 
                     filtered_results.add(result);
                 }

@@ -106,10 +106,10 @@ public class ToolBarController implements Initializable {
        signedIn = true;
        if(curUser != null) {
            curUser.logOutUser();
-           System.out.println("LOGEDOUT------------------");
        }
        curUser = curUser.getUser(username, password, power, theState, theCity,theZip,theStreet, theFirstName,theLastName,thePhone,theRepID);
         data.UserName = curUser.getUsername();
+        //data.LogButtonName = "Logout";
 
                 goWorkflow();
         //displaySignInName(username);
@@ -159,7 +159,9 @@ public class ToolBarController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         data = DataTransfer.getInstance();
-        tb_loginButton.setText(data.LogButtonName);
+        if(curUser == null){tb_loginButton.setText("Login");}
+        else if((curUser.getUsername().equals(""))) {tb_loginButton.setText("Login");}
+        else{tb_loginButton.setText("Logout");}
         if(!data.UserName.isEmpty()){
             displaySignInName(data.UserName);
         }else{
@@ -180,7 +182,7 @@ public class ToolBarController implements Initializable {
                 data.LogButtonName = "Logout";
             }
             else{
-                data.loginStatus = 1;
+                data.loginStatus = 0;
                 data.LogButtonName = "Login";
             }
         }
@@ -202,7 +204,7 @@ public class ToolBarController implements Initializable {
         {
             goLogin();
         }
-        else if(curUser.getUserType().equals(User.userPower.TTBEmployee))
+        else if(curUser.getUserType().equals(User.userPower.TTBEmployee)||curUser.getUserType().equals(User.userPower.Specialist))
         {
             goWorkflowAgent();
         }

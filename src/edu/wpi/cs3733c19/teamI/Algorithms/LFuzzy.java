@@ -12,9 +12,9 @@ public class LFuzzy implements IStrategyFuzzy {
         //this function (search_for_dl_multiple) can be found in the SQLDriver
         ArrayList<HashMap<String, ReturnedValue>> mylist=querydata.search_for_l_multiple("form_data", "stringified_ids_db.db",searchParameters, searchString, 10);
         matches.addAll(mylist);
-        System.out.println(searchString);
-        System.out.println(mylist.get(0).get("beverageType").to_string());
-        System.out.println("here 1");
+        //System.out.println(searchString);
+        //System.out.println(mylist.get(0).get("beverageType").to_string());
+        //System.out.println("here 1");
 
 
     }
@@ -26,7 +26,7 @@ public class LFuzzy implements IStrategyFuzzy {
         }
         searchParameters.clear();
         for(String param: searchParam) {
-            System.out.println(param);
+            //System.out.println(param);
             searchParameters.add(param);
         }
     }

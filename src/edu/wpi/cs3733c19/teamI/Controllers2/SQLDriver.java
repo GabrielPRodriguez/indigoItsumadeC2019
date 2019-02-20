@@ -222,9 +222,9 @@ public class SQLDriver{
             boolean seen_result = false;
             for (String key:keys){
                 String _val = result.get(key).to_string();
-                System.out.println(_val);
-                System.out.println(_user_input);
-                System.out.println("---------------------");
+                //System.out.println(_val);
+                //System.out.println(_user_input);
+                //System.out.println("---------------------");
 
                 if (_val.length() > 0 && _user_input.length() > 0 && filter_immediate(_val, _user_input)){
                     System.out.println("Got in here");
@@ -240,7 +240,7 @@ public class SQLDriver{
             if (seen_result){
                 all_distances.add(_count);
                 results.put(_count, result);
-                System.out.println("Beverage type here "+result.get("beverageType").to_string());
+                //System.out.println("Beverage type here "+result.get("beverageType").to_string());
             }
 
 
@@ -359,9 +359,9 @@ public class SQLDriver{
             boolean seen_result = false;
             for (String key:keys){
                 String _val = result.get(key).to_string();
-                System.out.println(_val);
-                System.out.println(_user_input);
-                System.out.println("---------------------");
+                //System.out.println(_val);
+                //System.out.println(_user_input);
+                //System.out.println("---------------------");
 
                 if (_val.length() > 0 && _user_input.length() > 0 && filter_immediate(_val, _user_input)){
                     System.out.println("Got in here");
@@ -377,7 +377,7 @@ public class SQLDriver{
             if (seen_result){
                 all_distances.add(_count);
                 results.put(_count, result);
-                System.out.println("Beverage type here "+result.get("beverageType").to_string());
+                //System.out.println("Beverage type here "+result.get("beverageType").to_string());
             }
 
 
@@ -678,6 +678,31 @@ public class SQLDriver{
         return final_results;
     }
 
+    public ArrayList<HashMap<String, ReturnedValue>>search_sql_plus(String tablename, String filename, String target, String _key) throws Exception{
+        ArrayList<String> targets = new ArrayList<String>();
+        System.out.println("target is " + target);
+        int startIndex = 0;
+        int endIndex = 0;
+        int tarCount = 1;
+        for (int i = 0; i < target.length(); i++){
+            if (target.charAt(i) == '+'){
+                tarCount++;
+                endIndex = i;
+                targets.add(target.substring(startIndex, endIndex));
+                startIndex = i;
+            }
+        }
+        targets.add(target.substring(endIndex + 1,target.length())); //add last item
+        System.out.println("all targets = " + targets.toString());
+        System.out.println("tarCount = " + tarCount);
+        ArrayList<HashMap<String, ReturnedValue>> plusResults = new ArrayList<HashMap<String, ReturnedValue>>();
+        for(int i = 0; i < tarCount; i++){
+            plusResults.addAll(search_sql_wildcard(tablename, filename, targets.get(i), _key));
+        }
+        System.out.println("search Results = " + plusResults);
+        return plusResults;
+    }
+
     public ArrayList<HashMap<String, ReturnedValue>>search_sql_wildcard(String tablename, String filename, String target, String _key) throws Exception{
         //sample method call: search_for_l("form_data", "form_data.db", "MyFancyTitle", "fancifulName");
         String _query = "SELECT * FROM "+tablename+" WHERE "+_key+" LIKE "+"'%"+target+"%'";
@@ -780,12 +805,12 @@ public class SQLDriver{
             System.out.println("In first loop");
                 boolean _flag = false;
                 for (String field:search_fields){
-                    System.out.println("search field: "+field);
+                    //System.out.println("search field: "+field);
                     ReturnedValue type1 = result.get(field);
                     DataField type2 = targets.get(field);
 
                     System.out.println("At end");
-                    System.out.println("Type1: " + type1);
+                    //System.out.println("Type1: " + type1);
 
 
                     if (type1.type.equals("text")|| type1.type.equals("TEXT")){

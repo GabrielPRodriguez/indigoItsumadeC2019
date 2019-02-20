@@ -8,8 +8,6 @@ public class HelpHomeController {
 
     private ToolBarController toolBarController = ToolBarController.getInstance();
 
-
-
     @FXML
     public void goHome() throws IOException {
         toolBarController.goHome();

@@ -844,6 +844,9 @@ public class SQLDriver{
     public static void setExpirationDate(String formID, String approvalStatus) throws IOException, Exception {
         setField(formID, approvalStatus, "expirationDate");
     }
+    public static void setQualifier(String formID,String approvalStatus) throws IOException,Exception{
+        setField(formID,approvalStatus,"qualifier");
+    }
 
     public static void setField(String formID, String approvalStatus, String field) throws IOException, Exception{
         SQLDriver driver = new SQLDriver();

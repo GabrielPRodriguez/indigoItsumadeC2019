@@ -238,7 +238,8 @@ public class AgentWorkflowController {
     Text specialText;
     @FXML
     JFXRadioButton domestic_RadButton;
-
+    @FXML
+    JFXTextField commentBox;
     @FXML
     JFXRadioButton imported_RadButton;
     @FXML
@@ -247,6 +248,7 @@ public class AgentWorkflowController {
     public void update(){
         if(User.getUser("a","a", User.userPower.Specialist,"a","a","a","a","a","a","a","a").getUserType().equals("Specialist")){
             specialText.setOpacity(1);
+            commentBox.setPromptText("Add any comments as to why this particular form was rejected, accepted, or comments for corrections");
             special = true;
         }
         else{
@@ -459,6 +461,9 @@ public class AgentWorkflowController {
         SQLDriver.setApprovalDate(currentFormID, theDate);
         SQLDriver.setApprovingUser(currentFormID, this.approvingUser_text.getText());
         SQLDriver.setExpirationDate(currentFormID, exDate);
+        if(special){
+            SQLDriver.setQualifier(currentFormID,commentBox.getText());
+        }
 
 
 
@@ -472,7 +477,13 @@ public class AgentWorkflowController {
 
     @FXML
     private void rejectHandler() throws IOException, Exception{
-
+        if(special){
+            if(commentBox.getText().equals("")){
+                commentBox.setPromptText("This is a required field for specialist rejections");
+                return;
+            }
+        }
+        SQLDriver.setQualifier(currentFormID,commentBox.getText());
         formStatus_string = "reject";
 
         SQLDriver.setApprovalStatus(currentFormID, formStatus_string);
@@ -484,7 +495,27 @@ public class AgentWorkflowController {
         reject_button.setDisable(true);
 
     }
+    @FXML
+    public void sendBackHandler() throws IOException, Exception{
+        formStatus_string = "commented";
+        SQLDriver.setQualifier(currentFormID,commentBox.getText());
+        SQLDriver.setApprovalStatus(currentFormID,formStatus_string);
+        clearFields();
 
+        pull_Forms();
+        accept_button.setDisable(true);
+        reject_button.setDisable(true);
+    }
+    @FXML
+    public void forwardHandler() throws IOException, Exception{
+        formStatus_string = "specialist";
+        SQLDriver.setApprovalStatus(currentFormID,formStatus_string);
+        clearFields();
+
+        pull_Forms();
+        accept_button.setDisable(true);
+        reject_button.setDisable(true);
+    }
     private void clearFields(){
         repID_text.clear();
         plantRegistry_text.clear();

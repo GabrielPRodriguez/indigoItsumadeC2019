@@ -246,7 +246,7 @@ public class AgentWorkflowController {
     Text title;
     @FXML
     public void update(){
-        if(User.getUser("a","a", User.userPower.Specialist,"a","a","a","a","a","a","a","a").getUserType().equals("Specialist")){
+        if(User.getUser("a","a", User.userPower.Specialist,"a","a","a","a","a","a","a","a",",").getUserType().equals("Specialist")){
             specialText.setOpacity(1);
             commentBox.setPromptText("Add any comments as to why this particular form was rejected, accepted, or comments for corrections");
             special = true;
@@ -266,6 +266,8 @@ public class AgentWorkflowController {
 
     @FXML
     private void pull_Forms() throws Exception{
+        //toolBarController = ToolBarController.getInstance();
+        toolBarController.displaySignInName("YOLO");
         formID_1.setText("");
         formID_2.setText("");
         formID_3.setText("");

@@ -149,9 +149,10 @@ public class LoginAccountController implements Initializable {
             else{
                 powerCreate= User.userPower.Specialist;
             }
-            System.out.println(encryptPassword("Specialist"));
-
-            toolBarController.login(Email.getText(), Password.getText(), powerCreate, users.get(0).get("state").to_string(), users.get(0).get("city").to_string(), users.get(0).get("zipCode").to_string(), users.get(0).get("streetAdress").to_string(), users.get(0).get("firstName").to_string(), users.get(0).get("lastName").to_string(), users.get(0).get("phoneNumber").to_string(), users.get(0).get("RepIDnum").to_string() );
+            toolBarController.login(Email.getText(), Password.getText(), powerCreate, users.get(0).get("state").to_string(),
+                    users.get(0).get("city").to_string(), users.get(0).get("zipCode").to_string(), users.get(0).get("streetAdress").to_string(),
+                    users.get(0).get("firstName").to_string(), users.get(0).get("lastName").to_string(), users.get(0).get("phoneNumber").to_string(),
+                    users.get(0).get("RepIDnum").to_string(), users.get(0).get("deliminator").to_string() );
         }
     }
 

@@ -317,7 +317,7 @@
                      </children></AnchorPane>
               </content>
             </Tab>
-            <Tab closable="false" style="-fx-background-color: #2e8540;" text="Additional Information">
+            <Tab closable="false" style="-fx-background-color: #2e8540;" text="Additional Information &amp; Submit">
                <content>
                   <AnchorPane>
                      <children>

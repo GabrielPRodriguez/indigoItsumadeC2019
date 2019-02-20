@@ -343,6 +343,7 @@
                            </font>
                         </JFXButton>
                         <Text fx:id="req_error" fill="#dd0e0e" layoutX="287.0" layoutY="549.0" opacity="0.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Error: Some required fields (*) are not filled" />
+                        <Text fx:id="crackTime" layoutX="32.0" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" />
                      </children>
                   </AnchorPane>
               </content>

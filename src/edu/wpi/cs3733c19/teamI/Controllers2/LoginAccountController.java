@@ -30,6 +30,7 @@ import java.net.URL;
 import java.security.Key;
 import java.time.Duration;
 import java.util.*;
+import java.util.logging.XMLFormatter;
 
 /** Imports for Strength */
 import me.gosimple.nbvcxz.Nbvcxz;
@@ -103,6 +104,8 @@ public class LoginAccountController implements Initializable {
     @FXML
     Label passLabel;
 
+    @FXML
+    Text crackTime;
     @FXML
     JFXProgressBar strengthBar;
     private static final String RED_BAR    = "red-progress-bar";
@@ -499,7 +502,7 @@ public class LoginAccountController implements Initializable {
         }
         */
 
-
+        crackTime.setText("Time to Crack: " + timeToCrackOn);
         if(score == 0){
             strengthBar.setProgress(0.1);
             strengthBar.getStyleClass().add(RED_BAR);

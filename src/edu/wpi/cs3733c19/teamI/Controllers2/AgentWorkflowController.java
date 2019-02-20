@@ -411,7 +411,7 @@ public class AgentWorkflowController {
 
 
         formStatus_string = (result.get("status").to_string()); //I use two variables because I need the formStatus text as a string
-        //formStatus_text.setText(formStatus_string);
+//        formStatus_text.setText(formStatus_string);
         volume_text.setText(result.get("volume").to_string());
 
         System.out.println(result.get("zip").to_string());

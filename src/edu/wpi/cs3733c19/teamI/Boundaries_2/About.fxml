@@ -36,7 +36,7 @@
                   <RowConstraints maxHeight="1137.0" minHeight="10.0" prefHeight="86.0" vgrow="SOMETIMES" />
                   <RowConstraints vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="950.0" minHeight="10.0" prefHeight="89.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="723.0" minHeight="10.0" prefHeight="704.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="723.0" minHeight="0.0" prefHeight="60.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
@@ -59,17 +59,17 @@
                         <Insets left="130.0" right="110.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label contentDisplay="CENTER" prefHeight="32.0" prefWidth="649.0" text="Fareya is a computer science major and enjoys reading, listening to podcasts, and outdoorsy things like hiking and camping." textAlignment="CENTER" wrapText="true" GridPane.rowIndex="3">
+                  <Label contentDisplay="CENTER" prefHeight="32.0" prefWidth="649.0" text="Fareya is a computer science major and enjoys reading, listening to podcasts, and outdoorsy things like hiking and camping." textAlignment="CENTER" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets left="20.0" right="20.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label contentDisplay="CENTER" prefHeight="51.0" prefWidth="592.0" text="Michael is a Robotics and Biomedical Engineering major who serves as Lead Software Engineer. He likes video game development and weightlifting, and plays for the WPI club Ice Hockey team." textAlignment="CENTER" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                  <Label contentDisplay="CENTER" prefHeight="51.0" prefWidth="592.0" text="Michael is a Robotics and Biomedical Engineering major who serves as Lead Software Engineer. He likes video game development and weightlifting, and plays for the WPI club Ice Hockey team." textAlignment="CENTER" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets left="20.0" right="20.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label contentDisplay="CENTER" prefHeight="32.0" prefWidth="649.0" text="Rachael is a Computer Science major with a minor in Interactive Media and Game Design. She enjoys creating digital art and taking nature photography." textAlignment="CENTER" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                  <Label contentDisplay="CENTER" prefHeight="32.0" prefWidth="649.0" text="Rachael is a Computer Science major with a minor in Interactive Media and Game Design. She enjoys creating digital art and taking nature photography." textAlignment="CENTER" wrapText="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets left="20.0" right="20.0" />
                      </GridPane.margin>
@@ -82,47 +82,50 @@
                         <Insets left="100.0" right="70.0" top="50.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label text="Eric is a Robotics and Electrical Engineering major who acts as the product owner for the team. He enjoys working with his hands and working with old technologies. " textAlignment="CENTER" wrapText="true" GridPane.rowIndex="6">
+                  <Label text="Eric is a Robotics and Electrical Engineering major who acts as the product owner for the team. He enjoys working with his hands and working with old technologies. " textAlignment="CENTER" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets left="20.0" right="20.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label text="Grant is a Computer Science and Interactive Media and Game Development Double Major who is the Scrum Master for the duration of this project.  He enjoys games and game development, volleyball, and puzzle cracking." textAlignment="CENTER" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                  <Label text="Grant is a Computer Science and Interactive Media and Game Development Double Major who is the Scrum Master for the duration of this project.  He enjoys games and game development, volleyball, and puzzle cracking." textAlignment="CENTER" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets left="20.0" right="20.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label text="James Petullo is a computer science major with a broad range of interests within the academic discipline, including NLP, web application development, Peer-to-Peer (p2p) technologies, and compiler development. James believes that all the world is code, and contributes quite frequently to StackOverflow as an answerer for “Python” and “JQuery”-tagged questions. " textAlignment="CENTER" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="6">
+                  <Label text="James Petullo is a computer science major with a broad range of interests within the academic discipline, including NLP, web application development, Peer-to-Peer (p2p) technologies, and compiler development. James believes that all the world is code, and contributes quite frequently to StackOverflow as an answerer for “Python” and “JQuery”-tagged questions. " textAlignment="CENTER" wrapText="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets left="20.0" right="20.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label prefHeight="64.0" prefWidth="607.0" text="Extending a special thank you to the US Treasury and The Tobacco Tax &amp; Trade Bureau" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="12">
+                  <Label text="Extending a special thank you to the US Treasury and The Tobacco Tax &amp; Trade Bureau" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="12">
                      <font>
                         <Font name="Segoe UI Bold" size="20.0" />
                      </font>
+                     <GridPane.margin>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </GridPane.margin>
                   </Label>
-                  <Label text="Stephen is the document analyst. I help when I can. Like games especially warhammer." textAlignment="CENTER" wrapText="true" GridPane.rowIndex="8">
+                  <Label text="Stephen is the document analyst. I help when I can. Like games especially warhammer." textAlignment="CENTER" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets left="20.0" right="20.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label text="Yossef is an Electrical and Computer Engineering major and has the position of Algorithms Specialist for Team Indigo Itsumade. He enjoys street skateboarding and is a varsity athlete for the WPI Track and Field/ Cross Country team. " textAlignment="CENTER" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                  <Label text="Yossef is an Electrical and Computer Engineering major and has the position of Algorithms Specialist for Team Indigo Itsumade. He enjoys street skateboarding and is a varsity athlete for the WPI Track and Field/ Cross Country team. " textAlignment="CENTER" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets left="20.0" right="20.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label text="Gabriel is majoring in Robotic and Mechanical Engineering, and serves as the teams Test Engineering. He enjoys working on hands on projects especially in the Unmanned Aerial System’s world. " textAlignment="CENTER" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="8">
+                  <Label text="Gabriel is majoring in Robotic and Mechanical Engineering, and serves as the teams Test Engineering. He enjoys working on hands on projects especially in the Unmanned Aerial System’s world. " textAlignment="CENTER" wrapText="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets left="20.0" right="20.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label text="Rasheeda is a Computer Science major who likes repairing old game consoles, making costumes and props, and doing CAD/CAM work." textAlignment="CENTER" wrapText="true" GridPane.rowIndex="10">
+                  <Label text="Rasheeda is a Computer Science major who likes repairing old game consoles, making costumes and props, and doing CAD/CAM work." textAlignment="CENTER" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets left="20.0" right="20.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label text="Jeremy is a Robotics Engineering major who is the team’s project manager. He enjoys planning philanthropy events with his fraternity, playing lacrosse, and working on VEX robotics." textAlignment="CENTER" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="10">
+                  <Label text="Jeremy is a Robotics Engineering major who is the team’s project manager. He enjoys planning philanthropy events with his fraternity, playing lacrosse, and working on VEX robotics." textAlignment="CENTER" wrapText="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets left="20.0" right="20.0" />
                      </GridPane.margin>
@@ -182,6 +185,12 @@
                         <Image url="@../Assets/circleYossef.png" />
                      </image>
                   </ImageView>
+                  <ImageView fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER">
+                     <image>
+                        <Image url="@../Assets/circleMarissa.png" />
+                     </image>
+                  </ImageView>
+                  <Label alignment="CENTER" text="Our Advisor, Marissa Bennett" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER" />
                </children>
             </GridPane>
          </content>

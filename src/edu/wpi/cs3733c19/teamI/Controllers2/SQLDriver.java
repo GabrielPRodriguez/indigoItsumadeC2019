@@ -527,10 +527,10 @@ public class SQLDriver{
             //if (result.get(column).)
             boolean flag = false;
             if (value.statement().equals("setString")){
-                flag = (result.get(column).to_string() == value.to_string());
+                flag = (result.get(column).to_string().equals(value.to_string()));
             }
             else{
-                flag = (result.get(column).to_double() == value.to_double());
+                flag = (result.get(column).to_double().equals(value.to_double()));
             }
 
             if (flag){
@@ -846,7 +846,7 @@ public class SQLDriver{
 
     public static void setField(String formID, String approvalStatus, String field) throws IOException, Exception{
         SQLDriver driver = new SQLDriver();
-        HashMap<String, ReturnedValue> result = driver.get_data_by_value("form_data", "form_data.db", "formID", new DBValue<String>(formID));
+        HashMap<String, ReturnedValue> result = driver.get_data_by_value("form_data", "stringified_ids_db.db", "formID", new DBValue<String>(formID));
 
         //result.get("formStatus");
         ReturnedValue value = new ReturnedValue(field, approvalStatus);
@@ -860,7 +860,7 @@ public class SQLDriver{
         DBValue value1 = new DBValue<String>(approvalStatus);
         appStatus.add(value1);
 
-        driver.update("form_data", "form_data.db", appStatType, appStatus, formID);
+        driver.update("form_data", "stringified_ids_db.db", appStatType, appStatus, formID);
         //result.put("status", value);
     }
 

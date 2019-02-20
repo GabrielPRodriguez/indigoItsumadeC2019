@@ -418,7 +418,7 @@ public class AgentWorkflowController {
         zip_text.setText(result.get("zip").to_string());
         System.out.println(result.get("dateOfApplication").to_string());
         dateOfApplication_text.setText(result.get("dateOfApplication").to_string());
-        applicantName_text.setText(result.get("nameOfApplicant").to_string());
+        applicantName_text.setText(result.get("name").to_string());
     }
 
     @FXML

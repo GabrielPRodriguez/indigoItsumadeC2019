@@ -163,6 +163,13 @@ public class sub_Form {
         return CSV;
     }
 
+    public String returnColumnNames(String delim){
+        String csvColumn = "RepID" + delim + "Plant Registry" + delim + "Domestic/Imported" + delim + "Serial Number" + delim + "Beverage Type" + delim
+                + "Brand Name" + delim + "Fanciful Name" + delim + "Vintage" + delim + "Grape Varientals" + delim + "pH Value" + delim + "Wine Appellation"
+                + delim + "Alcohol Content" + delim + "Phone Number" + delim + "Email";
+        return csvColumn;
+    }
+
     public ObservableList<String> getSummary(){
         ObservableList<String> list_of_Param = FXCollections.observableArrayList();
         list_of_Param.add("RepID: " + this.getRepID());

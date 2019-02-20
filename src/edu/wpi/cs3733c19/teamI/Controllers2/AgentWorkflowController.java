@@ -6,19 +6,23 @@ import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.DBValue;
 import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.ReturnedValue;
+import edu.wpi.cs3733c19.teamI.Entities.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
+import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.logging.XMLFormatter;
 
 public class AgentWorkflowController {
+    public boolean special = false;
     private ToolBarController toolBarController = ToolBarController.getInstance();
 
     @FXML
@@ -230,13 +234,26 @@ public class AgentWorkflowController {
 
     @FXML
     JFXRadioButton liquor_RadButton;
-
+    @FXML
+    Text specialText;
     @FXML
     JFXRadioButton domestic_RadButton;
 
     @FXML
     JFXRadioButton imported_RadButton;
-
+    @FXML
+    Text title;
+    @FXML
+    public void update(){
+        if(User.getUser("a","a", User.userPower.Specialist,"a","a","a","a","a","a","a","a").getUserType().equals("Specialist")){
+            specialText.setOpacity(1);
+            special = true;
+        }
+        else{
+            specialText.setOpacity(0);
+            special = false;
+        }
+    }
     @FXML
     ListView listView;
 
@@ -268,9 +285,17 @@ public class AgentWorkflowController {
         SQLDriver driver = new SQLDriver();
         ArrayList<HashMap<String, ReturnedValue>>filtered_results = new ArrayList<HashMap<String, ReturnedValue>>();
         for (HashMap<String, ReturnedValue>result:driver.select_all("stringified_ids_db.db", "form_data")){
-            if (result.get("status").to_string().equals("unread")){
+            if(special){
+                if (result.get("status").to_string().equals("specialist")){
 
-                filtered_results.add(result);
+                    filtered_results.add(result);
+                }
+            }
+            else{
+                if (result.get("status").to_string().equals("unread")){
+
+                    filtered_results.add(result);
+                }
             }
         }
         HashMap<Integer, Label>test = new HashMap<Integer, Label>();

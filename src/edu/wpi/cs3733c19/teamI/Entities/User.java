@@ -35,18 +35,21 @@ public class User {
         lastName = theLastName;
         phone = thePhone;
         repId = theRepID;
-        if(delim.equals(""))this.delim = ",";
+        if(delim.equals("")){
+            this.delim = "9";
+            System.out.println("GOATCHA-------------------------------");
+        }
         else this.delim = delim;
 
 
             }
-
+/*
     private static class UserHelper{
-        private static final User curUser = new User("","",userPower.Standard, "", "", "", "", "", "", "", "", ",");
-    }
+        //private static User curUser = new User("","",userPower.Standard, "", "", "", "", "", "", "", "", "0");
+    }*/
 
     public void logOutUser(){
-        curUser = new User("", "", userPower.Standard, "", "","","","","","","", ",");
+        curUser = new User("", "", userPower.Standard, "", "","","","","","","", "?");
     }
 
     public static User getUser(String name, String pass, userPower type, String theState, String theCity, String theZip, String theStreet, String theFirstName, String theLastName,
@@ -54,7 +57,7 @@ public class User {
         if((curUser == null)|| curUser.username.equals("")){
             curUser = new User(name, pass, type, theState, theCity, theZip, theStreet, theFirstName, theLastName, thePhone, theRepID, theDelim);
         }
-        return UserHelper.curUser;
+        return User.curUser;
     }
 
 

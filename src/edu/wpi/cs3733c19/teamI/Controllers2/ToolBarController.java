@@ -225,7 +225,7 @@ public class ToolBarController {
     }
 
     public void goHelpWorkflow() throws IOException {
-        Parent helpworkflowParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/HelpWorkflow.fxml"));
+        Parent helpworkflowParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/HelpWorkFlow.fxml"));
         primaryStage = Main.getWindow();
         primaryStage.getScene().setRoot(helpworkflowParent);
     }

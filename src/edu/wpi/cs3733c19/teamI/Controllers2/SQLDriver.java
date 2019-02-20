@@ -337,6 +337,74 @@ public class SQLDriver{
 
 
     }
+    public double full_score(String _input, String _db_val){
+        _input = _input.toLowerCase();
+        _db_val = _db_val.toLowerCase();
+        ArrayList<Character>filtered = new ArrayList<Character>();
+        for (int i = 0; i < _input.length(); i++){
+            boolean _flag = false;
+            for (int c = 0; c < _db_val.length(); c++){
+                if (_input.charAt(i) == _db_val.charAt(c)){
+                    _flag = true;
+                    break;
+                }
+            }
+            if (_flag){
+                boolean _new_stuff = true;
+                for (char h:filtered){
+                    if (h == _input.charAt(i)){
+                        _new_stuff = false;
+                        break;
+                    }
+                }
+                if (_new_stuff){
+                    filtered.add(_input.charAt(i));
+                }
+
+            }
+        }
+
+        if (filtered.size()  == 0){
+            return 0;
+        }
+        ArrayList<String>_new_db_stuff = new ArrayList<String>();
+        for (int i = 0; i < _db_val.length(); i++){
+            boolean flag = true;
+            for (String c:_new_db_stuff){
+                String _temp = Character.toString(_db_val.charAt(i));
+                if (_temp.equals(c)){
+                    flag = false;
+                    break;
+                }
+            }
+            if (flag){
+                _new_db_stuff.add(Character.toString(_db_val.charAt(i)));
+            }
+        }
+        _db_val = String.join("", _new_db_stuff);
+        System.out.println(_db_val);
+        int _demon = 0;
+        int _start = _db_val.indexOf(filtered.get(0));
+        System.out.println(filtered);
+        for (int i = 1; i < filtered.size(); i++){
+            int _new_val = _db_val.indexOf(filtered.get(i));
+            if (_new_val < _start){
+                return 0;
+            }
+            else{
+
+                _demon += (_new_val-_start);
+                _start = _new_val;
+            }
+        }
+        if (_demon > _db_val.length()){
+            return (double)(_db_val.length())/(double)(_demon);
+        }
+        return (double)(_demon)/(double)(_db_val.length());
+
+
+
+    }
     public ArrayList<HashMap<String, ReturnedValue>>search_for_l_multiple(String tablename, String filename, ArrayList<String>keys, String _user_input, int top_results) throws Exception{
         if (top_results < 1){
             throw new Exception("'top_results' must be a value greater than zero");

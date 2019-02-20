@@ -337,168 +337,32 @@ public class SQLDriver{
 
 
     }
-    
-    /*
     public ArrayList<HashMap<String, ReturnedValue>>search_for_l_multiple(String tablename, String filename, ArrayList<String>keys, String _user_input, int top_results) throws Exception{
         if (top_results < 1){
             throw new Exception("'top_results' must be a value greater than zero");
         }
-        ArrayList<Integer>all_distances = new ArrayList<Integer>();
-        HashMap<Integer, HashMap<String, ReturnedValue>>results = new HashMap<Integer, HashMap<String, ReturnedValue>>();
-        for (HashMap<String, ReturnedValue>result:select_all(filename, tablename)){
-
-
-            int _count = 0;
-            boolean seen_result = false;
-            for (String key:keys){
-                String _val = result.get(key).to_string();
-
-                if (_val.length() > 0 && _user_input.length() > 0 && filter_immediate(_val, _user_input)){
-                    _count += l_distance(_val, _user_input);
-                    if (!seen_result){
-                        seen_result = true;
-                    }
-
-                }
-
-
-            }
-            if (seen_result){
-                all_distances.add(_count);
-                results.put(_count, result);
-            }
-
-
-        }
-        ArrayList<HashMap<String, ReturnedValue>>final_results = new ArrayList<HashMap<String, ReturnedValue>>();
-        if (all_distances.size() > 0){
-            ArrayList<Integer>_distances = new ArrayList<Integer>();
-            for (int val:all_distances){
-                boolean _flag = true;
-                for (int _val:_distances){
-                    if (val == _val){
-                        _flag = false;
-                        break;
-                    }
-
-                }
-                if (_flag){
-                    _distances.add(val);
-                }
-            }
-            all_distances = _distances;
-            Collections.sort(all_distances);
-
-            int _final_count = 0;
-            int index_counter = 1;
-            int _size = all_distances.size();
-            int last_seen_distance = all_distances.get(0);
-            final_results.add(results.get(last_seen_distance));
-            while (_final_count < top_results && index_counter < _size){
-                int new_val = all_distances.get(index_counter);
-                final_results.add(results.get(new_val));
-                if (new_val != last_seen_distance){
-                    _final_count++;
-                }
-                index_counter++;
-                last_seen_distance = new_val;
-
-            }
-        }
-
-
-        return final_results;
-
-    }
-    */
-    public double full_score(String _input, String _db_val){
-        _input = _input.toLowerCase();
-        _db_val = _db_val.toLowerCase();
-        ArrayList<Character>filtered = new ArrayList<Character>();
-        for (int i = 0; i < _input.length(); i++){
-            boolean _flag = false;
-            for (int c = 0; c < _db_val.length(); c++){
-                if (_input.charAt(i) == _db_val.charAt(c)){
-                    _flag = true;
-                    break;
-                }
-            }
-            if (_flag){
-                boolean _new_stuff = true;
-                for (char h:filtered){
-                    if (h == _input.charAt(i)){
-                        _new_stuff = false;
-                        break;
-                    }
-                }
-                if (_new_stuff){
-                    filtered.add(_input.charAt(i));
-                }
-
-            }
-        }
-
-        if (filtered.size()  == 0){
-            return 0;
-        }
-        ArrayList<String>_new_db_stuff = new ArrayList<String>();
-        for (int i = 0; i < _db_val.length(); i++){
-            boolean flag = true;
-            for (String c:_new_db_stuff){
-                String _temp = Character.toString(_db_val.charAt(i));
-                if (_temp.equals(c)){
-                    flag = false;
-                    break;
-                }
-            }
-            if (flag){
-                _new_db_stuff.add(Character.toString(_db_val.charAt(i)));
-            }
-        }
-        _db_val = String.join("", _new_db_stuff);
-        System.out.println(_db_val);
-        int _demon = 0;
-        int _start = _db_val.indexOf(filtered.get(0));
-        System.out.println(filtered);
-        for (int i = 1; i < filtered.size(); i++){
-            int _new_val = _db_val.indexOf(filtered.get(i));
-            if (_new_val < _start){
-                return 0;
-            }
-            else{
-
-                _demon += (_new_val-_start);
-                _start = _new_val;
-            }
-        }
-        if (_demon > _db_val.length()){
-            return (double)(_db_val.length())/(double)(_demon);
-        }
-        return (double)(_demon)/(double)(_db_val.length());
-
-
-
-    }
-    public ArrayList<HashMap<String, ReturnedValue>>search_for_l_multiple(String tablename, String filename, ArrayList<String>keys, String _user_input, int top_results) throws Exception{
-        if (top_results < 1){
-            throw new Exception("'top_results' must be a value greater than zero");
-        }
-        ArrayList<Integer>all_distances = new ArrayList<Integer>();
+        ArrayList<Double>all_distances = new ArrayList<Double>();
         HashMap<Double, HashMap<String, ReturnedValue>>results = new HashMap<Double, HashMap<String, ReturnedValue>>();
         for (HashMap<String, ReturnedValue>result:select_all(filename, tablename)){
 
 
-            int _count = 0;
+            double _count = 0;
             for (String key:keys){
                 String _val = result.get(key).to_string();
 
                 if (_val.length() > 0 && _user_input.length() > 0){
-                    if (filter_immediate(_val, _user_input)){
-                        _count += 1;
+                    double _result = full_score(_user_input, _val);
+                    /*
+
+
+                    if (_result > 0.2){
+                        _count += _result;
                     }
-                    else{
-                        _count += full_score(_user_input, _val);
+                    else if (filter_immediate(_val, _user_input)){
+                        _count += (double)dl_distance(_val, _user_input);
                     }
+                    */
+                    _count += (_result + (double)dl_distance(_val, _user_input));
 
                 }
 
@@ -506,17 +370,20 @@ public class SQLDriver{
             }
             if (_count > 0){
                 all_distances.add(_count);
-                results.put((double)_count, result);
+                results.put(_count, result);
             }
 
 
         }
+        System.out.println("got all distances below");
+        System.out.println(all_distances);
+        System.out.println(results);
         ArrayList<HashMap<String, ReturnedValue>>final_results = new ArrayList<HashMap<String, ReturnedValue>>();
         if (all_distances.size() > 0){
-            ArrayList<Integer>_distances = new ArrayList<Integer>();
-            for (int val:all_distances){
+            ArrayList<Double>_distances = new ArrayList<Double>();
+            for (double val:all_distances){
                 boolean _flag = true;
-                for (int _val:_distances){
+                for (double _val:_distances){
                     if (val == _val){
                         _flag = false;
                         break;
@@ -529,6 +396,9 @@ public class SQLDriver{
             }
             all_distances = _distances;
             Collections.sort(all_distances);
+            Collections.reverse(all_distances);
+            System.out.println("new sorted set distances");
+            System.out.println(all_distances);
             /*
             int _final_count = 0;
             int index_counter = 1;
@@ -546,17 +416,37 @@ public class SQLDriver{
 
             }
             */
-            for (int j = 0; j < top_results; j++){
-                int new_val = all_distances.get(j);
-                final_results.add(results.get(new_val));
+            System.out.println("top results");
+            System.out.println(top_results);
+            System.out.println(all_distances.size());
+            if (all_distances.size() <= top_results){
+                for (double i:all_distances){
+                    System.out.println("in access looop");
+                    System.out.println(i);
+                    System.out.println(results.containsKey(i));
+                    final_results.add(results.get(i));
+                }
             }
+            else{
+                for (int j = 0; j < top_results; j++){
+
+                    double new_val = all_distances.get(j);
+                    System.out.println("in access looop");
+                    System.out.println(new_val);
+                    System.out.println(results.containsKey(new_val));
+                    final_results.add(results.get(new_val));
+                }
+            }
+
 
         }
 
+        System.out.println("new search results here");
 
         return final_results;
 
     }
+
     public void insert_vals(String tablename, String filename, DBValue [] vals) throws Exception{
         if (!filename.endsWith(".db")){
             throw new Exception("filename must end with '.db'");
@@ -935,9 +825,80 @@ public class SQLDriver{
         }
         return final_results;
     }
+    public double full_score(String _input, String _db_val){
+        _input = _input.toLowerCase();
+        _db_val = _db_val.toLowerCase();
+        //for (int i = 0; i < _input.length(); )
+        ArrayList<Character>filtered = new ArrayList<Character>();
+        for (int i = 0; i < _input.length(); i++){
+            boolean _flag = false;
+            for (int c = 0; c < _db_val.length(); c++){
+                if (_input.charAt(i) == _db_val.charAt(c)){
+                    _flag = true;
+                    break;
+                }
+            }
+            if (_flag){
+                boolean _new_stuff = true;
+                for (char h:filtered){
+                    if (h == _input.charAt(i)){
+                        _new_stuff = false;
+                        break;
+                    }
+                }
+                if (_new_stuff){
+                    filtered.add(_input.charAt(i));
+                }
+
+            }
+        }
+
+        if (filtered.size()  < 2){
+            return 0;
+        }
+        ArrayList<String>_new_db_stuff = new ArrayList<String>();
+        for (int i = 0; i < _db_val.length(); i++){
+            boolean flag = true;
+            for (String c:_new_db_stuff){
+                String _temp = Character.toString(_db_val.charAt(i));
+                if (_temp.equals(c)){
+                    flag = false;
+                    break;
+                }
+            }
+            if (flag){
+                _new_db_stuff.add(Character.toString(_db_val.charAt(i)));
+            }
+        }
+        _db_val = String.join("", _new_db_stuff);
+        System.out.println(_db_val);
+        int _demon = 0;
+        int _start = _db_val.indexOf(filtered.get(0));
+        System.out.println(filtered);
+        for (int i = 1; i < filtered.size(); i++){
+            int _new_val = _db_val.indexOf(filtered.get(i));
+            if (_new_val < _start){
+                return 0;
+            }
+            else{
+
+                _demon += (_new_val-_start);
+                _start = _new_val;
+            }
+        }
+        if (_demon > _db_val.length()){
+            return (double)(_db_val.length())/(double)(_demon);
+        }
+        return (double)(_demon)/(double)(_db_val.length());
 
 
 
+    }
+
+    public static void main(String [] args){
+        SQLDriver d = new SQLDriver();
+        System.out.println(d.full_score("some", "some text1"));
+    }
     public static void setApprovalStatus(String formID, String approvalStatus) throws IOException, Exception {
         setField(formID, approvalStatus, "status");
     }

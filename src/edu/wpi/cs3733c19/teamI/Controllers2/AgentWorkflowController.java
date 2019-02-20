@@ -6,9 +6,11 @@ import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.DBValue;
 import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.ReturnedValue;
+import edu.wpi.cs3733c19.teamI.Controllers2.ToolBarController;
 import edu.wpi.cs3733c19.teamI.Entities.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -16,12 +18,14 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.ResourceBundle;
 import java.util.logging.XMLFormatter;
 
-public class AgentWorkflowController {
+public class AgentWorkflowController implements Initializable {
     public boolean special = false;
     private ToolBarController toolBarController = ToolBarController.getInstance();
 
@@ -93,6 +97,24 @@ public class AgentWorkflowController {
 
     @FXML
     Label formID_9;
+
+    String form1 = "";
+
+    String form2 = "";
+
+    String form3 = "";
+
+    String form4 = "";
+
+    String form5 = "";
+
+    String form6 = "";
+
+    String form7 = "";
+
+    String form8 = "";
+
+    String form9 = "";
 
     @FXML
     JFXButton refresh_button;
@@ -245,13 +267,18 @@ public class AgentWorkflowController {
     @FXML
     Text title;
     @FXML
+    Button sendBack;
+    @FXML
+    Button forwardButton;
+
+    @FXML
     public void update(){
         if(User.getUser("a","a", User.userPower.Specialist,"a","a","a","a","a","a","a","a",",").getUserType().equals("Specialist")){
             specialText.setOpacity(1);
-            commentBox.setPromptText("Add any comments as to why this particular form was rejected, accepted, or comments for corrections");
-            special = true;
+           commentBox.setPromptText("Add any comments as to why this particular form was rejected, accepted, or comments for corrections");
+           special = true;
         }
-        else{
+       else{
             specialText.setOpacity(0);
             special = false;
         }
@@ -272,7 +299,7 @@ public class AgentWorkflowController {
     @FXML
     private void pull_Forms() throws Exception{
         //toolBarController = ToolBarController.getInstance();
-        toolBarController.displaySignInName("YOLO");
+        //toolBarController.displaySignInName("YOLO");
         formID_1.setText("");
         formID_2.setText("");
         formID_3.setText("");
@@ -282,6 +309,15 @@ public class AgentWorkflowController {
         formID_7.setText("");
         formID_8.setText("");
         formID_9.setText("");
+        form1 = "";
+        form2 = "";
+        form3 = "";
+        form4 = "";
+        form5 = "";
+        form6 = "";
+        form7 = "";
+        form8 = "";
+        form9 = "";
         choose_button1.setDisable(false);
         choose_button2.setDisable(false);
         choose_button3.setDisable(false);
@@ -317,43 +353,68 @@ public class AgentWorkflowController {
         test.put(7, formID_7);
         test.put(8, formID_8);
         test.put(9, formID_9);
+
+        HashMap<Integer, String>idMap = new HashMap<Integer, String>();
+        idMap.put(1, form1);
+        idMap.put(2, form2);
+        idMap.put(3, form3);
+        idMap.put(4, form4);
+        idMap.put(5, form5);
+        idMap.put(6, form6);
+        idMap.put(7, form7);
+        idMap.put(8, form8);
+        idMap.put(9, form9);
+
+
         if (filtered_results.size() > 0){
             for (int i = 1; i < 10; i++){
                 try{
                     HashMap<String, ReturnedValue>_temp = filtered_results.get(i-1);
                     //test.get(i).setText("Form "+_temp.get("formID").to_string().replace(".0", ""));
-                    test.get(i).setText(_temp.get("formID").to_string().replace(".0", ""));
+                    //test.get(i).setText(_temp.get("formID").to_string().replace(".0", ""));
+                    test.get(i).setText(_temp.get("brandName").to_string() + ": " + _temp.get("fancifulName").to_string());
+                    idMap.put(i, _temp.get("formID").to_string());
                 }
                 catch(Exception e){
                     //pass
                 }
             }
 
-            if(formID_1.getText().equals("")){
+            form1 = idMap.get(1);
+            form2 = idMap.get(2);
+            form3 = idMap.get(3);
+            form4 = idMap.get(4);
+            form5 = idMap.get(5);
+            form6 = idMap.get(6);
+            form7 = idMap.get(7);
+            form8 = idMap.get(8);
+            form9 = idMap.get(9);
+
+            if(form1.equals("")){
                 choose_button1.setDisable(true);
             }
-            if(formID_2.getText().equals("")){
+            if(form2.equals("")){
                 choose_button2.setDisable(true);
             }
-            if(formID_3.getText().equals("")){
+            if(form3.equals("")){
                 choose_button3.setDisable(true);
             }
-            if(formID_4.getText().equals("")){
+            if(form4.equals("")){
                 choose_button4.setDisable(true);
             }
-            if(formID_5.getText().equals("")){
+            if(form5.equals("")){
                 choose_button5.setDisable(true);
             }
-            if(formID_6.getText().equals("")){
+            if(form6.equals("")){
                 choose_button6.setDisable(true);
             }
-            if(formID_7.getText().equals("")){
+            if(form7.equals("")){
                 choose_button7.setDisable(true);
             }
-            if(formID_8.getText().equals("")){
+            if(form8.equals("")){
                 choose_button8.setDisable(true);
             }
-            if(formID_9.getText().equals("")){
+            if(form9.equals("")){
                 choose_button9.setDisable(true);
             }
 
@@ -376,34 +437,36 @@ public class AgentWorkflowController {
     private void chooseButtonHandler(ActionEvent choose) throws  Exception {
         accept_button.setDisable(false);
         reject_button.setDisable(false);
+        sendBack.setDisable(false);
+        forwardButton.setDisable(false);
 
         //int formID = 0;
         if (choose.getSource() == choose_button1) {
-            currentFormID = (formID_1.getText());
+            currentFormID = form1;
 
         } else if (choose.getSource() == choose_button2) {
-            currentFormID = (formID_2.getText());
+            currentFormID = form2;
 
         } else if (choose.getSource() == choose_button3) {
-            currentFormID = (formID_3.getText());
+            currentFormID = form3;
 
         }else if (choose.getSource() == choose_button4) {
-            currentFormID = (formID_4.getText());
+            currentFormID = form4;
 
         }else if (choose.getSource() == choose_button5) {
-            currentFormID = (formID_5.getText());
+            currentFormID = form5;
 
         }else if (choose.getSource() == choose_button6) {
-            currentFormID = (formID_6.getText());
+            currentFormID = form6;
 
         }else if (choose.getSource() == choose_button7) {
-            currentFormID = (formID_7.getText());
+            currentFormID = form7;
 
         }else if (choose.getSource() == choose_button8) {
-            currentFormID = (formID_8.getText());
+            currentFormID = form8;
 
         }else if (choose.getSource() == choose_button9) {
-            currentFormID = (formID_9.getText());
+            currentFormID = form9;
 
         }
 
@@ -430,7 +493,7 @@ public class AgentWorkflowController {
         city_text.setText(result.get("city").to_string());
 
 
-
+        formQualification_text.setText(result.get("qualifier").to_string());
         formula_text.setText(result.get("formula").to_string());
         grapeVarietal_text.setText(result.get("grapeVarietals").to_string());
         wineAppellation_text.setText(result.get("wineAppellation").to_string());
@@ -472,7 +535,8 @@ public class AgentWorkflowController {
 
         clearFields();
         pull_Forms();
-
+        sendBack.setDisable(true);
+        forwardButton.setDisable(true);
         accept_button.setDisable(true);
         reject_button.setDisable(true);
 
@@ -493,7 +557,8 @@ public class AgentWorkflowController {
         clearFields();
 
         pull_Forms();
-
+        sendBack.setDisable(true);
+        forwardButton.setDisable(true);
         accept_button.setDisable(true);
         reject_button.setDisable(true);
 
@@ -506,6 +571,8 @@ public class AgentWorkflowController {
         clearFields();
 
         pull_Forms();
+        sendBack.setDisable(true);
+        forwardButton.setDisable(true);
         accept_button.setDisable(true);
         reject_button.setDisable(true);
     }
@@ -513,9 +580,12 @@ public class AgentWorkflowController {
     public void forwardHandler() throws IOException, Exception{
         formStatus_string = "specialist";
         SQLDriver.setApprovalStatus(currentFormID,formStatus_string);
+        SQLDriver.setQualifier(currentFormID,commentBox.getText());
         clearFields();
 
         pull_Forms();
+        sendBack.setDisable(true);
+        forwardButton.setDisable(true);
         accept_button.setDisable(true);
         reject_button.setDisable(true);
     }
@@ -558,7 +628,16 @@ public class AgentWorkflowController {
     }
 
 
-
-
-
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        if(toolBarController.getCurUser().getUserType().equals(User.userPower.Specialist)){
+                specialText.setOpacity(1);
+            commentBox.setPromptText("Add any comments as to why this particular form was rejected, accepted, or comments for corrections");
+            special = true;
+        }
+        else{
+            specialText.setOpacity(0);
+            special = false;
+        }
+    }
 }

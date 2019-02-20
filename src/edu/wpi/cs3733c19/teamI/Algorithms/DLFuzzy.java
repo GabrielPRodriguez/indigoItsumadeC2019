@@ -25,7 +25,7 @@ public class DLFuzzy implements IStrategyFuzzy {
         }
         searchParameters.clear();
         for(String param: searchParam) {
-            System.out.println(param);
+            //System.out.println(param);
             searchParameters.add(param);
         }
     }

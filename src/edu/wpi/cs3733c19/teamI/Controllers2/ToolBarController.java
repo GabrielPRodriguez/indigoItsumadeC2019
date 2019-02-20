@@ -109,7 +109,7 @@ public class ToolBarController implements Initializable {
         data.UserName = curUser.getUsername();
         //data.LogButtonName = "Logout";
 
-                goWorkflow();
+        goWorkflow();
         //displaySignInName(username);
     }
 
@@ -129,6 +129,8 @@ public class ToolBarController implements Initializable {
         if((curUser == null) || curUser.getUsername().equals(""))
         {
             goLogin();
+            return;
+        }else if (curUser.getUserType().equals(User.userPower.TTBEmployee)){
             return;
         }
         Parent submitParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/FormSubSelector.fxml"));

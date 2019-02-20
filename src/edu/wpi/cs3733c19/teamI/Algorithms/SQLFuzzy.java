@@ -9,10 +9,10 @@ public class SQLFuzzy implements IStrategyFuzzy {
     public void run(String searchString){
         try{
             //querying for each form parameter
-            System.out.println("here 3");
+            //System.out.println("here 3");
             for(String myparam: searchParameters){
                 //this function (search_for_sql_wildcard) can be found in the SQLDriver
-                ArrayList<HashMap<String, ReturnedValue>> mylist=querydata.search_sql_wildcard("form_data", "stringified_ids_db.db", searchString, myparam);
+                ArrayList<HashMap<String, ReturnedValue>> mylist=querydata.search_sql_plus("form_data", "stringified_ids_db.db", searchString, myparam);
                 matches.addAll(mylist);
             }
             removeDuplicates();
@@ -30,7 +30,7 @@ public class SQLFuzzy implements IStrategyFuzzy {
         }
         searchParameters.clear();
         for(String param: searchParam) {
-            System.out.println(param);
+            //System.out.println(param);
             searchParameters.add(param);
         }
     }

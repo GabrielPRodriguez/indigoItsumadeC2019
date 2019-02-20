@@ -12,6 +12,8 @@ public class DataTransfer {
     public String LogButtonName = "Login";
     public int loginStatus = 0;
 
+    public String currentFormID = "";
+
     private DataTransfer() {
     }
 }

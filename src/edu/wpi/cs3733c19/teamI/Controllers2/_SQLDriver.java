@@ -337,6 +337,7 @@ public class SQLDriver{
 
 
     }
+    /*
     public ArrayList<HashMap<String, ReturnedValue>>search_for_l_multiple(String tablename, String filename, ArrayList<String>keys, String _user_input, int top_results) throws Exception{
         if (top_results < 1){
             throw new Exception("'top_results' must be a value greater than zero");
@@ -415,7 +416,85 @@ public class SQLDriver{
         return final_results;
 
     }
+    */
+    public ArrayList<HashMap<String, ReturnedValue>>search_for_l_multiple(String tablename, String filename, ArrayList<String>keys, String _user_input, int top_results) throws Exception{
+        if (top_results < 1){
+            throw new Exception("'top_results' must be a value greater than zero");
+        }
+        ArrayList<Integer>all_distances = new ArrayList<Integer>();
+        HashMap<Double, HashMap<String, ReturnedValue>>results = new HashMap<Double, HashMap<String, ReturnedValue>>();
+        for (HashMap<String, ReturnedValue>result:select_all(filename, tablename)){
 
+
+            int _count = 0;
+            for (String key:keys){
+                String _val = result.get(key).to_string();
+
+                if (_val.length() > 0 && _user_input.length() > 0){
+                    if (filter_immediate(_val, _user_input)){
+                        _count += 1;
+                    }
+                    else{
+                        _count += full_score(_user_input, _val);
+                    }
+
+                }
+
+
+            }
+            if (_count > 0){
+                all_distances.add(_count);
+                results.put((double)_count, result);
+            }
+
+
+        }
+        ArrayList<HashMap<String, ReturnedValue>>final_results = new ArrayList<HashMap<String, ReturnedValue>>();
+        if (all_distances.size() > 0){
+            ArrayList<Integer>_distances = new ArrayList<Integer>();
+            for (int val:all_distances){
+                boolean _flag = true;
+                for (int _val:_distances){
+                    if (val == _val){
+                        _flag = false;
+                        break;
+                    }
+
+                }
+                if (_flag){
+                    _distances.add(val);
+                }
+            }
+            all_distances = _distances;
+            Collections.sort(all_distances);
+            /*
+            int _final_count = 0;
+            int index_counter = 1;
+            int _size = all_distances.size();
+            int last_seen_distance = all_distances.get(0);
+            final_results.add(results.get(last_seen_distance));
+            while (_final_count < top_results && index_counter < _size){
+                int new_val = all_distances.get(index_counter);
+                final_results.add(results.get(new_val));
+                if (new_val != last_seen_distance){
+                    _final_count++;
+                }
+                index_counter++;
+                last_seen_distance = new_val;
+
+            }
+            */
+            for (int j = 0; j < top_results; j++){
+                int new_val = all_distances.get(j);
+                final_results.add(results.get(new_val));
+            }
+
+        }
+
+
+        return final_results;
+
+    }
     public void insert_vals(String tablename, String filename, DBValue [] vals) throws Exception{
         if (!filename.endsWith(".db")){
             throw new Exception("filename must end with '.db'");

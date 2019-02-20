@@ -1,436 +1,367 @@
 package edu.wpi.cs3733c19.teamI.Controllers2;
 
-import com.jfoenix.controls.*;
-import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.DBValue;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXPopup;
+import edu.wpi.cs3733c19.teamI.Algorithms.SQLFuzzy;
+import edu.wpi.cs3733c19.teamI.Algorithms.fuzzyContext;
 import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.ReturnedValue;
-import edu.wpi.cs3733c19.teamI.Entities.DataField;
-import edu.wpi.cs3733c19.teamI.Entities.User;
+import edu.wpi.cs3733c19.teamI.Entities.sub_Form;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.control.*;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import sun.misc.BASE64Decoder;
-import sun.misc.BASE64Encoder;
+import javafx.scene.paint.Color;
+import javafx.stage.PopupWindow;
+import javafx.stage.PopupWindow.AnchorLocation;
+import org.junit.Test;
 
-import javax.crypto.Cipher;
-import javax.crypto.spec.SecretKeySpec;
+import javax.swing.text.View;
 import java.io.BufferedWriter;
-import java.io.FileReader;
+import java.io.File;
 import java.io.FileWriter;
-import java.io.IOException;
+import java.io.Writer;
 import java.net.URL;
-import java.security.Key;
-import java.util.*;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.ResourceBundle;
 
-
-public class LoginAccountController implements Initializable {
-
+public class ResultsController implements Initializable {
     private ToolBarController toolBarController = ToolBarController.getInstance();
+    private ArrayList<HashMap<String, ReturnedValue>> resultsList;
+    private String testString = "original";
+    private int batches = 0; //variable to track number batches
+
+
+    private final ObservableList<sub_Form> DisplayedResults = FXCollections.observableArrayList();
+    ObjectProperty<ObservableList<sub_Form>> dispList = new SimpleObjectProperty<>(DisplayedResults);
+
+
+    //Table Stuff
+
+    @FXML
+    TableView<sub_Form> tableView;
+
+    @FXML
+    JFXButton CSV;
 
 
     @FXML
-    JFXTextField Email;
+    TableColumn BrandName;
 
     @FXML
-    JFXPasswordField Password;
+    TableColumn ResultNumber;
 
     @FXML
-    JFXRadioButton Agent;
+    TableColumn AlchoholPercentage;
 
     @FXML
-    JFXRadioButton Manufacturer;
+    TableColumn Domestic;
 
     @FXML
-    JFXTextField EmailCreate;
+    TableColumn Type;
 
     @FXML
-    JFXPasswordField PasswordCreate;
+    JFXButton fiveResultsButton;
 
     @FXML
-    JFXPasswordField PasswordCreateCheck;
+    JFXButton tenResultsButton;
 
     @FXML
-    JFXTabPane primaryPane;
+    JFXButton fiftyResultsButton;
 
     @FXML
-    ToggleGroup ToggleType;
+    JFXButton hundredResultsButton;
 
     @FXML
-    Label UserNameError;
+    JFXButton lowerResults;
 
     @FXML
-    Label ErrorMessage;
+    JFXButton higherResults;
 
     @FXML
-    Label PasswordError;
-    @FXML
-    JFXTextField state;
-    @FXML
-    JFXTextField zip;
-    @FXML
-    JFXTextField city;
-    @FXML
-    JFXTextField address;
-    @FXML
-    JFXTextField firstName;
-    @FXML
-    JFXTextField lastName;
-    @FXML
-    JFXTextField phone;
-    @FXML
-    JFXTextField delim;
-    @FXML
-    Text req_error;
-    @FXML
-    Label firstNameError;
-    @FXML
-    Label lastNameError;
-
-
-
-
-    public void setToolBarController(ToolBarController toolBarController){
-        this.toolBarController = toolBarController;
-    }
-
-
-
+    JFXButton firstPage;
 
     @FXML
-    public void login(ActionEvent actionEvent) throws Exception {
-        System.out.println("about to check..");
-        if(!attemptLogin(actionEvent)){
-            System.out.println("attempt login fail");
+    JFXButton secondPage;
+
+    @FXML
+    JFXButton thirdPage;
+
+    @FXML
+    TextField searchTextField;
+    private fuzzyContext searchAlgorithmSelection = new fuzzyContext();
+
+    @FXML
+    JFXButton fourthPage;
+    @FXML
+    Text regText;
+    @FXML
+    Text typeText;
+    @FXML
+    Text fanText;
+    @FXML
+    Text percentText;
+    @FXML
+    Text originText;
+    @FXML
+    Text phText;
+    @FXML
+    Text vinText;
+    @FXML
+    Text appText;
+    @FXML
+    Text varText;
+    @FXML
+    Text nameText;
+
+    @FXML
+    Label export_message;
+
+    private int numResults = 10;
+    private int currentPage = 1;
+
+    @FXML
+    private void perPageAction(ActionEvent actionEvent){
+        if(actionEvent.getSource() == fiveResultsButton){
+            this.numResults = 5;
+            convertToForms(1);
 
         }
-        else {
-            User.userPower powerCreate = User.userPower.Standard;
-            //TODO: eliminate following toggel button code, shold be handled by DB
-
-            powerCreate = getType();
-            System.out.println(powerCreate.toString());
-            String toggleGroupValue = "Standard";
-            //check the text file for the user type and assign it
-            if (ToggleType.getSelectedToggle() != null) {
-                RadioButton selectedRadioButton = (RadioButton) ToggleType.getSelectedToggle();
-                toggleGroupValue = selectedRadioButton.getText();
-            }
-            System.out.println(powerCreate.toString());
-
-            if (ToggleType.getSelectedToggle() == null) {
-                powerCreate = powerCreate;
-            } else if (toggleGroupValue.equals("Manufacturer")) {
-                powerCreate = User.userPower.Company;
-                System.out.println("toggle man");
-            } else if (toggleGroupValue.equals("Agent")) {
-                powerCreate = User.userPower.TTBEmployee;
-                System.out.println("toggle employ");
-            } else {
-                powerCreate = User.userPower.Standard;
-                System.out.println("togg stand");
-            }
-
-            ArrayList<HashMap<String, ReturnedValue>> users = new ArrayList<>();
-           // SQLDriver loginDriver = new SQLDriver();
-            MongoDriver loginDriver = new MongoDriver("mongodb+srv://firstuser1:newTestCred@cs3733-hgmot.mongodb.net/test?retryWrites=true");
-            LinkedList<String> param = new LinkedList<String>();
-            param.add("email");
-            HashMap<String, DataField> searchParam = new HashMap<>();
-            searchParam.put("email", new DataField(Email.getText(), "email"));
-            users = loginDriver.get_user_data_by_value("credentials", "user_database.db", param, searchParam);
-            if(users.get(0).get("role").to_double() == 0){
-                powerCreate = User.userPower.TTBEmployee;
-            }
-            else{
-                powerCreate = User.userPower.Company;
-            }
-            toolBarController.login(Email.getText(), Password.getText(), powerCreate);
-        }
-    }
-
-    @FXML
-    public void logInCreate(ActionEvent actionEvent) throws Exception {
-        //make account if possible
-        attemptCreate(actionEvent);
-        //User curUser = User.getUser(Email.getText(), Password.getText(), User.userPower.Standard);
-
-        login(actionEvent);
-        //
-    }
-
-    private String invalidCharacters = ":!#$%^&*()/,><;-=_+";
-    boolean isValid = true;
-
-    public String readFile(String users) throws Exception { //this file will populate users with a string of all users
-        // pass the path to the file as a parameter
-        //userLogin = new FileReader("UserSheet.txt");
-        FileReader userLogin;
-        userLogin = new FileReader(System.getProperty("user.dir") + "/UserSheet.txt");
-        int i;
-        while ((i=userLogin.read()) != -1) {
-            users = users + ((char) i);
-        }
-        return users;
-    }
-
-    public void attemptCreate(ActionEvent actionEvent) throws Exception{
-
-        ArrayList<HashMap<String, ReturnedValue>> users = new ArrayList<HashMap<String, ReturnedValue>>();
-        //SQLDriver loginDriver = new SQLDriver();
-        MongoDriver loginDriver = new MongoDriver("mongodb+srv://firstuser1:newTestCred@cs3733-hgmot.mongodb.net/test?retryWrites=true");
-        LinkedList<String> param = new LinkedList<String>();
-        param.add("email");
-        HashMap<String, DataField> searchParam = new HashMap<>();
-        searchParam.put("email", new DataField(EmailCreate.getText(), "email"));
-
-        try {
-            users = loginDriver.get_user_data_by_value("credentials", "user_database.db", param, searchParam);//readFile(users);
-        }
-        catch(Exception e){
-            System.out.println("no db");
-        }
-
-
-        boolean isValid2 = true;
-        for (int i = 0; i < invalidCharacters.length(); i++) {
-
-            Character currChar = invalidCharacters.charAt(i);
-            if (EmailCreate.getText().contains(currChar.toString()) || PasswordCreate.getText().contains(currChar.toString())) {
-                UserNameError.setText("username or password contains illegal characters");
-                PasswordError.setText("");
-                isValid2 = false;
-            }
-        }
-        if (isValid2 == false){
-        }
-        else if(PasswordCreate.getText().length() < 8){
-            PasswordError.setText("Password too short");
-            UserNameError.setText("");
-            firstNameError.setText("");
-            lastNameError.setText("");
-        }
-        else if (!EmailCreate.getText().contains("@") || !EmailCreate.getText().contains(".")){
-            UserNameError.setText("Please Enter Email");
-            PasswordError.setText("");
-            firstNameError.setText("");
-            lastNameError.setText("");
-        }
-        else if(ToggleType.getSelectedToggle() == null){
-            UserNameError.setText("Select Type Above");
-            PasswordError.setText("");
-            firstNameError.setText("");
-            lastNameError.setText("");
-        }
-        else if (!users.isEmpty()){
-            UserNameError.setText("Email already taken");
-            PasswordError.setText("");
-            firstNameError.setText("");
-            lastNameError.setText("");
-        }
-        else if (!PasswordCreate.getText().equals(PasswordCreateCheck.getText())){
-            PasswordError.setText("Passwords do not match");
-            UserNameError.setText("");
-            firstNameError.setText("");
-            lastNameError.setText("");
-        }
-
-        else if(firstName.getText().isEmpty() || lastName.getText().isEmpty()){
-            firstNameError.setText("First and Last Name Required");
-            lastNameError.setText("First and Last Name Required");
-            PasswordError.setText("");
-            UserNameError.setText("");
+        if(actionEvent.getSource() == tenResultsButton){
+            this.numResults = 10;
+            convertToForms(1);
 
         }
-        else{ //add user to db
-            UserNameError.setText("");
-            PasswordError.setText("");
-            firstNameError.setText("");
-            lastNameError.setText("");
-            User.userPower powerCreate;
-            RadioButton selectedRadioButton = (RadioButton) ToggleType.getSelectedToggle();
-            String toggleGroupValue = selectedRadioButton.getText();
-            String role = "0.0";
-            if(toggleGroupValue.equals("Agent")){
-                role = "0.0";
-            }
-            else{
-                role = "1.0";
-            }
+        if(actionEvent.getSource() == fiftyResultsButton){
+            this.numResults = 50;
+            convertToForms(1);
 
+        }
+        if(actionEvent.getSource() == hundredResultsButton){
+            this.numResults = 100;
+            convertToForms(1);
 
-
-
-            double _id_count = 0;
-            for (HashMap<String, ReturnedValue>result:loginDriver.select_all("user_database.db", "credentials")){
-               double _test = result.get("RepIDnum").to_double();
-               if (_test > _id_count){
-                   _id_count = _test;
-               }
-            }
-
-
-            DBValue [] user_row = {new DBValue<Integer>((int)(_id_count)+1), new DBValue<String>(firstName.getText()), new DBValue<String>(lastName.getText()), new DBValue<String>(phone.getText()), new DBValue<String>(address.getText()),
-                    new DBValue<String>(city.getText()), new DBValue<String>(zip.getText()), new DBValue<String>(state.getText()),
-                    new DBValue<String>(delim.getText()), new DBValue<String>(EmailCreate.getText()), new DBValue<String>(encryptPassword(PasswordCreate.getText())), new DBValue<String>(role), new DBValue<String>("NULL")};
-            loginDriver.insert_vals("credentials", "user_database.db", user_row);
-            Email.setText(EmailCreate.getText());
-            Password.setText(PasswordCreate.getText());
         }
 
     }
 
-    public void createAccount(String userCreate, String passCreate, User.userPower typeCreate) throws Exception {
-        FileWriter userWriter = new FileWriter("UserSheet.txt", true);
-        BufferedWriter outputStream = new BufferedWriter(userWriter);
-        String addUser = userCreate;
-        String userType;
 
-        if(typeCreate.equals(User.userPower.TTBEmployee)){
-            userType = "&";
-        }
-        else if (typeCreate.equals(User.userPower.Company)){
-            userType = "#";
-        }
-        else if (typeCreate.equals(User.userPower.SuperAdmin)){
-            userType = "%";
-        }
-        else{
-            userType = "!";
-        }
-        System.out.println("Creating an Account");
-        addUser = ":"+addUser+":"+encryptPassword(passCreate)+":"+ userType+":";
+    @FXML
+    private void pageNumAction(ActionEvent actionEvent){
+        if(actionEvent.getSource() == firstPage){
+            currentPage = Integer.parseInt(firstPage.getText());
 
-        outputStream.write("\n"+ addUser);
-        outputStream.flush();
-        outputStream.close();
-        //and then scene switcher code, wait for merge
-        //openDisplayScene(actionEvent);
+        }
+        if(actionEvent.getSource() == secondPage){
+            currentPage = Integer.parseInt(secondPage.getText());
+
+        }
+        if(actionEvent.getSource() == thirdPage){
+            currentPage = Integer.parseInt(thirdPage.getText());
+
+        }
+        if(actionEvent.getSource() == fourthPage){
+            currentPage = Integer.parseInt(fourthPage.getText());
+
+        }
+        convertToForms(2);
     }
 
-    public boolean attemptLogin(ActionEvent actionEvent) throws Exception { //attempts a login and will either create an account or login
-        ArrayList<HashMap<String, ReturnedValue>> users = new ArrayList<>();
-        //SQLDriver loginDriver = new SQLDriver();
-        MongoDriver loginDriver = new MongoDriver("mongodb+srv://firstuser1:newTestCred@cs3733-hgmot.mongodb.net/test?retryWrites=true");
-        LinkedList<String> param = new LinkedList<String>();
-        param.add("email");
-        HashMap<String, DataField> searchParam = new HashMap<>();
-        searchParam.put("email", new DataField(Email.getText(), "email"));
-        System.out.println("Data collected");
+    @FXML
+    private void setHigherPages(ActionEvent event){
+       int firstVal = Integer.parseInt(firstPage.getText())+4;
+       firstPage.setText(String.valueOf(firstVal));
 
-        users = loginDriver.get_user_data_by_value("credentials", "user_database.db", param, searchParam);//readFile(users);
-        if(Email.getText().isEmpty() || Password.getText().isEmpty()){
-            req_error.setOpacity(1);
-            return(false);
-        }
-        if(Email.getText().isEmpty()){
-            ErrorMessage.setText(("Enter a username to login"));
-            ErrorMessage.setOpacity(1);
-            return false;
-        }
+       int secondVal = Integer.parseInt(secondPage.getText())+4;
+       secondPage.setText(String.valueOf(secondVal));
 
-        else if ((!users.isEmpty() && users.get(0).get("password").to_string().equals(encryptPassword(Password.getText())))){//users.contains(":"+Email.getText()+":"+encryptPassword(Password.getText())+":")){ //this file checks for the user and pass in the file
-            ErrorMessage.setOpacity(0);
-            return true;
-        }
+       int thirdVal = Integer.parseInt(thirdPage.getText())+4;
+       thirdPage.setText(String.valueOf(thirdVal));
 
-//        else if (users.contains(":"+Email.getText()+":")){
-//            ErrorMessage.setText("Select an unused username");
-//            ErrorMessage.setOpacity(1);
-//            return false;
-//
-//        }
-        else { //user name and password dont match
-            ErrorMessage.setText("Invalid Username/ Password");
-            ErrorMessage.setOpacity(1);
-
-            return false;
-        }
+       int fourthVal = Integer.parseInt(fourthPage.getText())+4;
+       fourthPage.setText(String.valueOf(fourthVal));
     }
 
-    public String encryptPassword(String origionalPassword) throws Exception
-    {
-        String strData;
+    @FXML
+    private void setLowerPages(ActionEvent event){
 
-        try
+        int firstVal = Integer.parseInt(firstPage.getText())-4;
+        if(firstVal >= 1){
+
+            firstPage.setText(String.valueOf(firstVal));
+
+            int secondVal = Integer.parseInt(secondPage.getText())-4;
+            secondPage.setText(String.valueOf(secondVal));
+
+            int thirdVal = Integer.parseInt(thirdPage.getText())-4;
+            thirdPage.setText(String.valueOf(thirdVal));
+
+            int fourthVal = Integer.parseInt(fourthPage.getText())-4;
+            fourthPage.setText(String.valueOf(fourthVal));
+        }
+
+    }
+
+
+    public void  setResultsList(ArrayList<HashMap<String, ReturnedValue>> results){
+        this.resultsList = results;
+    }
+    public void setTestString(String newString){
+        this.testString=newString;
+    }
+
+    public void convertToForms(int newSearch){
+        if(newSearch == 0){
+            DisplayedResults.clear();
+            currentPage = 1;
+        }
+        if(newSearch == 1){
+            DisplayedResults.clear();
+            if(currentPage > 1) currentPage--;
+        }
+        if(newSearch == 2){
+            DisplayedResults.clear();
+        }
+        for(int i = 0; i<numResults; i++)
         {
-            Key key = generateKey();
-            Cipher cipher = Cipher.getInstance("AES");
-            cipher.init(Cipher.ENCRYPT_MODE, key);
-            byte[] e = cipher.doFinal(origionalPassword.getBytes());
-            strData = new BASE64Encoder().encode(e);
+            try {
+                this.DisplayedResults.add(new sub_Form(toolBarController.getResultsMap().get(i + ((currentPage - 1) * numResults)), i + 1 + (currentPage - 1) * numResults));
+            }
+            catch(IndexOutOfBoundsException e){
+
+            }
         }
-        catch (Exception e)
-        {
-            throw new Exception(e);
-        }
-        return strData;
     }
 
-    public String decryptPassword(String encryptedPassword) throws Exception
-    {
-        String strData;
-
-        try
-        {
-            Key key = generateKey();
-            Cipher cipher = Cipher.getInstance("AES");
-            cipher.init(Cipher.DECRYPT_MODE, key);
-            byte[] decodedValue = new BASE64Decoder().decodeBuffer(encryptedPassword);
-            byte[] d = cipher.doFinal(decodedValue);
-            strData = new String(d);
-        }
-        catch (Exception e)
-        {
-            throw new Exception(e);
-        }
-        return strData;
-    }
-
-    //Generages the key needed for encryption/ decryption
-    private Key generateKey() throws Exception
-    {
-        String key = "AaBbCcDdEeFfGgHh";
-        byte[] encryptionKey = key.getBytes();
-        Key k = new SecretKeySpec(encryptionKey, "AES");
-
-        return k;
+    public void setTable(){
+        //get results
+        System.out.println("Updated");
+        //convertToForms();
+        //update columns on table view
+        this.Domestic.setCellValueFactory(new PropertyValueFactory<sub_Form, String>("domesticOrImported"));
+        this.BrandName.setCellValueFactory(new PropertyValueFactory<sub_Form, String>("brandName"));
+        this.Type.setCellValueFactory(new PropertyValueFactory<sub_Form, String>("beverageType"));
+        this.AlchoholPercentage.setCellValueFactory(new PropertyValueFactory<sub_Form, String>("alcoholContent"));
+        this.ResultNumber.setCellValueFactory(new PropertyValueFactory<sub_Form, Integer>("index"));
+        //this.tableView.setItems(DisplayedResults);
+        this.tableView.itemsProperty().bind(dispList);
     }
 
 
     @Override
-    public void initialize(URL location, ResourceBundle resources){
+    public void initialize(URL location, ResourceBundle resources) {
+        setTable();
     }
 
-    User.userPower getType() throws Exception {
-        String users = "";
-        users = readFile(users);
-        int index = 0;
-        String type = "!";
-        for (int i = -1; (i = users.indexOf(encryptPassword(Password.getText()), i + 1)) != -1; i++) {
-            index = i;
-        } // prints "4", "13", "22"
-        int buffer = encryptPassword(Password.getText()).length();
-        if(!(index == 0)) {
-            type = users.substring(index+buffer+1, index+buffer+2);
+
+
+
+    public void table_selected(Event event){
+        sub_Form item = tableView.getSelectionModel().getSelectedItem();
+
+        showSelectedBeverage(item);
+        // toolBarController.getInfoController().updateList(item);
+        // toolBarController.goDetails(event);
+    }
+
+    public void goSearch(ActionEvent actionEvent) throws Exception {
+
+        if (searchTextField.getText() == null || searchTextField.getText().trim().isEmpty()){
+            // TODO Insert here anything you want the app to do when user click search and box is empty
+
         }
-        System.out.println(type);
-        if (type.equals("&")){
-            return User.userPower.TTBEmployee;
-        }
-        else if (type.equals("#")){
-            return User.userPower.Company;
-        }
-        else if (type.equals("%")){
-            return User.userPower.SuperAdmin;
-        }
-        else{
-            return User.userPower.Standard;
+        else {
+            searchAlgorithmSelection.setContext(new SQLFuzzy());
+            toolBarController.setResultsMap(searchAlgorithmSelection.run(searchTextField.getText().trim()));
+            toolBarController.goSearch();
+
+            // TODO:this will return what fuzzys return
+            // TODO link the return of the fuzzy alghoriths to a listView on the next page (maybe just have field of hashmap that gets passed to the next scene)
+
         }
 
     }
 
+
+    private void showSelectedBeverage(sub_Form oneBeverage) {
+        /**
+         Hey Grant here is where you are going to assign all the FXID and information
+         I am passing you a sub_Form called "oneBeverage" that you can get all the
+         information you need of the beverage that is selected
+
+         Also I messed around with the Scene Builder application and you should not have
+         enough space to present your data.
+
+         If you look at this link https://drizly.com/smirnoff-no-21-vodka/p4683
+         and scroll down to the Product Detail its a good exmple of how you can fir
+         a lot of information close together
+        */
+
+        regText.setText(oneBeverage.getSummary().get(1));
+        typeText.setText(oneBeverage.getSummary().get(4));
+        fanText.setText(oneBeverage.getSummary().get(6));
+        percentText.setText(oneBeverage.getSummary().get(11) + "%");
+        originText.setText(oneBeverage.getSummary().get(2));
+        phText.setText(oneBeverage.getSummary().get(9));
+        vinText.setText(oneBeverage.getSummary().get(7));
+        appText.setText(oneBeverage.getSummary().get(10));
+        varText.setText(oneBeverage.getSummary().get(8));
+        nameText.setText(oneBeverage.getSummary().get(5));
+    }
+
+    //create CSV function
+    public void writeExcel() throws Exception {
+        export_message.setText("");
+        Writer writer = null;
+        String fileTimestamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+        String delimiter = ",";
+
+        if (toolBarController.getCurUser() != null ){
+            delimiter = String.valueOf(toolBarController.getCurUser().getDelim());
+        }
+
+        try {
+            File file = new File(System.getProperty("user.home")+ "/Downloads/DATA" + fileTimestamp + ".CSV");
+            writer = new BufferedWriter(new FileWriter(file)); //CSV library function
+            // grab text versions of all displayed results
+            for (int i = 0; i < DisplayedResults.size(); i++) {
+
+                String text = DisplayedResults.get(i).returnAll(delimiter);
+                writer.write(text);
+            }
+
+            export_message.setTextFill(Color.web("#4BB543"));
+            export_message.setText("CSV Exported!");
+        } catch (Exception ex) {
+            System.out.println("Error exporting CSV");
+            ex.printStackTrace();
+            export_message.setTextFill(Color.web("#FF0000"));
+            export_message.setText("Error exporting CSV");
+        }
+        finally {//when done, finish CSV creation
+
+            writer.flush();
+            writer.close();
+        }
+    }
 
 }

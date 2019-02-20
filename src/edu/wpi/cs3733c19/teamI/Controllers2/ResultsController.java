@@ -286,7 +286,6 @@ public class ResultsController implements Initializable {
     }
 
     public void goSearch(ActionEvent actionEvent) throws Exception {
-
         if (searchTextField.getText() == null || searchTextField.getText().trim().isEmpty()){
             // TODO Insert here anything you want the app to do when user click search and box is empty
 

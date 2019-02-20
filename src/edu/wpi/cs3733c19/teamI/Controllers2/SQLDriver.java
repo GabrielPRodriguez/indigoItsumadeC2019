@@ -493,7 +493,7 @@ public class SQLDriver{
 
             HashMap<String, ReturnedValue>_temp = new HashMap<String, ReturnedValue>();
             for (String col:columns){
-                _temp.put(col, new ReturnedValue(_rs_conn.getString(col).toString(), row_types.get(col)));
+                    _temp.put(col, new ReturnedValue(_rs_conn.getString(col).toString(), row_types.get(col)));
             }
             full_payload.add(_temp);
         }
@@ -718,6 +718,7 @@ public class SQLDriver{
 
     }
 
+
     public ArrayList<HashMap<String, ReturnedValue>>get_data_by_value(String tablename, String filename, LinkedList<String>search_fields, HashMap<String, DataField>targets) throws Exception{
         //System.out.println("in search method");
 
@@ -773,23 +774,23 @@ public class SQLDriver{
 
 
     public ArrayList<HashMap<String, ReturnedValue>>get_user_data_by_value(String tablename, String filename, LinkedList<String>search_fields, HashMap<String, DataField>targets) throws Exception{
-        System.out.println("in search method");
+        //System.out.println("in search method");
 
         ArrayList<HashMap<String, ReturnedValue>> final_results = new ArrayList<HashMap<String, ReturnedValue>>();
         for (HashMap<String, ReturnedValue>result: select_all(filename, tablename)){
-            System.out.println("In first loop");
+            //System.out.println("In first loop");
                 boolean _flag = false;
                 for (String field:search_fields){
-                    System.out.println("search field: "+field);
+                    //System.out.println("search field: "+field);
                     ReturnedValue type1 = result.get(field);
                     DataField type2 = targets.get(field);
 
-                    System.out.println("At end");
-                    System.out.println("Type1: " + type1);
+                    //System.out.println("At end");
+                    //System.out.println("Type1: " + type1);
 
 
                     if (type1.type.equals("text")|| type1.type.equals("TEXT")){
-                        System.out.println("Type accepted");
+                        //System.out.println("Type accepted");
                         if (type1.to_string().equals(type2.getValue().toString())){
                             //  System.out.println("successfull comparison!!!");
 
@@ -842,6 +843,9 @@ public class SQLDriver{
 
     public static void setExpirationDate(String formID, String approvalStatus) throws IOException, Exception {
         setField(formID, approvalStatus, "expirationDate");
+    }
+    public static void setQualifier(String formID,String approvalStatus) throws IOException,Exception{
+        setField(formID,approvalStatus,"qualifier");
     }
 
     public static void setField(String formID, String approvalStatus, String field) throws IOException, Exception{

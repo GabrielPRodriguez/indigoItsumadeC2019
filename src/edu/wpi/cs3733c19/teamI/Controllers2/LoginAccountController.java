@@ -143,10 +143,15 @@ public class LoginAccountController implements Initializable {
             if(users.get(0).get("role").to_double() == 0){
                 powerCreate = User.userPower.TTBEmployee;
             }
-            else{
+            else if(users.get(0).get("role").to_double() == 1) {
                 powerCreate = User.userPower.Company;
             }
-            toolBarController.login(Email.getText(), Password.getText(), powerCreate);
+            else{
+                powerCreate= User.userPower.Specialist;
+            }
+            System.out.println(encryptPassword("Specialist"));
+
+            toolBarController.login(Email.getText(), Password.getText(), powerCreate, users.get(0).get("state").to_string(), users.get(0).get("city").to_string(), users.get(0).get("zipCode").to_string(), users.get(0).get("streetAdress").to_string(), users.get(0).get("firstName").to_string(), users.get(0).get("lastName").to_string(), users.get(0).get("phoneNumber").to_string(), users.get(0).get("RepIDnum").to_string() );
         }
     }
 

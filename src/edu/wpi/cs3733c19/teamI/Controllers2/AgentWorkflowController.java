@@ -271,8 +271,6 @@ public class AgentWorkflowController {
     //pulls unread forms from the database to be selected
     @FXML
     private void pull_Forms() throws Exception{
-        //toolBarController = ToolBarController.getInstance();
-        toolBarController.displaySignInName("YOLO");
         formID_1.setText("");
         formID_2.setText("");
         formID_3.setText("");
@@ -301,7 +299,7 @@ public class AgentWorkflowController {
                 }
             }
             else{
-                if (result.get("status").to_string().equals("unread")){
+                if (result.get("status").to_string().contains("unread")){
 
                     filtered_results.add(result);
                 }
@@ -453,8 +451,11 @@ public class AgentWorkflowController {
 
     @FXML
     private void approveHandler() throws IOException, Exception{
+        SQLDriver driver = new SQLDriver();
+        HashMap<String, ReturnedValue>result = driver.get_data_by_value("form_data", "stringified_ids_db.db", "formID", new DBValue<String>(currentFormID));
+        formStatus_string = result.get("status").to_string().replace("unread", "");
 
-        formStatus_string = "approved";
+        formStatus_string += "approved";
 
         SQLDriver.setApprovalStatus(currentFormID, formStatus_string);
         Date date = new Date();
@@ -487,7 +488,10 @@ public class AgentWorkflowController {
             }
         }
         SQLDriver.setQualifier(currentFormID,commentBox.getText());
-        formStatus_string = "reject";
+        SQLDriver driver = new SQLDriver();
+        HashMap<String, ReturnedValue>result = driver.get_data_by_value("form_data", "stringified_ids_db.db", "formID", new DBValue<String>(currentFormID));
+        formStatus_string = result.get("status").to_string().replace("unread", "");
+        formStatus_string += "reject";
 
         SQLDriver.setApprovalStatus(currentFormID, formStatus_string);
         clearFields();
@@ -500,7 +504,11 @@ public class AgentWorkflowController {
     }
     @FXML
     public void sendBackHandler() throws IOException, Exception{
-        formStatus_string = "commented";
+        SQLDriver driver = new SQLDriver();
+        HashMap<String, ReturnedValue>result = driver.get_data_by_value("form_data", "stringified_ids_db.db", "formID", new DBValue<String>(currentFormID));
+        formStatus_string = result.get("status").to_string().replace("unread", "");
+
+        formStatus_string += "commented";
         SQLDriver.setQualifier(currentFormID,commentBox.getText());
         SQLDriver.setApprovalStatus(currentFormID,formStatus_string);
         clearFields();
@@ -511,7 +519,10 @@ public class AgentWorkflowController {
     }
     @FXML
     public void forwardHandler() throws IOException, Exception{
-        formStatus_string = "specialist";
+        SQLDriver driver = new SQLDriver();
+        HashMap<String, ReturnedValue>result = driver.get_data_by_value("form_data", "stringified_ids_db.db", "formID", new DBValue<String>(currentFormID));
+        formStatus_string = result.get("status").to_string().replace("unread", "");
+        formStatus_string += "specialist";
         SQLDriver.setApprovalStatus(currentFormID,formStatus_string);
         clearFields();
 

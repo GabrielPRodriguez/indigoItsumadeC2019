@@ -703,7 +703,7 @@ public class SQLDriver{
         ArrayList<HashMap<String, ReturnedValue>> final_results = new ArrayList<HashMap<String, ReturnedValue>>();
         for (HashMap<String, ReturnedValue>result: select_all(filename, tablename)){
             String _new_flag = result.get("status").to_string();
-            if (_new_flag.equals("approved")){
+            if (_new_flag.contains("approved")){
                 boolean _flag = false;
                 for (String field:search_fields){
                     ReturnedValue type1 = result.get(field);

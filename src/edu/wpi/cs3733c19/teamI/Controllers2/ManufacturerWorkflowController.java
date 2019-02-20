@@ -11,10 +11,7 @@ import edu.wpi.cs3733c19.teamI.Entities.DataTransfer;
 import edu.wpi.cs3733c19.teamI.Entities.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.MenuItem;
+import javafx.scene.control.*;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
@@ -67,6 +64,9 @@ public class ManufacturerWorkflowController {
 
     @FXML
     Button choose_button9;
+
+    @FXML
+    TextArea qualifier;
 
     @FXML
     Label formID_1;
@@ -263,6 +263,10 @@ public class ManufacturerWorkflowController {
     @FXML
     ListView listView;
 
+
+    @FXML
+    Label formStatusField;
+
     String formStatus_string;
     String currentFormID = "";
 
@@ -296,7 +300,7 @@ public class ManufacturerWorkflowController {
         SQLDriver driver = new SQLDriver();
         ArrayList<HashMap<String, ReturnedValue>> filtered_results = new ArrayList<HashMap<String, ReturnedValue>>();
         for (HashMap<String, ReturnedValue>result:driver.select_all("stringified_ids_db.db", "form_data")){
-                if (result.get("status").to_string().equals(toolBarController.getCurUser().getUsername())){
+                if (result.get("status").to_string().contains(toolBarController.getCurUser().getUsername())){
                     filtered_results.add(result);
                 }
         }
@@ -437,8 +441,23 @@ public class ManufacturerWorkflowController {
         email_text.setText(result.get("email").to_string());
         brandedInfo_text.setText(result.get("extraInfo").to_string());
 
+        qualifier.setText(result.get("qualifier").to_string());
+
 
         formStatus_string = (result.get("status").to_string()); //I use two variables because I need the formStatus text as a string
+        if(formStatus_string.contains("specialist")||formStatus_string.contains("unread")){
+            formStatusField.setText("waiting review");
+        }
+        else if(formStatus_string.contains("approved")){
+            formStatusField.setText("Approved");
+        }
+        else if(formStatus_string.contains("reject")){
+            formStatusField.setText("Rejected");
+        }
+        else{
+            formStatusField.setText("Not Submitted");
+        }
+
 //        formStatus_text.setText(formStatus_string);
         volume_text.setText(result.get("volume").to_string());
 

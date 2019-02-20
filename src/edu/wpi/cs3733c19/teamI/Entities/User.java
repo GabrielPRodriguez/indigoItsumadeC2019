@@ -36,8 +36,7 @@ public class User {
         phone = thePhone;
         repId = theRepID;
         if(delim.equals("")){
-            this.delim = "9";
-            System.out.println("GOATCHA-------------------------------");
+            this.delim = ",";
         }
         else this.delim = delim;
 

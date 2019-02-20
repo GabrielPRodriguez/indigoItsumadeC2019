@@ -16,7 +16,7 @@
                   <Image url="@../Assets/HelpHome.png" />
                </image>
             </ImageView>
-            <JFXButton mnemonicParsing="false" onAction="#goHome" style="-fx-background-color: #205493;" text="Button" textFill="WHITE">
+            <JFXButton mnemonicParsing="false" onAction="#goHome" style="-fx-background-color: #205493;" text="Return" textFill="WHITE">
                <font>
                   <Font name="Segoe UI Bold" size="20.0" />
                </font>

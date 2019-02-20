@@ -48,7 +48,7 @@
                      <HBox.margin>
                         <Insets />
                      </HBox.margin></TextField>
-                  <JFXButton alignment="CENTER" graphicTextGap="0.0" mnemonicParsing="false" onAction="#goSearch" text=" ">
+                  <JFXButton fx:id="search" alignment="CENTER" graphicTextGap="0.0" mnemonicParsing="false" onAction="#goSearch" text=" ">
                      <graphic>
                         <FontAwesomeIconView glyphName="SEARCH" size="30" strokeType="OUTSIDE" strokeWidth="0.0" />
                      </graphic></JFXButton>

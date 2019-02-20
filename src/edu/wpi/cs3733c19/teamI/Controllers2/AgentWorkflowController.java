@@ -6,9 +6,11 @@ import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.DBValue;
 import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.ReturnedValue;
+import edu.wpi.cs3733c19.teamI.Controllers2.ToolBarController;
 import edu.wpi.cs3733c19.teamI.Entities.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -16,12 +18,14 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.ResourceBundle;
 import java.util.logging.XMLFormatter;
 
-public class AgentWorkflowController {
+public class AgentWorkflowController implements Initializable {
     public boolean special = false;
     private ToolBarController toolBarController = ToolBarController.getInstance();
 
@@ -245,16 +249,21 @@ public class AgentWorkflowController {
     @FXML
     Text title;
     @FXML
+    Button sendBack;
+    @FXML
+    Button forwardButton;
+
+    @FXML
     public void update(){
-        if(User.getUser("a","a", User.userPower.Specialist,"a","a","a","a","a","a","a","a",",").getUserType().equals("Specialist")){
-            specialText.setOpacity(1);
-            commentBox.setPromptText("Add any comments as to why this particular form was rejected, accepted, or comments for corrections");
-            special = true;
-        }
-        else{
-            specialText.setOpacity(0);
-            special = false;
-        }
+//        if(User.getUser("a","a", User.userPower.Specialist,"a","a","a","a","a","a","a","a",",").getUserType().equals("Specialist")){
+//            specialText.setOpacity(1);
+//            commentBox.setPromptText("Add any comments as to why this particular form was rejected, accepted, or comments for corrections");
+//            special = true;
+//        }
+//        else{
+//            specialText.setOpacity(0);
+//            special = false;
+//        }
     }
     @FXML
     ListView listView;
@@ -272,7 +281,7 @@ public class AgentWorkflowController {
     @FXML
     private void pull_Forms() throws Exception{
         //toolBarController = ToolBarController.getInstance();
-        toolBarController.displaySignInName("YOLO");
+        //toolBarController.displaySignInName("YOLO");
         formID_1.setText("");
         formID_2.setText("");
         formID_3.setText("");
@@ -376,6 +385,8 @@ public class AgentWorkflowController {
     private void chooseButtonHandler(ActionEvent choose) throws  Exception {
         accept_button.setDisable(false);
         reject_button.setDisable(false);
+        sendBack.setDisable(false);
+        forwardButton.setDisable(false);
 
         //int formID = 0;
         if (choose.getSource() == choose_button1) {
@@ -472,7 +483,8 @@ public class AgentWorkflowController {
 
         clearFields();
         pull_Forms();
-
+        sendBack.setDisable(true);
+        forwardButton.setDisable(true);
         accept_button.setDisable(true);
         reject_button.setDisable(true);
 
@@ -493,7 +505,8 @@ public class AgentWorkflowController {
         clearFields();
 
         pull_Forms();
-
+        sendBack.setDisable(true);
+        forwardButton.setDisable(true);
         accept_button.setDisable(true);
         reject_button.setDisable(true);
 
@@ -506,6 +519,8 @@ public class AgentWorkflowController {
         clearFields();
 
         pull_Forms();
+        sendBack.setDisable(true);
+        forwardButton.setDisable(true);
         accept_button.setDisable(true);
         reject_button.setDisable(true);
     }
@@ -513,9 +528,12 @@ public class AgentWorkflowController {
     public void forwardHandler() throws IOException, Exception{
         formStatus_string = "specialist";
         SQLDriver.setApprovalStatus(currentFormID,formStatus_string);
+        SQLDriver.setQualifier(currentFormID,commentBox.getText());
         clearFields();
 
         pull_Forms();
+        sendBack.setDisable(true);
+        forwardButton.setDisable(true);
         accept_button.setDisable(true);
         reject_button.setDisable(true);
     }
@@ -558,7 +576,16 @@ public class AgentWorkflowController {
     }
 
 
-
-
-
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        if(toolBarController.getCurUser().getUserType().equals(User.userPower.Specialist)){
+                specialText.setOpacity(1);
+            commentBox.setPromptText("Add any comments as to why this particular form was rejected, accepted, or comments for corrections");
+            special = true;
+        }
+        else{
+            specialText.setOpacity(0);
+            special = false;
+        }
+    }
 }

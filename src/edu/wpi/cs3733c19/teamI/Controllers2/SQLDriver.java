@@ -367,9 +367,10 @@ public class SQLDriver {
                         }
                     }
                 }
-                results.put(maxDistance, result);
-                all_distances.add(maxDistance);
-
+                if (maxDistance > 1) {
+                    results.put(maxDistance, result);
+                    all_distances.add(maxDistance);
+                }
             }
 
         }

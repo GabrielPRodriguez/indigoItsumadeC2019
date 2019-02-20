@@ -48,7 +48,6 @@ public class MultipageFormSubmissionController implements Initializable {
 
     private void setWineToggle(){
 
-        System.out.println("wine");
 
         JFXRadioButton rb = (JFXRadioButton)beverage.getSelectedToggle();
 
@@ -255,10 +254,8 @@ public class MultipageFormSubmissionController implements Initializable {
 */
     @FXML
     private void handleSubmitButton(ActionEvent event) throws Exception{
-        System.out.println("Starting submit");
         if(event.getSource()== submit){
             clearWarnings();
-            System.out.println("event get source");
             Form sentForm = new Form();
             boolean readyToSend = true; //if true by the end of the method, the form will be sent to database
             submit_message.setText("");//string to insert into textfield either confirming submission or printing error messge
@@ -388,7 +385,6 @@ public class MultipageFormSubmissionController implements Initializable {
             }
             catch (NumberFormatException e){
                 readyToSend = false;
-                System.out.println("Al content");
                 //String oldMessage = submit_message.getText();
                 //submit_message.setText(oldMessage + "  Please enter a number for Alcohol Percentage.");
                 alcoholPercent_warning.setTextFill(Color.web("#FF0000"));
@@ -449,9 +445,7 @@ public class MultipageFormSubmissionController implements Initializable {
 
             if(readyToSend){
                 //System.out.println("making db");
-                System.out.println("ready to send");
                 SQLDriver driver = new SQLDriver();
-                System.out.println("Ready to Send");
                 //sets the names of columns in the database, if additional form fields are added, please add a new column
                 String [] columns = {"formID", "repID", "plantRegistry", "domesticOrImported", "serialNumber", "brandName", "beverageType", "fancifulName", "permitName", "streetAddress","city","state", "zip", "extraInfo", "dateOfApplication", "formula", "grapeVarietals", "vintage", "wineAppellation", "email", "phoneNumber", "pHValue", "alcoholContent", "status", "approvingUser", "approvalDate", "expirationDate", "issuedDate", "volume", "appType", "surrenderDate"};
                 //contains the datatype of each column in the database, when adding a new column, please also add it's datatype here/
@@ -461,7 +455,6 @@ public class MultipageFormSubmissionController implements Initializable {
                     driver.create_table("form_data", "new_csv_from_spreadsheet.db", columns, full_types);
                 }
                 catch(Exception e){
-                    System.out.println("exception, create_table");
                 }
                 //int _id_count = driver.select_all("form_data.db", "form_data").size();
 
@@ -552,11 +545,9 @@ public class MultipageFormSubmissionController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println("init");
         beverage.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
             @Override
             public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {
-                System.out.println("wineToggle" );
                 setWineToggle();
             }
         });

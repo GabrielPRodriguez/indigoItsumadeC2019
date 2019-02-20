@@ -149,7 +149,6 @@ public class LoginAccountController implements Initializable {
             else{
                 powerCreate= User.userPower.Specialist;
             }
-            System.out.println(encryptPassword("Specialist"));
 
             toolBarController.login(Email.getText(), Password.getText(), powerCreate, users.get(0).get("state").to_string(), users.get(0).get("city").to_string(), users.get(0).get("zipCode").to_string(), users.get(0).get("streetAdress").to_string(), users.get(0).get("firstName").to_string(), users.get(0).get("lastName").to_string(), users.get(0).get("phoneNumber").to_string(), users.get(0).get("RepIDnum").to_string() );
         }
@@ -193,7 +192,6 @@ public class LoginAccountController implements Initializable {
             users = loginDriver.get_user_data_by_value("credentials", "user_database.db", param, searchParam);//readFile(users);
         }
         catch(Exception e){
-            System.out.println("no db");
         }
 
 
@@ -303,7 +301,6 @@ public class LoginAccountController implements Initializable {
         else{
             userType = "!";
         }
-        System.out.println("Creating an Account");
         addUser = ":"+addUser+":"+encryptPassword(passCreate)+":"+ userType+":";
 
         outputStream.write("\n"+ addUser);
@@ -320,7 +317,6 @@ public class LoginAccountController implements Initializable {
         param.add("email");
         HashMap<String, DataField> searchParam = new HashMap<>();
         searchParam.put("email", new DataField(Email.getText(), "email"));
-        System.out.println("Data collected");
 
         users = loginDriver.get_user_data_by_value("credentials", "user_database.db", param, searchParam);//readFile(users);
         if(Email.getText().isEmpty() || Password.getText().isEmpty()){
@@ -418,7 +414,6 @@ public class LoginAccountController implements Initializable {
         if(!(index == 0)) {
             type = users.substring(index+buffer+1, index+buffer+2);
         }
-        System.out.println(type);
         if (type.equals("&")){
             return User.userPower.TTBEmployee;
         }

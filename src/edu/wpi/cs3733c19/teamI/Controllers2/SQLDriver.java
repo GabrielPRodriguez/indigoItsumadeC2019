@@ -352,7 +352,8 @@ public class SQLDriver{
 
                 if (_val.length() > 0 && _user_input.length() > 0){
                     double _result = full_score(_user_input, _val);
-                    /*
+                    
+                    double _result = full_score(_user_input, _val);
 
 
                     if (_result > 0.2){
@@ -361,9 +362,10 @@ public class SQLDriver{
                     else if (filter_immediate(_val, _user_input)){
                         _count += (double)dl_distance(_val, _user_input);
                     }
-                    */
-                    _count += (_result + (double)dl_distance(_val, _user_input));
 
+
+
+              
                 }
 
 

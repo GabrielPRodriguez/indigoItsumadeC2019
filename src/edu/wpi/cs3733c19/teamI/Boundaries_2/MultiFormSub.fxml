@@ -185,9 +185,9 @@
               <content>
                 <AnchorPane>
                      <children>
-                        <VBox alignment="CENTER" spacing="30.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+                        <VBox alignment="CENTER_LEFT" spacing="30.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
                            <children>
-                              <HBox alignment="CENTER" spacing="20.0">
+                              <HBox alignment="CENTER_LEFT" spacing="20.0">
                                  <children>
                                     <VBox spacing="10.0">
                                        <children>
@@ -234,7 +234,7 @@
                               </HBox>
                               <HBox alignment="CENTER_LEFT" spacing="20.0">
                                  <children>
-                                    <VBox spacing="10.0" HBox.hgrow="ALWAYS">
+                                    <VBox spacing="10.0">
                                        <children>
                                           <Label text="Street Address">
                                              <font>
@@ -244,7 +244,7 @@
                                           <JFXTextField fx:id="street_Field" />
                                        </children>
                                     </VBox>
-                                    <VBox spacing="10.0" HBox.hgrow="ALWAYS">
+                                    <VBox spacing="10.0">
                                        <children>
                                           <Label alignment="CENTER" text="City">
                                              <font>
@@ -254,7 +254,7 @@
                                           <JFXTextField fx:id="city_Field" />
                                        </children>
                                     </VBox>
-                                    <VBox layoutX="10.0" layoutY="10.0" spacing="10.0" HBox.hgrow="ALWAYS">
+                                    <VBox layoutX="10.0" layoutY="10.0" spacing="10.0">
                                        <children>
                                           <Label alignment="CENTER" text="State">
                                              <font>
@@ -264,7 +264,7 @@
                                           <JFXTextField fx:id="state_Field" />
                                        </children>
                                     </VBox>
-                                    <VBox layoutX="230.0" layoutY="10.0" spacing="10.0" HBox.hgrow="ALWAYS">
+                                    <VBox layoutX="230.0" layoutY="10.0" spacing="10.0">
                                        <children>
                                           <Label alignment="CENTER" text="Zip">
                                              <font>
@@ -289,7 +289,7 @@
                                           <Label fx:id="date_warning" />
                                        </children>
                                     </VBox>
-                                    <VBox spacing="10.0" HBox.hgrow="ALWAYS">
+                                    <VBox spacing="10.0">
                                        <children>
                                           <Label alignment="CENTER" text="Phone Number">
                                              <font>
@@ -300,7 +300,7 @@
                                           <Label fx:id="phoneNum_warning" />
                                        </children>
                                     </VBox>
-                                    <VBox layoutX="10.0" layoutY="10.0" spacing="10.0" HBox.hgrow="ALWAYS">
+                                    <VBox layoutX="10.0" layoutY="10.0" spacing="10.0">
                                        <children>
                                           <Label alignment="CENTER" text="Email Address">
                                              <font>
@@ -321,11 +321,11 @@
                <content>
                   <AnchorPane>
                      <children>
-                        <VBox alignment="CENTER" spacing="20.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+                        <VBox alignment="CENTER_LEFT" spacing="20.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
                            <children>
                               <HBox fx:id="wineFields" alignment="CENTER" disable="true" maxHeight="0.0" maxWidth="0.0" spacing="20.0" visible="false">
                                  <children>
-                                    <VBox spacing="10.0" HBox.hgrow="ALWAYS">
+                                    <VBox spacing="10.0">
                                        <children>
                                           <Label text="Grape Varietal(s)">
                                              <font>
@@ -335,7 +335,7 @@
                                           <JFXTextField fx:id="grape_Field" />
                                        </children>
                                     </VBox>
-                                    <VBox spacing="10.0" HBox.hgrow="ALWAYS">
+                                    <VBox spacing="10.0">
                                        <children>
                                           <Label alignment="CENTER" text="Vintage">
                                              <font>
@@ -345,7 +345,7 @@
                                           <JFXTextField fx:id="vintage_Field" />
                                        </children>
                                     </VBox>
-                                    <VBox layoutX="10.0" layoutY="10.0" spacing="10.0" HBox.hgrow="ALWAYS">
+                                    <VBox layoutX="10.0" layoutY="10.0" spacing="10.0">
                                        <children>
                                           <Label alignment="CENTER" text="Wine Appellation">
                                              <font>
@@ -355,7 +355,7 @@
                                           <JFXTextField fx:id="appellation_Field" />
                                        </children>
                                     </VBox>
-                                    <VBox layoutX="230.0" layoutY="10.0" spacing="10.0" HBox.hgrow="ALWAYS">
+                                    <VBox layoutX="230.0" layoutY="10.0" spacing="10.0">
                                        <children>
                                           <Label alignment="CENTER" text="PH Value">
                                              <font>
@@ -368,7 +368,7 @@
                                     </VBox>
                                  </children>
                               </HBox>
-                              <HBox alignment="CENTER_LEFT" spacing="20.0">
+                              <HBox alignment="CENTER" spacing="20.0">
                                  <children>
                                     <VBox spacing="10.0" HBox.hgrow="ALWAYS">
                                        <children>
@@ -382,7 +382,7 @@
                                     </VBox>
                                  </children>
                               </HBox>
-                              <HBox alignment="CENTER_LEFT" spacing="20.0">
+                              <HBox alignment="CENTER" spacing="20.0">
                                  <children>
                                     <VBox spacing="10.0">
                                        <children>
@@ -391,11 +391,13 @@
                                                 <Font name="Segoe UI Bold" size="16.0" />
                                              </font>
                                           </Label>
-                                          <ImageView fx:id="frontImageDisp" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-                                          <JFXButton fx:id="front_Upload" alignment="CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" onAction="#uploadFile" prefHeight="0.0" prefWidth="200.0" text="Click Here to Upload Front Image">
+                                          <JFXButton fx:id="front_Upload" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#uploadFile" prefHeight="0.0" prefWidth="200.0" text="Click Here to Upload Front Image">
                                              <font>
                                                 <Font name="Segoe UI Bold" size="11.0" />
                                              </font>
+                                             <graphic>
+                                                <ImageView fx:id="frontImageDisp" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                                             </graphic>
                                           </JFXButton>
                                        </children>
                                     </VBox>
@@ -406,11 +408,13 @@
                                                 <Font name="Segoe UI Bold" size="16.0" />
                                              </font>
                                           </Label>
-                                          <ImageView fx:id="backImageDisp" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-                                          <JFXButton fx:id="back_Upload" alignment="CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" onAction="#uploadFile" prefHeight="0.0" prefWidth="200.0" text="Click Here to Upload Back Image">
+                                          <JFXButton fx:id="back_Upload" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#uploadFile" prefHeight="0.0" prefWidth="200.0" text="Click Here to Upload Back Image">
                                              <font>
                                                 <Font name="Segoe UI Bold" size="11.0" />
                                              </font>
+                                             <graphic>
+                                                <ImageView fx:id="backImageDisp" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                                             </graphic>
                                           </JFXButton>
                                        </children>
                                     </VBox>

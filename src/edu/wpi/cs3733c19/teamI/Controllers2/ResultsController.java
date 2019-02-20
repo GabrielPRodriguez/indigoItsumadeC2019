@@ -33,10 +33,7 @@ import javafx.stage.PopupWindow.AnchorLocation;
 import org.junit.Test;
 
 import javax.swing.text.View;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.Writer;
+import java.io.*;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -132,6 +129,11 @@ public class ResultsController implements Initializable {
     Text varText;
     @FXML
     Text nameText;
+
+    @FXML
+    private void goHome() throws IOException {
+        toolBarController.goHome();
+    }
 
     @FXML
     Label export_message;

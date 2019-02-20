@@ -13,7 +13,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
 public class AgentWorkflowController {
@@ -96,6 +98,12 @@ public class AgentWorkflowController {
 
     @FXML
     JFXButton goHome;
+
+    @FXML
+    JFXTextField domestic_text;
+
+    @FXML
+    JFXTextField beverage_text;
 
     @FXML
     JFXTextField repID_text;
@@ -233,7 +241,7 @@ public class AgentWorkflowController {
     ListView listView;
 
     String formStatus_string;
-    double currentFormID = 0;
+    String currentFormID = "";
 
     //pulls unread forms from the database to be selected
 
@@ -338,52 +346,58 @@ public class AgentWorkflowController {
         //int formID = 0;
         if (choose.getSource() == choose_button1) {
             System.out.println(formID_1.getText());
-            currentFormID = Long.parseLong(formID_1.getText());
+            currentFormID = (formID_1.getText());
 
         } else if (choose.getSource() == choose_button2) {
-            currentFormID = Long.parseLong(formID_2.getText());
+            currentFormID = (formID_2.getText());
 
         } else if (choose.getSource() == choose_button3) {
-            currentFormID = Long.parseLong(formID_3.getText());
+            currentFormID = (formID_3.getText());
 
         }else if (choose.getSource() == choose_button4) {
-            currentFormID = Long.parseLong(formID_4.getText());
+            currentFormID = (formID_4.getText());
 
         }else if (choose.getSource() == choose_button5) {
-            currentFormID = Long.parseLong(formID_5.getText());
+            currentFormID = (formID_5.getText());
 
         }else if (choose.getSource() == choose_button6) {
-            currentFormID = Long.parseLong(formID_6.getText());
+            currentFormID = (formID_6.getText());
 
         }else if (choose.getSource() == choose_button7) {
-            currentFormID = Long.parseLong(formID_7.getText());
+            currentFormID = (formID_7.getText());
 
         }else if (choose.getSource() == choose_button8) {
-            currentFormID = Long.parseLong(formID_8.getText());
+            currentFormID = (formID_8.getText());
 
         }else if (choose.getSource() == choose_button9) {
-            currentFormID = Long.parseLong(formID_9.getText());
+            currentFormID = (formID_9.getText());
 
         }
 
         SQLDriver driver = new SQLDriver();
-        HashMap<String, ReturnedValue>result = driver.get_data_by_value("form_data", "stringified_ids_db.db", "formID", new DBValue<Double>(currentFormID));
+        System.out.println(currentFormID);
+        HashMap<String, ReturnedValue>result = driver.get_data_by_value("form_data", "stringified_ids_db.db", "formID", new DBValue<String>(currentFormID));
 
 
         //setting the text for each field from values in the database
 
         repID_text.setText(result.get("repID").to_string());
         plantRegistry_text.setText(result.get("plantRegistry").to_string());
-        //omesticImported_text.setText(result.get("domesticOrImported").to_string());
+        domestic_text.setText(result.get("domesticOrImported").to_string());
         serialNum_text.setText(result.get("serialNumber").to_string());
-        //productType_text.setText(result.get("beverageType").to_string());
+
+        beverage_text.setText(result.get("beverageType").to_string());
         brandName_text.setText(result.get("brandName").to_string());
         fancifulName_text.setText(result.get("fancifulName").to_string());
+        permitName_text.setText(result.get("permitName").to_string());
         //nameAddress_text.setText(result.get("nameAndAddress").to_string());
         //mailingAddress_text.setText(result.get("mailingAddress").to_string());
 
-        System.out.println(result.toString());
         streetAdress_text.setText(result.get("streetAddress").to_string());
+        state_text.setText(result.get("state").to_string());
+        city_text.setText(result.get("city").to_string());
+
+
 
         formula_text.setText(result.get("formula").to_string());
         grapeVarietal_text.setText(result.get("grapeVarietals").to_string());
@@ -391,14 +405,100 @@ public class AgentWorkflowController {
         winepH_text.setText(result.get("pHValue").to_string());
         vintage_text.setText(result.get("vintage").to_string());
         alcoholContent_text.setText(result.get("alcoholContent").to_string());
-        //phoneNum_text.setText(result.get("phoneNumber").to_string());
-        //emailAddress_text.setText(result.get("email").to_string());
+        phoneNumber_text.setText(result.get("phoneNumber").to_string());
+        email_text.setText(result.get("email").to_string());
         brandedInfo_text.setText(result.get("extraInfo").to_string());
-        //applicationDate_text.setText(result.get("dateOfApplication").to_string());
-       // applicantName_text.setText(result.get("nameOfApplicant").to_string());
+
+
         formStatus_string = (result.get("status").to_string()); //I use two variables because I need the formStatus text as a string
-        //formStatus_text.setText(formStatus_string);
+//        formStatus_text.setText(formStatus_string);
+        volume_text.setText(result.get("volume").to_string());
+
+        System.out.println(result.get("zip").to_string());
+        zip_text.setText(result.get("zip").to_string());
+        System.out.println(result.get("dateOfApplication").to_string());
+        dateOfApplication_text.setText(result.get("dateOfApplication").to_string());
+        applicantName_text.setText(result.get("name").to_string());
     }
+
+    @FXML
+    private void approveHandler() throws IOException, Exception{
+
+        formStatus_string = "approved";
+
+        SQLDriver.setApprovalStatus(currentFormID, formStatus_string);
+        Date date = new Date();
+        String theDate = date.toString();
+        date.equals(date.getTime()+10000);
+        String exDate = date.toString();
+        SQLDriver.setApprovalDate(currentFormID, theDate);
+        SQLDriver.setApprovingUser(currentFormID, this.approvingUser_text.getText());
+        SQLDriver.setExpirationDate(currentFormID, exDate);
+
+
+
+        clearFields();
+        pull_Forms();
+
+        accept_button.setDisable(true);
+        reject_button.setDisable(true);
+
+    }
+
+    @FXML
+    private void rejectHandler() throws IOException, Exception{
+
+        formStatus_string = "reject";
+
+        SQLDriver.setApprovalStatus(currentFormID, formStatus_string);
+        clearFields();
+
+        pull_Forms();
+
+        accept_button.setDisable(true);
+        reject_button.setDisable(true);
+
+    }
+
+    private void clearFields(){
+        repID_text.clear();
+        plantRegistry_text.clear();
+        applicantName_text.clear();
+        permitName_text.clear();
+        serialNum_text.clear();
+        brandName_text.clear();
+        fancifulName_text.clear();
+        domestic_text.clear();
+        beverage_text.clear();
+        alcoholContent_text.clear();
+        volume_text.clear();
+        formula_text.clear();
+        grapeVarietal_text.clear();
+        vintage_text.clear();
+        wineAppellation_text.clear();
+        winepH_text.clear();
+        brandedInfo_text.clear();
+        formID_text.clear();
+        status_text.clear();
+        approvalDate_text.clear();
+        expiryDate_text.clear();
+        issuedDate_text.clear();
+        surrenderDate_text.clear();
+        approvingUser_text.clear();
+        applicationType_text.clear();
+        formQualification_text.clear();
+        streetAdress_text.clear();
+        city_text.clear();
+        state_text.clear();
+        zip_text.clear();
+        dateOfApplication_text.clear();
+        phoneNumber_text.clear();
+        email_text.clear();
+
+
+    }
+
+
 
 
 

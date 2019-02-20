@@ -4,13 +4,12 @@
 <?import com.jfoenix.controls.JFXRadioButton?>
 <?import com.jfoenix.controls.JFXSpinner?>
 <?import com.jfoenix.validation.RequiredFieldValidator?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -25,7 +24,7 @@
    <center>
       <GridPane alignment="CENTER" BorderPane.alignment="CENTER">
         <columnConstraints>
-          <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints fillHeight="false" valignment="CENTER" />
@@ -47,16 +46,12 @@
                <children>
                   <TextField fx:id="searchTextField" onAction="#goSearch" prefHeight="50.0" promptText="Find A Beverage" HBox.hgrow="ALWAYS">
                      <HBox.margin>
-                        <Insets left="200.0" />
+                        <Insets />
                      </HBox.margin></TextField>
-                  <ImageView fitHeight="42.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Assets/magnifying.png" />
-                     </image>
-                     <HBox.margin>
-                        <Insets right="200.0" />
-                     </HBox.margin>
-                  </ImageView>
+                  <JFXButton fx:id="search" alignment="CENTER" graphicTextGap="0.0" mnemonicParsing="false" onAction="#goSearch" text=" ">
+                     <graphic>
+                        <FontAwesomeIconView glyphName="SEARCH" size="30" strokeType="OUTSIDE" strokeWidth="0.0" />
+                     </graphic></JFXButton>
                   <JFXSpinner fx:id="spin" maxHeight="0.0" maxWidth="0.0" radius="20.0" />
                </children>
                <padding>
@@ -88,11 +83,6 @@
                   <CheckBox fx:id="brandName" mnemonicParsing="false" text="Brand" />
                   <CheckBox fx:id="fancifulName" mnemonicParsing="false" text="Fanciful" />
                   <CheckBox fx:id="extraInfo" mnemonicParsing="false" text="extraInfo" />
-                  <JFXButton mnemonicParsing="false" ripplerFill="#02bfe7" style="-fx-background-color: #046b99;" text="Advanced Search" textFill="WHITE">
-                     <font>
-                        <Font name="Segoe UI Bold" size="14.0" />
-                     </font>
-                  </JFXButton>
                </children>
             </HBox>
          </children>

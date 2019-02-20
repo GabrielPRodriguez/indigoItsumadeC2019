@@ -248,6 +248,10 @@ public class AgentWorkflowController implements Initializable {
     JFXRadioButton imported_RadButton;
     @FXML
     Text title;
+    @FXML
+    Button sendBack;
+    @FXML
+    Button forwardButton;
 
     @FXML
     public void update(){
@@ -381,6 +385,8 @@ public class AgentWorkflowController implements Initializable {
     private void chooseButtonHandler(ActionEvent choose) throws  Exception {
         accept_button.setDisable(false);
         reject_button.setDisable(false);
+        sendBack.setDisable(false);
+        forwardButton.setDisable(false);
 
         //int formID = 0;
         if (choose.getSource() == choose_button1) {
@@ -477,7 +483,8 @@ public class AgentWorkflowController implements Initializable {
 
         clearFields();
         pull_Forms();
-
+        sendBack.setDisable(true);
+        forwardButton.setDisable(true);
         accept_button.setDisable(true);
         reject_button.setDisable(true);
 
@@ -498,7 +505,8 @@ public class AgentWorkflowController implements Initializable {
         clearFields();
 
         pull_Forms();
-
+        sendBack.setDisable(true);
+        forwardButton.setDisable(true);
         accept_button.setDisable(true);
         reject_button.setDisable(true);
 
@@ -511,6 +519,8 @@ public class AgentWorkflowController implements Initializable {
         clearFields();
 
         pull_Forms();
+        sendBack.setDisable(true);
+        forwardButton.setDisable(true);
         accept_button.setDisable(true);
         reject_button.setDisable(true);
     }
@@ -518,9 +528,12 @@ public class AgentWorkflowController implements Initializable {
     public void forwardHandler() throws IOException, Exception{
         formStatus_string = "specialist";
         SQLDriver.setApprovalStatus(currentFormID,formStatus_string);
+        SQLDriver.setQualifier(currentFormID,commentBox.getText());
         clearFields();
 
         pull_Forms();
+        sendBack.setDisable(true);
+        forwardButton.setDisable(true);
         accept_button.setDisable(true);
         reject_button.setDisable(true);
     }

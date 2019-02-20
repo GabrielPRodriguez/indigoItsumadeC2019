@@ -352,8 +352,6 @@ public class SQLDriver{
 
                 if (_val.length() > 0 && _user_input.length() > 0){
                     double _result = full_score(_user_input, _val);
-                    
-                    double _result = full_score(_user_input, _val);
 
 
                     if (_result > 0.2){
@@ -365,7 +363,6 @@ public class SQLDriver{
 
 
 
-              
                 }
 
 
@@ -382,21 +379,7 @@ public class SQLDriver{
         System.out.println(results);
         ArrayList<HashMap<String, ReturnedValue>>final_results = new ArrayList<HashMap<String, ReturnedValue>>();
         if (all_distances.size() > 0){
-            ArrayList<Double>_distances = new ArrayList<Double>();
-            for (double val:all_distances){
-                boolean _flag = true;
-                for (double _val:_distances){
-                    if (val == _val){
-                        _flag = false;
-                        break;
-                    }
-
-                }
-                if (_flag){
-                    _distances.add(val);
-                }
-            }
-            all_distances = _distances;
+            
             Collections.sort(all_distances);
             Collections.reverse(all_distances);
             System.out.println("new sorted set distances");

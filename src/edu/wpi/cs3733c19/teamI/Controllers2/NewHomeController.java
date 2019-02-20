@@ -14,6 +14,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.Region;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -84,9 +85,6 @@ public class NewHomeController implements Initializable {
 
     public void setSearchParam(){
         ArrayList<String> paramList = new ArrayList<String>();
-        if(extraInfo.isSelected()){
-            paramList.add("extraInfo");
-        }
         if (brandName.isSelected()) {
             paramList.add("brandName");
         }
@@ -96,7 +94,6 @@ public class NewHomeController implements Initializable {
         if(beverageType.isSelected()){
             paramList.add("beverageType");
         }else if  (paramList.isEmpty()){
-            paramList.add("extraInfo");
             paramList.add("brandName");
             paramList.add("fancifulName");
             paramList.add("beverageType");
@@ -123,6 +120,7 @@ public class NewHomeController implements Initializable {
 
             toolBarController.setResultsMap(searchAlgorithmSelection.run(searchTextField.getText().trim()));
             toolBarController.goSearch();
+
 
             // TODO:this will return what fuzzys return
             // TODO link the return of the fuzzy alghoriths to a listView on the next page (maybe just have field of hashmap that gets passed to the next scene)

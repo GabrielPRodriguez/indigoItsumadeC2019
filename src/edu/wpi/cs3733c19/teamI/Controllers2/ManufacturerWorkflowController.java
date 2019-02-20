@@ -1,11 +1,13 @@
 package edu.wpi.cs3733c19.teamI.Controllers2;
 
+import com.fazecast.jSerialComm.SerialPort;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.DBValue;
 import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.ReturnedValue;
+import edu.wpi.cs3733c19.teamI.Entities.DataTransfer;
 import edu.wpi.cs3733c19.teamI.Entities.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -243,6 +245,9 @@ public class ManufacturerWorkflowController {
     JFXRadioButton imported_RadButton;
     @FXML
     Text title;
+
+    private HashMap<String, String> repToForm = new HashMap<>();
+
     @FXML
     public void update(){
         if(User.getUser("a","a", User.userPower.Specialist,"a","a","a","a","a","a","a","a",",").getUserType().equals("Specialist")){
@@ -270,8 +275,6 @@ public class ManufacturerWorkflowController {
     //pulls unread forms from the database to be selected
     @FXML
     private void pull_Forms() throws Exception{
-        //toolBarController = ToolBarController.getInstance();
-        toolBarController.displaySignInName("YOLO");
         formID_1.setText("");
         formID_2.setText("");
         formID_3.setText("");
@@ -293,12 +296,14 @@ public class ManufacturerWorkflowController {
         SQLDriver driver = new SQLDriver();
         ArrayList<HashMap<String, ReturnedValue>> filtered_results = new ArrayList<HashMap<String, ReturnedValue>>();
         for (HashMap<String, ReturnedValue>result:driver.select_all("stringified_ids_db.db", "form_data")){
-                if (result.get("email").to_string().equals(toolBarController.getCurUser().getUsername())){
-
+                if (result.get("status").to_string().equals(toolBarController.getCurUser().getUsername())){
                     filtered_results.add(result);
                 }
-
         }
+        if(filtered_results.isEmpty()){
+            System.out.println("nope");
+        }
+        System.out.println("process");
         HashMap<Integer, Label>test = new HashMap<Integer, Label>();
         test.put(1, formID_1);
         test.put(2, formID_2);
@@ -314,7 +319,8 @@ public class ManufacturerWorkflowController {
                 try{
                     HashMap<String, ReturnedValue>_temp = filtered_results.get(i-1);
                     //test.get(i).setText("Form "+_temp.get("formID").to_string().replace(".0", ""));
-                    test.get(i).setText(_temp.get("formID").to_string().replace(".0", ""));
+                    test.get(i).setText("Form: " + Integer.toString(i));//_temp.get("repID").to_string().replace(".0", "") + Integer.toString(i));
+                    repToForm.put(test.get(i).getText(), _temp.get("formID").to_string());
                 }
                 catch(Exception e){
                     //pass
@@ -366,36 +372,34 @@ public class ManufacturerWorkflowController {
 
     @FXML
     private void chooseButtonHandler(ActionEvent choose) throws  Exception {
-        accept_button.setDisable(false);
-        reject_button.setDisable(false);
 
         //int formID = 0;
         if (choose.getSource() == choose_button1) {
-            currentFormID = (formID_1.getText());
+            currentFormID = (repToForm.get(formID_1.getText()));
 
         } else if (choose.getSource() == choose_button2) {
-            currentFormID = (formID_2.getText());
+            currentFormID = (repToForm.get(formID_2.getText()));
 
         } else if (choose.getSource() == choose_button3) {
-            currentFormID = (formID_3.getText());
+            currentFormID = (repToForm.get(formID_3.getText()));
 
         }else if (choose.getSource() == choose_button4) {
-            currentFormID = (formID_4.getText());
+            currentFormID = (repToForm.get(formID_4.getText()));
 
         }else if (choose.getSource() == choose_button5) {
-            currentFormID = (formID_5.getText());
+            currentFormID = (repToForm.get(formID_5.getText()));
 
         }else if (choose.getSource() == choose_button6) {
-            currentFormID = (formID_6.getText());
+            currentFormID = (repToForm.get(formID_6.getText()));
 
         }else if (choose.getSource() == choose_button7) {
-            currentFormID = (formID_7.getText());
+            currentFormID = (repToForm.get(formID_7.getText()));
 
         }else if (choose.getSource() == choose_button8) {
-            currentFormID = (formID_8.getText());
+            currentFormID = (repToForm.get(formID_8.getText()));
 
         }else if (choose.getSource() == choose_button9) {
-            currentFormID = (formID_9.getText());
+            currentFormID = (repToForm.get(formID_9.getText()));
 
         }
 
@@ -443,53 +447,20 @@ public class ManufacturerWorkflowController {
         applicantName_text.setText(result.get("name").to_string());
     }
 
-    @FXML
-    private void approveHandler() throws IOException, Exception{
 
-        formStatus_string = "approved";
-
-        SQLDriver.setApprovalStatus(currentFormID, formStatus_string);
-        Date date = new Date();
-        String theDate = date.toString();
-        date.equals(date.getTime()+10000);
-        String exDate = date.toString();
-        SQLDriver.setApprovalDate(currentFormID, theDate);
-        SQLDriver.setApprovingUser(currentFormID, this.approvingUser_text.getText());
-        SQLDriver.setExpirationDate(currentFormID, exDate);
-        if(special){
-            SQLDriver.setQualifier(currentFormID,commentBox.getText());
+    public void editForm(){
+        DataTransfer data = DataTransfer.getInstance();
+        data.currentFormID = this.currentFormID;
+        try {
+            toolBarController.editForm();
         }
+        catch (IOException e){
 
-
-
-        clearFields();
-        pull_Forms();
-
-        accept_button.setDisable(true);
-        reject_button.setDisable(true);
-
+        }
     }
 
-    @FXML
-    private void rejectHandler() throws IOException, Exception{
-        if(special){
-            if(commentBox.getText().equals("")){
-                commentBox.setPromptText("This is a required field for specialist rejections");
-                return;
-            }
-        }
-        SQLDriver.setQualifier(currentFormID,commentBox.getText());
-        formStatus_string = "reject";
 
-        SQLDriver.setApprovalStatus(currentFormID, formStatus_string);
-        clearFields();
 
-        pull_Forms();
-
-        accept_button.setDisable(true);
-        reject_button.setDisable(true);
-
-    }
     @FXML
     public void sendBackHandler() throws IOException, Exception{
         formStatus_string = "commented";

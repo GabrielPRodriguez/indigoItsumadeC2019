@@ -113,6 +113,11 @@ public class ToolBarController implements Initializable {
         //displaySignInName(username);
     }
 
+
+    public void editForm() throws IOException{
+        goNormalFormSub();
+    }
+
     public void goHome() throws IOException {
         Parent homeParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/Home.fxml"));
         primaryStage = Main.getWindow();

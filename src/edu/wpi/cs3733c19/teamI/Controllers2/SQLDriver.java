@@ -227,6 +227,9 @@ public class SQLDriver {
             for (String key : keys) {
                 String _val = result.get(key).to_string();
 
+                //System.out.println(_val);
+                //System.out.println(_user_input);
+                //System.out.println("---------------------");
 
                 if (_val.length() > 0 && _user_input.length() > 0 && filter_immediate(_val, _user_input)) {
                     _count += dl_distance(_val, _user_input);
@@ -241,6 +244,7 @@ public class SQLDriver {
             if (seen_result) {
                 all_distances.add(_count);
                 results.put(_count, result);
+                //System.out.println("Beverage type here "+result.get("beverageType").to_string());
             }
 
 
@@ -391,49 +395,57 @@ public class SQLDriver {
         if (top_results < 1){
             throw new Exception("'top_results' must be a value greater than zero");
         }
-        double valIdentifier = 0;
-        ArrayList<Double>all_distances = new ArrayList<Double>();
-        HashMap<Double, HashMap<String, ReturnedValue>>results = new HashMap<Double, HashMap<String, ReturnedValue>>();
+        ArrayList<Integer>all_distances = new ArrayList<Integer>();
+        HashMap<Integer, HashMap<String, ReturnedValue>>results = new HashMap<Integer, HashMap<String, ReturnedValue>>();
         for (HashMap<String, ReturnedValue>result:select_all(filename, tablename)){
 
 
-            double _count = 0;
+            int _count = 0;
+            boolean seen_result = false;
             for (String key:keys){
                 String _val = result.get(key).to_string();
+                //System.out.println(_val);
+                //System.out.println(_user_input);
+                //System.out.println("---------------------");
 
-                if (_val.length() > 0 && _user_input.length() > 0){
-                    double _result = (((double) _val.length() / l_distance(_user_input, _val) ));//full_score(_user_input, _val);
-                    System.out.println("user input is this long: " + _user_input.length());
-                    System.out.println("le distance is this value" + l_distance(_user_input, _val));
-                    System.out.println("and the result is this val: " + _result);
+                if (_val.length() > 0 && _user_input.length() > 0 && filter_immediate(_val, _user_input)){
+                    System.out.println("Got in here");
+                    _count += l_distance(_val, _user_input);
+                    if (!seen_result){
+                        seen_result = true;
+                    }
 
-                    if (_result > 0.4){
-                        valIdentifier = valIdentifier + 0.00001;
-                        _count += (_result + valIdentifier);
-                    }
-                    else if (filter_immediate(_val, _user_input)){
-                        _count += ( ((double) _user_input.length()) / (double)l_distance(_val, _user_input) );
-                    }
                 }
+
+
             }
-            if (_count > 0){
+            if (seen_result){
                 all_distances.add(_count);
                 results.put(_count, result);
+                //System.out.println("Beverage type here "+result.get("beverageType").to_string());
             }
 
 
         }
-        System.out.println("got all distances below");
-        System.out.println(all_distances);
-        System.out.println(results);
         ArrayList<HashMap<String, ReturnedValue>>final_results = new ArrayList<HashMap<String, ReturnedValue>>();
         if (all_distances.size() > 0){
-            
+            ArrayList<Integer>_distances = new ArrayList<Integer>();
+            for (int val:all_distances){
+                boolean _flag = true;
+                for (int _val:_distances){
+                    if (val == _val){
+                        _flag = false;
+                        break;
+                    }
+
+                }
+                if (_flag){
+                    _distances.add(val);
+                }
+            }
+            all_distances = _distances;
             Collections.sort(all_distances);
-            Collections.reverse(all_distances);
-            System.out.println("new sorted set distances");
-            System.out.println(all_distances);
-            /*
+/*
             int _final_count = 0;
             int index_counter = 1;
             int _size = all_distances.size();
@@ -730,6 +742,31 @@ public class SQLDriver {
         return final_results;
     }
 
+    public ArrayList<HashMap<String, ReturnedValue>>search_sql_plus(String tablename, String filename, String target, String _key) throws Exception{
+        ArrayList<String> targets = new ArrayList<String>();
+        System.out.println("target is " + target);
+        int startIndex = 0;
+        int endIndex = 0;
+        int tarCount = 1;
+        for (int i = 0; i < target.length(); i++){
+            if (target.charAt(i) == '+'){
+                tarCount++;
+                endIndex = i;
+                targets.add(target.substring(startIndex, endIndex));
+                startIndex = i;
+            }
+        }
+        targets.add(target.substring(endIndex + 1,target.length())); //add last item
+        System.out.println("all targets = " + targets.toString());
+        System.out.println("tarCount = " + tarCount);
+        ArrayList<HashMap<String, ReturnedValue>> plusResults = new ArrayList<HashMap<String, ReturnedValue>>();
+        for(int i = 0; i < tarCount; i++){
+            plusResults.addAll(search_sql_wildcard(tablename, filename, targets.get(i), _key));
+        }
+        System.out.println("search Results = " + plusResults);
+        return plusResults;
+    }
+
     public ArrayList<HashMap<String, ReturnedValue>>search_sql_wildcard(String tablename, String filename, String target, String _key) throws Exception{
         //sample method call: search_for_l("form_data", "form_data.db", "MyFancyTitle", "fancifulName");
         String _query = "SELECT * FROM "+tablename+" WHERE "+_key+" LIKE "+"'%"+target+"%'";
@@ -823,8 +860,12 @@ public class SQLDriver {
         for (HashMap<String, ReturnedValue>result: select_all(filename, tablename)){
                 boolean _flag = false;
                 for (String field:search_fields){
+                    //System.out.println("search field: "+field);
                     ReturnedValue type1 = result.get(field);
                     DataField type2 = targets.get(field);
+
+                    System.out.println("At end");
+                    //System.out.println("Type1: " + type1);
 
 
                     if (type1.type.equals("text")|| type1.type.equals("TEXT")){

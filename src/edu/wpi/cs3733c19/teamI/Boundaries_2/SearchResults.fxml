@@ -27,7 +27,7 @@
                <children>
                   <HBox alignment="CENTER_LEFT" spacing="100.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <TextField fx:id="searchTextField" prefHeight="50.0" promptText="Search" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="searchTextField" onAction="#goSearch" prefHeight="50.0" prefWidth="1146.0" promptText="Search" HBox.hgrow="ALWAYS" />
                         <JFXButton fx:id="CSV" mnemonicParsing="false" onAction="#writeExcel" style="-fx-background-color: #4773aa; -fx-background-radius: 20;" text="Export CSV" textFill="WHITE" HBox.hgrow="ALWAYS">
                            <font>
                               <Font name="Segoe UI Bold" size="15.0" />

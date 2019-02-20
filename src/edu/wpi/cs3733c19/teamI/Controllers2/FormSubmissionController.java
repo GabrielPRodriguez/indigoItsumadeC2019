@@ -18,6 +18,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
 
 import java.awt.*;
 import java.io.File;
@@ -219,17 +220,12 @@ public class FormSubmissionController implements Initializable {
     {
         if((event.getSource() == front_Upload) || (event.getSource() == back_Upload))
         {
-            JButton open = new JButton();
-            JFileChooser chooseFile = new JFileChooser();
-            chooseFile.setCurrentDirectory(new java.io.File("System.dir"));
-            FileNameExtensionFilter filter = new FileNameExtensionFilter("*.Images", "jpg", "png");
-            chooseFile.setFileFilter(filter);
-            chooseFile.setDialogTitle("Please Choose an Image to Upload");
-            chooseFile.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+            FileChooser chooseFile = new FileChooser();
+            File selectedFile = chooseFile.showOpenDialog(null);
+            chooseFile.setTitle("Please Choose an Image to Upload");
 
-            if(chooseFile.showOpenDialog(open) == JFileChooser.APPROVE_OPTION)
+            if(selectedFile != null)
             {
-                File selectedFile = chooseFile.getSelectedFile();
                 String filePath = selectedFile.getAbsolutePath();
                 Image selectedImage = new Image(new File(filePath).toURI().toString());
 
@@ -244,6 +240,33 @@ public class FormSubmissionController implements Initializable {
                 }
             }
         }
+//        if((event.getSource() == front_Upload) || (event.getSource() == back_Upload))
+//        {
+//            JButton open = new JButton();
+//            JFileChooser chooseFile = new JFileChooser();
+//            chooseFile.setCurrentDirectory(new java.io.File("System.dir"));
+//            FileNameExtensionFilter filter = new FileNameExtensionFilter("*.Images", "jpg", "png");
+//            chooseFile.setFileFilter(filter);
+//            chooseFile.setDialogTitle("Please Choose an Image to Upload");
+//            chooseFile.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+//
+//            if(chooseFile.showOpenDialog(open) == JFileChooser.APPROVE_OPTION)
+//            {
+//                File selectedFile = chooseFile.getSelectedFile();
+//                String filePath = selectedFile.getAbsolutePath();
+//                Image selectedImage = new Image(new File(filePath).toURI().toString());
+//
+//                if(event.getSource() == front_Upload)
+//                {
+//                    frontImageDisp.setImage(selectedImage);
+//                }
+//
+//                if(event.getSource() == back_Upload)
+//                {
+//                    backImageDisp.setImage(selectedImage);
+//                }
+//            }
+//        }
     }
 
     //Enables the fields that are only used for wine when the wine radial button is selected

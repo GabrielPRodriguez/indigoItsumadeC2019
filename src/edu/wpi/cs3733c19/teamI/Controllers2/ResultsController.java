@@ -335,7 +335,7 @@ public class ResultsController implements Initializable {
     public void writeExcel() throws Exception {
         export_message.setText("");
         Writer writer = null;
-        String fileTimestamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+        String fileTimestamp = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss").format(new Date());
         String delimiter = ",";
         setAllDisplayedReseults();
         if (toolBarController.getCurUser() != null ){

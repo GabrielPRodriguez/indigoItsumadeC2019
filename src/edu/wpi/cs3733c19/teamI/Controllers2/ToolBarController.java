@@ -106,7 +106,6 @@ public class ToolBarController implements Initializable {
        signedIn = true;
        if(curUser != null) {
            curUser.logOutUser();
-           data.UserName = "";
            System.out.println("LOGEDOUT------------------");
        }
        curUser = curUser.getUser(username, password, power, theState, theCity,theZip,theStreet, theFirstName,theLastName,thePhone,theRepID);
@@ -160,12 +159,10 @@ public class ToolBarController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         data = DataTransfer.getInstance();
+        tb_loginButton.setText(data.LogButtonName);
         if(!data.UserName.isEmpty()){
-            System.out.println("ACTUAL-TEXT--------------");
-            System.out.println(data.UserName);
             displaySignInName(data.UserName);
         }else{
-            System.out.println("BRANK!!!!");
             takeOffSignInName();
         }
 
@@ -175,6 +172,18 @@ public class ToolBarController implements Initializable {
 
 
     public void goLogin() throws IOException {
+        if(curUser != null){
+            curUser.logOutUser(); //log out current user
+            data.UserName = curUser.getUsername();//update name
+            if(data.loginStatus == 0){
+                data.loginStatus = 1;
+                data.LogButtonName = "Logout";
+            }
+            else{
+                data.loginStatus = 1;
+                data.LogButtonName = "Login";
+            }
+        }
 
         Parent loginParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/Login_CreateAccount.fxml"));
       //  loginParent.get
@@ -182,7 +191,6 @@ public class ToolBarController implements Initializable {
         primaryStage.getScene().setRoot(loginParent);
        // primaryStage.getScene().getRoot().g
         takeOffSignInName();
-        System.out.println("YO");
         primaryStage.show();
 
     }

@@ -9,6 +9,9 @@ public class DataTransfer {
 
     public String UserName = "";
 
+    public String LogButtonName = "Login";
+    public int loginStatus = 0;
+
     private DataTransfer() {
     }
 }

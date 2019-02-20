@@ -82,7 +82,6 @@
                   <CheckBox fx:id="beverageType" mnemonicParsing="false" text="Type" />
                   <CheckBox fx:id="brandName" mnemonicParsing="false" text="Brand" />
                   <CheckBox fx:id="fancifulName" mnemonicParsing="false" text="Fanciful" />
-                  <CheckBox fx:id="extraInfo" mnemonicParsing="false" text="extraInfo" />
                </children>
             </HBox>
          </children>

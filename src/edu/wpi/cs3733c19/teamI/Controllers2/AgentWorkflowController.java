@@ -441,7 +441,7 @@ public class AgentWorkflowController implements Initializable {
         city_text.setText(result.get("city").to_string());
 
 
-
+        formQualification_text.setText(result.get("qualifier").to_string());
         formula_text.setText(result.get("formula").to_string());
         grapeVarietal_text.setText(result.get("grapeVarietals").to_string());
         wineAppellation_text.setText(result.get("wineAppellation").to_string());

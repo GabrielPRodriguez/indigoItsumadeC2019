@@ -7,15 +7,16 @@ import edu.wpi.cs3733c19.teamI.Algorithms.DLFuzzy;
 import edu.wpi.cs3733c19.teamI.Algorithms.LFuzzy;
 import edu.wpi.cs3733c19.teamI.Algorithms.SQLFuzzy;
 import edu.wpi.cs3733c19.teamI.Algorithms.fuzzyContext;
+import edu.wpi.cs3733c19.teamI.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.Parent;
+import javafx.scene.control.*;
 import javafx.scene.layout.Region;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -60,7 +61,10 @@ public class NewHomeController implements Initializable {
     @FXML
     CheckBox beverageType;
 
-
+    @FXML
+    public void goHelpHome() throws IOException {
+        toolBarController.goHelpHome();
+    }
 
     @FXML
     public void setAlgorithm(){

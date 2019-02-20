@@ -51,7 +51,10 @@ public class FormSubmissionController implements Initializable {
     @FXML
     JFXButton submit;
 
-
+    @FXML
+    public void goHelpSubmit() throws IOException {
+        toolBarController.goHelpSubmit();
+    }
 
     private void setWineToggle(){
 

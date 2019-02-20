@@ -113,13 +113,11 @@ public class ToolBarController implements Initializable {
         //displaySignInName(username);
     }
 
-
     public void goHome() throws IOException {
         Parent homeParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/Home.fxml"));
         primaryStage = Main.getWindow();
         primaryStage.getScene().setRoot(homeParent);
     }
-
 
     public void goAbout() throws IOException {
         Parent aboutParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/About.fxml"));
@@ -254,6 +252,24 @@ public class ToolBarController implements Initializable {
     public void transferSearchInfo(ArrayList<HashMap<String, ReturnedValue>> resultsList){
         ResultsController.setTestString("a new string");
         ResultsController.setResultsList(resultsList);
+    }
+
+    public void goHelpHome() throws IOException {
+        Parent helphomeParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/HelpHomePage.fxml"));
+        primaryStage = Main.getWindow();
+        primaryStage.getScene().setRoot(helphomeParent);
+    }
+
+    public void goHelpSubmit() throws IOException {
+        Parent helpsubmitParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/HelpSubmitForm.fxml"));
+        primaryStage = Main.getWindow();
+        primaryStage.getScene().setRoot(helpsubmitParent);
+    }
+
+    public void goHelpWorkflow() throws IOException {
+        Parent helpworkflowParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/HelpWorkFlow.fxml"));
+        primaryStage = Main.getWindow();
+        primaryStage.getScene().setRoot(helpworkflowParent);
     }
 
     public void displaySignInName(String name){

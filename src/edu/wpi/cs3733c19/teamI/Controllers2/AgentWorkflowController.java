@@ -262,8 +262,13 @@ public class AgentWorkflowController {
     String formStatus_string;
     String currentFormID = "";
 
-    //pulls unread forms from the database to be selected
 
+    @FXML
+    public void goHelpWorkflow() throws IOException {
+        toolBarController.goHelpWorkflow();
+    }
+
+    //pulls unread forms from the database to be selected
     @FXML
     private void pull_Forms() throws Exception{
         //toolBarController = ToolBarController.getInstance();

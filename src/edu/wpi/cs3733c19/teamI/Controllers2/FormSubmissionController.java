@@ -222,8 +222,7 @@ public class FormSubmissionController implements Initializable {
         {
             FileChooser chooseFile = new FileChooser();
             File selectedFile = chooseFile.showOpenDialog(null);
-            FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("*.Images", "jpg", "png");
-            chooseFile.setSelectedExtensionFilter(filter);
+            chooseFile.setTitle("Please Choose an Image to Upload");
 
             if(selectedFile != null)
             {

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -43,6 +44,11 @@
                                     <Insets />
                                  </VBox.margin>
                               </JFXButton>
+                              <JFXComboBox fx:id="delimDrop" prefHeight="27.0" prefWidth="102.0" promptText="Default">
+                                 <VBox.margin>
+                                    <Insets top="5.0" />
+                                 </VBox.margin>
+                              </JFXComboBox>
                            </children>
                         </VBox>
                      </children>

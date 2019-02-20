@@ -1,6 +1,7 @@
 package edu.wpi.cs3733c19.teamI.Controllers2;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXPopup;
 import edu.wpi.cs3733c19.teamI.Algorithms.SQLFuzzy;
 import edu.wpi.cs3733c19.teamI.Algorithms.fuzzyContext;
@@ -128,6 +129,9 @@ public class ResultsController implements Initializable {
     Text varText;
     @FXML
     Text nameText;
+
+    @FXML
+    JFXComboBox delimDrop;
 
     @FXML
     private void goHome() throws IOException {
@@ -286,6 +290,13 @@ public class ResultsController implements Initializable {
         setTable();
         convertToForms(0);
         toolBarController = ToolBarController.getInstance();
+
+        delimDrop.getItems().addAll(
+                "Comma",
+                "Colon",
+                "Semicolon",
+                "Pipe");
+
     }
 
 
@@ -331,14 +342,36 @@ public class ResultsController implements Initializable {
         nameText.setText(oneBeverage.getSummary().get(5));
     }
 
-    //create CSV function
+
+    public String dropdownSelected(){
+        String retString;
+        try{
+            if(delimDrop.getValue().toString().equals("Comma")){
+                return ",";
+            }else if(delimDrop.getValue().toString().equals("Colon")){
+                return ":";
+            }else if(delimDrop.getValue().toString().equals("Semicolon")){
+                return ";";
+            }else if(delimDrop.getValue().toString().equals("Pipe")){
+                return "|";
+            }
+
+        }catch (Exception ex){
+            return "";
+        }
+        return "";
+    }
+
     public void writeExcel() throws Exception {
         export_message.setText("");
         Writer writer = null;
         String fileTimestamp = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss").format(new Date());
         String delimiter = ",";
         setAllDisplayedReseults();
-        if (toolBarController.getCurUser() != null ){
+
+        if(!dropdownSelected().isEmpty()){
+            delimiter = dropdownSelected();
+        }else if (toolBarController.getCurUser() != null ){
             delimiter = String.valueOf(toolBarController.getCurUser().getDelim());
         }
 

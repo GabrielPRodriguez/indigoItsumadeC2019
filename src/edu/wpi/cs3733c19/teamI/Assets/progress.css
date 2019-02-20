@@ -1,0 +1,18 @@
+.my-progress-bar .bar {
+    -fx-background-radius: 5;
+}
+.my-progress-bar .track {
+    -fx-background-radius: 5;
+}
+.my-progress-bar {
+    -fx-background-radius: 5;
+}
+.red-progress-bar .bar {
+    -fx-background-color: red;
+}
+.yellow-progress-bar .bar {
+    -fx-background-color: yellow;
+}
+.green-progress-bar .bar {
+    -fx-background-color: green;
+}

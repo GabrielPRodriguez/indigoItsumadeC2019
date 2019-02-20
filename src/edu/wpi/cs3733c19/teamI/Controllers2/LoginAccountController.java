@@ -5,10 +5,14 @@ import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.DBValue;
 import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.ReturnedValue;
 import edu.wpi.cs3733c19.teamI.Entities.DataField;
 import edu.wpi.cs3733c19.teamI.Entities.User;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.text.Text;
@@ -23,13 +27,19 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.security.Key;
+import java.time.Duration;
 import java.util.*;
 
+/** Imports for Strength */
+import me.gosimple.nbvcxz.Nbvcxz;
+import me.gosimple.nbvcxz.scoring.Result;
+import me.gosimple.nbvcxz.scoring.TimeEstimate;
 
 public class LoginAccountController implements Initializable {
 
     private ToolBarController toolBarController = ToolBarController.getInstance();
 
+    Nbvcxz nbvcxz = new Nbvcxz(); //Password Strength
 
     @FXML
     JFXTextField Email;
@@ -90,6 +100,13 @@ public class LoginAccountController implements Initializable {
     Label lastNameError;
 
 
+    @FXML
+    JFXProgressBar strengthBar;
+    private static final String RED_BAR    = "red-progress-bar";
+    private static final String YELLOW_BAR = "yellow-progress-bar";
+    //private static final String ORANGE_BAR = "orange-bar";
+    private static final String GREEN_BAR  = "green-progress-bar";
+    private static final String[] barColorStyleClasses = { RED_BAR, YELLOW_BAR, GREEN_BAR };
 
 
     public void setToolBarController(ToolBarController toolBarController){
@@ -395,6 +412,21 @@ public class LoginAccountController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources){
+        //JFXProgressBar jfxBar = new JFXProgressBar();
+        strengthBar.setPrefWidth(200);
+        //JFXProgressBar jfxBarInf = new JFXProgressBar();
+        //jfxBarInf.setPrefWidth(500);
+        //strengthBar.getStyleClass().add("green-bar");
+        strengthBar.setProgress(0.0);
+
+        //strengthBar.getStyleClass().add(getClass().getResource("../Assets/progress.css").toExternalForm());
+        strengthBar.setStyle("-fx-background-color: red;");
+
+        //Timeline timeline = new Timeline(
+                //new KeyFrame(Duration.ZERO, new KeyValue(bar.progressProperty(), 0), new KeyValue(jfxBar.progressProperty(), 0)),
+                //new KeyFrame(Duration.seconds(2), new KeyValue(bar.progressProperty(), 1), new KeyValue(jfxBar.progressProperty(), 1)));
+        //timeline.setCycleCount(Timeline.INDEFINITE);
+        //timeline.play();
     }
 
     User.userPower getType() throws Exception {
@@ -423,6 +455,44 @@ public class LoginAccountController implements Initializable {
         }
 
     }
+
+    public void passCallback(){
+
+        Result result = nbvcxz.estimate(PasswordCreate.getText());
+
+        //String timeToCrackOn = TimeEstimate.getTimeToCrackFormatted(result, "ONLINE_THROTTLED");
+        //System.out.println("---------------------");
+        int score = result.getBasicScore();
+        //System.out.println(timeToCrackOn);
+
+        strengthBar.getStyleClass().removeAll(barColorStyleClasses);
+
+        if(score == 0){
+            strengthBar.setProgress(0.1);
+            strengthBar.getStyleClass().add(RED_BAR);
+        }else if (score == 1){
+            strengthBar.setProgress(0.25);
+            strengthBar.getStyleClass().add(RED_BAR);
+        }else if(score == 2){
+            strengthBar.setProgress(0.5);
+            strengthBar.getStyleClass().add(YELLOW_BAR);
+        }else if(score == 3){
+            strengthBar.setProgress(0.75);
+            strengthBar.getStyleClass().add(YELLOW_BAR);
+        }else if(score == 4){
+            strengthBar.setProgress(1.0);
+            strengthBar.getStyleClass().add(GREEN_BAR);
+        }
+
+
+
+
+
+
+
+
+
+        }
 
 
 }

@@ -101,9 +101,7 @@ public class LoginAccountController implements Initializable {
 
     @FXML
     public void login(ActionEvent actionEvent) throws Exception {
-        System.out.println("about to check..");
         if(!attemptLogin(actionEvent)){
-            System.out.println("attempt login fail");
 
         }
         else {
@@ -111,26 +109,21 @@ public class LoginAccountController implements Initializable {
             //TODO: eliminate following toggel button code, shold be handled by DB
 
             powerCreate = getType();
-            System.out.println(powerCreate.toString());
             String toggleGroupValue = "Standard";
             //check the text file for the user type and assign it
             if (ToggleType.getSelectedToggle() != null) {
                 RadioButton selectedRadioButton = (RadioButton) ToggleType.getSelectedToggle();
                 toggleGroupValue = selectedRadioButton.getText();
             }
-            System.out.println(powerCreate.toString());
 
             if (ToggleType.getSelectedToggle() == null) {
                 powerCreate = powerCreate;
             } else if (toggleGroupValue.equals("Manufacturer")) {
                 powerCreate = User.userPower.Company;
-                System.out.println("toggle man");
             } else if (toggleGroupValue.equals("Agent")) {
                 powerCreate = User.userPower.TTBEmployee;
-                System.out.println("toggle employ");
             } else {
                 powerCreate = User.userPower.Standard;
-                System.out.println("togg stand");
             }
 
             ArrayList<HashMap<String, ReturnedValue>> users = new ArrayList<>();
@@ -149,7 +142,6 @@ public class LoginAccountController implements Initializable {
             else{
                 powerCreate= User.userPower.Specialist;
             }
-            System.out.println(encryptPassword("Specialist"));
 
             toolBarController.login(Email.getText(), Password.getText(), powerCreate, users.get(0).get("state").to_string(), users.get(0).get("city").to_string(), users.get(0).get("zipCode").to_string(), users.get(0).get("streetAdress").to_string(), users.get(0).get("firstName").to_string(), users.get(0).get("lastName").to_string(), users.get(0).get("phoneNumber").to_string(), users.get(0).get("RepIDnum").to_string() );
         }
@@ -193,7 +185,6 @@ public class LoginAccountController implements Initializable {
             users = loginDriver.get_user_data_by_value("credentials", "user_database.db", param, searchParam);//readFile(users);
         }
         catch(Exception e){
-            System.out.println("no db");
         }
 
 
@@ -303,7 +294,6 @@ public class LoginAccountController implements Initializable {
         else{
             userType = "!";
         }
-        System.out.println("Creating an Account");
         addUser = ":"+addUser+":"+encryptPassword(passCreate)+":"+ userType+":";
 
         outputStream.write("\n"+ addUser);
@@ -320,7 +310,6 @@ public class LoginAccountController implements Initializable {
         param.add("email");
         HashMap<String, DataField> searchParam = new HashMap<>();
         searchParam.put("email", new DataField(Email.getText(), "email"));
-        System.out.println("Data collected");
 
         users = loginDriver.get_user_data_by_value("credentials", "user_database.db", param, searchParam);//readFile(users);
         if(Email.getText().isEmpty() || Password.getText().isEmpty()){
@@ -418,7 +407,6 @@ public class LoginAccountController implements Initializable {
         if(!(index == 0)) {
             type = users.substring(index+buffer+1, index+buffer+2);
         }
-        System.out.println(type);
         if (type.equals("&")){
             return User.userPower.TTBEmployee;
         }

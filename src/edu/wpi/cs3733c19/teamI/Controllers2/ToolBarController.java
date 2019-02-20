@@ -72,7 +72,6 @@ public class ToolBarController {
 
 
     void setResultsMap(ArrayList<HashMap<String, ReturnedValue>> resultsMap){
-        System.out.println(ResultsController);
             this.resultsMap = resultsMap;
             ResultsController.convertToForms(0);
 
@@ -99,7 +98,6 @@ public class ToolBarController {
 
     public void login(String username, String password, User.userPower power, String theState, String theCity, String theZip, String theStreet, String theFirstName, String theLastName, String thePhone, String theRepID ) throws IOException
     {
-        //System.out.println("logging in");
        signedIn = true;
        if(curUser != null) {
            curUser.logOutUser();
@@ -124,9 +122,6 @@ public class ToolBarController {
     }
 
     public void goSubmit() throws IOException {
-        //System.out.println(signedIn);
-        System.out.println("entering form subselector");
-        System.out.println(curUser);
         if((curUser == null) || curUser.getUsername().equals(""))
         {
             goLogin();
@@ -201,12 +196,10 @@ public class ToolBarController {
     }
 
     public void goSearch() throws IOException {
-        System.out.println("toolSearch");
 
        // Parent searchParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/Home.fxml"));
         primaryStage = Main.getWindow();
         primaryStage.getScene().setRoot(searchParent);
-        System.out.println("Should have changed?");
     }
 
 

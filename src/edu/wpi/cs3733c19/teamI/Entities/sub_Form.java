@@ -166,7 +166,7 @@ public class sub_Form {
     public String returnColumnNames(String delim){
         String csvColumn = "RepID" + delim + "Plant Registry" + delim + "Domestic/Imported" + delim + "Serial Number" + delim + "Beverage Type" + delim
                 + "Brand Name" + delim + "Fanciful Name" + delim + "Vintage" + delim + "Grape Varientals" + delim + "pH Value" + delim + "Wine Appellation"
-                + delim + "Alcohol Content" + delim + "Phone Number" + delim + "Email" + "\n";
+                + delim + "Alcohol Content" + delim + "Phone Number" + delim + "Email";
         return csvColumn;
     }
 

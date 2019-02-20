@@ -14,7 +14,7 @@ public class User {
     private String phone;
     private String repId;
 
-    private char delim;
+    private String delim;
         public enum userPower
         {
         Standard, Company, TTBEmployee, SuperAdmin, Specialist
@@ -23,7 +23,7 @@ public class User {
 
     private static User curUser;
 
-    private User(String name, String pass, userPower type, String theState, String theCity, String theZip, String theStreet, String theFirstName, String theLastName, String thePhone, String theRepID){
+    private User(String name, String pass, userPower type, String theState, String theCity, String theZip, String theStreet, String theFirstName, String theLastName, String thePhone, String theRepID, String delim){
         username = name;
         password = pass;
         userType = type;
@@ -35,21 +35,24 @@ public class User {
         lastName = theLastName;
         phone = thePhone;
         repId = theRepID;
+        if(delim.equals(""))this.delim = ",";
+        else this.delim = delim;
 
 
             }
 
     private static class UserHelper{
-        private static final User curUser = new User("","",userPower.Standard, "", "", "", "", "", "", "", "");
+        private static final User curUser = new User("","",userPower.Standard, "", "", "", "", "", "", "", "", ",");
     }
 
     public void logOutUser(){
-        curUser = new User("", "", userPower.Standard, "", "","","","","","","");
+        curUser = new User("", "", userPower.Standard, "", "","","","","","","", ",");
     }
 
-    public static User getUser(String name, String pass, userPower type, String theState, String theCity, String theZip, String theStreet, String theFirstName, String theLastName, String thePhone, String theRepID){
+    public static User getUser(String name, String pass, userPower type, String theState, String theCity, String theZip, String theStreet, String theFirstName, String theLastName,
+                               String thePhone, String theRepID, String theDelim){
         if((curUser == null)|| curUser.username.equals("")){
-            curUser = new User(name, pass, type, theState, theCity, theZip, theStreet, theFirstName, theLastName, thePhone, theRepID);
+            curUser = new User(name, pass, type, theState, theCity, theZip, theStreet, theFirstName, theLastName, thePhone, theRepID, theDelim);
         }
         return UserHelper.curUser;
     }
@@ -76,11 +79,11 @@ public class User {
 
     public void setAppsPer(int newApps){curUser.appsPer = newApps; }
 
-    public char getDelim() {
+    public String getDelim() {
         return delim;
     }
 
-    public void setDelim(char delim) {
+    public void setDelim(String delim) {
         this.delim = delim;
     }
 

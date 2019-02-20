@@ -269,7 +269,6 @@ public class ResultsController implements Initializable {
 
     public void setTable(){
         //get results
-        System.out.println("Updated");
         //convertToForms();
         //update columns on table view
         this.Domestic.setCellValueFactory(new PropertyValueFactory<sub_Form, String>("domesticOrImported"));
@@ -301,7 +300,6 @@ public class ResultsController implements Initializable {
     }
 
     public void goSearch(ActionEvent actionEvent) throws Exception {
-
         if (searchTextField.getText() == null || searchTextField.getText().trim().isEmpty()){
             // TODO Insert here anything you want the app to do when user click search and box is empty
 
@@ -357,7 +355,6 @@ public class ResultsController implements Initializable {
             export_message.setTextFill(Color.web("#4BB543"));
             export_message.setText("CSV Exported!");
         } catch (Exception ex) {
-            System.out.println("Error exporting CSV");
             ex.printStackTrace();
             export_message.setTextFill(Color.web("#FF0000"));
             export_message.setText("Error exporting CSV");

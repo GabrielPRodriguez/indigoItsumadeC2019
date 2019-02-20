@@ -2,25 +2,26 @@ package edu.wpi.cs3733c19.teamI.Controllers2;
 
 import com.jfoenix.controls.JFXButton;
 import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.ReturnedValue;
-import edu.wpi.cs3733c19.teamI.Entities.DataField;
-import edu.wpi.cs3733c19.teamI.Entities.Message;
-import edu.wpi.cs3733c19.teamI.Entities.ToolBarSignInName;
-import edu.wpi.cs3733c19.teamI.Entities.User;
+import edu.wpi.cs3733c19.teamI.Entities.*;
 import edu.wpi.cs3733c19.teamI.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.ResourceBundle;
 
-public class ToolBarController {
+public class ToolBarController implements Initializable {
 
+    DataTransfer data = DataTransfer.getInstance();
 
     public Stage primaryStage = Main.getWindow();
 
@@ -42,6 +43,8 @@ public class ToolBarController {
 
     @FXML
     Label signInLabel;   //here is what we are going to write to when the person signs in
+    @FXML
+    Label signInLabel2;
 
     static ToolBarController instance;
     private static User curUser = null;
@@ -72,7 +75,6 @@ public class ToolBarController {
 
 
     void setResultsMap(ArrayList<HashMap<String, ReturnedValue>> resultsMap){
-        System.out.println(ResultsController);
             this.resultsMap = resultsMap;
             ResultsController.convertToForms(0);
 
@@ -94,28 +96,28 @@ public class ToolBarController {
 
     public void loginRFID(String username, String password, User.userPower power){
         signedIn = true;
-        curUser = User.getUser(username, password, power, "", "","","","","","","");
+        curUser = User.getUser(username, password, power, "", "","","","","","","", "");
     }
 
-    public void login(String username, String password, User.userPower power, String theState, String theCity, String theZip, String theStreet, String theFirstName, String theLastName, String thePhone, String theRepID ) throws IOException
+    public void login(String username, String password, User.userPower power, String theState, String theCity, String theZip, String theStreet, String theFirstName, String theLastName, String thePhone, String theRepID, String delim ) throws IOException
     {
-        //System.out.println("logging in");
        signedIn = true;
        if(curUser != null) {
            curUser.logOutUser();
        }
-       curUser = curUser.getUser(username, password, power, theState, theCity,theZip,theStreet, theFirstName,theLastName,thePhone,theRepID);
-       goWorkflow();
+       curUser = curUser.getUser(username, password, power, theState, theCity,theZip,theStreet, theFirstName,theLastName,thePhone,theRepID, delim);
+        data.UserName = curUser.getUsername();
+        //data.LogButtonName = "Logout";
+
+                goWorkflow();
         //displaySignInName(username);
     }
-
 
     public void goHome() throws IOException {
         Parent homeParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/Home.fxml"));
         primaryStage = Main.getWindow();
         primaryStage.getScene().setRoot(homeParent);
     }
-
 
     public void goAbout() throws IOException {
         Parent aboutParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/About.fxml"));
@@ -124,9 +126,6 @@ public class ToolBarController {
     }
 
     public void goSubmit() throws IOException {
-        //System.out.println(signedIn);
-        System.out.println("entering form subselector");
-        System.out.println(curUser);
         if((curUser == null) || curUser.getUsername().equals(""))
         {
             goLogin();
@@ -149,12 +148,48 @@ public class ToolBarController {
         primaryStage = Main.getWindow();
         primaryStage.getScene().setRoot(multiFormSubParent);
     }
+    /*
+    create an init in this class
+     */
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        data = DataTransfer.getInstance();
+        if(curUser == null){tb_loginButton.setText("Login");}
+        else if((curUser.getUsername().equals(""))) {tb_loginButton.setText("Login");}
+        else{tb_loginButton.setText("Logout");}
+        if(!data.UserName.isEmpty()){
+            displaySignInName(data.UserName);
+        }else{
+            takeOffSignInName();
+        }
+
+        //signInLabel.setText(data.UserName);
+
+    }
 
 
     public void goLogin() throws IOException {
+        if(curUser != null){
+            curUser.logOutUser(); //log out current user
+            data.UserName = curUser.getUsername();//update name
+            if(data.loginStatus == 0){
+                data.loginStatus = 1;
+                data.LogButtonName = "Logout";
+            }
+            else{
+                data.loginStatus = 0;
+                data.LogButtonName = "Login";
+            }
+        }
+
         Parent loginParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/Login_CreateAccount.fxml"));
+      //  loginParent.get
         primaryStage = Main.getWindow();
         primaryStage.getScene().setRoot(loginParent);
+       // primaryStage.getScene().getRoot().g
+        takeOffSignInName();
+        primaryStage.show();
 
     }
 
@@ -165,7 +200,7 @@ public class ToolBarController {
         {
             goLogin();
         }
-        else if(curUser.getUserType().equals(User.userPower.TTBEmployee))
+        else if(curUser.getUserType().equals(User.userPower.TTBEmployee)||curUser.getUserType().equals(User.userPower.Specialist))
         {
             goWorkflowAgent();
         }
@@ -201,13 +236,13 @@ public class ToolBarController {
     }
 
     public void goSearch() throws IOException {
-        System.out.println("toolSearch");
 
-       // Parent searchParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/Home.fxml"));
+        Parent searchParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/SearchResults.fxml"));
+       // FXMLLoader resultsPageLoader = new FXMLLoader(getClass().getResource("../Boundaries_2/SearchResults.fxml"));
+
+       // Parent resultPane = resultsPageLoader.load();
         primaryStage = Main.getWindow();
-        primaryStage.getScene().setRoot(searchParent);
-        System.out.println("Should have changed?");
-    }
+        primaryStage.getScene().setRoot(searchParent); }
 
 
     public void goExit(ActionEvent actionEvent){
@@ -219,14 +254,40 @@ public class ToolBarController {
         ResultsController.setResultsList(resultsList);
     }
 
+    public void goHelpHome() throws IOException {
+        Parent helphomeParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/HelpHomePage.fxml"));
+        primaryStage = Main.getWindow();
+        primaryStage.getScene().setRoot(helphomeParent);
+    }
+
+    public void goHelpSubmit() throws IOException {
+        Parent helpsubmitParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/HelpSubmitForm.fxml"));
+        primaryStage = Main.getWindow();
+        primaryStage.getScene().setRoot(helpsubmitParent);
+    }
+
+    public void goHelpWorkflow() throws IOException {
+        Parent helpworkflowParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/HelpWorkFlow.fxml"));
+        primaryStage = Main.getWindow();
+        primaryStage.getScene().setRoot(helpworkflowParent);
+    }
+
     public void displaySignInName(String name){
-        clearText.setText(name);
+        //clearText.setText(name);
         // TODO implement Label on the FXML ToolBar to display the sign in of the person
-        signInLabel.setText(toolBarSignInName.getText());
+        //signInLabel.setText("FUCK");
+
+
+        //data = DataTransfer.getInstance();
+        //signInLabel.setText(data.UserName);
+        clearText.setText(name);
+        signInLabel.setText("Signed in as");
+        signInLabel2.setText(toolBarSignInName.getText());
     }
     // TODO call this method when the person signs out of the account
     public void takeOffSignInName(){
         signInLabel.setText("");
+        signInLabel2.setText("");
     }
 
 

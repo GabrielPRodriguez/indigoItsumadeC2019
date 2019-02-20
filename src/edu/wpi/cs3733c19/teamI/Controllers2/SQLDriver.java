@@ -78,7 +78,6 @@ public class SQLDriver{
 
     }
     public int l_distance(String a, String b){
-       // System.out.println("in l_distance");
         a.toLowerCase();
         b.toLowerCase();
 
@@ -222,12 +221,9 @@ public class SQLDriver{
             boolean seen_result = false;
             for (String key:keys){
                 String _val = result.get(key).to_string();
-                System.out.println(_val);
-                System.out.println(_user_input);
-                System.out.println("---------------------");
+
 
                 if (_val.length() > 0 && _user_input.length() > 0 && filter_immediate(_val, _user_input)){
-                    System.out.println("Got in here");
                     _count += dl_distance(_val, _user_input);
                     if (!seen_result){
                         seen_result = true;
@@ -240,7 +236,6 @@ public class SQLDriver{
             if (seen_result){
                 all_distances.add(_count);
                 results.put(_count, result);
-                System.out.println("Beverage type here "+result.get("beverageType").to_string());
             }
 
 
@@ -307,7 +302,6 @@ public class SQLDriver{
                         flag = false;
                         break;
                     } else {
-                        System.out.println("got true result");
                         flag = true;
                     }
 
@@ -317,7 +311,6 @@ public class SQLDriver{
                 }
 
             }
-            //System.out.println(flag);
             return flag;
 
         }
@@ -329,7 +322,6 @@ public class SQLDriver{
                         flag = false;
                         break;
                     } else {
-                        System.out.println("got true result");
                         flag = true;
                     }
 
@@ -346,7 +338,6 @@ public class SQLDriver{
 
     }
     public ArrayList<HashMap<String, ReturnedValue>>search_for_l_multiple(String tablename, String filename, ArrayList<String>keys, String _user_input, int top_results) throws Exception{
-        System.out.println("In search_for_l_multiple");
         if (top_results < 1){
             throw new Exception("'top_results' must be a value greater than zero");
         }
@@ -359,12 +350,8 @@ public class SQLDriver{
             boolean seen_result = false;
             for (String key:keys){
                 String _val = result.get(key).to_string();
-                System.out.println(_val);
-                System.out.println(_user_input);
-                System.out.println("---------------------");
 
                 if (_val.length() > 0 && _user_input.length() > 0 && filter_immediate(_val, _user_input)){
-                    System.out.println("Got in here");
                     _count += l_distance(_val, _user_input);
                     if (!seen_result){
                         seen_result = true;
@@ -377,7 +364,6 @@ public class SQLDriver{
             if (seen_result){
                 all_distances.add(_count);
                 results.put(_count, result);
-                System.out.println("Beverage type here "+result.get("beverageType").to_string());
             }
 
 
@@ -507,16 +493,13 @@ public class SQLDriver{
             boolean flag = false;
             if (value.statement().equals("setString")){
                 flag = (result.get(column).to_string().equals(value.to_string()));
-                //System.out.println(result.get(column).to_string());
             }
             else{
                 flag = (result.get(column).to_double() == value.to_double());
-                //System.out.println(result.get(column).to_string());
+
             }
 
             if (flag){
-              //  System.out.println("in the main result find");
-              //  System.out.println(result.get("formID").to_double());
                 return result;
             }
         }
@@ -556,7 +539,6 @@ public class SQLDriver{
                 pstmt.setDouble(_count, val.to_double());
             }
             else{
-               // System.out.println("sets a string");
                 pstmt.setString(_count, val.to_string());
             }
             _count ++;
@@ -576,7 +558,6 @@ public class SQLDriver{
     }
     public void update(String tablename, String filename, ArrayList<String>targetcols, ArrayList<DBValue>values, String formid) throws Exception {
 
-        //System.out.println("actually makes into update method");
         Connection _connector = connect_file(filename);
         ArrayList<String>temp = new ArrayList<String>();
         for (String col:targetcols){
@@ -593,7 +574,6 @@ public class SQLDriver{
                 pstmt.setDouble(_count, val.to_double());
             }
             else{
-              //  System.out.println("sets a string");
                 pstmt.setString(_count, val.to_string());
             }
             _count ++;
@@ -681,7 +661,6 @@ public class SQLDriver{
     public ArrayList<HashMap<String, ReturnedValue>>search_sql_wildcard(String tablename, String filename, String target, String _key) throws Exception{
         //sample method call: search_for_l("form_data", "form_data.db", "MyFancyTitle", "fancifulName");
         String _query = "SELECT * FROM "+tablename+" WHERE "+_key+" LIKE "+"'%"+target+"%'";
-      //  System.out.println(_query);
         if (!filename.endsWith(".db")){
             throw new Exception("filename must end with '.db'");
         }
@@ -720,35 +699,28 @@ public class SQLDriver{
 
 
     public ArrayList<HashMap<String, ReturnedValue>>get_data_by_value(String tablename, String filename, LinkedList<String>search_fields, HashMap<String, DataField>targets) throws Exception{
-        //System.out.println("in search method");
 
         ArrayList<HashMap<String, ReturnedValue>> final_results = new ArrayList<HashMap<String, ReturnedValue>>();
         for (HashMap<String, ReturnedValue>result: select_all(filename, tablename)){
-            //System.out.println(result.get("status"));
             String _new_flag = result.get("status").to_string();
             if (_new_flag.equals("approved")){
                 boolean _flag = false;
                 for (String field:search_fields){
-                   // System.out.println("search field: "+field);
                     ReturnedValue type1 = result.get(field);
                     DataField type2 = targets.get(field);
 
 
                     if (type1.type.equals("text")){
                         if (type1.to_string().equals(type2.getValue().toString())){
-                          //  System.out.println("successfull comparison!!!");
 
                             _flag = true;
                         }
                         else{
-                            //System.out.println("comparision failed");
                             _flag = false;
                             break;
                         }
                     }
                     else{
-                        //System.out.println("should not see this");
-                      //  System.out.println(type1.type);
                         if (type1.to_double() == Double.parseDouble(type2.getValue().toString())){
                             _flag = true;
                         }
@@ -774,37 +746,26 @@ public class SQLDriver{
 
 
     public ArrayList<HashMap<String, ReturnedValue>>get_user_data_by_value(String tablename, String filename, LinkedList<String>search_fields, HashMap<String, DataField>targets) throws Exception{
-        //System.out.println("in search method");
 
         ArrayList<HashMap<String, ReturnedValue>> final_results = new ArrayList<HashMap<String, ReturnedValue>>();
         for (HashMap<String, ReturnedValue>result: select_all(filename, tablename)){
-            //System.out.println("In first loop");
                 boolean _flag = false;
                 for (String field:search_fields){
-                    //System.out.println("search field: "+field);
                     ReturnedValue type1 = result.get(field);
                     DataField type2 = targets.get(field);
 
-                    //System.out.println("At end");
-                    //System.out.println("Type1: " + type1);
-
 
                     if (type1.type.equals("text")|| type1.type.equals("TEXT")){
-                        //System.out.println("Type accepted");
                         if (type1.to_string().equals(type2.getValue().toString())){
-                            //  System.out.println("successfull comparison!!!");
 
                             _flag = true;
                         }
                         else{
-                            //System.out.println("comparision failed");
                             _flag = false;
                             break;
                         }
                     }
                     else{
-                        //System.out.println("should not see this");
-                        //  System.out.println(type1.type);
                         if (type1.to_double() == Double.parseDouble(type2.getValue().toString())){
                             _flag = true;
                         }

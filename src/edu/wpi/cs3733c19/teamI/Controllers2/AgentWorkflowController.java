@@ -246,7 +246,7 @@ public class AgentWorkflowController {
     Text title;
     @FXML
     public void update(){
-        if(User.getUser("a","a", User.userPower.Specialist,"a","a","a","a","a","a","a","a").getUserType().equals("Specialist")){
+        if(User.getUser("a","a", User.userPower.Specialist,"a","a","a","a","a","a","a","a",",").getUserType().equals("Specialist")){
             specialText.setOpacity(1);
             commentBox.setPromptText("Add any comments as to why this particular form was rejected, accepted, or comments for corrections");
             special = true;
@@ -262,10 +262,17 @@ public class AgentWorkflowController {
     String formStatus_string;
     String currentFormID = "";
 
-    //pulls unread forms from the database to be selected
 
     @FXML
+    public void goHelpWorkflow() throws IOException {
+        toolBarController.goHelpWorkflow();
+    }
+
+    //pulls unread forms from the database to be selected
+    @FXML
     private void pull_Forms() throws Exception{
+        //toolBarController = ToolBarController.getInstance();
+        toolBarController.displaySignInName("YOLO");
         formID_1.setText("");
         formID_2.setText("");
         formID_3.setText("");
@@ -372,7 +379,6 @@ public class AgentWorkflowController {
 
         //int formID = 0;
         if (choose.getSource() == choose_button1) {
-            System.out.println(formID_1.getText());
             currentFormID = (formID_1.getText());
 
         } else if (choose.getSource() == choose_button2) {
@@ -402,7 +408,6 @@ public class AgentWorkflowController {
         }
 
         SQLDriver driver = new SQLDriver();
-        System.out.println(currentFormID);
         HashMap<String, ReturnedValue>result = driver.get_data_by_value("form_data", "stringified_ids_db.db", "formID", new DBValue<String>(currentFormID));
 
 
@@ -441,9 +446,7 @@ public class AgentWorkflowController {
 //        formStatus_text.setText(formStatus_string);
         volume_text.setText(result.get("volume").to_string());
 
-        System.out.println(result.get("zip").to_string());
         zip_text.setText(result.get("zip").to_string());
-        System.out.println(result.get("dateOfApplication").to_string());
         dateOfApplication_text.setText(result.get("dateOfApplication").to_string());
         applicantName_text.setText(result.get("name").to_string());
     }

@@ -82,6 +82,10 @@
                   <CheckBox fx:id="beverageType" mnemonicParsing="false" text="Type" />
                   <CheckBox fx:id="brandName" mnemonicParsing="false" text="Brand" />
                   <CheckBox fx:id="fancifulName" mnemonicParsing="false" text="Fanciful" />
+                  <JFXButton mnemonicParsing="false" onAction="#goHelpHome" style="-fx-background-color: #FFCC00;" text="?">
+                     <font>
+                        <Font name="Segoe UI Bold" size="13.0" />
+                     </font></JFXButton>
                </children>
             </HBox>
          </children>

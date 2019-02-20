@@ -107,6 +107,8 @@ public class ToolBarController implements Initializable {
        }
        curUser = curUser.getUser(username, password, power, theState, theCity,theZip,theStreet, theFirstName,theLastName,thePhone,theRepID, delim);
         data.UserName = curUser.getUsername();
+        System.out.println(delim);
+        System.out.println(curUser.getDelim());
         //data.LogButtonName = "Logout";
 
                 goWorkflow();

@@ -135,11 +135,19 @@
                                              </font>
                                           </Label>
                                           <Label fx:id="PasswordError" textFill="RED" />
-                                          <JFXProgressBar fx:id="strengthBar" styleClass="yellow-progress-bar">
+                                          <VBox>
                                              <HBox.margin>
-                                                <Insets top="8.0" />
+                                                <Insets left="25.0" top="10.0" />
                                              </HBox.margin>
-                                          </JFXProgressBar>
+                                             <children>
+                                                <JFXProgressBar fx:id="strengthBar" styleClass="yellow-progress-bar" />
+                                                <Label fx:id="passLabel">
+                                                   <VBox.margin>
+                                                      <Insets left="70.0" />
+                                                   </VBox.margin>
+                                                </Label>
+                                             </children>
+                                          </VBox>
                                        </children>
                                     </HBox>
                                     <JFXPasswordField fx:id="PasswordCreate" onKeyReleased="#passCallback" promptText="Password">

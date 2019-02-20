@@ -16,6 +16,7 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.text.Text;
+import me.gosimple.nbvcxz.resources.Feedback;
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 
@@ -99,6 +100,8 @@ public class LoginAccountController implements Initializable {
     @FXML
     Label lastNameError;
 
+    @FXML
+    Label passLabel;
 
     @FXML
     JFXProgressBar strengthBar;
@@ -457,31 +460,66 @@ public class LoginAccountController implements Initializable {
     }
 
     public void passCallback(){
+        StringBuilder timeStringOut = new StringBuilder();
 
         Result result = nbvcxz.estimate(PasswordCreate.getText());
 
-        //String timeToCrackOn = TimeEstimate.getTimeToCrackFormatted(result, "ONLINE_THROTTLED");
-        //System.out.println("---------------------");
+        String timeToCrackOn = TimeEstimate.getTimeToCrackFormatted(result, "ONLINE_THROTTLED");
+        timeStringOut.append("Time to crack: ").append(timeToCrackOn);
+
         int score = result.getBasicScore();
         //System.out.println(timeToCrackOn);
+        //double scoreEnt = result.getEntropy();
+        System.out.println(timeStringOut);
 
         strengthBar.getStyleClass().removeAll(barColorStyleClasses);
+
+        String error = "";
+
+        /*
+        if (score != 4) {
+            Feedback feedback = result.getFeedback();
+
+            // Start building error message
+            StringBuilder errorMessage = new StringBuilder();
+            errorMessage.append("Password does not meet the minimum strength requirements.");
+            errorMessage.append("<br>Time to crack - online: ").append(timeToCrackOn);
+
+            if (feedback != null) {
+                if (feedback.getWarning() != null)
+                    errorMessage.append("<br>Warning: ").append(feedback.getWarning());
+                for (String suggestion : feedback.getSuggestion()) {
+                    errorMessage.append("<br>Suggestion: ").append(suggestion);
+                }
+            }
+            // Example "error message" that would be displayed to the user
+            // This is obviously just a contrived example and would have to
+            // be tailored to each front-end
+            error = errorMessage.toString();
+        }
+        */
+
 
         if(score == 0){
             strengthBar.setProgress(0.1);
             strengthBar.getStyleClass().add(RED_BAR);
+            passLabel.setText("Very Weak");
         }else if (score == 1){
             strengthBar.setProgress(0.25);
             strengthBar.getStyleClass().add(RED_BAR);
+            passLabel.setText("Weak");
         }else if(score == 2){
             strengthBar.setProgress(0.5);
             strengthBar.getStyleClass().add(YELLOW_BAR);
+            passLabel.setText("Medium");
         }else if(score == 3){
             strengthBar.setProgress(0.75);
-            strengthBar.getStyleClass().add(YELLOW_BAR);
+            strengthBar.getStyleClass().add(GREEN_BAR);
+            passLabel.setText("Strong");
         }else if(score == 4){
             strengthBar.setProgress(1.0);
             strengthBar.getStyleClass().add(GREEN_BAR);
+            passLabel.setText("Very Strong");
         }
 
 

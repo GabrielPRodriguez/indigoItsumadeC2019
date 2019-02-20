@@ -99,6 +99,7 @@ public class SQLDriver{
         }
         return counter;
     }
+
     public String generate_id(ArrayList<String>ids){
         if (ids.size() == 0){
             return "A";
@@ -286,8 +287,67 @@ public class SQLDriver{
 
     }
 
+    public int filter_weighted(String a, String b){
+        int fails = 0;
+        a.toLowerCase();
+        b.toLowerCase();
+        if (a.length() == b.length()){
+            for (int i = 0; i < b.length(); i++) {
+                if (Character.toLowerCase(b.charAt(i)) != Character.toLowerCase(a.charAt(i))) {
+                    fails++;
+                }
+
+            }
+            fails++;
+        }
+        if (a.length() >= b.length()){
+            boolean flag = false;
+            for (int d = 0; d <a.length()-b.length(); d++){
+                for (int i = 0; i < b.length(); i++) {
+                    if (Character.toLowerCase(b.charAt(i)) != Character.toLowerCase(a.charAt(d + i))) {
+                        fails++;
+                        break;
+                    } else {
+                        System.out.println("got true result");
+                    }
+
+                }
+                if (flag){
+                    break;
+                }
+
+            }
+            //System.out.println(flag);
+            return fails;
+
+        }
+        else{
+            boolean flag = false;
+            fails++;
+            for (int d = 0; d <b.length()-a.length(); d++){
+                for (int i = 0; i < a.length(); i++) {
+                    if (Character.toLowerCase(a.charAt(i)) != Character.toLowerCase(b.charAt(d + i))) {
+                        fails++;
+                        break;
+                    } else {
+                        System.out.println("got true result");
+                        flag = true;
+                    }
+
+                }
+                if (flag){
+                    break;
+                }
+
+            }
+
+            return fails;
+        }
+    }
+
 
     public boolean filter_immediate(String a, String b){
+
         a.toLowerCase();
         b.toLowerCase();
         if (a.length() == b.length()){
@@ -345,7 +405,12 @@ public class SQLDriver{
 
 
     }
-    public ArrayList<HashMap<String, ReturnedValue>>search_for_l_multiple(String tablename, String filename, ArrayList<String>keys, String _user_input, int top_results) throws Exception{
+        public ArrayList<HashMap<String, ReturnedValue>>search_for_l_multiple_new(String tablename, String filename, ArrayList<String>keys, String _user_input, int top_results) throws Exception {
+            return null;
+
+        }
+
+        public ArrayList<HashMap<String, ReturnedValue>>search_for_l_multiple(String tablename, String filename, ArrayList<String>keys, String _user_input, int top_results) throws Exception{
         System.out.println("In search_for_l_multiple");
         if (top_results < 1){
             throw new Exception("'top_results' must be a value greater than zero");
@@ -353,8 +418,6 @@ public class SQLDriver{
         ArrayList<Integer>all_distances = new ArrayList<Integer>();
         HashMap<Integer, HashMap<String, ReturnedValue>>results = new HashMap<Integer, HashMap<String, ReturnedValue>>();
         for (HashMap<String, ReturnedValue>result:select_all(filename, tablename)){
-
-
             int _count = 0;
             boolean seen_result = false;
             for (String key:keys){
@@ -363,24 +426,19 @@ public class SQLDriver{
                 //System.out.println(_user_input);
                 //System.out.println("---------------------");
 
-                if (_val.length() > 0 && _user_input.length() > 0 && filter_immediate(_val, _user_input)){
-                    System.out.println("Got in here");
-                    _count += l_distance(_val, _user_input);
-                    if (!seen_result){
+                if (_val.length() > 0 && _user_input.length() > 0 /*&& filter_weighted(_val, _user_input) < 2*/){
+                        System.out.println("about to use l_distance");
+                        _count += l_distance(_val, _user_input);
+
                         seen_result = true;
-                    }
 
                 }
-
-
             }
             if (seen_result){
                 all_distances.add(_count);
                 results.put(_count, result);
                 //System.out.println("Beverage type here "+result.get("beverageType").to_string());
             }
-
-
         }
         ArrayList<HashMap<String, ReturnedValue>>final_results = new ArrayList<HashMap<String, ReturnedValue>>();
         if (all_distances.size() > 0){
@@ -414,11 +472,8 @@ public class SQLDriver{
                 }
                 index_counter++;
                 last_seen_distance = new_val;
-
             }
         }
-
-
         return final_results;
 
     }
@@ -449,16 +504,13 @@ public class SQLDriver{
             else{
                 pstmt.setDouble(i+1, vals[i].to_double());
             }
-
-
         }
-
-
         pstmt.executeUpdate();
 
         //return _connector;
 
     }
+
     //public ArrayList<HashMap<String, ReturnedValue>>select_all(String filename, String tablename) throws Exception{
     public ArrayList<HashMap<String, ReturnedValue>> select_all(String filename, String tablename) throws Exception{
         if (!filename.endsWith(".db")){

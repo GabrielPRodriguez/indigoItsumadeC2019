@@ -75,7 +75,6 @@ public class ToolBarController implements Initializable {
 
 
     void setResultsMap(ArrayList<HashMap<String, ReturnedValue>> resultsMap){
-        System.out.println(ResultsController);
             this.resultsMap = resultsMap;
             ResultsController.convertToForms(0);
 
@@ -102,7 +101,6 @@ public class ToolBarController implements Initializable {
 
     public void login(String username, String password, User.userPower power, String theState, String theCity, String theZip, String theStreet, String theFirstName, String theLastName, String thePhone, String theRepID, String delim ) throws IOException
     {
-        //System.out.println("logging in");
        signedIn = true;
        if(curUser != null) {
            curUser.logOutUser();
@@ -130,9 +128,6 @@ public class ToolBarController implements Initializable {
     }
 
     public void goSubmit() throws IOException {
-        //System.out.println(signedIn);
-        System.out.println("entering form subselector");
-        System.out.println(curUser);
         if((curUser == null) || curUser.getUsername().equals(""))
         {
             goLogin();
@@ -244,16 +239,12 @@ public class ToolBarController implements Initializable {
 
     public void goSearch() throws IOException {
 
-        System.out.println("toolSearch");
-
         Parent searchParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/SearchResults.fxml"));
        // FXMLLoader resultsPageLoader = new FXMLLoader(getClass().getResource("../Boundaries_2/SearchResults.fxml"));
 
        // Parent resultPane = resultsPageLoader.load();
         primaryStage = Main.getWindow();
-        primaryStage.getScene().setRoot(searchParent);
-        System.out.println("Should have changed?");
-    }
+        primaryStage.getScene().setRoot(searchParent); }
 
 
     public void goExit(ActionEvent actionEvent){

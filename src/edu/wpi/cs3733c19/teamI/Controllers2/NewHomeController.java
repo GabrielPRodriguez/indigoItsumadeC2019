@@ -67,17 +67,15 @@ public class NewHomeController implements Initializable {
         RadioButton selectedRadioButton = (RadioButton) algorithmGroup.getSelectedToggle();
         String toggleGroupValue = selectedRadioButton.getText();
 
-        System.out.println("We're not crazy");
-
         if (toggleGroupValue.equals("SQL")){  // TODO Change the name in the string to the actual text of the radio button
             searchAlgorithmSelection.setContext(new SQLFuzzy());
-            //System.out.println("Algo 1");
+
         }else if(toggleGroupValue.equals("Levenshtein")){ // TODO Change the name in the string to the actual text of the radio button
             searchAlgorithmSelection.setContext(new LFuzzy());
-            //System.out.println("Algo 2");
+
         }else if(toggleGroupValue.equals("Damerau-Levenshtein")){ // TODO Change the name in the string to the actual text of the radio button
             searchAlgorithmSelection.setContext(new DLFuzzy());
-            //System.out.println("Algo 3");
+
         }
 
 
@@ -112,10 +110,8 @@ public class NewHomeController implements Initializable {
            // spin.setMaxSize(Region.USE_COMPUTED_SIZE,Region.USE_COMPUTED_SIZE);
             setAlgorithm();
             setSearchParam();
-           // System.out.println(searchAlgorithmSelection.run(searchTextField.getText().trim()));
             // toolBarController.transferSearchInfo(searchAlgorithmSelection.run(searchTextField.getText().trim()));
             // toolBarController.goSearch(actionEvent);
-            // System.out.println("Finished Gosearch");
 
             toolBarController.setResultsMap(searchAlgorithmSelection.run(searchTextField.getText().trim()));
             toolBarController.goSearch();

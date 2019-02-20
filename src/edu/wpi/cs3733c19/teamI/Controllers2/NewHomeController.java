@@ -110,10 +110,8 @@ public class NewHomeController implements Initializable {
            // spin.setMaxSize(Region.USE_COMPUTED_SIZE,Region.USE_COMPUTED_SIZE);
             setAlgorithm();
             setSearchParam();
-           // System.out.println(searchAlgorithmSelection.run(searchTextField.getText().trim()));
             // toolBarController.transferSearchInfo(searchAlgorithmSelection.run(searchTextField.getText().trim()));
             // toolBarController.goSearch(actionEvent);
-            // System.out.println("Finished Gosearch");
 
             toolBarController.setResultsMap(searchAlgorithmSelection.run(searchTextField.getText().trim()));
             toolBarController.goSearch();

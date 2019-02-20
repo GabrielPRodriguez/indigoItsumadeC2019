@@ -434,8 +434,6 @@ public class MultipageFormSubmissionController implements Initializable {
                 //String oldMessage = submit_message.getText();
 
                 //String errorMessage = sentForm.getMissingFieldsStatement(); //apply to a Label
-                //System.out.println("error message");
-                //System.out.println(errorMessage);
                 //submit_message.setText(oldMessage + "  " +  errorMessage);
             }
 
@@ -444,7 +442,6 @@ public class MultipageFormSubmissionController implements Initializable {
 
 
             if(readyToSend){
-                //System.out.println("making db");
                 SQLDriver driver = new SQLDriver();
                 //sets the names of columns in the database, if additional form fields are added, please add a new column
                 String [] columns = {"formID", "repID", "plantRegistry", "domesticOrImported", "serialNumber", "brandName", "beverageType", "fancifulName", "permitName", "streetAddress","city","state", "zip", "extraInfo", "dateOfApplication", "formula", "grapeVarietals", "vintage", "wineAppellation", "email", "phoneNumber", "pHValue", "alcoholContent", "status", "approvingUser", "approvalDate", "expirationDate", "issuedDate", "volume", "appType", "surrenderDate"};
@@ -485,7 +482,6 @@ public class MultipageFormSubmissionController implements Initializable {
 
 /*
                 submit_message.setText(success);
-                System.out.println(success);
 */
 
         }

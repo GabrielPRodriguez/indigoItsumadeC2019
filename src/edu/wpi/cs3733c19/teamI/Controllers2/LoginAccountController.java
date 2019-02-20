@@ -101,9 +101,7 @@ public class LoginAccountController implements Initializable {
 
     @FXML
     public void login(ActionEvent actionEvent) throws Exception {
-        System.out.println("about to check..");
         if(!attemptLogin(actionEvent)){
-            System.out.println("attempt login fail");
 
         }
         else {
@@ -111,26 +109,21 @@ public class LoginAccountController implements Initializable {
             //TODO: eliminate following toggel button code, shold be handled by DB
 
             powerCreate = getType();
-            System.out.println(powerCreate.toString());
             String toggleGroupValue = "Standard";
             //check the text file for the user type and assign it
             if (ToggleType.getSelectedToggle() != null) {
                 RadioButton selectedRadioButton = (RadioButton) ToggleType.getSelectedToggle();
                 toggleGroupValue = selectedRadioButton.getText();
             }
-            System.out.println(powerCreate.toString());
 
             if (ToggleType.getSelectedToggle() == null) {
                 powerCreate = powerCreate;
             } else if (toggleGroupValue.equals("Manufacturer")) {
                 powerCreate = User.userPower.Company;
-                System.out.println("toggle man");
             } else if (toggleGroupValue.equals("Agent")) {
                 powerCreate = User.userPower.TTBEmployee;
-                System.out.println("toggle employ");
             } else {
                 powerCreate = User.userPower.Standard;
-                System.out.println("togg stand");
             }
 
             ArrayList<HashMap<String, ReturnedValue>> users = new ArrayList<>();

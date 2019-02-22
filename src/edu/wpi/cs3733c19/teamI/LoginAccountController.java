@@ -1,22 +1,17 @@
-package edu.wpi.cs3733c19.teamI.Controllers2;
+package edu.wpi.cs3733c19.teamI;
 
 import com.jfoenix.controls.*;
-import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.DBValue;
-import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.ReturnedValue;
+import edu.wpi.cs3733c19.teamI.dbUtilities.DBValue;
+import edu.wpi.cs3733c19.teamI.dbUtilities.ReturnedValue;
 import edu.wpi.cs3733c19.teamI.Entities.DataField;
 import edu.wpi.cs3733c19.teamI.Entities.User;
-import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
-import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.text.Text;
-import me.gosimple.nbvcxz.resources.Feedback;
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 
@@ -25,12 +20,9 @@ import javax.crypto.spec.SecretKeySpec;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.net.URL;
 import java.security.Key;
-import java.time.Duration;
 import java.util.*;
-import java.util.logging.XMLFormatter;
 
 /** Imports for Strength */
 import me.gosimple.nbvcxz.Nbvcxz;

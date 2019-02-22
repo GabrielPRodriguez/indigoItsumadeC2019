@@ -1,31 +1,23 @@
-package edu.wpi.cs3733c19.teamI.Controllers2;
+package edu.wpi.cs3733c19.teamI;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
-import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.DBValue;
-import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.ReturnedValue;
-import edu.wpi.cs3733c19.teamI.Controllers2.ToolBarController;
+import edu.wpi.cs3733c19.teamI.dbUtilities.DBValue;
+import edu.wpi.cs3733c19.teamI.dbUtilities.ReturnedValue;
+import edu.wpi.cs3733c19.teamI.Entities.DataTransfer;
 import edu.wpi.cs3733c19.teamI.Entities.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.MenuItem;
+import javafx.scene.control.*;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.ResourceBundle;
-import java.util.logging.XMLFormatter;
 
-public class AgentWorkflowController implements Initializable {
+public class ManufacturerWorkflowController {
     public boolean special = false;
     private ToolBarController toolBarController = ToolBarController.getInstance();
 
@@ -72,6 +64,9 @@ public class AgentWorkflowController implements Initializable {
     Button choose_button9;
 
     @FXML
+    TextArea qualifier;
+
+    @FXML
     Label formID_1;
 
     @FXML
@@ -97,24 +92,6 @@ public class AgentWorkflowController implements Initializable {
 
     @FXML
     Label formID_9;
-
-    String form1 = "";
-
-    String form2 = "";
-
-    String form3 = "";
-
-    String form4 = "";
-
-    String form5 = "";
-
-    String form6 = "";
-
-    String form7 = "";
-
-    String form8 = "";
-
-    String form9 = "";
 
     @FXML
     JFXButton refresh_button;
@@ -266,25 +243,27 @@ public class AgentWorkflowController implements Initializable {
     JFXRadioButton imported_RadButton;
     @FXML
     Text title;
-    @FXML
-    Button sendBack;
-    @FXML
-    Button forwardButton;
+
+    private HashMap<String, String> repToForm = new HashMap<>();
 
     @FXML
     public void update(){
-        if(toolBarController.getCurUser().getUserType().equals(User.userPower.Specialist)){
+        if(User.getUser("a","a", User.userPower.Specialist,"a","a","a","a","a","a","a","a",",").getUserType().equals("Specialist")){
             specialText.setOpacity(1);
-           commentBox.setPromptText("Add any comments as to why this particular form was rejected, accepted, or comments for corrections");
-           special = true;
+            commentBox.setPromptText("Add any comments as to why this particular form was rejected, accepted, or comments for corrections");
+            special = true;
         }
-       else{
+        else{
             specialText.setOpacity(0);
             special = false;
         }
     }
     @FXML
     ListView listView;
+
+
+    @FXML
+    Label formStatusField;
 
     String formStatus_string;
     String currentFormID = "";
@@ -307,15 +286,6 @@ public class AgentWorkflowController implements Initializable {
         formID_7.setText("");
         formID_8.setText("");
         formID_9.setText("");
-        form1 = "";
-        form2 = "";
-        form3 = "";
-        form4 = "";
-        form5 = "";
-        form6 = "";
-        form7 = "";
-        form8 = "";
-        form9 = "";
         choose_button1.setDisable(false);
         choose_button2.setDisable(false);
         choose_button3.setDisable(false);
@@ -326,21 +296,16 @@ public class AgentWorkflowController implements Initializable {
         choose_button8.setDisable(false);
         choose_button9.setDisable(false);
         SQLDriver driver = new SQLDriver();
-        ArrayList<HashMap<String, ReturnedValue>>filtered_results = new ArrayList<HashMap<String, ReturnedValue>>();
+        ArrayList<HashMap<String, ReturnedValue>> filtered_results = new ArrayList<HashMap<String, ReturnedValue>>();
         for (HashMap<String, ReturnedValue>result:driver.select_all("stringified_ids_db.db", "form_data")){
-            if(special){
-                if (result.get("status").to_string().contains("specialist")){
-
+                if (result.get("status").to_string().contains(toolBarController.getCurUser().getUsername())){
                     filtered_results.add(result);
                 }
-            }
-            else{
-                if (result.get("status").to_string().contains("unread")){
-
-                    filtered_results.add(result);
-                }
-            }
         }
+        if(filtered_results.isEmpty()){
+            System.out.println("nope");
+        }
+        System.out.println("process");
         HashMap<Integer, Label>test = new HashMap<Integer, Label>();
         test.put(1, formID_1);
         test.put(2, formID_2);
@@ -351,68 +316,44 @@ public class AgentWorkflowController implements Initializable {
         test.put(7, formID_7);
         test.put(8, formID_8);
         test.put(9, formID_9);
-
-        HashMap<Integer, String>idMap = new HashMap<Integer, String>();
-        idMap.put(1, form1);
-        idMap.put(2, form2);
-        idMap.put(3, form3);
-        idMap.put(4, form4);
-        idMap.put(5, form5);
-        idMap.put(6, form6);
-        idMap.put(7, form7);
-        idMap.put(8, form8);
-        idMap.put(9, form9);
-
-
         if (filtered_results.size() > 0){
             for (int i = 1; i < 10; i++){
                 try{
                     HashMap<String, ReturnedValue>_temp = filtered_results.get(i-1);
                     //test.get(i).setText("Form "+_temp.get("formID").to_string().replace(".0", ""));
-                    //test.get(i).setText(_temp.get("formID").to_string().replace(".0", ""));
-                    test.get(i).setText(_temp.get("brandName").to_string() + ": " + _temp.get("fancifulName").to_string());
-                    idMap.put(i, _temp.get("formID").to_string());
+                    test.get(i).setText("Form: " + Integer.toString(i));//_temp.get("repID").to_string().replace(".0", "") + Integer.toString(i));
+                    repToForm.put(test.get(i).getText(), _temp.get("formID").to_string());
                 }
                 catch(Exception e){
                     //pass
                 }
             }
 
-            form1 = idMap.get(1);
-            form2 = idMap.get(2);
-            form3 = idMap.get(3);
-            form4 = idMap.get(4);
-            form5 = idMap.get(5);
-            form6 = idMap.get(6);
-            form7 = idMap.get(7);
-            form8 = idMap.get(8);
-            form9 = idMap.get(9);
-
-            if(form1.equals("")){
+            if(formID_1.getText().equals("")){
                 choose_button1.setDisable(true);
             }
-            if(form2.equals("")){
+            if(formID_2.getText().equals("")){
                 choose_button2.setDisable(true);
             }
-            if(form3.equals("")){
+            if(formID_3.getText().equals("")){
                 choose_button3.setDisable(true);
             }
-            if(form4.equals("")){
+            if(formID_4.getText().equals("")){
                 choose_button4.setDisable(true);
             }
-            if(form5.equals("")){
+            if(formID_5.getText().equals("")){
                 choose_button5.setDisable(true);
             }
-            if(form6.equals("")){
+            if(formID_6.getText().equals("")){
                 choose_button6.setDisable(true);
             }
-            if(form7.equals("")){
+            if(formID_7.getText().equals("")){
                 choose_button7.setDisable(true);
             }
-            if(form8.equals("")){
+            if(formID_8.getText().equals("")){
                 choose_button8.setDisable(true);
             }
-            if(form9.equals("")){
+            if(formID_9.getText().equals("")){
                 choose_button9.setDisable(true);
             }
 
@@ -433,38 +374,34 @@ public class AgentWorkflowController implements Initializable {
 
     @FXML
     private void chooseButtonHandler(ActionEvent choose) throws  Exception {
-        accept_button.setDisable(false);
-        reject_button.setDisable(false);
-        sendBack.setDisable(false);
-        forwardButton.setDisable(false);
 
         //int formID = 0;
         if (choose.getSource() == choose_button1) {
-            currentFormID = form1;
+            currentFormID = (repToForm.get(formID_1.getText()));
 
         } else if (choose.getSource() == choose_button2) {
-            currentFormID = form2;
+            currentFormID = (repToForm.get(formID_2.getText()));
 
         } else if (choose.getSource() == choose_button3) {
-            currentFormID = form3;
+            currentFormID = (repToForm.get(formID_3.getText()));
 
         }else if (choose.getSource() == choose_button4) {
-            currentFormID = form4;
+            currentFormID = (repToForm.get(formID_4.getText()));
 
         }else if (choose.getSource() == choose_button5) {
-            currentFormID = form5;
+            currentFormID = (repToForm.get(formID_5.getText()));
 
         }else if (choose.getSource() == choose_button6) {
-            currentFormID = form6;
+            currentFormID = (repToForm.get(formID_6.getText()));
 
         }else if (choose.getSource() == choose_button7) {
-            currentFormID = form7;
+            currentFormID = (repToForm.get(formID_7.getText()));
 
         }else if (choose.getSource() == choose_button8) {
-            currentFormID = form8;
+            currentFormID = (repToForm.get(formID_8.getText()));
 
         }else if (choose.getSource() == choose_button9) {
-            currentFormID = form9;
+            currentFormID = (repToForm.get(formID_9.getText()));
 
         }
 
@@ -491,7 +428,7 @@ public class AgentWorkflowController implements Initializable {
         city_text.setText(result.get("city").to_string());
 
 
-        formQualification_text.setText(result.get("qualifier").to_string());
+
         formula_text.setText(result.get("formula").to_string());
         grapeVarietal_text.setText(result.get("grapeVarietals").to_string());
         wineAppellation_text.setText(result.get("wineAppellation").to_string());
@@ -502,8 +439,23 @@ public class AgentWorkflowController implements Initializable {
         email_text.setText(result.get("email").to_string());
         brandedInfo_text.setText(result.get("extraInfo").to_string());
 
+        qualifier.setText(result.get("qualifier").to_string());
+
 
         formStatus_string = (result.get("status").to_string()); //I use two variables because I need the formStatus text as a string
+        if(formStatus_string.contains("specialist")||formStatus_string.contains("unread")){
+            formStatusField.setText("waiting review");
+        }
+        else if(formStatus_string.contains("approved")){
+            formStatusField.setText("Approved");
+        }
+        else if(formStatus_string.contains("reject")){
+            formStatusField.setText("Rejected");
+        }
+        else{
+            formStatusField.setText("Not Submitted");
+        }
+
 //        formStatus_text.setText(formStatus_string);
         volume_text.setText(result.get("volume").to_string());
 
@@ -512,91 +464,38 @@ public class AgentWorkflowController implements Initializable {
         applicantName_text.setText(result.get("name").to_string());
     }
 
-    @FXML
-    private void approveHandler() throws IOException, Exception{
-        SQLDriver driver = new SQLDriver();
-        HashMap<String, ReturnedValue>result = driver.get_data_by_value("form_data", "stringified_ids_db.db", "formID", new DBValue<String>(currentFormID));
-        formStatus_string = result.get("status").to_string().replace("unread", "");
 
-        formStatus_string += "approved";
-
-        SQLDriver.setApprovalStatus(currentFormID, formStatus_string);
-        Date date = new Date();
-        String theDate = date.toString();
-        date.equals(date.getTime()+10000);
-        String exDate = date.toString();
-        SQLDriver.setApprovalDate(currentFormID, theDate);
-        SQLDriver.setApprovingUser(currentFormID, this.approvingUser_text.getText());
-        SQLDriver.setExpirationDate(currentFormID, exDate);
-        if(special){
-            SQLDriver.setQualifier(currentFormID,commentBox.getText());
+    public void editForm(){
+        DataTransfer data = DataTransfer.getInstance();
+        data.currentFormID = this.currentFormID;
+        try {
+            toolBarController.editForm();
         }
+        catch (IOException e){
 
-
-
-        clearFields();
-        pull_Forms();
-        sendBack.setDisable(true);
-        forwardButton.setDisable(true);
-        accept_button.setDisable(true);
-        reject_button.setDisable(true);
-
+        }
     }
 
-    @FXML
-    private void rejectHandler() throws IOException, Exception{
-        if(special){
-            if(commentBox.getText().equals("")){
-                commentBox.setPromptText("This is a required field for specialist rejections");
-                return;
-            }
-        }
-        SQLDriver.setQualifier(currentFormID,commentBox.getText());
-        SQLDriver driver = new SQLDriver();
-        HashMap<String, ReturnedValue>result = driver.get_data_by_value("form_data", "stringified_ids_db.db", "formID", new DBValue<String>(currentFormID));
-        formStatus_string = result.get("status").to_string().replace("unread", "");
-        formStatus_string += "reject";
 
-        SQLDriver.setApprovalStatus(currentFormID, formStatus_string);
-        clearFields();
 
-        pull_Forms();
-        sendBack.setDisable(true);
-        forwardButton.setDisable(true);
-        accept_button.setDisable(true);
-        reject_button.setDisable(true);
-
-    }
     @FXML
     public void sendBackHandler() throws IOException, Exception{
-        SQLDriver driver = new SQLDriver();
-        HashMap<String, ReturnedValue>result = driver.get_data_by_value("form_data", "stringified_ids_db.db", "formID", new DBValue<String>(currentFormID));
-        formStatus_string = result.get("status").to_string().replace("unread", "");
-
-        formStatus_string += "commented";
+        formStatus_string = "commented";
         SQLDriver.setQualifier(currentFormID,commentBox.getText());
         SQLDriver.setApprovalStatus(currentFormID,formStatus_string);
         clearFields();
 
         pull_Forms();
-        sendBack.setDisable(true);
-        forwardButton.setDisable(true);
         accept_button.setDisable(true);
         reject_button.setDisable(true);
     }
     @FXML
     public void forwardHandler() throws IOException, Exception{
-        SQLDriver driver = new SQLDriver();
-        HashMap<String, ReturnedValue>result = driver.get_data_by_value("form_data", "stringified_ids_db.db", "formID", new DBValue<String>(currentFormID));
-        formStatus_string = result.get("status").to_string().replace("unread", "");
-        formStatus_string += "specialist";
+        formStatus_string = "specialist";
         SQLDriver.setApprovalStatus(currentFormID,formStatus_string);
-        SQLDriver.setQualifier(currentFormID,commentBox.getText());
         clearFields();
 
         pull_Forms();
-        sendBack.setDisable(true);
-        forwardButton.setDisable(true);
         accept_button.setDisable(true);
         reject_button.setDisable(true);
     }
@@ -639,16 +538,7 @@ public class AgentWorkflowController implements Initializable {
     }
 
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        if(toolBarController.getCurUser().getUserType().equals(User.userPower.Specialist)){
-                specialText.setOpacity(1);
-            commentBox.setPromptText("Add any comments as to why this particular form was rejected, accepted, or comments for corrections");
-            special = true;
-        }
-        else{
-            specialText.setOpacity(0);
-            special = false;
-        }
-    }
+
+
+
 }

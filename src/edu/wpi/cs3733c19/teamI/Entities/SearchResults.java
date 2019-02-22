@@ -1,7 +1,7 @@
 package edu.wpi.cs3733c19.teamI.Entities;
 
-import edu.wpi.cs3733c19.teamI.Controllers2.SQLDriver;
-import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.ReturnedValue;
+import edu.wpi.cs3733c19.teamI.SQLDriver;
+import edu.wpi.cs3733c19.teamI.dbUtilities.ReturnedValue;
 
 import java.util.ArrayList;
 import java.util.HashMap;

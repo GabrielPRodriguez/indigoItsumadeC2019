@@ -1,5 +1,5 @@
 
-package edu.wpi.cs3733c19.teamI.Controllers2;
+package edu.wpi.cs3733c19.teamI;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -10,7 +10,7 @@ import java.util.*;
 
 import edu.wpi.cs3733c19.teamI.Entities.DataField;
 
-import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.*;
+import edu.wpi.cs3733c19.teamI.dbUtilities.*;
 
 import static java.lang.StrictMath.abs;
 import static java.lang.StrictMath.max;

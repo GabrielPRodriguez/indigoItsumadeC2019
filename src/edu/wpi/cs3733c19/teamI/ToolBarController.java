@@ -1,9 +1,8 @@
-package edu.wpi.cs3733c19.teamI.Controllers2;
+package edu.wpi.cs3733c19.teamI;
 
 import com.jfoenix.controls.JFXButton;
-import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.ReturnedValue;
+import edu.wpi.cs3733c19.teamI.dbUtilities.ReturnedValue;
 import edu.wpi.cs3733c19.teamI.Entities.*;
-import edu.wpi.cs3733c19.teamI.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,7 +15,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.ResourceBundle;
 
 public class ToolBarController implements Initializable {
@@ -119,13 +117,13 @@ public class ToolBarController implements Initializable {
     }
 
     public void goHome() throws IOException {
-        Parent homeParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/Home.fxml"));
+        Parent homeParent = FXMLLoader.load(getClass().getResource("Boundaries_2/Home.fxml"));
         primaryStage = Main.getWindow();
         primaryStage.getScene().setRoot(homeParent);
     }
 
     public void goAbout() throws IOException {
-        Parent aboutParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/About.fxml"));
+        Parent aboutParent = FXMLLoader.load(getClass().getResource("Boundaries_2/About.fxml"));
         primaryStage = Main.getWindow();
         primaryStage.getScene().setRoot(aboutParent);
     }
@@ -138,20 +136,20 @@ public class ToolBarController implements Initializable {
         }else if (curUser.getUserType().equals(User.userPower.TTBEmployee)){
             return;
         }
-        Parent submitParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/FormSubSelector.fxml"));
+        Parent submitParent = FXMLLoader.load(getClass().getResource("Boundaries_2/FormSubSelector.fxml"));
         primaryStage = Main.getWindow();
         primaryStage.getScene().setRoot(submitParent);
 
     }
 
     public void goNormalFormSub() throws IOException {
-        Parent formSubParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/FormSubmission.fxml"));
+        Parent formSubParent = FXMLLoader.load(getClass().getResource("Boundaries_2/FormSubmission.fxml"));
         primaryStage = Main.getWindow();
         primaryStage.getScene().setRoot(formSubParent);
     }
 
     public void goMultiFormSub() throws IOException {
-        Parent multiFormSubParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/MultiFormSub.fxml"));
+        Parent multiFormSubParent = FXMLLoader.load(getClass().getResource("Boundaries_2/MultiFormSub.fxml"));
         primaryStage = Main.getWindow();
         primaryStage.getScene().setRoot(multiFormSubParent);
     }
@@ -190,7 +188,7 @@ public class ToolBarController implements Initializable {
             }
         }
 
-        Parent loginParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/Login_CreateAccount.fxml"));
+        Parent loginParent = FXMLLoader.load(getClass().getResource("Boundaries_2/Login_CreateAccount.fxml"));
       //  loginParent.get
         primaryStage = Main.getWindow();
         primaryStage.getScene().setRoot(loginParent);
@@ -222,21 +220,21 @@ public class ToolBarController implements Initializable {
     }
 
     public void goWorkflowAgent() throws IOException {
-        Parent agentWorkParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/WorkflowAgent.fxml"));
+        Parent agentWorkParent = FXMLLoader.load(getClass().getResource("Boundaries_2/WorkflowAgent.fxml"));
         primaryStage = Main.getWindow();
         primaryStage.getScene().setRoot(agentWorkParent);
     }
 
     public void goWorkflowManufacturer() throws IOException
     {
-        Parent manuWorkParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/WorkflowManufacturer.fxml"));
+        Parent manuWorkParent = FXMLLoader.load(getClass().getResource("Boundaries_2/WorkflowManufacturer.fxml"));
         primaryStage = Main.getWindow();
         primaryStage.getScene().setRoot(manuWorkParent);
     }
 
 
     public void goAdvancedSearch() throws IOException {
-        Parent advancedSearchParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/AdvancedSearch.fxml"));
+        Parent advancedSearchParent = FXMLLoader.load(getClass().getResource("Boundaries_2/AdvancedSearch.fxml"));
         primaryStage = Main.getWindow();
         primaryStage.getScene().setRoot(advancedSearchParent);
 
@@ -244,8 +242,8 @@ public class ToolBarController implements Initializable {
 
     public void goSearch() throws IOException {
 
-        Parent searchParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/SearchResults.fxml"));
-       // FXMLLoader resultsPageLoader = new FXMLLoader(getClass().getResource("../Boundaries_2/SearchResults.fxml"));
+        Parent searchParent = FXMLLoader.load(getClass().getResource("Boundaries_2/SearchResults.fxml"));
+       // FXMLLoader resultsPageLoader = new FXMLLoader(getClass().getResource("Boundaries_2/SearchResults.fxml"));
 
        // Parent resultPane = resultsPageLoader.load();
         primaryStage = Main.getWindow();
@@ -262,19 +260,19 @@ public class ToolBarController implements Initializable {
     }
 
     public void goHelpHome() throws IOException {
-        Parent helphomeParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/HelpHomePage.fxml"));
+        Parent helphomeParent = FXMLLoader.load(getClass().getResource("Boundaries_2/HelpHomePage.fxml"));
         primaryStage = Main.getWindow();
         primaryStage.getScene().setRoot(helphomeParent);
     }
 
     public void goHelpSubmit() throws IOException {
-        Parent helpsubmitParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/HelpSubmitForm.fxml"));
+        Parent helpsubmitParent = FXMLLoader.load(getClass().getResource("Boundaries_2/HelpSubmitForm.fxml"));
         primaryStage = Main.getWindow();
         primaryStage.getScene().setRoot(helpsubmitParent);
     }
 
     public void goHelpWorkflow() throws IOException {
-        Parent helpworkflowParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/HelpWorkFlow.fxml"));
+        Parent helpworkflowParent = FXMLLoader.load(getClass().getResource("Boundaries_2/HelpWorkFlow.fxml"));
         primaryStage = Main.getWindow();
         primaryStage.getScene().setRoot(helpworkflowParent);
     }

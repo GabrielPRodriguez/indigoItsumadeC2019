@@ -1,11 +1,10 @@
-package edu.wpi.cs3733c19.teamI.Controllers2;
+package edu.wpi.cs3733c19.teamI;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
-import com.jfoenix.controls.JFXPopup;
 import edu.wpi.cs3733c19.teamI.Algorithms.SQLFuzzy;
 import edu.wpi.cs3733c19.teamI.Algorithms.fuzzyContext;
-import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.ReturnedValue;
+import edu.wpi.cs3733c19.teamI.dbUtilities.ReturnedValue;
 import edu.wpi.cs3733c19.teamI.Entities.sub_Form;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -17,23 +16,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.geometry.Pos;
-import javafx.scene.Node;
-import javafx.scene.control.*;
-import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.paint.Color;
-import javafx.stage.PopupWindow;
-import javafx.stage.PopupWindow.AnchorLocation;
-import org.junit.Test;
 
-import javax.swing.text.View;
 import java.io.*;
 import java.net.URL;
 import java.text.SimpleDateFormat;

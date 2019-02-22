@@ -4,9 +4,6 @@ package edu.wpi.cs3733c19.teamI;
 import com.fazecast.jSerialComm.SerialPort;
 import com.fazecast.jSerialComm.SerialPortEvent;
 import com.fazecast.jSerialComm.SerialPortPacketListener;
-import edu.wpi.cs3733c19.teamI.Controllers2.LoginAccountController;
-import edu.wpi.cs3733c19.teamI.Controllers2.ResultsController;
-import edu.wpi.cs3733c19.teamI.Controllers2.ToolBarController;
 import edu.wpi.cs3733c19.teamI.Entities.SearchResults;
 import edu.wpi.cs3733c19.teamI.Entities.User;
 import javafx.application.Application;
@@ -14,7 +11,6 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import javax.imageio.IIOParam;
@@ -137,7 +133,7 @@ public class Main extends Application implements SerialPortPacketListener {
         toolBarController.setResultsController(resultsPageLoader.getController());
         toolBarController.setSearchParent(resultPane);
         window.setScene(homeScene);
-        window.setFullScreen(true);
+        window.setMaximized(true);
         window.show();
 
 

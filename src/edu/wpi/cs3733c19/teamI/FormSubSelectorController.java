@@ -1,7 +1,6 @@
-package edu.wpi.cs3733c19.teamI.Controllers2;
+package edu.wpi.cs3733c19.teamI;
 
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.svg.SVGGlyph;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 

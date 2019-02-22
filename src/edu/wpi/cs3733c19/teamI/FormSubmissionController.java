@@ -1,9 +1,9 @@
-package edu.wpi.cs3733c19.teamI.Controllers2;
+package edu.wpi.cs3733c19.teamI;
 
 import com.jfoenix.controls.*;
-import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.DBTypes;
-import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.DBValue;
-import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.ReturnedValue;
+import edu.wpi.cs3733c19.teamI.dbUtilities.DBTypes;
+import edu.wpi.cs3733c19.teamI.dbUtilities.DBValue;
+import edu.wpi.cs3733c19.teamI.dbUtilities.ReturnedValue;
 import edu.wpi.cs3733c19.teamI.Entities.DataTransfer;
 import edu.wpi.cs3733c19.teamI.Entities.Form;
 import javafx.beans.value.ChangeListener;
@@ -21,7 +21,6 @@ import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 
-import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -29,9 +28,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ResourceBundle;
-
-import javax.swing.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class FormSubmissionController implements Initializable {
 

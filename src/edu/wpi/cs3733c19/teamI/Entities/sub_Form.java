@@ -1,11 +1,10 @@
 package edu.wpi.cs3733c19.teamI.Entities;
 
-import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.ReturnedValue;
+import edu.wpi.cs3733c19.teamI.dbUtilities.ReturnedValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.util.HashMap;
-import java.util.LinkedList;
 
 //this class is used to more easily represent data in our tableview on the results UI. Simply contains all attributes
 //a form can have

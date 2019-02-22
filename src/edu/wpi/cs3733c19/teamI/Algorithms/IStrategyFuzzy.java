@@ -1,10 +1,9 @@
 package edu.wpi.cs3733c19.teamI.Algorithms;
-import edu.wpi.cs3733c19.teamI.Controllers2.SQLDriver;
-import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.ReturnedValue;
+import edu.wpi.cs3733c19.teamI.SQLDriver;
+import edu.wpi.cs3733c19.teamI.dbUtilities.ReturnedValue;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 
 public interface IStrategyFuzzy {
     // this interface includes a class called run to run the fuzzy search, its own sql driver class, and an Array List of hashmaps

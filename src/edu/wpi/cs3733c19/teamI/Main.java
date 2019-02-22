@@ -137,7 +137,7 @@ public class Main extends Application implements SerialPortPacketListener {
         toolBarController.setResultsController(resultsPageLoader.getController());
         toolBarController.setSearchParent(resultPane);
         window.setScene(homeScene);
-        window.setFullScreen(true);
+        window.setMaximized(true);
         window.show();
 
 

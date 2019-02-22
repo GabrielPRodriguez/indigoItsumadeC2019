@@ -109,12 +109,12 @@ public class MongoDriver {
             boolean seen_result = false;
             for (String key:keys){
                 String _val = result.get(key).to_string();
-                System.out.println(_val);
-                System.out.println(_user_input);
-                System.out.println("---------------------");
+                //System.out.println(_val);
+                //System.out.println(_user_input);
+                //System.out.println("---------------------");
 
                 if (_val.length() > 0 && _user_input.length() > 0 && filter_immediate(_val, _user_input)){
-                    System.out.println("Got in here");
+                    //System.out.println("Got in here");
                     _count += dl_distance(_val, _user_input);
                     if (!seen_result){
                         seen_result = true;
@@ -194,7 +194,7 @@ public class MongoDriver {
                         flag = false;
                         break;
                     } else {
-                        System.out.println("got true result");
+                        //System.out.println("got true result");
                         flag = true;
                     }
 
@@ -273,27 +273,31 @@ public class MongoDriver {
 
     public ArrayList<HashMap<String, ReturnedValue>>search_for_l_multiple(String tablename, String filename, ArrayList<String>keys, String _user_input, int top_results) throws Exception{
 
-        System.out.println("In search_for_l_multiple");
-        System.out.println(_url);
-        System.out.println(filename);
+        //System.out.println("In search_for_l_multiple");
+        //System.out.println(_url);
+        //System.out.println(filename);
         if (top_results < 1){
             throw new Exception("'top_results' must be a value greater than zero");
         }
         ArrayList<Integer>all_distances = new ArrayList<Integer>();
         HashMap<Integer, HashMap<String, ReturnedValue>>results = new HashMap<Integer, HashMap<String, ReturnedValue>>();
+        //System.out.println("keys below");
+        //System.out.println(keys);
+
         for (HashMap<String, ReturnedValue>result:select_all(filename, tablename)){
 
 
             int _count = 0;
             boolean seen_result = false;
             for (String key:keys){
+                //System.out.println("got key here "+key);
                 String _val = result.get(key).to_string();
-                System.out.println(_val);
-                System.out.println(_user_input);
-                System.out.println("---------------------");
+                //System.out.println("this is the val "+_val);
+                //System.out.println(_user_input);
+                //System.out.println("---------------------");
 
                 if (_val.length() > 0 && _user_input.length() > 0 && filter_immediate(_val, _user_input)){
-                    System.out.println("Got in here");
+                    //System.out.println("Got in here");
                     _count += l_distance(_val, _user_input);
                     if (!seen_result){
                         seen_result = true;
@@ -348,7 +352,7 @@ public class MongoDriver {
         }
 
 
-        System.out.println("Here are results: ");
+        //System.out.println("Here are results: ");
         return final_results;
 
     }
@@ -377,8 +381,8 @@ public class MongoDriver {
             //collection with tablename already exists in filename
             flag = false;
         }
-        System.out.println("flag for insert_val");
-        System.out.println(flag);
+        //System.out.println("flag for insert_val");
+        //System.out.println(flag);
 
         MongoDatabase about_database = mongo.getDatabase("_about_"+filename);
         try{
@@ -390,7 +394,7 @@ public class MongoDriver {
                 about_document = new Document("rowname", default_rows[i]);
                 about_document.append("rowtype", vals[i].statement());
                 about_collection.insertOne(about_document);
-                System.out.println(about_collection);
+                //System.out.println(about_collection);
             }
 
         }
@@ -444,8 +448,8 @@ public class MongoDriver {
         MongoCollection<Document> about_collection = about_database.getCollection(tablename);
         List<Document> about_entries = (List<Document>) about_collection.find().into(
                 new ArrayList<Document>());
-        System.out.println(entries);
-        System.out.println(about_entries);
+        //System.out.println(entries);
+        //System.out.println(about_entries);
         ArrayList<HashMap<String, ReturnedValue>>results = new ArrayList<HashMap<String, ReturnedValue>>();
         HashMap<String, String>types = new HashMap<String, String>();
         ArrayList<String>_keys = new ArrayList<String>();
@@ -454,6 +458,7 @@ public class MongoDriver {
             _keys.add(doc.getString("rowname"));
         }
         for (Document doc:entries){
+
             HashMap<String, ReturnedValue>_r = new HashMap<String, ReturnedValue>();
             for (String key:_keys){
                 if (types.get(key).equals("setInt")){
@@ -572,23 +577,23 @@ public class MongoDriver {
         return final_results;
     }
     public ArrayList<HashMap<String, ReturnedValue>>get_user_data_by_value(String tablename, String filename, LinkedList<String>search_fields, HashMap<String, DataField>targets) throws Exception{
-        System.out.println("in search method");
+        //System.out.println("in search method");
 
         ArrayList<HashMap<String, ReturnedValue>> final_results = new ArrayList<HashMap<String, ReturnedValue>>();
         for (HashMap<String, ReturnedValue>result: select_all(filename, tablename)){
-            System.out.println("In first loop");
+            //System.out.println("In first loop");
             boolean _flag = false;
             for (String field:search_fields){
-                System.out.println("search field: "+field);
+                //System.out.println("search field: "+field);
                 ReturnedValue type1 = result.get(field);
                 DataField type2 = targets.get(field);
 
-                System.out.println("At end");
-                System.out.println("Type1: " + type1);
+                //System.out.println("At end");
+                //System.out.println("Type1: " + type1);
 
 
                 if (type1.type.equals("text")|| type1.type.equals("TEXT")){
-                    System.out.println("Type accepted");
+                    //System.out.println("Type accepted");
                     if (type1.to_string().equals(type2.getValue().toString())){
                         //  System.out.println("successfull comparison!!!");
 
@@ -656,10 +661,10 @@ public class MongoDriver {
 
         //this is a test here
         for (HashMap<String, ReturnedValue>r:driver.select_all("players.db", "players")){
-            System.out.println(r.get("name").to_string());
-            System.out.println(r.get("team").to_string());
-            System.out.println(r.get("salary").to_int());
-            System.out.println("-----------------");
+            //System.out.println(r.get("name").to_string());
+            //System.out.println(r.get("team").to_string());
+            //System.out.println(r.get("salary").to_int());
+            //System.out.println("-----------------");
 
         }
 

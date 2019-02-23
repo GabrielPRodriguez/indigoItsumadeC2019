@@ -13,7 +13,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -32,7 +31,7 @@
                            <children>
                               <Label text="What type of alcoholic beverage are you submitting?">
                                  <font>
-                                    <Font name="Segoe UI Bold" size="18.0" />
+                                    <Font name="Segoe UI Bold" size="25.0" />
                                  </font>
                               </Label>
                               <HBox alignment="CENTER">
@@ -44,20 +43,23 @@
                                                 <ToggleGroup fx:id="beverage" />
                                              </toggleGroup>
                                              <font>
-                                                <Font name="Segoe UI Bold" size="16.0" />
+                                                <Font name="Segoe UI Bold" size="25.0" />
                                              </font>
                                           </JFXRadioButton>
                                           <JFXRadioButton fx:id="beer_RadButton" mnemonicParsing="false" text="Malt Beverage" toggleGroup="$beverage">
                                              <font>
-                                                <Font name="Segoe UI Bold" size="16.0" />
+                                                <Font name="Segoe UI Bold" size="25.0" />
                                              </font>
                                           </JFXRadioButton>
                                           <JFXRadioButton fx:id="liquor_RadButton" mnemonicParsing="false" text="Distilled Spirits" toggleGroup="$beverage">
                                              <font>
-                                                <Font name="Segoe UI Bold" size="16.0" />
+                                                <Font name="Segoe UI Bold" size="25.0" />
                                              </font>
                                           </JFXRadioButton>
-                                          <Label fx:id="beverage_warning" />
+                                          <Label fx:id="beverage_warning">
+                                             <font>
+                                                <Font name="Segoe UI Bold" size="25.0" />
+                                             </font></Label>
                                        </children>
                                        <padding>
                                           <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -80,7 +82,7 @@
               <content>
                 <AnchorPane>
                      <children>
-                        <VBox alignment="CENTER" layoutX="30.0" layoutY="30.0" spacing="20.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                        <VBox alignment="CENTER" layoutX="30.0" layoutY="30.0" spacing="40.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
                            <children>
                               <HBox alignment="CENTER" spacing="20.0">
                                  <children>
@@ -88,10 +90,13 @@
                                        <children>
                                           <Label text="Serial Number">
                                              <font>
-                                                <Font name="Segoe UI Bold" size="16.0" />
+                                                <Font name="Segoe UI Bold" size="25.0" />
                                              </font>
                                           </Label>
-                                          <JFXTextField fx:id="serialNum_Field" />
+                                          <JFXTextField fx:id="serialNum_Field">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font></JFXTextField>
                                           <Label fx:id="serial_warning" />
                                        </children>
                                     </VBox>
@@ -99,10 +104,13 @@
                                        <children>
                                           <Label alignment="CENTER" text="Brand Name">
                                              <font>
-                                                <Font name="Segoe UI Bold" size="16.0" />
+                                                <Font name="Segoe UI Bold" size="25.0" />
                                              </font>
                                           </Label>
-                                          <JFXTextField fx:id="brandName_Field" />
+                                          <JFXTextField fx:id="brandName_Field">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font></JFXTextField>
                                           <Label fx:id="brand_warning" />
                                        </children>
                                     </VBox>
@@ -110,17 +118,20 @@
                                        <children>
                                           <Label alignment="CENTER" text="Fanciful Name">
                                              <font>
-                                                <Font name="Segoe UI Bold" size="16.0" />
+                                                <Font name="Segoe UI Bold" size="25.0" />
                                              </font>
                                           </Label>
-                                          <JFXTextField fx:id="fancyName_Field" />
+                                          <JFXTextField fx:id="fancyName_Field">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font></JFXTextField>
                                        </children>
                                     </VBox>
                                     <VBox spacing="10.0">
                                        <children>
-                                          <Label alignment="CENTER" text="Domestic Or Imported">
+                                          <Label alignment="CENTER" text="Domestic Or Imported?">
                                              <font>
-                                                <Font name="Segoe UI Bold" size="16.0" />
+                                                <Font name="Segoe UI Bold" size="25.0" />
                                              </font>
                                           </Label>
                                           <VBox alignment="CENTER_LEFT" spacing="10.0">
@@ -129,8 +140,14 @@
                                                    <toggleGroup>
                                                       <ToggleGroup fx:id="origin" />
                                                    </toggleGroup>
+                                                   <font>
+                                                      <Font name="Segoe UI Bold" size="15.0" />
+                                                   </font>
                                                 </JFXRadioButton>
-                                                <JFXRadioButton fx:id="imported_RadButton" mnemonicParsing="false" text="Imported" toggleGroup="$origin" />
+                                                <JFXRadioButton fx:id="imported_RadButton" mnemonicParsing="false" text="Imported" toggleGroup="$origin">
+                                                   <font>
+                                                      <Font name="Segoe UI Bold" size="15.0" />
+                                                   </font></JFXRadioButton>
                                              </children>
                                           </VBox>
                                           <Label fx:id="domestic_warning" />
@@ -144,10 +161,13 @@
                                        <children>
                                           <Label alignment="CENTER" text="Alcohol Percentage">
                                              <font>
-                                                <Font name="Segoe UI Bold" size="16.0" />
+                                                <Font name="Segoe UI Bold" size="25.0" />
                                              </font>
                                           </Label>
-                                          <JFXTextField fx:id="alcoholPercent_Field" />
+                                          <JFXTextField fx:id="alcoholPercent_Field">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font></JFXTextField>
                                           <Label fx:id="alcoholPercent_warning" prefHeight="17.0" prefWidth="189.0" />
                                        </children>
                                     </VBox>
@@ -155,20 +175,26 @@
                                        <children>
                                           <Label alignment="CENTER" text="Volume">
                                              <font>
-                                                <Font name="Segoe UI Bold" size="16.0" />
+                                                <Font name="Segoe UI Bold" size="25.0" />
                                              </font>
                                           </Label>
-                                          <JFXTextField fx:id="volume_Field" />
+                                          <JFXTextField fx:id="volume_Field">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font></JFXTextField>
                                        </children>
                                     </VBox>
                                     <VBox spacing="10.0">
                                        <children>
                                           <Label alignment="CENTER" text="Formula">
                                              <font>
-                                                <Font name="Segoe UI Bold" size="16.0" />
+                                                <Font name="Segoe UI Bold" size="25.0" />
                                              </font>
                                           </Label>
-                                          <JFXTextField fx:id="formula_Field" />
+                                          <JFXTextField fx:id="formula_Field">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font></JFXTextField>
                                        </children>
                                     </VBox>
                                  </children>
@@ -185,18 +211,21 @@
               <content>
                 <AnchorPane>
                      <children>
-                        <VBox alignment="CENTER_LEFT" spacing="30.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+                        <VBox alignment="CENTER" spacing="40.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
                            <children>
-                              <HBox alignment="CENTER_LEFT" spacing="20.0">
+                              <HBox alignment="CENTER" spacing="20.0">
                                  <children>
                                     <VBox spacing="10.0">
                                        <children>
                                           <Label text="Name of Applicant">
                                              <font>
-                                                <Font name="Segoe UI Bold" size="16.0" />
+                                                <Font name="Segoe UI Bold" size="25.0" />
                                              </font>
                                           </Label>
-                                          <JFXTextField fx:id="applicantName_Field" />
+                                          <JFXTextField fx:id="applicantName_Field">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font></JFXTextField>
                                           <Label fx:id="name_warning" />
                                        </children>
                                     </VBox>
@@ -204,88 +233,109 @@
                                        <children>
                                           <Label text="Representative ID Number">
                                              <font>
-                                                <Font name="Segoe UI Bold" size="16.0" />
+                                                <Font name="Segoe UI Bold" size="25.0" />
                                              </font>
                                           </Label>
-                                          <JFXTextField fx:id="repIdNum_Field" />
+                                          <JFXTextField fx:id="repIdNum_Field">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font></JFXTextField>
                                        </children>
                                     </VBox>
                                     <VBox layoutX="10.0" layoutY="10.0" spacing="10.0">
                                        <children>
                                           <Label text="Plant Registry/Basic Permit/Brewer's Number">
                                              <font>
-                                                <Font name="Segoe UI Bold" size="16.0" />
+                                                <Font name="Segoe UI Bold" size="25.0" />
                                              </font>
                                           </Label>
-                                          <JFXTextField fx:id="permitNum_Field" />
+                                          <JFXTextField fx:id="permitNum_Field">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font></JFXTextField>
                                        </children>
                                     </VBox>
                                     <VBox layoutX="230.0" layoutY="10.0" spacing="10.0">
                                        <children>
                                           <Label text="Permit Name">
                                              <font>
-                                                <Font name="Segoe UI Bold" size="16.0" />
+                                                <Font name="Segoe UI Bold" size="25.0" />
                                              </font>
                                           </Label>
-                                          <JFXTextField fx:id="permitName" />
+                                          <JFXTextField fx:id="permitName">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font></JFXTextField>
                                        </children>
                                     </VBox>
                                  </children>
                               </HBox>
-                              <HBox alignment="CENTER_LEFT" spacing="20.0">
+                              <HBox alignment="CENTER" spacing="20.0">
                                  <children>
                                     <VBox spacing="10.0">
                                        <children>
                                           <Label text="Street Address">
                                              <font>
-                                                <Font name="Segoe UI Bold" size="16.0" />
+                                                <Font name="Segoe UI Bold" size="25.0" />
                                              </font>
                                           </Label>
-                                          <JFXTextField fx:id="street_Field" />
+                                          <JFXTextField fx:id="street_Field">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font></JFXTextField>
                                        </children>
                                     </VBox>
                                     <VBox spacing="10.0">
                                        <children>
                                           <Label alignment="CENTER" text="City">
                                              <font>
-                                                <Font name="Segoe UI Bold" size="16.0" />
+                                                <Font name="Segoe UI Bold" size="25.0" />
                                              </font>
                                           </Label>
-                                          <JFXTextField fx:id="city_Field" />
+                                          <JFXTextField fx:id="city_Field">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font></JFXTextField>
                                        </children>
                                     </VBox>
                                     <VBox layoutX="10.0" layoutY="10.0" spacing="10.0">
                                        <children>
                                           <Label alignment="CENTER" text="State">
                                              <font>
-                                                <Font name="Segoe UI Bold" size="16.0" />
+                                                <Font name="Segoe UI Bold" size="25.0" />
                                              </font>
                                           </Label>
-                                          <JFXTextField fx:id="state_Field" />
+                                          <JFXTextField fx:id="state_Field">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font></JFXTextField>
                                        </children>
                                     </VBox>
                                     <VBox layoutX="230.0" layoutY="10.0" spacing="10.0">
                                        <children>
                                           <Label alignment="CENTER" text="Zip">
                                              <font>
-                                                <Font name="Segoe UI Bold" size="16.0" />
+                                                <Font name="Segoe UI Bold" size="25.0" />
                                              </font>
                                           </Label>
-                                          <JFXTextField fx:id="zip_Field" />
+                                          <JFXTextField fx:id="zip_Field">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font></JFXTextField>
                                        </children>
                                     </VBox>
                                  </children>
                               </HBox>
-                              <HBox alignment="CENTER_LEFT" spacing="20.0">
+                              <HBox alignment="CENTER" spacing="20.0">
                                  <children>
                                     <VBox spacing="10.0">
                                        <children>
                                           <Label text="Date of Application">
                                              <font>
-                                                <Font name="Segoe UI Bold" size="16.0" />
+                                                <Font name="Segoe UI Bold" size="25.0" />
                                              </font>
                                           </Label>
-                                          <JFXDatePicker fx:id="date_Field" defaultColor="#046b99" />
+                                          <JFXDatePicker fx:id="date_Field" defaultColor="#046b99" prefHeight="44.0" prefWidth="207.0" />
                                           <Label fx:id="date_warning" />
                                        </children>
                                     </VBox>
@@ -293,10 +343,13 @@
                                        <children>
                                           <Label alignment="CENTER" text="Phone Number">
                                              <font>
-                                                <Font name="Segoe UI Bold" size="16.0" />
+                                                <Font name="Segoe UI Bold" size="25.0" />
                                              </font>
                                           </Label>
-                                          <JFXTextField fx:id="phoneNum_Field" />
+                                          <JFXTextField fx:id="phoneNum_Field">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font></JFXTextField>
                                           <Label fx:id="phoneNum_warning" />
                                        </children>
                                     </VBox>
@@ -304,10 +357,13 @@
                                        <children>
                                           <Label alignment="CENTER" text="Email Address">
                                              <font>
-                                                <Font name="Segoe UI Bold" size="16.0" />
+                                                <Font name="Segoe UI Bold" size="25.0" />
                                              </font>
                                           </Label>
-                                          <JFXTextField fx:id="email_Field" />
+                                          <JFXTextField fx:id="email_Field">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font></JFXTextField>
                                        </children>
                                     </VBox>
                                  </children>
@@ -321,7 +377,7 @@
                <content>
                   <AnchorPane>
                      <children>
-                        <VBox alignment="CENTER_LEFT" spacing="20.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+                        <VBox alignment="CENTER" spacing="40.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
                            <children>
                               <HBox fx:id="wineFields" alignment="CENTER" disable="true" maxHeight="0.0" maxWidth="0.0" spacing="20.0" visible="false">
                                  <children>
@@ -370,25 +426,28 @@
                               </HBox>
                               <HBox alignment="CENTER" spacing="20.0">
                                  <children>
-                                    <VBox spacing="10.0" HBox.hgrow="ALWAYS">
+                                    <VBox alignment="CENTER" spacing="10.0">
                                        <children>
                                           <Label text="Show any information that is branded, or embossed on the container only if it does not appear on the label">
                                              <font>
-                                                <Font name="Segoe UI Bold" size="16.0" />
+                                                <Font name="Segoe UI Bold" size="25.0" />
                                              </font>
                                           </Label>
-                                          <JFXTextField fx:id="brandedInfo_Field" />
+                                          <JFXTextField fx:id="brandedInfo_Field">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font></JFXTextField>
                                        </children>
                                     </VBox>
                                  </children>
                               </HBox>
                               <HBox alignment="CENTER" spacing="20.0">
                                  <children>
-                                    <VBox spacing="10.0">
+                                    <VBox alignment="CENTER" spacing="10.0">
                                        <children>
                                           <Label alignment="CENTER" text="Front Image">
                                              <font>
-                                                <Font name="Segoe UI Bold" size="16.0" />
+                                                <Font name="Segoe UI Bold" size="25.0" />
                                              </font>
                                           </Label>
                                           <JFXButton fx:id="front_Upload" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#uploadFile" prefHeight="0.0" prefWidth="200.0" text="Click Here to Upload Front Image">
@@ -401,11 +460,11 @@
                                           </JFXButton>
                                        </children>
                                     </VBox>
-                                    <VBox spacing="10.0">
+                                    <VBox alignment="CENTER" spacing="10.0">
                                        <children>
                                           <Label alignment="CENTER" text="Back Image">
                                              <font>
-                                                <Font name="Segoe UI Bold" size="16.0" />
+                                                <Font name="Segoe UI Bold" size="25.0" />
                                              </font>
                                           </Label>
                                           <JFXButton fx:id="back_Upload" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#uploadFile" prefHeight="0.0" prefWidth="200.0" text="Click Here to Upload Back Image">
@@ -418,15 +477,14 @@
                                           </JFXButton>
                                        </children>
                                     </VBox>
-                                    <Pane HBox.hgrow="ALWAYS" />
-                                    <VBox prefHeight="158.0" prefWidth="336.0" spacing="20.0">
+                                    <VBox alignment="CENTER" prefHeight="158.0" prefWidth="336.0" spacing="20.0">
                                        <children>
                                           <Label fx:id="submit_message" nodeOrientation="LEFT_TO_RIGHT" wrapText="true" VBox.vgrow="ALWAYS">
                                              <padding>
                                                 <Insets top="50.0" />
                                              </padding>
                                           </Label>
-                                          <HBox prefHeight="100.0" prefWidth="200.0" spacing="50.0">
+                                          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
                                              <children>
                                                 <JFXButton fx:id="save_Button" mnemonicParsing="false" style="-fx-background-color: #2e8540;" text="Save" textFill="WHITE" HBox.hgrow="ALWAYS">
                                                    <font>

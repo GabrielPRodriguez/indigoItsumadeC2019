@@ -45,31 +45,31 @@ public class AgentWorkflowController implements Initializable {
     JFXButton specialist_button;
 
     @FXML
-    Button choose_button1;
+    JFXButton choose_button1;
 
     @FXML
-    Button choose_button2;
+    JFXButton choose_button2;
 
     @FXML
-    Button choose_button3;
+    JFXButton choose_button3;
 
     @FXML
-    Button choose_button4;
+    JFXButton choose_button4;
 
     @FXML
-    Button choose_button5;
+    JFXButton choose_button5;
 
     @FXML
-    Button choose_button6;
+    JFXButton choose_button6;
 
     @FXML
-    Button choose_button7;
+    JFXButton choose_button7;
 
     @FXML
-    Button choose_button8;
+    JFXButton choose_button8;
 
     @FXML
-    Button choose_button9;
+    JFXButton choose_button9;
 
     @FXML
     Label formID_1;

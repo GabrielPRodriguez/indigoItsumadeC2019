@@ -473,13 +473,13 @@ public class LoginAccountController implements Initializable {
         int score = result.getBasicScore();
         //System.out.println(timeToCrackOn);
         //double scoreEnt = result.getEntropy();
-        System.out.println(timeStringOut);
+        //System.out.println(timeStringOut);
 
         strengthBar.getStyleClass().removeAll(barColorStyleClasses);
 
         String error = "";
 
-        /*
+
         if (score != 4) {
             Feedback feedback = result.getFeedback();
 
@@ -498,9 +498,9 @@ public class LoginAccountController implements Initializable {
             // Example "error message" that would be displayed to the user
             // This is obviously just a contrived example and would have to
             // be tailored to each front-end
-            error = errorMessage.toString();
+            error = errorMessage.toString(); /** we will want to print this line somewhere create page */
         }
-        */
+
 
         crackTime.setText("Time to Crack: " + timeToCrackOn);
         if(score == 0){

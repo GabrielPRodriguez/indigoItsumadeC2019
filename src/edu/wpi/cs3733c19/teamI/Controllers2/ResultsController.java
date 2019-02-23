@@ -337,6 +337,16 @@ public class ResultsController implements Initializable {
                     //System.out.println("formID is " + item.getSummary().get(0));
                     //System.out.println(item.getForm_ID());
                     driver.setField(item.getSummary().get(0), "delete", "status");
+                    //DisplayedResults.remove(item.getIndex()-1);
+                    ArrayList<HashMap<String, ReturnedValue>> resMap = toolBarController.getResultsMap();
+                    resMap.remove(item.getIndex()-1);
+                    //dispList = new SimpleObjectProperty<>(DisplayedResults);
+                    convertToForms(1);
+                    setTable();
+                    //perPageAction(new ActionEvent());
+
+                    //if we use DisplayedResults.remove and setTable it removes it but only temporarily
+
                     // toolBarController.goSearch();
                     //setResultsList();
                     //setTable();
@@ -353,11 +363,16 @@ public class ResultsController implements Initializable {
 
 
     public void table_selected(Event event){
-        item = tableView.getSelectionModel().getSelectedItem();
-        //System.out.println(tableView.getItems());
-        showSelectedBeverage(item);
-        // toolBarController.getInfoController().updateList(item);
-        // toolBarController.goDetails(event);
+        try{
+            item = tableView.getSelectionModel().getSelectedItem();
+            //System.out.println(tableView.getItems());
+            showSelectedBeverage(item);
+            // toolBarController.getInfoController().updateList(item);
+            // toolBarController.goDetails(event);
+        }
+        catch (Exception e){
+            System.out.println("Item not found in table_selected method");
+        }
     }
 
     public void goSearch(ActionEvent actionEvent) throws Exception {

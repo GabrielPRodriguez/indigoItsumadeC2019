@@ -372,8 +372,13 @@ public class SQLDriver {
                     }
                 }
                 if (maxDistance > 1) {
-                    results.put(maxDistance, result);
-                    all_distances.add(maxDistance);
+                    if(!result.get("status").to_string().equals("delete")){
+                        //System.out.println("making sure deleted stuff doesnt show up");
+                        //System.out.println(result.get("status").to_string());
+                        results.put(maxDistance, result);
+                        all_distances.add(maxDistance);
+                    }
+
                 }
             }
 
@@ -804,7 +809,7 @@ public class SQLDriver {
         for(int i = 0; i < tarCount; i++){
             plusResults.addAll(search_sql_wildcard(tablename, filename, targets.get(i), _key));
         }
-        System.out.println("search Results = " + plusResults);
+        //System.out.println("search Results = " + plusResults);
         return plusResults;
     }
 

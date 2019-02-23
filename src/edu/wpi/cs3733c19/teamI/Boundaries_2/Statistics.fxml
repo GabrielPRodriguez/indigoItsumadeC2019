@@ -1,40 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane prefHeight="800.0" prefWidth="1029.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane prefHeight="800.0" prefWidth="1029.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers2.StatisticsController">
     <top>
         <fx:include source="TTBToolbar.fxml" />
     </top>
    <center>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Most Popular Search Terms">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Satistics Page">
                <VBox.margin>
                   <Insets left="375.0" top="50.0" />
                </VBox.margin>
                <font>
-                  <Font size="27.0" />
+                  <Font size="36.0" />
                </font>
             </Text>
-            <BarChart>
+            <BarChart fx:id="statsGraph">
               <xAxis>
-                <CategoryAxis label="Term" side="BOTTOM" />
+                <CategoryAxis label="X Axis" side="BOTTOM" />
               </xAxis>
               <yAxis>
-                <NumberAxis label="Number of Times Searched" side="LEFT" />
+                <NumberAxis label="Y Axis" side="LEFT" />
               </yAxis>
                <VBox.margin>
-                  <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
+                  <Insets bottom="40.0" left="60.0" right="60.0" top="40.0" />
                </VBox.margin>
             </BarChart>
          </children></VBox>
    </center>
+   <bottom>
+      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox>
+               <children>
+                  <Label prefHeight="29.0" prefWidth="123.0" text="Y Axis" textAlignment="RIGHT">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <JFXComboBox onAction="#yCombo" prefHeight="30.0" prefWidth="125.0" />
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <HBox.margin>
+                  <Insets bottom="100.0" left="300.0" right="100.0" />
+               </HBox.margin>
+            </VBox>
+            <VBox>
+               <children>
+                  <Label text="X Axis">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <JFXComboBox onAction="#xCombo" prefHeight="30.0" prefWidth="125.0" />
+               </children>
+               <HBox.margin>
+                  <Insets left="100.0" right="300.0" />
+               </HBox.margin>
+            </VBox>
+         </children>
+      </HBox>
+   </bottom>
 </BorderPane>

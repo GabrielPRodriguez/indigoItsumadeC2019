@@ -626,21 +626,26 @@ public class SQLDriver {
         throw new Exception("Cannot find row");
     }
     public HashMap<String, ReturnedValue>get_data_by_value(String tablename, String filename, String column, DBValue value) throws Exception{
-        for (HashMap<String, ReturnedValue>result: select_all(filename, tablename)){
-            //if (result.get(column).)
-            boolean flag = false;
-            if (value.statement().equals("setString")){
-                flag = (result.get(column).to_string().equals(value.to_string()));
-            }
-            else{
-                flag = (result.get(column).to_double().equals(value.to_double()));
-            }
+        try {
+            for (HashMap<String, ReturnedValue> result : select_all(filename, tablename)) {
+                //if (result.get(column).)
+                boolean flag = false;
+                if (value.statement().equals("setString")) {
+                    flag = (result.get(column).to_string().equals(value.to_string()));
+                } else {
+                    flag = (result.get(column).to_double().equals(value.to_double()));
+                }
 
-            if (flag){
-                return result;
+                if (flag) {
+                    return result;
+                }
             }
         }
-        throw new Exception("Cannot find row");
+        catch(Exception e){
+            throw new Exception("Cannot find row");
+        }
+        return null;
+
     }
     public void generic_update(String tablename, String filename, ArrayList<String>targetcols, ArrayList<DBValue>values, String anchor_col, DBValue anchor_val) throws Exception{
         Connection _connector = connect_file(filename);
@@ -1010,6 +1015,7 @@ public class SQLDriver {
         SQLDriver d = new SQLDriver();
         System.out.println(d.full_score("some", "some text1"));
     }
+
     public static void setApprovalStatus(String formID, String approvalStatus) throws IOException, Exception {
         setField(formID, approvalStatus, "status");
     }

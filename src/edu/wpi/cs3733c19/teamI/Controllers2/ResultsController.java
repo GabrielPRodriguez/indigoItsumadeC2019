@@ -6,6 +6,7 @@ import com.jfoenix.controls.JFXPopup;
 import edu.wpi.cs3733c19.teamI.Algorithms.SQLFuzzy;
 import edu.wpi.cs3733c19.teamI.Algorithms.fuzzyContext;
 import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.ReturnedValue;
+import edu.wpi.cs3733c19.teamI.Entities.User;
 import edu.wpi.cs3733c19.teamI.Entities.sub_Form;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -104,6 +105,9 @@ public class ResultsController implements Initializable {
     JFXButton thirdPage;
 
     @FXML
+    Button buttonRemove;
+
+    @FXML
     TextField searchTextField;
     private fuzzyContext searchAlgorithmSelection = new fuzzyContext();
 
@@ -132,6 +136,9 @@ public class ResultsController implements Initializable {
 
     @FXML
     JFXComboBox delimDrop;
+
+    static sub_Form item;
+
 
     @FXML
     private void goHome() throws IOException {
@@ -300,11 +307,19 @@ public class ResultsController implements Initializable {
 
     }
 
+    @FXML
+    public void removeForm(){
+        //check if user is an admin
+        //permanently delete the form
 
+        SQLDriver driver = new SQLDriver();
+        //driver.setField(data.currentFormID, "delete", "status");
+        //data.currentFormID = "";
+    }
 
 
     public void table_selected(Event event){
-        sub_Form item = tableView.getSelectionModel().getSelectedItem();
+        item = tableView.getSelectionModel().getSelectedItem();
 
         showSelectedBeverage(item);
         // toolBarController.getInfoController().updateList(item);

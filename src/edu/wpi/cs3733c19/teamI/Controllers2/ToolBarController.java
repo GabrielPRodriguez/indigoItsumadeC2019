@@ -215,6 +215,9 @@ public class ToolBarController implements Initializable {
         {
             goWorkflowManufacturer();
         }
+        else if (curUser.getUserType().equals(User.userPower.SuperAdmin)){ //and add isAdmin check
+            goAdminPage();
+        }
         else if(curUser.getUserType().equals(User.userPower.Standard))
         {
             goHome();
@@ -265,6 +268,12 @@ public class ToolBarController implements Initializable {
         Parent helphomeParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/HelpHomePage.fxml"));
         primaryStage = Main.getWindow();
         primaryStage.getScene().setRoot(helphomeParent);
+    }
+
+    public void goAdminPage() throws IOException {
+        Parent adminParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/AdminPage.fxml"));
+        primaryStage = Main.getWindow();
+        primaryStage.getScene().setRoot(adminParent);
     }
 
     public void goHelpSubmit() throws IOException {

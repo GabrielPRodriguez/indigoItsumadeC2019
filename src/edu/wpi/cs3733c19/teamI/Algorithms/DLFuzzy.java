@@ -30,8 +30,6 @@ public class DLFuzzy implements IStrategyFuzzy {
         }
     }
 
-
-
     /**
      * algorithm OSA-distance
      * @param source the user given string

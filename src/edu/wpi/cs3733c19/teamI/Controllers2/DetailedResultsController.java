@@ -28,6 +28,7 @@ public class DetailedResultsController {
     ImageView image;
 
 
+
     ObservableList<String> items = FXCollections.observableArrayList();
 
     public void updateList(sub_Form form){

@@ -162,8 +162,14 @@ public class LoginAccountController implements Initializable {
             else if(users.get(0).get("role").to_double() == 1) {
                 powerCreate = User.userPower.Company;
             }
-            else{
-                powerCreate= User.userPower.Specialist;
+            else if (users.get(0).get("role").to_double() == 2){
+                powerCreate = User.userPower.Specialist;
+            }
+            else if (users.get(0).get("role").to_double() == 3){
+                powerCreate= User.userPower.SuperAdmin;
+            }
+            else {
+                powerCreate = User.userPower.Standard;
             }
             toolBarController.login(Email.getText(), Password.getText(), powerCreate, users.get(0).get("state").to_string(),
                     users.get(0).get("city").to_string(), users.get(0).get("zipCode").to_string(), users.get(0).get("streetAdress").to_string(),

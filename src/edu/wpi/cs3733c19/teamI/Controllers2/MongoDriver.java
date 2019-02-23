@@ -730,7 +730,7 @@ public class MongoDriver {
             //if (result.get(column).)
             boolean flag = false;
             if (value.statement().equals("setString")){
-                flag = (result.get(column).to_string() == value.to_string());
+                flag = (result.get(column).to_string().equals(value.to_string()));
             }
             else{
                 flag = (result.get(column).to_double() == value.to_double());

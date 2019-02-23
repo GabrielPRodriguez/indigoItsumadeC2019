@@ -297,7 +297,10 @@ public class ManufacturerWorkflowController {
         choose_button7.setDisable(false);
         choose_button8.setDisable(false);
         choose_button9.setDisable(false);
-        SQLDriver driver = new SQLDriver();
+
+       // SQLDriver driver = new SQLDriver();
+        MongoDriver driver = new MongoDriver("mongodb+srv://firstuser1:newTestCred@cs3733-hgmot.mongodb.net/test?retryWrites=true");
+
         ArrayList<HashMap<String, ReturnedValue>> filtered_results = new ArrayList<HashMap<String, ReturnedValue>>();
         for (HashMap<String, ReturnedValue>result:driver.select_all("stringified_ids_db.db", "form_data")){
                 if (result.get("status").to_string().contains(toolBarController.getCurUser().getUsername())){
@@ -356,7 +359,7 @@ public class ManufacturerWorkflowController {
                 choose_button8.setDisable(true);
             }
             if(formID_9.getText().equals("")){
-                choose_button9.setDisable(true);
+                    choose_button9.setDisable(true);
             }
 
         }
@@ -407,7 +410,8 @@ public class ManufacturerWorkflowController {
 
         }
 
-        SQLDriver driver = new SQLDriver();
+        //Driver driver = new SQLDriver();
+        MongoDriver driver = new MongoDriver("mongodb+srv://firstuser1:newTestCred@cs3733-hgmot.mongodb.net/test?retryWrites=true");
         HashMap<String, ReturnedValue>result = driver.get_data_by_value("form_data", "stringified_ids_db.db", "formID", new DBValue<String>(currentFormID));
 
 
@@ -483,8 +487,8 @@ public class ManufacturerWorkflowController {
     @FXML
     public void sendBackHandler() throws IOException, Exception{
         formStatus_string = "commented";
-        SQLDriver.setQualifier(currentFormID,commentBox.getText());
-        SQLDriver.setApprovalStatus(currentFormID,formStatus_string);
+        MongoDriver.setQualifier(currentFormID,commentBox.getText());
+        MongoDriver.setApprovalStatus(currentFormID,formStatus_string);
         clearFields();
 
         pull_Forms();
@@ -494,7 +498,7 @@ public class ManufacturerWorkflowController {
     @FXML
     public void forwardHandler() throws IOException, Exception{
         formStatus_string = "specialist";
-        SQLDriver.setApprovalStatus(currentFormID,formStatus_string);
+        MongoDriver.setApprovalStatus(currentFormID,formStatus_string);
         clearFields();
 
         pull_Forms();

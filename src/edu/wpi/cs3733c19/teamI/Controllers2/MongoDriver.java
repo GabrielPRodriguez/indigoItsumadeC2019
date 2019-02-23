@@ -1,4 +1,5 @@
 package edu.wpi.cs3733c19.teamI.Controllers2;
+import java.io.IOException;
 import java.util.*;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.MongoClient;
@@ -781,5 +782,63 @@ public class MongoDriver {
         */
         //username:firstuser1, password:newTestCred
 
+
+
     }
+
+//    public static void setField(String formID, String approvalStatus, String field) throws IOException, Exception{
+//        MongoDriver driver = new MongoDriver("mongodb+srv://firstuser1:newTestCred@cs3733-hgmot.mongodb.net/test?retryWrites=true");
+//        HashMap<String, ReturnedValue> result = driver.get_data_by_value("form_data", "stringified_ids_db.db", "formID", new DBValue<String>(formID));
+//
+//        //result.get("formStatus");
+//        ReturnedValue value = new ReturnedValue(field, approvalStatus);
+//        result.replace(field, value);
+//
+//        ArrayList<String> appStatType = new ArrayList<>();
+//        appStatType.add(field);
+//
+//        ArrayList<DBValue> appStatus = new ArrayList<>();
+//
+//        DBValue value1 = new DBValue<String>(approvalStatus);
+//        appStatus.add(value1);
+//
+//        driver.update("form_data", "stringified_ids_db.db", appStatType, appStatus, formID);
+//        //result.put("status", value);
+//    }
+
+    public static void setQualifier(String formID,String approvalStatus) throws IOException,Exception{
+        setField(formID,approvalStatus,"qualifier");
+    }
+
+    public static void setApprovalStatus(String formID, String approvalStatus) throws IOException, Exception {
+        setField(formID, approvalStatus, "status");
+    }
+
+    public static void setField(String formID, String approvalStatus, String field) throws IOException, Exception{
+        MongoDriver driver = new MongoDriver("mongodb+srv://firstuser1:newTestCred@cs3733-hgmot.mongodb.net/test?retryWrites=true");
+        HashMap<String, ReturnedValue> result = driver.get_data_by_value("form_data", "stringified_ids_db.db", "formID", new DBValue<String>(formID));
+
+        //result.get("formStatus");
+        ReturnedValue value = new ReturnedValue(field, approvalStatus);
+        result.replace(field, value);
+
+        ArrayList<String> appStatType = new ArrayList<>();
+        appStatType.add(field);
+
+        ArrayList<DBValue> appStatus = new ArrayList<>();
+
+        DBValue value1 = new DBValue<String>(approvalStatus);
+        appStatus.add(value1);
+//        public void generic_update(String tablename, String filename, ArrayList<String>targetcols, ArrayList<DBValue>values, String anchor_col, DBValue anchor_val){
+
+        ArrayList<String> targetCol = new ArrayList<>();
+        targetCol.add(field);
+        ArrayList<DBValue> arrayVal = new ArrayList<>();
+        DBValue<String> data = new DBValue(approvalStatus);
+        arrayVal.add(data);
+        DBValue form_ID = new DBValue(formID);
+        driver.generic_update("form_data", "stringified_ids_db.db", targetCol, arrayVal,"formID",form_ID);//"form_data", "stringified_ids_db.db", appStatType, appStatus, formID);
+        //result.put("status", value);
+    }
+
 }

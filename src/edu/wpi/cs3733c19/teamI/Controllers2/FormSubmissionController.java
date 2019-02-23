@@ -767,9 +767,17 @@ public class FormSubmissionController implements Initializable {
                 //contains the datatype of each column in the database, when adding a new column, please also add it's datatype here/
                 //"text" for strings and "real" for doubles/integers
 
-                MongoDriver driver = new MongoDriver("mongodb+srv://firstuser1:newTestCred@cs3733-hgmot.mongodb.net/test?retryWrites=true", columns);
-                DBTypes[] full_types = {new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("real"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"),new DBTypes("text"),new DBTypes("text"), new DBTypes("text"), new DBTypes("text")};
-
+        MongoDriver driver = new MongoDriver("mongodb+srv://firstuser1:newTestCred@cs3733-hgmot.mongodb.net/test?retryWrites=true", columns);
+                DBTypes[] full_types = {new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"),
+                        new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"),
+                        new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"),
+                        new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"),
+                        new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"),
+                        new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"),
+                        new DBTypes("text"), new DBTypes("double"), new DBTypes("double"), new DBTypes("text"),
+                        new DBTypes("text"),new DBTypes("text"),new DBTypes("text"), new DBTypes("text"),
+                        new DBTypes("text")};
+                //22,23
                 //int _id_count = driver.select_all("form_data.db", "form_data").size();
 
                 //iterates through the formID column of the database in order to find the current highest formID value

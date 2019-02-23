@@ -14,6 +14,8 @@ import com.mongodb.client.model.Updates;
 import com.mongodb.*;
 import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.*;
 
+import static java.lang.Math.abs;
+
 
 public class MongoDriver {
     private String _url;
@@ -35,32 +37,31 @@ public class MongoDriver {
         this.default_rows = default_rows;
     }
     //----------------------START OF SEARCH METHODS-------------------
-    public int l_distance(String a, String b){
-        // System.out.println("in l_distance");
-        a = a.toLowerCase();
-        b = b.toLowerCase();
+    public int l_distance(String a, String b) {
+        a.toLowerCase();
+        b.toLowerCase();
 
-        int counter = Math.abs(a.length()-b.length());
-        if (a.length() >= b.length()){
-            for (int i = 0; i < b.length(); i++){
-                if (b.charAt(i) != a.charAt(i)){
+        int counter = abs(a.length() - b.length());
+        if (a.length() >= b.length()) {
+            for (int i = 0; i < b.length(); i++) {
+                if (b.charAt(i) != a.charAt(i)) {
                     counter++;
                 }
             }
-        }
-        else{
-            for (int i = 0; i < a.length(); i++){
-                if (b.charAt(i) != a.charAt(i)){
+        } else {
+            for (int i = 0; i < a.length(); i++) {
+                if (b.charAt(i) != a.charAt(i)) {
                     counter++;
                 }
             }
         }
         return counter;
     }
-    public int dl_distance(String source, String target){
+
+    public int dl_distance(String source, String target) {
         // throw if parameter is a null
-        source = source.toLowerCase();
-        target = target.toLowerCase();
+        source.toLowerCase();
+        target.toLowerCase();
         if (source == null || target == null) {
             throw new IllegalArgumentException("Parameter must not be null");
         }
@@ -69,54 +70,56 @@ public class MongoDriver {
         int targetLength = target.length();
 
         //end with a
-        if (sourceLength == 0) return  sourceLength;
-        if (targetLength == 0) return  targetLength;
+        if (sourceLength == 0) return sourceLength;
+        if (targetLength == 0) return targetLength;
 
-        int[][] dist = new int[sourceLength+1][targetLength+1];
+        int[][] dist = new int[sourceLength + 1][targetLength + 1];
 
-        for (int i =0; i < sourceLength +1; i++){
-            dist[i][0] =i;
+        for (int i = 0; i < sourceLength + 1; i++) {
+            dist[i][0] = i;
         }
 
-        for (int j =0; j < targetLength +1; j++){
-            dist[0][j] =j;
+        for (int j = 0; j < targetLength + 1; j++) {
+            dist[0][j] = j;
         }
 
-        for (int i = 1; i < sourceLength +1; i++){
-            for (int j = 1; j < targetLength +1; j++){
-                int cost = source.charAt(i-1) == target.charAt(j-1) ? 0:1;
+        for (int i = 1; i < sourceLength + 1; i++) {
+            for (int j = 1; j < targetLength + 1; j++) {
+                int cost = source.charAt(i - 1) == target.charAt(j - 1) ? 0 : 1;
                 dist[i][j] = Math.min(
-                        Math.min(dist[i-1][j] + 1, dist[i][j-1]+1), dist[i-1][j-1]+cost);
+                        Math.min(dist[i - 1][j] + 1, dist[i][j - 1] + 1), dist[i - 1][j - 1] + cost);
 
-                if (i > 1 && j >1 && source.charAt(i-1) == target.charAt(j-2) && source.charAt(i-2) == target.charAt(j-1)){
-                    dist[i][j] = Math.min(dist[i][j],dist[i-2][j-2] + cost);
+                if (i > 1 && j > 1 && source.charAt(i - 1) == target.charAt(j - 2) && source.charAt(i - 2) == target.charAt(j - 1)) {
+                    dist[i][j] = Math.min(dist[i][j], dist[i - 2][j - 2] + cost);
                 }
             }
         }
         return dist[sourceLength][targetLength];
 
     }
-    public ArrayList<HashMap<String, ReturnedValue>>search_for_dl_multiple(String tablename, String filename, ArrayList<String>keys, String _user_input, int top_results) throws Exception{
-        if (top_results < 1){
+
+
+    public ArrayList<HashMap<String, ReturnedValue>> search_for_dl_multiple(String tablename, String filename, ArrayList<String> keys, String _user_input, int top_results) throws Exception {
+        if (top_results < 1) {
             throw new Exception("'top_results' must be a value greater than zero");
         }
-        ArrayList<Integer>all_distances = new ArrayList<Integer>();
-        HashMap<Integer, HashMap<String, ReturnedValue>>results = new HashMap<Integer, HashMap<String, ReturnedValue>>();
-        for (HashMap<String, ReturnedValue>result:select_all(filename, tablename)){
+        ArrayList<Integer> all_distances = new ArrayList<Integer>();
+        HashMap<Integer, HashMap<String, ReturnedValue>> results = new HashMap<Integer, HashMap<String, ReturnedValue>>();
+        for (HashMap<String, ReturnedValue> result : select_all(filename, tablename)) {
 
 
             int _count = 0;
             boolean seen_result = false;
-            for (String key:keys){
+            for (String key : keys) {
                 String _val = result.get(key).to_string();
+
                 //System.out.println(_val);
                 //System.out.println(_user_input);
                 //System.out.println("---------------------");
 
-                if (_val.length() > 0 && _user_input.length() > 0 && filter_immediate(_val, _user_input)){
-                    //System.out.println("Got in here");
+                if (_val.length() > 0 && _user_input.length() > 0 && filter_immediate(_val, _user_input)) {
                     _count += dl_distance(_val, _user_input);
-                    if (!seen_result){
+                    if (!seen_result) {
                         seen_result = true;
                     }
 
@@ -124,27 +127,27 @@ public class MongoDriver {
 
 
             }
-            if (seen_result){
+            if (seen_result) {
                 all_distances.add(_count);
                 results.put(_count, result);
-
+                //System.out.println("Beverage type here "+result.get("beverageType").to_string());
             }
 
 
         }
-        ArrayList<HashMap<String, ReturnedValue>>final_results = new ArrayList<HashMap<String, ReturnedValue>>();
-        if (all_distances.size() > 0){
-            ArrayList<Integer>_distances = new ArrayList<Integer>();
-            for (int val:all_distances){
+        ArrayList<HashMap<String, ReturnedValue>> final_results = new ArrayList<HashMap<String, ReturnedValue>>();
+        if (all_distances.size() > 0) {
+            ArrayList<Integer> _distances = new ArrayList<Integer>();
+            for (int val : all_distances) {
                 boolean _flag = true;
-                for (int _val:_distances){
-                    if (val == _val){
+                for (int _val : _distances) {
+                    if (val == _val) {
                         _flag = false;
                         break;
                     }
 
                 }
-                if (_flag){
+                if (_flag) {
                     _distances.add(val);
                 }
             }
@@ -156,10 +159,10 @@ public class MongoDriver {
             int _size = all_distances.size();
             int last_seen_distance = all_distances.get(0);
             final_results.add(results.get(last_seen_distance));
-            while (_final_count < top_results && index_counter < _size){
+            while (_final_count < top_results && index_counter < _size) {
                 int new_val = all_distances.get(index_counter);
                 final_results.add(results.get(new_val));
-                if (new_val != last_seen_distance){
+                if (new_val != last_seen_distance) {
                     _final_count++;
                 }
                 index_counter++;
@@ -173,11 +176,10 @@ public class MongoDriver {
 
     }
 
-
-    public boolean filter_immediate(String a, String b){
+    public boolean filter_immediate(String a, String b) {
         a.toLowerCase();
         b.toLowerCase();
-        if (a.length() == b.length()){
+        if (a.length() == b.length()) {
             for (int i = 0; i < b.length(); i++) {
                 if (Character.toLowerCase(b.charAt(i)) != Character.toLowerCase(a.charAt(i))) {
                     return false;
@@ -186,42 +188,38 @@ public class MongoDriver {
             }
             return true;
         }
-        if (a.length() >= b.length()){
+        if (a.length() >= b.length()) {
             boolean flag = false;
-            for (int d = 0; d <a.length()-b.length(); d++){
+            for (int d = 0; d < a.length() - b.length(); d++) {
                 for (int i = 0; i < b.length(); i++) {
                     if (Character.toLowerCase(b.charAt(i)) != Character.toLowerCase(a.charAt(d + i))) {
                         flag = false;
                         break;
                     } else {
-                        //System.out.println("got true result");
                         flag = true;
                     }
 
                 }
-                if (flag){
+                if (flag) {
                     break;
                 }
 
             }
-            //System.out.println(flag);
             return flag;
 
-        }
-        else{
+        } else {
             boolean flag = false;
-            for (int d = 0; d <b.length()-a.length(); d++){
+            for (int d = 0; d < b.length() - a.length(); d++) {
                 for (int i = 0; i < a.length(); i++) {
                     if (Character.toLowerCase(a.charAt(i)) != Character.toLowerCase(b.charAt(d + i))) {
                         flag = false;
                         break;
                     } else {
-                        System.out.println("got true result");
                         flag = true;
                     }
 
                 }
-                if (flag){
+                if (flag) {
                     break;
                 }
 
@@ -232,6 +230,7 @@ public class MongoDriver {
 
 
     }
+
 
 
     public String generate_id(ArrayList<String>ids){
@@ -271,33 +270,106 @@ public class MongoDriver {
 
 
 
-    public ArrayList<HashMap<String, ReturnedValue>>search_for_l_multiple(String tablename, String filename, ArrayList<String>keys, String _user_input, int top_results) throws Exception{
+    public ArrayList<HashMap<String, ReturnedValue>>search_for_l_multiple(String tablename, String filename, ArrayList<String> keys, String _user_input, int top_results) throws Exception {
+        ArrayList<HashMap<String, ReturnedValue>>final_results = new ArrayList<HashMap<String, ReturnedValue>>(); //list of hashmaps of a string and a returned value type
+        ArrayList<Double>all_distances = new ArrayList<Double>(); //list of doubles for each item
+        HashMap<Double, HashMap<String, ReturnedValue>>results = new HashMap<Double, HashMap<String, ReturnedValue>>(); //hashmap of doubles and hashmaps with a string and returned value
+        double counter = 0.00001;
+        _user_input.toLowerCase();
+        for(HashMap<String, ReturnedValue>result:select_all(filename, tablename)){ //for every item in our big ol table
+//            if(all_distances.size() > top_results){
+//                break;
+//            }
+            for (String key:keys){ //for each key (search type), should just be 1
+                String dataVal = result.get(key).to_string();
+                dataVal = dataVal.toLowerCase();
+                double maxDistance = counter;
+                counter = counter + 0.00001;
+                for (int i = 0; i < _user_input.length(); i++){ //use an i and a j to get every possible substring
+                    for (int j = i; j < _user_input.length() + 1; j++){
+                        String sub = _user_input.substring(i, j);
+                        if(dataVal.contains(sub)){ //if that sustring is in there, set maxDistance (the most consecutive correct letters) to that
+                            if (abs(i - j) > maxDistance) {
+                                maxDistance = abs(i-j) + counter;
+                            }
+                        }
+                    }
+                }
+                if (maxDistance > 1) {
+                    results.put(maxDistance, result);
+                    all_distances.add(maxDistance);
+                }
+            }
 
-        //System.out.println("In search_for_l_multiple");
-        //System.out.println(_url);
-        //System.out.println(filename);
+        }
+        if (all_distances.size() > 0) {
+            Collections.sort(all_distances);
+            Collections.reverse(all_distances);
+        }
+        for (int i = 0; i < all_distances.size(); i++){
+            final_results.add(results.get(all_distances.get(i))); //for some reason these are getting set as null
+        }
+        //System.out.println("final distances are:" + all_distances);
+        //System.out.println("final results are: " + final_results);
+        return final_results;
+    }
+
+    public ArrayList<HashMap<String, ReturnedValue>>search_for_l_actual(String tablename, String filename, ArrayList<String> keys, String _user_input, int top_results) throws Exception {
+        ArrayList<HashMap<String, ReturnedValue>>final_results = new ArrayList<HashMap<String, ReturnedValue>>(); //list of hashmaps of a string and a returned value type
+        ArrayList<Double>all_distances = new ArrayList<Double>(); //list of doubles for each item
+        HashMap<Double, HashMap<String, ReturnedValue>>results = new HashMap<Double, HashMap<String, ReturnedValue>>(); //hashmap of doubles and hashmaps with a string and returned value
+        double counter = 0.00001;
+        _user_input.toLowerCase();
+        for(HashMap<String, ReturnedValue>result:select_all(filename, tablename)){ //for every item in our big ol table
+//            if(all_distances.size() > top_results){
+//                break;
+//            }
+            for (String key:keys){ //for each key (search type), should just be 1
+                String dataVal = result.get(key).to_string();
+                dataVal = dataVal.toLowerCase();
+                double maxDistance = counter;
+                counter = counter + 0.00001;
+                maxDistance = l_distance(_user_input, dataVal);
+                if (maxDistance / dataVal.length() < 7) {
+                    results.put(maxDistance, result);
+                    all_distances.add(maxDistance);
+                }
+            }
+
+        }
+        if (all_distances.size() > 0) {
+            Collections.sort(all_distances);
+            Collections.reverse(all_distances);
+        }
+        for (int i = 0; i < all_distances.size(); i++){
+            final_results.add(results.get(all_distances.get(i))); //for some reason these are getting set as null
+        }
+        //System.out.println("final distances are:" + all_distances);
+        //System.out.println("final results are: " + final_results);
+        return final_results;
+    }
+
+
+
+    public ArrayList<HashMap<String, ReturnedValue>>search_for_l_multipleNOTUSED(String tablename, String filename, ArrayList<String>keys, String _user_input, int top_results) throws Exception{
         if (top_results < 1){
             throw new Exception("'top_results' must be a value greater than zero");
         }
         ArrayList<Integer>all_distances = new ArrayList<Integer>();
         HashMap<Integer, HashMap<String, ReturnedValue>>results = new HashMap<Integer, HashMap<String, ReturnedValue>>();
-        //System.out.println("keys below");
-        //System.out.println(keys);
-
         for (HashMap<String, ReturnedValue>result:select_all(filename, tablename)){
 
 
             int _count = 0;
             boolean seen_result = false;
             for (String key:keys){
-                //System.out.println("got key here "+key);
                 String _val = result.get(key).to_string();
-                //System.out.println("this is the val "+_val);
+                //System.out.println(_val);
                 //System.out.println(_user_input);
                 //System.out.println("---------------------");
 
                 if (_val.length() > 0 && _user_input.length() > 0 && filter_immediate(_val, _user_input)){
-                    //System.out.println("Got in here");
+                    System.out.println("Got in here");
                     _count += l_distance(_val, _user_input);
                     if (!seen_result){
                         seen_result = true;
@@ -310,7 +382,7 @@ public class MongoDriver {
             if (seen_result){
                 all_distances.add(_count);
                 results.put(_count, result);
-
+                //System.out.println("Beverage type here "+result.get("beverageType").to_string());
             }
 
 
@@ -333,7 +405,7 @@ public class MongoDriver {
             }
             all_distances = _distances;
             Collections.sort(all_distances);
-
+/*
             int _final_count = 0;
             int index_counter = 1;
             int _size = all_distances.size();
@@ -347,12 +419,35 @@ public class MongoDriver {
                 }
                 index_counter++;
                 last_seen_distance = new_val;
-
             }
+            */
+            System.out.println("top results");
+            System.out.println(top_results);
+            System.out.println(all_distances.size());
+            if (all_distances.size() <= top_results){
+                for (double i:all_distances){
+                    System.out.println("in access looop");
+                    System.out.println(i);
+                    System.out.println(results.containsKey(i));
+                    final_results.add(results.get(i));
+                }
+            }
+            else{
+                for (int j = 0; j < top_results; j++){
+
+                    double new_val = all_distances.get(j);
+                    System.out.println("in access looop");
+                    System.out.println(new_val);
+                    System.out.println(results.containsKey(new_val));
+                    final_results.add(results.get(new_val));
+                }
+            }
+
+
         }
 
-
-        //System.out.println("Here are results: ");
+        System.out.println("new search results here");
+        System.out.println(final_results);
         return final_results;
 
     }

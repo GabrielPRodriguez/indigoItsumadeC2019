@@ -814,6 +814,18 @@ public class MongoDriver {
         setField(formID, approvalStatus, "status");
     }
 
+    public static void setApprovalDate(String formID, String approvalStatus) throws IOException, Exception {
+        setField(formID, approvalStatus, "approvalDate");
+    }
+
+    public static void setExpirationDate(String formID, String approvalStatus) throws IOException, Exception {
+        setField(formID, approvalStatus, "expirationDate");
+    }
+
+    public static void setApprovingUser(String formID, String approvalStatus) throws IOException, Exception {
+        setField(formID, approvalStatus, "approvingUser");
+    }
+
     public static void setField(String formID, String approvalStatus, String field) throws IOException, Exception{
         MongoDriver driver = new MongoDriver("mongodb+srv://firstuser1:newTestCred@cs3733-hgmot.mongodb.net/test?retryWrites=true");
         HashMap<String, ReturnedValue> result = driver.get_data_by_value("form_data", "stringified_ids_db.db", "formID", new DBValue<String>(formID));

@@ -1,5 +1,10 @@
 package edu.wpi.cs3733c19.teamI.Entities;
 
+// from maven
+// javax.mail:javax.mail-api:1.6.2
+
+// https://pdfbox.apache.org/
+// Link to be able to download files from pdf
 import java.util.*;
 import javax.mail.*;
 import javax.mail.Message;

@@ -270,6 +270,12 @@ public class AgentWorkflowController implements Initializable {
     Button sendBack;
     @FXML
     Button forwardButton;
+    @FXML
+    JFXButton toBar;
+    @FXML
+    public void goToBar() throws IOException{
+        toolBarController.goBar();
+    }
 
     @FXML
     public void update(){
@@ -517,6 +523,7 @@ public class AgentWorkflowController implements Initializable {
         SQLDriver driver = new SQLDriver();
         HashMap<String, ReturnedValue>result = driver.get_data_by_value("form_data", "stringified_ids_db.db", "formID", new DBValue<String>(currentFormID));
         formStatus_string = result.get("status").to_string().replace("unread", "");
+        formStatus_string = result.get("status").to_string().replace("speci", "");
 
         formStatus_string += "approved";
 
@@ -555,6 +562,7 @@ public class AgentWorkflowController implements Initializable {
         SQLDriver driver = new SQLDriver();
         HashMap<String, ReturnedValue>result = driver.get_data_by_value("form_data", "stringified_ids_db.db", "formID", new DBValue<String>(currentFormID));
         formStatus_string = result.get("status").to_string().replace("unread", "");
+        formStatus_string = result.get("status").to_string().replace("specia", "");
         formStatus_string += "reject";
 
         SQLDriver.setApprovalStatus(currentFormID, formStatus_string);

@@ -124,6 +124,12 @@ public class ToolBarController implements Initializable {
         primaryStage.getScene().setRoot(homeParent);
     }
 
+    public void goBar() throws IOException{
+        Parent barParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/extendedBar.fxml"));
+        primaryStage = Main.getWindow();
+        primaryStage.getScene().setRoot(barParent);
+    }
+
     public void goAbout() throws IOException {
         Parent aboutParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/About.fxml"));
         primaryStage = Main.getWindow();

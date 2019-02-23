@@ -788,7 +788,23 @@ public class FormSubmissionController implements Initializable {
                 }
                 
                 //collects values from fields of sentForm object (see Form.java)
-                DBValue[] all_vals = {new DBValue<String>(driver.generate_id(current_ids)), new DBValue<String>(sentForm.getrepID()), new DBValue<String>(sentForm.getplantRegistry()), new DBValue<String>(sentForm.getdomesticOrImported()), new DBValue<String>(sentForm.getserialNumber()), new DBValue<String>(sentForm.getbrandName()), new DBValue<String>(sentForm.getbeverageType()), new DBValue<String>(sentForm.getfancifulName()), new DBValue<String>(sentForm.getPermitname()), new DBValue<String>(sentForm.getStreet()), new DBValue<String>(sentForm.getCity()), new DBValue<String>(sentForm.getState()), new DBValue<String>(sentForm.getZip()), new DBValue<String>(sentForm.getextraInfo()), new DBValue<String>(sentForm.getdateOfApplication()), new DBValue<String>(sentForm.getformula()), new DBValue<String>(sentForm.getgrapeVarietals()), new DBValue<String>(sentForm.getvintage()), new DBValue<String>(sentForm.getwineAppellation()), new DBValue<String>(sentForm.getemail()), new DBValue<String>(sentForm.getphoneNumber()), new DBValue<Double>(sentForm.getpHValue()), new DBValue<Double>(sentForm.getalcoholContent()), new DBValue<String>("unread"), new DBValue<String>("noUser"), new DBValue<String>("NoDateAprroved"), new DBValue<String>("NoDateExir"), new DBValue<String>("No issued date"), new DBValue<String>(sentForm.getVolume()), new DBValue<String>("No App Type"), new DBValue<String>("No Surrender Date"), new DBValue<String>("no qualification"), new DBValue<String>(sentForm.getnameOfApplicant())};
+                DBValue[] all_vals = {new DBValue<String>(driver.generate_id(current_ids)), new DBValue<String>(sentForm.getrepID()),
+                        new DBValue<String>(sentForm.getplantRegistry()), new DBValue<String>(sentForm.getdomesticOrImported()),
+                        new DBValue<String>(sentForm.getserialNumber()), new DBValue<String>(sentForm.getbrandName()),
+                        new DBValue<String>(sentForm.getbeverageType()), new DBValue<String>(sentForm.getfancifulName()),
+                        new DBValue<String>(sentForm.getPermitname()), new DBValue<String>(sentForm.getStreet()),
+                        new DBValue<String>(sentForm.getCity()), new DBValue<String>(sentForm.getState()),
+                        new DBValue<String>(sentForm.getZip()), new DBValue<String>(sentForm.getextraInfo()),
+                        new DBValue<String>(sentForm.getdateOfApplication()), new DBValue<String>(sentForm.getformula()),
+                        new DBValue<String>(sentForm.getgrapeVarietals()), new DBValue<String>(sentForm.getvintage()),
+                        new DBValue<String>(sentForm.getwineAppellation()), new DBValue<String>(sentForm.getemail()),
+                        new DBValue<String>(sentForm.getphoneNumber()), new DBValue<Double>(sentForm.getpHValue()),
+                        new DBValue<Double>(sentForm.getalcoholContent()), new DBValue<String>("unread"),
+                        new DBValue<String>("noUser"), new DBValue<String>("NoDateAprroved"),
+                        new DBValue<String>("NoDateExir"), new DBValue<String>("No issued date"),
+                        new DBValue<String>(sentForm.getVolume()), new DBValue<String>("No App Type"),
+                        new DBValue<String>("No Surrender Date"), new DBValue<String>("no qualification"),
+                        new DBValue<String>(sentForm.getnameOfApplicant())};
 
                 //the values above are actually entered into the database (contained in form_data.db)
                 driver.insert_vals("form_data", "stringified_ids_db.db", all_vals);

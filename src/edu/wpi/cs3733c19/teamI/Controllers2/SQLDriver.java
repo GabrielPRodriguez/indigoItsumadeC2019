@@ -185,11 +185,13 @@ public class SQLDriver {
         generic_update("user_credentials", "user_credentials.db", _target_cols, _value_cols, "id", new DBValue<Integer>(id));
     }
 
-    public void create_user_account(String email, String password, String role) throws Exception {
-        String[] columns = {"RepIDnum", "firstName", "lastName", "phoneNumber", "streetAdress", "city", "zipCode", "state", "deliminator", "email", "password", "role", "rfid"};
+    public void create_user_account(String email, String password, DBValue[] all_vals) throws Exception {
+        String[] columns = {"RepIDnum", "firstName", "lastName", "phoneNumber", "streetAdress", "city", "zipCode", "state",
+                "deliminator", "email", "password", "role", "rfid", "BeerScore", "WineScore", "SpiritScore", "BarScore"};
         DBTypes[] full_types = {new DBTypes("real"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"),
                 new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"),
-                new DBTypes("text"), new DBTypes("text"), new DBTypes("text")};
+                new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("Integer"), new DBTypes("Integer"),
+                new DBTypes("Integer"), new DBTypes("Integer")};
         /*
         role is a in integer 0 or 1: 0 => Agent, 1 => Manufacturer
          */
@@ -207,10 +209,8 @@ public class SQLDriver {
             }
 
         }
-        DBValue[] all_vals = {new DBValue<Integer>((int) _id), new DBValue<String>(""), new DBValue<String>(""), new DBValue<String>(""), new DBValue<String>(""), new DBValue<String>(""), new DBValue<String>(""), new DBValue<String>(""), new DBValue<String>(""), new DBValue<String>(email), new DBValue<String>(password), new DBValue<String>(role), new DBValue<String>("")};
+        //DBValue[] all_vals = {new DBValue<Integer>((int) _id), new DBValue<String>(""), new DBValue<String>(""), new DBValue<String>(""), new DBValue<String>(""), new DBValue<String>(""), new DBValue<String>(""), new DBValue<String>(""), new DBValue<String>(""), new DBValue<String>(email), new DBValue<String>(password), new DBValue<String>(role), new DBValue<String>("")};
         insert_vals("credentials", "user_database.db", all_vals);
-
-
     }
 
     public ArrayList<HashMap<String, ReturnedValue>> search_for_dl_multiple(String tablename, String filename, ArrayList<String> keys, String _user_input, int top_results) throws Exception {
@@ -284,10 +284,7 @@ public class SQLDriver {
 
             }
         }
-
-
         return final_results;
-
     }
 
 
@@ -299,7 +296,6 @@ public class SQLDriver {
                 if (Character.toLowerCase(b.charAt(i)) != Character.toLowerCase(a.charAt(i))) {
                     return false;
                 }
-
             }
             return true;
         }
@@ -313,12 +309,10 @@ public class SQLDriver {
                     } else {
                         flag = true;
                     }
-
                 }
                 if (flag) {
                     break;
                 }
-
             }
             return flag;
 
@@ -332,18 +326,13 @@ public class SQLDriver {
                     } else {
                         flag = true;
                     }
-
                 }
                 if (flag) {
                     break;
                 }
-
             }
-
             return flag;
         }
-
-
     }
 
     public ArrayList<HashMap<String, ReturnedValue>>search_for_l_multiple(String tablename, String filename, ArrayList<String> keys, String _user_input, int top_results) throws Exception {
@@ -353,9 +342,6 @@ public class SQLDriver {
         double counter = 0.00001;
         _user_input.toLowerCase();
         for(HashMap<String, ReturnedValue>result:select_all(filename, tablename)){ //for every item in our big ol table
-//            if(all_distances.size() > top_results){
-//                break;
-//            }
             for (String key:keys){ //for each key (search type), should just be 1
                 String dataVal = result.get(key).to_string();
                 dataVal = dataVal.toLowerCase();
@@ -385,8 +371,6 @@ public class SQLDriver {
         for (int i = 0; i < all_distances.size(); i++){
             final_results.add(results.get(all_distances.get(i))); //for some reason these are getting set as null
         }
-        //System.out.println("final distances are:" + all_distances);
-        //System.out.println("final results are: " + final_results);
         return final_results;
     }
 
@@ -397,9 +381,6 @@ public class SQLDriver {
         double counter = 0.00001;
         _user_input.toLowerCase();
         for(HashMap<String, ReturnedValue>result:select_all(filename, tablename)){ //for every item in our big ol table
-//            if(all_distances.size() > top_results){
-//                break;
-//            }
             for (String key:keys){ //for each key (search type), should just be 1
                 String dataVal = result.get(key).to_string();
                 dataVal = dataVal.toLowerCase();
@@ -418,10 +399,8 @@ public class SQLDriver {
             Collections.reverse(all_distances);
         }
         for (int i = 0; i < all_distances.size(); i++){
-            final_results.add(results.get(all_distances.get(i))); //for some reason these are getting set as null
+            final_results.add(results.get(all_distances.get(i)));
         }
-        //System.out.println("final distances are:" + all_distances);
-        //System.out.println("final results are: " + final_results);
         return final_results;
     }
 
@@ -440,28 +419,17 @@ public class SQLDriver {
             boolean seen_result = false;
             for (String key:keys){
                 String _val = result.get(key).to_string();
-                //System.out.println(_val);
-                //System.out.println(_user_input);
-                //System.out.println("---------------------");
-
                 if (_val.length() > 0 && _user_input.length() > 0 && filter_immediate(_val, _user_input)){
-                    System.out.println("Got in here");
                     _count += l_distance(_val, _user_input);
                     if (!seen_result){
                         seen_result = true;
                     }
-
                 }
-
-
             }
             if (seen_result){
                 all_distances.add(_count);
                 results.put(_count, result);
-                //System.out.println("Beverage type here "+result.get("beverageType").to_string());
             }
-
-
         }
         ArrayList<HashMap<String, ReturnedValue>>final_results = new ArrayList<HashMap<String, ReturnedValue>>();
         if (all_distances.size() > 0){
@@ -481,31 +449,8 @@ public class SQLDriver {
             }
             all_distances = _distances;
             Collections.sort(all_distances);
-/*
-            int _final_count = 0;
-            int index_counter = 1;
-            int _size = all_distances.size();
-            int last_seen_distance = all_distances.get(0);
-            final_results.add(results.get(last_seen_distance));
-            while (_final_count < top_results && index_counter < _size){
-                int new_val = all_distances.get(index_counter);
-                final_results.add(results.get(new_val));
-                if (new_val != last_seen_distance){
-                    _final_count++;
-                }
-                index_counter++;
-                last_seen_distance = new_val;
-
-            }
-            */
-            System.out.println("top results");
-            System.out.println(top_results);
-            System.out.println(all_distances.size());
             if (all_distances.size() <= top_results){
                 for (double i:all_distances){
-                    System.out.println("in access looop");
-                    System.out.println(i);
-                    System.out.println(results.containsKey(i));
                     final_results.add(results.get(i));
                 }
             }
@@ -513,20 +458,13 @@ public class SQLDriver {
                 for (int j = 0; j < top_results; j++){
 
                     double new_val = all_distances.get(j);
-                    System.out.println("in access looop");
-                    System.out.println(new_val);
-                    System.out.println(results.containsKey(new_val));
                     final_results.add(results.get(new_val));
                 }
             }
 
 
         }
-
-        System.out.println("new search results here");
-        System.out.println(final_results);
         return final_results;
-
     }
 
     public void insert_vals(String tablename, String filename, DBValue [] vals) throws Exception{
@@ -544,8 +482,6 @@ public class SQLDriver {
         PreparedStatement pstmt = _connector.prepareStatement(_query);
 
         for (int i = 0; i < vals.length; i++){
-
-
             if (vals[i].statement() == "setString"){
                 pstmt.setString(i+1, vals[i].to_string());
             }
@@ -555,17 +491,10 @@ public class SQLDriver {
             else{
                 pstmt.setDouble(i+1, vals[i].to_double());
             }
-
-
         }
-
-
         pstmt.executeUpdate();
-
-        //return _connector;
-
     }
-    //public ArrayList<HashMap<String, ReturnedValue>>select_all(String filename, String tablename) throws Exception{
+
     public ArrayList<HashMap<String, ReturnedValue>> select_all(String filename, String tablename) throws Exception{
         if (!filename.endsWith(".db")){
             throw new Exception("filename must end with '.db'");
@@ -714,14 +643,9 @@ public class SQLDriver {
         ArrayList<Integer>all_distances = new ArrayList<Integer>();
         HashMap<Integer, HashMap<String, ReturnedValue>>results = new HashMap<Integer, HashMap<String, ReturnedValue>>();
         for (HashMap<String, ReturnedValue>result:select_all(filename, tablename)){
-
-
             int _count = l_distance(result.get(_key).to_string(), target);
             all_distances.add(_count);
             results.put(_count, result);
-
-
-
         }
         Collections.sort(all_distances);
         ArrayList<HashMap<String, ReturnedValue>>final_results = new ArrayList<HashMap<String, ReturnedValue>>();
@@ -737,11 +661,10 @@ public class SQLDriver {
             }
             index_counter++;
             last_seen_distance = new_val;
-
         }
-
         return final_results;
     }
+
     public ArrayList<HashMap<String, ReturnedValue>>search_for_dl(String tablename, String filename, String target, String _key, int top_results) throws Exception{
         //required: @target must be a string
         //simple Levenshtein distance: https://en.wikipedia.org/wiki/Levenshtein_distance
@@ -772,15 +695,12 @@ public class SQLDriver {
             }
             index_counter++;
             last_seen_distance = new_val;
-
         }
-
         return final_results;
     }
 
     public ArrayList<HashMap<String, ReturnedValue>>search_sql_plus(String tablename, String filename, String target, String _key) throws Exception{
         ArrayList<String> targets = new ArrayList<String>();
-        System.out.println("target is " + target);
         int startIndex = 0;
         int endIndex = 0;
         int tarCount = 1;
@@ -793,13 +713,10 @@ public class SQLDriver {
             }
         }
         targets.add(target.substring(endIndex + 1,target.length())); //add last item
-        System.out.println("all targets = " + targets.toString());
-        System.out.println("tarCount = " + tarCount);
         ArrayList<HashMap<String, ReturnedValue>> plusResults = new ArrayList<HashMap<String, ReturnedValue>>();
         for(int i = 0; i < tarCount; i++){
             plusResults.addAll(search_sql_wildcard(tablename, filename, targets.get(i), _key));
         }
-        System.out.println("search Results = " + plusResults);
         return plusResults;
     }
 
@@ -822,16 +739,12 @@ public class SQLDriver {
         ResultSet rs1 = stmt1.executeQuery("SELECT rowname, rowtype FROM "+tablename);
         while (rs1.next()) {
             row_types.put(rs1.getString("rowname"), rs1.getString("rowtype"));
-
         }
-
         Connection _connector = connect_file(filename);
         Statement conn = _connector.createStatement();
         ResultSet _rs_conn = conn.executeQuery(_query);
         ArrayList<HashMap<String, ReturnedValue>>full_payload = new ArrayList<HashMap<String, ReturnedValue>>();
-
         while (_rs_conn.next()){
-
             HashMap<String, ReturnedValue>_temp = new HashMap<String, ReturnedValue>();
             for (String col:columns){
                 _temp.put(col, new ReturnedValue(_rs_conn.getString(col).toString(), row_types.get(col)));
@@ -839,7 +752,6 @@ public class SQLDriver {
             full_payload.add(_temp);
         }
         return full_payload;
-
     }
 
 
@@ -853,8 +765,6 @@ public class SQLDriver {
                 for (String field:search_fields){
                     ReturnedValue type1 = result.get(field);
                     DataField type2 = targets.get(field);
-
-
                     if (type1.type.equals("text")){
                         if (type1.to_string().equals(type2.getValue().toString())){
 
@@ -873,18 +783,12 @@ public class SQLDriver {
                             _flag = false;
                             break;
                         }
-
                     }
-
-
                 }
                 if (_flag){
                     final_results.add(result);
                 }
             }
-
-
-
         }
         return final_results;
     }
@@ -896,14 +800,8 @@ public class SQLDriver {
         for (HashMap<String, ReturnedValue>result: select_all(filename, tablename)){
                 boolean _flag = false;
                 for (String field:search_fields){
-                    //System.out.println("search field: "+field);
                     ReturnedValue type1 = result.get(field);
                     DataField type2 = targets.get(field);
-
-                    System.out.println("At end");
-                    //System.out.println("Type1: " + type1);
-
-
                     if (type1.type.equals("text")|| type1.type.equals("TEXT")){
                         if (type1.to_string().equals(type2.getValue().toString())){
 
@@ -922,24 +820,17 @@ public class SQLDriver {
                             _flag = false;
                             break;
                         }
-
                     }
-
-
                 }
                 if (_flag) {
                     final_results.add(result);
                 }
-
-
-
         }
         return final_results;
     }
     public double full_score(String _input, String _db_val){
         _input = _input.toLowerCase();
         _db_val = _db_val.toLowerCase();
-        //for (int i = 0; i < _input.length(); )
         ArrayList<Character>filtered = new ArrayList<Character>();
         for (int i = 0; i < _input.length(); i++){
             boolean _flag = false;
@@ -1001,9 +892,6 @@ public class SQLDriver {
             return (double)(_db_val.length())/(double)(_demon);
         }
         return (double)(_demon)/(double)(_db_val.length());
-
-
-
     }
 
     public static void main(String [] args){
@@ -1029,6 +917,50 @@ public class SQLDriver {
         setField(formID,approvalStatus,"qualifier");
     }
 
+    public static void incrementBeerScore(String formID, int val) throws IOException,Exception{
+        //setField(formID,"incrementScore","qualifier");
+        SQLDriver driver = new SQLDriver();
+        ArrayList<String> appStatType = new ArrayList<>();
+        appStatType.add("BeerScore");
+        ArrayList<DBValue> appStatus = new ArrayList<>();
+        DBValue value1 = new DBValue<Integer>(val);
+        appStatus.add(value1);
+        driver.update("form_data", "stringified_ids_db.db", appStatType, appStatus, formID);
+    }
+
+    public static void incrementWineScore(String formID, int val) throws IOException,Exception{
+        //setField(formID,"incrementScore","qualifier");
+        SQLDriver driver = new SQLDriver();
+        ArrayList<String> appStatType = new ArrayList<>();
+        appStatType.add("WineScore");
+        ArrayList<DBValue> appStatus = new ArrayList<>();
+        DBValue value1 = new DBValue<Integer>(val);
+        appStatus.add(value1);
+        driver.update("form_data", "stringified_ids_db.db", appStatType, appStatus, formID);
+    }
+
+    public static void incrementSpiritScore(String formID, int val) throws IOException,Exception{
+        //setField(formID,"incrementScore","qualifier");
+        SQLDriver driver = new SQLDriver();
+        ArrayList<String> appStatType = new ArrayList<>();
+        appStatType.add("SpiritScore");
+        ArrayList<DBValue> appStatus = new ArrayList<>();
+        DBValue value1 = new DBValue<Integer>(val);
+        appStatus.add(value1);
+        driver.update("form_data", "stringified_ids_db.db", appStatType, appStatus, formID);
+    }
+
+    public static void incrementBarScore(String formID, int val) throws IOException,Exception{
+        //setField(formID,"incrementScore","qualifier");
+        SQLDriver driver = new SQLDriver();
+        ArrayList<String> appStatType = new ArrayList<>();
+        appStatType.add("BarScore");
+        ArrayList<DBValue> appStatus = new ArrayList<>();
+        DBValue value1 = new DBValue<Integer>(val);
+        appStatus.add(value1);
+        driver.update("form_data", "stringified_ids_db.db", appStatType, appStatus, formID);
+    }
+
     public static void setField(String formID, String approvalStatus, String field) throws IOException, Exception{
         SQLDriver driver = new SQLDriver();
         HashMap<String, ReturnedValue> result = driver.get_data_by_value("form_data", "stringified_ids_db.db", "formID", new DBValue<String>(formID));
@@ -1048,6 +980,4 @@ public class SQLDriver {
         driver.update("form_data", "stringified_ids_db.db", appStatType, appStatus, formID);
         //result.put("status", value);
     }
-
-
 }

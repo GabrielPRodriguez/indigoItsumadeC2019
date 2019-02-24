@@ -250,7 +250,8 @@ public class ManufacturerWorkflowController {
 
     @FXML
     public void update(){
-        if(User.getUser("a","a", User.userPower.Specialist,"a","a","a","a","a","a","a","a",",").getUserType().equals("Specialist")){
+        if(User.getUser("a","a", User.userPower.Specialist,"a","a","a","a",
+                "a","a","a","a",",", 0, 0, 0, 0).getUserType().equals("Specialist")){
             specialText.setOpacity(1);
             commentBox.setPromptText("Add any comments as to why this particular form was rejected, accepted, or comments for corrections");
             special = true;
@@ -325,8 +326,7 @@ public class ManufacturerWorkflowController {
             for (int i = 1; i < 10; i++){
                 try{
                     HashMap<String, ReturnedValue>_temp = filtered_results.get(i-1);
-                    //test.get(i).setText("Form "+_temp.get("formID").to_string().replace(".0", ""));
-                    test.get(i).setText("Form: " + Integer.toString(i));//_temp.get("repID").to_string().replace(".0", "") + Integer.toString(i));
+                    test.get(i).setText(_temp.get("dateOfApplication").to_string() + ": " + _temp.get("fancifulName").to_string());
                     repToForm.put(test.get(i).getText(), _temp.get("formID").to_string());
                 }
                 catch(Exception e){

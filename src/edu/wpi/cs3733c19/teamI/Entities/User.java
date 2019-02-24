@@ -1,6 +1,11 @@
 package edu.wpi.cs3733c19.teamI.Entities;
 
+import edu.wpi.cs3733c19.teamI.Controllers2.SQLDriver;
+
 public class User {
+
+    //TODO: make setter for scores that change database
+
     private String username;
     private String password;
     private Boolean isAdmin = false;
@@ -13,6 +18,10 @@ public class User {
     private String lastName;
     private String phone;
     private String repId;
+    private int BeerScore;
+    private int WineScore;
+    private int SpiritScore;
+    private int BarScore;
 
     private String delim;
         public enum userPower
@@ -23,7 +32,9 @@ public class User {
 
     private static User curUser;
 
-    private User(String name, String pass, userPower type, String theState, String theCity, String theZip, String theStreet, String theFirstName, String theLastName, String thePhone, String theRepID, String delim){
+    private User(String name, String pass, userPower type, String theState, String theCity, String theZip,
+                 String theStreet, String theFirstName, String theLastName, String thePhone, String theRepID,
+                 String delim, int theBeerScore, int theWineScore, int theSpiritScore, int theBarScore){
         username = name;
         password = pass;
         userType = type;
@@ -35,6 +46,10 @@ public class User {
         lastName = theLastName;
         phone = thePhone;
         repId = theRepID;
+        BeerScore = theBeerScore;
+        WineScore = theWineScore;
+        SpiritScore = theSpiritScore;
+        BarScore = theBarScore;
         if(delim.equals("")){
             this.delim = ",";
         }
@@ -48,13 +63,68 @@ public class User {
     }*/
 
     public void logOutUser(){
-        curUser = new User("", "", userPower.Standard, "", "","","","","","","", "?");
+        curUser = new User("", "", userPower.Standard, "", "","","","","","","", "?", 0, 0, 0, 0);
     }
 
-    public static User getUser(String name, String pass, userPower type, String theState, String theCity, String theZip, String theStreet, String theFirstName, String theLastName,
-                               String thePhone, String theRepID, String theDelim){
+    public void incrementBeerScore(){
+        this.BeerScore++;
+        try {
+            SQLDriver.incrementBeerScore(repId, this.BeerScore);
+        }
+        catch(Exception e){
+
+        }
+    }
+
+    public void incrementWineScore(){
+        this.WineScore++;
+        try {
+            SQLDriver.incrementWineScore(repId, this.WineScore);
+        }
+        catch(Exception e){
+
+        }
+    }
+
+    public void incrementSpiritScore(){
+        this.SpiritScore++;
+        try {
+            SQLDriver.incrementSpiritScore(repId, this.SpiritScore);
+        }
+        catch(Exception e){
+
+        }
+    }
+
+    public void incrementBarScore(){
+        this.BarScore++;
+        try {
+            SQLDriver.incrementBarScore(repId, this.BarScore);
+        }
+        catch(Exception e){
+
+        }
+    }
+
+    public int getBeerScore(){
+        return this.BeerScore;
+    }
+    public int getWineScore(){
+        return this.WineScore;
+    }
+    public int getSpiritScore(){
+        return this.SpiritScore;
+    }
+    public int getBarScore(){
+        return this.BarScore;
+    }
+
+
+    public static User getUser(String name, String pass, userPower type, String theState, String theCity, String theZip,
+                               String theStreet, String theFirstName, String theLastName,String thePhone, String theRepID,
+                               String theDelim, int theBeerScore, int theWineScore, int theSpiritScore, int thebarScore){
         if((curUser == null)|| curUser.username.equals("")){
-            curUser = new User(name, pass, type, theState, theCity, theZip, theStreet, theFirstName, theLastName, thePhone, theRepID, theDelim);
+            curUser = new User(name, pass, type, theState, theCity, theZip, theStreet, theFirstName, theLastName, thePhone, theRepID, theDelim, theBeerScore, theWineScore, theSpiritScore, thebarScore);
         }
         return User.curUser;
     }

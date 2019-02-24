@@ -23,5 +23,7 @@
     <orderEntry type="library" name="com.fazecast:jSerialComm:2.4.0" level="project" />
     <orderEntry type="library" name="org.xerial:sqlite-jdbc:3.23.1" level="project" />
     <orderEntry type="library" name="org.mongodb:mongo-java-driver:3.8.0" level="project" />
+    <orderEntry type="library" name="nbvcxz" level="project" />
+    <orderEntry type="library" name="pdfbox-app-2.0.13" level="project" />
   </component>
 </module>

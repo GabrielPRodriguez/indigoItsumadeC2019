@@ -15,8 +15,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 
+import java.awt.*;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -26,6 +31,14 @@ import java.util.ResourceBundle;
 import java.util.logging.XMLFormatter;
 
 public class AgentWorkflowController implements Initializable {
+    public int wineNum;
+    public int beerNum;
+    public int spiritNum;
+    public int barNum;
+    public Image[] wines;
+    public Image[] beers;
+    public Image[] spirits;
+    public Image[] bars;
     public boolean special = false;
     private ToolBarController toolBarController = ToolBarController.getInstance();
 
@@ -272,6 +285,36 @@ public class AgentWorkflowController implements Initializable {
     Button forwardButton;
     @FXML
     JFXButton toBar;
+    @FXML
+    JFXButton test;
+    @FXML
+    JFXRadioButton wineXP;
+    @FXML
+    JFXRadioButton beerXP;
+    @FXML
+    JFXRadioButton spiritsXP;
+    @FXML
+    JFXRadioButton barXP;
+    @FXML
+    ImageView wineCount,beerCount,spiritsCount,barCount;
+
+    @FXML
+    public void testBottles(){
+        if(wineXP.isSelected()){
+            if(wineNum == 11){
+                wineCount.setImage(wines[0]);
+            }
+        }
+        else if(beerXP.isSelected()){
+
+        }
+        else if(spiritsXP.isSelected()){
+
+        }
+        else if(barXP.isSelected()){
+
+        }
+    }
     @FXML
     public void goToBar() throws IOException{
         toolBarController.goBar();
@@ -649,6 +692,67 @@ public class AgentWorkflowController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        Image[] wines = new Image[12];
+
+        String inputString = "..edu.wpi.cs3733c19.teamI/Assets/gameAssets/wine";
+        FileInputStream input = null;
+        for(int b = 1;b < 13;b++){
+            Integer e = b;
+            String add = e.toString() + ".PNG";
+            inputString += add;
+            try {
+                input = new FileInputStream(inputString);
+            } catch (FileNotFoundException a) {
+                a.printStackTrace();
+            }
+            Image image = new Image(input);
+            wines[b] = image;
+        }
+        beers = new Image[12];
+        inputString = "..\\Assets\\gameAssets\\beer";
+        input = null;
+        for(int b = 0;b < 12;b++){
+            Integer e = b;
+            String add = e.toString() + ".PNG";
+            inputString += add;
+            try {
+                input = new FileInputStream(inputString);
+            } catch (FileNotFoundException n) {
+                n.printStackTrace();
+            }
+            Image image = new Image(input);
+            beers[b] = image;
+        }
+        spirits = new Image[12];
+        inputString = "..\\Assets\\gameAssets\\spirits";
+        input = null;
+        for(int b = 1;b < 13;b++){
+            Integer e = b;
+            String add = e.toString() + ".PNG";
+            inputString += add;
+            try {
+                input = new FileInputStream(inputString);
+            } catch (FileNotFoundException l) {
+                l.printStackTrace();
+            }
+            Image image = new Image(input);
+            spirits[b] = image;
+        }
+        bars = new Image[12];
+        inputString = "..\\Assets\\gameAssets\\bar";
+        input = null;
+        for(int b = 1;b < 12;b++){
+            Integer e = b;
+            String add = e.toString() + ".PNG";
+            inputString += add;
+            try {
+                input = new FileInputStream(inputString);
+            } catch (FileNotFoundException h) {
+                h.printStackTrace();
+            }
+            Image image = new Image(input);
+            bars[b] = image;
+        }
         if(toolBarController.getCurUser().getUserType().equals(User.userPower.Specialist)){
                 specialText.setOpacity(1);
             commentBox.setPromptText("Add any comments as to why this particular form was rejected, accepted, or comments for corrections");

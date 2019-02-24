@@ -279,7 +279,8 @@ public class ManufacturerWorkflowController {
 
     //pulls unread forms from the database to be selected
     @FXML
-    private void pull_Forms() throws Exception{
+    private void pull_Forms() throws Exception
+    {
         formID_1.setText("");
         formID_2.setText("");
         formID_3.setText("");

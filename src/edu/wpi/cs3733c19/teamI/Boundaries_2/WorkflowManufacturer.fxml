@@ -27,7 +27,7 @@
             </Label>
             <HBox prefHeight="18.0" prefWidth="1146.0" spacing="20.0">
                <children>
-                  <Label text="Current Form Status:">
+                  <Label text="Form Actions:">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -37,6 +37,21 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
+                  <JFXButton mnemonicParsing="false" onAction="#pull_Forms" text="Refresh">
+                     <font>
+                        <Font name="Segoe UI Bold" size="12.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton mnemonicParsing="false" onAction="#editForm" text="Edit">
+                     <font>
+                        <Font name="Segoe UI Bold" size="12.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton fx:id="goHelpHome" mnemonicParsing="false" text="Help">
+                     <font>
+                        <Font name="Segoe UI Bold" size="12.0" />
+                     </font>
+                  </JFXButton>
                </children>
             </HBox>
             <Separator prefWidth="200.0" />
@@ -47,26 +62,11 @@
                         <VBox alignment="CENTER" style="-fx-background-color: #aeb0b5;">
                            <children>
                               <JFXToolbar style="-fx-background-color: #9bdaf1;">
-                                 <right>
-                                    <JFXButton mnemonicParsing="false" onAction="#pull_Forms" text="Refresh" BorderPane.alignment="CENTER">
-                                       <font>
-                                          <Font name="Segoe UI Bold" size="12.0" />
-                                       </font>
-                                    </JFXButton>
-                                 </right>
                                  <center>
-                                    <JFXButton mnemonicParsing="false" onAction="#editForm" text="Edit" BorderPane.alignment="CENTER">
-                                       <font>
-                                          <Font name="Segoe UI Bold" size="12.0" />
-                                       </font>
-                                    </JFXButton>
+                                    <Label text="Fanciful Name" BorderPane.alignment="CENTER" />
                                  </center>
                                  <left>
-                                    <JFXButton fx:id="goHelpHome" mnemonicParsing="false" text="Help" BorderPane.alignment="CENTER">
-                                       <font>
-                                          <Font name="Segoe UI Bold" size="12.0" />
-                                       </font>
-                                    </JFXButton>
+                                    <Label text="Date" BorderPane.alignment="CENTER" />
                                  </left>
                               </JFXToolbar>
                               <BorderPane>

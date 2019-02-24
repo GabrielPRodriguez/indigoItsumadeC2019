@@ -7,6 +7,7 @@ import com.jfoenix.controls.JFXTextField;
 import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.DBValue;
 import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.ReturnedValue;
 import edu.wpi.cs3733c19.teamI.Controllers2.ToolBarController;
+import edu.wpi.cs3733c19.teamI.Entities.SendEmail;
 import edu.wpi.cs3733c19.teamI.Entities.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -641,6 +642,13 @@ public class AgentWorkflowController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        /**
+         * testing the sending the mail function
+         */
+        SendEmail email = new SendEmail();
+        email.sendSimpleEmail("messi.g.r@gmail.com", "Testing", "Testing body of text");
+
         if(toolBarController.getCurUser().getUserType().equals(User.userPower.Specialist)){
                 specialText.setOpacity(1);
             commentBox.setPromptText("Add any comments as to why this particular form was rejected, accepted, or comments for corrections");

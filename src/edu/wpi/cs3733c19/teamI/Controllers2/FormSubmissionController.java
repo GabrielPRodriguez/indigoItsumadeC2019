@@ -6,6 +6,7 @@ import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.DBValue;
 import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.ReturnedValue;
 import edu.wpi.cs3733c19.teamI.Entities.DataTransfer;
 import edu.wpi.cs3733c19.teamI.Entities.Form;
+import edu.wpi.cs3733c19.teamI.Entities.PDFManager;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -29,6 +30,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ResourceBundle;
+import java.util.logging.Logger;
+
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -590,6 +596,8 @@ public class FormSubmissionController implements Initializable {
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+
         beverage.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
             @Override
             public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {
@@ -788,6 +796,7 @@ public class FormSubmissionController implements Initializable {
                 submit_message.setTextFill(Color.web("#4BB543"));
                 submit_message.setText(success);
         }
+
 
 
 }

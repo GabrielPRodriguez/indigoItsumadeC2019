@@ -2,9 +2,11 @@ package edu.wpi.cs3733c19.teamI.Entities;
 
 // from maven
 // javax.mail:javax.mail-api:1.6.2
-
+// https://www.youtube.com/watch?v=UMfjndwGwnM&t=48s
 // https://pdfbox.apache.org/
 // Link to be able to download files from pdf
+
+
 import java.util.*;
 import javax.mail.*;
 import javax.mail.Message;
@@ -19,7 +21,7 @@ public class SendEmail {
         String to = toWho;
 
         // Sender's email ID needs to be mentioned
-        String from = "web@gmail.com";
+        String from = "messi.g.r@gmail.com";
 
         // Assuming you are sending email from localhost
         String host = "localhost";

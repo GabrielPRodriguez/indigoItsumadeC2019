@@ -307,13 +307,18 @@ public class ManufacturerWorkflowController {
         for (HashMap<String, ReturnedValue>result:driver.select_all("stringified_ids_db.db", "form_data")){
                 if (result.get("status").to_string().contains(toolBarController.getCurUser().getUsername())){
                     filtered_results.add(result);
+
                 }
+//            if(result.get("status").to_string().contains(toolBarController.getCurUser().getUsername().substring(0,0)))
+//            {
+//                filtered_results.add(result);
+//            }
         }
         if(filtered_results.isEmpty()){
             System.out.println("nope");
         }
         System.out.println("process");
-        HashMap<Integer, Label>test = new HashMap<Integer, Label>();
+        HashMap<Integer, Label> test = new HashMap<Integer, Label>();
         test.put(1, formID_1);
         test.put(2, formID_2);
         test.put(3, formID_3);

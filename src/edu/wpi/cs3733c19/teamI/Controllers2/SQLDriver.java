@@ -395,6 +395,60 @@ public class SQLDriver {
         return final_results;
     }
 
+    public ArrayList<HashMap<String, ReturnedValue>>search_for_l_user(String tablename, String filename, ArrayList<String> keys, String _user_input, int top_results) throws Exception {
+        ArrayList<HashMap<String, ReturnedValue>>final_results = new ArrayList<HashMap<String, ReturnedValue>>(); //list of hashmaps of a string and a returned value type
+        ArrayList<Double>all_distances = new ArrayList<Double>(); //list of doubles for each item
+        HashMap<Double, HashMap<String, ReturnedValue>>results = new HashMap<Double, HashMap<String, ReturnedValue>>(); //hashmap of doubles and hashmaps with a string and returned value
+        double counter = 0.00001;
+        _user_input.toLowerCase();
+        for(HashMap<String, ReturnedValue>result:select_all(filename, tablename)){ //for every item in our big ol table
+//            if(all_distances.size() > top_results){
+//                break;
+//            }
+            for (String key:keys){ //for each key (search type), should just be 1
+                String dataVal = result.get(key).to_string();
+                dataVal = dataVal.toLowerCase();
+                double maxDistance = counter;
+                counter = counter + 0.00001;
+                for (int i = 0; i < _user_input.length(); i++){ //use an i and a j to get every possible substring
+                    for (int j = i; j < _user_input.length() + 1; j++){
+                        String sub = _user_input.substring(i, j);
+                        if(dataVal.contains(sub)){ //if that sustring is in there, set maxDistance (the most consecutive correct letters) to that
+                            if (abs(i - j) > maxDistance) {
+                                maxDistance = abs(i-j) + counter;
+                            }
+                        }
+                    }
+                }
+                if (true /*maxDistance > 1*/) {
+                    if (!tablename.equals("credentials")){
+                        if(!result.get("status").to_string().equals("delete")){
+                            results.put(maxDistance, result);
+                            all_distances.add(maxDistance);
+
+                        }
+                    }
+                    else{
+                        results.put(maxDistance, result);
+                        all_distances.add(maxDistance);
+                    }
+
+                }
+            }
+
+        }
+        if (all_distances.size() > 0) {
+            Collections.sort(all_distances);
+            Collections.reverse(all_distances);
+        }
+        for (int i = 0; i < all_distances.size(); i++){
+            final_results.add(results.get(all_distances.get(i))); //for some reason these are getting set as null
+        }
+        //System.out.println("final distances are:" + all_distances);
+        //System.out.println("final results are: " + final_results);
+        return final_results;
+    }
+
     public ArrayList<HashMap<String, ReturnedValue>>search_for_l_actual(String tablename, String filename, ArrayList<String> keys, String _user_input, int top_results) throws Exception {
         ArrayList<HashMap<String, ReturnedValue>>final_results = new ArrayList<HashMap<String, ReturnedValue>>(); //list of hashmaps of a string and a returned value type
         ArrayList<Double>all_distances = new ArrayList<Double>(); //list of doubles for each item
@@ -910,7 +964,7 @@ public class SQLDriver {
                     ReturnedValue type1 = result.get(field);
                     DataField type2 = targets.get(field);
 
-                    System.out.println("At end");
+                    //System.out.println("At end");
                     //System.out.println("Type1: " + type1);
 
 

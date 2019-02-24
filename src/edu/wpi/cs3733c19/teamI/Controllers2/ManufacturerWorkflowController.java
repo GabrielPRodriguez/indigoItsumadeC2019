@@ -250,7 +250,8 @@ public class ManufacturerWorkflowController {
 
     @FXML
     public void update(){
-        if(User.getUser("a","a", User.userPower.Specialist,"a","a","a","a","a","a","a","a",",").getUserType().equals("Specialist")){
+        if(User.getUser("a","a", User.userPower.Specialist,"a","a","a","a",
+                "a","a","a","a",",", 0, 0, 0, 0).getUserType().equals("Specialist")){
             specialText.setOpacity(1);
             commentBox.setPromptText("Add any comments as to why this particular form was rejected, accepted, or comments for corrections");
             special = true;

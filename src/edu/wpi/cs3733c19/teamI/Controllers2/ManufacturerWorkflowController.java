@@ -325,8 +325,7 @@ public class ManufacturerWorkflowController {
             for (int i = 1; i < 10; i++){
                 try{
                     HashMap<String, ReturnedValue>_temp = filtered_results.get(i-1);
-                    //test.get(i).setText("Form "+_temp.get("formID").to_string().replace(".0", ""));
-                    test.get(i).setText("Form: " + Integer.toString(i));//_temp.get("repID").to_string().replace(".0", "") + Integer.toString(i));
+                    test.get(i).setText(_temp.get("dateOfApplication").to_string() + ": " + _temp.get("fancifulName").to_string());
                     repToForm.put(test.get(i).getText(), _temp.get("formID").to_string());
                 }
                 catch(Exception e){

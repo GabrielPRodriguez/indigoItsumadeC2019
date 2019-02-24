@@ -693,8 +693,7 @@ public class AgentWorkflowController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Image[] wines = new Image[12];
-
-        String inputString = "..edu.wpi.cs3733c19.teamI/Assets/gameAssets/wine";
+        String inputString = "../Assets/gameAssets/wine";
         FileInputStream input = null;
         for(int b = 1;b < 13;b++){
             Integer e = b;
@@ -702,14 +701,16 @@ public class AgentWorkflowController implements Initializable {
             inputString += add;
             try {
                 input = new FileInputStream(inputString);
+                Image image = new Image(input);
+                wines[b] = image;
             } catch (FileNotFoundException a) {
                 a.printStackTrace();
             }
-            Image image = new Image(input);
-            wines[b] = image;
+
         }
+
         beers = new Image[12];
-        inputString = "..\\Assets\\gameAssets\\beer";
+        inputString = "../Assets/gameAssets/beer";
         input = null;
         for(int b = 0;b < 12;b++){
             Integer e = b;
@@ -717,14 +718,15 @@ public class AgentWorkflowController implements Initializable {
             inputString += add;
             try {
                 input = new FileInputStream(inputString);
+                Image image = new Image(input);
+                beers[b] = image;
             } catch (FileNotFoundException n) {
                 n.printStackTrace();
             }
-            Image image = new Image(input);
-            beers[b] = image;
+
         }
         spirits = new Image[12];
-        inputString = "..\\Assets\\gameAssets\\spirits";
+        inputString = "../Assets/gameAssets/spirit";
         input = null;
         for(int b = 1;b < 13;b++){
             Integer e = b;
@@ -732,14 +734,16 @@ public class AgentWorkflowController implements Initializable {
             inputString += add;
             try {
                 input = new FileInputStream(inputString);
+                Image image = new Image(input);
+                spirits[b] = image;
             } catch (FileNotFoundException l) {
                 l.printStackTrace();
             }
-            Image image = new Image(input);
-            spirits[b] = image;
+
         }
+
         bars = new Image[12];
-        inputString = "..\\Assets\\gameAssets\\bar";
+        inputString = "../Assets/gameAssets/bar";
         input = null;
         for(int b = 1;b < 12;b++){
             Integer e = b;
@@ -747,12 +751,14 @@ public class AgentWorkflowController implements Initializable {
             inputString += add;
             try {
                 input = new FileInputStream(inputString);
+                Image image = new Image(input);
+                bars[b] = image;
             } catch (FileNotFoundException h) {
                 h.printStackTrace();
             }
-            Image image = new Image(input);
-            bars[b] = image;
+
         }
+
         if(toolBarController.getCurUser().getUserType().equals(User.userPower.Specialist)){
                 specialText.setOpacity(1);
             commentBox.setPromptText("Add any comments as to why this particular form was rejected, accepted, or comments for corrections");

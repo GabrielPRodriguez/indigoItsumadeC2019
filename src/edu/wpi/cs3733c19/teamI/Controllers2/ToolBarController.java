@@ -96,16 +96,20 @@ public class ToolBarController implements Initializable {
 
     public void loginRFID(String username, String password, User.userPower power){
         signedIn = true;
-        curUser = User.getUser(username, password, power, "", "","","","","","","", "");
+        curUser = User.getUser(username, password, power, "", "","","","","",
+                "","", "", 0, 0, 0, 0);
     }
 
-    public void login(String username, String password, User.userPower power, String theState, String theCity, String theZip, String theStreet, String theFirstName, String theLastName, String thePhone, String theRepID, String delim ) throws IOException
+    public void login(String username, String password, User.userPower power, String theState, String theCity, String theZip,
+                      String theStreet, String theFirstName, String theLastName, String thePhone, String theRepID,
+                      String delim, int theBeerScore, int theWineScore, int theSpiritScore, int theBarScore ) throws IOException
     {
        signedIn = true;
        if(curUser != null) {
            curUser.logOutUser();
        }
-       curUser = curUser.getUser(username, password, power, theState, theCity,theZip,theStreet, theFirstName,theLastName,thePhone,theRepID, delim);
+       curUser = curUser.getUser(username, password, power, theState, theCity,theZip,theStreet, theFirstName,theLastName,
+               thePhone,theRepID, delim, theBeerScore, theWineScore, theSpiritScore, theBarScore);
         data.UserName = curUser.getUsername();
         //data.LogButtonName = "Logout";
 

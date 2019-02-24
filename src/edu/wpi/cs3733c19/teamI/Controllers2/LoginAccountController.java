@@ -168,7 +168,8 @@ public class LoginAccountController implements Initializable {
             toolBarController.login(Email.getText(), Password.getText(), powerCreate, users.get(0).get("state").to_string(),
                     users.get(0).get("city").to_string(), users.get(0).get("zipCode").to_string(), users.get(0).get("streetAdress").to_string(),
                     users.get(0).get("firstName").to_string(), users.get(0).get("lastName").to_string(), users.get(0).get("phoneNumber").to_string(),
-                    users.get(0).get("RepIDnum").to_string(), users.get(0).get("deliminator").to_string() );
+                    users.get(0).get("RepIDnum").to_string(), users.get(0).get("deliminator").to_string(), users.get(0).get("BeerScore").to_int(),
+                    users.get(0).get("WineScore").to_int(), users.get(0).get("SpiritScore").to_int(), users.get(0).get("BarScore").to_int());
         }
     }
 
@@ -291,9 +292,13 @@ public class LoginAccountController implements Initializable {
             }
 
 
-            DBValue [] user_row = {new DBValue<Integer>((int)(_id_count)+1), new DBValue<String>(firstName.getText()), new DBValue<String>(lastName.getText()), new DBValue<String>(phone.getText()), new DBValue<String>(address.getText()),
+            DBValue [] user_row = {new DBValue<Integer>((int)(_id_count)+1), new DBValue<String>(firstName.getText()),
+                    new DBValue<String>(lastName.getText()), new DBValue<String>(phone.getText()), new DBValue<String>(address.getText()),
                     new DBValue<String>(city.getText()), new DBValue<String>(zip.getText()), new DBValue<String>(state.getText()),
-                    new DBValue<String>(delim.getText()), new DBValue<String>(EmailCreate.getText()), new DBValue<String>(encryptPassword(PasswordCreate.getText())), new DBValue<String>(role), new DBValue<String>("NULL")};
+                    new DBValue<String>(delim.getText()), new DBValue<String>(EmailCreate.getText()),
+                    new DBValue<String>(encryptPassword(PasswordCreate.getText())), new DBValue<String>(role),
+                    new DBValue<String>("NULL"), new DBValue<Integer>(0), new DBValue<Integer>(0),
+                    new DBValue<Integer>(0), new DBValue<Integer>(0)};
             loginDriver.insert_vals("credentials", "user_database.db", user_row);
             Email.setText(EmailCreate.getText());
             Password.setText(PasswordCreate.getText());

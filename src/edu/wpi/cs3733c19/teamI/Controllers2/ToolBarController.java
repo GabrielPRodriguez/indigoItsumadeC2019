@@ -255,9 +255,6 @@ public class ToolBarController implements Initializable {
     public void goSearch() throws IOException {
 
         Parent searchParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/SearchResults.fxml"));
-       // FXMLLoader resultsPageLoader = new FXMLLoader(getClass().getResource("../Boundaries_2/SearchResults.fxml"));
-
-       // Parent resultPane = resultsPageLoader.load();
         primaryStage = Main.getWindow();
         primaryStage.getScene().setRoot(searchParent); }
 

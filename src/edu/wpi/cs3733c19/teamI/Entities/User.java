@@ -1,5 +1,7 @@
 package edu.wpi.cs3733c19.teamI.Entities;
 
+import edu.wpi.cs3733c19.teamI.Controllers2.SQLDriver;
+
 public class User {
 
     //TODO: make setter for scores that change database
@@ -63,6 +65,60 @@ public class User {
     public void logOutUser(){
         curUser = new User("", "", userPower.Standard, "", "","","","","","","", "?", 0, 0, 0, 0);
     }
+
+    public void incrementBeerScore(){
+        this.BeerScore++;
+        try {
+            SQLDriver.incrementBeerScore(repId, this.BeerScore);
+        }
+        catch(Exception e){
+
+        }
+    }
+
+    public void incrementWineScore(){
+        this.WineScore++;
+        try {
+            SQLDriver.incrementWineScore(repId, this.WineScore);
+        }
+        catch(Exception e){
+
+        }
+    }
+
+    public void incrementSpiritScore(){
+        this.SpiritScore++;
+        try {
+            SQLDriver.incrementSpiritScore(repId, this.SpiritScore);
+        }
+        catch(Exception e){
+
+        }
+    }
+
+    public void incrementBarScore(){
+        this.BarScore++;
+        try {
+            SQLDriver.incrementBarScore(repId, this.BarScore);
+        }
+        catch(Exception e){
+
+        }
+    }
+
+    public int getBeerScore(){
+        return this.BeerScore;
+    }
+    public int getWineScore(){
+        return this.WineScore;
+    }
+    public int getSpiritScore(){
+        return this.SpiritScore;
+    }
+    public int getBarScore(){
+        return this.BarScore;
+    }
+
 
     public static User getUser(String name, String pass, userPower type, String theState, String theCity, String theZip,
                                String theStreet, String theFirstName, String theLastName,String thePhone, String theRepID,

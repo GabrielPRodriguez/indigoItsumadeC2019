@@ -124,6 +124,9 @@ public class LoginAccountController implements Initializable {
 
     @FXML
     public void login(ActionEvent actionEvent) throws Exception {
+        System.out.println("manu: " + encryptPassword("manu"));
+        System.out.println("ttb: " + encryptPassword("ttb"));
+        System.out.println("specialist: " + encryptPassword("specialist"));
         if(!attemptLogin(actionEvent)){
 
         }
@@ -284,11 +287,16 @@ public class LoginAccountController implements Initializable {
 
 
             double _id_count = 0;
-            for (HashMap<String, ReturnedValue>result:loginDriver.select_all("user_database.db", "credentials")){
-               double _test = result.get("RepIDnum").to_double();
-               if (_test > _id_count){
-                   _id_count = _test;
-               }
+            try {
+                for (HashMap<String, ReturnedValue> result : loginDriver.select_all("user_database.db", "credentials")) {
+                    double _test = result.get("RepIDnum").to_double();
+                    if (_test > _id_count) {
+                        _id_count = _test;
+                    }
+                }
+            }
+            catch(Exception e){
+
             }
 
 
@@ -299,7 +307,7 @@ public class LoginAccountController implements Initializable {
                     new DBValue<String>(encryptPassword(PasswordCreate.getText())), new DBValue<String>(role),
                     new DBValue<String>("NULL"), new DBValue<Integer>(0), new DBValue<Integer>(0),
                     new DBValue<Integer>(0), new DBValue<Integer>(0)};
-            loginDriver.insert_vals("credentials", "user_database.db", user_row);
+            loginDriver.create_user_account("credentials", "user_database.db", user_row);
             Email.setText(EmailCreate.getText());
             Password.setText(PasswordCreate.getText());
         }

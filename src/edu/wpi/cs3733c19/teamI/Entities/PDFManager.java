@@ -57,9 +57,11 @@ public class PDFManager {
         return pdDoc;
     }
 
-    public void readPDF(String filePath){
+    //this function takes in a string that is the filepath and returns a Form
+    public Form readPDF(String filePath){
         PDFManager pdfManager = new PDFManager();
         pdfManager.setFilePath(filePath);
+        Form pdfForm=new Form();
 
         try{
             String text = pdfManager.toText();
@@ -68,6 +70,7 @@ public class PDFManager {
             System.err.println((ex.getMessage()));
             //Logger.getLogger(FormSubmissionController.class.getName()).log(Leve1.SEVERE, null, ex);
         }
+        return pdfForm;//Form object
     }
 
 }

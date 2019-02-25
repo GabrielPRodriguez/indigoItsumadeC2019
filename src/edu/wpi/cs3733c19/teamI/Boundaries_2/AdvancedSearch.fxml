@@ -46,7 +46,7 @@
                      </toggleGroup>
                   </JFXRadioButton>
                   <JFXRadioButton mnemonicParsing="false" text="Levenshtein" toggleGroup="$Algorithm" />
-                  <JFXRadioButton mnemonicParsing="false" text="Damerau-Levenshtein" toggleGroup="$Algorithm" />
+                  <JFXRadioButton mnemonicParsing="false" text="user_search" toggleGroup="$Algorithm" />
                </children>
             </HBox>
          </children>

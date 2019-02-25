@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXSpinner;
 import edu.wpi.cs3733c19.teamI.Algorithms.*;
 //import edu.wpi.cs3733c19.teamI.Algorithms.UserSearch;
+import edu.wpi.cs3733c19.teamI.Entities.User;
 import edu.wpi.cs3733c19.teamI.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -75,7 +76,7 @@ public class NewHomeController implements Initializable {
         }else if(toggleGroupValue.equals("Levenshtein")){ // TODO Change the name in the string to the actual text of the radio button
             searchAlgorithmSelection.setContext(new LFuzzy());
 
-        }else if(toggleGroupValue.equals("Damerau-Levenshtein")){ // TODO Change the name in the string to the actual text of the radio button
+        }else if(toggleGroupValue.equals("user_search")){ // TODO Change the name in the string to the actual text of the radio button
             //UserSearch theSearch = new UserSearch();
             searchAlgorithmSelection.setContext(new UserSearch());
 
@@ -121,10 +122,18 @@ public class NewHomeController implements Initializable {
 
 
 
-            if (toggleGroupValue.equals("Damerau-Levenshtein")){
-                toolBarController.setResultsMapUser(searchAlgorithmSelection.run(searchTextField.getText().trim()));
-                toolBarController.goUserSearch();
-                System.out.println("going to user Search");
+            if (toggleGroupValue.equals("user_search")) {
+                try {
+                    if (toolBarController.getCurUser().getUserType().equals(User.userPower.SuperAdmin)) {
+                        toolBarController.setResultsMapUser(searchAlgorithmSelection.run(searchTextField.getText().trim()));
+                        toolBarController.goUserSearch();
+                        System.out.println("going to user Search");
+                    }
+                }
+                catch(Exception e){
+                    //do nothing
+                }
+
             }else {
                 toolBarController.setResultsMap(searchAlgorithmSelection.run(searchTextField.getText().trim()));
                 toolBarController.goSearch();
@@ -141,6 +150,7 @@ public class NewHomeController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources){
         spin.setMaxSize(0,0);
+
     }
 
 }

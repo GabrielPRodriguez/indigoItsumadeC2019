@@ -71,7 +71,7 @@
                      </toggleGroup>
                   </JFXRadioButton>
                   <JFXRadioButton fx:id="algorithm2" mnemonicParsing="false" selected="true" text="Levenshtein" toggleGroup="$algorithmGroup" />
-                  <JFXRadioButton fx:id="algorithm3" mnemonicParsing="false" text="Damerau-Levenshtein" toggleGroup="$algorithmGroup" />
+                  <JFXRadioButton fx:id="algorithm3" mnemonicParsing="false" text="user_search" toggleGroup="$algorithmGroup" />
                </children>
                <GridPane.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

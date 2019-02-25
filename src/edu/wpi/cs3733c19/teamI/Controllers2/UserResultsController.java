@@ -159,13 +159,15 @@ import java.util.ResourceBundle;
         @FXML
         public void editAccount(){
             //the final method to actually do the thing
-            toolBarController = ToolBarController.getInstance();/*
-            if(toolBarController.getCurUser() == null){
-                System.out.println("non admin flag 2/25/19");
+            toolBarController = ToolBarController.getInstance();
+            //System.out.println(toolBarController.getCurUser().getUserType());
+            if(toolBarController.getCurUser() == null) {
+                //System.out.println("non admin flag 2/25/19");
             }
-            else if (toolBarController.getCurUser().getUserType().equals(User.userPower.SuperAdmin)){*/
+            else if (toolBarController.getCurUser().getUserType().equals(User.userPower.SuperAdmin)){
                 data = DataTransfer.getInstance();
                 try {
+                    System.out.println("attempting to edit a thing");
 
                     SQLDriver driver  = new SQLDriver();
                     item = tableView.getSelectionModel().getSelectedItem();
@@ -211,6 +213,8 @@ import java.util.ResourceBundle;
                         driver.setUserField(repIDnum, roleSet, "role");
                     }
 
+
+
                     System.out.println("somehow didnt break?");
 
                     convertToForms(1);
@@ -219,7 +223,7 @@ import java.util.ResourceBundle;
                 catch(Exception e){
                 }
                 //delet the thangs
-            //}
+            }
         }
 
         @FXML

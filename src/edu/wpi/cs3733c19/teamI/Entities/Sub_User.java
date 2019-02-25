@@ -82,7 +82,7 @@ public class Sub_User {
 
     public ObservableList<String> getSummary(){
         ObservableList<String> list_of_Param = FXCollections.observableArrayList();
-        list_of_Param.add("int");
+        list_of_Param.add(this.RepIDnum);
         list_of_Param.add(this.firstName);
         list_of_Param.add(this.lastName);
         list_of_Param.add(this.userEmail);

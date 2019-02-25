@@ -159,6 +159,33 @@ import java.util.ResourceBundle;
         @FXML
         public void editAccount(){
             //the final method to actually do the thing
+            toolBarController = ToolBarController.getInstance();/*
+            if(toolBarController.getCurUser() == null){
+                System.out.println("non admin flag 2/25/19");
+            }
+            else if (toolBarController.getCurUser().getUserType().equals(User.userPower.SuperAdmin)){*/
+                data = DataTransfer.getInstance();
+                try {
+
+                    SQLDriver driver  = new SQLDriver();
+                    item = tableView.getSelectionModel().getSelectedItem();
+
+                    //System.out.println("formID is " + item.getSummary().get(0));
+                    //System.out.println(item.getForm_ID());
+                    String repIDnum = item.getSummary().get(0);
+                    String emailSet = UserEmail.getText();
+                    System.out.println(emailSet);
+
+                    driver.setUserField(repIDnum, emailSet, "email");
+                    //DisplayedResults.remove(item.getIndex()-1);
+                    //ArrayList<HashMap<String, ReturnedValue>> resMap = toolBarController.getResultsMap();
+                    convertToForms(1);
+                    setTable();
+                }
+                catch(Exception e){
+                }
+                //delet the thangs
+            //}
         }
 
         @FXML

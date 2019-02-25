@@ -706,6 +706,29 @@ public class SQLDriver {
         return null;
 
     }
+
+    public HashMap<String, ReturnedValue>get_user_by_value(String tablename, String filename, String column, DBValue value) throws Exception{ //actually akin to the get_data_by_value method
+        try {
+            for (HashMap<String, ReturnedValue> result : select_all(filename, tablename)) {
+                //if (result.get(column).)
+                boolean flag = false;
+                if (value.statement().equals("setString")) {
+                    flag = (result.get(column).to_string().equals(value.to_string()));
+                } else {
+                    flag = (result.get(column).to_double().equals(value.to_double()));
+                }
+
+                if (flag) {
+                    return result;
+                }
+            }
+        }
+        catch(Exception e){
+            throw new Exception("Cannot find row");
+        }
+        return null;
+
+    }
     public void generic_update(String tablename, String filename, ArrayList<String>targetcols, ArrayList<DBValue>values, String anchor_col, DBValue anchor_val) throws Exception{
         Connection _connector = connect_file(filename);
         ArrayList<String>temp = new ArrayList<String>();
@@ -748,7 +771,35 @@ public class SQLDriver {
             temp.add(col+" = ?");
         }
         String statement = "UPDATE "+tablename+" SET "+String.join(", ", temp)+" WHERE formID = ?";
-        PreparedStatement pstmt = _connector.prepareStatement(statement);
+        PreparedStatement pstmt = _connector.prepareStatement(statement); //this is the line that doesnt work 2/25/19
+        int _count = 1;
+        for (DBValue val:values){
+            if (val.statement().equals("setInt")){
+                pstmt.setInt(_count, val.to_int());
+            }
+            else if (val.statement().equals("setDouble")){
+                pstmt.setDouble(_count, val.to_double());
+            }
+            else{
+                pstmt.setString(_count, val.to_string());
+            }
+            _count ++;
+        }
+        pstmt.setString(_count, formid);
+
+        pstmt.executeUpdate();
+
+    }
+
+    public void updateUser(String tablename, String filename, ArrayList<String>targetcols, ArrayList<DBValue>values, String formid) throws Exception {
+
+        Connection _connector = connect_file(filename);
+        ArrayList<String>temp = new ArrayList<String>();
+        for (String col:targetcols){
+            temp.add(col+" = ?");
+        }
+        String statement = "UPDATE "+tablename+" SET "+String.join(", ", temp)+" WHERE RepIDnum = ?";
+        PreparedStatement pstmt = _connector.prepareStatement(statement); //this is the line that doesnt work 2/25/19
         int _count = 1;
         for (DBValue val:values){
             if (val.statement().equals("setInt")){
@@ -1111,6 +1162,29 @@ public class SQLDriver {
         appStatus.add(value1);
 
         driver.update("form_data", "stringified_ids_db.db", appStatType, appStatus, formID);
+        //result.put("status", value);
+    }
+
+    public static void setUserField(String repID, String approvalStatus, String field) throws IOException, Exception{
+        SQLDriver driver = new SQLDriver();
+
+        HashMap<String, ReturnedValue> result = driver.get_data_by_value("credentials", "user_database.db", "RepIDnum", new DBValue<String>(repID));
+
+        //result.get("formStatus");
+        ReturnedValue value = new ReturnedValue(field, approvalStatus);
+        result.replace(field, value);
+
+        //technically i think everything after this line is good
+
+        ArrayList<String> appStatType = new ArrayList<>();
+        appStatType.add(field);
+
+        ArrayList<DBValue> appStatus = new ArrayList<>();
+
+        DBValue value1 = new DBValue<String>(approvalStatus);
+        appStatus.add(value1);
+
+        driver.updateUser("credentials", "user_database.db", appStatType, appStatus, repID);
         //result.put("status", value);
     }
 

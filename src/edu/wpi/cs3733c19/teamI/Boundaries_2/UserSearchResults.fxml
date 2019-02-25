@@ -94,12 +94,9 @@
                                                       <ToggleGroup fx:id="ToggleType" />
                                                    </toggleGroup>
                                                 </JFXRadioButton>
-                                                <JFXRadioButton fx:id="Manufacturer" mnemonicParsing="false" text="Specialist" toggleGroup="$ToggleType" />
-                                                <JFXRadioButton fx:id="Manufacturer1" mnemonicParsing="false" text="Manufacturer">
-                                                   <toggleGroup>
-                                                      <ToggleGroup fx:id="ToggleType1" />
-                                                   </toggleGroup>
-                                                </JFXRadioButton>
+                                                <JFXRadioButton fx:id="Specialist" mnemonicParsing="false" text="Specialist" toggleGroup="$ToggleType" />
+                                                <JFXRadioButton fx:id="Manufacturer" mnemonicParsing="false" text="Manufacturer" toggleGroup="$ToggleType" />
+                                                <JFXRadioButton fx:id="Standard" mnemonicParsing="false" text="Standard" toggleGroup="$ToggleType" />
                                              </children>
                                           </HBox>
                                           <VBox alignment="CENTER_LEFT" spacing="20.0">

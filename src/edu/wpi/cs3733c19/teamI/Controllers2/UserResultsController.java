@@ -125,6 +125,22 @@ import java.util.ResourceBundle;
         @FXML
         JFXComboBox delimDrop;
 
+        @FXML
+        Toggle Specialist;
+
+        @FXML
+        Toggle Manufacturer;
+
+        @FXML
+        Toggle Agent;
+
+        @FXML
+        Toggle Standard;
+
+        @FXML
+        ToggleGroup ToggleType;
+
+
         Sub_User item;
         DataTransfer data;
 
@@ -142,7 +158,7 @@ import java.util.ResourceBundle;
 
         @FXML
         public void editAccount(){
-
+            //the final method to actually do the thing
         }
 
         @FXML
@@ -334,10 +350,11 @@ import java.util.ResourceBundle;
 
 
         private void showSelectedBeverage(Sub_User oneBeverage) {
+
             firstName.setText(oneBeverage.getSummary().get(1));
             lastName.setText(oneBeverage.getSummary().get(2));
             UserEmail.setText(oneBeverage.getSummary().get(3));
-
+            String toggle = oneBeverage.getSummary().get(4);
 
             phone.setText(oneBeverage.getSummary().get(6));
             address.setText(oneBeverage.getSummary().get(7));
@@ -345,6 +362,22 @@ import java.util.ResourceBundle;
             state.setText(oneBeverage.getSummary().get(9));
             delim.setText(oneBeverage.getSummary().get(10));
             Password.setText(oneBeverage.getSummary().get(11));
+
+            if(toggle.equals("stan")){
+                Standard.setSelected(true);
+            }
+            else if(toggle.equals("manu")){
+                Manufacturer.setSelected(true);
+            }
+            else if (toggle.equals("spec")){
+                Specialist.setSelected(true);
+            }
+            else if (toggle.equals("agen")){
+                Agent.setSelected(true);
+            }
+            else{
+                //if an admin do something else, TBD
+            }
 
         }
 

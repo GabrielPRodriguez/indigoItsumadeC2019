@@ -86,7 +86,21 @@ public class Sub_User {
         list_of_Param.add(this.firstName);
         list_of_Param.add(this.lastName);
         list_of_Param.add(this.userEmail);
-        list_of_Param.add("user"); //this.userRole);
+        if (userRole == 0) {
+            list_of_Param.add("stan");
+        }
+        else if (userRole == 1){
+            list_of_Param.add("agen");
+        }
+        else if (userRole == 2){
+            list_of_Param.add("manu");
+        }
+        else if (userRole == 3){
+            list_of_Param.add("spec");
+        }
+        else{
+            list_of_Param.add("admi");
+        }
         list_of_Param.add(this.RepIDnum);
         list_of_Param.add(this.phoneNumber);
         list_of_Param.add(this.streetAdress);

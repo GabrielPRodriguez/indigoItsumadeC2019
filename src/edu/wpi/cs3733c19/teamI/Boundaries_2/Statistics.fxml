@@ -29,10 +29,10 @@
             </Text>
             <BarChart fx:id="statsGraph">
               <xAxis>
-                <CategoryAxis label="X Axis" side="BOTTOM" />
+                <CategoryAxis label="Category Axis" side="BOTTOM" fx:id="xAxis" />
               </xAxis>
               <yAxis>
-                <NumberAxis label="Y Axis" side="LEFT" />
+                <NumberAxis fx:id="yAxis" label="Number Axis" side="LEFT" />
               </yAxis>
                <VBox.margin>
                   <Insets bottom="40.0" left="60.0" right="60.0" top="40.0" />
@@ -45,28 +45,28 @@
          <children>
             <VBox>
                <children>
-                  <Label prefHeight="29.0" prefWidth="123.0" text="Y Axis" textAlignment="RIGHT">
+                  <Label prefHeight="29.0" prefWidth="123.0" text="Number Axis" textAlignment="RIGHT">
                      <font>
-                        <Font size="24.0" />
+                        <Font size="18.0" />
                      </font>
                   </Label>
-                  <JFXComboBox onAction="#yCombo" prefHeight="30.0" prefWidth="125.0" />
+                  <JFXComboBox fx:id="yCombo" onAction="#yComboChanged" />
                </children>
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
                <HBox.margin>
-                  <Insets bottom="100.0" left="300.0" right="100.0" />
+                  <Insets bottom="150.0" left="300.0" right="100.0" />
                </HBox.margin>
             </VBox>
             <VBox>
                <children>
-                  <Label text="X Axis">
+                  <Label prefHeight="23.0" prefWidth="140.0" text="Category Axis">
                      <font>
-                        <Font size="24.0" />
+                        <Font size="18.0" />
                      </font>
                   </Label>
-                  <JFXComboBox onAction="#xCombo" prefHeight="30.0" prefWidth="125.0" />
+                  <JFXComboBox fx:id="xCombo" />
                </children>
                <HBox.margin>
                   <Insets left="100.0" right="300.0" />

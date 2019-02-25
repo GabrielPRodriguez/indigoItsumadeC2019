@@ -1048,6 +1048,4 @@ public class SQLDriver {
         driver.update("form_data", "stringified_ids_db.db", appStatType, appStatus, formID);
         //result.put("status", value);
     }
-
-
 }

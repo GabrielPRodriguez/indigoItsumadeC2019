@@ -191,7 +191,7 @@ public class LoginAccountController implements Initializable {
 
     public String readFile(String users) throws Exception { //this file will populate users with a string of all users
         // pass the path to the file as a parameter
-        //userLogin = new FileReader("UserSheet.txt");
+        //userLogin = new TesseractReader("UserSheet.txt");
         FileReader userLogin;
         userLogin = new FileReader(System.getProperty("user.dir") + "/UserSheet.txt");
         int i;

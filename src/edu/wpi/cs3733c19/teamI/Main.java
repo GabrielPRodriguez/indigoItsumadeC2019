@@ -5,23 +5,21 @@ import com.fazecast.jSerialComm.SerialPort;
 import com.fazecast.jSerialComm.SerialPortEvent;
 import com.fazecast.jSerialComm.SerialPortPacketListener;
 import edu.wpi.cs3733c19.teamI.Controllers2.LoginAccountController;
-import edu.wpi.cs3733c19.teamI.Controllers2.ResultsController;
 import edu.wpi.cs3733c19.teamI.Controllers2.ToolBarController;
 import edu.wpi.cs3733c19.teamI.Entities.SearchResults;
 import edu.wpi.cs3733c19.teamI.Entities.User;
+import edu.wpi.cs3733c19.teamI.Tesseract.TesseractReader;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import javax.imageio.IIOParam;
 
 public class Main extends Application implements SerialPortPacketListener {
 
-    //Gabe was here
     ToolBarController toolBarController = ToolBarController.getInstance();
     public static SearchResults Results = new SearchResults();
     private IIOParam SearchLoader;
@@ -118,7 +116,8 @@ public class Main extends Application implements SerialPortPacketListener {
 
 
     public static void main(String[] args) {
-
+        TesseractReader pdfConverter = new TesseractReader();
+        pdfConverter.convert("C:/Users/Carkin/Tess4J/test2.pdf");
         launch(args);
     }
 

@@ -900,7 +900,7 @@ public class SQLDriver {
                     ReturnedValue type1 = result.get(field);
                     DataField type2 = targets.get(field);
 
-                    System.out.println("At end");
+                    //System.out.println("At end");
                     //System.out.println("Type1: " + type1);
 
 

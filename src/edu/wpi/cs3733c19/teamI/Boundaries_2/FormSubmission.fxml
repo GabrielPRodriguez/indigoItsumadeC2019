@@ -354,14 +354,14 @@
                            </children>
                         </VBox>
                         <Pane HBox.hgrow="ALWAYS" />
-                        <VBox fx:id="addSignature" prefHeight="176.0" prefWidth="336.0" spacing="20.0">
+                        <VBox prefHeight="176.0" prefWidth="336.0" spacing="20.0">
                            <children>
                               <Label fx:id="submit_message" nodeOrientation="LEFT_TO_RIGHT" wrapText="true" VBox.vgrow="ALWAYS">
                                  <padding>
                                     <Insets top="50.0" />
                                  </padding>
                               </Label>
-                              <Button mnemonicParsing="false" onAction="#handleSignatureButton" text="Add Signature" />
+                              <Button fx:id="addSignature" mnemonicParsing="false" onAction="#handleSignatureButton" text="Add Signature" />
                               <HBox spacing="30.0">
                                  <children>
                                     <JFXButton fx:id="save_Button" mnemonicParsing="false" onAction="#saveApp" style="-fx-background-color: #2e8540;" text="Save" textFill="WHITE" HBox.hgrow="ALWAYS">

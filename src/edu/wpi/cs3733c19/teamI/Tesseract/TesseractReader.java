@@ -16,17 +16,20 @@ public class TesseractReader {
         org.apache.log4j.PropertyConfigurator.configure((url)+"/log4j.properties.txt");//"C:/Users/Carkin/indigoItsumadeC19/src/edu/wpi/cs3733c19/teamI/Tesseract/Tess4J/log4j.properties.txt");
         File image = new File(filePath);
         Tesseract tessInst = new Tesseract();
+        String tessPath = "";
         try {
             String runPath = TesseractReader.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath();
             System.out.println(runPath);
             String[] brokenPath = runPath.split("/");
+            tessPath = brokenPath[1] + "/" + brokenPath[2] + "/" + brokenPath[3] + "/Tess4J";
+            System.out.println(tessPath);
             //use this to define where the file will be, when you have an exec, make sure important folder is in the folder w/ executable
         }
         catch(Exception e){
 
         }
         //tessInst.setDatapath(url);
-        tessInst.setDatapath("C:/Users/Carkin/Tess4J");//"C:/Users/Carkin/Tess4J");
+        tessInst.setDatapath(tessPath);//"C:/Users/Carkin/Tess4J");
 
         try {
             String result = tessInst.doOCR(image);

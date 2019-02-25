@@ -3,6 +3,7 @@ package edu.wpi.cs3733c19.teamI.Controllers2;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXPopup;
+import com.jfoenix.controls.JFXTextField;
 import edu.wpi.cs3733c19.teamI.Algorithms.SQLFuzzy;
 import edu.wpi.cs3733c19.teamI.Algorithms.UserSearch;
 import edu.wpi.cs3733c19.teamI.Algorithms.fuzzyContext;
@@ -101,25 +102,25 @@ import java.util.ResourceBundle;
         @FXML
         JFXButton fourthPage;
         @FXML
-        Text regText;
+        JFXTextField UserEmail;
         @FXML
-        Text typeText;
+        JFXTextField Password;
         @FXML
-        Text fanText;
+        JFXTextField firstName;
         @FXML
-        Text percentText;
+        JFXTextField lastName;
         @FXML
-        Text originText;
+        JFXTextField delim;
         @FXML
-        Text phText;
+        JFXTextField address;
         @FXML
-        Text vinText;
+        JFXTextField city;
         @FXML
-        Text appText;
+        JFXTextField zip;
         @FXML
-        Text varText;
+        JFXTextField state;
         @FXML
-        Text nameText;
+        JFXTextField phone;
 
         @FXML
         JFXComboBox delimDrop;
@@ -138,6 +139,11 @@ import java.util.ResourceBundle;
 
         private int numResults = 10;
         private int currentPage = 1;
+
+        @FXML
+        public void editAccount(){
+
+        }
 
         @FXML
         private void perPageAction(ActionEvent actionEvent){
@@ -328,19 +334,17 @@ import java.util.ResourceBundle;
 
 
         private void showSelectedBeverage(Sub_User oneBeverage) {
-/*
+            firstName.setText(oneBeverage.getSummary().get(1));
+            lastName.setText(oneBeverage.getSummary().get(2));
+            UserEmail.setText(oneBeverage.getSummary().get(3));
 
-            regText.setText(oneBeverage.getSummary().get(2));
-            typeText.setText(oneBeverage.getSummary().get(5));
-            fanText.setText(oneBeverage.getSummary().get(7));
-            percentText.setText(oneBeverage.getSummary().get(12) + "%");
-            originText.setText(oneBeverage.getSummary().get(3));
-            phText.setText(oneBeverage.getSummary().get(10));
-            vinText.setText(oneBeverage.getSummary().get(8));
-            appText.setText(oneBeverage.getSummary().get(11));
-            varText.setText(oneBeverage.getSummary().get(9));
-            nameText.setText(oneBeverage.getSummary().get(6));
-            */
+
+            phone.setText(oneBeverage.getSummary().get(6));
+            address.setText(oneBeverage.getSummary().get(7));
+            city.setText(oneBeverage.getSummary().get(8));
+            state.setText(oneBeverage.getSummary().get(9));
+            delim.setText(oneBeverage.getSummary().get(10));
+            Password.setText(oneBeverage.getSummary().get(11));
 
         }
 

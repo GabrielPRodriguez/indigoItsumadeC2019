@@ -109,6 +109,7 @@ public class Sub_User {
         list_of_Param.add(this.deliminator);
         list_of_Param.add(this.password);
         list_of_Param.add(this.rfid);
+        list_of_Param.add(this.zipCode);
         return(list_of_Param );
 
     }
@@ -129,6 +130,7 @@ public class Sub_User {
         this.deliminator = entry.get("deliminator").to_string();
         this.password = entry.get("password").to_string();
         this.rfid = entry.get("rfid").to_string();
+        this.zipCode = entry.get("zipCode").to_string();
         System.out.println();
     }
 }

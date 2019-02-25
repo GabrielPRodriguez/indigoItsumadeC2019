@@ -173,12 +173,46 @@ import java.util.ResourceBundle;
                     //System.out.println("formID is " + item.getSummary().get(0));
                     //System.out.println(item.getForm_ID());
                     String repIDnum = item.getSummary().get(0);
+                    //TODO on a form save, every item is rewritten, no checks are made to avoid rewriting non-changing information
                     String emailSet = UserEmail.getText();
-                    System.out.println(emailSet);
-
                     driver.setUserField(repIDnum, emailSet, "email");
-                    //DisplayedResults.remove(item.getIndex()-1);
-                    //ArrayList<HashMap<String, ReturnedValue>> resMap = toolBarController.getResultsMap();
+                    String fNameSet = firstName.getText();
+                    driver.setUserField(repIDnum, fNameSet, "firstName");
+                    String lNameSet = lastName.getText();
+                    driver.setUserField(repIDnum, lNameSet, "lastName");
+                    String delimSet = delim.getText();
+                    driver.setUserField(repIDnum, delimSet, "deliminator");
+                    String phoneSet = phone.getText();
+                    driver.setUserField(repIDnum, phoneSet, "phoneNumber");
+                    String addressSet = address.getText();
+                    driver.setUserField(repIDnum, addressSet, "streetAdress");
+                    String citySet = city.getText();
+                    driver.setUserField(repIDnum, citySet, "city");
+                    String zipSet = zip.getText();
+                    driver.setUserField(repIDnum, zipSet, "zipCode");
+                    String stateSet = state.getText();
+                    driver.setUserField(repIDnum, stateSet, "state");
+
+                    String roleSet = "";
+                    if(Standard.isSelected()){
+                        roleSet = "0.0";
+                    }
+                    else if(Manufacturer.isSelected()){
+                        roleSet = "2.0";
+                    }
+                    else if (Specialist.isSelected()){
+                        roleSet = "3.0";
+                    }
+                    else if (Agent.isSelected()){
+                        roleSet = "1.0";
+                    }
+
+                    if(!roleSet.equals("")){
+                        driver.setUserField(repIDnum, roleSet, "role");
+                    }
+
+                    System.out.println("somehow didnt break?");
+
                     convertToForms(1);
                     setTable();
                 }
@@ -385,10 +419,12 @@ import java.util.ResourceBundle;
 
             phone.setText(oneBeverage.getSummary().get(6));
             address.setText(oneBeverage.getSummary().get(7));
+
             city.setText(oneBeverage.getSummary().get(8));
             state.setText(oneBeverage.getSummary().get(9));
             delim.setText(oneBeverage.getSummary().get(10));
             Password.setText(oneBeverage.getSummary().get(11));
+            zip.setText(oneBeverage.getSummary().get(13));
 
             if(toggle.equals("stan")){
                 Standard.setSelected(true);

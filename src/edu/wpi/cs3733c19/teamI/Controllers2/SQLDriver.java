@@ -15,6 +15,15 @@ import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.*;
 import static java.lang.StrictMath.abs;
 import static java.lang.StrictMath.max;
 
+class FrequencyResult{
+    public HashMap<String, Integer>frequences;
+    public ArrayList<String>all_names;
+    public FrequencyResult(HashMap<String, Integer>_frequences, ArrayList<String>_all_names){
+        frequences = _frequences;
+        all_names = _all_names;
+    }
+}
+
 public class SQLDriver {
     //TODO: URGENT!!!!! converte ALL user DB values to be inserted as strings!!!
 

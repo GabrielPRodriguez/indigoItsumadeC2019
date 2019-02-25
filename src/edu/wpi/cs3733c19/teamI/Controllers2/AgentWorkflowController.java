@@ -23,6 +23,7 @@ import java.awt.*;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
@@ -33,7 +34,7 @@ import java.util.logging.XMLFormatter;
 public class AgentWorkflowController implements Initializable {
     public int wineNum;
     public int beerNum;
-    public int spiritNum;
+    public int spiritsNum;
     public int barNum;
     public Image[] wines;
     public Image[] beers;
@@ -303,15 +304,42 @@ public class AgentWorkflowController implements Initializable {
         if(wineXP.isSelected()){
             if(wineNum == 11){
                 wineCount.setImage(wines[0]);
+                wineNum = 0;
+            }
+            else{
+                wineNum++;
+                wineCount.setImage(wines[wineNum]);
             }
         }
         else if(beerXP.isSelected()){
-
+            if(beerNum == 11){
+                beerCount.setImage(beers[0]);
+                beerNum = 0;
+            }
+            else{
+                beerNum++;
+                beerCount.setImage(beers[beerNum]);
+            }
         }
         else if(spiritsXP.isSelected()){
-
+            if(spiritsNum == 11){
+                spiritsCount.setImage(spirits[0]);
+                spiritsNum = 0;
+            }
+            else{
+                spiritsNum++;
+                spiritsCount.setImage(spirits[spiritsNum]);
+            }
         }
         else if(barXP.isSelected()){
+            if(barNum == 11){
+                barCount.setImage(bars[0]);
+                barNum = 0;
+            }
+            else{
+                barNum++;
+                barCount.setImage(bars[barNum]);
+            }
 
         }
     }
@@ -692,69 +720,70 @@ public class AgentWorkflowController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Image[] wines = new Image[12];
-        String inputString = "../Assets/gameAssets/wine";
-        FileInputStream input = null;
+        wines = new Image[12];
+
+        InputStream input = null;
         for(int b = 1;b < 13;b++){
+            String inputString = "../Assets/gameAssets/wine";
             Integer e = b;
             String add = e.toString() + ".PNG";
             inputString += add;
             try {
-                input = new FileInputStream(inputString);
+                input = this.getClass().getResourceAsStream(inputString);
                 Image image = new Image(input);
-                wines[b] = image;
-            } catch (FileNotFoundException a) {
-                a.printStackTrace();
+                wines[b - 1] = image;
+            } catch (Exception x) {
+                x.printStackTrace();
             }
 
         }
 
         beers = new Image[12];
-        inputString = "../Assets/gameAssets/beer";
         input = null;
         for(int b = 0;b < 12;b++){
+            String inputString = "../Assets/gameAssets/beer";
             Integer e = b;
             String add = e.toString() + ".PNG";
             inputString += add;
             try {
-                input = new FileInputStream(inputString);
+                input = this.getClass().getResourceAsStream(inputString);
                 Image image = new Image(input);
                 beers[b] = image;
-            } catch (FileNotFoundException n) {
-                n.printStackTrace();
+            } catch (Exception x) {
+                x.printStackTrace();
             }
 
         }
         spirits = new Image[12];
-        inputString = "../Assets/gameAssets/spirit";
         input = null;
         for(int b = 1;b < 13;b++){
+            String inputString = "../Assets/gameAssets/spirit";
             Integer e = b;
             String add = e.toString() + ".PNG";
             inputString += add;
             try {
-                input = new FileInputStream(inputString);
+                input = this.getClass().getResourceAsStream(inputString);
                 Image image = new Image(input);
-                spirits[b] = image;
-            } catch (FileNotFoundException l) {
-                l.printStackTrace();
+                spirits[b-1] = image;
+            } catch (Exception x) {
+                x.printStackTrace();
             }
 
         }
 
         bars = new Image[12];
-        inputString = "../Assets/gameAssets/bar";
         input = null;
-        for(int b = 1;b < 12;b++){
+        for(int b = 0;b < 12;b++){
+            String inputString = "../Assets/gameAssets/bar";
             Integer e = b;
             String add = e.toString() + ".PNG";
             inputString += add;
             try {
-                input = new FileInputStream(inputString);
+                input = this.getClass().getResourceAsStream(inputString);
                 Image image = new Image(input);
                 bars[b] = image;
-            } catch (FileNotFoundException h) {
-                h.printStackTrace();
+            } catch (Exception x) {
+                x.printStackTrace();
             }
 
         }

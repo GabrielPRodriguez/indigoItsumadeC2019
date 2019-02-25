@@ -14,7 +14,7 @@
          <children>
             <ImageView fitHeight="664.0" fitWidth="1024.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">
                <image>
-                  <Image url="@../Assets/gameAssets/bar1.PNG" />
+                  <Image url="@../Assets/gameAssets/bartable1.PNG" />
                </image>
             </ImageView>
             <JFXButton fx:id="goWork" buttonType="RAISED" onAction="#goWork" text="Back to Work!" StackPane.alignment="BOTTOM_CENTER" />

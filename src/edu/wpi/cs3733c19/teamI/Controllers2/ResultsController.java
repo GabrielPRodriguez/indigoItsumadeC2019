@@ -31,7 +31,7 @@ import javafx.scene.text.Text;
 import javafx.scene.paint.Color;
 import javafx.stage.PopupWindow;
 import javafx.stage.PopupWindow.AnchorLocation;
-import org.junit.Test;
+//import org.junit.Test;
 
 import javax.swing.text.View;
 import java.io.*;

@@ -22,6 +22,10 @@ import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 
 import java.awt.*;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -217,6 +221,56 @@ public class FormSubmissionController implements Initializable {
     @FXML
     ImageView backImageDisp;
 
+    @FXML
+    Button addSignature;
+
+    JButton signButton, start;
+    UserSignature userSignature;
+    JFrame signatureArea;
+
+    ActionListener actionListener = new ActionListener()
+    {
+        @Override
+        public void actionPerformed(java.awt.event.ActionEvent event)
+        {
+            if(event.getSource() == start)
+            {
+                userSignature.black();
+            }
+
+            else if(event.getSource() == signButton)
+            {
+                signatureArea.dispatchEvent(new WindowEvent(signatureArea, WindowEvent.WINDOW_CLOSING));
+            }
+        }
+    };
+
+    @FXML
+    private void handleSignatureButton(ActionEvent event)
+    {
+        if(event.getSource() == addSignature)
+        {
+            userSignature = new UserSignature();
+            signatureArea = new JFrame("Signature");
+            Container content = signatureArea.getContentPane();
+            content.setLayout(new BorderLayout());
+            content.add(userSignature, BorderLayout.CENTER);
+
+            JPanel controls = new JPanel();
+            signButton = new JButton("SIGN");
+            signButton.addActionListener(actionListener);
+            start = new JButton("Start");
+            start.addActionListener(actionListener);
+
+            controls.add(signButton);
+            controls.add(start);
+
+            content.add(controls, BorderLayout.NORTH);
+            signatureArea.setSize(600, 200);
+            signatureArea.setVisible(true);
+        }
+    }
+
     /** private void uploadFile - Used to upload an image file of either type .jpg or .png when the user
      *                              is submitting a form. This method will throw an error if a file type
      *                              other than the intended file type is uploaded.
@@ -247,33 +301,6 @@ public class FormSubmissionController implements Initializable {
                 }
             }
         }
-//        if((event.getSource() == front_Upload) || (event.getSource() == back_Upload))
-//        {
-//            JButton open = new JButton();
-//            JFileChooser chooseFile = new JFileChooser();
-//            chooseFile.setCurrentDirectory(new java.io.File("System.dir"));
-//            FileNameExtensionFilter filter = new FileNameExtensionFilter("*.Images", "jpg", "png");
-//            chooseFile.setFileFilter(filter);
-//            chooseFile.setDialogTitle("Please Choose an Image to Upload");
-//            chooseFile.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
-//
-//            if(chooseFile.showOpenDialog(open) == JFileChooser.APPROVE_OPTION)
-//            {
-//                File selectedFile = chooseFile.getSelectedFile();
-//                String filePath = selectedFile.getAbsolutePath();
-//                Image selectedImage = new Image(new File(filePath).toURI().toString());
-//
-//                if(event.getSource() == front_Upload)
-//                {
-//                    frontImageDisp.setImage(selectedImage);
-//                }
-//
-//                if(event.getSource() == back_Upload)
-//                {
-//                    backImageDisp.setImage(selectedImage);
-//                }
-//            }
-//        }
     }
 
     //Enables the fields that are only used for wine when the wine radial button is selected
@@ -292,7 +319,8 @@ public class FormSubmissionController implements Initializable {
     @FXML
     private void handleSubmitButton(ActionEvent event) throws Exception{
         //System.out.println("Starting submit");
-        if(event.getSource()== submit){
+        if(event.getSource()== submit)
+        {
             clearWarnings();
             //System.out.println("event get source");
             Form sentForm = new Form();

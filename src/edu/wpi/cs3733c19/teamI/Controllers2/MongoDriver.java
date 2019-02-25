@@ -1,5 +1,6 @@
 package edu.wpi.cs3733c19.teamI.Controllers2;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.*;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.MongoClient;
@@ -14,9 +15,21 @@ import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
 import com.mongodb.*;
 import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.*;
+import org.bson.types.Binary;
 
 import static java.lang.Math.abs;
 
+
+class FrequencyResult{
+    public HashMap<String, Integer>frequences;
+    public ArrayList<String>all_names;
+    public FrequencyResult(HashMap<String, Integer>_frequences, ArrayList<String>_all_names){
+        frequences = _frequences;
+        all_names = _all_names;
+    }
+}
 
 public class MongoDriver {
     private String _url;
@@ -277,29 +290,36 @@ public class MongoDriver {
         HashMap<Double, HashMap<String, ReturnedValue>>results = new HashMap<Double, HashMap<String, ReturnedValue>>(); //hashmap of doubles and hashmaps with a string and returned value
         double counter = 0.00001;
         _user_input.toLowerCase();
+        int _row_count = 0;
         for(HashMap<String, ReturnedValue>result:select_all(filename, tablename)){ //for every item in our big ol table
 //            if(all_distances.size() > top_results){
 //                break;
 //            }
-            for (String key:keys){ //for each key (search type), should just be 1
-                String dataVal = result.get(key).to_string();
-                dataVal = dataVal.toLowerCase();
-                double maxDistance = counter;
-                counter = counter + 0.00001;
-                for (int i = 0; i < _user_input.length(); i++){ //use an i and a j to get every possible substring
-                    for (int j = i; j < _user_input.length() + 1; j++){
-                        String sub = _user_input.substring(i, j);
-                        if(dataVal.contains(sub)){ //if that sustring is in there, set maxDistance (the most consecutive correct letters) to that
-                            if (abs(i - j) > maxDistance) {
-                                maxDistance = abs(i-j) + counter;
+            if (_row_count < 10000){
+                for (String key:keys){ //for each key (search type), should just be 1
+                    String dataVal = result.get(key).to_string();
+                    dataVal = dataVal.toLowerCase();
+                    double maxDistance = counter;
+                    counter = counter + 0.00001;
+                    for (int i = 0; i < _user_input.length(); i++){ //use an i and a j to get every possible substring
+                        for (int j = i; j < _user_input.length() + 1; j++){
+                            String sub = _user_input.substring(i, j);
+                            if(dataVal.contains(sub)){ //if that sustring is in there, set maxDistance (the most consecutive correct letters) to that
+                                if (abs(i - j) > maxDistance) {
+                                    maxDistance = abs(i-j) + counter;
+                                }
                             }
                         }
                     }
+                    if (maxDistance > 1) {
+                        results.put(maxDistance, result);
+                        all_distances.add(maxDistance);
+                    }
                 }
-                if (maxDistance > 1) {
-                    results.put(maxDistance, result);
-                    all_distances.add(maxDistance);
-                }
+                _row_count++;
+            }
+            else{
+                break;
             }
 
         }
@@ -351,7 +371,65 @@ public class MongoDriver {
     }
 
 
+    public String get_byte_array(Image img){
+        int w = (int)img.getWidth();
+        int h = (int)img.getHeight();
+        byte[] buf = new byte[w * h * 4];
+        img.getPixelReader().getPixels(0, 0, w, h, PixelFormat.getByteBgraInstance(), buf, 0, w * 4);
+        //https://stackoverflow.com/questions/30566905/store-byte-in-mongodb-using-java
+        Binary data = new Binary(buf);
+        BasicDBObject o = new BasicDBObject();
+        MongoClient mongo = new MongoClient(new MongoClientURI(_url));
+        o.append("name","test").append("photo",data);
 
+        String filename="testfilename";
+        String tablename = "phototest";
+
+        MongoDatabase database = mongo.getDatabase(filename);
+        boolean flag = true;
+        try{
+            database.createCollection(tablename);
+        }
+        catch(Exception e){
+            //collection with tablename already exists in filename
+            flag = false;
+        }
+        //System.out.println("flag for insert_val");
+        //System.out.println(flag);
+
+        Document document = new Document("blob", buf);
+
+        MongoCollection<Document> collection = database.getCollection(tablename);
+
+        collection.insertOne(document);
+
+
+
+    }
+    public FrequencyResult get_top_vals(int top_val, String _type) throws Exception{
+        HashMap<String, Integer>freqs = new HashMap<String, Integer>();
+        ArrayList<String>all_returned_results = new ArrayList<String>();
+        ArrayList<String>final_keys = new ArrayList<String>();
+        for (HashMap<String, ReturnedValue>r:select_all("stringified_ids_db.db", "form_data")){
+            String _val = r.get(_type).to_string();
+            all_returned_results.add(_val);
+
+        }
+        if (all_returned_results.size() < top_val){
+            throw new Exception("length of database values is fewer than 'top_val'");
+        }
+        for (String new_val:all_returned_results.subList(all_returned_results.size()-100, all_returned_results.size())){
+            if (!freqs.containsKey(new_val)){
+                freqs.put(new_val, 1);
+            }
+            else{
+                freqs.put(new_val, freqs.get(new_val)+1);
+            }
+            final_keys.add(new_val);
+        }
+        return new FrequencyResult(freqs, final_keys);
+
+    }
     public ArrayList<HashMap<String, ReturnedValue>>search_for_l_multipleNOTUSED(String tablename, String filename, ArrayList<String>keys, String _user_input, int top_results) throws Exception{
         if (top_results < 1){
             throw new Exception("'top_results' must be a value greater than zero");

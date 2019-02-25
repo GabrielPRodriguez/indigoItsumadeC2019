@@ -721,10 +721,12 @@ public class FormSubmissionController implements Initializable {
             sentForm.setFormStatus(toolBarController.getCurUser().getUsername());
             if(!(frontImageDisp == null))
             {
+                Image image1 = frontImageDisp.getImage();
                 sentForm.setFront_Upload(frontImageDisp.getImage());
             }
             if(!(backImageDisp == null))
             {
+                Image image2 = backImageDisp.getImage();
                 sentForm.setBack_Upload(backImageDisp.getImage());
             }
             //only pull from these fields if Beverage Type is Wine
@@ -767,7 +769,7 @@ public class FormSubmissionController implements Initializable {
                 //contains the datatype of each column in the database, when adding a new column, please also add it's datatype here/
                 //"text" for strings and "real" for doubles/integers
 
-        MongoDriver driver = new MongoDriver("mongodb+srv://firstuser1:newTestCred@cs3733-hgmot.mongodb.net/test?retryWrites=true", columns);
+                MongoDriver driver = new MongoDriver("mongodb+srv://firstuser1:newTestCred@cs3733-hgmot.mongodb.net/test?retryWrites=true", columns);
                 DBTypes[] full_types = {new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"),
                         new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"),
                         new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"),

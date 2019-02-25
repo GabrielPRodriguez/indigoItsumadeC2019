@@ -17,7 +17,7 @@ import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.*;
 
 import static java.lang.Math.abs;
 
-
+//google GSON
 public class MongoDriver {
     private String _url;
     private String [] default_rows;
@@ -530,6 +530,7 @@ public class MongoDriver {
             filename = filename.substring(0, filename.length()-3);
         }
         MongoClient mongo = new MongoClient(new MongoClientURI(_url));
+       // mongo.close();
         MongoDatabase database = mongo.getDatabase(filename);
         try{
             database.createCollection(tablename);

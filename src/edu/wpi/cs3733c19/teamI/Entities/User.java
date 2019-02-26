@@ -102,7 +102,9 @@ public class User {
         this.BarScore++;
         System.out.println(this.BarScore);
         try {
+            System.out.println(repId.toString());
             SQLDriver.incrementBarScore(repId, this.BarScore);
+            System.out.println("oh hey thereeeee");
         }
         catch(Exception e){
 

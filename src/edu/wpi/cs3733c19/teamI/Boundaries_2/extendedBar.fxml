@@ -1,44 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="839.0" prefWidth="1044.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers2.barController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="839.0" prefWidth="1044.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers2.barController">
     <top><fx:include source="TTBToolbar.fxml" /></top>
    <center>
       <StackPane BorderPane.alignment="CENTER">
          <children>
             <ImageView fitHeight="664.0" fitWidth="1024.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">
                <image>
-                  <Image url="@../GameAssets/Bar/Normal%20Levels/IMG_1973.PNG" />
-                  <Image url="@../Assets/gameAssets/bartable1.PNG" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="134.0" fitWidth="121.0" layoutX="254.0" layoutY="180.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../GameAssets/Bar/Shadowed%20Bottles/Beer1-shadowed.PNG" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="134.0" fitWidth="121.0" layoutX="355.0" layoutY="188.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../GameAssets/Bar/Shadowed%20Bottles/Wine1-Shadowed.PNG" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="134.0" fitWidth="121.0" layoutX="456.0" layoutY="180.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../GameAssets/Bar/Shadowed%20Bottles/Spirits1-Shadowed.PNG" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="134.0" fitWidth="121.0" layoutX="572.0" layoutY="198.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../GameAssets/Bar/Tip%20Jar/IMG_1972.PNG" />
+                  <Image url="@../Assets/gameAssets/bartable1.png" />
                </image>
             </ImageView>
             <JFXButton fx:id="goWork" buttonType="RAISED" onAction="#goWork" text="Back to Work!" StackPane.alignment="BOTTOM_CENTER" />

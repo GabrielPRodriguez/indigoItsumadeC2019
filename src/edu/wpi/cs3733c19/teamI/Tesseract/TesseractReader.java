@@ -15,7 +15,7 @@ public class TesseractReader {
 
     public String convert(String filePath) {
         String url = (getClass().getResource("tessdata")).getPath();
-        org.apache.log4j.PropertyConfigurator.configure((url)+"/log4j.properties.txt");//"C:/Users/Carkin/indigoItsumadeC19/src/edu/wpi/cs3733c19/teamI/Tesseract/Tess4J/log4j.properties.txt");
+        //org.apache.log4j.PropertyConfigurator.configure((url)+"/log4j.properties.txt");//"C:/Users/Carkin/indigoItsumadeC19/src/edu/wpi/cs3733c19/teamI/Tesseract/Tess4J/log4j.properties.txt");
         File image = new File(filePath);
         Tesseract tessInst = new Tesseract();
         String tessPath = "";
@@ -112,7 +112,9 @@ public class TesseractReader {
     }
     //grab the first substring
     String[] splitted = RepID.split(" ");
-    RepID=splitted[1];
+        if(splitted.length > 0) {
+            RepID = splitted[1];
+        }
         System.out.println("RepId "+RepID);
     //TODO:this rule changed between the 2 file (since it read lff in one and lf in the other, add a third test case here
     //dog=> Plant Registry
@@ -133,7 +135,9 @@ public class TesseractReader {
         namenaddress=namenaddress+matcher.group(1);
     }
     splitted=namenaddress.split(" ");
-    namenaddress=splitted[0];
+        if(splitted.length > 0) {
+            namenaddress = splitted[0];
+        }
         System.out.println("Name and Address"+namenaddress);
 
     //sloth=> fanciful name
@@ -158,8 +162,12 @@ public class TesseractReader {
     }
 
     splitted=temp.split(" ");
-    phone=splitted[0];
-    email=splitted[1];
+        if(splitted.length>0){
+             phone=splitted[0];
+        }
+        if(splitted.length > 1) {
+            email = splitted[1];
+        }
         System.out.println("Phone and email: "+phone+" "+email);
 
 
@@ -173,7 +181,9 @@ public class TesseractReader {
         temp=temp+matcher.group(1);
     }
     splitted=temp.split(" ");
-    date=splitted[0];
+        if(splitted.length > 0) {
+            date = splitted[0];
+        }
     printname=splitted[1];
         System.out.println("Date and Print Name:"+date+" "+ printname);
 
@@ -198,8 +208,12 @@ public class TesseractReader {
 //                System.out.println(matcher.group(1));
     }
     splitted=temp.split(" ");
-    formula=splitted[0];
-    grapeVarietals=splitted[1];
+        if(splitted.length > 0) {
+            formula = splitted[0];
+        }
+        if(splitted.length > 1) {
+            grapeVarietals = splitted[1];
+        }
 
         System.out.println("Formula +Grape:"+formula+" "+grapeVarietals);
     //dolphin mouse=> brand name and mailing address
@@ -212,8 +226,12 @@ public class TesseractReader {
         temp=temp+matcher.group(1);
     }
     splitted=temp.split(" ");
-    brandName=splitted[0];
-    mailingAdd=splitted[1];
+        if(splitted.length > 0) {
+            brandName = splitted[0];
+        }
+        if(splitted.length > 1) {
+            mailingAdd = splitted[1];
+        }
         System.out.println("BrandName="+ brandName);
         System.out.println("Mailing Addres="+ mailingAdd);
 

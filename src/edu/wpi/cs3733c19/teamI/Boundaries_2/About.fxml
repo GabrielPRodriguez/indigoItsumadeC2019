@@ -9,38 +9,34 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="2642.0" prefWidth="1931.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers2.AboutController">
+<BorderPane xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers2.AboutController">
    <top>
       <fx:include source="TTBToolbar.fxml" />
    </top>
    <center>
-      <ScrollPane prefHeight="1742.0" prefWidth="1931.0" BorderPane.alignment="CENTER">
+      <ScrollPane fitToHeight="true" fitToWidth="true" BorderPane.alignment="CENTER">
          <content>
-            <GridPane prefHeight="2580.0" prefWidth="1896.0">
+            <GridPane alignment="CENTER">
               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints fillWidth="false" halignment="CENTER" />
+                <ColumnConstraints fillWidth="false" halignment="CENTER" />
+                <ColumnConstraints fillWidth="false" halignment="CENTER" />
               </columnConstraints>
               <rowConstraints>
-                <RowConstraints maxHeight="466.0" minHeight="10.0" prefHeight="165.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="443.0" minHeight="0.0" prefHeight="161.0" vgrow="SOMETIMES" />
-                <RowConstraints vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="834.0" minHeight="0.0" prefHeight="82.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="904.0" minHeight="0.0" prefHeight="211.0" vgrow="SOMETIMES" />
-                  <RowConstraints vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="1362.0" minHeight="0.0" prefHeight="117.0" vgrow="SOMETIMES" />
-                  <RowConstraints vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="1137.0" minHeight="10.0" prefHeight="86.0" vgrow="SOMETIMES" />
-                  <RowConstraints vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="950.0" minHeight="10.0" prefHeight="89.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="723.0" minHeight="0.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                <RowConstraints valignment="CENTER" vgrow="ALWAYS" />
+                <RowConstraints fillHeight="false" valignment="CENTER" />
+                <RowConstraints fillHeight="false" valignment="CENTER" />
+                  <RowConstraints fillHeight="false" valignment="CENTER" />
+                  <RowConstraints fillHeight="false" valignment="CENTER" />
+                  <RowConstraints fillHeight="false" valignment="CENTER" />
+                  <RowConstraints fillHeight="false" valignment="CENTER" />
+                  <RowConstraints />
               </rowConstraints>
                <children>
-                  <Label prefHeight="43.0" prefWidth="436.0" text="About Indigo Idsumade">
+                  <Label text="About Indigo Idsumade" textAlignment="CENTER" wrapText="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                      <font>
                         <Font name="Arial Bold" size="38.0" />
                      </font>
@@ -48,56 +44,140 @@
                         <Insets left="50.0" />
                      </opaqueInsets>
                      <GridPane.margin>
-                        <Insets left="50.0" />
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label prefHeight="43.0" prefWidth="426.0" text="Our Lead Engineers" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <Label text="Our Lead Engineers" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <font>
                         <Font name="Arial Bold Italic" size="38.0" />
                      </font>
                      <GridPane.margin>
-                        <Insets left="130.0" right="110.0" />
+                        <Insets />
                      </GridPane.margin>
                   </Label>
-                  <Label contentDisplay="CENTER" prefHeight="32.0" prefWidth="649.0" text="Fareya is a computer science major and enjoys reading, listening to podcasts, and outdoorsy things like hiking and camping." textAlignment="CENTER" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                  <VBox alignment="CENTER" fillWidth="false" minHeight="450.0" minWidth="400.0" spacing="20.0" style="-fx-background-color: #aeb0b5;" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                     <children>
+                        <ImageView fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Assets/circleFareya.png" />
+                           </image>
+                        </ImageView>
+                        <Label contentDisplay="CENTER" maxWidth="400.0" text="Fareya is a computer science major and enjoys reading, listening to podcasts, and outdoorsy things like hiking and camping." textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                           <font>
+                              <Font name="Segoe UI Bold" size="14.0" />
+                           </font></Label>
+                     </children>
                      <GridPane.margin>
-                        <Insets left="20.0" right="20.0" />
+                        <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
                      </GridPane.margin>
-                  </Label>
-                  <Label contentDisplay="CENTER" prefHeight="51.0" prefWidth="592.0" text="Michael is a Robotics and Biomedical Engineering major who serves as Lead Software Engineer. He likes video game development and weightlifting, and plays for the WPI club Ice Hockey team." textAlignment="CENTER" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </VBox>
+                  <VBox alignment="CENTER" fillWidth="false" minHeight="450.0" minWidth="400.0" spacing="20.0" style="-fx-background-color: #aeb0b5;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                     <children>
+                        <ImageView fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Assets/circleMike.png" />
+                           </image>
+                        </ImageView>
+                        <Label contentDisplay="CENTER" maxWidth="400.0" text="Michael is a Robotics and Biomedical Engineering major who serves as Lead Software Engineer. He likes video game development and weightlifting, and plays for the WPI club Ice Hockey team." textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                           <font>
+                              <Font name="Segoe UI Bold" size="14.0" />
+                           </font></Label>
+                     </children>
                      <GridPane.margin>
-                        <Insets left="20.0" right="20.0" />
+                        <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
                      </GridPane.margin>
-                  </Label>
-                  <Label contentDisplay="CENTER" prefHeight="32.0" prefWidth="649.0" text="Rachael is a Computer Science major with a minor in Interactive Media and Game Design. She enjoys creating digital art and taking nature photography." textAlignment="CENTER" wrapText="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </VBox>
+                  <VBox alignment="CENTER" fillWidth="false" minHeight="450.0" minWidth="400.0" spacing="20.0" style="-fx-background-color: #aeb0b5;" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                     <children>
+                        <ImageView fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Assets/circleRachael.png" />
+                           </image>
+                        </ImageView>
+                        <Label contentDisplay="CENTER" maxWidth="400.0" text="Rachael is a Computer Science major with a minor in Interactive Media and Game Design. She enjoys creating digital art and taking nature photography." textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                           <font>
+                              <Font name="Segoe UI Bold" size="14.0" />
+                           </font></Label>
+                     </children>
                      <GridPane.margin>
-                        <Insets left="20.0" right="20.0" />
+                        <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
                      </GridPane.margin>
-                  </Label>
-                  <Label text="Our Software Engineers" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </VBox>
+                  <Label text="Our Software Engineers" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                      <font>
                         <Font name="Arial Bold Italic" size="38.0" />
                      </font>
                      <GridPane.margin>
-                        <Insets left="100.0" right="70.0" top="50.0" />
+                        <Insets />
                      </GridPane.margin>
                   </Label>
-                  <Label text="Eric is a Robotics and Electrical Engineering major who acts as the product owner for the team. He enjoys working with his hands and working with old technologies. " textAlignment="CENTER" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                  <VBox alignment="CENTER" fillWidth="false" minHeight="450.0" minWidth="400.0" spacing="20.0" style="-fx-background-color: #aeb0b5;" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                     <children>
+                        <ImageView fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Assets/circleEric.png" />
+                           </image>
+                        </ImageView>
+                        <Label maxWidth="400.0" text="Eric is a Robotics and Electrical Engineering major who acts as the product owner for the team. He enjoys working with his hands and working with old technologies. " textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                           <font>
+                              <Font name="Segoe UI Bold" size="14.0" />
+                           </font></Label>
+                     </children>
                      <GridPane.margin>
-                        <Insets left="20.0" right="20.0" />
+                        <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
                      </GridPane.margin>
-                  </Label>
-                  <Label text="Grant is a Computer Science and Interactive Media and Game Development Double Major who is the Scrum Master for the duration of this project.  He enjoys games and game development, volleyball, and puzzle cracking." textAlignment="CENTER" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </VBox>
+                  <VBox alignment="CENTER" fillWidth="false" minHeight="450.0" minWidth="400.0" spacing="20.0" style="-fx-background-color: #aeb0b5;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                     <children>
+                        <ImageView fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Assets/circleGrant.png" />
+                           </image>
+                        </ImageView>
+                        <Label maxWidth="400.0" text="Grant is a Computer Science and Interactive Media and Game Development Double Major who is the Scrum Master for the duration of this project.  He enjoys games and game development, volleyball, and puzzle cracking." textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                           <font>
+                              <Font name="Segoe UI Bold" size="14.0" />
+                           </font></Label>
+                     </children>
                      <GridPane.margin>
-                        <Insets left="20.0" right="20.0" />
+                        <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
                      </GridPane.margin>
-                  </Label>
-                  <Label text="James Petullo is a computer science major with a broad range of interests within the academic discipline, including NLP, web application development, Peer-to-Peer (p2p) technologies, and compiler development. James believes that all the world is code, and contributes quite frequently to StackOverflow as an answerer for “Python” and “JQuery”-tagged questions. " textAlignment="CENTER" wrapText="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </VBox>
+                  <VBox alignment="CENTER" fillWidth="false" minHeight="450.0" minWidth="400.0" spacing="20.0" style="-fx-background-color: #aeb0b5;" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                     <children>
+                        <ImageView fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Assets/circleJames.png" />
+                           </image>
+                        </ImageView>
+                        <Label maxWidth="400.0" text="James Petullo is a computer science major with a broad range of interests within the academic discipline, including NLP, web application development, Peer-to-Peer (p2p) technologies, and compiler development. James believes that all the world is code, and contributes quite frequently to StackOverflow as an answerer for “Python” and “JQuery”-tagged questions. " textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                           <font>
+                              <Font name="Segoe UI Bold" size="14.0" />
+                           </font></Label>
+                     </children>
                      <GridPane.margin>
-                        <Insets left="20.0" right="20.0" />
+                        <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
                      </GridPane.margin>
-                  </Label>
-                  <Label text="Extending a special thank you to the US Treasury and The Tobacco Tax &amp; Trade Bureau" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="12">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </VBox>
+                  <Label alignment="CENTER" text="Extending a special thank you to the US Treasury and The Tobacco Tax &amp; Trade Bureau" textAlignment="CENTER" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
                      <font>
                         <Font name="Segoe UI Bold" size="20.0" />
                      </font>
@@ -105,95 +185,126 @@
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label text="Stephen is the document analyst. I help when I can. Like games especially warhammer." textAlignment="CENTER" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
+                  <VBox alignment="CENTER" fillWidth="false" minHeight="450.0" minWidth="400.0" spacing="20.0" style="-fx-background-color: #aeb0b5;" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+                     <children>
+                        <ImageView fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Assets/circleStephen.png" />
+                           </image>
+                        </ImageView>
+                        <Label maxWidth="400.0" text="Stephen is the document analyst. I help when I can. Like games especially warhammer." textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                           <font>
+                              <Font name="Segoe UI Bold" size="14.0" />
+                           </font></Label>
+                     </children>
                      <GridPane.margin>
-                        <Insets left="20.0" right="20.0" />
+                        <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
                      </GridPane.margin>
-                  </Label>
-                  <Label text="Yossef is an Electrical and Computer Engineering major and has the position of Algorithms Specialist for Team Indigo Itsumade. He enjoys street skateboarding and is a varsity athlete for the WPI Track and Field/ Cross Country team. " textAlignment="CENTER" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </VBox>
+                  <VBox alignment="CENTER" fillWidth="false" minHeight="450.0" minWidth="400.0" spacing="20.0" style="-fx-background-color: #aeb0b5;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+                     <children>
+                        <ImageView fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Assets/circleYossef.png" />
+                           </image>
+                        </ImageView>
+                        <Label maxWidth="400.0" text="Yossef is an Electrical and Computer Engineering major and has the position of Algorithms Specialist for Team Indigo Itsumade. He enjoys street skateboarding and is a varsity athlete for the WPI Track and Field/ Cross Country team. " textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                           <font>
+                              <Font name="Segoe UI Bold" size="14.0" />
+                           </font></Label>
+                     </children>
                      <GridPane.margin>
-                        <Insets left="20.0" right="20.0" />
+                        <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
                      </GridPane.margin>
-                  </Label>
-                  <Label text="Gabriel is majoring in Robotic and Mechanical Engineering, and serves as the teams Test Engineering. He enjoys working on hands on projects especially in the Unmanned Aerial System’s world. " textAlignment="CENTER" wrapText="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </VBox>
+                  <VBox alignment="CENTER" fillWidth="false" minHeight="450.0" minWidth="400.0" spacing="20.0" style="-fx-background-color: #aeb0b5;" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+                     <children>
+                        <ImageView fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Assets/circleGabe.png" />
+                           </image>
+                        </ImageView>
+                        <Label maxWidth="400.0" text="Gabriel is majoring in Robotic and Mechanical Engineering, and serves as the teams Test Engineering. He enjoys working on hands on projects especially in the Unmanned Aerial System’s world. " textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                           <font>
+                              <Font name="Segoe UI Bold" size="14.0" />
+                           </font></Label>
+                     </children>
                      <GridPane.margin>
-                        <Insets left="20.0" right="20.0" />
+                        <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
                      </GridPane.margin>
-                  </Label>
-                  <Label text="Rasheeda is a Computer Science major who likes repairing old game consoles, making costumes and props, and doing CAD/CAM work." textAlignment="CENTER" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </VBox>
+                  <VBox alignment="CENTER" fillWidth="false" minHeight="450.0" minWidth="400.0" spacing="20.0" style="-fx-background-color: #aeb0b5;" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                     <children>
+                        <ImageView fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Assets/circleRasheeda.png" />
+                           </image>
+                        </ImageView>
+                        <Label maxWidth="400.0" text="Rasheeda is a Computer Science major who likes repairing old game consoles, making costumes and props, and doing CAD/CAM work." textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                           <font>
+                              <Font name="Segoe UI Bold" size="14.0" />
+                           </font></Label>
+                     </children>
                      <GridPane.margin>
-                        <Insets left="20.0" right="20.0" />
+                        <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
                      </GridPane.margin>
-                  </Label>
-                  <Label text="Jeremy is a Robotics Engineering major who is the team’s project manager. He enjoys planning philanthropy events with his fraternity, playing lacrosse, and working on VEX robotics." textAlignment="CENTER" wrapText="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </VBox>
+                  <VBox alignment="CENTER" fillWidth="false" minHeight="450.0" minWidth="400.0" spacing="20.0" style="-fx-background-color: #aeb0b5;" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                     <children>
+                        <ImageView fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Assets/circleJeremy.png" />
+                           </image>
+                        </ImageView>
+                        <Label maxWidth="400.0" text="Jeremy is a Robotics Engineering major who is the team’s project manager. He enjoys planning philanthropy events with his fraternity, playing lacrosse, and working on VEX robotics." textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                           <font>
+                              <Font name="Segoe UI Bold" size="14.0" />
+                           </font></Label>
+                     </children>
                      <GridPane.margin>
-                        <Insets left="20.0" right="20.0" />
+                        <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
                      </GridPane.margin>
-                  </Label>
-                  <ImageView fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
-                     <image>
-                        <Image url="@../Assets/circleMike.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
-                     <image>
-                        <Image url="@../Assets/circleRachael.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
-                     <image>
-                        <Image url="@../Assets/circleFareya.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
-                     <image>
-                        <Image url="@../Assets/circleEric.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
-                     <image>
-                        <Image url="@../Assets/circleStephen.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER">
-                     <image>
-                        <Image url="@../Assets/circleRasheeda.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER">
-                     <image>
-                        <Image url="@../Assets/circleJeremy.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
-                     <image>
-                        <Image url="@../Assets/circleGabe.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
-                     <image>
-                        <Image url="@../Assets/circleJames.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
-                     <image>
-                        <Image url="@../Assets/circleGrant.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
-                     <image>
-                        <Image url="@../Assets/circleYossef.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER">
-                     <image>
-                        <Image url="@../Assets/circleMarissa.png" />
-                     </image>
-                  </ImageView>
-                  <Label alignment="CENTER" text="Our Advisor, Marissa Bennett" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER" />
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </VBox>
+                  <VBox alignment="CENTER" fillWidth="false" minHeight="450.0" minWidth="400.0" spacing="20.0" style="-fx-background-color: #aeb0b5;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                     <children>
+                        <ImageView fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Assets/circleMarissa.png" />
+                           </image>
+                        </ImageView>
+                        <Label alignment="CENTER" maxWidth="400.0" text="Our Advisor, Marissa Bennett" textFill="WHITE" wrapText="true">
+                           <font>
+                              <Font name="Segoe UI Bold" size="14.0" />
+                           </font></Label>
+                     </children>
+                     <GridPane.margin>
+                        <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
+                     </GridPane.margin>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </VBox>
                </children>
             </GridPane>
          </content>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
       </ScrollPane>
    </center>
 </BorderPane>

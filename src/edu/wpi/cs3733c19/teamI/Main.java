@@ -21,7 +21,7 @@ import javax.imageio.IIOParam;
 
 public class Main extends Application implements SerialPortPacketListener {
 
-
+    //Gabe was here
     ToolBarController toolBarController = ToolBarController.getInstance();
     public static SearchResults Results = new SearchResults();
     private IIOParam SearchLoader;
@@ -141,7 +141,7 @@ public class Main extends Application implements SerialPortPacketListener {
         toolBarController.setSearchParent(resultPane);
         toolBarController.setSearchParent(resultPane2);
         window.setScene(homeScene);
-        window.setFullScreen(true);
+        window.setMaximized(true);
         window.show();
 
 

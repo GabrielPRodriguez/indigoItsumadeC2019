@@ -29,8 +29,8 @@ public class AdvancedSearchController implements Initializable {
 
     @FXML
     TextField searchBar;
-
-    SQLDriver querydata = new SQLDriver();
+    MongoDriver querydata = new MongoDriver("mongodb+srv://firstuser1:newTestCred@cs3733-hgmot.mongodb.net/test?retryWrites=true");
+    //SQLDriver querydata = new SQLDriver();
 
     public void spinnerVisible()
     {
@@ -162,7 +162,7 @@ public class AdvancedSearchController implements Initializable {
    public void performSearch(ActionEvent event) throws Exception {
 
        //System.out.println("Field Selector: " + ((Label)fieldSelector.getValue()).getText());
-       toolBarController.setResultsMap(querydata.search_sql_wildcard("form_data", "stringified_ids_db.db", searchBar.getText(),hmap.get(((Label)fieldSelector.getValue()).getText())));
+       //toolBarController.setResultsMap(querydata.search_sql_wildcard("form_data", "stringified_ids_db.db", searchBar.getText(),hmap.get(((Label)fieldSelector.getValue()).getText())));
 
        //System.out.println( hmap.get(fieldSelector.getValue()));
        toolBarController.goSearch();

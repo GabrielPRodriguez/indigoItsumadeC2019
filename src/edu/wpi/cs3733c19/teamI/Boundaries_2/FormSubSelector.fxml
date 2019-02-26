@@ -37,6 +37,14 @@
                      <graphic>
                         <FontAwesomeIconView glyphName="FILES_ALT" size="100" strokeType="OUTSIDE" strokeWidth="0.0" />
                      </graphic></JFXButton>
+                  <JFXButton fx:id="uploadButton" contentDisplay="RIGHT" layoutX="460.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: #00a6d2; -fx-background-radius: 10;" text="Upload PDF">
+                     <font>
+                        <Font name="Segoe UI Bold" size="26.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView glyphName="UPLOAD" size="100" strokeType="OUTSIDE" strokeWidth="0.0" />
+                     </graphic>
+                  </JFXButton>
                </children>
             </HBox>
          </children>

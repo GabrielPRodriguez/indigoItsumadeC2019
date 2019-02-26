@@ -247,7 +247,6 @@ public class FormSubmissionController implements Initializable {
 
             else if(event.getSource() == signButton)
             {
-                //BufferedImage im = new BufferedImage(userSignature.getImage().getWidth(null), userSignature.getImage().getHeight(null), BufferedImage.TYPE_INT_ARGB);
                 try
                 {
                     BufferedImage im0 = new Robot().createScreenCapture(signatureArea.getBounds());

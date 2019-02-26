@@ -352,12 +352,14 @@
                               </JFXButton>
                            </children>
                         </VBox>
+                        <VBox prefHeight="200.0" prefWidth="100.0" />
                         <Pane HBox.hgrow="ALWAYS">
                            <children>
                               <VBox alignment="TOP_CENTER" layoutX="-13.0" prefHeight="213.0" prefWidth="165.0">
                                  <children>
-                                    <JFXButton fx:id="addSignature" mnemonicParsing="false" onAction="#handleSignatureButton" text="Sign Application" textAlignment="CENTER" />
-                                    <ImageView fx:id="signatureDisp" fitHeight="150.0" fitWidth="541.0" pickOnBounds="true" preserveRatio="true" />
+                                    <JFXButton fx:id="addSignature" mnemonicParsing="false" onAction="#handleSignatureButton" style="-fx-background-color: #205495;" text="Sign Application" textAlignment="CENTER" textFill="WHITE" />
+                                    <BorderPane prefHeight="26.0" prefWidth="649.0" />
+                                    <ImageView fx:id="signatureDisp" fitHeight="150.0" fitWidth="649.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
                               </VBox>
                            </children></Pane>

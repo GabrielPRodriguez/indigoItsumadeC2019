@@ -153,6 +153,21 @@ public class NewHomeController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources){
         spin.setMaxSize(0,0);
+        toolBarController = ToolBarController.getInstance();
+        if (toolBarController.getCurUser() != null){
+            if(toolBarController.getCurUser().getUserType() != User.userPower.SuperAdmin){
+                algorithm3.setOpacity(0);
+                algorithm3.setDisable(true);
+            }
+            else if (toolBarController.getCurUser().getUserType() == User.userPower.SuperAdmin){
+                algorithm3.setOpacity(1);
+                algorithm3.setDisable(false);
+            }
+        }
+        else {
+            algorithm3.setOpacity(0);
+            algorithm3.setDisable(true);
+        }
 
     }
 

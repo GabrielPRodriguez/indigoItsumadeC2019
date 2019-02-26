@@ -340,6 +340,7 @@ public class ResultsController implements Initializable {
                     //DisplayedResults.remove(item.getIndex()-1);
                     ArrayList<HashMap<String, ReturnedValue>> resMap = toolBarController.getResultsMap();
                     resMap.remove(item.getIndex()-1);
+
                     //dispList = new SimpleObjectProperty<>(DisplayedResults);
                     convertToForms(1);
                     setTable();

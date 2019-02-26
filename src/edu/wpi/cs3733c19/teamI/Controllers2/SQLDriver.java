@@ -19,8 +19,8 @@ class FrequencyResult{
     public HashMap<String, Integer>frequences;
     public ArrayList<String>all_names;
     public FrequencyResult(HashMap<String, Integer>_frequences, ArrayList<String>_all_names){
-        frequences = _frequences;
-        all_names = _all_names;
+        frequences = _frequences; //The count
+        all_names = _all_names; //The name
     }
 }
 
@@ -183,8 +183,7 @@ public class SQLDriver {
         }
         return dist[sourceLength][targetLength];
 
-    }
-    public FrequencyResult get_top_vals(int top_val, String _type) throws Exception{
+    } public FrequencyResult get_top_vals(int top_val, String _type) throws Exception{
         HashMap<String, Integer>freqs = new HashMap<String, Integer>();
         ArrayList<String>all_returned_results = new ArrayList<String>();
         ArrayList<String>final_keys = new ArrayList<String>();
@@ -208,6 +207,8 @@ public class SQLDriver {
         return new FrequencyResult(freqs, final_keys);
 
     }
+
+
     public void update_user_rfid(int id, String rfid) throws Exception {
         ArrayList<String> _target_cols = new ArrayList<String>();
         _target_cols.add("rfid");

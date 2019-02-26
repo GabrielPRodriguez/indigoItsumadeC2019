@@ -327,6 +327,8 @@ public class AgentWorkflowController implements Initializable {
         choose_button7.setDisable(false);
         choose_button8.setDisable(false);
         choose_button9.setDisable(false);
+
+
         SQLDriver driver = new SQLDriver();
         ArrayList<HashMap<String, ReturnedValue>>filtered_results = new ArrayList<HashMap<String, ReturnedValue>>();
         for (HashMap<String, ReturnedValue>result:driver.select_all("stringified_ids_db.db", "form_data")){
@@ -343,7 +345,7 @@ public class AgentWorkflowController implements Initializable {
                 }
             }
         }
-        HashMap<Integer, Label>test = new HashMap<Integer, Label>();
+        HashMap<Integer, Label> test = new HashMap<Integer, Label>();
         test.put(1, formID_1);
         test.put(2, formID_2);
         test.put(3, formID_3);

@@ -34,7 +34,7 @@ public class FormSubSelectorController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //TODO: Change to fileString
-        parsePDF("/home/fareyaikram/Desktop/testFiles/test1.pdf");
+        parsePDF("/Users/gabrielrodriguez/Downloads/TTBForm.pdf");
 
     }
     public Form parsePDF(String fileString){

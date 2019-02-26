@@ -548,7 +548,9 @@ public class AgentWorkflowController implements Initializable {
 
         }
 
-        MongoDriver driver = new MongoDriver("mongodb+srv://firstuser1:newTestCred@cs3733-hgmot.mongodb.net/test?retryWrites=true");
+        SQLDriver driver = new SQLDriver();
+
+        //MongoDriver driver = new MongoDriver("mongodb+srv://firstuser1:newTestCred@cs3733-hgmot.mongodb.net/test?retryWrites=true");
         HashMap<String, ReturnedValue>result = driver.get_data_by_value("form_data", "stringified_ids_db.db", "formID", new DBValue<String>(currentFormID));
 
 
@@ -594,23 +596,24 @@ public class AgentWorkflowController implements Initializable {
 
     @FXML
     private void approveHandler() throws IOException, Exception{
-        MongoDriver driver = new MongoDriver("mongodb+srv://firstuser1:newTestCred@cs3733-hgmot.mongodb.net/test?retryWrites=true");
+        SQLDriver driver = new SQLDriver();
+        //MongoDriver driver = new MongoDriver("mongodb+srv://firstuser1:newTestCred@cs3733-hgmot.mongodb.net/test?retryWrites=true");
         HashMap<String, ReturnedValue>result = driver.get_data_by_value("form_data", "stringified_ids_db.db", "formID", new DBValue<String>(currentFormID));
         formStatus_string = result.get("status").to_string().replace("unread", "");
         formStatus_string = result.get("status").to_string().replace("speci", "");
 
         formStatus_string += "approved";
 
-        MongoDriver.setApprovalStatus(currentFormID, formStatus_string);
+        driver.setApprovalStatus(currentFormID, formStatus_string);
         Date date = new Date();
         String theDate = date.toString();
         date.equals(date.getTime()+10000);
         String exDate = date.toString();
-        MongoDriver.setApprovalDate(currentFormID, theDate);
-        MongoDriver.setApprovingUser(currentFormID, this.approvingUser_text.getText());
-        MongoDriver.setExpirationDate(currentFormID, exDate);
+        driver.setApprovalDate(currentFormID, theDate);
+        driver.setApprovingUser(currentFormID, this.approvingUser_text.getText());
+        driver.setExpirationDate(currentFormID, exDate);
         if(special){
-            MongoDriver.setQualifier(currentFormID,commentBox.getText());
+            driver.setQualifier(currentFormID,commentBox.getText());
         }
 
 
@@ -632,14 +635,16 @@ public class AgentWorkflowController implements Initializable {
                 return;
             }
         }
-        MongoDriver.setQualifier(currentFormID,commentBox.getText());
-        MongoDriver driver = new MongoDriver("mongodb+srv://firstuser1:newTestCred@cs3733-hgmot.mongodb.net/test?retryWrites=true");
+        SQLDriver driver = new SQLDriver();
+        driver.setQualifier(currentFormID,commentBox.getText());
+
+        //MongoDriver driver = new MongoDriver("mongodb+srv://firstuser1:newTestCred@cs3733-hgmot.mongodb.net/test?retryWrites=true");
         HashMap<String, ReturnedValue>result = driver.get_data_by_value("form_data", "stringified_ids_db.db", "formID", new DBValue<String>(currentFormID));
         formStatus_string = result.get("status").to_string().replace("unread", "");
         formStatus_string = result.get("status").to_string().replace("specia", "");
         formStatus_string += "reject";
 
-        MongoDriver.setApprovalStatus(currentFormID, formStatus_string);
+        driver.setApprovalStatus(currentFormID, formStatus_string);
         clearFields();
 
         pull_Forms();
@@ -651,13 +656,14 @@ public class AgentWorkflowController implements Initializable {
     }
     @FXML
     public void sendBackHandler() throws IOException, Exception{
-        MongoDriver driver = new MongoDriver("mongodb+srv://firstuser1:newTestCred@cs3733-hgmot.mongodb.net/test?retryWrites=true");
+        SQLDriver driver = new SQLDriver();
+        //MongoDriver driver = new MongoDriver("mongodb+srv://firstuser1:newTestCred@cs3733-hgmot.mongodb.net/test?retryWrites=true");
         HashMap<String, ReturnedValue>result = driver.get_data_by_value("form_data", "stringified_ids_db.db", "formID", new DBValue<String>(currentFormID));
         formStatus_string = result.get("status").to_string().replace("unread", "");
 
         formStatus_string += "commented";
-        MongoDriver.setQualifier(currentFormID,commentBox.getText());
-        MongoDriver.setApprovalStatus(currentFormID,formStatus_string);
+        driver.setQualifier(currentFormID,commentBox.getText());
+        driver.setApprovalStatus(currentFormID,formStatus_string);
         clearFields();
 
         pull_Forms();
@@ -668,12 +674,13 @@ public class AgentWorkflowController implements Initializable {
     }
     @FXML
     public void forwardHandler() throws IOException, Exception{
-        MongoDriver driver = new MongoDriver("mongodb+srv://firstuser1:newTestCred@cs3733-hgmot.mongodb.net/test?retryWrites=true");
+        SQLDriver driver = new SQLDriver();
+        //MongoDriver driver = new MongoDriver("mongodb+srv://firstuser1:newTestCred@cs3733-hgmot.mongodb.net/test?retryWrites=true");
         HashMap<String, ReturnedValue>result = driver.get_data_by_value("form_data", "stringified_ids_db.db", "formID", new DBValue<String>(currentFormID));
         formStatus_string = result.get("status").to_string().replace("unread", "");
         formStatus_string += "specialist";
-        MongoDriver.setApprovalStatus(currentFormID,formStatus_string);
-        MongoDriver.setQualifier(currentFormID,commentBox.getText());
+        driver.setApprovalStatus(currentFormID,formStatus_string);
+        driver.setQualifier(currentFormID,commentBox.getText());
         clearFields();
 
         pull_Forms();

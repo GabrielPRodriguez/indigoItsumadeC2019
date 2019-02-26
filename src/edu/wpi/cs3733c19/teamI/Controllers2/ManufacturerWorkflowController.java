@@ -486,9 +486,10 @@ public class ManufacturerWorkflowController {
 
     @FXML
     public void sendBackHandler() throws IOException, Exception{
+        SQLDriver driver = new SQLDriver();
         formStatus_string = "commented";
-        MongoDriver.setQualifier(currentFormID,commentBox.getText());
-        MongoDriver.setApprovalStatus(currentFormID,formStatus_string);
+        driver.setQualifier(currentFormID,commentBox.getText());
+        driver.setApprovalStatus(currentFormID,formStatus_string);
         clearFields();
 
         pull_Forms();
@@ -497,8 +498,9 @@ public class ManufacturerWorkflowController {
     }
     @FXML
     public void forwardHandler() throws IOException, Exception{
+        SQLDriver driver = new SQLDriver();
         formStatus_string = "specialist";
-        MongoDriver.setApprovalStatus(currentFormID,formStatus_string);
+        driver.setApprovalStatus(currentFormID,formStatus_string);
         clearFields();
 
         pull_Forms();

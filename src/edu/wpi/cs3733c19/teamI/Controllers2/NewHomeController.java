@@ -146,6 +146,9 @@ public class NewHomeController implements Initializable {
 
     }
 
+    public void goAdvancedSearch() throws IOException {
+        toolBarController.goAdvancedSearch();
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources){

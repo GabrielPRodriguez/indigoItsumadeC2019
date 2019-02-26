@@ -68,6 +68,8 @@ public class User {
 
     public void incrementBeerScore(){
         this.BeerScore++;
+        System.out.println(this.BeerScore);
+
         try {
             SQLDriver.incrementBeerScore(repId, this.BeerScore);
         }
@@ -98,8 +100,11 @@ public class User {
 
     public void incrementBarScore(){
         this.BarScore++;
+        System.out.println(this.BarScore);
         try {
+            System.out.println(repId.toString());
             SQLDriver.incrementBarScore(repId, this.BarScore);
+            System.out.println("oh hey thereeeee");
         }
         catch(Exception e){
 

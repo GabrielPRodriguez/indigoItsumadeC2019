@@ -3,32 +3,57 @@ package edu.wpi.cs3733c19.teamI.Controllers2;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXSpinner;
+import edu.wpi.cs3733c19.teamI.Algorithms.LFuzzy;
+import edu.wpi.cs3733c19.teamI.Algorithms.SQLFuzzy;
+import edu.wpi.cs3733c19.teamI.Algorithms.UserSearch;
+import edu.wpi.cs3733c19.teamI.Algorithms.fuzzyContext;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.Region;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class AdvancedSearchController implements Initializable {
 
+    private fuzzyContext searchAlgorithmSelection = new fuzzyContext();
+
     @FXML
     JFXSpinner spin;
 
     @FXML
-    JFXComboBox fieldSelector;
+    JFXComboBox fieldSelector1;
+
+    @FXML
+    JFXComboBox fieldSelector2;
+
+    @FXML
+    JFXComboBox fieldSelector3;
 
     @FXML
     JFXButton search;
 
     @FXML
     TextField searchBar;
+
+    @FXML
+    ToggleGroup algorithmGroup;
+
+    @FXML
+    RadioButton levenshteinRad;
+
+    @FXML
+    RadioButton sqlRad;
+
     MongoDriver querydata = new MongoDriver("mongodb+srv://firstuser1:newTestCred@cs3733-hgmot.mongodb.net/test?retryWrites=true");
     //SQLDriver querydata = new SQLDriver();
 
@@ -151,20 +176,49 @@ public class AdvancedSearchController implements Initializable {
 
                 );
 
-        fieldSelector.setItems(labelList);
+        fieldSelector1.setItems(labelList);
+        fieldSelector2.setItems(labelList);
+        fieldSelector3.setItems(labelList);
     }
 
 
     private ToolBarController toolBarController = ToolBarController.getInstance();
 
+    @FXML
+    public void setAlgorithm(){
+        RadioButton selectedRadioButton = (RadioButton) algorithmGroup.getSelectedToggle();
+        String toggleGroupValue = selectedRadioButton.getText();
+
+        if (toggleGroupValue.equals("SQL")){
+            searchAlgorithmSelection.setContext(new SQLFuzzy());
+
+        }else if(toggleGroupValue.equals("Levenshtein")){
+            searchAlgorithmSelection.setContext(new LFuzzy());
+
+        }
 
 
-   public void performSearch(ActionEvent event) throws Exception {
+    }
 
-       //System.out.println("Field Selector: " + ((Label)fieldSelector.getValue()).getText());
-       //toolBarController.setResultsMap(querydata.search_sql_wildcard("form_data", "stringified_ids_db.db", searchBar.getText(),hmap.get(((Label)fieldSelector.getValue()).getText())));
+    public void setSearchParam(){
+        ArrayList<String> paramList = new ArrayList<String>();
+        paramList.add(((Label)fieldSelector1.getValue()).getText());
+        paramList.add(((Label)fieldSelector2.getValue()).getText());
+        paramList.add(((Label)fieldSelector3.getValue()).getText());
+        searchAlgorithmSelection.setParam(paramList);
+    }
 
-       //System.out.println( hmap.get(fieldSelector.getValue()));
+
+
+    public void performSearch(ActionEvent event) throws Exception {
+       RadioButton selectedRadioButton = (RadioButton) algorithmGroup.getSelectedToggle();
+       String toggleGroupValue = selectedRadioButton.getText();
+
+       System.out.println("Field Selector1: " + ((Label)fieldSelector1.getValue()).getText());
+       System.out.println("Field Selector2: " + ((Label)fieldSelector2.getValue()).getText());
+       System.out.println("Field Selector3: " + ((Label)fieldSelector3.getValue()).getText());
+
+
        toolBarController.goSearch();
     }
 

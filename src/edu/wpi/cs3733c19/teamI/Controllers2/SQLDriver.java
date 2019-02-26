@@ -1080,7 +1080,7 @@ public class SQLDriver {
         ArrayList<DBValue> appStatus = new ArrayList<>();
         DBValue value1 = new DBValue<Integer>(val);
         appStatus.add(value1);
-        driver.update("form_data", "stringified_ids_db.db", appStatType, appStatus, formID);
+        driver.updateUser("credentials", "user_database.db", appStatType, appStatus, formID);
     }
 
     public static void setField(String formID, String approvalStatus, String field) throws IOException, Exception{

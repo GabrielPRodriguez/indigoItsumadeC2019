@@ -124,9 +124,9 @@ public class LoginAccountController implements Initializable {
 
     @FXML
     public void login(ActionEvent actionEvent) throws Exception {
-        System.out.println("manu: " + encryptPassword("manu"));
-        System.out.println("ttb: " + encryptPassword("ttb"));
-        System.out.println("specialist: " + encryptPassword("specialist"));
+        //System.out.println("manu: " + encryptPassword("manu"));
+        //System.out.println("ttb: " + encryptPassword("ttb"));
+        //System.out.println("specialist: " + encryptPassword("specialist"));
         if(!attemptLogin(actionEvent)){
 
         }
@@ -159,16 +159,16 @@ public class LoginAccountController implements Initializable {
             HashMap<String, DataField> searchParam = new HashMap<>();
             searchParam.put("email", new DataField(Email.getText(), "email"));
             users = loginDriver.get_user_data_by_value("credentials", "user_database.db", param, searchParam);
-            if(users.get(0).get("role").to_double() == 0){
+            if(users.get(0).get("role").to_double() == 1){
                 powerCreate = User.userPower.TTBEmployee;
             }
-            else if(users.get(0).get("role").to_double() == 1) {
+            else if(users.get(0).get("role").to_double() == 2) {
                 powerCreate = User.userPower.Company;
             }
-            else if (users.get(0).get("role").to_double() == 2){
+            else if (users.get(0).get("role").to_double() == 3){
                 powerCreate = User.userPower.Specialist;
             }
-            else if (users.get(0).get("role").to_double() == 3){
+            else if (users.get(0).get("role").to_double() == 4){
                 powerCreate= User.userPower.SuperAdmin;
             }
             else {

@@ -12,25 +12,25 @@
    <center>
       <StackPane BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="664.0" fitWidth="1024.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">
+            <ImageView fx:id="barImage" fitHeight="664.0" fitWidth="1024.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">
                <image>
-                  <Image url="@../Assets/gameAssets/bartable1.png" />
+                  <Image url="@../Assets/gameAssets/bartable1.PNG" />
                </image>
             </ImageView>
             <JFXButton fx:id="goWork" buttonType="RAISED" onAction="#goWork" text="Back to Work!" StackPane.alignment="BOTTOM_CENTER" />
             <HBox fillHeight="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="273.0" prefWidth="389.0" spacing="30.0" StackPane.alignment="CENTER">
                <children>
-                  <ImageView fitHeight="134.0" fitWidth="121.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="beerBottle" fitHeight="134.0" fitWidth="121.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Assets/gameAssets/Beer1-shadowed.PNG" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="155.0" fitWidth="113.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="wineBottle" fitHeight="155.0" fitWidth="113.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Assets/gameAssets/Wine-shadowed.PNG" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="134.0" fitWidth="121.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="spiritBottle" fitHeight="134.0" fitWidth="121.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Assets/gameAssets/Spirits1-Shadowed.PNG" />
                      </image>

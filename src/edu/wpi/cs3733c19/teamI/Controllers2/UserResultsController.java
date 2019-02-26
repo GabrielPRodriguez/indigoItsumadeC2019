@@ -218,7 +218,9 @@ import java.util.ResourceBundle;
                         driver.setUserField(repIDnum, roleSet, "role");
                     }
 
-                    if(!Password.getText().isEmpty());{
+                    if((Password.getText().equals("")) == false){
+                        //System.out.println(Password.getText().equals(""));
+                        //System.out.println(Password.getText());
                         String passSet = encryptPassword(Password.getText());
                         driver.setUserField(repIDnum, passSet, "password");
                     }

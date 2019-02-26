@@ -122,7 +122,7 @@
                                              <children>
                                                 <HBox prefHeight="0.0" prefWidth="540.0">
                                                    <children>
-                                                      <Label text="Password *">
+                                                      <Label text="Password * (leave blank!)">
                                                          <font>
                                                             <Font name="Segoe UI Bold" size="20.0" />
                                                          </font>

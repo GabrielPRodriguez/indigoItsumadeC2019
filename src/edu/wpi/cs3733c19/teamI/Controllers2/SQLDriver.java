@@ -1044,7 +1044,7 @@ public class SQLDriver {
         ArrayList<DBValue> appStatus = new ArrayList<>();
         DBValue value1 = new DBValue<Integer>(val);
         appStatus.add(value1);
-        System.out.println("death upon you");
+        //System.out.println("death upon you");
        // update(String tablename, String filename, ArrayList<String>targetcols, ArrayList<DBValue>values, String formid)
         driver.updateUser("credentials", "user_database.db", appStatType, appStatus, formID);
     }

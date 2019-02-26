@@ -26,8 +26,13 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import javafx.scene.paint.Color;
+import sun.misc.BASE64Encoder;
+
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
 import java.io.*;
 import java.net.URL;
+import java.security.Key;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -213,9 +218,14 @@ import java.util.ResourceBundle;
                         driver.setUserField(repIDnum, roleSet, "role");
                     }
 
+                    if(!Password.getText().isEmpty());{
+                        String passSet = encryptPassword(Password.getText());
+                        driver.setUserField(repIDnum, passSet, "password");
+                    }
 
 
-                    System.out.println("somehow didnt break?");
+
+                    //System.out.println("somehow didnt break?");
 
                     convertToForms(1);
                     setTable();
@@ -224,6 +234,34 @@ import java.util.ResourceBundle;
                 }
                 //delet the thangs
             }
+        }
+
+        public String encryptPassword(String origionalPassword) throws Exception
+        {
+            String strData;
+
+            try
+            {
+                Key key = generateKey();
+                Cipher cipher = Cipher.getInstance("AES");
+                cipher.init(Cipher.ENCRYPT_MODE, key);
+                byte[] e = cipher.doFinal(origionalPassword.getBytes());
+                strData = new BASE64Encoder().encode(e);
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e);
+            }
+            return strData;
+        }
+
+        private Key generateKey() throws Exception
+        {
+            String key = "AaBbCcDdEeFfGgHh";
+            byte[] encryptionKey = key.getBytes();
+            Key k = new SecretKeySpec(encryptionKey, "AES");
+
+            return k;
         }
 
         @FXML
@@ -427,7 +465,7 @@ import java.util.ResourceBundle;
             city.setText(oneBeverage.getSummary().get(8));
             state.setText(oneBeverage.getSummary().get(9));
             delim.setText(oneBeverage.getSummary().get(10));
-            Password.setText(oneBeverage.getSummary().get(11));
+            //Password.setText(oneBeverage.getSummary().get(11));
             zip.setText(oneBeverage.getSummary().get(13));
 
             if(toggle.equals("stan")){

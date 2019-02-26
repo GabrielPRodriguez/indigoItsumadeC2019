@@ -195,7 +195,7 @@ public class SQLDriver {
         if (all_returned_results.size() < top_val){
             throw new Exception("length of database values is fewer than 'top_val'");
         }
-        for (String new_val:all_returned_results.subList(all_returned_results.size()-100, all_returned_results.size())){
+        for (String new_val:all_returned_results.subList(all_returned_results.size()-top_val, all_returned_results.size())){
             if (!freqs.containsKey(new_val)){
                 freqs.put(new_val, 1);
             }

@@ -31,12 +31,6 @@ public class StatisticsController {
     @FXML
     private NumberAxis yAxis;
 
-    int y1 = 0;
-    int y2 = 0;
-    int y3 = 0;
-
-    int y4 = 0;
-    int y5 = 0;
 
     int numResults = 0;
 
@@ -72,44 +66,26 @@ public class StatisticsController {
 
 
             if(numResults > 0) {
-
-
                 try {
                     FrequencyResult result = driver.get_top_vals(numResults, "beverageType");
-                    System.out.println(numResults);
-                    System.out.println(result.all_names.get(3));
-                    System.out.println(result.frequences.get("Wine"));
-                    System.out.println(result.frequences.get("Distilled Spirits"));
-                    System.out.println(result.frequences.get("Malt Beverage"));
                     yVal1 = result.frequences.get("Wine");
                     yVal2 = result.frequences.get("Distilled Spirits");
                     yVal3 = result.frequences.get("Malt Beverage");
                 } catch (Exception e) {
                     System.out.println("Exception");
-
                 }
             }
 
-
-
-            //int yVal1 = y1;
-            //int yVal2 = y2;
-           //int yVal3 = y3;
-
-
-
-
-
             XYChart.Series xType1 = new XYChart.Series<>();
-            xType1.setName("Beer");
+            xType1.setName("Wine");
             xType1.getData().add(new XYChart.Data("Type", yVal1));
 
             XYChart.Series xType2 = new XYChart.Series<>();
-            xType2.setName("Wine");
+            xType2.setName("Spirits");
             xType2.getData().add(new XYChart.Data("Type", yVal2));
 
             XYChart.Series xType3 = new XYChart.Series<>();
-            xType3.setName("Spirits");
+            xType3.setName("Beer");
             xType3.getData().add(new XYChart.Data("Type", yVal3));
 
             xAxis.setLabel("Beverage Type");
@@ -119,8 +95,23 @@ public class StatisticsController {
         else if(xCombo.getValue().equals("Domestic vs Imported")){
             statsGraph.getData().clear();
 
-            int yVal4 = y4;
-            int yVal5 = y5;
+            int yVal4 = 0;
+            int yVal5 = 0;
+
+
+            if(numResults > 0) {
+                try {
+                    FrequencyResult result = driver.get_top_vals(numResults, "domesticOrImported");
+                    yVal4 = result.frequences.get("Domestic");
+                    yVal5 = result.frequences.get("Import");
+
+                } catch (Exception e) {
+                    System.out.println("Exception");
+                }
+            }
+
+
+
 
             XYChart.Series xWhere1 = new XYChart.Series<>();
             xWhere1.setName("Domestic");
@@ -141,14 +132,7 @@ public class StatisticsController {
         if(yCombo.getValue().equals("Total")){
             statsGraph.getData().clear();
 
-            y1 = 10;
-            y2 = 10;
-            y3 = 10;
-
-            y4 = 10;
-            y5 = 10;
-
-            numResults = 50;
+            numResults = 73173;
 
             yAxis.setLabel("Total");
             xComboChanged();
@@ -157,12 +141,6 @@ public class StatisticsController {
         else if(yCombo.getValue().equals("Most Recent")){
             statsGraph.getData().clear();
 
-            y1 = 20;
-            y2 = 10;
-            y3 = 30;
-
-            y4 = 40;
-            y5 = 50;
 
             numResults = 100;
 

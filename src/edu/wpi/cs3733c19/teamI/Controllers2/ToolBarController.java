@@ -49,11 +49,14 @@ public class ToolBarController implements Initializable {
     static ToolBarController instance;
     private static User curUser = null;
     private ResultsController ResultsController;
+    private UserResultsController UserResultsController;
     private Parent searchParent;
     private DetailedResultsController InfoController;
     private  static boolean signedIn = false;
 
     private ArrayList<HashMap<String, ReturnedValue>> resultsMap = new ArrayList<HashMap<String, ReturnedValue>>();
+    private ArrayList<HashMap<String, ReturnedValue>> userResultsMap = new ArrayList<HashMap<String, ReturnedValue>>();
+
 
     // Observable Classes for displaying the name
     private Message clearText;
@@ -79,6 +82,11 @@ public class ToolBarController implements Initializable {
             ResultsController.convertToForms(0);
 
     }
+    void setResultsMapUser(ArrayList<HashMap<String, ReturnedValue>> userResultsMap){
+        this.userResultsMap = userResultsMap;
+        UserResultsController.convertToForms(0);
+
+    }
 
     public void setSearchParent(Parent searchParent) {
         this.searchParent = searchParent;
@@ -87,8 +95,13 @@ public class ToolBarController implements Initializable {
     ArrayList<HashMap<String, ReturnedValue>> getResultsMap() {
         return this.resultsMap;
     }
+    ArrayList<HashMap<String, ReturnedValue>> getUserResultsMap() {
+        return this.userResultsMap;
+    }
 
     public void setResultsController(ResultsController resultsController){ ResultsController = resultsController; }
+    public void setUserResultsController(UserResultsController userResultsController){ UserResultsController = userResultsController; }
+
 
     public void setInfoController(DetailedResultsController details) { InfoController = details; }
 
@@ -225,6 +238,9 @@ public class ToolBarController implements Initializable {
         {
             goWorkflowManufacturer();
         }
+        else if (curUser.getUserType().equals(User.userPower.SuperAdmin)){ //and add isAdmin check
+            goAdminPage();
+        }
         else if(curUser.getUserType().equals(User.userPower.Standard))
         {
             goHome();
@@ -258,6 +274,15 @@ public class ToolBarController implements Initializable {
         primaryStage = Main.getWindow();
         primaryStage.getScene().setRoot(searchParent); }
 
+    public void goUserSearch() throws IOException {
+
+        Parent userSearchParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/UserSearchResults.fxml"));
+        // FXMLLoader resultsPageLoader = new FXMLLoader(getClass().getResource("../Boundaries_2/SearchResults.fxml"));
+
+        // Parent resultPane = resultsPageLoader.load();
+        primaryStage = Main.getWindow();
+        primaryStage.getScene().setRoot(userSearchParent); }
+
 
     public void goExit(ActionEvent actionEvent){
         System.exit(0);
@@ -272,6 +297,12 @@ public class ToolBarController implements Initializable {
         Parent helphomeParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/HelpHomePage.fxml"));
         primaryStage = Main.getWindow();
         primaryStage.getScene().setRoot(helphomeParent);
+    }
+
+    public void goAdminPage() throws IOException {
+        Parent adminParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/AdminPage.fxml"));
+        primaryStage = Main.getWindow();
+        primaryStage.getScene().setRoot(adminParent);
     }
 
     public void goHelpSubmit() throws IOException {

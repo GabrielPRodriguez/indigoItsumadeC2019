@@ -5,7 +5,10 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXPopup;
 import edu.wpi.cs3733c19.teamI.Algorithms.SQLFuzzy;
 import edu.wpi.cs3733c19.teamI.Algorithms.fuzzyContext;
+import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.DBValue;
 import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.ReturnedValue;
+import edu.wpi.cs3733c19.teamI.Entities.DataTransfer;
+import edu.wpi.cs3733c19.teamI.Entities.User;
 import edu.wpi.cs3733c19.teamI.Entities.sub_Form;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -104,6 +107,9 @@ public class ResultsController implements Initializable {
     JFXButton thirdPage;
 
     @FXML
+    Button buttonRemove;
+
+    @FXML
     TextField searchTextField;
     private fuzzyContext searchAlgorithmSelection = new fuzzyContext();
 
@@ -132,6 +138,10 @@ public class ResultsController implements Initializable {
 
     @FXML
     JFXComboBox delimDrop;
+
+    sub_Form item;
+    DataTransfer data;
+
 
     @FXML
     private void goHome() throws IOException {
@@ -283,6 +293,7 @@ public class ResultsController implements Initializable {
         this.ResultNumber.setCellValueFactory(new PropertyValueFactory<sub_Form, Integer>("index"));
         //this.tableView.setItems(DisplayedResults);
         this.tableView.itemsProperty().bind(dispList);
+        
     }
 
 
@@ -291,6 +302,17 @@ public class ResultsController implements Initializable {
         setTable();
         convertToForms(0);
         toolBarController = ToolBarController.getInstance();
+        if (toolBarController.getCurUser() != null){
+            if(toolBarController.getCurUser().getUserType() != User.userPower.SuperAdmin){
+                buttonRemove.setOpacity(0);
+            }
+            else if (toolBarController.getCurUser().getUserType() == User.userPower.SuperAdmin){
+                buttonRemove.setOpacity(1);
+            }
+        }
+        else {
+            buttonRemove.setOpacity(0);
+        }
 
         delimDrop.getItems().addAll(
                 "Comma",
@@ -300,15 +322,57 @@ public class ResultsController implements Initializable {
 
     }
 
+    @FXML
+    public void removeForm(){
+        toolBarController = ToolBarController.getInstance();
+        if(toolBarController.getCurUser() == null){
+        }
+        else if (toolBarController.getCurUser().getUserType().equals(User.userPower.SuperAdmin)){
+            data = DataTransfer.getInstance();
+                try {
 
+                    SQLDriver driver  = new SQLDriver();
+                    item = tableView.getSelectionModel().getSelectedItem();
+
+                    //System.out.println("formID is " + item.getSummary().get(0));
+                    //System.out.println(item.getForm_ID());
+                    driver.setField(item.getSummary().get(0), "delete", "status");
+                    //DisplayedResults.remove(item.getIndex()-1);
+                    ArrayList<HashMap<String, ReturnedValue>> resMap = toolBarController.getResultsMap();
+                    resMap.remove(item.getIndex()-1);
+                    //dispList = new SimpleObjectProperty<>(DisplayedResults);
+                    convertToForms(1);
+                    setTable();
+                    //perPageAction(new ActionEvent());
+
+                    //if we use DisplayedResults.remove and setTable it removes it but only temporarily
+
+                    // toolBarController.goSearch();
+                    //setResultsList();
+                    //setTable();
+                }
+                catch(Exception e){
+            }
+            //delet the thangs
+        }
+        else{
+            //do nothing
+            //System.out.println("notadmin");
+        }
+    }
 
 
     public void table_selected(Event event){
-        sub_Form item = tableView.getSelectionModel().getSelectedItem();
-
-        showSelectedBeverage(item);
-        // toolBarController.getInfoController().updateList(item);
-        // toolBarController.goDetails(event);
+        try{
+            item = tableView.getSelectionModel().getSelectedItem();
+            //System.out.println(tableView.getItems());
+            showSelectedBeverage(item);
+            // toolBarController.getInfoController().updateList(item);
+            // toolBarController.goDetails(event);
+        }
+        catch (Exception e){
+            System.out.println("Item not found in table_selected method");
+        }
     }
 
     public void goSearch(ActionEvent actionEvent) throws Exception {
@@ -331,16 +395,19 @@ public class ResultsController implements Initializable {
 
     private void showSelectedBeverage(sub_Form oneBeverage) {
 
-        regText.setText(oneBeverage.getSummary().get(1));
-        typeText.setText(oneBeverage.getSummary().get(4));
-        fanText.setText(oneBeverage.getSummary().get(6));
-        percentText.setText(oneBeverage.getSummary().get(11) + "%");
-        originText.setText(oneBeverage.getSummary().get(2));
-        phText.setText(oneBeverage.getSummary().get(9));
-        vinText.setText(oneBeverage.getSummary().get(7));
-        appText.setText(oneBeverage.getSummary().get(10));
-        varText.setText(oneBeverage.getSummary().get(8));
-        nameText.setText(oneBeverage.getSummary().get(5));
+        regText.setText(oneBeverage.getSummary().get(2));
+        typeText.setText(oneBeverage.getSummary().get(5));
+        fanText.setText(oneBeverage.getSummary().get(7));
+        percentText.setText(oneBeverage.getSummary().get(12) + "%");
+        originText.setText(oneBeverage.getSummary().get(3));
+        phText.setText(oneBeverage.getSummary().get(10));
+        vinText.setText(oneBeverage.getSummary().get(8));
+        appText.setText(oneBeverage.getSummary().get(11));
+        varText.setText(oneBeverage.getSummary().get(9));
+        nameText.setText(oneBeverage.getSummary().get(6));
+        //System.out.println("thing 1" + oneBeverage.getSummary().get(6));
+        //System.out.println("thing 2 " + oneBeverage.getSummary().get(0));
+
     }
 
 

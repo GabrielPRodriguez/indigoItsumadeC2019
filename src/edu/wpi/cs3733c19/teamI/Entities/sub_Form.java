@@ -28,7 +28,7 @@ public class sub_Form {
     private String phoneNumber;
     private String email;
     private int index;
-    private int form_ID;
+    private String form_ID;
 
     //getters
     public String getRepID() {
@@ -87,7 +87,7 @@ public class sub_Form {
         return email;
     }
 
-    public int getForm_ID() {return form_ID;}
+    public String getForm_ID() {return form_ID;}
 
     public int getIndex(){return index;}
 
@@ -150,7 +150,7 @@ public class sub_Form {
 
     public void setIndex(int index) { this.email = email; }
 
-    public void setForm_ID(int form_ID) { this.form_ID = form_ID; }
+    public void setForm_ID(String form_ID) { this.form_ID = form_ID; }
 
     //this function is used to generate the CSV download. It returns every form field as a list of string
     // seperated by commas
@@ -172,6 +172,7 @@ public class sub_Form {
 
     public ObservableList<String> getSummary(){
         ObservableList<String> list_of_Param = FXCollections.observableArrayList();
+        list_of_Param.add(this.getForm_ID());
         list_of_Param.add("RepID: " + this.getRepID());
         list_of_Param.add("PlantRegistry: " + this.getPlantRegistry());
         list_of_Param.add("Origin: " + this.getDomesticOrImported());
@@ -191,6 +192,7 @@ public class sub_Form {
     //constructor. This constructor takes a hasmap as an input, so we can quickly move between the DB query return type
     // and displayable values
     public sub_Form(HashMap<String, ReturnedValue> entry, int index){
+        this.form_ID = entry.get("formID").to_string();
         this.repID = entry.get("repID").to_string();
         this.plantRegistry = entry.get("plantRegistry").to_string();
         this.domesticOrImported = entry.get("domesticOrImported").to_string();

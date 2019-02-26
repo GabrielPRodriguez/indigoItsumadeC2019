@@ -264,9 +264,10 @@
                   </VBox>
                   <VBox spacing="40.0" HBox.hgrow="ALWAYS">
                      <children>
+                        <VBox alignment="CENTER_RIGHT" fillWidth="false" spacing="20.0">
                         <VBox fillWidth="false" spacing="20.0">
                            <VBox.margin>
-                              <Insets left="50.0" />
+                              <Insets />
                            </VBox.margin>
                            <children>
                               <HBox minWidth="-Infinity" prefHeight="0.0" prefWidth="161.0" spacing="20.0">
@@ -290,12 +291,11 @@
                             <RowConstraints maxHeight="45.0" minHeight="35.0" prefHeight="37.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <JFXRadioButton fx:id="wineXP" prefHeight="1.0" prefWidth="34.0" text=" " textAlignment="CENTER" wrapText="true" GridPane.rowIndex="1">
-                                 <toggleGroup>
+                              <JFXRadioButton fx:id="wineXP" prefHeight="1.0" prefWidth="34.0" text=" " textAlignment="CENTER" wrapText="true" GridPane.rowIndex="1" />
+                              <JFXRadioButton fx:id="beerXP" text=" " GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                    <toggleGroup>
                                     <ToggleGroup fx:id="EXP" />
-                                 </toggleGroup>
-                              </JFXRadioButton>
-                              <JFXRadioButton fx:id="beerXP" text=" " toggleGroup="$EXP" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    </toggleGroup></JFXRadioButton>
                               <JFXRadioButton fx:id="spiritsXP" text=" " toggleGroup="$EXP" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                               <JFXRadioButton fx:id="barXP" text=" " toggleGroup="$EXP" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Wine" GridPane.rowIndex="2" />
@@ -324,10 +324,8 @@
                               </ImageView>
                            </children>
                         </GridPane>
+                        </VBox>
                      </children>
-                     <padding>
-                        <Insets left="20.0" />
-                     </padding>
                   </VBox>
                   <VBox spacing="20.0" HBox.hgrow="ALWAYS">
                      <children>

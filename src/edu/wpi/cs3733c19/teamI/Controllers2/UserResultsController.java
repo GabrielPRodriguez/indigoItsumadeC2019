@@ -172,14 +172,40 @@ import java.util.ResourceBundle;
             else if (toolBarController.getCurUser().getUserType().equals(User.userPower.SuperAdmin)){
                 data = DataTransfer.getInstance();
                 try {
-                    System.out.println("attempting to edit a thing");
+                    //System.out.println("attempting to edit a thing");
+
+
 
                     SQLDriver driver  = new SQLDriver();
                     item = tableView.getSelectionModel().getSelectedItem();
 
+                    String repIDnum = item.getSummary().get(0);
+
+                    String roleSet = "";
+                    if(Standard.isSelected()){
+                        roleSet = "0.0";
+                    }
+                    else if(Manufacturer.isSelected()){
+                        roleSet = "2.0";
+                    }
+                    else if (Specialist.isSelected()){
+                        roleSet = "3.0";
+                    }
+                    else if (Agent.isSelected()){
+                        roleSet = "1.0";
+                    }
+                    else{
+                        return;
+                        //do not allow a change to the database if a type is not selected (ie if they are an admin)
+                    }
+
+                    if(!roleSet.equals("")){
+                        driver.setUserField(repIDnum, roleSet, "role");
+                    }
+
+
                     //System.out.println("formID is " + item.getSummary().get(0));
                     //System.out.println(item.getForm_ID());
-                    String repIDnum = item.getSummary().get(0);
                     //TODO on a form save, every item is rewritten, no checks are made to avoid rewriting non-changing information
                     String emailSet = UserEmail.getText();
                     driver.setUserField(repIDnum, emailSet, "email");
@@ -200,23 +226,6 @@ import java.util.ResourceBundle;
                     String stateSet = state.getText();
                     driver.setUserField(repIDnum, stateSet, "state");
 
-                    String roleSet = "";
-                    if(Standard.isSelected()){
-                        roleSet = "0.0";
-                    }
-                    else if(Manufacturer.isSelected()){
-                        roleSet = "2.0";
-                    }
-                    else if (Specialist.isSelected()){
-                        roleSet = "3.0";
-                    }
-                    else if (Agent.isSelected()){
-                        roleSet = "1.0";
-                    }
-
-                    if(!roleSet.equals("")){
-                        driver.setUserField(repIDnum, roleSet, "role");
-                    }
 
                     if((Password.getText().equals("")) == false){
                         //System.out.println(Password.getText().equals(""));
@@ -483,6 +492,10 @@ import java.util.ResourceBundle;
                 Agent.setSelected(true);
             }
             else{
+                Standard.setSelected(false);
+                Manufacturer.setSelected(false);
+                Specialist.setSelected(false);
+                Agent.setSelected(false);
                 //if an admin do something else, TBD
             }
 

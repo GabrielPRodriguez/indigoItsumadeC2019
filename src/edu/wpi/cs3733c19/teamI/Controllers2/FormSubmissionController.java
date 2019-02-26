@@ -250,8 +250,9 @@ public class FormSubmissionController implements Initializable {
                 //BufferedImage im = new BufferedImage(userSignature.getImage().getWidth(null), userSignature.getImage().getHeight(null), BufferedImage.TYPE_INT_ARGB);
                 try
                 {
-                    BufferedImage im = new Robot().createScreenCapture(signatureArea.getBounds());
-                    Image newImage = SwingFXUtils.toFXImage(im, null);
+                    BufferedImage im0 = new Robot().createScreenCapture(signatureArea.getBounds());
+                    BufferedImage im1 = im0.getSubimage(0, 65, 600, 135);
+                    Image newImage = SwingFXUtils.toFXImage(im1, null);
                     signatureDisp.setImage(newImage);
                 }
                 catch(AWTException e)

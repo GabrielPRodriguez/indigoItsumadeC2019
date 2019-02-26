@@ -303,7 +303,7 @@ public class ManufacturerWorkflowController {
         MongoDriver driver = new MongoDriver("mongodb+srv://firstuser1:newTestCred@cs3733-hgmot.mongodb.net/test?retryWrites=true");
 
         ArrayList<HashMap<String, ReturnedValue>> filtered_results = new ArrayList<HashMap<String, ReturnedValue>>();
-        for (HashMap<String, ReturnedValue>result:driver.select_all("stringified_ids_db.db", "form_data")){
+        for (HashMap<String, ReturnedValue> result:driver.select_all("stringified_ids_db.db", "form_data")){
                 if (result.get("status").to_string().contains(toolBarController.getCurUser().getUsername())){
                     filtered_results.add(result);
                 }

@@ -7,6 +7,7 @@ import com.mongodb.MongoCredential;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.FindIterable;
+import com.mongodb.client.model.CreateCollectionOptions;
 import edu.wpi.cs3733c19.teamI.Entities.DataField;
 import org.bson.Document;
 import com.mongodb.MongoClient;
@@ -531,13 +532,26 @@ public class MongoDriver {
         }
         MongoClient mongo = new MongoClient(new MongoClientURI(_url));
         MongoDatabase database = mongo.getDatabase(filename);
-        try{
-            database.createCollection(tablename);
+
+        tablename = "marissaWazHereeeee";
+        boolean updating = false;
+        if (!updating) {
+            try {
+//                CreateCollectionOptions c = new CreateCollectionOptions()
+//                        .maxDocuments(50);
+                database.createCollection(tablename);
+//                database.createCollection(tablename, { max : 10000 });
+            } catch (MongoCommandException  e) {
+                //collection with tablename already exists in filename
+                if (e.getErrorCode() != 48) {
+                    throw e;
+                } else {
+                    System.out.println("Collection already exists, nothing to create");
+                    updating = true;
+                } // if else
+            }
         }
-        catch(Exception e){
-            //collection with tablename already exists in filename
-        }
-        MongoCollection<Document> collection = database.getCollection(tablename);
+        MongoCollection<Document> collection = database.getCollection(filename + "." + tablename);
         List<Document> entries = (List<Document>) collection.find().into(
                 new ArrayList<Document>());
         MongoDatabase about_database = mongo.getDatabase("_about_"+filename);

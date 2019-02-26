@@ -785,8 +785,13 @@ public class AgentWorkflowController implements Initializable {
             } catch (Exception x) {
                 x.printStackTrace();
             }
-
         }
+        /*
+            wineCount.setImage(wines[User.getwinXP%12]);
+            beerCount.setImage(beers[User.getbeerXP%12]);
+            spiritCount.setImage(spirits[User.getspiritXP%12]);
+            barCount.setImage(bars[User.getBarXP%12]);
+         */
 
         if(toolBarController.getCurUser().getUserType().equals(User.userPower.Specialist)){
                 specialText.setOpacity(1);

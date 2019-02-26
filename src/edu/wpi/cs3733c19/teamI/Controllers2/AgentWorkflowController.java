@@ -302,44 +302,53 @@ public class AgentWorkflowController implements Initializable {
 
     @FXML
     public void testBottles(){
+        User use = User.getUser("a","a",User.userPower.Standard,"a","a","a","a","a","a","a","a","a",1,1,1,1);
         if(wineXP.isSelected()){
             if(wineNum == 11){
                 wineCount.setImage(wines[0]);
                 wineNum = 0;
+                use.incrementWineScore();
             }
             else{
                 wineNum++;
                 wineCount.setImage(wines[wineNum]);
+                use.incrementWineScore();
             }
         }
         else if(beerXP.isSelected()){
             if(beerNum == 11){
                 beerCount.setImage(beers[0]);
                 beerNum = 0;
+                use.incrementBeerScore();
             }
             else{
                 beerNum++;
                 beerCount.setImage(beers[beerNum]);
+                use.incrementBeerScore();
             }
         }
         else if(spiritsXP.isSelected()){
             if(spiritsNum == 11){
                 spiritsCount.setImage(spirits[0]);
                 spiritsNum = 0;
+                use.incrementSpiritScore();
             }
             else{
                 spiritsNum++;
                 spiritsCount.setImage(spirits[spiritsNum]);
+                use.incrementSpiritScore();
             }
         }
         else if(barXP.isSelected()){
             if(barNum == 11){
                 barCount.setImage(bars[0]);
                 barNum = 0;
+                use.incrementBarScore();
             }
             else{
                 barNum++;
                 barCount.setImage(bars[barNum]);
+                use.incrementBarScore();
             }
 
         }
@@ -596,7 +605,7 @@ public class AgentWorkflowController implements Initializable {
         HashMap<String, ReturnedValue>result = driver.get_data_by_value("form_data", "stringified_ids_db.db", "formID", new DBValue<String>(currentFormID));
         formStatus_string = result.get("status").to_string().replace("unread", "");
         formStatus_string = result.get("status").to_string().replace("speci", "");
-
+        testBottles();
         formStatus_string += "approved";
 
         MongoDriver.setApprovalStatus(currentFormID, formStatus_string);
@@ -787,12 +796,19 @@ public class AgentWorkflowController implements Initializable {
                 x.printStackTrace();
             }
         }
-        /*
-            wineCount.setImage(wines[User.getwinXP%12]);
-            beerCount.setImage(beers[User.getbeerXP%12]);
-            spiritCount.setImage(spirits[User.getspiritXP%12]);
-            barCount.setImage(bars[User.getBarXP%12]);
-         */
+        User use = User.getUser("a","a",User.userPower.Standard,"a","a","a","a","a","a","a","a","a",1,1,1,1);
+        wineCount.setImage(wines[use.getWineScore()%12]);
+        beerCount.setImage(beers[use.getBeerScore()%12]);
+        spiritsCount.setImage(spirits[use.getSpiritScore()%12]);
+        barCount.setImage(bars[use.getBarScore()%12]);
+        wineNum = use.getWineScore()%12;
+        beerNum = use.getBeerScore()%12;
+        spiritsNum = use.getSpiritScore()%12;
+        barNum = use.getBarScore()%12;
+        wineCount.setImage(wines[wineNum]);
+        beerCount.setImage(beers[beerNum]);
+        spiritsCount.setImage(spirits[spiritsNum]);
+        barCount.setImage(bars[barNum]);
 
         if(toolBarController.getCurUser().getUserType().equals(User.userPower.Specialist)){
                 specialText.setOpacity(1);

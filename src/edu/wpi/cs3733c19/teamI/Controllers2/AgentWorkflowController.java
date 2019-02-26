@@ -16,9 +16,15 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 
+import java.awt.*;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
@@ -27,6 +33,14 @@ import java.util.ResourceBundle;
 import java.util.logging.XMLFormatter;
 
 public class AgentWorkflowController implements Initializable {
+    public int wineNum;
+    public int beerNum;
+    public int spiritsNum;
+    public int barNum;
+    public Image[] wines;
+    public Image[] beers;
+    public Image[] spirits;
+    public Image[] bars;
     public boolean special = false;
     private ToolBarController toolBarController = ToolBarController.getInstance();
 
@@ -273,6 +287,63 @@ public class AgentWorkflowController implements Initializable {
     Button forwardButton;
     @FXML
     JFXButton toBar;
+    @FXML
+    JFXButton test;
+    @FXML
+    JFXRadioButton wineXP;
+    @FXML
+    JFXRadioButton beerXP;
+    @FXML
+    JFXRadioButton spiritsXP;
+    @FXML
+    JFXRadioButton barXP;
+    @FXML
+    ImageView wineCount,beerCount,spiritsCount,barCount;
+
+    @FXML
+    public void testBottles(){
+        if(wineXP.isSelected()){
+            if(wineNum == 11){
+                wineCount.setImage(wines[0]);
+                wineNum = 0;
+            }
+            else{
+                wineNum++;
+                wineCount.setImage(wines[wineNum]);
+            }
+        }
+        else if(beerXP.isSelected()){
+            if(beerNum == 11){
+                beerCount.setImage(beers[0]);
+                beerNum = 0;
+            }
+            else{
+                beerNum++;
+                beerCount.setImage(beers[beerNum]);
+            }
+        }
+        else if(spiritsXP.isSelected()){
+            if(spiritsNum == 11){
+                spiritsCount.setImage(spirits[0]);
+                spiritsNum = 0;
+            }
+            else{
+                spiritsNum++;
+                spiritsCount.setImage(spirits[spiritsNum]);
+            }
+        }
+        else if(barXP.isSelected()){
+            if(barNum == 11){
+                barCount.setImage(bars[0]);
+                barNum = 0;
+            }
+            else{
+                barNum++;
+                barCount.setImage(bars[barNum]);
+            }
+
+        }
+    }
     @FXML
     public void goToBar() throws IOException{
         toolBarController.goBar();
@@ -650,6 +721,79 @@ public class AgentWorkflowController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        wines = new Image[12];
+
+        InputStream input = null;
+        for(int b = 1;b < 13;b++){
+            String inputString = "../Assets/gameAssets/wine";
+            Integer e = b;
+            String add = e.toString() + ".PNG";
+            inputString += add;
+            try {
+                input = this.getClass().getResourceAsStream(inputString);
+                Image image = new Image(input);
+                wines[b - 1] = image;
+            } catch (Exception x) {
+                x.printStackTrace();
+            }
+
+        }
+
+        beers = new Image[12];
+        input = null;
+        for(int b = 0;b < 12;b++){
+            String inputString = "../Assets/gameAssets/beer";
+            Integer e = b;
+            String add = e.toString() + ".PNG";
+            inputString += add;
+            try {
+                input = this.getClass().getResourceAsStream(inputString);
+                Image image = new Image(input);
+                beers[b] = image;
+            } catch (Exception x) {
+                x.printStackTrace();
+            }
+
+        }
+        spirits = new Image[12];
+        input = null;
+        for(int b = 1;b < 13;b++){
+            String inputString = "../Assets/gameAssets/spirit";
+            Integer e = b;
+            String add = e.toString() + ".PNG";
+            inputString += add;
+            try {
+                input = this.getClass().getResourceAsStream(inputString);
+                Image image = new Image(input);
+                spirits[b-1] = image;
+            } catch (Exception x) {
+                x.printStackTrace();
+            }
+
+        }
+
+        bars = new Image[12];
+        input = null;
+        for(int b = 0;b < 12;b++){
+            String inputString = "../Assets/gameAssets/bar";
+            Integer e = b;
+            String add = e.toString() + ".PNG";
+            inputString += add;
+            try {
+                input = this.getClass().getResourceAsStream(inputString);
+                Image image = new Image(input);
+                bars[b] = image;
+            } catch (Exception x) {
+                x.printStackTrace();
+            }
+        }
+        /*
+            wineCount.setImage(wines[User.getwinXP%12]);
+            beerCount.setImage(beers[User.getbeerXP%12]);
+            spiritCount.setImage(spirits[User.getspiritXP%12]);
+            barCount.setImage(bars[User.getBarXP%12]);
+         */
+
         if(toolBarController.getCurUser().getUserType().equals(User.userPower.Specialist)){
                 specialText.setOpacity(1);
             commentBox.setPromptText("Add any comments as to why this particular form was rejected, accepted, or comments for corrections");

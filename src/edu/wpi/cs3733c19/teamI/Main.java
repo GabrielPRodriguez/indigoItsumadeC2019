@@ -116,8 +116,6 @@ public class Main extends Application implements SerialPortPacketListener {
 
 
     public static void main(String[] args) {
-        TesseractReader pdfConverter = new TesseractReader();
-        pdfConverter.convert("C:/Users/Carkin/Tess4J/test2.pdf");
         launch(args);
     }
 

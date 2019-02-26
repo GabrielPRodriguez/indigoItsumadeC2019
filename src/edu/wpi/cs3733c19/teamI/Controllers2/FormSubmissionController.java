@@ -666,6 +666,23 @@ public class FormSubmissionController implements Initializable {
 
         }
 
+        if(data.upload) {
+/*
+            public String pdf_Mailing = "";
+
+            public String pdf_Grape = "";
+            */
+
+            fancyName_Field.setText(data.pdf_Fancy);
+            appellation_Field.setText(data.pdf_WineApp);
+            permitNum_Field.setText(data.pdf_PlantReg);
+            street_Field.setText(data.pdf_Address);
+            formula_Field.setText(data.pdf_Formula);
+            brandName_Field.setText(data.pdf_BrandName);
+            //email_Field.setText(data.);
+            grape_Field.setText(data.pdf_Grape);
+            data.upload = false;
+        }
     }
 
 

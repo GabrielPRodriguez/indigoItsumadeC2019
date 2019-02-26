@@ -1,6 +1,7 @@
 package edu.wpi.cs3733c19.teamI.Tesseract;
 
 import com.sun.jna.StringArray;
+import edu.wpi.cs3733c19.teamI.Entities.DataTransfer;
 import net.sourceforge.tess4j.Tesseract;
 import net.sourceforge.tess4j.TesseractException;
 
@@ -15,7 +16,7 @@ public class TesseractReader {
 
     public String convert(String filePath) {
         String url = (getClass().getResource("tessdata")).getPath();
-        //org.apache.log4j.PropertyConfigurator.configure((url)+"/log4j.properties.txt");//"C:/Users/Carkin/indigoItsumadeC19/src/edu/wpi/cs3733c19/teamI/Tesseract/Tess4J/log4j.properties.txt");
+        org.apache.log4j.PropertyConfigurator.configure((url)+"/log4j.properties.txt");//"C:/Users/Carkin/indigoItsumadeC19/src/edu/wpi/cs3733c19/teamI/Tesseract/Tess4J/log4j.properties.txt");
         File image = new File(filePath);
         Tesseract tessInst = new Tesseract();
         String tessPath = "";
@@ -73,6 +74,7 @@ public class TesseractReader {
     //Add an instance of a form over here
     //1. Read the contents of the file
     public void getFields(String filePath){
+       DataTransfer data = DataTransfer.getInstance();
 
 
         String repID;
@@ -125,7 +127,9 @@ public class TesseractReader {
         while (matcher.find()) {
         PlantRegistry=PlantRegistry+matcher.group(1);
     }
+
         System.out.println("Plant Registry: "+PlantRegistry);
+        data.pdf_PlantReg = PlantRegistry;
 
     String namenaddress="";
     //chicken=> name and address of applicant as shown on the permit
@@ -139,6 +143,7 @@ public class TesseractReader {
             namenaddress = splitted[0];
         }
         System.out.println("Name and Address"+namenaddress);
+        data.pdf_Address = namenaddress;
 
     //sloth=> fanciful name
     String fancifulName="";
@@ -148,6 +153,7 @@ public class TesseractReader {
         fancifulName=fancifulName+matcher.group(1);
     }
         System.out.println("Fanciful name:"+fancifulName);
+        data.pdf_Fancy = fancifulName;
 
 
     //hippo and giraffe=>phone number and email address
@@ -196,6 +202,7 @@ public class TesseractReader {
         wineApp=matcher.group(1);
     }
         System.out.println("Wine App "+wineApp);
+        data.pdf_WineApp = wineApp;
 
     String formula="";
     String grapeVarietals="";
@@ -216,6 +223,8 @@ public class TesseractReader {
         }
 
         System.out.println("Formula +Grape:"+formula+" "+grapeVarietals);
+        data.pdf_Formula = formula;
+        data.pdf_Grape = grapeVarietals;
     //dolphin mouse=> brand name and mailing address
     String brandName="";
     String mailingAdd="";
@@ -233,9 +242,11 @@ public class TesseractReader {
             mailingAdd = splitted[1];
         }
         System.out.println("BrandName="+ brandName);
+        data.pdf_BrandName = brandName;
         System.out.println("Mailing Addres="+ mailingAdd);
+        data.pdf_Mailing = mailingAdd;
 
-
+        data.upload = true;
 }
     //
     public static String valueExtracter(Pattern P, String fileContents){

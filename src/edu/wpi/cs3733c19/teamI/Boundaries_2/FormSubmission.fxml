@@ -5,7 +5,6 @@
 <?import com.jfoenix.controls.JFXRadioButton?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.ToggleGroup?>
@@ -353,7 +352,15 @@
                               </JFXButton>
                            </children>
                         </VBox>
-                        <Pane HBox.hgrow="ALWAYS" />
+                        <Pane HBox.hgrow="ALWAYS">
+                           <children>
+                              <VBox alignment="TOP_CENTER" layoutX="-13.0" prefHeight="213.0" prefWidth="165.0">
+                                 <children>
+                                    <JFXButton fx:id="addSignature" mnemonicParsing="false" onAction="#handleSignatureButton" text="Sign Application" textAlignment="CENTER" />
+                                    <ImageView fx:id="signatureDisp" fitHeight="150.0" fitWidth="541.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                              </VBox>
+                           </children></Pane>
                         <VBox prefHeight="176.0" prefWidth="336.0" spacing="20.0">
                            <children>
                               <Label fx:id="submit_message" nodeOrientation="LEFT_TO_RIGHT" wrapText="true" VBox.vgrow="ALWAYS">
@@ -361,7 +368,6 @@
                                     <Insets top="50.0" />
                                  </padding>
                               </Label>
-                              <Button fx:id="addSignature" mnemonicParsing="false" onAction="#handleSignatureButton" text="Add Signature" />
                               <HBox spacing="30.0">
                                  <children>
                                     <JFXButton fx:id="save_Button" mnemonicParsing="false" onAction="#saveApp" style="-fx-background-color: #2e8540;" text="Save" textFill="WHITE" HBox.hgrow="ALWAYS">

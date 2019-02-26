@@ -16,6 +16,11 @@ public class UserSignature extends JComponent
     private int y1;
     private int y2;
 
+    public Image getImage()
+    {
+        return image;
+    }
+
     public UserSignature()
     {
         setDoubleBuffered(false);

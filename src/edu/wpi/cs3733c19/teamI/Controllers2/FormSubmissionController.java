@@ -8,6 +8,7 @@ import edu.wpi.cs3733c19.teamI.Entities.DataTransfer;
 import edu.wpi.cs3733c19.teamI.Entities.Form;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -26,14 +27,17 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.Buffer;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -224,6 +228,9 @@ public class FormSubmissionController implements Initializable {
     @FXML
     Button addSignature;
 
+    @FXML
+    ImageView signatureDisp;
+
     JButton signButton, start;
     UserSignature userSignature;
     JFrame signatureArea;
@@ -240,6 +247,18 @@ public class FormSubmissionController implements Initializable {
 
             else if(event.getSource() == signButton)
             {
+                //BufferedImage im = new BufferedImage(userSignature.getImage().getWidth(null), userSignature.getImage().getHeight(null), BufferedImage.TYPE_INT_ARGB);
+                try
+                {
+                    BufferedImage im = new Robot().createScreenCapture(signatureArea.getBounds());
+                    Image newImage = SwingFXUtils.toFXImage(im, null);
+                    signatureDisp.setImage(newImage);
+                }
+                catch(AWTException e)
+                {
+                    e.printStackTrace();
+                }
+
                 signatureArea.dispatchEvent(new WindowEvent(signatureArea, WindowEvent.WINDOW_CLOSING));
             }
         }
@@ -255,6 +274,8 @@ public class FormSubmissionController implements Initializable {
             Container content = signatureArea.getContentPane();
             content.setLayout(new BorderLayout());
             content.add(userSignature, BorderLayout.CENTER);
+            Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
+            signatureArea.setLocation(d.width/2 - signatureArea.getSize().width/2, d.height/2 - signatureArea.getSize().height/2);
 
             JPanel controls = new JPanel();
             signButton = new JButton("SIGN");

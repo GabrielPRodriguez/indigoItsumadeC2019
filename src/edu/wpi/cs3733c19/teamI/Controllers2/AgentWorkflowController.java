@@ -652,7 +652,7 @@ public class AgentWorkflowController implements Initializable {
         formStatus_string = result.get("status").to_string().replace("unread", "");
         formStatus_string = result.get("status").to_string().replace("specia", "");
         formStatus_string += "reject";
-
+        testBottles();
         driver.setApprovalStatus(currentFormID, formStatus_string);
         clearFields();
 
@@ -674,7 +674,7 @@ public class AgentWorkflowController implements Initializable {
         driver.setQualifier(currentFormID,commentBox.getText());
         driver.setApprovalStatus(currentFormID,formStatus_string);
         clearFields();
-
+        testBottles();
         pull_Forms();
         sendBack.setDisable(true);
         forwardButton.setDisable(true);
@@ -691,7 +691,7 @@ public class AgentWorkflowController implements Initializable {
         driver.setApprovalStatus(currentFormID,formStatus_string);
         driver.setQualifier(currentFormID,commentBox.getText());
         clearFields();
-
+        testBottles();
         pull_Forms();
         sendBack.setDisable(true);
         forwardButton.setDisable(true);

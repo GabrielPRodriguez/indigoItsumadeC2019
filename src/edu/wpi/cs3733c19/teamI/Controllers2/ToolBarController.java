@@ -326,8 +326,6 @@ public class ToolBarController implements Initializable {
     public void displaySignInName(String name){
         //clearText.setText(name);
         // TODO implement Label on the FXML ToolBar to display the sign in of the person
-        //signInLabel.setText("FUCK");
-
 
         //data = DataTransfer.getInstance();
         //signInLabel.setText(data.UserName);

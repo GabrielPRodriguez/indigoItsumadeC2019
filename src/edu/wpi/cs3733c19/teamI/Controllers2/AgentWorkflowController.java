@@ -900,6 +900,15 @@ public class AgentWorkflowController implements Initializable {
         dateOfApplication_text.setText(selectedForm.getDateOfApplication());
         applicantName_text.setText(selectedForm.getName());
 
+        formStatus_string = (selectedForm.getStatus()); //I use two variables because I need the formStatus text as a string
+        //formStatus_text.setText(formStatus_string);
+        volume_text.setText(selectedForm.getVolume());
+
+        dateOfApplication_text.setText(selectedForm.getDateOfApplication());
+        applicantName_text.setText(selectedForm.getName());
+        String Name = (toolBarController.getCurUser().getFirstName() + " " + toolBarController.getCurUser().getLastName());
+        approvingUser_text.setText(Name);
+
         //System.out.println("thing 1" + oneBeverage.getSummary().get(6));
         //System.out.println("thing 2 " + oneBeverage.getSummary().get(0));
 

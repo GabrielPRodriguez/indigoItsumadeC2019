@@ -37,6 +37,12 @@ public class FormWorkflow {
     private String name; // true
     private int index;
     private String form_ID;
+    private String expireDate;
+    private String approvingUser;
+    private String approvalDate;
+    private String issuedDate;
+    private String surrenderDate;
+    private String appType;
 
 
     public FormWorkflow(HashMap<String, ReturnedValue> entry, int index){
@@ -67,6 +73,13 @@ public class FormWorkflow {
         this.permitname = entry.get("permitName").to_string();
         this.qualifier = entry.get("qualifier").to_string();
         this.name = entry.get("name").to_string();
+        this.expireDate = entry.get("expirationDate").to_string();
+        this.approvingUser = entry.get("approvingUser").to_string();
+        this.approvalDate = entry.get("approvalDate").to_string();
+        this.issuedDate = entry.get("issuedDate").to_string();
+        this.surrenderDate = entry.get("surrenderDate").to_string();
+        this.appType = entry.get("appType").to_string();
+
 
         this.index = index;
     }
@@ -294,5 +307,28 @@ public class FormWorkflow {
 
     public void setForm_ID(String form_ID) {
         this.form_ID = form_ID;
+    }
+
+    public String getExpireDate() {
+        return expireDate;
+    }
+
+    public String getApprovingUser() {
+        return approvingUser;
+    }
+
+    public String getApprovalDate() {
+        return approvalDate;
+    }
+
+    public String getIssuedDate() {
+        return issuedDate;
+    }
+
+    public String getSurrenderDate() {
+        return surrenderDate;
+    }
+    public String getAppType(){
+        return appType;
     }
 }

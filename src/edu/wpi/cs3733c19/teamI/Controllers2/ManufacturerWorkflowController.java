@@ -717,6 +717,14 @@ public class ManufacturerWorkflowController implements Initializable {
         //formStatus_text.setText(formStatus_string); //this is what we are testing
 
         volume_text.setText(selectedForm.getVolume());
+        expiryDate_text.setText(selectedForm.getExpireDate());
+        approvalDate_text.setText(selectedForm.getApprovalDate());
+        approvingUser_text.setText(selectedForm.getApprovingUser());
+        surrenderDate_text.setText(selectedForm.getSurrenderDate());
+        issuedDate_text.setText(selectedForm.getIssuedDate());
+        formID_text.setText(selectedForm.getForm_ID());
+        status_text.setText(selectedForm.getStatus());
+        applicationType_text.setText(selectedForm.getAppType());
 
         zip_text.setText(selectedForm.getZip());
         dateOfApplication_text.setText(selectedForm.getDateOfApplication());

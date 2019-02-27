@@ -8,6 +8,7 @@ import edu.wpi.cs3733c19.teamI.Entities.DataTransfer;
 import edu.wpi.cs3733c19.teamI.Entities.Form;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -22,6 +23,9 @@ import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 
 import java.awt.*;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -213,6 +217,73 @@ public class FormSubmissionController implements Initializable {
 
     @FXML
     ImageView backImageDisp;
+
+    @FXML
+    Button addSignature;
+
+    @FXML
+    ImageView signatureDisp;
+
+    JButton signButton, start;
+    UserSignature userSignature;
+    JFrame signatureArea;
+
+    ActionListener actionListener = new ActionListener()
+    {
+        @Override
+        public void actionPerformed(java.awt.event.ActionEvent event)
+        {
+            if(event.getSource() == start)
+            {
+                userSignature.black();
+            }
+
+            else if(event.getSource() == signButton)
+            {
+                try
+                {
+                    BufferedImage im0 = new Robot().createScreenCapture(signatureArea.getBounds());
+                    BufferedImage im1 = im0.getSubimage(0, 65, 600, 135);
+                    Image newImage = SwingFXUtils.toFXImage(im1, null);
+                    signatureDisp.setImage(newImage);
+                }
+                catch(AWTException e)
+                {
+                    e.printStackTrace();
+                }
+
+                signatureArea.dispatchEvent(new WindowEvent(signatureArea, WindowEvent.WINDOW_CLOSING));
+            }
+        }
+    };
+
+    @FXML
+    private void handleSignatureButton(ActionEvent event)
+    {
+        if(event.getSource() == addSignature)
+        {
+            userSignature = new UserSignature();
+            signatureArea = new JFrame("Signature");
+            Container content = signatureArea.getContentPane();
+            content.setLayout(new BorderLayout());
+            content.add(userSignature, BorderLayout.CENTER);
+            Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
+            signatureArea.setLocation(d.width/2 - signatureArea.getSize().width/2, d.height/2 - signatureArea.getSize().height/2);
+
+            JPanel controls = new JPanel();
+            signButton = new JButton("SIGN");
+            signButton.addActionListener(actionListener);
+            start = new JButton("Start");
+            start.addActionListener(actionListener);
+
+            controls.add(signButton);
+            controls.add(start);
+
+            content.add(controls, BorderLayout.NORTH);
+            signatureArea.setSize(600, 200);
+            signatureArea.setVisible(true);
+        }
+    }
 
     /** private void uploadFile - Used to upload an image file of either type .jpg or .png when the user
      *                              is submitting a form. This method will throw an error if a file type
@@ -662,6 +733,23 @@ public class FormSubmissionController implements Initializable {
 
         }
 
+        if(data.upload) {
+/*
+            public String pdf_Mailing = "";
+
+            public String pdf_Grape = "";
+            */
+
+            fancyName_Field.setText(data.pdf_Fancy);
+            appellation_Field.setText(data.pdf_WineApp);
+            permitNum_Field.setText(data.pdf_PlantReg);
+            street_Field.setText(data.pdf_Address);
+            formula_Field.setText(data.pdf_Formula);
+            brandName_Field.setText(data.pdf_BrandName);
+            //email_Field.setText(data.);
+            grape_Field.setText(data.pdf_Grape);
+            data.upload = false;
+        }
     }
 
 

@@ -642,7 +642,7 @@ public class AgentWorkflowController implements Initializable {
         //MongoDriver driver = new MongoDriver("mongodb+srv://firstuser1:newTestCred@cs3733-hgmot.mongodb.net/test?retryWrites=true");
         HashMap<String, ReturnedValue>result = driver.get_data_by_value("form_data", "stringified_ids_db.db", "formID", new DBValue<String>(currentFormID));
         formStatus_string = result.get("status").to_string().replace("unread", "");
-        formStatus_string = result.get("status").to_string().replace("speci", "");
+        formStatus_string = formStatus_string.replace("specialist", "");
         testBottles();
         formStatus_string += "approved";
 
@@ -686,7 +686,7 @@ public class AgentWorkflowController implements Initializable {
         //MongoDriver driver = new MongoDriver("mongodb+srv://firstuser1:newTestCred@cs3733-hgmot.mongodb.net/test?retryWrites=true");
         HashMap<String, ReturnedValue>result = driver.get_data_by_value("form_data", "stringified_ids_db.db", "formID", new DBValue<String>(currentFormID));
         formStatus_string = result.get("status").to_string().replace("unread", "");
-        formStatus_string = result.get("status").to_string().replace("specia", "");
+        formStatus_string = formStatus_string.replace("specialist", "");
         formStatus_string += "reject";
         testBottles();
         driver.setApprovalStatus(currentFormID, formStatus_string);
@@ -708,7 +708,6 @@ public class AgentWorkflowController implements Initializable {
         //MongoDriver driver = new MongoDriver("mongodb+srv://firstuser1:newTestCred@cs3733-hgmot.mongodb.net/test?retryWrites=true");
         HashMap<String, ReturnedValue>result = driver.get_data_by_value("form_data", "stringified_ids_db.db", "formID", new DBValue<String>(currentFormID));
         formStatus_string = result.get("status").to_string().replace("unread", "");
-
         formStatus_string += "commented";
         driver.setQualifier(currentFormID,commentBox.getText());
         driver.setApprovalStatus(currentFormID,formStatus_string);
@@ -885,9 +884,9 @@ public class AgentWorkflowController implements Initializable {
         brandedInfo_text.setText(selectedForm.getExtraInfo());
 
 
-        formStatus_string = (selectedForm.getStatus()); //I use two variables because I need the formStatus text as a string
+        //formStatus_string = (selectedForm.getStatus()); //I use two variables because I need the formStatus text as a string
 //
-        formStatus_text.setText(formStatus_string); //this is what we are testing
+        //formStatus_text.setText(formStatus_string); //this is what we are testing
 
         volume_text.setText(selectedForm.getVolume());
 

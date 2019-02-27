@@ -124,6 +124,7 @@ public class NewHomeController implements Initializable {
 
             if (toggleGroupValue.equals("user_search")) {
                 try {
+                    toolBarController.setUser_search_value(searchTextField.getText().trim());
                     if (toolBarController.getCurUser().getUserType().equals(User.userPower.SuperAdmin)) {
                         toolBarController.setResultsMapUser(searchAlgorithmSelection.run(searchTextField.getText().trim()));
                         toolBarController.goUserSearch();

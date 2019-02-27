@@ -162,7 +162,7 @@ import java.util.ResourceBundle;
         private int currentPage = 1;
 
         @FXML
-        public void editAccount(){
+        public void editAccount() throws Exception {
             //the final method to actually do the thing
             toolBarController = ToolBarController.getInstance();
             if(toolBarController.getCurUser() == null) {
@@ -180,16 +180,16 @@ import java.util.ResourceBundle;
 
                     String roleSet = "";
                     if(Standard.isSelected()){
-                        roleSet = "0.0";
+                        roleSet = "-1.0";
                     }
                     else if(Manufacturer.isSelected()){
-                        roleSet = "2.0";
+                        roleSet = "1.0";
                     }
                     else if (Specialist.isSelected()){
-                        roleSet = "3.0";
+                        roleSet = "2.0";
                     }
                     else if (Agent.isSelected()){
-                        roleSet = "1.0";
+                        roleSet = "0.0";
                     }
                     else{
                         return;
@@ -233,6 +233,11 @@ import java.util.ResourceBundle;
                 }
                 //delet the thangs
             }
+            fuzzyContext searchAlgorithmSelection = new fuzzyContext();
+            searchAlgorithmSelection.setContext(new UserSearch());
+
+            toolBarController.setResultsMapUser(searchAlgorithmSelection.run(toolBarController.getUser_search_value()));
+            toolBarController.goUserSearch();
         }
 
         public String encryptPassword(String origionalPassword) throws Exception

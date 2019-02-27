@@ -12,6 +12,7 @@ import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.ReturnedValue;
 import edu.wpi.cs3733c19.teamI.Entities.DataField;
 import edu.wpi.cs3733c19.teamI.Entities.SearchResults;
 import edu.wpi.cs3733c19.teamI.Entities.User;
+import edu.wpi.cs3733c19.teamI.Tesseract.TesseractReader;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -29,7 +30,6 @@ import java.util.LinkedList;
 
 public class Main extends Application implements SerialPortPacketListener {
 
-    //Gabe was here
     ToolBarController toolBarController = ToolBarController.getInstance();
     public static SearchResults Results = new SearchResults();
     private IIOParam SearchLoader;
@@ -48,6 +48,7 @@ public class Main extends Application implements SerialPortPacketListener {
             comPort.addDataListener(this);
         }
         catch(Exception e){
+            System.out.println("No peripheral connected");
         }
     }
 
@@ -165,7 +166,6 @@ public class Main extends Application implements SerialPortPacketListener {
 
 
     public static void main(String[] args) {
-
         launch(args);
     }
 

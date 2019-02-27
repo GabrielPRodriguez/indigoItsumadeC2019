@@ -662,9 +662,11 @@ public class ManufacturerWorkflowController implements Initializable {
         }
         else if(formStatus_string.contains("approved")){
             formStatusField.setText("Approved");
+            editButton.setDisable(true);
         }
         else if(formStatus_string.contains("reject")){
             formStatusField.setText("Rejected");
+            editButton.setDisable(true);
         }
         else{
             formStatusField.setText("Not Submitted");
@@ -699,9 +701,9 @@ public class ManufacturerWorkflowController implements Initializable {
         brandedInfo_text.setText(selectedForm.getExtraInfo());
 
 
-        formStatus_string = (selectedForm.getStatus()); //I use two variables because I need the formStatus text as a string
+        //formStatus_string = (selectedForm.getStatus()); //I use two variables because I need the formStatus text as a string
 //
-        formStatus_text.setText(formStatus_string); //this is what we are testing
+        //formStatus_text.setText(formStatus_string); //this is what we are testing
 
         volume_text.setText(selectedForm.getVolume());
 
@@ -712,7 +714,9 @@ public class ManufacturerWorkflowController implements Initializable {
         //System.out.println("thing 1" + oneBeverage.getSummary().get(6));
         //System.out.println("thing 2 " + oneBeverage.getSummary().get(0));
 
-        if(selectedForm.getStatus().contains("approved") || selectedForm.getStatus().contains("reject")){
+        System.out.println(formStatus_string);
+        if(formStatus_string.contains("approved") ||formStatus_string.contains("reject")){
+            System.out.println("INSIDE");
             editButton.setDisable(true);
         }
 

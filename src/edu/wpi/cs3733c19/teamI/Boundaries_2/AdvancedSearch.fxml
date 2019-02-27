@@ -31,7 +31,7 @@
                <children>
                   <HBox alignment="CENTER_LEFT" spacing="20.0">
                      <children>
-                        <TextField fx:id="searchBar" maxHeight="50.0" maxWidth="600.0" minHeight="50.0" promptText="Primary Search" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="searchBox1" maxHeight="50.0" maxWidth="600.0" minHeight="50.0" promptText="Primary Search" HBox.hgrow="ALWAYS" />
                         <JFXComboBox fx:id="fieldSelector1" promptText="Search By:" />
                      </children>
                   </HBox>
@@ -42,7 +42,7 @@
                   </Label>
                   <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" spacing="20.0">
                      <children>
-                        <TextField fx:id="searchBar1" maxHeight="50.0" maxWidth="600.0" minHeight="50.0" promptText="Sub-Search" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="searchBox2" maxHeight="50.0" maxWidth="600.0" minHeight="50.0" promptText="Sub-Search" HBox.hgrow="ALWAYS" />
                         <JFXComboBox fx:id="fieldSelector2" promptText="Search By:" />
                      </children>
                   </HBox>
@@ -53,7 +53,7 @@
                   </Label>
                   <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="60.0" spacing="20.0">
                      <children>
-                        <TextField fx:id="searchBar11" maxHeight="50.0" maxWidth="600.0" minHeight="50.0" prefHeight="50.0" promptText="Sub-Search" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="searchBox3" maxHeight="50.0" maxWidth="600.0" minHeight="50.0" prefHeight="50.0" promptText="Sub-Search" HBox.hgrow="ALWAYS" />
                         <JFXComboBox fx:id="fieldSelector3" promptText="Search By:" />
                         <JFXButton fx:id="search" mnemonicParsing="false" onAction="#performSearch" onMouseClicked="#spinnerVisible" style="-fx-background-color: #046b99;" text="Search" textFill="WHITE">
                            <font>

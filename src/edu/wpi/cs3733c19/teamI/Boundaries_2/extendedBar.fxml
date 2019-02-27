@@ -1,42 +1,127 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="839.0" prefWidth="1044.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers2.barController">
+<BorderPane prefHeight="839.0" prefWidth="1044.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers2.barController">
     <top><fx:include source="TTBToolbar.fxml" /></top>
    <center>
-      <StackPane BorderPane.alignment="CENTER">
+      <StackPane prefHeight="801.0" prefWidth="1114.0" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fx:id="barImage" fitHeight="664.0" fitWidth="1024.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">
+            <ImageView fitHeight="776.0" fitWidth="1081.0" layoutX="99.0" layoutY="100.0" pickOnBounds="true" StackPane.alignment="CENTER">
                <image>
-                  <Image url="@../Assets/gameAssets/bartable1.PNG" />
+                  <Image url="@../Assets/gameAssets/background.PNG" />
                </image>
             </ImageView>
-            <JFXButton fx:id="goWork" buttonType="RAISED" onAction="#goWork" text="Back to Work!" StackPane.alignment="BOTTOM_CENTER" />
-            <HBox fillHeight="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="273.0" prefWidth="389.0" spacing="30.0" StackPane.alignment="CENTER">
+            <ImageView fx:id="barImage" fitHeight="718.0" fitWidth="912.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">
+               <image>
+                  <Image url="@../Assets/gameAssets/bar3level.PNG" />
+               </image>
+            </ImageView>
+            <HBox fx:id="oldWine11" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="526.0" prefWidth="239.0">
                <children>
-                  <ImageView fx:id="beerBottle" fitHeight="134.0" fitWidth="121.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="spiritOld1" fitHeight="107.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Assets/gameAssets/Beer1-shadowed.PNG" />
+                        <Image url="@../Assets/gameAssets/wine2level.PNG" />
+                     </image>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </ImageView>
+                  <ImageView fx:id="spiritOld2" fitHeight="110.0" fitWidth="85.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Assets/gameAssets/wine3level.PNG" />
+                     </image>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </ImageView>
+                  <ImageView fx:id="spiritOld3" fitHeight="111.0" fitWidth="85.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Assets/gameAssets/wine4level.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </ImageView>
+               </children>
+               <StackPane.margin>
+                  <Insets left="290.0" />
+               </StackPane.margin>
+            </HBox>
+            <HBox fx:id="oldWine1" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="533.0" prefWidth="502.0">
+               <children>
+                  <ImageView fx:id="beerOld1" fitHeight="150.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Assets/gameAssets/wine2level.PNG" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="wineBottle" fitHeight="155.0" fitWidth="113.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="beerOld2" fitHeight="150.0" fitWidth="91.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Assets/gameAssets/Wine-shadowed.PNG" />
+                        <Image url="@../Assets/gameAssets/wine3level.PNG" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="spiritBottle" fitHeight="134.0" fitWidth="121.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="beerOld3" fitHeight="126.0" fitWidth="93.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Assets/gameAssets/Spirits1-Shadowed.PNG" />
+                        <Image url="@../Assets/gameAssets/wine4level.png" />
                      </image>
                   </ImageView>
                </children>
             </HBox>
+            <HBox fx:id="oldWine" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="718.0" prefWidth="524.0">
+               <children>
+                  <ImageView fx:id="wineOld1" fitHeight="150.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Assets/gameAssets/wine2level.PNG" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="wineOld2" fitHeight="150.0" fitWidth="91.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Assets/gameAssets/wine3level.PNG" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="wineOld3" fitHeight="126.0" fitWidth="93.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Assets/gameAssets/wine4level.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <HBox fillHeight="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="376.0" prefWidth="532.0" spacing="30.0" StackPane.alignment="CENTER">
+               <children>
+                  <ImageView fx:id="beerBottle" fitHeight="172.0" fitWidth="148.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="NEVER">
+                     <image>
+                        <Image url="@../Assets/gameAssets/beer0level.PNG" />
+                     </image>
+                     <HBox.margin>
+                        <Insets top="30.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <ImageView fx:id="wineBottle" fitHeight="234.0" fitWidth="235.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="NEVER">
+                     <image>
+                        <Image url="@../Assets/gameAssets/wine0level.PNG" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="spiritBottle" fitHeight="207.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+                     <image>
+                        <Image url="@../Assets/gameAssets/spirit0level.PNG" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <JFXButton fx:id="goWork" buttonType="RAISED" onAction="#goWork" prefHeight="62.0" prefWidth="178.0" style="-fx-background-color: #279A1B;" text="Back to Work!" textFill="WHITE" StackPane.alignment="BOTTOM_CENTER">
+               <StackPane.margin>
+                  <Insets bottom="100.0" />
+               </StackPane.margin>
+               <font>
+                  <Font name="Segoe UI" size="23.0" />
+               </font></JFXButton>
          </children>
       </StackPane>
    </center>

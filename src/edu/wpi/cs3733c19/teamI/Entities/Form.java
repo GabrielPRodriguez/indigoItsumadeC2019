@@ -36,6 +36,7 @@ public class Form {
     private String permitname;
     private Image front_Upload;
     private Image back_Upload;
+    private Image userSignature;
 
     public Form() {
         this.repID = "";
@@ -70,10 +71,11 @@ public class Form {
         this.permitname = "";
         this.front_Upload = null;
         this.back_Upload = null;
+        this.userSignature = null;
     }
 
 
-    public Form(String repID, String plantRegistry, String domesticOrImported, String serialNumber, String brandName, String beverageType, String fancifulName, String nameAndAddress, String mailingAddress, String extraInfo, String date, String nameOfApplicant, String formula, String grapeVarietals, String vintage, String wineAppellation, String email, String phoneNumber, double pHValue, double alcoholContent, String formStatus, String approvingUser, String approvalDate, String expirationDate, String volume, String street, String city, String state, String zip, String permitname, Image front_Upload, Image back_Upload) {
+    public Form(String repID, String plantRegistry, String domesticOrImported, String serialNumber, String brandName, String beverageType, String fancifulName, String nameAndAddress, String mailingAddress, String extraInfo, String date, String nameOfApplicant, String formula, String grapeVarietals, String vintage, String wineAppellation, String email, String phoneNumber, double pHValue, double alcoholContent, String formStatus, String approvingUser, String approvalDate, String expirationDate, String volume, String street, String city, String state, String zip, String permitname, Image front_Upload, Image back_Upload, Image userSignature) {
         this.repID = repID;
         this.plantRegistry = plantRegistry;
         this.domesticOrImported = domesticOrImported;
@@ -106,6 +108,7 @@ public class Form {
         this.permitname = permitname;
         this.front_Upload = front_Upload;
         this.back_Upload = back_Upload;
+        this.userSignature = userSignature;
     }
 
     public void setVolume(String volume) {
@@ -361,6 +364,8 @@ public class Form {
     {
         return this.back_Upload;
     }
+
+    public Image getUserSignature(){ return this.userSignature;}
 
     //inputs an int attribute to see if a value has been set
     //returns true if intVal is equal to zero

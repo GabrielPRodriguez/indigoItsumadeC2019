@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -9,10 +10,11 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers2.AboutController">
+<BorderPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers2.AboutController">
    <top>
       <fx:include source="TTBToolbar.fxml" />
    </top>
@@ -33,6 +35,8 @@
                   <RowConstraints fillHeight="false" valignment="CENTER" />
                   <RowConstraints fillHeight="false" valignment="CENTER" />
                   <RowConstraints fillHeight="false" valignment="CENTER" />
+                  <RowConstraints />
+                  <RowConstraints />
                   <RowConstraints />
               </rowConstraints>
                <children>
@@ -282,11 +286,16 @@
                   </VBox>
                   <VBox alignment="CENTER" fillWidth="false" minHeight="450.0" minWidth="400.0" spacing="20.0" style="-fx-background-color: #aeb0b5;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
                      <children>
-                        <ImageView fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../Assets/circleMarissa.png" />
-                           </image>
-                        </ImageView>
+                        <StackPane prefHeight="150.0" prefWidth="200.0">
+                           <children>
+                              <ImageView fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Assets/circleMarissa.png" />
+                                 </image>
+                              </ImageView>
+                              <JFXButton onAction="#goWine" prefHeight="284.0" prefWidth="265.0" text=" " />
+                           </children>
+                        </StackPane>
                         <Label alignment="CENTER" maxWidth="400.0" text="Our Advisor, Marissa Bennett" textFill="WHITE" wrapText="true">
                            <font>
                               <Font name="Segoe UI Bold" size="14.0" />
@@ -299,6 +308,7 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
                   </VBox>
+                  <JFXButton onAction="#goWine" prefHeight="253.0" prefWidth="625.0" text=" " GridPane.columnIndex="1" GridPane.rowIndex="9" />
                </children>
             </GridPane>
          </content>

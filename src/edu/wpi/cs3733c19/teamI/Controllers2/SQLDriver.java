@@ -15,6 +15,15 @@ import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.*;
 import static java.lang.StrictMath.abs;
 import static java.lang.StrictMath.max;
 
+class FrequencyResult{
+    public HashMap<String, Integer>frequences;
+    public ArrayList<String>all_names;
+    public FrequencyResult(HashMap<String, Integer>_frequences, ArrayList<String>_all_names){
+        frequences = _frequences; //The count
+        all_names = _all_names; //The name
+    }
+}
+
 public class SQLDriver {
     //TODO: URGENT!!!!! converte ALL user DB values to be inserted as strings!!!
 
@@ -174,7 +183,31 @@ public class SQLDriver {
         }
         return dist[sourceLength][targetLength];
 
+    } public FrequencyResult get_top_vals(int top_val, String _type) throws Exception{
+        HashMap<String, Integer>freqs = new HashMap<String, Integer>();
+        ArrayList<String>all_returned_results = new ArrayList<String>();
+        ArrayList<String>final_keys = new ArrayList<String>();
+        for (HashMap<String, ReturnedValue>r:select_all("stringified_ids_db.db", "form_data")){
+            String _val = r.get(_type).to_string();
+            all_returned_results.add(_val);
+
+        }
+        if (all_returned_results.size() < top_val){
+            throw new Exception("length of database values is fewer than 'top_val'");
+        }
+        for (String new_val:all_returned_results.subList(all_returned_results.size()-top_val, all_returned_results.size())){
+            if (!freqs.containsKey(new_val)){
+                freqs.put(new_val, 1);
+            }
+            else{
+                freqs.put(new_val, freqs.get(new_val)+1);
+            }
+            final_keys.add(new_val);
+        }
+        return new FrequencyResult(freqs, final_keys);
+
     }
+
 
     public void update_user_rfid(int id, String rfid) throws Exception {
         ArrayList<String> _target_cols = new ArrayList<String>();
@@ -227,10 +260,6 @@ public class SQLDriver {
             for (String key : keys) {
                 String _val = result.get(key).to_string();
 
-                //System.out.println(_val);
-                //System.out.println(_user_input);
-                //System.out.println("---------------------");
-
                 if (_val.length() > 0 && _user_input.length() > 0 && filter_immediate(_val, _user_input)) {
                     _count += dl_distance(_val, _user_input);
                     if (!seen_result) {
@@ -244,7 +273,6 @@ public class SQLDriver {
             if (seen_result) {
                 all_distances.add(_count);
                 results.put(_count, result);
-                //System.out.println("Beverage type here "+result.get("beverageType").to_string());
             }
 
 
@@ -359,8 +387,6 @@ public class SQLDriver {
                 }
                 if (maxDistance > 1) {
                     if(!result.get("status").to_string().equals("delete")){
-                        //System.out.println("making sure deleted stuff doesnt show up");
-                        //System.out.println(result.get("status").to_string());
                         results.put(maxDistance, result);
                         all_distances.add(maxDistance);
                     }
@@ -376,8 +402,6 @@ public class SQLDriver {
         for (int i = 0; i < all_distances.size(); i++){
             final_results.add(results.get(all_distances.get(i))); //for some reason these are getting set as null
         }
-        //System.out.println("final distances are:" + all_distances);
-        //System.out.println("final results are: " + final_results);
         return final_results;
     }
 
@@ -829,7 +853,6 @@ public class SQLDriver {
         for(int i = 0; i < tarCount; i++){
             plusResults.addAll(search_sql_wildcard(tablename, filename, targets.get(i), _key));
         }
-        //System.out.println("search Results = " + plusResults);
         return plusResults;
     }
 
@@ -916,10 +939,6 @@ public class SQLDriver {
                     ReturnedValue type1 = result.get(field);
                     DataField type2 = targets.get(field);
 
-                    //System.out.println("At end");
-                    //System.out.println("Type1: " + type1);
-
-
                     if (type1.type.equals("text")|| type1.type.equals("TEXT")){
                         if (type1.to_string().equals(type2.getValue().toString())){
 
@@ -991,10 +1010,8 @@ public class SQLDriver {
             }
         }
         _db_val = String.join("", _new_db_stuff);
-        System.out.println(_db_val);
         int _demon = 0;
         int _start = _db_val.indexOf(filtered.get(0));
-        System.out.println(filtered);
         for (int i = 1; i < filtered.size(); i++){
             int _new_val = _db_val.indexOf(filtered.get(i));
             if (_new_val < _start){
@@ -1014,7 +1031,6 @@ public class SQLDriver {
 
     public static void main(String [] args){
         SQLDriver d = new SQLDriver();
-        System.out.println(d.full_score("some", "some text1"));
     }
 
     public static void setApprovalStatus(String formID, String approvalStatus) throws IOException, Exception {
@@ -1044,7 +1060,6 @@ public class SQLDriver {
         ArrayList<DBValue> appStatus = new ArrayList<>();
         DBValue value1 = new DBValue<Integer>(val);
         appStatus.add(value1);
-        System.out.println("death upon you");
        // update(String tablename, String filename, ArrayList<String>targetcols, ArrayList<DBValue>values, String formid)
         driver.updateUser("credentials", "user_database.db", appStatType, appStatus, formID);
     }

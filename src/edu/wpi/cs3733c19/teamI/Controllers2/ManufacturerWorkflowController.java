@@ -299,19 +299,17 @@ public class ManufacturerWorkflowController {
         choose_button8.setDisable(false);
         choose_button9.setDisable(false);
 
-       // SQLDriver driver = new SQLDriver();
-        MongoDriver driver = new MongoDriver("mongodb+srv://firstuser1:newTestCred@cs3733-hgmot.mongodb.net/test?retryWrites=true");
+        SQLDriver driver = new SQLDriver();
+       // MongoDriver driver = new MongoDriver("mongodb+srv://firstuser1:newTestCred@cs3733-hgmot.mongodb.net/test?retryWrites=true");
 
         ArrayList<HashMap<String, ReturnedValue>> filtered_results = new ArrayList<HashMap<String, ReturnedValue>>();
-        for (HashMap<String, ReturnedValue>result:driver.select_all("stringified_ids_db.db", "form_data")){
+        for (HashMap<String, ReturnedValue> result:driver.select_all("stringified_ids_db.db", "form_data")){
                 if (result.get("status").to_string().contains(toolBarController.getCurUser().getUsername())){
                     filtered_results.add(result);
                 }
         }
         if(filtered_results.isEmpty()){
-            System.out.println("nope");
         }
-        System.out.println("process");
         HashMap<Integer, Label>test = new HashMap<Integer, Label>();
         test.put(1, formID_1);
         test.put(2, formID_2);
@@ -410,8 +408,8 @@ public class ManufacturerWorkflowController {
 
         }
 
-        //Driver driver = new SQLDriver();
-        MongoDriver driver = new MongoDriver("mongodb+srv://firstuser1:newTestCred@cs3733-hgmot.mongodb.net/test?retryWrites=true");
+        SQLDriver driver = new SQLDriver();
+        //MongoDriver driver = new MongoDriver("mongodb+srv://firstuser1:newTestCred@cs3733-hgmot.mongodb.net/test?retryWrites=true");
         HashMap<String, ReturnedValue>result = driver.get_data_by_value("form_data", "stringified_ids_db.db", "formID", new DBValue<String>(currentFormID));
 
 
@@ -486,9 +484,10 @@ public class ManufacturerWorkflowController {
 
     @FXML
     public void sendBackHandler() throws IOException, Exception{
+        SQLDriver driver = new SQLDriver();
         formStatus_string = "commented";
-        MongoDriver.setQualifier(currentFormID,commentBox.getText());
-        MongoDriver.setApprovalStatus(currentFormID,formStatus_string);
+        driver.setQualifier(currentFormID,commentBox.getText());
+        driver.setApprovalStatus(currentFormID,formStatus_string);
         clearFields();
 
         pull_Forms();
@@ -497,8 +496,9 @@ public class ManufacturerWorkflowController {
     }
     @FXML
     public void forwardHandler() throws IOException, Exception{
+        SQLDriver driver = new SQLDriver();
         formStatus_string = "specialist";
-        MongoDriver.setApprovalStatus(currentFormID,formStatus_string);
+        driver.setApprovalStatus(currentFormID,formStatus_string);
         clearFields();
 
         pull_Forms();

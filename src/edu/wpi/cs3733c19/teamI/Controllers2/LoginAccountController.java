@@ -124,9 +124,6 @@ public class LoginAccountController implements Initializable {
 
     @FXML
     public void login(ActionEvent actionEvent) throws Exception {
-        System.out.println("manu: " + encryptPassword("manu"));
-        System.out.println("ttb: " + encryptPassword("ttb"));
-        System.out.println("specialist: " + encryptPassword("specialist"));
         if(!attemptLogin(actionEvent)){
 
         }
@@ -490,9 +487,7 @@ public class LoginAccountController implements Initializable {
         timeStringOut.append("Time to crack: ").append(timeToCrackOn);
 
         int score = result.getBasicScore();
-        //System.out.println(timeToCrackOn);
         //double scoreEnt = result.getEntropy();
-        System.out.println(timeStringOut);
 
         strengthBar.getStyleClass().removeAll(barColorStyleClasses);
 
@@ -543,7 +538,6 @@ public class LoginAccountController implements Initializable {
             strengthBar.getStyleClass().add(GREEN_BAR);
             passLabel.setText("Very Strong");
         }
-
 
 
 

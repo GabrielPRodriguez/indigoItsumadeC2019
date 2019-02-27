@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers2.FormSubmissionController">
+<BorderPane style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers2.FormSubmissionController">
    <top>
       <fx:include source="TTBToolbar.fxml" />
    </top>
@@ -352,7 +352,17 @@
                               </JFXButton>
                            </children>
                         </VBox>
-                        <Pane HBox.hgrow="ALWAYS" />
+                        <VBox prefHeight="200.0" prefWidth="100.0" />
+                        <Pane HBox.hgrow="ALWAYS">
+                           <children>
+                              <VBox alignment="TOP_CENTER" layoutX="-13.0" prefHeight="213.0" prefWidth="165.0">
+                                 <children>
+                                    <JFXButton fx:id="addSignature" mnemonicParsing="false" style="-fx-background-color: #205495;" text="Sign Application" textAlignment="CENTER" textFill="WHITE" />
+                                    <BorderPane prefHeight="26.0" prefWidth="649.0" />
+                                    <ImageView fx:id="signatureDisp" fitHeight="150.0" fitWidth="649.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                              </VBox>
+                           </children></Pane>
                         <VBox prefHeight="176.0" prefWidth="336.0" spacing="20.0">
                            <children>
                               <Label fx:id="submit_message" nodeOrientation="LEFT_TO_RIGHT" wrapText="true" VBox.vgrow="ALWAYS">

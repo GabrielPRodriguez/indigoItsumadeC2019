@@ -153,6 +153,12 @@ public class ToolBarController implements Initializable {
         primaryStage.getScene().setRoot(aboutParent);
     }
 
+    public void goStats() throws IOException {
+        Parent statsParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/Statistics.fxml"));
+        primaryStage = Main.getWindow();
+        primaryStage.getScene().setRoot(statsParent);
+    }
+
     public void goSubmit() throws IOException {
         if((curUser == null) || curUser.getUsername().equals(""))
         {
@@ -224,7 +230,6 @@ public class ToolBarController implements Initializable {
     }
 
     public void goWorkflow() throws IOException {
-        System.out.print(signedIn);
 
         if((curUser == null)|| curUser.getUsername().equals(""))
         {
@@ -320,8 +325,6 @@ public class ToolBarController implements Initializable {
     public void displaySignInName(String name){
         //clearText.setText(name);
         // TODO implement Label on the FXML ToolBar to display the sign in of the person
-        //signInLabel.setText("FUCK");
-
 
         //data = DataTransfer.getInstance();
         //signInLabel.setText(data.UserName);

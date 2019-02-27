@@ -26,8 +26,13 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import javafx.scene.paint.Color;
+import sun.misc.BASE64Encoder;
+
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
 import java.io.*;
 import java.net.URL;
+import java.security.Key;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -160,21 +165,41 @@ import java.util.ResourceBundle;
         public void editAccount(){
             //the final method to actually do the thing
             toolBarController = ToolBarController.getInstance();
-            //System.out.println(toolBarController.getCurUser().getUserType());
             if(toolBarController.getCurUser() == null) {
-                //System.out.println("non admin flag 2/25/19");
             }
             else if (toolBarController.getCurUser().getUserType().equals(User.userPower.SuperAdmin)){
                 data = DataTransfer.getInstance();
                 try {
-                    System.out.println("attempting to edit a thing");
+
+
 
                     SQLDriver driver  = new SQLDriver();
                     item = tableView.getSelectionModel().getSelectedItem();
 
-                    //System.out.println("formID is " + item.getSummary().get(0));
-                    //System.out.println(item.getForm_ID());
                     String repIDnum = item.getSummary().get(0);
+
+                    String roleSet = "";
+                    if(Standard.isSelected()){
+                        roleSet = "0.0";
+                    }
+                    else if(Manufacturer.isSelected()){
+                        roleSet = "2.0";
+                    }
+                    else if (Specialist.isSelected()){
+                        roleSet = "3.0";
+                    }
+                    else if (Agent.isSelected()){
+                        roleSet = "1.0";
+                    }
+                    else{
+                        return;
+                        //do not allow a change to the database if a type is not selected (ie if they are an admin)
+                    }
+
+                    if(!roleSet.equals("")){
+                        driver.setUserField(repIDnum, roleSet, "role");
+                    }
+
                     //TODO on a form save, every item is rewritten, no checks are made to avoid rewriting non-changing information
                     String emailSet = UserEmail.getText();
                     driver.setUserField(repIDnum, emailSet, "email");
@@ -195,27 +220,11 @@ import java.util.ResourceBundle;
                     String stateSet = state.getText();
                     driver.setUserField(repIDnum, stateSet, "state");
 
-                    String roleSet = "";
-                    if(Standard.isSelected()){
-                        roleSet = "0.0";
-                    }
-                    else if(Manufacturer.isSelected()){
-                        roleSet = "2.0";
-                    }
-                    else if (Specialist.isSelected()){
-                        roleSet = "3.0";
-                    }
-                    else if (Agent.isSelected()){
-                        roleSet = "1.0";
-                    }
 
-                    if(!roleSet.equals("")){
-                        driver.setUserField(repIDnum, roleSet, "role");
+                    if((Password.getText().equals("")) == false){
+                        String passSet = encryptPassword(Password.getText());
+                        driver.setUserField(repIDnum, passSet, "password");
                     }
-
-
-
-                    System.out.println("somehow didnt break?");
 
                     convertToForms(1);
                     setTable();
@@ -224,6 +233,34 @@ import java.util.ResourceBundle;
                 }
                 //delet the thangs
             }
+        }
+
+        public String encryptPassword(String origionalPassword) throws Exception
+        {
+            String strData;
+
+            try
+            {
+                Key key = generateKey();
+                Cipher cipher = Cipher.getInstance("AES");
+                cipher.init(Cipher.ENCRYPT_MODE, key);
+                byte[] e = cipher.doFinal(origionalPassword.getBytes());
+                strData = new BASE64Encoder().encode(e);
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e);
+            }
+            return strData;
+        }
+
+        private Key generateKey() throws Exception
+        {
+            String key = "AaBbCcDdEeFfGgHh";
+            byte[] encryptionKey = key.getBytes();
+            Key k = new SecretKeySpec(encryptionKey, "AES");
+
+            return k;
         }
 
         @FXML
@@ -355,7 +392,6 @@ import java.util.ResourceBundle;
 
         public void setTable(){
             //get results
-            //System.out.println("Updated");
             //convertToForms();
             //update columns on table view
             this.Role.setCellValueFactory(new PropertyValueFactory<Sub_User, String>("userRole"));
@@ -386,13 +422,11 @@ import java.util.ResourceBundle;
         public void table_selected(Event event){
             try{
                 item = tableView.getSelectionModel().getSelectedItem();
-                //System.out.println(tableView.getItems());
                 showSelectedBeverage(item);
                 // toolBarController.getInfoController().updateList(item);
                 // toolBarController.goDetails(event);
             }
             catch (Exception e){
-                System.out.println("Item not found in table_selected method");
             }
         }
 
@@ -427,7 +461,7 @@ import java.util.ResourceBundle;
             city.setText(oneBeverage.getSummary().get(8));
             state.setText(oneBeverage.getSummary().get(9));
             delim.setText(oneBeverage.getSummary().get(10));
-            Password.setText(oneBeverage.getSummary().get(11));
+            //Password.setText(oneBeverage.getSummary().get(11));
             zip.setText(oneBeverage.getSummary().get(13));
 
             if(toggle.equals("stan")){
@@ -443,6 +477,10 @@ import java.util.ResourceBundle;
                 Agent.setSelected(true);
             }
             else{
+                Standard.setSelected(false);
+                Manufacturer.setSelected(false);
+                Specialist.setSelected(false);
+                Agent.setSelected(false);
                 //if an admin do something else, TBD
             }
 
@@ -494,7 +532,6 @@ import java.util.ResourceBundle;
                 export_message.setTextFill(Color.web("#4BB543"));
                 export_message.setText("CSV Exported!");
             } catch (Exception ex) {
-                //System.out.println("Error exporting CSV");
                 ex.printStackTrace();
                 export_message.setTextFill(Color.web("#FF0000"));
                 export_message.setText("Error exporting CSV");

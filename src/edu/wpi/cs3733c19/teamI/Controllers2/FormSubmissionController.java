@@ -61,9 +61,6 @@ public class FormSubmissionController implements Initializable {
     }
 
     private void setWineToggle(){
-
-        //System.out.println("wine");
-
         JFXRadioButton rb = (JFXRadioButton)beverage.getSelectedToggle();
 
         if(rb == wine_RadButton)
@@ -291,10 +288,8 @@ public class FormSubmissionController implements Initializable {
 */
     @FXML
     private void handleSubmitButton(ActionEvent event) throws Exception{
-        //System.out.println("Starting submit");
         if(event.getSource()== submit){
             clearWarnings();
-            //System.out.println("event get source");
             Form sentForm = new Form();
             boolean readyToSend = true; //if true by the end of the method, the form will be sent to database
             submit_message.setText("");//string to insert into textfield either confirming submission or printing error messge
@@ -416,7 +411,6 @@ public class FormSubmissionController implements Initializable {
             }
             catch (NumberFormatException e){
                 readyToSend = false;
-                //System.out.println("Al content");
                 //String oldMessage = submit_message.getText();
                 //submit_message.setText(oldMessage + "  Please enter a number for Alcohol Percentage.");
                 alcoholPercent_warning.setTextFill(Color.web("#FF0000"));
@@ -481,9 +475,10 @@ public class FormSubmissionController implements Initializable {
                     data.currentFormID = "";
                 }
                 */
+                SQLDriver driver = new SQLDriver();
                 //sets the names of columns in the database, if additional form fields are added, please add a new column
                 String [] columns = {"formID", "repID", "plantRegistry", "domesticOrImported", "serialNumber", "brandName", "beverageType", "fancifulName", "permitName", "streetAddress","city","state", "zip", "extraInfo", "dateOfApplication", "formula", "grapeVarietals", "vintage", "wineAppellation", "email", "phoneNumber", "pHValue", "alcoholContent", "status", "approvingUser", "approvalDate", "expirationDate", "issuedDate", "volume", "appType", "surrenderDate", "qualifier", "name"};
-                MongoDriver driver = new MongoDriver("mongodb+srv://firstuser1:newTestCred@cs3733-hgmot.mongodb.net/test?retryWrites=true", columns);
+                //MongoDriver driver = new MongoDriver("mongodb+srv://firstuser1:newTestCred@cs3733-hgmot.mongodb.net/test?retryWrites=true", columns);
                 //
                 //contains the datatype of each column in the database, when adding a new column, please also add it's datatype here/
                 //"text" for strings and "real" for doubles/integers
@@ -614,7 +609,8 @@ public class FormSubmissionController implements Initializable {
 
         data = DataTransfer.getInstance();
         if(!data.currentFormID.equals("")){
-            MongoDriver driver = new MongoDriver("mongodb+srv://firstuser1:newTestCred@cs3733-hgmot.mongodb.net/test?retryWrites=true");
+            SQLDriver driver = new SQLDriver();
+           // MongoDriver driver = new MongoDriver("mongodb+srv://firstuser1:newTestCred@cs3733-hgmot.mongodb.net/test?retryWrites=true");
             try {
                 HashMap<String, ReturnedValue> result = driver.get_data_by_value("form_data", "stringified_ids_db.db", "formID", new DBValue<String>(data.currentFormID));
                 email_Field.setText(result.get("email").to_string());
@@ -766,8 +762,9 @@ public class FormSubmissionController implements Initializable {
                 //
                 //contains the datatype of each column in the database, when adding a new column, please also add it's datatype here/
                 //"text" for strings and "real" for doubles/integers
+        SQLDriver driver = new SQLDriver();
 
-        MongoDriver driver = new MongoDriver("mongodb+srv://firstuser1:newTestCred@cs3733-hgmot.mongodb.net/test?retryWrites=true", columns);
+       // MongoDriver driver = new MongoDriver("mongodb+srv://firstuser1:newTestCred@cs3733-hgmot.mongodb.net/test?retryWrites=true", columns);
                 DBTypes[] full_types = {new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"),
                         new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"),
                         new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"),

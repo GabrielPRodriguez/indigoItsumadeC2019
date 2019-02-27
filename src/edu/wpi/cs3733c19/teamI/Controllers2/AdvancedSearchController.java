@@ -54,8 +54,8 @@ public class AdvancedSearchController implements Initializable {
     @FXML
     RadioButton sqlRad;
 
-    MongoDriver querydata = new MongoDriver("mongodb+srv://firstuser1:newTestCred@cs3733-hgmot.mongodb.net/test?retryWrites=true");
-    //SQLDriver querydata = new SQLDriver();
+    //MongoDriver querydata = new MongoDriver("mongodb+srv://firstuser1:newTestCred@cs3733-hgmot.mongodb.net/test?retryWrites=true");
+    SQLDriver querydata = new SQLDriver();
 
     public void spinnerVisible()
     {

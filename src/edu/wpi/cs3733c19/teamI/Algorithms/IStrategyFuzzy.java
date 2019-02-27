@@ -14,7 +14,8 @@ public interface IStrategyFuzzy {
     void run(String searchString) throws Exception;
     ArrayList<HashMap<String, ReturnedValue>> matches = new ArrayList<HashMap<String, ReturnedValue>>();
     SQLDriver querydataUser = new SQLDriver();
-    MongoDriver querydata = new MongoDriver("mongodb+srv://firstuser1:newTestCred@cs3733-hgmot.mongodb.net/test?retryWrites=true");
+    SQLDriver querydata = new SQLDriver();
+   // MongoDriver querydata = new MongoDriver("mongodb+srv://firstuser1:newTestCred@cs3733-hgmot.mongodb.net/test?retryWrites=true");
 
     ArrayList<String> searchParameters = new ArrayList<String>(){
         {

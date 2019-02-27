@@ -15,6 +15,15 @@ import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.*;
 import static java.lang.StrictMath.abs;
 import static java.lang.StrictMath.max;
 
+class FrequencyResult{
+    public HashMap<String, Integer>frequences;
+    public ArrayList<String>all_names;
+    public FrequencyResult(HashMap<String, Integer>_frequences, ArrayList<String>_all_names){
+        frequences = _frequences; //The count
+        all_names = _all_names; //The name
+    }
+}
+
 public class SQLDriver {
     //TODO: URGENT!!!!! converte ALL user DB values to be inserted as strings!!!
 
@@ -174,7 +183,31 @@ public class SQLDriver {
         }
         return dist[sourceLength][targetLength];
 
+    } public FrequencyResult get_top_vals(int top_val, String _type) throws Exception{
+        HashMap<String, Integer>freqs = new HashMap<String, Integer>();
+        ArrayList<String>all_returned_results = new ArrayList<String>();
+        ArrayList<String>final_keys = new ArrayList<String>();
+        for (HashMap<String, ReturnedValue>r:select_all("stringified_ids_db.db", "form_data")){
+            String _val = r.get(_type).to_string();
+            all_returned_results.add(_val);
+
+        }
+        if (all_returned_results.size() < top_val){
+            throw new Exception("length of database values is fewer than 'top_val'");
+        }
+        for (String new_val:all_returned_results.subList(all_returned_results.size()-top_val, all_returned_results.size())){
+            if (!freqs.containsKey(new_val)){
+                freqs.put(new_val, 1);
+            }
+            else{
+                freqs.put(new_val, freqs.get(new_val)+1);
+            }
+            final_keys.add(new_val);
+        }
+        return new FrequencyResult(freqs, final_keys);
+
     }
+
 
     public void update_user_rfid(int id, String rfid) throws Exception {
         ArrayList<String> _target_cols = new ArrayList<String>();

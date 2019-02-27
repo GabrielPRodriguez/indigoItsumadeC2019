@@ -405,7 +405,7 @@ public class SQLDriver {
         return final_results;
     }
 
-    public ArrayList<HashMap<String, ReturnedValue>>search_for_l_Rasheeda(ArrayList<HashMap<String, ReturnedValue>> partialResults, ArrayList<String> keys, String _user_input, int top_results) throws Exception {
+    public ArrayList<HashMap<String, ReturnedValue>> search_for_l_Secondary(ArrayList<HashMap<String, ReturnedValue>> partialResults, ArrayList<String> keys, String _user_input, int top_results) throws Exception {
         ArrayList<HashMap<String, ReturnedValue>>final_results = new ArrayList<HashMap<String, ReturnedValue>>(); //list of hashmaps of a string and a returned value type
         ArrayList<Double>all_distances = new ArrayList<Double>(); //list of doubles for each item
         HashMap<Double, HashMap<String, ReturnedValue>>results = new HashMap<Double, HashMap<String, ReturnedValue>>(); //hashmap of doubles and hashmaps with a string and returned value

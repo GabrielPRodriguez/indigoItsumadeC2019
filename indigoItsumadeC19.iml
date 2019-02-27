@@ -27,5 +27,7 @@
     <orderEntry type="library" name="pdfbox-app-2.0.13" level="project" />
     <orderEntry type="library" name="jfoenix-8.0.8" level="project" />
     <orderEntry type="library" name="jSerialComm-2.4.0" level="project" />
+    <orderEntry type="library" name="com.sun.jna:jna:3.0.9" level="project" />
+    <orderEntry type="library" name="net.sourceforge.tess4j:tess4j:4.3.1" level="project" />
   </component>
 </module>

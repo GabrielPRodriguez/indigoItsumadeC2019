@@ -153,6 +153,12 @@ public class ToolBarController implements Initializable {
         primaryStage.getScene().setRoot(aboutParent);
     }
 
+    public void goStats() throws IOException {
+        Parent statsParent = FXMLLoader.load(getClass().getResource("../Boundaries_2/Statistics.fxml"));
+        primaryStage = Main.getWindow();
+        primaryStage.getScene().setRoot(statsParent);
+    }
+
     public void goSubmit() throws IOException {
         if((curUser == null) || curUser.getUsername().equals(""))
         {

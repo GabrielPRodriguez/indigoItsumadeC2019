@@ -4,6 +4,7 @@ import com.jfoenix.controls.*;
 import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.DBTypes;
 import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.DBValue;
 import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.ReturnedValue;
+import edu.wpi.cs3733c19.teamI.Entities.DataTransfer;
 import edu.wpi.cs3733c19.teamI.Entities.Form;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -22,6 +23,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.File;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
@@ -341,7 +343,10 @@ public class MultipageFormSubmissionController implements Initializable {
             sentForm.setFormula(formula_Field.getText());
 
             //sets non-read approval status
-            sentForm.setFormStatus("unread");
+           // sentForm.setFormStatus("unread");
+
+            DataTransfer data = DataTransfer.getInstance();
+            sentForm.setFormStatus("unread" + "," +data.UserName);
 
             if(!(frontImageDisp == null))
             {
@@ -442,6 +447,7 @@ public class MultipageFormSubmissionController implements Initializable {
 
 
             if(readyToSend){
+                /*
                 SQLDriver driver = new SQLDriver();
                 //sets the names of columns in the database, if additional form fields are added, please add a new column
                 String [] columns = {"formID", "repID", "plantRegistry", "domesticOrImported", "serialNumber", "brandName", "beverageType", "fancifulName", "permitName", "streetAddress","city","state", "zip", "extraInfo", "dateOfApplication", "formula", "grapeVarietals", "vintage", "wineAppellation", "email", "phoneNumber", "pHValue", "alcoholContent", "status", "approvingUser", "approvalDate", "expirationDate", "issuedDate", "volume", "appType", "surrenderDate"};
@@ -470,6 +476,32 @@ public class MultipageFormSubmissionController implements Initializable {
                 //the values above are actually entered into the database (contained in form_data.db)
                 driver.insert_vals("form_data", "new_csv_from_spreadsheet.db", all_vals);
 
+                */
+
+                SQLDriver driver = new SQLDriver();
+                //sets the names of columns in the database, if additional form fields are added, please add a new column
+                String [] columns = {"formID", "repID", "plantRegistry", "domesticOrImported", "serialNumber", "brandName", "beverageType", "fancifulName", "permitName", "streetAddress","city","state", "zip", "extraInfo", "dateOfApplication", "formula", "grapeVarietals", "vintage", "wineAppellation", "email", "phoneNumber", "pHValue", "alcoholContent", "status", "approvingUser", "approvalDate", "expirationDate", "issuedDate", "volume", "appType", "surrenderDate", "qualifier", "name"};
+                //MongoDriver driver = new MongoDriver("mongodb+srv://firstuser1:newTestCred@cs3733-hgmot.mongodb.net/test?retryWrites=true", columns);
+                //
+                //contains the datatype of each column in the database, when adding a new column, please also add it's datatype here/
+                //"text" for strings and "real" for doubles/integers
+
+                DBTypes[] full_types = {new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("real"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"),new DBTypes("text"),new DBTypes("text"), new DBTypes("text"), new DBTypes("text")};
+
+                //int _id_count = driver.select_all("form_data.db", "form_data").size();
+
+                //iterates through the formID column of the database in order to find the current highest formID value
+                ArrayList<String> current_ids = new ArrayList<String>();
+                for (HashMap<String, ReturnedValue> result:driver.select_all("stringified_ids_db.db", "form_data")){
+                    current_ids.add(result.get("formID").to_string());
+
+                }
+
+                //collects values from fields of sentForm object (see Form.java)
+                DBValue[] all_vals = {new DBValue<String>(driver.generate_id(current_ids)), new DBValue<String>(sentForm.getrepID()), new DBValue<String>(sentForm.getplantRegistry()), new DBValue<String>(sentForm.getdomesticOrImported()), new DBValue<String>(sentForm.getserialNumber()), new DBValue<String>(sentForm.getbrandName()), new DBValue<String>(sentForm.getbeverageType()), new DBValue<String>(sentForm.getfancifulName()), new DBValue<String>(sentForm.getPermitname()), new DBValue<String>(sentForm.getStreet()), new DBValue<String>(sentForm.getCity()), new DBValue<String>(sentForm.getState()), new DBValue<String>(sentForm.getZip()), new DBValue<String>(sentForm.getextraInfo()), new DBValue<String>(sentForm.getdateOfApplication()), new DBValue<String>(sentForm.getformula()), new DBValue<String>(sentForm.getgrapeVarietals()), new DBValue<String>(sentForm.getvintage()), new DBValue<String>(sentForm.getwineAppellation()), new DBValue<String>(sentForm.getemail()), new DBValue<String>(sentForm.getphoneNumber()), new DBValue<Double>(sentForm.getpHValue()), new DBValue<Double>(sentForm.getalcoholContent()), new DBValue<String>(sentForm.getFormStatus()), new DBValue<String>("noUser"), new DBValue<String>("NoDateAprroved"), new DBValue<String>("NoDateExir"), new DBValue<String>("No issued date"), new DBValue<String>(sentForm.getVolume()), new DBValue<String>("No App Type"), new DBValue<String>("No Surrender Date"), new DBValue<String>("no qualification"), new DBValue<String>(sentForm.getnameOfApplicant())};
+
+                //the values above are actually entered into the database (contained in form_data.db)
+                driver.insert_vals("form_data", "stringified_ids_db.db", all_vals);
                 //displays message after form has successfully been entered into the database
                 String success = "Form successfully submitted.";
                 submit_message.setTextFill(Color.web("#4BB543"));

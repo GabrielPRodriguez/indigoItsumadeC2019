@@ -777,6 +777,8 @@ public class AgentWorkflowController implements Initializable {
         dateOfApplication_text.clear();
         phoneNumber_text.clear();
         email_text.clear();
+        commentBox.clear();
+
 
 
     }

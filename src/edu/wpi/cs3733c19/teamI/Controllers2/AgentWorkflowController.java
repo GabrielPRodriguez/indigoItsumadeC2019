@@ -71,9 +71,6 @@ public class AgentWorkflowController implements Initializable {
     TableColumn BrandName;
 
     @FXML
-    TableColumn Type;
-
-    @FXML
     TableColumn ResultNumber;
 
     private int numResults = 10;
@@ -767,8 +764,6 @@ public class AgentWorkflowController implements Initializable {
      *
      *
      *
-     *
-     *
      * */
 
     public ArrayList<HashMap<String, ReturnedValue>> pullFormsFromDB() throws Exception{
@@ -829,47 +824,49 @@ public class AgentWorkflowController implements Initializable {
     private void showSelectedForm(FormWorkflow selectedForm) {
         currentFormID = selectedForm.getForm_ID();
 
-        /**
+
         repID_text.setText(selectedForm.getRepID());
         plantRegistry_text.setText(selectedForm.getPlantRegistry());
-        domestic_text.setText(selectedForm.getDomesticOrImported();
+        domestic_text.setText(selectedForm.getDomesticOrImported());
         serialNum_text.setText(selectedForm.getSerialNumber());
 
         beverage_text.setText(selectedForm.getBeverageType());
         brandName_text.setText(selectedForm.getBrandName());
         fancifulName_text.setText(selectedForm.getFancifulName());
-        permitName_text.setText(selectedForm.get("permitName").to_string());
+        permitName_text.setText(selectedForm.getPermitname());
         //nameAddress_text.setText(result.get("nameAndAddress").to_string());
         //mailingAddress_text.setText(result.get("mailingAddress").to_string());
 
-        streetAdress_text.setText(selectedForm.get("streetAddress").to_string());
-        state_text.setText(selectedForm.get("state").to_string());
-        city_text.setText(selectedForm.get("city").to_string());
+        streetAdress_text.setText(selectedForm.getStreetAddress());
+        state_text.setText(selectedForm.getState());
+        city_text.setText(selectedForm.getCity());
 
 
-        formQualification_text.setText(selectedForm.get("qualifier").to_string());
-        formula_text.setText(selectedForm.get("formula").to_string());
-        grapeVarietal_text.setText(selectedForm.get("grapeVarietals").to_string());
-        wineAppellation_text.setText(selectedForm.get("wineAppellation").to_string());
-        winepH_text.setText(selectedForm.get("pHValue").to_string());
-        vintage_text.setText(selectedForm.get("vintage").to_string());
-        alcoholContent_text.setText(selectedForm.get("alcoholContent").to_string());
-        phoneNumber_text.setText(selectedForm.get("phoneNumber").to_string());
-        email_text.setText(selectedForm.get("email").to_string());
-        brandedInfo_text.setText(selectedForm.get("extraInfo").to_string());
+        formQualification_text.setText(selectedForm.getQualifier());
+        formula_text.setText(selectedForm.getFormula());
+        grapeVarietal_text.setText(selectedForm.getGrapeVarietals());
+        wineAppellation_text.setText(selectedForm.getWineAppellation());
+        winepH_text.setText(selectedForm.getpHValue());
+        vintage_text.setText(selectedForm.getVintage());
+        alcoholContent_text.setText(selectedForm.getAlcoholContent());
+        phoneNumber_text.setText(selectedForm.getPhoneNumber());
+        email_text.setText(selectedForm.getEmail());
+        brandedInfo_text.setText(selectedForm.getExtraInfo());
 
 
-        formStatus_string = (selectedForm.get("status").to_string()); //I use two variables because I need the formStatus text as a string
-//        formStatus_text.setText(formStatus_string);
-        volume_text.setText(selectedForm.get("volume").to_string());
+        formStatus_string = (selectedForm.getStatus()); //I use two variables because I need the formStatus text as a string
+//
+        formStatus_text.setText(formStatus_string); //this is what we are testing
 
-        zip_text.setText(selectedForm.get("zip").to_string());
-        dateOfApplication_text.setText(selectedForm.get("dateOfApplication").to_string());
-        applicantName_text.setText(selectedForm.get("name").to_string());
+        volume_text.setText(selectedForm.getVolume());
+
+        zip_text.setText(selectedForm.getZip());
+        dateOfApplication_text.setText(selectedForm.getDateOfApplication());
+        applicantName_text.setText(selectedForm.getName());
 
         //System.out.println("thing 1" + oneBeverage.getSummary().get(6));
         //System.out.println("thing 2 " + oneBeverage.getSummary().get(0));
-        */
+
     }
 
 
@@ -880,10 +877,9 @@ public class AgentWorkflowController implements Initializable {
         //convertToForms();
         //update columns on table view
         //this.Domestic.setCellValueFactory(new PropertyValueFactory<sub_Form, String>("domesticOrImported"));
-        this.BrandName.setCellValueFactory(new PropertyValueFactory<sub_Form, String>("brandName"));
-        this.Type.setCellValueFactory(new PropertyValueFactory<sub_Form, String>("beverageType"));
-        this.FormID.setCellValueFactory(new PropertyValueFactory<sub_Form, String>("formID"));
-        this.ResultNumber.setCellValueFactory(new PropertyValueFactory<sub_Form, Integer>("index"));
+        this.BrandName.setCellValueFactory(new PropertyValueFactory<FormWorkflow, String>("brandName"));
+        this.FormID.setCellValueFactory(new PropertyValueFactory<FormWorkflow, String>("formID"));
+        this.ResultNumber.setCellValueFactory(new PropertyValueFactory<FormWorkflow, Integer>("index"));
         //this.tableView.setItems(DisplayedResults);
         this.tableView.itemsProperty().bind(dispList);
 
@@ -895,6 +891,21 @@ public class AgentWorkflowController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        // Start the tableview part of the app
+        setTable();
+        try {
+            convertToForms();
+        }catch(Exception ex){
+            System.out.println("Did not work!!!!");
+        }
+
+
+
+
+
+
+
         wines = new Image[12];
 
         InputStream input = null;

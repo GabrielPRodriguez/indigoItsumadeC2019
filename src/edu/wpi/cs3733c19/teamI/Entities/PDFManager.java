@@ -78,7 +78,7 @@ public class PDFManager {
 
     public void editPDF() throws IOException{
         //Loading an existing document
-        File file = new File("C:/Users/Gabriel Rodriguez/Downloads/testPDF.pdf");
+        File file = new File("/Users/gabrielrodriguez/Downloads/TTBForm1.pdf");
 
         try {
             PDDocument document = PDDocument.load(file);
@@ -105,12 +105,13 @@ public class PDFManager {
             contentStream.endText();
 
             System.out.println("Content added");
+            System.out.println(document.isEncrypted());
 
             //Closing the content stream
             contentStream.close();
 
             //Saving the document
-            document.save(new File("C:/Users/Gabriel Rodriguez/Downloads/newForm.pdf"));
+            document.save(new File("/Users/gabrielrodriguez/Downloads/TTBForm.pdf"));
 
             //Closing the document
             document.close();

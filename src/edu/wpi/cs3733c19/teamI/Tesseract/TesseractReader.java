@@ -122,7 +122,7 @@ public class TesseractReader {
     //dog=> Plant Registry
     String PlantRegistry="";
     holder=fileContents;
-    pattern=Pattern.compile("lff(.*?) el dom");
+    pattern=Pattern.compile("ame lf(.*?) el dom");
     matcher=pattern.matcher(holder);
         while (matcher.find()) {
         PlantRegistry=PlantRegistry+matcher.group(1);

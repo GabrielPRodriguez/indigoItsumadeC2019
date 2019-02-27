@@ -244,7 +244,7 @@ public class ToolBarController implements Initializable {
             goWorkflowManufacturer();
         }
         else if (curUser.getUserType().equals(User.userPower.SuperAdmin)){ //and add isAdmin check
-            goAdminPage();
+            goHome();
         }
         else if(curUser.getUserType().equals(User.userPower.Standard))
         {

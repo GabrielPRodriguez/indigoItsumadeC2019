@@ -46,6 +46,15 @@ public class ToolBarController implements Initializable {
     @FXML
     Label signInLabel2;
 
+    public static String getUser_search_value() {
+        return user_search_value;
+    }
+
+    public static void setUser_search_value(String user_search_value) {
+        ToolBarController.user_search_value = user_search_value;
+    }
+
+    static String user_search_value;
     static ToolBarController instance;
     private static User curUser = null;
     private ResultsController ResultsController;

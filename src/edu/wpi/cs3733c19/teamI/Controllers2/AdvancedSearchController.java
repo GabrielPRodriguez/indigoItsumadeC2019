@@ -3,12 +3,8 @@ package edu.wpi.cs3733c19.teamI.Controllers2;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXSpinner;
-import edu.wpi.cs3733c19.teamI.Algorithms.LFuzzy;
-import edu.wpi.cs3733c19.teamI.Algorithms.SQLFuzzy;
-import edu.wpi.cs3733c19.teamI.Algorithms.UserSearch;
 import edu.wpi.cs3733c19.teamI.Algorithms.fuzzyContext;
 import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.ReturnedValue;
-import edu.wpi.cs3733c19.teamI.Entities.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -20,7 +16,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.Region;
 
-import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -306,14 +301,14 @@ public class AdvancedSearchController implements Initializable {
 
        try{
            int maxLength2 = hmap2.get(search2.get(0));
-           derek = bigDriver.search_for_l_Rasheeda(derek, search2, s2, maxLength2);
+           derek = bigDriver.search_for_l_Secondary(derek, search2, s2, maxLength2);
        }
        catch (Exception e){
            //does nothing
         }
        try{
            int maxLength3 = hmap2.get(search3.get(0));
-           derek = bigDriver.search_for_l_Rasheeda(derek, search1, s1, maxLength3);
+           derek = bigDriver.search_for_l_Secondary(derek, search1, s1, maxLength3);
        }
        catch(Exception e){
            //s=also dontohgin

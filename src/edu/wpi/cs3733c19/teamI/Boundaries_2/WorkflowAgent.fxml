@@ -60,7 +60,6 @@
                                     </HBox>
                                  </children>
                               </VBox>
-                              <JFXButton fx:id="test" onAction="#testBottles" text="TEST" />
                               <GridPane>
                                 <columnConstraints>
                                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -74,12 +73,11 @@
                                   <RowConstraints maxHeight="45.0" minHeight="35.0" prefHeight="37.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <JFXRadioButton fx:id="wineXP" prefHeight="1.0" prefWidth="34.0" text=" " textAlignment="CENTER" wrapText="true" GridPane.rowIndex="1" />
-                                    <JFXRadioButton fx:id="beerXP" text=" " GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                    <JFXRadioButton fx:id="wineXP" prefHeight="1.0" prefWidth="34.0" text=" " textAlignment="CENTER" wrapText="true" GridPane.rowIndex="1">
                                           <toggleGroup>
                                           <ToggleGroup fx:id="EXP" />
-                                          </toggleGroup>
-                                       </JFXRadioButton>
+                                          </toggleGroup></JFXRadioButton>
+                                    <JFXRadioButton fx:id="beerXP" text=" " toggleGroup="$EXP" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                     <JFXRadioButton fx:id="spiritsXP" text=" " toggleGroup="$EXP" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                     <JFXRadioButton fx:id="barXP" text=" " toggleGroup="$EXP" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Wine" GridPane.rowIndex="2" />

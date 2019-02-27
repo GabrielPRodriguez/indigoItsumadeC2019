@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane style="-fx-background-color: #e4e2e0;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers2.ManufacturerWorkflowController">
+<BorderPane style="-fx-background-color: #e4e2e0;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers2.ManufacturerWorkflowController">
    <top>
       <fx:include source="TTBToolbar.fxml" />
    </top>
@@ -45,11 +45,16 @@
                <children>
                   <VBox alignment="TOP_CENTER" HBox.hgrow="ALWAYS">
                      <children>
-                        <TableView maxWidth="500.0" VBox.vgrow="ALWAYS">
+                        <JFXButton fx:id="editButton" disable="true" onAction="#editForm" style="-fx-background-color: #205493;" text="Edit" textFill="WHITE">
+                           <VBox.margin>
+                              <Insets bottom="5.0" />
+                           </VBox.margin>
+                        </JFXButton>
+                        <TableView fx:id="tableView" maxWidth="500.0" onMouseClicked="#table_selected" prefHeight="989.0" prefWidth="248.0" VBox.vgrow="ALWAYS">
                           <columns>
-                            <TableColumn prefWidth="75.0" text="#" />
-                            <TableColumn prefWidth="80.99996948242188" text="Form ID" />
-                              <TableColumn prefWidth="90.00003051757812" text="Brand Name" />
+                            <TableColumn fx:id="ResultNumber" prefWidth="27.0" text="#" />
+                            <TableColumn fx:id="BrandName" prefWidth="102.0" text="Fanciful Name" />
+                              <TableColumn fx:id="FancifulName" prefWidth="118.0" text="Brand Name" />
                           </columns>
                         </TableView>
                      </children>

@@ -7,6 +7,7 @@ import edu.wpi.cs3733c19.teamI.Algorithms.LFuzzy;
 import edu.wpi.cs3733c19.teamI.Algorithms.SQLFuzzy;
 import edu.wpi.cs3733c19.teamI.Algorithms.UserSearch;
 import edu.wpi.cs3733c19.teamI.Algorithms.fuzzyContext;
+import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.ReturnedValue;
 import edu.wpi.cs3733c19.teamI.Entities.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,6 +20,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.Region;
 
+import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -44,7 +46,13 @@ public class AdvancedSearchController implements Initializable {
     JFXButton search;
 
     @FXML
-    TextField searchBar;
+    TextField searchBox1;
+
+    @FXML
+    TextField searchBox2;
+
+    @FXML
+    TextField searchBox3;
 
     @FXML
     ToggleGroup algorithmGroup;
@@ -63,7 +71,8 @@ public class AdvancedSearchController implements Initializable {
         spin.setMaxSize(Region.USE_COMPUTED_SIZE,Region.USE_COMPUTED_SIZE);
     }
 
-    HashMap<String, String > hmap = new HashMap<String,String>();
+    HashMap<String, String> hmap = new HashMap<>();
+    HashMap<String, Integer> hmap2 = new HashMap<>();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -136,6 +145,39 @@ public class AdvancedSearchController implements Initializable {
         hmap.put("Date of Application Surrender","surrenderDate");
         hmap.put("Qualification of Application","qualification");
 
+        hmap2.put("Form ID Number", 1);
+        hmap2.put("COLA Representative ID Number", 2);
+        hmap2.put("Plant Registry Number", 3);
+        hmap2.put("Serial Number", 1);
+        hmap2.put("Brand Name", 1);
+        hmap2.put("Type of Beverage", 2);
+        hmap2.put("Name other than Brand Name", 2);
+        hmap2.put("Permit Name", 3);
+        hmap2.put("Street Address of Applicant", 3);
+        hmap2.put("City of Applicant", 2);
+        hmap2.put("State of Applicant", 2);
+        hmap2.put("Zip Code of Applicant", 2);
+        hmap2.put("Any Information Embossed Onto the Packaging", 3);
+        hmap2.put("Application Date", 3);
+        hmap2.put("Formula of Alcohol",3);
+        hmap2.put("Grape Varietal(s)",3);
+        hmap2.put("Vintage Year",2);
+        hmap2.put("Wine Appellation",3);
+        hmap2.put("Email Address of Applicant",3);
+        hmap2.put("Phone Number of Applicant",3);
+        hmap2.put("PH of Wine",3);
+        hmap2.put("Alcohol Percentage",2);
+        hmap2.put("Status of Application",1);
+        hmap2.put("Approving User of TTB",1);
+        hmap2.put("Date of Application Approval",2);
+        hmap2.put("Expiration Date of Application",1);
+        hmap2.put("Date License was Issued",1);
+        hmap2.put("Volume of Alcohol",1);
+        hmap2.put("Type of Application",3);
+        hmap2.put("Date of Application Surrender", 3);
+        hmap2.put("Qualification of Application",3);
+
+
 
         ObservableList<Label> labelList =
                 FXCollections.observableArrayList(
@@ -185,22 +227,103 @@ public class AdvancedSearchController implements Initializable {
 
 
     public void performSearch(ActionEvent event) throws Exception {
+       SQLDriver bigDriver = new SQLDriver();
+       ArrayList<HashMap<String, ReturnedValue>> derek = new ArrayList<>();
        RadioButton selectedRadioButton = (RadioButton) algorithmGroup.getSelectedToggle();
        String toggleGroupValue = selectedRadioButton.getText();
 
-       System.out.println("Field Selector1: " + ((Label)fieldSelector1.getValue()).getText());
-       System.out.println("Field Selector2: " + ((Label)fieldSelector2.getValue()).getText());
-       System.out.println("Field Selector3: " + ((Label)fieldSelector3.getValue()).getText());
+
+        ArrayList<String> search3= new ArrayList<>();
+        ArrayList<String> search2 = new ArrayList<>();
+        ArrayList<String> search1= new ArrayList<>();
+
+        try {
+            if (!fieldSelector3.getValue().equals("")) {
+                search3.add(hmap.get(((Label) fieldSelector3.getValue()).getText()));
+            }
+        }
+        catch (Exception e) {
+
+        }
+
+        try {
+            if (!fieldSelector2.getValue().equals("")) {
+                search2.add(hmap.get(((Label) fieldSelector2.getValue()).getText()));
+            }
+        }
+        catch (Exception e)
+        {
+
+        }
+
+        try {
+            if (!fieldSelector1.getValue().equals("")) {
+                search1.add(hmap.get(((Label) fieldSelector1.getValue()).getText()));
+            }
+        }
+        catch (Exception e){
+
+        }
+
+        try {
+            if (search2.size() < 1) {
+                search2.add(search1.get(0));
+                search1.clear();
+            }
+        }
+        catch (Exception e){
+
+        }
+
+        try {
+            if (search3.size() < 1) {
+                search3.add(search2.get(0));
+                search2.clear();
+            }
+        }
+        catch (Exception e)
+        {
+
+        }
+        String s1 = searchBox1.getText();
+        String s2 = searchBox2.getText();
+        String s3 = searchBox3.getText();
+        if (s2.equals("")){
+            s2 = s1;
+        }
+        if (s3.equals("")){
+            s3 = s2;
+        }
+        if (s2.equals("")){
+            s2 = s1;
+        }
 
 
+
+
+
+        derek = bigDriver.search_for_l_multiple("form_data", "stringified_ids_db.db", search3, s3, 75000);
+
+       try{
+           int maxLength2 = hmap2.get(search2.get(0));
+           derek = bigDriver.search_for_l_Rasheeda(derek, search2, s2, maxLength2);
+       }
+       catch (Exception e){
+           //does nothing
+        }
+       try{
+           int maxLength3 = hmap2.get(search3.get(0));
+           derek = bigDriver.search_for_l_Rasheeda(derek, search1, s1, maxLength3);
+       }
+       catch(Exception e){
+           //s=also dontohgin
+        }
+
+       toolBarController.setResultsMap(derek);
        toolBarController.goSearch();
     }
 
-    @FXML
-    public void setAlgorithm(){
 
-
-    }
 
     public void setSearchParam(){
 

@@ -486,7 +486,7 @@
                                           </Label>
                                           <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
                                              <children>
-                                                <JFXButton fx:id="save_Button" mnemonicParsing="false" style="-fx-background-color: #2e8540;" text="Save" textFill="WHITE" HBox.hgrow="ALWAYS">
+                                                <JFXButton fx:id="save_Button" mnemonicParsing="false" onAction="#saveApp" style="-fx-background-color: #2e8540;" text="Save" textFill="WHITE" HBox.hgrow="ALWAYS">
                                                    <font>
                                                       <Font name="Segoe UI Bold" size="16.0" />
                                                    </font>

@@ -608,4 +608,135 @@ public class MultipageFormSubmissionController implements Initializable {
 
 
     }
+
+    @FXML
+    private void saveApp(ActionEvent event) throws Exception{
+        clearWarnings();
+        Form sentForm = new Form();
+        submit_message.setText("");//string to insert into textfield either confirming submission or printing error messge
+        submit_message.setTextFill(Color.web("#FF0000"));
+        //sets Domestic Or Imported field
+        if (origin.getSelectedToggle() != null) {
+            RadioButton selectedOption = (RadioButton) origin.getSelectedToggle();
+            sentForm.setDomesticOrImported(selectedOption.getText());
+        }
+        //sets the Type of Drink (either wine, beer, or liquor)
+        if(beverage.getSelectedToggle() != null){
+            RadioButton selectedBevType = (RadioButton) beverage.getSelectedToggle();
+            sentForm.setBeverageType(selectedBevType.getText());
+        }
+        //sets the REP ID number
+        sentForm.setRepID(repIdNum_Field.getText());
+        //Sets Plant Registry/Basic Permit/Brewer's Number
+        sentForm.setPlantRegistry(permitNum_Field.getText());
+        //Sets Serial Number
+        sentForm.setSerialNumber((serialNum_Field.getText()));
+        //Sets Phone Number
+        sentForm.setPhoneNumber(phoneNum_Field.getText());
+        //Sets Email
+        sentForm.setEmail(email_Field.getText());
+        //Sets Brand Name
+        sentForm.setBrandName(brandName_Field.getText());
+        //Sets Fanciful Name
+        sentForm.setFancifulName(fancyName_Field.getText());
+        //Sets Date of Submission
+        //sentForm.setDateOfApplication(date_Field.getText());
+        try{
+            sentForm.setDateOfApplication(date_Field.getValue().toString());
+        }
+        catch (NullPointerException e){
+        }
+        //Sets Branded/Embossed Non-label info
+        sentForm.setExtraInfo(brandedInfo_Field.getText());
+        //Sets Name of Applicant
+        sentForm.setNameOfApplicant(applicantName_Field.getText());
+        sentForm.setVolume(volume_Field.getText());
+        sentForm.setCity(city_Field.getText());
+        sentForm.setStreet(street_Field.getText());
+        sentForm.setState(state_Field.getText());
+        sentForm.setZip(zip_Field.getText());
+        sentForm.setPermitname(permitName.getText());
+        sentForm.setFormula(formula_Field.getText());
+        //sets non-read approval status
+        sentForm.setFormStatus(toolBarController.getCurUser().getUsername());
+        if(!(frontImageDisp == null))
+        {
+            sentForm.setFront_Upload(frontImageDisp.getImage());
+        }
+        if(!(backImageDisp == null))
+        {
+            sentForm.setBack_Upload(backImageDisp.getImage());
+        }
+        //only pull from these fields if Beverage Type is Wine
+        if(sentForm.getBeverageType().equals("Wine")){
+            //Sets Grape Varietals
+            sentForm.setGrapeVarietals(grape_Field.getText());
+
+            //Sets Wine Appellation
+            sentForm.setWineAppellation(appellation_Field.getText());
+
+            //Sets Wine Vintage year
+            sentForm.setVintage(vintage_Field.getText());
+
+            //Sets Wine pH value
+            try {
+                sentForm.setpHValue(Double.parseDouble(ph_Field.getText()));
+            }
+            catch (NumberFormatException e){
+                //  readyToSend = false;
+                ph_warning.setTextFill(Color.web("#FF0000"));
+                ph_warning.setText("Please enter a number");
+            }
+        }
+        //Sets alcohol content percentage and checks to see if it is a double
+        try {
+            sentForm.setAlcoholContent(Double.parseDouble(alcoholPercent_Field.getText()));
+        }
+        catch (NumberFormatException e){
+            //readyToSend = false;
+            //String oldMessage = submit_message.getText();
+            //submit_message.setText(oldMessage + "  Please enter a number for Alcohol Percentage.");
+            alcoholPercent_warning.setTextFill(Color.web("#FF0000"));
+            alcoholPercent_warning.setText("Please enter a number");
+        }
+
+        //sends the form to database when int/double fields contain the correct datatype and
+        //all required fields have received input
+        String [] columns = {"formID", "repID", "plantRegistry", "domesticOrImported", "serialNumber", "brandName", "beverageType", "fancifulName", "permitName", "streetAddress","city","state", "zip", "extraInfo", "dateOfApplication", "formula", "grapeVarietals", "vintage", "wineAppellation", "email", "phoneNumber", "pHValue", "alcoholContent", "status", "approvingUser", "approvalDate", "expirationDate", "issuedDate", "volume", "appType", "surrenderDate", "qualifier", "name"};
+        //
+        //contains the datatype of each column in the database, when adding a new column, please also add it's datatype here/
+        //"text" for strings and "real" for doubles/integers
+        SQLDriver driver = new SQLDriver();
+
+        // MongoDriver driver = new MongoDriver("mongodb+srv://firstuser1:newTestCred@cs3733-hgmot.mongodb.net/test?retryWrites=true", columns);
+        DBTypes[] full_types = {new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"),
+                new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"),
+                new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"),
+                new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"),
+                new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"),
+                new DBTypes("text"), new DBTypes("text"), new DBTypes("text"), new DBTypes("text"),
+                new DBTypes("text"), new DBTypes("double"), new DBTypes("double"), new DBTypes("text"),
+                new DBTypes("text"),new DBTypes("text"),new DBTypes("text"), new DBTypes("text"),
+                new DBTypes("text")};
+        //22,23
+        //int _id_count = driver.select_all("form_data.db", "form_data").size();
+
+        //iterates through the formID column of the database in order to find the current highest formID value
+        ArrayList<String> current_ids = new ArrayList<String>();
+        for (HashMap<String, ReturnedValue> result:driver.select_all("stringified_ids_db.db", "form_data")){
+            current_ids.add(result.get("formID").to_string());
+
+        }
+
+        //collects values from fields of sentForm object (see Form.java)
+        DBValue[] all_vals = {new DBValue<String>(driver.generate_id(current_ids)), new DBValue<String>(sentForm.getrepID()), new DBValue<String>(sentForm.getplantRegistry()), new DBValue<String>(sentForm.getdomesticOrImported()), new DBValue<String>(sentForm.getserialNumber()), new DBValue<String>(sentForm.getbrandName()), new DBValue<String>(sentForm.getbeverageType()), new DBValue<String>(sentForm.getfancifulName()), new DBValue<String>(sentForm.getPermitname()), new DBValue<String>(sentForm.getStreet()), new DBValue<String>(sentForm.getCity()), new DBValue<String>(sentForm.getState()), new DBValue<String>(sentForm.getZip()), new DBValue<String>(sentForm.getextraInfo()), new DBValue<String>(sentForm.getdateOfApplication()), new DBValue<String>(sentForm.getformula()), new DBValue<String>(sentForm.getgrapeVarietals()), new DBValue<String>(sentForm.getvintage()), new DBValue<String>(sentForm.getwineAppellation()), new DBValue<String>(sentForm.getemail()), new DBValue<String>(sentForm.getphoneNumber()), new DBValue<Double>(sentForm.getpHValue()), new DBValue<Double>(sentForm.getalcoholContent()), new DBValue<String>(toolBarController.getCurUser().getUsername()), new DBValue<String>("noUser"), new DBValue<String>("NoDateAprroved"), new DBValue<String>("NoDateExir"), new DBValue<String>("No issued date"), new DBValue<String>(sentForm.getVolume()), new DBValue<String>("No App Type"), new DBValue<String>("No Surrender Date"), new DBValue<String>("no qualification"), new DBValue<String>(sentForm.getnameOfApplicant())};
+
+        //the values above are actually entered into the database (contained in form_data.db)
+        driver.insert_vals("form_data", "stringified_ids_db.db", all_vals);
+        //displays message after form has successfully been entered into the database
+        String success = "Form successfully Saved.";
+        submit_message.setTextFill(Color.web("#4BB543"));
+        submit_message.setText(success);
+    }
+
 }

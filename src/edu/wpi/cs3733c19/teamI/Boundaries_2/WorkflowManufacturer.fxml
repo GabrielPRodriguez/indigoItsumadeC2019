@@ -2,11 +2,12 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextField?>
-<?import com.jfoenix.controls.JFXToolbar?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -44,234 +45,13 @@
                <children>
                   <VBox alignment="TOP_CENTER" HBox.hgrow="ALWAYS">
                      <children>
-                        <VBox alignment="CENTER" style="-fx-background-color: #aeb0b5;">
-                           <children>
-                              <JFXToolbar style="-fx-background-color: #9bdaf1;">
-                                 <right>
-                                    <JFXButton mnemonicParsing="false" onAction="#pull_Forms" text="Refresh" BorderPane.alignment="CENTER">
-                                       <font>
-                                          <Font name="Segoe UI Bold" size="12.0" />
-                                       </font>
-                                    </JFXButton>
-                                 </right>
-                                 <center>
-                                    <JFXButton mnemonicParsing="false" onAction="#editForm" text="Edit" BorderPane.alignment="CENTER">
-                                       <font>
-                                          <Font name="Segoe UI Bold" size="12.0" />
-                                       </font>
-                                    </JFXButton>
-                                 </center>
-                                 <left>
-                                    <JFXButton fx:id="goHelpHome" mnemonicParsing="false" text="Help" BorderPane.alignment="CENTER">
-                                       <font>
-                                          <Font name="Segoe UI Bold" size="12.0" />
-                                       </font>
-                                    </JFXButton>
-                                 </left>
-                              </JFXToolbar>
-                              <BorderPane>
-                                 <left>
-                                    <Label fx:id="formID_1" maxWidth="-Infinity" textFill="WHITE" BorderPane.alignment="CENTER">
-                                       <font>
-                                          <Font name="Segoe UI Bold" size="12.0" />
-                                       </font>
-                                    </Label>
-                                 </left>
-                                 <bottom>
-                                    <Separator BorderPane.alignment="CENTER" />
-                                 </bottom>
-                                 <right>
-                                    <JFXButton fx:id="choose_button1" disable="true" mnemonicParsing="false" onAction="#chooseButtonHandler" style="-fx-background-color: #00a6d2;" text="Select" textFill="WHITE" BorderPane.alignment="CENTER">
-                                       <font>
-                                          <Font name="Segoe UI Bold" size="12.0" />
-                                       </font>
-                                    </JFXButton>
-                                 </right>
-                                 <padding>
-                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                 </padding>
-                              </BorderPane>
-                              <BorderPane>
-                                 <left>
-                                    <Label fx:id="formID_2" textFill="WHITE" BorderPane.alignment="CENTER">
-                                       <font>
-                                          <Font name="Segoe UI Bold" size="12.0" />
-                                       </font>
-                                    </Label>
-                                 </left>
-                                 <bottom>
-                                    <Separator BorderPane.alignment="CENTER" />
-                                       </bottom>
-                                 <right>
-                                    <JFXButton fx:id="choose_button2" disable="true" mnemonicParsing="false" onAction="#chooseButtonHandler" style="-fx-background-color: #00a6d2;" text="Select" textFill="WHITE" BorderPane.alignment="CENTER">
-                                       <font>
-                                          <Font name="System Bold" size="12.0" />
-                                       </font>
-                                    </JFXButton>
-                                 </right>
-                                 <padding>
-                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                 </padding>
-                              </BorderPane>
-                              <BorderPane>
-                                 <left>
-                                    <Label fx:id="formID_3" textFill="WHITE" BorderPane.alignment="CENTER">
-                                       <font>
-                                          <Font name="Segoe UI Bold" size="12.0" />
-                                       </font>
-                                    </Label>
-                                 </left>
-                                 <bottom>
-                                    <Separator prefWidth="200.0" BorderPane.alignment="CENTER" />
-                                 </bottom>
-                                 <right>
-                                    <JFXButton fx:id="choose_button3" disable="true" mnemonicParsing="false" onAction="#chooseButtonHandler" style="-fx-background-color: #00a6d2;" text="Select" textFill="WHITE" BorderPane.alignment="CENTER">
-                                       <font>
-                                          <Font name="System Bold" size="12.0" />
-                                       </font>
-                                    </JFXButton>
-                                 </right>
-                                 <padding>
-                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                 </padding>
-                              </BorderPane>
-                              <BorderPane>
-                                 <left>
-                                    <Label fx:id="formID_4" textFill="WHITE" BorderPane.alignment="CENTER">
-                                       <font>
-                                          <Font name="Segoe UI Bold" size="12.0" />
-                                       </font>
-                                    </Label>
-                                 </left>
-                                 <bottom>
-                                    <Separator prefWidth="200.0" BorderPane.alignment="CENTER" />
-                                 </bottom>
-                                 <right>
-                                    <JFXButton fx:id="choose_button4" disable="true" mnemonicParsing="false" onAction="#chooseButtonHandler" style="-fx-background-color: #00a6d2;" text="Select" textFill="WHITE" BorderPane.alignment="CENTER">
-                                       <font>
-                                          <Font name="System Bold" size="12.0" />
-                                       </font>
-                                    </JFXButton>
-                                 </right>
-                                 <padding>
-                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                 </padding>
-                              </BorderPane>
-                              <BorderPane>
-                                  <left>
-                                    <Label fx:id="formID_5" textFill="WHITE" BorderPane.alignment="CENTER">
-                                       <font>
-                                          <Font name="Segoe UI Bold" size="12.0" />
-                                       </font>
-                                    </Label>
-                                 </left>
-                                 <bottom>
-                                    <Separator prefWidth="200.0" BorderPane.alignment="CENTER" />
-                                 </bottom>
-                                 <right>
-                                    <JFXButton fx:id="choose_button5" disable="true" mnemonicParsing="false" onAction="#chooseButtonHandler" style="-fx-background-color: #00a6d2;" text="Select" textFill="WHITE" BorderPane.alignment="CENTER">
-                                       <font>
-                                          <Font name="System Bold" size="12.0" />
-                                       </font>
-                                    </JFXButton>
-                                 </right>
-                                 <padding>
-                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                 </padding>
-                              </BorderPane>
-                              <BorderPane>
-                                 <left>
-                                    <Label fx:id="formID_6" textFill="WHITE" BorderPane.alignment="CENTER">
-                                       <font>
-                                          <Font name="Segoe UI Bold" size="12.0" />
-                                       </font>
-                                    </Label>
-                                 </left>
-                                 <bottom>
-                                    <Separator prefWidth="200.0" BorderPane.alignment="CENTER" />
-                                 </bottom>
-                                 <right>
-                                    <JFXButton fx:id="choose_button6" disable="true" mnemonicParsing="false" onAction="#chooseButtonHandler" style="-fx-background-color: #00a6d2;" text="Select" textFill="WHITE" BorderPane.alignment="CENTER">
-                                       <font>
-                                          <Font name="System Bold" size="12.0" />
-                                       </font>
-                                    </JFXButton>
-                                 </right>
-                                 <padding>
-                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                 </padding>
-                              </BorderPane>
-                              <BorderPane>
-                                 <left>
-                                    <Label fx:id="formID_7" textFill="WHITE" BorderPane.alignment="CENTER">
-                                       <font>
-                                          <Font name="Segoe UI Bold" size="12.0" />
-                                       </font>
-                                    </Label>
-                                 </left>
-                                 <bottom>
-                                    <Separator prefWidth="200.0" BorderPane.alignment="CENTER" />
-                                 </bottom>
-                                 <right>
-                                    <JFXButton fx:id="choose_button7" disable="true" mnemonicParsing="false" onAction="#chooseButtonHandler" style="-fx-background-color: #00a6d2;" text="Select" textFill="WHITE" BorderPane.alignment="CENTER">
-                                         <font>
-                                          <Font name="System Bold" size="12.0" />
-                                       </font>
-                                    </JFXButton>
-                                 </right>
-                                 <padding>
-                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                 </padding>
-                              </BorderPane>
-                              <BorderPane>
-                                 <left>
-                                    <Label fx:id="formID_8" textFill="WHITE" BorderPane.alignment="CENTER">
-                                       <font>
-                                          <Font name="Segoe UI Bold" size="12.0" />
-                                       </font>
-                                    </Label>
-                                 </left>
-                                 <bottom>
-                                    <Separator prefWidth="200.0" BorderPane.alignment="CENTER" />
-                                 </bottom>
-                                 <right>
-                                    <JFXButton fx:id="choose_button8" disable="true" mnemonicParsing="false" onAction="#chooseButtonHandler" style="-fx-background-color: #00a6d2;" text="Select" textFill="WHITE" BorderPane.alignment="CENTER">
-                                       <font>
-                                          <Font name="System Bold" size="12.0" />
-                                       </font>
-                                    </JFXButton>
-                                 </right>
-                                 <padding>
-                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                 </padding>
-                              </BorderPane>
-                              <BorderPane>
-                                 <left>
-                                    <Label fx:id="formID_9" textFill="WHITE" BorderPane.alignment="CENTER">
-                                       <font>
-                                          <Font name="Segoe UI Bold" size="12.0" />
-                                       </font>
-                                    </Label>
-                                 </left>
-                                 <right>
-                                    <JFXButton fx:id="choose_button9" disable="true" mnemonicParsing="false" onAction="#chooseButtonHandler" style="-fx-background-color: #00a6d2;" text="Select" textFill="WHITE" BorderPane.alignment="CENTER">
-                                       <font>
-                                          <Font name="System Bold" size="12.0" />
-                                       </font>
-                                    </JFXButton>
-                                 </right>
-                                 <padding>
-                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                 </padding>
-                                 <bottom>
-                                    <Separator prefWidth="200.0" BorderPane.alignment="CENTER" />
-                                 </bottom>
-                              </BorderPane>
-                           </children>
-                           <effect>
-                              <DropShadow />
-                           </effect>
-                        </VBox>
+                        <TableView maxWidth="500.0" VBox.vgrow="ALWAYS">
+                          <columns>
+                            <TableColumn prefWidth="75.0" text="#" />
+                            <TableColumn prefWidth="80.99996948242188" text="Form ID" />
+                              <TableColumn prefWidth="90.00003051757812" text="Brand Name" />
+                          </columns>
+                        </TableView>
                      </children>
                   </VBox>
                   <ScrollPane fitToHeight="true" fitToWidth="true" HBox.hgrow="ALWAYS">

@@ -8,14 +8,22 @@ import com.mongodb.Mongo;
 import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.DBValue;
 import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.ReturnedValue;
 import edu.wpi.cs3733c19.teamI.Controllers2.ToolBarController;
+import edu.wpi.cs3733c19.teamI.Entities.FormWorkflow;
 import edu.wpi.cs3733c19.teamI.Entities.User;
+import edu.wpi.cs3733c19.teamI.Entities.sub_Form;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
@@ -43,6 +51,34 @@ public class AgentWorkflowController implements Initializable {
     public Image[] bars;
     public boolean special = false;
     private ToolBarController toolBarController = ToolBarController.getInstance();
+
+    // Tableview Fields
+    private final ObservableList<FormWorkflow> DisplayedResults = FXCollections.observableArrayList();
+    private ObjectProperty<ObservableList<FormWorkflow>> dispList = new SimpleObjectProperty<>(DisplayedResults);
+
+    /**
+     * Table Stuff
+    */
+    FormWorkflow item;
+
+    @FXML
+    TableView<FormWorkflow> tableView;
+
+    @FXML
+    TableColumn FormID;
+
+    @FXML
+    TableColumn BrandName;
+
+    @FXML
+    TableColumn Type;
+
+    @FXML
+    TableColumn ResultNumber;
+
+    private int numResults = 10;
+    private int currentPage = 1;
+
 
     @FXML
     JFXButton accept_button;
@@ -726,6 +762,135 @@ public class AgentWorkflowController implements Initializable {
 
 
     }
+
+    /** start working on implementing tableview below
+     *
+     *
+     *
+     *
+     *
+     * */
+
+    public ArrayList<HashMap<String, ReturnedValue>> pullFormsFromDB() throws Exception{
+        Boolean specialist = toolBarController.getCurUser().getUserType().equals(User.userPower.Specialist);
+        Boolean agent = toolBarController.getCurUser().getUserType().equals(User.userPower.TTBEmployee);
+        Boolean admin = toolBarController.getCurUser().getUserType().equals(User.userPower.SuperAdmin);
+
+        MongoDriver driver = new MongoDriver("mongodb+srv://firstuser1:newTestCred@cs3733-hgmot.mongodb.net/test?retryWrites=true");
+        ArrayList<HashMap<String, ReturnedValue>>filtered_results = new ArrayList<HashMap<String, ReturnedValue>>();
+        for (HashMap<String, ReturnedValue>result:driver.select_all("stringified_ids_db.db", "form_data")){
+            if(special){
+                if (result.get("status").to_string().contains("specialist") & (specialist || admin)){
+
+                    filtered_results.add(result);
+                }
+            }
+            else{
+                if (result.get("status").to_string().contains("unread") & (agent || admin)){
+
+                    filtered_results.add(result);
+                }
+            }
+        }
+
+        return filtered_results;
+    }
+
+    public void convertToForms() throws Exception{
+
+        ArrayList<HashMap<String, ReturnedValue>> resultsArrList = pullFormsFromDB();
+
+        DisplayedResults.clear();
+        currentPage = 1;
+
+        for(int i = 0; i < numResults; i++) {
+            try {
+                this.DisplayedResults.add(new FormWorkflow(resultsArrList.get(i + ((currentPage - 1) * numResults)), i + 1 + (currentPage - 1) * numResults));
+            }
+            catch(IndexOutOfBoundsException e){
+
+            }
+        }
+    }
+
+    public void table_selected(Event event){
+        try{
+            item = tableView.getSelectionModel().getSelectedItem();
+            //System.out.println(tableView.getItems());
+            showSelectedForm(item);
+            // toolBarController.getInfoController().updateList(item);
+            // toolBarController.goDetails(event);
+        }
+        catch (Exception e){
+            System.out.println("Item not found in table_selected method");
+        }
+    }
+
+    private void showSelectedForm(FormWorkflow selectedForm) {
+        currentFormID = selectedForm.getForm_ID();
+
+        /**
+        repID_text.setText(selectedForm.getRepID());
+        plantRegistry_text.setText(selectedForm.getPlantRegistry());
+        domestic_text.setText(selectedForm.getDomesticOrImported();
+        serialNum_text.setText(selectedForm.getSerialNumber());
+
+        beverage_text.setText(selectedForm.getBeverageType());
+        brandName_text.setText(selectedForm.getBrandName());
+        fancifulName_text.setText(selectedForm.getFancifulName());
+        permitName_text.setText(selectedForm.get("permitName").to_string());
+        //nameAddress_text.setText(result.get("nameAndAddress").to_string());
+        //mailingAddress_text.setText(result.get("mailingAddress").to_string());
+
+        streetAdress_text.setText(selectedForm.get("streetAddress").to_string());
+        state_text.setText(selectedForm.get("state").to_string());
+        city_text.setText(selectedForm.get("city").to_string());
+
+
+        formQualification_text.setText(selectedForm.get("qualifier").to_string());
+        formula_text.setText(selectedForm.get("formula").to_string());
+        grapeVarietal_text.setText(selectedForm.get("grapeVarietals").to_string());
+        wineAppellation_text.setText(selectedForm.get("wineAppellation").to_string());
+        winepH_text.setText(selectedForm.get("pHValue").to_string());
+        vintage_text.setText(selectedForm.get("vintage").to_string());
+        alcoholContent_text.setText(selectedForm.get("alcoholContent").to_string());
+        phoneNumber_text.setText(selectedForm.get("phoneNumber").to_string());
+        email_text.setText(selectedForm.get("email").to_string());
+        brandedInfo_text.setText(selectedForm.get("extraInfo").to_string());
+
+
+        formStatus_string = (selectedForm.get("status").to_string()); //I use two variables because I need the formStatus text as a string
+//        formStatus_text.setText(formStatus_string);
+        volume_text.setText(selectedForm.get("volume").to_string());
+
+        zip_text.setText(selectedForm.get("zip").to_string());
+        dateOfApplication_text.setText(selectedForm.get("dateOfApplication").to_string());
+        applicantName_text.setText(selectedForm.get("name").to_string());
+
+        //System.out.println("thing 1" + oneBeverage.getSummary().get(6));
+        //System.out.println("thing 2 " + oneBeverage.getSummary().get(0));
+        */
+    }
+
+
+
+    public void setTable(){
+        //get results
+        //System.out.println("Updated");
+        //convertToForms();
+        //update columns on table view
+        //this.Domestic.setCellValueFactory(new PropertyValueFactory<sub_Form, String>("domesticOrImported"));
+        this.BrandName.setCellValueFactory(new PropertyValueFactory<sub_Form, String>("brandName"));
+        this.Type.setCellValueFactory(new PropertyValueFactory<sub_Form, String>("beverageType"));
+        this.FormID.setCellValueFactory(new PropertyValueFactory<sub_Form, String>("formID"));
+        this.ResultNumber.setCellValueFactory(new PropertyValueFactory<sub_Form, Integer>("index"));
+        //this.tableView.setItems(DisplayedResults);
+        this.tableView.itemsProperty().bind(dispList);
+
+    }
+
+
+
 
 
     @Override

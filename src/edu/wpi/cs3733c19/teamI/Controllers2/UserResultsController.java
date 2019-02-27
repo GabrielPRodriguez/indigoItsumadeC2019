@@ -180,16 +180,16 @@ import java.util.ResourceBundle;
 
                     String roleSet = "";
                     if(Standard.isSelected()){
-                        roleSet = "0.0";
+                        roleSet = "-1.0";
                     }
                     else if(Manufacturer.isSelected()){
-                        roleSet = "2.0";
+                        roleSet = "1.0";
                     }
                     else if (Specialist.isSelected()){
-                        roleSet = "3.0";
+                        roleSet = "2.0";
                     }
                     else if (Agent.isSelected()){
-                        roleSet = "1.0";
+                        roleSet = "0.0";
                     }
                     else{
                         return;

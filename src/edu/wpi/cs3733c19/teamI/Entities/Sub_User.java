@@ -86,16 +86,16 @@ public class Sub_User {
         list_of_Param.add(this.firstName);
         list_of_Param.add(this.lastName);
         list_of_Param.add(this.userEmail);
-        if (userRole == 0) {
+        if (userRole == -1) {
             list_of_Param.add("stan");
         }
-        else if (userRole == 1){
+        else if (userRole == 0){
             list_of_Param.add("agen");
         }
-        else if (userRole == 2){
+        else if (userRole == 1){
             list_of_Param.add("manu");
         }
-        else if (userRole == 3){
+        else if (userRole == 2){
             list_of_Param.add("spec");
         }
         else{

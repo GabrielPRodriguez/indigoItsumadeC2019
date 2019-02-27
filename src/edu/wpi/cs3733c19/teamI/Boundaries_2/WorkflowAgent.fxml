@@ -23,7 +23,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane onMouseMoved="#update" style="-fx-background-color: #e4e2e0;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers2.AgentWorkflowController">
+<BorderPane onMouseMoved="#update" style="-fx-background-color: #e4e2e0;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733c19.teamI.Controllers2.AgentWorkflowController">
    <top>
       <fx:include source="TTBToolbar.fxml" />
    </top>
@@ -146,7 +146,7 @@
                                     <Font name="Segoe UI Bold" size="16.0" />
                                  </font>
                               </JFXButton>
-                              <JFXButton fx:id="forwardButton" onAction="#forwardHandler" style="-fx-background-color: #8A00FF;" text="Forward to Spcialist" textFill="WHITE" wrapText="true">
+                              <JFXButton fx:id="forwardButton" onAction="#forwardHandler" style="-fx-background-color: #8A00FF;" text="Forward to Specialist" textFill="WHITE" wrapText="true">
                                  <font>
                                     <Font name="Segoe UI Bold" size="16.0" />
                                  </font>

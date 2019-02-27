@@ -30,7 +30,6 @@ public class SQLFuzzy implements IStrategyFuzzy {
         }
         searchParameters.clear();
         for(String param: searchParam) {
-            //System.out.println(param);
             searchParameters.add(param);
         }
     }

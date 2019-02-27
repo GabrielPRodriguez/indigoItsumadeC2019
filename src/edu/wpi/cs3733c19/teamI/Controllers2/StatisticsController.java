@@ -108,9 +108,6 @@ public class StatisticsController {
                 }
             }
 
-
-
-
             XYChart.Series xWhere1 = new XYChart.Series<>();
             xWhere1.setName("Domestic");
             xWhere1.getData().add(new XYChart.Data("Type", yVal4));

@@ -3,6 +3,7 @@ package edu.wpi.cs3733c19.teamI.Controllers2;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXPopup;
+import edu.wpi.cs3733c19.teamI.Algorithms.LFuzzy;
 import edu.wpi.cs3733c19.teamI.Algorithms.SQLFuzzy;
 import edu.wpi.cs3733c19.teamI.Algorithms.fuzzyContext;
 import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.DBValue;
@@ -376,7 +377,7 @@ public class ResultsController implements Initializable {
 
         }
         else {
-            searchAlgorithmSelection.setContext(new SQLFuzzy());
+            searchAlgorithmSelection.setContext(new LFuzzy());
             toolBarController.setResultsMap(searchAlgorithmSelection.run(searchTextField.getText().trim()));
             toolBarController.goSearch();
 

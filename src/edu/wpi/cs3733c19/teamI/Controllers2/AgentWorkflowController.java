@@ -595,12 +595,16 @@ public class AgentWorkflowController implements Initializable {
 
 
         formStatus_string = (result.get("status").to_string()); //I use two variables because I need the formStatus text as a string
-//        formStatus_text.setText(formStatus_string);
+        //formStatus_text.setText(formStatus_string);
         volume_text.setText(result.get("volume").to_string());
 
         zip_text.setText(result.get("zip").to_string());
         dateOfApplication_text.setText(result.get("dateOfApplication").to_string());
         applicantName_text.setText(result.get("name").to_string());
+
+
+
+        formID_text.setText(result.get("formID").to_string());
     }
 
     @FXML

@@ -443,6 +443,17 @@ public class ManufacturerWorkflowController {
         email_text.setText(result.get("email").to_string());
         brandedInfo_text.setText(result.get("extraInfo").to_string());
 
+        formID_text.setText(result.get("formID").to_string());
+        approvingUser_text.setText(result.get("approvingUser").to_string());
+        approvalDate_text.setText(result.get("approvalDate").to_string());
+        expiryDate_text.setText(result.get("expirationDate").to_string());
+        issuedDate_text.setText(result.get("issuedDate").to_string());
+        volume_text.setText(result.get("volume").to_string());
+        applicationType_text.setText(result.get("appType").to_string());
+        surrenderDate_text.setText(result.get("surrenderDate").to_string());
+        status_text.setText(result.get("status").to_string());
+        formQualification_text.setText(result.get("qualifier").to_string());
+
         qualifier.setText(result.get("qualifier").to_string());
 
 

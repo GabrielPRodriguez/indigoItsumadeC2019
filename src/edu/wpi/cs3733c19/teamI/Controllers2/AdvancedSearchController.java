@@ -7,6 +7,7 @@ import edu.wpi.cs3733c19.teamI.Algorithms.LFuzzy;
 import edu.wpi.cs3733c19.teamI.Algorithms.SQLFuzzy;
 import edu.wpi.cs3733c19.teamI.Algorithms.UserSearch;
 import edu.wpi.cs3733c19.teamI.Algorithms.fuzzyContext;
+import edu.wpi.cs3733c19.teamI.Entities.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -71,8 +72,6 @@ public class AdvancedSearchController implements Initializable {
         Label formID = new Label("Form ID Number");
         Label repID = new Label("COLA Representative ID Number");
         Label plantRegistry = new Label("Plant Registry Number");
-        Label domestic = new Label("Domestic");
-        Label imported = new Label("Imported");
         Label serialNumber = new Label("Serial Number");
         Label brandName = new Label("Brand Name");
         Label beverageType = new Label("Type of Beverage");
@@ -143,8 +142,6 @@ public class AdvancedSearchController implements Initializable {
                         formID,
                         repID,
                         plantRegistry,
-                        domestic,
-                        imported,
                         serialNumber,
                         brandName,
                         beverageType,
@@ -174,6 +171,7 @@ public class AdvancedSearchController implements Initializable {
                         surrenderDate,
                         qualification
 
+
                 );
 
         fieldSelector1.setItems(labelList);
@@ -183,30 +181,6 @@ public class AdvancedSearchController implements Initializable {
 
 
     private ToolBarController toolBarController = ToolBarController.getInstance();
-
-    @FXML
-    public void setAlgorithm(){
-        RadioButton selectedRadioButton = (RadioButton) algorithmGroup.getSelectedToggle();
-        String toggleGroupValue = selectedRadioButton.getText();
-
-        if (toggleGroupValue.equals("SQL")){
-            searchAlgorithmSelection.setContext(new SQLFuzzy());
-
-        }else if(toggleGroupValue.equals("Levenshtein")){
-            searchAlgorithmSelection.setContext(new LFuzzy());
-
-        }
-
-
-    }
-
-    public void setSearchParam(){
-        ArrayList<String> paramList = new ArrayList<String>();
-        paramList.add(((Label)fieldSelector1.getValue()).getText());
-        paramList.add(((Label)fieldSelector2.getValue()).getText());
-        paramList.add(((Label)fieldSelector3.getValue()).getText());
-        searchAlgorithmSelection.setParam(paramList);
-    }
 
 
 
@@ -221,6 +195,18 @@ public class AdvancedSearchController implements Initializable {
 
        toolBarController.goSearch();
     }
+
+    @FXML
+    public void setAlgorithm(){
+
+
+    }
+
+    public void setSearchParam(){
+
+    }
+
+
 
 
 }

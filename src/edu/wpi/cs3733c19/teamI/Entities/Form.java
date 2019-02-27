@@ -1,6 +1,9 @@
 package edu.wpi.cs3733c19.teamI.Entities;
 
+import edu.wpi.cs3733c19.teamI.Controllers2.dbUtilities.ReturnedValue;
 import javafx.scene.image.Image;
+
+import java.util.HashMap;
 
 public class Form {
 
@@ -110,7 +113,25 @@ public class Form {
         this.back_Upload = back_Upload;
         this.userSignature = userSignature;
     }
-
+    /**
+    public Form(HashMap<String, ReturnedValue> entry){
+        this.form_ID = entry.get("formID").to_string();
+        this.repID = entry.get("repID").to_string();
+        this.plantRegistry = entry.get("plantRegistry").to_string();
+        this.domesticOrImported = entry.get("domesticOrImported").to_string();
+        this.serialNumber = entry.get("serialNumber").to_string();
+        this.beverageType = entry.get("beverageType").to_string();
+        this.brandName = entry.get("brandName").to_string();
+        this.fancifulName = entry.get("fancifulName").to_string();
+        this.vintage = entry.get("vintage").to_string();
+        this.grapeVarietals = entry.get("grapeVarietals").to_string();
+        this.pHValue = entry.get("pHValue").to_string();
+        this.wineAppellation = entry.get("wineAppellation").to_string();
+        this.alcoholContent = entry.get("alcoholContent").to_string();
+        this.phoneNumber = entry.get("phoneNumber").to_string();
+        this.email = entry.get("email").to_string();
+    }
+    */
     public void setVolume(String volume) {
         this.volume = volume;
     }

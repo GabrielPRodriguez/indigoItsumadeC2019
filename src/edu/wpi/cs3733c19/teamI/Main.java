@@ -71,18 +71,18 @@ public class Main extends Application implements SerialPortPacketListener {
             String RF_Password;
             User.userPower RF_Power;
             if (user.equals(" ERIC")) {
-                RF_User = "eric@wpi.edu";
-                RF_Password = "MZsTH5v6ZMNem/AR2WJYnQ==";
-                RF_Power = User.userPower.TTBEmployee;
-            }
-            else if(user.equals(" BOSS")) {
-                RF_User = "Ferguson@wpi.edu";
-                RF_Password = "uL6WBrubtA3Tw0KodBS8uQ==";
+                RF_User = "ttb";
+                RF_Password = "KbfeApyfMV/lgTW9SG+BpQ==";
                 RF_Power = User.userPower.TTBEmployee;
             }
             else if(user.equals(" WONG")) {
-                RF_User = "admin@admin.admin";
-                RF_Password = "cV48VsuJMMuSXqnxsMu90w==";
+                RF_User = "admin@123.com";
+                RF_Password = "DjGMbCWU0aeNI4XHYDs1BA==";
+                RF_Power = User.userPower.TTBEmployee;
+            }
+            else if(user.equals(" BOSS")) {
+                RF_User = "specialist";
+                RF_Password = "lDmdzr7/MnZ9uLusLT2o7A==";
                 RF_Power = User.userPower.SuperAdmin;
             }
             else {
@@ -97,8 +97,7 @@ public class Main extends Application implements SerialPortPacketListener {
 
                     @Override
                     public void run() {
-
-                        RFID_Login(RF_User, RF_Password, RF_Power);
+                        RFID_Login(RF_User, RF_Password);
                     }
                 });
             }
@@ -113,11 +112,8 @@ public class Main extends Application implements SerialPortPacketListener {
     }
 
 
-    public void RFID_Login(String username, String password, User.userPower power){
-        if(!power.equals(null)) {
+    public void RFID_Login(String username, String password){
             User.userPower powerCreate = User.userPower.Standard;
-            //TODO: eliminate following toggel button code, shold be handled by DB
-
             ArrayList<HashMap<String, ReturnedValue>> users = new ArrayList<>();
             SQLDriver loginDriver = new SQLDriver();
             LinkedList<String> param = new LinkedList<String>();
@@ -132,21 +128,22 @@ public class Main extends Application implements SerialPortPacketListener {
                 e.printStackTrace();
             }
 
-            if(users.get(0).get("role").to_double() == 1){
+            if(users.get(0).get("role").to_double() == 0){
                 powerCreate = User.userPower.TTBEmployee;
             }
-            else if(users.get(0).get("role").to_double() == 2) {
+            else if(users.get(0).get("role").to_double() == 1) {
                 powerCreate = User.userPower.Company;
             }
-            else if (users.get(0).get("role").to_double() == 3){
+            else if (users.get(0).get("role").to_double() == 2){
                 powerCreate = User.userPower.Specialist;
             }
-            else if (users.get(0).get("role").to_double() == 4){
+            else if (users.get(0).get("role").to_double() == 3){
                 powerCreate= User.userPower.SuperAdmin;
             }
             else {
                 powerCreate = User.userPower.Standard;
             }
+            System.out.println(powerCreate);
 
             try
             {
@@ -162,7 +159,6 @@ public class Main extends Application implements SerialPortPacketListener {
             }
 
         }
-    }
 
 
     public static void main(String[] args) {

@@ -48,7 +48,6 @@ public class Main extends Application implements SerialPortPacketListener {
             comPort.addDataListener(this);
         }
         catch(Exception e){
-            System.out.println("No peripheral connected");
         }
     }
 
@@ -64,10 +63,8 @@ public class Main extends Application implements SerialPortPacketListener {
         try {
             String user = " ";
             byte[] newData = event.getReceivedData();
-            System.out.println("Received data of size: " + newData.length);
             for (int i = 0; i < newData.length; ++i) {
                 user += (char) newData[i];
-                System.out.print((char) newData[i]);
             }
             String RF_User;
             String RF_Password;
@@ -103,13 +100,10 @@ public class Main extends Application implements SerialPortPacketListener {
                         RFID_Login(RF_User, RF_Password, RF_Power);
                     }
                 });
-                //System.out.println("Continued?");
             }
-            System.out.println("\n");
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
-                //System.out.println("couldnt sleep");
             }
         }
         catch(NullPointerException n){
@@ -202,7 +196,6 @@ public class Main extends Application implements SerialPortPacketListener {
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
             @Override
             public void run() {
-                //System.out.println("made it");
                 //comPort.removeDataListener();
                 //comPort.closePort();
             }

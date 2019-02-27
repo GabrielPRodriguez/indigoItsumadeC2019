@@ -72,7 +72,6 @@ public class StatisticsController {
                     yVal2 = result.frequences.get("Distilled Spirits");
                     yVal3 = result.frequences.get("Malt Beverage");
                 } catch (Exception e) {
-                    System.out.println("Exception");
                 }
             }
 
@@ -106,7 +105,6 @@ public class StatisticsController {
                     yVal5 = result.frequences.get("Import");
 
                 } catch (Exception e) {
-                    System.out.println("Exception");
                 }
             }
 

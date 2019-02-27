@@ -283,7 +283,6 @@ public class ResultsController implements Initializable {
 
     public void setTable(){
         //get results
-        //System.out.println("Updated");
         //convertToForms();
         //update columns on table view
         this.Domestic.setCellValueFactory(new PropertyValueFactory<sub_Form, String>("domesticOrImported"));
@@ -334,8 +333,6 @@ public class ResultsController implements Initializable {
                     SQLDriver driver  = new SQLDriver();
                     item = tableView.getSelectionModel().getSelectedItem();
 
-                    //System.out.println("formID is " + item.getSummary().get(0));
-                    //System.out.println(item.getForm_ID());
                     driver.setField(item.getSummary().get(0), "delete", "status");
                     //DisplayedResults.remove(item.getIndex()-1);
                     ArrayList<HashMap<String, ReturnedValue>> resMap = toolBarController.getResultsMap();
@@ -358,7 +355,6 @@ public class ResultsController implements Initializable {
         }
         else{
             //do nothing
-            //System.out.println("notadmin");
         }
     }
 
@@ -366,13 +362,11 @@ public class ResultsController implements Initializable {
     public void table_selected(Event event){
         try{
             item = tableView.getSelectionModel().getSelectedItem();
-            //System.out.println(tableView.getItems());
             showSelectedBeverage(item);
             // toolBarController.getInfoController().updateList(item);
             // toolBarController.goDetails(event);
         }
         catch (Exception e){
-            System.out.println("Item not found in table_selected method");
         }
     }
 
@@ -406,8 +400,6 @@ public class ResultsController implements Initializable {
         appText.setText(oneBeverage.getSummary().get(11));
         varText.setText(oneBeverage.getSummary().get(9));
         nameText.setText(oneBeverage.getSummary().get(6));
-        //System.out.println("thing 1" + oneBeverage.getSummary().get(6));
-        //System.out.println("thing 2 " + oneBeverage.getSummary().get(0));
 
     }
 
@@ -457,7 +449,6 @@ public class ResultsController implements Initializable {
             export_message.setTextFill(Color.web("#4BB543"));
             export_message.setText("CSV Exported!");
         } catch (Exception ex) {
-            //System.out.println("Error exporting CSV");
             ex.printStackTrace();
             export_message.setTextFill(Color.web("#FF0000"));
             export_message.setText("Error exporting CSV");

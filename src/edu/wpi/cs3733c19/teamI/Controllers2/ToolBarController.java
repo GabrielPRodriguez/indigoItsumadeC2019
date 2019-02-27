@@ -230,7 +230,6 @@ public class ToolBarController implements Initializable {
     }
 
     public void goWorkflow() throws IOException {
-        System.out.print(signedIn);
 
         if((curUser == null)|| curUser.getUsername().equals(""))
         {

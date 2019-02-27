@@ -213,12 +213,6 @@ public class AdvancedSearchController implements Initializable {
     public void performSearch(ActionEvent event) throws Exception {
        RadioButton selectedRadioButton = (RadioButton) algorithmGroup.getSelectedToggle();
        String toggleGroupValue = selectedRadioButton.getText();
-
-       System.out.println("Field Selector1: " + ((Label)fieldSelector1.getValue()).getText());
-       System.out.println("Field Selector2: " + ((Label)fieldSelector2.getValue()).getText());
-       System.out.println("Field Selector3: " + ((Label)fieldSelector3.getValue()).getText());
-
-
        toolBarController.goSearch();
     }
 

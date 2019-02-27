@@ -309,9 +309,7 @@ public class ManufacturerWorkflowController {
                 }
         }
         if(filtered_results.isEmpty()){
-            System.out.println("nope");
         }
-        System.out.println("process");
         HashMap<Integer, Label>test = new HashMap<Integer, Label>();
         test.put(1, formID_1);
         test.put(2, formID_2);

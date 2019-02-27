@@ -114,10 +114,6 @@ public class MongoDriver {
             for (String key : keys) {
                 String _val = result.get(key).to_string();
 
-                //System.out.println(_val);
-                //System.out.println(_user_input);
-                //System.out.println("---------------------");
-
                 if (_val.length() > 0 && _user_input.length() > 0 && filter_immediate(_val, _user_input)) {
                     _count += dl_distance(_val, _user_input);
                     if (!seen_result) {
@@ -131,7 +127,6 @@ public class MongoDriver {
             if (seen_result) {
                 all_distances.add(_count);
                 results.put(_count, result);
-                //System.out.println("Beverage type here "+result.get("beverageType").to_string());
             }
 
 
@@ -310,8 +305,6 @@ public class MongoDriver {
         for (int i = 0; i < all_distances.size(); i++){
             final_results.add(results.get(all_distances.get(i))); //for some reason these are getting set as null
         }
-        //System.out.println("final distances are:" + all_distances);
-        //System.out.println("final results are: " + final_results);
         return final_results;
     }
 
@@ -345,8 +338,6 @@ public class MongoDriver {
         for (int i = 0; i < all_distances.size(); i++){
             final_results.add(results.get(all_distances.get(i))); //for some reason these are getting set as null
         }
-        //System.out.println("final distances are:" + all_distances);
-        //System.out.println("final results are: " + final_results);
         return final_results;
     }
 
@@ -365,12 +356,8 @@ public class MongoDriver {
             boolean seen_result = false;
             for (String key:keys){
                 String _val = result.get(key).to_string();
-                //System.out.println(_val);
-                //System.out.println(_user_input);
-                //System.out.println("---------------------");
 
                 if (_val.length() > 0 && _user_input.length() > 0 && filter_immediate(_val, _user_input)){
-                    System.out.println("Got in here");
                     _count += l_distance(_val, _user_input);
                     if (!seen_result){
                         seen_result = true;
@@ -383,7 +370,6 @@ public class MongoDriver {
             if (seen_result){
                 all_distances.add(_count);
                 results.put(_count, result);
-                //System.out.println("Beverage type here "+result.get("beverageType").to_string());
             }
 
 
@@ -422,14 +408,8 @@ public class MongoDriver {
                 last_seen_distance = new_val;
             }
             */
-            System.out.println("top results");
-            System.out.println(top_results);
-            System.out.println(all_distances.size());
             if (all_distances.size() <= top_results){
                 for (double i:all_distances){
-                    System.out.println("in access looop");
-                    System.out.println(i);
-                    System.out.println(results.containsKey(i));
                     final_results.add(results.get(i));
                 }
             }
@@ -437,18 +417,12 @@ public class MongoDriver {
                 for (int j = 0; j < top_results; j++){
 
                     double new_val = all_distances.get(j);
-                    System.out.println("in access looop");
-                    System.out.println(new_val);
-                    System.out.println(results.containsKey(new_val));
                     final_results.add(results.get(new_val));
                 }
             }
 
 
         }
-
-        System.out.println("new search results here");
-        System.out.println(final_results);
         return final_results;
 
     }
@@ -477,8 +451,6 @@ public class MongoDriver {
             //collection with tablename already exists in filename
             flag = false;
         }
-        //System.out.println("flag for insert_val");
-        //System.out.println(flag);
 
         MongoDatabase about_database = mongo.getDatabase("_about_"+filename);
         try{
@@ -490,7 +462,6 @@ public class MongoDriver {
                 about_document = new Document("rowname", default_rows[i]);
                 about_document.append("rowtype", vals[i].statement());
                 about_collection.insertOne(about_document);
-                //System.out.println(about_collection);
             }
 
         }
@@ -544,8 +515,6 @@ public class MongoDriver {
         MongoCollection<Document> about_collection = about_database.getCollection(tablename);
         List<Document> about_entries = (List<Document>) about_collection.find().into(
                 new ArrayList<Document>());
-        //System.out.println(entries);
-        //System.out.println(about_entries);
         ArrayList<HashMap<String, ReturnedValue>>results = new ArrayList<HashMap<String, ReturnedValue>>();
         HashMap<String, String>types = new HashMap<String, String>();
         ArrayList<String>_keys = new ArrayList<String>();
@@ -569,8 +538,6 @@ public class MongoDriver {
             }
             results.add(_r);
         }
-        //System.out.println("test  below.....");
-        //System.out.println(results);
         return results;
 
     }
@@ -621,35 +588,28 @@ public class MongoDriver {
 
     }
     public ArrayList<HashMap<String, ReturnedValue>>get_data_by_value(String tablename, String filename, LinkedList<String>search_fields, HashMap<String, DataField>targets) throws Exception{
-        //System.out.println("in search method");
 
         ArrayList<HashMap<String, ReturnedValue>> final_results = new ArrayList<HashMap<String, ReturnedValue>>();
         for (HashMap<String, ReturnedValue>result: select_all(filename, tablename)){
-            //System.out.println(result.get("status"));
             String _new_flag = result.get("status").to_string();
             if (_new_flag.equals("approved")){
                 boolean _flag = false;
                 for (String field:search_fields){
-                    // System.out.println("search field: "+field);
                     ReturnedValue type1 = result.get(field);
                     DataField type2 = targets.get(field);
 
 
                     if (type1.type.equals("text")){
                         if (type1.to_string().equals(type2.getValue().toString())){
-                            //  System.out.println("successfull comparison!!!");
 
                             _flag = true;
                         }
                         else{
-                            //System.out.println("comparision failed");
                             _flag = false;
                             break;
                         }
                     }
                     else{
-                        //System.out.println("should not see this");
-                        //  System.out.println(type1.type);
                         if (type1.to_double() == Double.parseDouble(type2.getValue().toString())){
                             _flag = true;
                         }
@@ -673,37 +633,24 @@ public class MongoDriver {
         return final_results;
     }
     public ArrayList<HashMap<String, ReturnedValue>>get_user_data_by_value(String tablename, String filename, LinkedList<String>search_fields, HashMap<String, DataField>targets) throws Exception{
-        //System.out.println("in search method");
 
         ArrayList<HashMap<String, ReturnedValue>> final_results = new ArrayList<HashMap<String, ReturnedValue>>();
         for (HashMap<String, ReturnedValue>result: select_all(filename, tablename)){
-            //System.out.println("In first loop");
             boolean _flag = false;
             for (String field:search_fields){
-                //System.out.println("search field: "+field);
                 ReturnedValue type1 = result.get(field);
                 DataField type2 = targets.get(field);
-
-                //System.out.println("At end");
-                //System.out.println("Type1: " + type1);
-
-
                 if (type1.type.equals("text")|| type1.type.equals("TEXT")){
-                    //System.out.println("Type accepted");
                     if (type1.to_string().equals(type2.getValue().toString())){
-                        //  System.out.println("successfull comparison!!!");
 
                         _flag = true;
                     }
                     else{
-                        //System.out.println("comparision failed");
                         _flag = false;
                         break;
                     }
                 }
                 else{
-                    //System.out.println("should not see this");
-                    //  System.out.println(type1.type);
                     if (type1.to_double() == Double.parseDouble(type2.getValue().toString())){
                         _flag = true;
                     }
@@ -757,10 +704,6 @@ public class MongoDriver {
 
         //this is a test here
         for (HashMap<String, ReturnedValue>r:driver.select_all("players.db", "players")){
-            //System.out.println(r.get("name").to_string());
-            //System.out.println(r.get("team").to_string());
-            //System.out.println(r.get("salary").to_int());
-            //System.out.println("-----------------");
 
         }
 
@@ -769,12 +712,7 @@ public class MongoDriver {
         cols.add("team");
 
         for (HashMap<String, ReturnedValue>r:driver.search_for_dl_multiple("players", "players.db", cols, "Boston", 4)){
-            System.out.println("============================");
-            System.out.println(r.get("name").to_string());
-            System.out.println(r.get("team").to_string());
-            System.out.println(r.get("salary").to_int());
-            System.out.println("Found successfull result");
-            System.out.println("-----------------");
+
             //34e374c8-66e2-4d1d-8d0b-ff3dde06c8f7
             //Brookdale10!
             //FareyaTestCluster1

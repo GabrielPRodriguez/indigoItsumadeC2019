@@ -8,7 +8,6 @@ import edu.wpi.cs3733c19.teamI.Entities.DataTransfer;
 import edu.wpi.cs3733c19.teamI.Entities.Form;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -23,21 +22,14 @@ import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 
 import java.awt.*;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionAdapter;
-import java.awt.event.WindowEvent;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.nio.Buffer;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -69,9 +61,6 @@ public class FormSubmissionController implements Initializable {
     }
 
     private void setWineToggle(){
-
-        //System.out.println("wine");
-
         JFXRadioButton rb = (JFXRadioButton)beverage.getSelectedToggle();
 
         if(rb == wine_RadButton)
@@ -225,73 +214,6 @@ public class FormSubmissionController implements Initializable {
     @FXML
     ImageView backImageDisp;
 
-    @FXML
-    Button addSignature;
-
-    @FXML
-    ImageView signatureDisp;
-
-    JButton signButton, start;
-    UserSignature userSignature;
-    JFrame signatureArea;
-
-    ActionListener actionListener = new ActionListener()
-    {
-        @Override
-        public void actionPerformed(java.awt.event.ActionEvent event)
-        {
-            if(event.getSource() == start)
-            {
-                userSignature.black();
-            }
-
-            else if(event.getSource() == signButton)
-            {
-                try
-                {
-                    BufferedImage im0 = new Robot().createScreenCapture(signatureArea.getBounds());
-                    BufferedImage im1 = im0.getSubimage(0, 65, 600, 135);
-                    Image newImage = SwingFXUtils.toFXImage(im1, null);
-                    signatureDisp.setImage(newImage);
-                }
-                catch(AWTException e)
-                {
-                    e.printStackTrace();
-                }
-
-                signatureArea.dispatchEvent(new WindowEvent(signatureArea, WindowEvent.WINDOW_CLOSING));
-            }
-        }
-    };
-
-    @FXML
-    private void handleSignatureButton(ActionEvent event)
-    {
-        if(event.getSource() == addSignature)
-        {
-            userSignature = new UserSignature();
-            signatureArea = new JFrame("Signature");
-            Container content = signatureArea.getContentPane();
-            content.setLayout(new BorderLayout());
-            content.add(userSignature, BorderLayout.CENTER);
-            Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
-            signatureArea.setLocation(d.width/2 - signatureArea.getSize().width/2, d.height/2 - signatureArea.getSize().height/2);
-
-            JPanel controls = new JPanel();
-            signButton = new JButton("SIGN");
-            signButton.addActionListener(actionListener);
-            start = new JButton("Start");
-            start.addActionListener(actionListener);
-
-            controls.add(signButton);
-            controls.add(start);
-
-            content.add(controls, BorderLayout.NORTH);
-            signatureArea.setSize(600, 200);
-            signatureArea.setVisible(true);
-        }
-    }
-
     /** private void uploadFile - Used to upload an image file of either type .jpg or .png when the user
      *                              is submitting a form. This method will throw an error if a file type
      *                              other than the intended file type is uploaded.
@@ -322,6 +244,33 @@ public class FormSubmissionController implements Initializable {
                 }
             }
         }
+//        if((event.getSource() == front_Upload) || (event.getSource() == back_Upload))
+//        {
+//            JButton open = new JButton();
+//            JFileChooser chooseFile = new JFileChooser();
+//            chooseFile.setCurrentDirectory(new java.io.File("System.dir"));
+//            FileNameExtensionFilter filter = new FileNameExtensionFilter("*.Images", "jpg", "png");
+//            chooseFile.setFileFilter(filter);
+//            chooseFile.setDialogTitle("Please Choose an Image to Upload");
+//            chooseFile.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+//
+//            if(chooseFile.showOpenDialog(open) == JFileChooser.APPROVE_OPTION)
+//            {
+//                File selectedFile = chooseFile.getSelectedFile();
+//                String filePath = selectedFile.getAbsolutePath();
+//                Image selectedImage = new Image(new File(filePath).toURI().toString());
+//
+//                if(event.getSource() == front_Upload)
+//                {
+//                    frontImageDisp.setImage(selectedImage);
+//                }
+//
+//                if(event.getSource() == back_Upload)
+//                {
+//                    backImageDisp.setImage(selectedImage);
+//                }
+//            }
+//        }
     }
 
     //Enables the fields that are only used for wine when the wine radial button is selected
@@ -339,11 +288,8 @@ public class FormSubmissionController implements Initializable {
 */
     @FXML
     private void handleSubmitButton(ActionEvent event) throws Exception{
-        //System.out.println("Starting submit");
-        if(event.getSource()== submit)
-        {
+        if(event.getSource()== submit){
             clearWarnings();
-            //System.out.println("event get source");
             Form sentForm = new Form();
             boolean readyToSend = true; //if true by the end of the method, the form will be sent to database
             submit_message.setText("");//string to insert into textfield either confirming submission or printing error messge
@@ -465,7 +411,6 @@ public class FormSubmissionController implements Initializable {
             }
             catch (NumberFormatException e){
                 readyToSend = false;
-                //System.out.println("Al content");
                 //String oldMessage = submit_message.getText();
                 //submit_message.setText(oldMessage + "  Please enter a number for Alcohol Percentage.");
                 alcoholPercent_warning.setTextFill(Color.web("#FF0000"));

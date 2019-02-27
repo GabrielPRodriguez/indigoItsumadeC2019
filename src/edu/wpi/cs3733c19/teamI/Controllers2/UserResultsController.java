@@ -165,14 +165,11 @@ import java.util.ResourceBundle;
         public void editAccount(){
             //the final method to actually do the thing
             toolBarController = ToolBarController.getInstance();
-            //System.out.println(toolBarController.getCurUser().getUserType());
             if(toolBarController.getCurUser() == null) {
-                //System.out.println("non admin flag 2/25/19");
             }
             else if (toolBarController.getCurUser().getUserType().equals(User.userPower.SuperAdmin)){
                 data = DataTransfer.getInstance();
                 try {
-                    //System.out.println("attempting to edit a thing");
 
 
 
@@ -203,9 +200,6 @@ import java.util.ResourceBundle;
                         driver.setUserField(repIDnum, roleSet, "role");
                     }
 
-
-                    //System.out.println("formID is " + item.getSummary().get(0));
-                    //System.out.println(item.getForm_ID());
                     //TODO on a form save, every item is rewritten, no checks are made to avoid rewriting non-changing information
                     String emailSet = UserEmail.getText();
                     driver.setUserField(repIDnum, emailSet, "email");
@@ -228,15 +222,9 @@ import java.util.ResourceBundle;
 
 
                     if((Password.getText().equals("")) == false){
-                        //System.out.println(Password.getText().equals(""));
-                        //System.out.println(Password.getText());
                         String passSet = encryptPassword(Password.getText());
                         driver.setUserField(repIDnum, passSet, "password");
                     }
-
-
-
-                    //System.out.println("somehow didnt break?");
 
                     convertToForms(1);
                     setTable();
@@ -404,7 +392,6 @@ import java.util.ResourceBundle;
 
         public void setTable(){
             //get results
-            //System.out.println("Updated");
             //convertToForms();
             //update columns on table view
             this.Role.setCellValueFactory(new PropertyValueFactory<Sub_User, String>("userRole"));
@@ -435,13 +422,11 @@ import java.util.ResourceBundle;
         public void table_selected(Event event){
             try{
                 item = tableView.getSelectionModel().getSelectedItem();
-                //System.out.println(tableView.getItems());
                 showSelectedBeverage(item);
                 // toolBarController.getInfoController().updateList(item);
                 // toolBarController.goDetails(event);
             }
             catch (Exception e){
-                System.out.println("Item not found in table_selected method");
             }
         }
 
@@ -547,7 +532,6 @@ import java.util.ResourceBundle;
                 export_message.setTextFill(Color.web("#4BB543"));
                 export_message.setText("CSV Exported!");
             } catch (Exception ex) {
-                //System.out.println("Error exporting CSV");
                 ex.printStackTrace();
                 export_message.setTextFill(Color.web("#FF0000"));
                 export_message.setText("Error exporting CSV");

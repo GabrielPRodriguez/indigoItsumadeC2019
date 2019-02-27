@@ -50,8 +50,8 @@
                               <TableView fx:id="tableView" onMouseClicked="#table_selected" prefHeight="612.0" prefWidth="300.0">
                                 <columns>
                                   <TableColumn fx:id="ResultNumber" prefWidth="37.0" text="#" />
-                                  <TableColumn fx:id="FormID" prefWidth="161.00003051757812" text="Form ID" />
                                     <TableColumn fx:id="BrandName" prefWidth="97.99996948242188" text="Brand Name" />
+                                  <TableColumn fx:id="FancifulName" prefWidth="161.00003051757812" text="Fanciful Name" />
                                 </columns>
                               </TableView>
                            </children>

@@ -65,7 +65,7 @@ public class AgentWorkflowController implements Initializable {
     TableView<FormWorkflow> tableView;
 
     @FXML
-    TableColumn FormID;
+    TableColumn FancifulName;
 
     @FXML
     TableColumn BrandName;
@@ -661,11 +661,14 @@ public class AgentWorkflowController implements Initializable {
 
 
         clearFields();
-        pull_Forms();
+        //pull_Forms();
         sendBack.setDisable(true);
         forwardButton.setDisable(true);
         accept_button.setDisable(true);
         reject_button.setDisable(true);
+
+        // Calling the pull workforms
+        convertToForms();
 
     }
 
@@ -689,11 +692,14 @@ public class AgentWorkflowController implements Initializable {
         driver.setApprovalStatus(currentFormID, formStatus_string);
         clearFields();
 
-        pull_Forms();
+        //pull_Forms();
         sendBack.setDisable(true);
         forwardButton.setDisable(true);
         accept_button.setDisable(true);
         reject_button.setDisable(true);
+
+        // Calling the pull workforms
+        convertToForms();
 
     }
     @FXML
@@ -708,11 +714,14 @@ public class AgentWorkflowController implements Initializable {
         driver.setApprovalStatus(currentFormID,formStatus_string);
         clearFields();
         testBottles();
-        pull_Forms();
+        //pull_Forms();
         sendBack.setDisable(true);
         forwardButton.setDisable(true);
         accept_button.setDisable(true);
         reject_button.setDisable(true);
+
+        // Calling the pull workforms
+        convertToForms();
     }
     @FXML
     public void forwardHandler() throws IOException, Exception{
@@ -725,11 +734,14 @@ public class AgentWorkflowController implements Initializable {
         driver.setQualifier(currentFormID,commentBox.getText());
         clearFields();
         testBottles();
-        pull_Forms();
+        //pull_Forms();
         sendBack.setDisable(true);
         forwardButton.setDisable(true);
         accept_button.setDisable(true);
         reject_button.setDisable(true);
+
+        // Calling the pull workforms
+        convertToForms();
     }
     private void clearFields(){
         repID_text.clear();
@@ -779,16 +791,15 @@ public class AgentWorkflowController implements Initializable {
         Boolean specialist = toolBarController.getCurUser().getUserType().equals(User.userPower.Specialist);
         Boolean agent = toolBarController.getCurUser().getUserType().equals(User.userPower.TTBEmployee);
         Boolean admin = toolBarController.getCurUser().getUserType().equals(User.userPower.SuperAdmin);
-
-        MongoDriver driver = new MongoDriver("mongodb+srv://firstuser1:newTestCred@cs3733-hgmot.mongodb.net/test?retryWrites=true");
+        SQLDriver driver = new SQLDriver();
+        //MongoDriver driver = new MongoDriver("mongodb+srv://firstuser1:newTestCred@cs3733-hgmot.mongodb.net/test?retryWrites=true");
         ArrayList<HashMap<String, ReturnedValue>>filtered_results = new ArrayList<HashMap<String, ReturnedValue>>();
         for (HashMap<String, ReturnedValue>result:driver.select_all("stringified_ids_db.db", "form_data")){
-            if(special){
                 if (result.get("status").to_string().contains("specialist") & (specialist || admin)){
 
                     filtered_results.add(result);
                 }
-            }
+
             else{
                 if (result.get("status").to_string().contains("unread") & (agent || admin)){
 
@@ -806,6 +817,11 @@ public class AgentWorkflowController implements Initializable {
 
         DisplayedResults.clear();
         currentPage = 1;
+
+        sendBack.setDisable(true);
+        forwardButton.setDisable(true);
+        accept_button.setDisable(true);
+        reject_button.setDisable(true);
 
         for(int i = 0; i < numResults; i++) {
             try {
@@ -833,6 +849,10 @@ public class AgentWorkflowController implements Initializable {
     private void showSelectedForm(FormWorkflow selectedForm) {
         currentFormID = selectedForm.getForm_ID();
 
+        accept_button.setDisable(false);
+        reject_button.setDisable(false);
+        sendBack.setDisable(false);
+        forwardButton.setDisable(false);
 
         repID_text.setText(selectedForm.getRepID());
         plantRegistry_text.setText(selectedForm.getPlantRegistry());
@@ -887,7 +907,7 @@ public class AgentWorkflowController implements Initializable {
         //update columns on table view
         //this.Domestic.setCellValueFactory(new PropertyValueFactory<sub_Form, String>("domesticOrImported"));
         this.BrandName.setCellValueFactory(new PropertyValueFactory<FormWorkflow, String>("brandName"));
-        this.FormID.setCellValueFactory(new PropertyValueFactory<FormWorkflow, String>("formID"));
+        this.FancifulName.setCellValueFactory(new PropertyValueFactory<FormWorkflow, String>("fancifulName"));
         this.ResultNumber.setCellValueFactory(new PropertyValueFactory<FormWorkflow, Integer>("index"));
         //this.tableView.setItems(DisplayedResults);
         this.tableView.itemsProperty().bind(dispList);
@@ -1004,5 +1024,8 @@ public class AgentWorkflowController implements Initializable {
             specialText.setOpacity(0);
             special = false;
         }
+
+
+
     }
 }

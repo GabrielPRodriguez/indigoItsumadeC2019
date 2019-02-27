@@ -601,6 +601,8 @@ public class AgentWorkflowController implements Initializable {
         zip_text.setText(result.get("zip").to_string());
         dateOfApplication_text.setText(result.get("dateOfApplication").to_string());
         applicantName_text.setText(result.get("name").to_string());
+        String Name = (toolBarController.getCurUser().getFirstName() + " " + toolBarController.getCurUser().getLastName());
+        approvingUser_text.setText(Name);
 
 
 

@@ -277,13 +277,12 @@
                               </HBox>
                            </children>
                         </VBox>
-                        <JFXButton fx:id="test" onAction="#testBottles" text="TEST" />
-                           <Text fill="WHITE" stroke="#104d0a" strokeType="OUTSIDE" strokeWidth="5.0" text="XP Selector">
+                           <Text fill="WHITE" stroke="#104d0a" strokeType="OUTSIDE" strokeWidth="5.0" text="Bottle Selector">
                               <font>
                                  <Font name="Segoe UI Bold" size="30.0" />
                               </font>
                            </Text>
-                        <GridPane hgap="10.0" style="-fx-border-radius: 5; -fx-border-color: #305241;">
+                        <GridPane hgap="10.0" style="-fx-border-radius: 20; -fx-border-width: 3; -fx-border-color: #305241;">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -357,6 +356,7 @@
                            </children>
                         </GridPane>
                         </VBox>
+                     <JFXButton fx:id="test" onAction="#testBottles" text="TEST" />
                      </children>
                   </VBox>
                   <VBox spacing="20.0" HBox.hgrow="ALWAYS">

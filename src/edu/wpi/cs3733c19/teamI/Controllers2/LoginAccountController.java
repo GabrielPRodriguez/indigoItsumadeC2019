@@ -159,16 +159,16 @@ public class LoginAccountController implements Initializable {
             HashMap<String, DataField> searchParam = new HashMap<>();
             searchParam.put("email", new DataField(Email.getText(), "email"));
             users = loginDriver.get_user_data_by_value("credentials", "user_database.db", param, searchParam);
-            if(users.get(0).get("role").to_double() == 1){
+            if(users.get(0).get("role").to_double() == 0){
                 powerCreate = User.userPower.TTBEmployee;
             }
-            else if(users.get(0).get("role").to_double() == 2) {
+            else if(users.get(0).get("role").to_double() == 1) {
                 powerCreate = User.userPower.Company;
             }
-            else if (users.get(0).get("role").to_double() == 3){
+            else if (users.get(0).get("role").to_double() == 2){
                 powerCreate = User.userPower.Specialist;
             }
-            else if (users.get(0).get("role").to_double() == 4){
+            else if (users.get(0).get("role").to_double() == 3){
                 powerCreate= User.userPower.SuperAdmin;
             }
             else {

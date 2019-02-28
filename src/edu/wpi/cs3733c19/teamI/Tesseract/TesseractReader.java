@@ -24,7 +24,7 @@ public class TesseractReader {
             String runPath = TesseractReader.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath();
             System.out.println(runPath);
             String[] brokenPath = runPath.split("/");
-            tessPath = "C:/Users/Owner/Tess4J";//brokenPath[1] + "/" + brokenPath[2] + "/" + brokenPath[3] + "/Tess4J";
+            tessPath = brokenPath[1] + "/" + brokenPath[2] + "/" + brokenPath[3] + "/Tess4J";
             System.out.println(tessPath);
             }
         catch(Exception e){
